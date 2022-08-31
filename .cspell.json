@@ -1,0 +1,13 @@
+{
+  "version": "0.2",
+  "dictionaries": ["charity"],
+
+  "dictionaryDefinitions": [
+    {
+      "name": "charity",
+      "path": "./config/.cspell/charity.txt",
+      "addWords": true
+    }
+  ],
+  "ignorePaths": ["node_modules/", "./.cspell/"]
+}
