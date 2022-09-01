@@ -9,7 +9,7 @@
     "preview": "vite preview",
     "prepare": "husky install",
     "lint": "eslint ./src/ --fix",
-    "spell": "cspell ./src/**/*.{ts,tsx,js,jsx}"
+    "spell": "cspell ./src/**/*"
   },
   "dependencies": {
     "@fullstacksjs/toolbox": "2.19.0",

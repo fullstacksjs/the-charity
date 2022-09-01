@@ -5,9 +5,9 @@
   "dictionaryDefinitions": [
     {
       "name": "charity",
-      "path": "./.cspell/charity.txt",
+      "path": "./configs/cspell/charity.txt",
       "addWords": true
     }
   ],
-  "ignorePaths": ["node_modules/", "./.cspell/"]
+  "ignorePaths": ["node_modules/"]
 }
