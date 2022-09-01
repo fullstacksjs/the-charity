@@ -1,5 +1,13 @@
+import { ReactLocation, Router } from '@tanstack/react-location';
+
 const App: React.FC = () => {
-  return <div>The Charity App</div>;
+  const location = new ReactLocation();
+  return (
+    <>
+      The Charity App
+      <Router routes={[{ path: '/' }]} location={location} />
+    </>
+  );
 };
 
 export default App;
