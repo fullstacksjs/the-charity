@@ -1,5 +1,9 @@
 import React from 'react';
-import { MantineProvider, createEmotionCache } from '@mantine/core';
+import {
+  MantineProvider,
+  createEmotionCache,
+  ColorSchemeProvider,
+} from '@mantine/core';
 import rtlPlugin from 'stylis-plugin-rtl';
 import ReactDOM from 'react-dom/client';
 
@@ -16,12 +20,17 @@ const root = ReactDOM.createRoot(
 
 root.render(
   <React.StrictMode>
-    <MantineProvider
-      withGlobalStyles
-      withCSSVariables
-      emotionCache={rtlCache}
-      theme={{ dir: 'rtl' }}>
-      <App />
-    </MantineProvider>
+    <ColorSchemeProvider colorScheme='light' toggleColorScheme={() => {}}>
+      <MantineProvider
+        withGlobalStyles
+        withCSSVariables
+        emotionCache={rtlCache}
+        theme={{
+          dir: 'rtl',
+          colorScheme: 'light',
+        }}>
+        <App />
+      </MantineProvider>
+    </ColorSchemeProvider>
   </React.StrictMode>
 );
