@@ -1,5 +1,10 @@
-const App: React.FC = () => {
-  return <div>The Charity App</div>;
-};
+import { ReactLocation, Router } from '@tanstack/react-location';
 
-export default App;
+export const App: React.FC = () => {
+  const location = new ReactLocation();
+  return (
+     <Router routes={[{ path: '/' }]} location={location}>
+        The Charity App
+    </Router>
+  );
+};
