@@ -9,6 +9,8 @@
     "preview": "vite preview",
     "prepare": "./scripts/prepare",
     "lint": "eslint ./src/ --fix",
+    "lint:ci": "eslint ./src/",
+    "test:ci": "exit 0",
     "spell": "cspell ./src/**/*"
   },
   "dependencies": {
