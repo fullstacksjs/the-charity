@@ -1,6 +1,6 @@
 import { ReactLocation, Router } from '@tanstack/react-location';
 
-const App: React.FC = () => {
+export const App: React.FC = () => {
   const location = new ReactLocation();
   return (
      <Router routes={[{ path: '/' }]} location={location}>
@@ -8,5 +8,3 @@ const App: React.FC = () => {
     </Router>
   );
 };
-
-export default App;
