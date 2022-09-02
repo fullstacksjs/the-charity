@@ -11,7 +11,9 @@
     "lint": "eslint ./src/ --fix",
     "lint:ci": "eslint ./src/",
     "test:ci": "exit 0",
-    "spell": "cspell ./src/**/*"
+    "spell": "cspell ./src/**/*",
+    "storybook": "start-storybook -p 6006",
+    "build-storybook": "build-storybook"
   },
   "dependencies": {
     "@fullstacksjs/toolbox": "2.19.0",
@@ -20,11 +22,21 @@
     "react-dom": "18.2.0"
   },
   "devDependencies": {
+    "@babel/core": "7.18.13",
     "@fullstacksjs/eslint-config": "8.5.2",
     "@fullstacksjs/tsconfig": "0.6.0",
+    "@storybook/addon-a11y": "6.5.10",
+    "@storybook/addon-actions": "6.5.10",
+    "@storybook/addon-essentials": "6.5.10",
+    "@storybook/addon-interactions": "6.5.10",
+    "@storybook/addon-links": "6.5.10",
+    "@storybook/builder-vite": "0.2.2",
+    "@storybook/react": "6.5.10",
+    "@storybook/testing-library": "0.0.13",
     "@types/react": "18.0.18",
     "@types/react-dom": "18.0.6",
     "@vitejs/plugin-react": "2.0.1",
+    "babel-loader": "8.2.5",
     "cspell": "6.8.1",
     "eslint": "8.23.0",
     "husky": "8.0.1",
