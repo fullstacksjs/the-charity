@@ -1,5 +1,4 @@
 import {
-  ColorSchemeProvider,
   createEmotionCache,
   MantineProvider,
 } from '@mantine/core';
@@ -20,24 +19,16 @@ const root = ReactDOM.createRoot(
 
 root.render(
   <React.StrictMode>
-    <ColorSchemeProvider
-      colorScheme="light"
-      toggleColorScheme={() => {
-        // required
-      }}
-    >
       <MantineProvider
         withGlobalStyles
         withCSSVariables
         emotionCache={rtlCache}
         theme={{
           dir: 'rtl',
-          fontFamily: 'Iranian Sans, sans-serif',
-          colorScheme: 'light',
+          fontFamily: 'Iranian Sans, sans-serif'
         }}
       >
         <App />
       </MantineProvider>
-    </ColorSchemeProvider>
   </React.StrictMode>,
 );
