@@ -1,3 +1,5 @@
 fullstacksjs
 tanstack
+Mantine
+stylis
 vite
