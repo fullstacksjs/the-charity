@@ -23,7 +23,7 @@ root.render(
     <ColorSchemeProvider
       colorScheme="light"
       toggleColorScheme={() => {
-        console.log('');
+        // required
       }}
     >
       <MantineProvider
