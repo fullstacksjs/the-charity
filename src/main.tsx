@@ -1,7 +1,4 @@
-import {
-  createEmotionCache,
-  MantineProvider,
-} from '@mantine/core';
+import { createEmotionCache, MantineProvider } from '@mantine/core';
 import React from 'react';
 import ReactDOM from 'react-dom/client';
 import rtlPlugin from 'stylis-plugin-rtl';
@@ -19,16 +16,16 @@ const root = ReactDOM.createRoot(
 
 root.render(
   <React.StrictMode>
-      <MantineProvider
-        withGlobalStyles
-        withCSSVariables
-        emotionCache={rtlCache}
-        theme={{
-          dir: 'rtl',
-          fontFamily: 'Iranian Sans, sans-serif'
-        }}
-      >
-        <App />
-      </MantineProvider>
+    <MantineProvider
+      withGlobalStyles
+      withCSSVariables
+      emotionCache={rtlCache}
+      theme={{
+        dir: 'rtl',
+        fontFamily: 'Iranian Sans, sans-serif',
+      }}
+    >
+      <App />
+    </MantineProvider>
   </React.StrictMode>,
 );
