@@ -32,7 +32,7 @@ root.render(
         emotionCache={rtlCache}
         theme={{
           dir: 'rtl',
-          fontFamily: 'Iranian Sans, sans-serif !important',
+          fontFamily: 'Iranian Sans, sans-serif',
           colorScheme: 'light',
         }}
       >
