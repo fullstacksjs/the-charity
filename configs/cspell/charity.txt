@@ -3,3 +3,4 @@ tanstack
 Mantine
 stylis
 vite
+typecheck
