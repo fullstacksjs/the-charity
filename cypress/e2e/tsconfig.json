@@ -1,5 +1,4 @@
 {
-  "projectId": "dpxh3q",
   "compilerOptions": {
     "target": "es5",
     "lib": ["es5", "dom"],
