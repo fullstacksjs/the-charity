@@ -65,7 +65,7 @@ jobs:
           parallel: true
           start: npm run dev
           build: npm run build
-          wait-on: "http://127.0.0.1:5173"
+          wait-on: 'http://127.0.0.1:5173'
         env:
           CYPRESS_RECORD_KEY: ${{ secrets.CYPRESS_RECORD_KEY }}
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
@@ -77,4 +77,4 @@ jobs:
           component: true
           start: npm run dev
           build: npm run build
-          wait-on: "http://127.0.0.1:5173"
+          wait-on: 'http://127.0.0.1:5173'
