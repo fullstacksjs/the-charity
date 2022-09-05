@@ -5,3 +5,4 @@ stylis
 vite
 vitest
 typecheck
+jsdom
