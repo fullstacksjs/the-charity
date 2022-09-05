@@ -54,7 +54,5 @@
   "volta": {
     "node": "16.17.0",
     "npm": "8.18.0"
-  },
-  "readme": "ERROR: No README data found!",
-  "_id": "the-charity-frontend@0.0.0"
+  }
 }
