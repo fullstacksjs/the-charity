@@ -4,3 +4,4 @@ Mantine
 stylis
 vite
 typecheck
+chromaui
