@@ -28,7 +28,7 @@
   },
   "devDependencies": {
     "@babel/core": "7.18.13",
-    "@fullstacksjs/eslint-config": "8.5.2",
+    "@fullstacksjs/eslint-config": "8.6.0",
     "@fullstacksjs/tsconfig": "0.6.0",
     "@storybook/addon-a11y": "6.5.10",
     "@storybook/addon-actions": "6.5.10",

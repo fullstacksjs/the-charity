@@ -1,7 +1,11 @@
 {
   "root": true,
+  "parserOptions": {
+    "project": "./tsconfig.json"
+  },
   "extends": [
-    "@fullstacksjs"
+    "@fullstacksjs",
+    "@fullstacksjs/eslint-config/typecheck"
     // TODO: add this after adding graphql
     // "@fullstacksjs/eslint-config/graphql"
   ]
