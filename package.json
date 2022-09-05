@@ -16,7 +16,10 @@
     "coverage": "vitest run --coverage",
     "storybook": "start-storybook -p 6006",
     "build-storybook": "build-storybook",
-    "pr": "./scripts/pr"
+    "pr": "./scripts/pr",
+    "cy:component:run": "cypress run --component",
+    "cy:e2e:run": "cypress run",
+    "cy:open": "cypress open"
   },
   "dependencies": {
     "@emotion/react": "11.10.4",
