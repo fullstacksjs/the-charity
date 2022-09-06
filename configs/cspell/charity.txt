@@ -3,5 +3,7 @@ tanstack
 Mantine
 stylis
 vite
+vitest
 typecheck
 chromaui
+jsdom

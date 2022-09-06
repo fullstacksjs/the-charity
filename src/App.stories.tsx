@@ -1,4 +1,4 @@
-import type { ComponentMeta, ComponentStory } from '@storybook/react';
+import type { Meta, Story } from '@storybook/react';
 
 import { App } from './App';
 
@@ -7,8 +7,8 @@ export default {
   parameters: {
     layout: 'fullscreen',
   },
-} as ComponentMeta<typeof App>;
+} as Meta;
 
-const Template: ComponentStory<typeof App> = args => <App {...args} />;
+const Template: Story = args => <App {...args} />;
 
-export const Default = Template.bind({});
+export const Default: Story = Template.bind({});
