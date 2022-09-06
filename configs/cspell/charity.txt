@@ -3,4 +3,6 @@ tanstack
 Mantine
 stylis
 vite
+vitest
 typecheck
+jsdom
