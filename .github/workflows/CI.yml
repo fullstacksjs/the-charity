@@ -28,7 +28,7 @@ jobs:
 
       - name: Test
         run: npm run test:ci
-  
+
   chromatic:
     concurrency: ci-${{ github.ref }}
     runs-on: ubuntu-latest
