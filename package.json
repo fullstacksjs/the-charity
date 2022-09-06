@@ -19,7 +19,9 @@
     "pr": "./scripts/pr",
     "cy:component:run": "cypress run --component",
     "cy:e2e:run": "cypress run",
-    "cy:open": "cypress open"
+    "cy:open": "cypress open",
+    "test:e2e:run": "start-server-and-test start http://127.0.0.1:5173 cy:run",
+    "test:e2e:dev": "start-server-and-test dev http://127.0.0.1:5173 cy:open"
   },
   "dependencies": {
     "@emotion/react": "11.10.4",
@@ -61,6 +63,7 @@
     "husky": "8.0.1",
     "lint-staged": "13.0.3",
     "prettier": "2.7.1",
+    "start-server-and-test": "1.14.0",
     "typescript": "4.8.2",
     "vite": "3.0.9",
     "vitest": "0.22.1"
