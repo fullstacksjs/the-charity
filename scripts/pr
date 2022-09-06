@@ -1,0 +1,52 @@
+#!/usr/bin/env sh
+
+join_arr() {
+  local IFS=","
+  echo "$*"
+}
+
+RESET='\033[39m'
+CYAN='\033[1;36m'
+YELLOW='\033[1;93m'
+GREEN='\033[1;32m'
+ERR='\033[1;91m'
+BOLD='\033[1m'
+
+ME=$(git config --get user.name)
+DEVS=("ASafaeirad" "erfan-goodarzi" "mojtabaesl" "AmirabbasJ")
+REVIEWERS=$(join_arr ${DEVS[@]/$ME/})
+
+echo -en "${BOLD}"
+
+type gh >/dev/null 2>&1 || {
+  echo -e "${ERR}Sorry, this script needs github-cli.${RESET}"
+  exit 1
+}
+
+BASE=${1:-"dev"}
+BRANCH_NAME=$(git branch --show-current)
+TITLE=$(
+  echo ${BRANCH_NAME} |
+    sed -r "s/\-/\ /g" |
+    sed -r "s/hotfix (.*)/ [Hotfix]: \1/gi" |
+    sed -r "s/FSK ([0-9]*) (.*)/[FSK-\1]: \2/gi" |
+    sed -r 's/[^ _-]*/\u&/g'
+)
+
+read -e -p "$(echo -ne "${BOLD}title: ${YELLOW}")" -i "$TITLE" TITLE
+echo -ne "${RESET}\n"
+
+read -e -p "$(echo -ne "${BOLD}body: ${YELLOW}")" -i "this PR ." BODY
+echo -ne "${RESET}\n"
+
+echo -e "Creating PR:"
+echo -e "title:\t${CYAN}$TITLE${RESET}"
+echo -e "body:\t${CYAN}$BODY${RESET}"
+echo -e "base:\t${CYAN}$BASE${RESET}"
+echo -en "Continue? [${GREEN}y${RESET}/${ERR}n${RESET}]${RESET} "
+read -rn1 -p "" confirm
+
+[[ ! $confirm =~ ^([yY])$ ]] && exit 1
+echo -e "\n"
+
+gh pr create --base "$BASE" --title "$TITLE" --body "$BODY" --assignee "@me" --add-reviewer "$REVIEWERS"
