@@ -52,7 +52,7 @@ jobs:
           projectToken: ${{ secrets.CHROMATIC_PROJECT_TOKEN }}
           exitZeroOnChanges: true # NOTE: Option to prevent the workflow from failing
 
-  cypress-run: 
+  cypress-run:
     concurrency: ci-${{ github.ref }}
     runs-on: ubuntu-latest
     steps:
@@ -71,4 +71,3 @@ jobs:
           install: false
           component: true
           build: npm run build
- 
