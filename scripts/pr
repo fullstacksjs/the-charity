@@ -36,7 +36,7 @@ TITLE=$(
 read -e -p "$(echo -ne "${BOLD}title: ${YELLOW}")" -i "$TITLE" TITLE
 echo -ne "${RESET}\n"
 
-read -e -p "$(echo -ne "${BOLD}body: ${YELLOW}")" -i "this pr " BODY
+read -e -p "$(echo -ne "${BOLD}body: ${YELLOW}")" -i "this PR ." BODY
 echo -ne "${RESET}\n"
 
 echo -e "Creating PR:"
