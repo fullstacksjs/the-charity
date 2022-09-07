@@ -36,7 +36,6 @@ jobs:
   chromatic:
     concurrency: ci-${{ github.ref }}
     runs-on: ubuntu-latest
-    if: ${{ github.event_name == 'push'}}
     steps:
       - name: Checkout repository
         uses: actions/checkout@v3
@@ -44,7 +43,11 @@ jobs:
           # NOTE: required because https://www.chromatic.com/docs/github-actions#support-for-codeactionscheckoutv2code-and-above
           fetch-depth: 0
 
+      - name: Install dependencies
+        run: npm ci
+
       - name: Deploy Chromatic
-        uses: chromaui/action@v3
+        uses: chromaui/action@v1
         with:
           projectToken: ${{ secrets.CHROMATIC_PROJECT_TOKEN }}
+          exitZeroOnChanges: true # NOTE: Option to prevent the workflow from failing
