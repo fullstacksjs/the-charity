@@ -42,7 +42,9 @@ jobs:
         with:
           # NOTE: required because https://www.chromatic.com/docs/github-actions#support-for-codeactionscheckoutv2code-and-above
           fetch-depth: 0
-          run: npm install
+
+      - name: Install dependencies
+        run: npm ci
 
       - name: Deploy Chromatic
         uses: chromaui/action@v1
