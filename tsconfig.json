@@ -1,5 +1,5 @@
 {
   "extends": "@fullstacksjs/tsconfig/react",
-  "include": ["src", "@types"],
+  "include": ["src", "@types", "cypress"],
   "references": [{ "path": "./tsconfig.vite.json" }]
 }
