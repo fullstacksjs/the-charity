@@ -49,4 +49,4 @@ read -rn1 -p "" confirm
 [[ ! $confirm =~ ^([yY])$ ]] && exit 1
 echo -e "\n"
 
-gh pr create --base "$BASE" --title "$TITLE" --body "$BODY" --assignee "@me" --add-reviewer "$REVIEWERS"
+gh pr create --base "$BASE" --title "$TITLE" --body "$BODY" --assignee "@me" --reviewer "$REVIEWERS"
