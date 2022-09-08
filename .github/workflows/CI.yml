@@ -4,6 +4,10 @@ on:
   pull_request:
     branches:
       - dev
+  push:
+    branches:
+      - main
+      - dev
   workflow_dispatch:
 
 jobs:
@@ -28,7 +32,7 @@ jobs:
 
       - name: Test
         run: npm run test:ci
-  
+
   chromatic:
     concurrency: ci-${{ github.ref }}
     runs-on: ubuntu-latest
@@ -48,7 +52,7 @@ jobs:
           projectToken: ${{ secrets.CHROMATIC_PROJECT_TOKEN }}
           exitZeroOnChanges: true # NOTE: Option to prevent the workflow from failing
 
-  cypress-run: 
+  cypress-run:
     concurrency: ci-${{ github.ref }}
     runs-on: ubuntu-latest
     steps:
@@ -61,7 +65,7 @@ jobs:
           parallel: true
           start: npm run dev
           build: npm run build
-          wait-on: 'http://127.0.0.1:5173'
+          wait-on: "http://127.0.0.1:5173"
 
       - name: Run Component tests
         uses: cypress-io/github-action@v4
@@ -70,4 +74,4 @@ jobs:
           component: true
           start: npm run dev
           build: npm run build
-          wait-on: 'http://127.0.0.1:5173'
+          wait-on: "http://127.0.0.1:5173"
