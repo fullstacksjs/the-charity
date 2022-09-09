@@ -1,9 +1,10 @@
+chromaui
+dpxh
 fullstacksjs
-tanstack
+jsdom
 Mantine
 stylis
+tanstack
+typecheck
 vite
 vitest
-typecheck
-chromaui
-jsdom
