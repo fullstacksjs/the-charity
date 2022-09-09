@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 # Logs
 logs
 *.log
@@ -24,5 +25,8 @@ dist-ssr
 *.sw?
 
 # Cypress
-cypress/videos 
+cypress/videos
 cypress/screenshots
+
+# vite timestamp
+vite.config.*.timestamp*
