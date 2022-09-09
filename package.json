@@ -4,7 +4,7 @@
   "version": "0.0.0",
   "type": "module",
   "scripts": {
-    "dev": "vite",
+    "dev": "dotenv -e .env.dev -- vite",
     "build": "tsc && vite build",
     "preview": "vite preview",
     "prepare": "./scripts/prepare",
@@ -61,6 +61,7 @@
     "chromatic": "6.9.0",
     "cspell": "6.8.1",
     "cypress": "10.7.0",
+    "dotenv": "16.0.2",
     "eslint": "8.23.0",
     "husky": "8.0.1",
     "lint-staged": "13.0.3",
