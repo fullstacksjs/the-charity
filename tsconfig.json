@@ -1,6 +1,6 @@
 {
   "root": true,
   "extends": "@fullstacksjs/tsconfig/react",
-  "include": ["src", "@types"],
+  "include": ["src", "@types", "vite.config.ts"],
   "references": [{ "path": "./tsconfig.vite.json" }]
 }
