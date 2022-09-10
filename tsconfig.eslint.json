@@ -1,0 +1,4 @@
+{
+  "extends": "./tsconfig.json",
+  "include": ["./src", "./tests", "cypress.config.ts", "vite.config.ts"]
+}
