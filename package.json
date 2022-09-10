@@ -10,7 +10,7 @@
     "prepare": "./scripts/prepare",
     "lint:ci": "eslint . --ext .ts,.tsx",
     "lint": "npm run lint:ci -- --fix",
-    "spell": "cspell ./src/**/*",
+    "spell": "./scripts/spell",
     "test": "vitest",
     "test:ci": "npm run test",
     "coverage": "vitest run --coverage",
