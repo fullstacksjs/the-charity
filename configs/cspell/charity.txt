@@ -8,3 +8,10 @@ tanstack
 typecheck
 vite
 vitest
+arrowParens
+DEVS
+Safaeirad
+erfan
+goodarzi
+mojtabaesl
+Amirabbas
