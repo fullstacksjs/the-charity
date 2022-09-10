@@ -25,7 +25,8 @@ npm install
 
 ## Running:
 
-To run the app just run:
+To start the app first set the envs as described in the (envs section)[#Envs]
+then run:
 
 ```bash
 npm install
