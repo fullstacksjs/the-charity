@@ -10,6 +10,7 @@ const { Default } = composeStories(stories);
 describe('simple smoke test', () => {
   it('the app renders', () => {
     const { baseElement } = render(<Default />);
+
     expect(baseElement).toBeInTheDocument();
   });
 });

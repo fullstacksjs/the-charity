@@ -9,5 +9,5 @@
       "addWords": true
     }
   ],
-  "ignorePaths": ["node_modules/"]
+  "ignorePaths": ["node_modules/", "dist/"]
 }

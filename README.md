@@ -1,11 +1,11 @@
+# The Charity Frontend
+
 ## Prerequisite:
 
 - [git][git] >= 2
 - [volta][volta] >= 1
-- [node][nodejs] >= 16
-- [npm][npm] >= 8
 
-# Setup:
+## Setup:
 
 After you've made sure to have the correct things (and versions) installed just
 run:
@@ -14,9 +14,9 @@ run:
 npm install
 ```
 
-# scripts:
+## Scripts:
 
-## running:
+### Run:
 
 to run the app just run:
 
@@ -25,44 +25,44 @@ npm install
 npm run dev
 ```
 
-## building:
+### Build:
 
-to build the app just run:
+To build the app just run:
 
 ```bash
 npm run build
 ```
 
-## linting:
+## Lint:
 
-to run the linter to auto-fix all the problems run:
+To run the linter to auto-fix all the problems run:
 
 ```bash
 npm run lint
 ```
 
-## testing:
+## Test:
 
-to run the unit tests run:
+To run the unit tests run:
 
 ```bash
 npm run test
 ```
 
-> if you're using [vscode][vscode] like me you can install [vitest
+> If you're using [vscode][vscode] like me you can install [vitest
 > extension][vitest-extension] to make your life easier, after installing it
 > just read it's documentation on the extension description to get started
 
-## finding spelling errors:
+## Find Spelling Errors
 
-and for finding spelling errors just run
+To find spelling errors just run
 
 ```bash
 npm run spell
 ```
 
-and if you wanted to add a new word so that it won't count as spelling error,
-just add it to the `.cspell/charity.txt` and separate with a new line
+If you wanted to add a new word so that it won't count as spelling error, just
+add it to the `.cspell/charity.txt` and separate with a new line
 
 > note: these two (linting and finding spelling errors) are run automatically on
 > each commit and the commit won't be done if there's anything wrong, even for
