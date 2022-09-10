@@ -2,6 +2,6 @@
   "root": true,
   "extends": "@fullstacksjs/tsconfig/react",
   "include": ["src", "@types", "./**/*"],
-  "exclude": ["./node_modules"],
+  "exclude": ["./node_modules", "cypress", "tests"],
   "references": [{ "path": "./tsconfig.vite.json" }]
 }
