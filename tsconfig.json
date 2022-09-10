@@ -1,6 +1,7 @@
 {
   "root": true,
   "extends": "@fullstacksjs/tsconfig/react",
-  "include": ["src", "@types", "vite.config.ts"],
+  "include": ["src", "@types", "./**/*"],
+  "exclude": ["./node_modules"],
   "references": [{ "path": "./tsconfig.vite.json" }]
 }
