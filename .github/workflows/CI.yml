@@ -66,6 +66,9 @@ jobs:
           start: npm run dev
           build: npm run build
           wait-on: "http://127.0.0.1:5173"
+        env:
+          CYPRESS_RECORD_KEY: ${{ secrets.CYPRESS_RECORD_KEY }}
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Run Component tests
         uses: cypress-io/github-action@v4
