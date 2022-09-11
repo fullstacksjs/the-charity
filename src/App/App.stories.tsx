@@ -12,7 +12,6 @@ export default {
 
 const Template: Story = args => <App {...args} />;
 
-// TODO: maybe replace built-in mocks with msw after adding it
 const defaultParams = {
   apolloClient: {
     mocks: [
@@ -39,8 +38,7 @@ Loading.parameters = {
     mocks: [
       {
         ...defaultParams.apolloClient.mocks[0],
-        result: { data: {} },
-        delay: 1e21,
+        delay: 1e14,
       },
     ],
   },
