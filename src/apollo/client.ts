@@ -1,10 +1,10 @@
 import { ApolloClient, InMemoryCache } from '@apollo/client';
 
-import { getEnv } from '../config';
+import { getConfig } from '../config';
 
-const env = getEnv();
+const config = getConfig();
 
 export const client = new ApolloClient({
-  uri: env.APP_GRAPHQL_SCHEMA_URL,
+  uri: config.schemaUrl,
   cache: new InMemoryCache(),
 });
