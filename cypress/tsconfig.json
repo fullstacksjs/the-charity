@@ -1,0 +1,9 @@
+{
+  "extends": "../tsconfig.eslint.json",
+  "exclude": [],
+  "compilerOptions": {
+    "types": ["cypress", "@testing-library/cypress"],
+    "isolatedModules": false,
+    "noEmit": true
+  }
+}
