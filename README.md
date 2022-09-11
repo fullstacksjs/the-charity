@@ -14,7 +14,7 @@ run:
 npm install
 ```
 
-# Envs
+## Envs
 
 - `APP_GRAPHQL_SCHEMA_URL`: a valid url string for graphql path
 
