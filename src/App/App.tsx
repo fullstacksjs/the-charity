@@ -2,7 +2,7 @@ import { useQuery } from '@apollo/client';
 import { Title } from '@mantine/core';
 import { ReactLocation, Router } from '@tanstack/react-location';
 
-import { GetSchemaDescriptionQuery } from './operations/queries';
+import { GetSchemaDescriptionQuery } from '../operations/queries';
 
 const location = new ReactLocation();
 
