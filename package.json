@@ -4,7 +4,8 @@
   "version": "0.0.0",
   "type": "module",
   "scripts": {
-    "dev": "dotenv -e .env.dev -- vite",
+    "dev:ci": "vite",
+    "dev": "dotenv -e .env.dev -- npm run dev:ci",
     "build": "tsc && vite build",
     "preview": "vite preview",
     "prepare": "./scripts/prepare",
