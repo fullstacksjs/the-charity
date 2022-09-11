@@ -1,1 +1,1 @@
-export * from './GetSchemaDescriptionQuery';
+export * from './GetAdminsIdQuery';

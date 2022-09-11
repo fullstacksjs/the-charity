@@ -1,6 +1,6 @@
 import type { Meta, Story } from '@storybook/react';
 
-import { GetSchemaDescriptionQuery } from '../operations/queries';
+import { GetAdminsIdQuery } from '../operations/queries';
 import { App } from './App';
 
 export default {
@@ -12,21 +12,47 @@ export default {
 
 const Template: Story = args => <App {...args} />;
 
-export const Default: Story = Template.bind({});
-
-Default.parameters = {
+// TODO: maybe replace built-in mocks with msw after adding it
+const defaultParams = {
   apolloClient: {
     mocks: [
       {
         request: {
-          query: GetSchemaDescriptionQuery,
+          query: GetAdminsIdQuery,
         },
         result: {
           data: {
-            __schema: { description: 'schema description' },
+            admin: [{ id: 1 }, { id: 2 }],
           },
         },
-        error: new Error('This is a mock network error'),
+      },
+    ],
+  },
+} as const;
+
+export const Default: Story = Template.bind({});
+Default.parameters = defaultParams;
+
+export const Loading: Story = Template.bind({});
+Loading.parameters = {
+  apolloClient: {
+    mocks: [
+      {
+        ...defaultParams.apolloClient.mocks[0],
+        results: { data: {} },
+        delay: 1e21,
+      },
+    ],
+  },
+};
+
+export const Failure: Story = Template.bind({});
+Failure.parameters = {
+  apolloClient: {
+    mocks: [
+      {
+        ...defaultParams.apolloClient.mocks[0],
+        error: new Error('A Network Error Occurred'),
       },
     ],
   },

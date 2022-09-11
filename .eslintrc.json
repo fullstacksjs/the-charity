@@ -10,6 +10,8 @@
     // "@fullstacksjs/eslint-config/graphql"
   ],
   "rules": {
-    "jest/no-deprecated-functions": "off"
+    "jest/no-deprecated-functions": "off",
+    "no-warning-comments": "off",
+    "react/no-unused-prop-types": "off" // NOTE: https://github.com/jsx-eslint/eslint-plugin-react/blob/master/docs/rules/no-unused-prop-types.md#known-issueslimitations
   }
 }
