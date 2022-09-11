@@ -39,7 +39,7 @@ Loading.parameters = {
     mocks: [
       {
         ...defaultParams.apolloClient.mocks[0],
-        results: { data: {} },
+        result: { data: {} },
         delay: 1e21,
       },
     ],
