@@ -15,7 +15,7 @@ const errorLink = onError(({ graphQLErrors, networkError }) => {
 
 const httpLink = new HttpLink({ uri: config.schemaUrl });
 
-export const client = new ApolloClient({
+export const apolloClient = new ApolloClient({
   link: from([errorLink, httpLink]),
   cache: new InMemoryCache(),
 });

@@ -4,7 +4,7 @@ import React from 'react';
 import ReactDOM from 'react-dom/client';
 import rtlPlugin from 'stylis-plugin-rtl';
 
-import { client } from './apollo/client';
+import { apolloClient } from './apollo/apolloClient';
 import { App } from './App';
 
 const rtlCache = createEmotionCache({
@@ -16,7 +16,7 @@ const root = ReactDOM.createRoot(document.getElementById('root')!);
 
 root.render(
   <React.StrictMode>
-    <ApolloProvider client={client}>
+    <ApolloProvider client={apolloClient}>
       <MantineProvider
         withGlobalStyles
         withCSSVariables

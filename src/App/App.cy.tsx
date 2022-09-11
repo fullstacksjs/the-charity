@@ -1,12 +1,12 @@
 import { ApolloProvider } from '@apollo/client';
 
-import { client } from '../apollo/client';
+import { apolloClient } from '../apollo/apolloClient';
 import { App } from './App';
 
 describe('<App>', () => {
   it('smoke', () => {
     cy.mount(
-      <ApolloProvider client={client}>
+      <ApolloProvider client={apolloClient}>
         <App />
       </ApolloProvider>,
     );
