@@ -4,7 +4,8 @@
   "version": "0.0.0",
   "type": "module",
   "scripts": {
-    "dev": "vite",
+    "dev:ci": "vite",
+    "dev": "dotenv -e .env.dev -- npm run dev:ci",
     "build": "tsc && vite build",
     "preview": "vite preview",
     "prepare": "./scripts/prepare",
@@ -24,11 +25,13 @@
     "test:e2e:open": "start-server-and-test dev http://127.0.0.1:5173 cy:open"
   },
   "dependencies": {
+    "@apollo/client": "3.6.9",
     "@emotion/react": "11.10.4",
     "@fullstacksjs/toolbox": "2.19.0",
     "@mantine/core": "5.2.4",
     "@mantine/hooks": "5.2.4",
     "@tanstack/react-location": "3.7.4",
+    "graphql": "16.6.0",
     "jsdom": "20.0.0",
     "react": "18.2.0",
     "react-dom": "18.2.0",
@@ -59,11 +62,13 @@
     "chromatic": "6.9.0",
     "cspell": "6.8.1",
     "cypress": "10.7.0",
+    "dotenv": "16.0.2",
     "eslint": "8.23.0",
     "husky": "8.0.1",
     "lint-staged": "13.0.3",
     "prettier": "2.7.1",
     "start-server-and-test": "1.14.0",
+    "storybook-addon-apollo-client": "4.0.12",
     "typescript": "4.8.2",
     "vite": "3.0.9",
     "vitest": "0.22.1"

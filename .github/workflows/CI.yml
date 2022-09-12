@@ -63,7 +63,7 @@ jobs:
         with:
           record: true
           parallel: true
-          start: npm run dev
+          start: npm run dev:ci
           build: npm run build
           wait-on: 'http://127.0.0.1:5173'
         env:
@@ -75,6 +75,6 @@ jobs:
         with:
           install: false
           component: true
-          start: npm run dev
+          start: npm run dev:ci
           build: npm run build
           wait-on: 'http://127.0.0.1:5173'

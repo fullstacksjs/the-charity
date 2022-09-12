@@ -14,11 +14,19 @@ run:
 npm install
 ```
 
-## Scripts:
+## Envs
 
-### Run:
+- `APP_GRAPHQL_SCHEMA_URL`: a valid url string for graphql path
 
-to run the app just run:
+> Note: if you want add a new environment variable you should prefix it with
+> `APP_`.
+
+# Scripts:
+
+## Running:
+
+To start the app first set the envs as described in the (envs section)[#Envs]
+then run:
 
 ```bash
 npm install
@@ -61,10 +69,10 @@ To find spelling errors just run
 npm run spell
 ```
 
-If you wanted to add a new word so that it won't count as spelling error, just
-add it to the `.cspell/charity.txt` and separate with a new line
+And if you wanted to add a new word so that it won't count as spelling error,
+just add it to the `.cspell/charity.txt` and separate with a new line
 
-> note: these two (linting and finding spelling errors) are run automatically on
+> Note: These two (linting and finding spelling errors) are run automatically on
 > each commit and the commit won't be done if there's anything wrong, even for
 > the commit messages, so be careful what you write as a commit message :)
 

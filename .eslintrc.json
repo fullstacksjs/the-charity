@@ -5,11 +5,11 @@
   },
   "extends": [
     "@fullstacksjs",
-    "@fullstacksjs/eslint-config/typecheck"
-    // TODO: add this after adding graphql
-    // "@fullstacksjs/eslint-config/graphql"
+    "@fullstacksjs/eslint-config/typecheck",
+    "@fullstacksjs/eslint-config/graphql"
   ],
   "rules": {
-    "jest/no-deprecated-functions": "off"
+    "jest/no-deprecated-functions": "off",
+    "react/no-unused-prop-types": "off" // NOTE: https://github.com/jsx-eslint/eslint-plugin-react/blob/master/docs/rules/no-unused-prop-types.md#known-issueslimitations
   }
 }
