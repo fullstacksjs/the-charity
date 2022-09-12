@@ -1,5 +1,5 @@
 import { useQuery } from '@apollo/client';
-import { Title } from '@mantine/core';
+import { Text, Title } from '@mantine/core';
 import { ReactLocation, Router } from '@tanstack/react-location';
 
 import { GetAdminsIdQuery } from '../operations/queries';
@@ -19,9 +19,7 @@ export const App: React.FC = () => {
           : error != null
           ? 'error occurred while loading admins ids'
           : data.admin.map(({ id }: { id: number }) => (
-              <Title order={4} key={id}>
-                admin with id: {id}
-              </Title>
+              <Text key={id}>admin with id: {id}</Text>
             ))}
       </Title>
     </Router>
