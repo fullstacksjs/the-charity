@@ -18,9 +18,15 @@ npm install
 
 - `APP_GRAPHQL_SCHEMA_URL`: a valid url string for graphql path.
 - `API_PROXY_TARGET`: the API target proxy URL for the dev environment.
+- `PORT`: **Optional** port for running vite dev server, if not provided, vite
+  will use it's own port
 
-> Note: if you want add a new environment variable you should prefix it with
-> `APP_`.
+> Note: if you want add a new environment variables **for using in-app usage**
+> you should prefix it with `APP_`.
+
+recognized env files:
+
+- `.env.dev`: the env file used for dev environment
 
 # Scripts:
 
