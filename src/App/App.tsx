@@ -18,7 +18,7 @@ export const App: React.FC = () => {
           ? 'loading data'
           : error != null
           ? 'error occurred while loading admins ids'
-          : data.admin.map(({ id }: { id: number }) => (
+          : data.admins.map(({ id }: { id: number }) => (
               <Text key={id}>admin with id: {id}</Text>
             ))}
       </Title>
