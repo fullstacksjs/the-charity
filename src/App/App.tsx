@@ -1,23 +1,22 @@
-import { useQuery } from '@apollo/client';
 import { Text, Title } from '@mantine/core';
 import { ReactLocation, Router } from '@tanstack/react-location';
 
-import { GetAdminsIdQuery } from '../operations/queries';
+import { useGetAdminListQuery } from '../operations/__generated/typesAndHooks';
 
 const location = new ReactLocation();
 
-export const App = (): JSX.Element => {
-  const { data, loading, error } = useQuery(GetAdminsIdQuery);
+export const App: React.FC = () => {
+  const adminListQueryResult = useGetAdminListQuery();
   return (
     <Router routes={[{ path: '/' }]} location={location}>
       <Title order={1}>The Charity App</Title>
       <br />
       <Title order={3}>
-        {loading
+        {adminListQueryResult.loading
           ? 'loading data'
-          : error != null
+          : adminListQueryResult.error != null
           ? 'error occurred while loading admins ids'
-          : data.admins.map(({ id }: { id: number }) => (
+          : adminListQueryResult.data?.admins.map(({ id }) => (
               <Text key={id}>admin with id: {id}</Text>
             ))}
       </Title>
