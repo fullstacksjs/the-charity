@@ -1,6 +1,5 @@
-import type { Config } from '../domain';
+import { Config } from '../domain';
 
-// FIXME: add env parsing
-export const config: Config = {
+export const config: Config = Config.check({
   schemaUrl: import.meta.env.APP_GRAPHQL_SCHEMA_URL,
-};
+});
