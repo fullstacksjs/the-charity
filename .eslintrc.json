@@ -10,6 +10,41 @@
   ],
   "rules": {
     "jest/no-deprecated-functions": "off",
-    "react/no-unused-prop-types": "off" // NOTE: https://github.com/jsx-eslint/eslint-plugin-react/blob/master/docs/rules/no-unused-prop-types.md#known-issueslimitations
+
+    // NOTE: https://github.com/jsx-eslint/eslint-plugin-react/blob/master/docs/rules/no-unused-prop-types.md#known-issueslimitations
+    "react/no-unused-prop-types": "off",
+
+    // Let's customize this rule
+    "@typescript-eslint/naming-convention": [
+      "warn",
+      { "selector": "default", "format": ["camelCase"] },
+      {
+        "selector": "variable",
+        "format": ["camelCase", "UPPER_CASE", "PascalCase"]
+      },
+      {
+        "selector": "parameter",
+        "format": ["camelCase"],
+        "leadingUnderscore": "allow"
+      },
+      {
+        "selector": "memberLike",
+        "modifiers": ["private"],
+        "format": ["camelCase"],
+        "leadingUnderscore": "allow"
+      },
+      { "selector": "typeLike", "format": ["PascalCase"] },
+      {
+        "selector": "interface",
+        "format": ["PascalCase"],
+        "custom": { "regex": "^I[A-Z]", "match": false }
+      },
+      {
+        "selector": "variable",
+        "types": ["boolean"],
+        "format": ["camelCase"],
+        "prefix": ["is", "should", "has", "can", "did", "will", "enable"]
+      }
+    ]
   }
 }

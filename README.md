@@ -16,7 +16,8 @@ npm install
 
 ## Envs
 
-- `APP_GRAPHQL_SCHEMA_URL`: a valid url string for graphql path
+- `APP_GRAPHQL_SCHEMA_URL`: a valid url string for graphql path.
+- `API_PROXY_TARGET`: the API target proxy URL for the dev environment.
 
 > Note: if you want add a new environment variable you should prefix it with
 > `APP_`.

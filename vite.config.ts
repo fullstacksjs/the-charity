@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/naming-convention */
 /// <reference types="vitest" />
 
 import react from '@vitejs/plugin-react';
@@ -9,6 +10,14 @@ export default defineConfig({
       exclude: /\.stories\.(t|j)sx?$/,
     }),
   ],
+  server: {
+    proxy: {
+      '/graphql': {
+        target: process.env.API_PROXY_TARGET,
+        changeOrigin: true,
+      },
+    },
+  },
   test: {
     environment: 'node',
     globals: true,
