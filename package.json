@@ -27,7 +27,7 @@
   "dependencies": {
     "@apollo/client": "3.6.9",
     "@emotion/react": "11.10.4",
-    "@fullstacksjs/toolbox": "2.19.0",
+    "@fullstacksjs/toolbox": "2.20.0",
     "@mantine/core": "5.2.4",
     "@mantine/hooks": "5.2.4",
     "@tanstack/react-location": "3.7.4",

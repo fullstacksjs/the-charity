@@ -1,11 +1,9 @@
 /* eslint-disable @typescript-eslint/naming-convention */
 /// <reference types="vitest" />
 
-import { toInteger } from '@fullstacksjs/toolbox';
+import { getEnv, toInteger } from '@fullstacksjs/toolbox';
 import react from '@vitejs/plugin-react';
 import { defineConfig } from 'vite';
-
-const port = toInteger(process.env.PORT!);
 
 export default defineConfig({
   plugins: [
@@ -14,10 +12,11 @@ export default defineConfig({
     }),
   ],
   server: {
-    port: isNaN(port) ? undefined : port,
+    port: toInteger(getEnv('PORT', 'PORT'), 3000),
+    host: getEnv('HOST'),
     proxy: {
       '/graphql': {
-        target: process.env.API_PROXY_TARGET,
+        target: getEnv('API_PROXY_TARGET'),
         changeOrigin: true,
       },
     },
