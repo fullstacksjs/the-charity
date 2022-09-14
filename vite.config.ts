@@ -12,7 +12,7 @@ export default defineConfig({
     }),
   ],
   server: {
-    port: toInteger(getEnv('PORT', '3000')),
+    port: toInteger(getEnv('PORT', '3000'), 3000),
     host: getEnv('HOST'),
     proxy: {
       '/graphql': {
