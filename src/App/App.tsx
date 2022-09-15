@@ -6,8 +6,7 @@ import { GetAdminsIdQuery } from '../operations/queries';
 
 const location = new ReactLocation();
 
-export const App: React.FC = () => {
-  // eslint-disable-next-line @typescript-eslint/naming-convention
+export const App = (): JSX.Element => {
   const { data, loading, error } = useQuery(GetAdminsIdQuery);
   return (
     <Router routes={[{ path: '/' }]} location={location}>

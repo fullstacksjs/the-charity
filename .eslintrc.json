@@ -14,6 +14,9 @@
     // NOTE: https://github.com/jsx-eslint/eslint-plugin-react/blob/master/docs/rules/no-unused-prop-types.md#known-issueslimitations
     "react/no-unused-prop-types": "off",
 
+    // NOTE: not very helpful
+    "jest/require-hook": "off",
+
     // Let's customize this rule
     "@typescript-eslint/naming-convention": [
       "warn",
@@ -43,7 +46,16 @@
         "selector": "variable",
         "types": ["boolean"],
         "format": ["camelCase"],
-        "prefix": ["is", "should", "has", "can", "did", "will", "enable"]
+        "prefix": [
+          "is",
+          "should",
+          "has",
+          "can",
+          "did",
+          "will",
+          "enable",
+          "loading"
+        ]
       }
     ]
   }
