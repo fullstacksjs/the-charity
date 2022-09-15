@@ -36,7 +36,18 @@ TITLE=$(
 read -e -p "$(echo -ne "${BOLD}title: ${YELLOW}")" -i "$TITLE" TITLE
 echo -ne "${RESET}\n"
 
-read -e -p "$(echo -ne "${BOLD}body: ${YELLOW}")" -i "this PR ." BODY
+TITLEWORDS=($TITLE)
+
+VERB=${TITLEWORDS[1]}
+REST=${TITLEWORDS[@]:2}
+
+if [[ "$VERB" =~ (s|sh|ch|x|z)$ ]]; then
+  VERB+="es"
+else
+  VERB+="s"
+fi
+
+read -e -p "$(echo -ne "${BOLD}body: ${YELLOW}")" -i "This PR ${VERB,,} ${REST,,}." BODY
 echo -ne "${RESET}\n"
 
 echo -e "Creating PR:"

@@ -2,6 +2,7 @@
 
 ## Prerequisite:
 
+- [bash][bash] >= 4
 - [git][git] >= 2
 - [volta][volta] >= 1
 
@@ -84,6 +85,7 @@ just add it to the `.cspell/charity.txt` and separate with a new line
 > each commit and the commit won't be done if there's anything wrong, even for
 > the commit messages, so be careful what you write as a commit message :)
 
+[bash]: https://www.gnu.org/software/bash/
 [git]: https://git-scm.com/
 [nodejs]: https://nodejs.org/en/
 [volta]: https://volta.sh/
