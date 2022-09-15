@@ -58,6 +58,7 @@ jobs:
     environment: Preview
     env:
       PORT: 5000
+      APP_GRAPHQL_SCHEMA_URL: https://the-charity-backend-staging.herokuapp.com/graphql
 
     steps:
       - name: Checkout
