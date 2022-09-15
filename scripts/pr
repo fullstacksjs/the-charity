@@ -36,10 +36,10 @@ TITLE=$(
 read -e -p "$(echo -ne "${BOLD}title: ${YELLOW}")" -i "$TITLE" TITLE
 echo -ne "${RESET}\n"
 
-TITLEWORDS=($TITLE)
+TITLE_WORDS=($TITLE)
 
-VERB=${TITLEWORDS[1]}
-REST=${TITLEWORDS[@]:2}
+VERB=${TITLE_WORDS[1]}
+REST=${TITLE_WORDS[@]:2}
 
 if [[ "$VERB" =~ (s|sh|ch|x|z)$ ]]; then
   VERB+="es"
