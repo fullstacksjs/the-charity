@@ -1,6 +1,6 @@
 import type { Meta, Story } from '@storybook/react';
 
-import { GetAdminListDocument } from '../operations/__generated__/typesAndHooks';
+import { GetAdminListDocument } from '../operations';
 import { App } from './App';
 
 export default {
