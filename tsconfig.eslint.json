@@ -6,6 +6,7 @@
     "cypress.config.ts",
     "vite.config.ts",
     "cypress",
-    "@types"
+    "@types",
+    "apollo.config.js"
   ]
 }
