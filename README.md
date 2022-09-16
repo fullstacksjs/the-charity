@@ -42,6 +42,10 @@ npm install
 npm run dev
 ```
 
+> If you're using [vscode][vscode] you can install [Apollo
+> Graphql][apollo-graphql-extension] extension to get features like autocomplete
+> in your graphql queries
+
 ### Build:
 
 To build the app just run:
@@ -93,3 +97,5 @@ just add it to the `.cspell/charity.txt` and separate with a new line
 [vitest-extension]:
   https://marketplace.visualstudio.com/items?itemName=ZixuanChen.vitest-explorer
 [vscode]: https://code.visualstudio.com/
+[apollo-graphql-extension]:
+  https://marketplace.visualstudio.com/items?itemName=apollographql.vscode-apollo

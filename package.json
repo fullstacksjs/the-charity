@@ -20,7 +20,7 @@
     "pr": "./scripts/pr",
     "cy:component:run": "cypress run --component",
     "cy:e2e:run": "cypress run",
-    "cy:e2e:open": "cypress open"
+    "cy:e2e:open": "cypress open",
     "test:e2e:run": "start-server-and-test dev http://127.0.0.1:5173 cy:e2e:run",
     "test:e2e:open": "start-server-and-test dev http://127.0.0.1:5173 cy:open",
     "codegen": "dotenv -e .env.dev -- graphql-codegen",
