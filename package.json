@@ -2,7 +2,6 @@
   "name": "the-charity-frontend",
   "private": true,
   "version": "0.0.0",
-  "type": "module",
   "scripts": {
     "dev:ci": "vite",
     "dev": "dotenv -e .env.dev -- npm run dev:ci",
