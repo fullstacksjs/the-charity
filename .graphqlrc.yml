@@ -10,7 +10,7 @@ extensions:
     emitLegacyCommonJSImports: false
     overwrite: true
     generates:
-      ./src/operations/__generated/typesAndHooks.ts:
+      ./src/operations/__generated__/typesAndHooks.ts:
         plugins:
           - add:
               content: *HEADER

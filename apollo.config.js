@@ -4,5 +4,5 @@ module.exports = {
     url: 'https://the-charity-backend-staging.herokuapp.com/graphql',
   },
   includes: ['./src/operations/**/*.graphql', './src/operations/**/*.ts'],
-  excludes: ['./src/operations/__generated/*.ts'],
+  excludes: ['./src/operations/__generated__/*.ts'],
 };

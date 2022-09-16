@@ -1,7 +1,7 @@
 import { Text, Title } from '@mantine/core';
 import { ReactLocation, Router } from '@tanstack/react-location';
 
-import { useGetAdminListQuery } from '../operations/__generated/typesAndHooks';
+import { useGetAdminListQuery } from '../operations/__generated__/typesAndHooks';
 
 const location = new ReactLocation();
 
