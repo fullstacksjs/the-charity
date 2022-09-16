@@ -56,9 +56,13 @@ jobs:
     concurrency: ci-${{ github.ref }}
     runs-on: ubuntu-latest
     environment: Preview
+    env:
+      PORT: 5000
+      APP_GRAPHQL_SCHEMA_URL: https://the-charity-backend-staging.herokuapp.com/graphql
+
     steps:
       - name: Checkout
-        uses: actions/checkout@v2
+        uses: actions/checkout@v3
       - name: Run E2E tests
         uses: cypress-io/github-action@v4
         with:
@@ -66,7 +70,7 @@ jobs:
           parallel: true
           start: npm run dev:ci
           build: npm run build
-          wait-on: 'http://127.0.0.1:5173'
+          wait-on: http://127.0.0.1:${{ env.PORT }}
         env:
           CYPRESS_RECORD_KEY: ${{ secrets.CYPRESS_RECORD_KEY }}
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
@@ -78,4 +82,4 @@ jobs:
           component: true
           start: npm run dev:ci
           build: npm run build
-          wait-on: 'http://127.0.0.1:5173'
+          wait-on: http://127.0.0.1:${{ env.PORT }}

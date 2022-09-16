@@ -21,7 +21,7 @@ const defaultParams = {
         },
         result: {
           data: {
-            admin: [{ id: 1 }, { id: 2 }],
+            admins: [{ id: 1 }, { id: 2 }],
           },
         },
       },

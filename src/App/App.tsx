@@ -6,8 +6,7 @@ import { GetAdminsIdQuery } from '../operations/queries';
 
 const location = new ReactLocation();
 
-export const App: React.FC = () => {
-  // eslint-disable-next-line @typescript-eslint/naming-convention
+export const App = (): JSX.Element => {
   const { data, loading, error } = useQuery(GetAdminsIdQuery);
   return (
     <Router routes={[{ path: '/' }]} location={location}>
@@ -18,7 +17,7 @@ export const App: React.FC = () => {
           ? 'loading data'
           : error != null
           ? 'error occurred while loading admins ids'
-          : data.admin.map(({ id }: { id: number }) => (
+          : data.admins.map(({ id }: { id: number }) => (
               <Text key={id}>admin with id: {id}</Text>
             ))}
       </Title>

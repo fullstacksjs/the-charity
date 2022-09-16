@@ -1,5 +1,7 @@
+/* eslint-disable @typescript-eslint/naming-convention */
 /// <reference types="vitest" />
 
+import { getEnv, toInteger } from '@fullstacksjs/toolbox';
 import react from '@vitejs/plugin-react';
 import { defineConfig } from 'vite';
 
@@ -9,6 +11,16 @@ export default defineConfig({
       exclude: /\.stories\.(t|j)sx?$/,
     }),
   ],
+  server: {
+    port: toInteger(getEnv('PORT', '3000'), 3000),
+    host: getEnv('HOST'),
+    proxy: {
+      '/graphql': {
+        target: getEnv('API_PROXY_TARGET'),
+        changeOrigin: true,
+      },
+    },
+  },
   test: {
     environment: 'node',
     globals: true,
