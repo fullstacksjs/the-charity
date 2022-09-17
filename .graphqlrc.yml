@@ -1,0 +1,22 @@
+define: &HEADER
+  - '/* This file is generated, do not edit! */'
+  - '/* eslint-disable */'
+
+schema:
+  - ${APP_GRAPHQL_SCHEMA_URL}
+documents: './src/operations/**/*.graphql'
+extensions:
+  codegen:
+    emitLegacyCommonJSImports: false
+    overwrite: true
+    generates:
+      ./src/operations/__generated__/typesAndHooks.ts:
+        plugins:
+          - add:
+              content: *HEADER
+          - typescript
+          - typescript-operations
+          - typescript-react-apollo
+        config:
+          useTypeImports: true
+          withHooks: true

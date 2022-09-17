@@ -16,3 +16,8 @@ goodarzi
 mojtabaesl
 Amirabbas
 runtypes
+IBAN
+iban
+mehrie
+codegen
+graphqlrc

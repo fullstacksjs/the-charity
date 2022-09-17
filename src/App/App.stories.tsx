@@ -1,6 +1,6 @@
 import type { Meta, Story } from '@storybook/react';
 
-import { GetAdminsIdQuery } from '../operations/queries';
+import { GetAdminListDocument } from '../operations';
 import { App } from './App';
 
 export default {
@@ -17,7 +17,7 @@ const defaultParams = {
     mocks: [
       {
         request: {
-          query: GetAdminsIdQuery,
+          query: GetAdminListDocument,
         },
         result: {
           data: {
