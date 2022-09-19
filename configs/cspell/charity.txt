@@ -21,3 +21,4 @@ iban
 mehrie
 codegen
 graphqlrc
+dotenv
