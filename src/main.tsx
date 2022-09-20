@@ -6,6 +6,7 @@ import rtlPlugin from 'stylis-plugin-rtl';
 
 import { apolloClient } from './apollo/apolloClient';
 import { App } from './App';
+import { theme } from './theme';
 
 const rtlCache = createEmotionCache({
   key: 'mantine-rtl',
@@ -21,10 +22,7 @@ root.render(
         withGlobalStyles
         withCSSVariables
         emotionCache={rtlCache}
-        theme={{
-          dir: 'rtl',
-          fontFamily: 'Iranian Sans, sans-serif',
-        }}
+        theme={theme}
       >
         <App />
       </MantineProvider>
