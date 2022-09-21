@@ -7,9 +7,10 @@ const VisualElements = ({ icon }: { icon: ReactNode }) => {
       <Box
         sx={{
           background: '#EDF2FF',
+          marginInline: 'auto',
           borderRadius: ' 50%',
-          height: 110,
-          width: 110,
+          height: 111,
+          width: 111,
           position: 'relative',
         }}
       >
