@@ -4,7 +4,7 @@ import { Families, Home, Projects } from '../pages';
 
 const location = new ReactLocation();
 
-export const App = () => {
+export const App: React.FC = () => {
   return (
     <Router
       routes={[
