@@ -12,15 +12,15 @@ const NavList = () => {
         links={[
           {
             label: 'داشبورد',
-            icon: <DashboardIcon />,
+            icon: <DashboardIcon w="24" h="24" />,
           },
           {
             label: 'خانواده ها',
-            icon: <PeopleIcon />,
+            icon: <PeopleIcon w="24" h="24" />,
           },
           {
             label: 'پروژه ها',
-            icon: <PackageIcon />,
+            icon: <PackageIcon w="24" h="24" />,
           },
         ]}
       />
