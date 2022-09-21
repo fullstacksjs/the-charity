@@ -18,9 +18,9 @@
     "storybook": "start-storybook -p 6006",
     "build-storybook": "build-storybook",
     "pr": "./scripts/pr",
-    "cy:component:run": "cypress run --component",
-    "cy:e2e:run": "cypress run",
-    "cy:e2e:open": "cypress open",
+    "cy:component:run": "dotenv -e .env.dev -- cypress run --component",
+    "cy:e2e:run": "dotenv -e .env.dev -- cypress run",
+    "cy:e2e:open": "dotenv -e .env.dev -- cypress open",
     "codegen": "dotenv -e .env.dev -- graphql-codegen",
     "codegen:watch": "npm run codegen -- --watch"
   },
