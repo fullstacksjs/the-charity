@@ -1,5 +1,5 @@
 /* eslint-disable react/no-unknown-property */
-const PeopleIcon = ({ w, h }: { w: string; h: string }) => {
+export const PeopleIcon = ({ w, h }: { w: string; h: string }) => {
   return (
     <svg
       width={w}
@@ -47,5 +47,3 @@ const PeopleIcon = ({ w, h }: { w: string; h: string }) => {
     </svg>
   );
 };
-
-export default PeopleIcon;

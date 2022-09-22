@@ -1,4 +1,4 @@
-const HomeIcon = ({ w, h }: { w: string; h: string }) => {
+export const HomeIcon = ({ w, h }: { w: string; h: string }) => {
   return (
     <svg
       width={w}
@@ -23,5 +23,3 @@ const HomeIcon = ({ w, h }: { w: string; h: string }) => {
     </svg>
   );
 };
-
-export default HomeIcon;
