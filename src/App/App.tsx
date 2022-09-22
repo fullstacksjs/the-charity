@@ -2,7 +2,7 @@ import { useGetAdminListQuery } from '@camp/data-layer';
 import { Text, Title } from '@mantine/core';
 import { ReactLocation, Router } from '@tanstack/react-location';
 
-import AppShell from '../components/appShell/AppShell';
+import { AppShell } from '../components/appShell';
 
 const location = new ReactLocation();
 
