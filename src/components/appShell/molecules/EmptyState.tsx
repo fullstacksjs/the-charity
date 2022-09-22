@@ -3,7 +3,7 @@ import type { ReactNode } from 'react';
 
 import VisualElements from '../atoms/VisualElements';
 
-interface EmptyStateProps {
+export interface EmptyStateProps {
   icon: ReactNode;
   title: string;
   message: string;
