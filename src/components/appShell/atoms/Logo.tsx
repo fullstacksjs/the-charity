@@ -1,9 +1,7 @@
-import MainLogo from '../../../assets/image/main-logo.svg';
-
-const Logo = () => {
+const Logo = ({ logoSrc }: { logoSrc: string }) => {
   return (
     <>
-      <img src={MainLogo} alt="logo" />
+      <img src={logoSrc} alt="logo" />
     </>
   );
 };
