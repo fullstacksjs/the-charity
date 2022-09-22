@@ -2,6 +2,8 @@ const tsconfigPaths = require('vite-tsconfig-paths').default;
 const svgr = require('vite-plugin-svgr');
 
 /** @type { import('StorybookConfig') } */
+const svgr = require('vite-plugin-svgr');
+
 module.exports = {
   stories: ['../src/**/*.stories.mdx', '../src/**/*.stories.@(js|jsx|ts|tsx)'],
   addons: [
