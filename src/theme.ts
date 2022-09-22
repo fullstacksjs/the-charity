@@ -14,7 +14,7 @@ const toMantineColor = (color: string) =>
 
 export const theme: MantineThemeOverride = {
   dir: 'rtl',
-  fontFamily: 'Iranian Sans, sansSerif',
+  fontFamily: 'IRANSansFaNum',
   colors: {
     required: toMantineColor('#F03E3E'),
     fgDefault: toMantineColor('#212529'),
@@ -99,5 +99,8 @@ export const theme: MantineThemeOverride = {
       xxxs: 8,
       xxs: 10,
     },
+  },
+  headings: {
+    fontFamily: 'IRANSansFaNum',
   },
 };

@@ -19,6 +19,8 @@ export const App: React.FC = () => {
           : adminListQueryResult.data?.admins.map(({ id }) => (
               <Text key={id}>admin with id: {id}</Text>
             ))}
+        <br />
+        یک متن
       </Title>
     </Router>
   );
