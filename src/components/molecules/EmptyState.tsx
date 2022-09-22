@@ -1,7 +1,7 @@
 import { Box, Space, Text } from '@mantine/core';
 import type { ReactNode } from 'react';
 
-import VisualElements from '../atoms/VisualElements';
+import { VisualElements } from '../atoms/VisualElements';
 
 export interface EmptyStateProps {
   icon: ReactNode;
@@ -9,7 +9,7 @@ export interface EmptyStateProps {
   message: string;
 }
 
-const EmptyState = ({ icon, title, message }: EmptyStateProps) => {
+export const EmptyState = ({ icon, title, message }: EmptyStateProps) => {
   return (
     <Box sx={{ textAlign: 'center', marginTop: '10rem' }}>
       <VisualElements icon={icon} />
@@ -20,5 +20,3 @@ const EmptyState = ({ icon, title, message }: EmptyStateProps) => {
     </Box>
   );
 };
-
-export default EmptyState;

@@ -1,4 +1,4 @@
-const DashboardIcon = ({ w, h }: { w: string; h: string }) => {
+export const DashboardIcon = ({ w, h }: { w: string; h: string }) => {
   return (
     <svg
       width={w}
@@ -34,5 +34,3 @@ const DashboardIcon = ({ w, h }: { w: string; h: string }) => {
     </svg>
   );
 };
-
-export default DashboardIcon;

@@ -1,11 +1,11 @@
 import { Box } from '@mantine/core';
 
-import NavLink from '../atoms/NavLink';
-import DashboardIcon from '../icons/components/DashboardIcon';
-import PackageIcon from '../icons/components/PackageIcon';
-import PeopleIcon from '../icons/components/PeopleIcon';
+import { DashboardIcon } from '../appShell/icons/components/DashboardIcon';
+import { PackageIcon } from '../appShell/icons/components/PackageIcon';
+import { PeopleIcon } from '../appShell/icons/components/PeopleIcon';
+import { NavLink } from '../atoms/NavLink';
 
-const NavList = () => {
+export const NavList = () => {
   return (
     <Box sx={{ width: 230 }}>
       <NavLink
@@ -27,5 +27,3 @@ const NavList = () => {
     </Box>
   );
 };
-
-export default NavList;

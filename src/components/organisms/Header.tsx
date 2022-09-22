@@ -1,8 +1,8 @@
 import { Button, Col, Grid } from '@mantine/core';
 
-import HomeIcon from '../icons/components/Home';
+import { HomeIcon } from '../appShell/icons/components/Home';
 
-const Header = () => {
+export const Header = () => {
   return (
     <Grid>
       <Col span={10}>
@@ -16,5 +16,3 @@ const Header = () => {
     </Grid>
   );
 };
-
-export default Header;

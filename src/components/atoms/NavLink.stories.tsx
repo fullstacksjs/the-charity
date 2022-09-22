@@ -1,7 +1,7 @@
 import type { Meta, Story } from '@storybook/react';
 
-import DashboardIcon from '../icons/components/DashboardIcon';
-import NavLink from './NavLink';
+import { DashboardIcon } from '../appShell/icons/components/DashboardIcon';
+import { NavLink } from './NavLink';
 
 export default {
   component: NavLink,

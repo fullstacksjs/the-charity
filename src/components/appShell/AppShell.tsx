@@ -1,11 +1,11 @@
 import { AppShell as Shell, MediaQuery } from '@mantine/core';
 
-import PeopleIcon from './icons/components/PeopleIcon';
-import EmptyState from './molecules/EmptyState';
-import Header from './organisms/Header';
-import SideBar from './organisms/SideBar';
+import { EmptyState } from '../molecules/EmptyState';
+import { Header } from '../organisms/Header';
+import { SideBar } from '../organisms/SideBar';
+import { PeopleIcon } from './icons/components/PeopleIcon';
 
-const AppShell = ({ content }: { content: React.ReactNode }) => {
+export const AppShell = ({ content }: { content: React.ReactNode }) => {
   return (
     <>
       <Shell
@@ -28,5 +28,3 @@ const AppShell = ({ content }: { content: React.ReactNode }) => {
     </>
   );
 };
-
-export default AppShell;

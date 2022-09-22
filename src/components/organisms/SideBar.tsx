@@ -1,10 +1,10 @@
 import { Center, Container, Text } from '@mantine/core';
 
-import MainLogo from '../../../assets/image/main-logo.svg';
-import Logo from '../atoms/Logo';
-import NavList from '../molecules/NavList';
+import MainLogo from '../../assets/images/main-logo.svg';
+import { Logo } from '../atoms/Logo';
+import { NavList } from '../molecules/NavList';
 
-const SideBar = () => {
+export const SideBar = () => {
   return (
     <Container
       sx={{
@@ -34,5 +34,3 @@ const SideBar = () => {
     </Container>
   );
 };
-
-export default SideBar;

@@ -1,13 +1,12 @@
 import type { Meta, Story } from '@storybook/react';
 
-import DashboardIcon from '../icons/components/DashboardIcon';
-import PeopleIcon from '../icons/components/PeopleIcon';
-import VisualElements from './VisualElements';
+import { PeopleIcon } from '../appShell/icons/components/PeopleIcon';
+import { VisualElements } from './VisualElements';
 
 export default {
   component: VisualElements,
   argTypes: {
-    icon: DashboardIcon,
+    icon: PeopleIcon,
   },
 } as Meta;
 

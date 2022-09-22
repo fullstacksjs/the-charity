@@ -1,10 +1,10 @@
 import type { Meta, Story } from '@storybook/react';
 
-import DashboardIcon from '../icons/components/DashboardIcon';
-import PackageIcon from '../icons/components/PackageIcon';
-import PeopleIcon from '../icons/components/PeopleIcon';
+import { DashboardIcon } from '../appShell/icons/components/DashboardIcon';
+import { PackageIcon } from '../appShell/icons/components/PackageIcon';
+import { PeopleIcon } from '../appShell/icons/components/PeopleIcon';
 import type { EmptyStateProps } from './EmptyState';
-import EmptyState from './EmptyState';
+import { EmptyState } from './EmptyState';
 
 export default {
   component: EmptyState,

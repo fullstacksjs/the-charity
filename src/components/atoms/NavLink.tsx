@@ -7,7 +7,7 @@ interface NavLinkProps {
   icon: ReactNode;
 }
 
-const NavLink = ({ links }: { links: NavLinkProps[] }) => {
+export const NavLink = ({ links }: { links: NavLinkProps[] }) => {
   const [isActive, setIsActive] = useState(0);
   const navLink = links.map((link, index) => (
     <Link
@@ -28,5 +28,3 @@ const NavLink = ({ links }: { links: NavLinkProps[] }) => {
   ));
   return <>{navLink}</>;
 };
-
-export default NavLink;

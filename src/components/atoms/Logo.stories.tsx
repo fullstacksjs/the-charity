@@ -1,7 +1,7 @@
 import type { Meta } from '@storybook/react';
 
-import MainLogo from '../../../assets/image/main-logo.svg';
-import Logo from './Logo';
+import MainLogo from '../../assets/images/main-logo.svg';
+import { Logo } from './Logo';
 
 export default {
   component: Logo,

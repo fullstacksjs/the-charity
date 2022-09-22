@@ -1,5 +1,5 @@
 /* eslint-disable react/no-unknown-property */
-const PackageIcon = ({ w, h }: { w: string; h: string }) => {
+export const PackageIcon = ({ w, h }: { w: string; h: string }) => {
   return (
     <svg
       width={w}
@@ -42,5 +42,3 @@ const PackageIcon = ({ w, h }: { w: string; h: string }) => {
     </svg>
   );
 };
-
-export default PackageIcon;
