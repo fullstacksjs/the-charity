@@ -11,6 +11,7 @@ export const CreateFamilyButton: React.FC = () => {
         py="xxxs"
         variant="outline"
         color="primaryDefault"
+        id="create-draft-family"
         leftIcon={<PlusIcon />}
       >
         ایجاد خانواده جدید
