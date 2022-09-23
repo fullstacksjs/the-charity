@@ -1,8 +1,8 @@
 import { Box } from '@mantine/core';
 
-import { DashboardIcon } from '../appShell/icons/components/DashboardIcon';
-import { PackageIcon } from '../appShell/icons/components/PackageIcon';
-import { PeopleIcon } from '../appShell/icons/components/PeopleIcon';
+import { DashboardIcon } from '../appShell/icons/DashboardIcon';
+import { PackageIcon } from '../appShell/icons/PackageIcon';
+import { PeopleIcon } from '../appShell/icons/PeopleIcon';
 import { NavLink } from '../atoms/NavLink';
 
 export const NavList = () => {

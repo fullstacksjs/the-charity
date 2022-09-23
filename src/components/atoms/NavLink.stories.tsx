@@ -1,6 +1,6 @@
 import type { Meta, Story } from '@storybook/react';
 
-import { DashboardIcon } from '../appShell/icons/components/DashboardIcon';
+import { DashboardIcon } from '../appShell/icons/DashboardIcon';
 import { NavLink } from './NavLink';
 
 export default {

@@ -1,6 +1,6 @@
 import type { Meta, Story } from '@storybook/react';
 
-import { PeopleIcon } from '../appShell/icons/components/PeopleIcon';
+import { PeopleIcon } from '../appShell/icons/PeopleIcon';
 import { VisualElements } from './VisualElements';
 
 export default {

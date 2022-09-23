@@ -1,4 +1,5 @@
 const tsconfigPaths = require('vite-tsconfig-paths').default;
+const svgr = require('vite-plugin-svgr');
 
 /** @type { import('StorybookConfig') } */
 module.exports = {
@@ -20,7 +21,7 @@ module.exports = {
   async viteFinal(config) {
     return {
       ...config,
-      plugins: [...config.plugins, tsconfigPaths()],
+      plugins: [...config.plugins, tsconfigPaths(), svgr()],
       envPrefix: 'APP',
     };
   },

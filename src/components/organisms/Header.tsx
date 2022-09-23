@@ -1,6 +1,6 @@
 import { Button, Col, Grid } from '@mantine/core';
 
-import { HomeIcon } from '../appShell/icons/components/Home';
+import { HomeIcon } from '../appShell/icons/Home';
 
 export const Header = () => {
   return (
