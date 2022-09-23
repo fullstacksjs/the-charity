@@ -10,6 +10,7 @@ module.exports = {
     '@storybook/addon-interactions',
     '@storybook/addon-a11y',
     'storybook-addon-apollo-client',
+    'storybook-addon-rtl',
   ],
   framework: '@storybook/react',
   core: {

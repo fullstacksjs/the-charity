@@ -16,6 +16,7 @@ export const NavLink = ({ links }: { links: NavLinkProps[] }) => {
         borderRadius: '4px',
         fontWeight: 500,
         padding: 10,
+        textAlign: 'right',
         margin: 10,
         width: 270,
         height: 44,
