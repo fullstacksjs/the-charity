@@ -2,7 +2,7 @@
 
 interface ImportMetaEnv {
   /* eslint-disable @typescript-eslint/naming-convention */
-  readonly APP_GRAPHQL_SCHEMA_URL: string;
+  readonly APP_API_ENDPOINT: string;
   /* eslint-enable @typescript-eslint/naming-convention */
 }
 

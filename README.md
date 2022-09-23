@@ -17,7 +17,9 @@ npm install
 
 ## Envs
 
-- `APP_GRAPHQL_SCHEMA_URL`: a valid url string for graphql path.
+- `APP_GRAPHQL_SCHEMA_URL`: a valid url string for graphql path used in graphql
+  tooling.
+- `APP_API_ENDPOINT`: a valid url or path for graphql path used in application.
 - `API_PROXY_TARGET`: the API target proxy URL for the dev environment.
 - `PORT`: **Optional** port for running vite dev server, if not provided, will
   fallback to 3000
