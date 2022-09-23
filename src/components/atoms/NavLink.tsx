@@ -11,12 +11,13 @@ export const NavLink = ({ links }: { links: NavLinkProps[] }) => {
   const [isActive, setIsActive] = useState(0);
   const navLink = links.map((link, index) => (
     <Link
+      data-test-id="nav-link"
       key={link.label}
       sx={{
         borderRadius: '4px',
         fontWeight: 500,
         padding: 10,
-        textAlign: 'right',
+        // textAlign: 'right',
         margin: 10,
         width: 270,
         height: 44,
