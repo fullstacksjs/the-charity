@@ -4,13 +4,13 @@ define: &HEADER
 
 schema:
   - ${APP_GRAPHQL_SCHEMA_URL}
-documents: './src/operations/**/*.graphql'
+documents: './src/data-layer/operations/**/*.graphql'
 extensions:
   codegen:
     emitLegacyCommonJSImports: false
     overwrite: true
     generates:
-      ./src/operations/__generated__/typesAndHooks.ts:
+      ./src/data-layer/operations/__generated__/typesAndHooks.ts:
         plugins:
           - add:
               content: *HEADER

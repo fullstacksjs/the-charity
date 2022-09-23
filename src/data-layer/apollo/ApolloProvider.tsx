@@ -6,8 +6,7 @@ import {
   InMemoryCache,
 } from '@apollo/client';
 import { onError } from '@apollo/client/link/error';
-
-import { config } from '../../config';
+import { config } from '@camp/config';
 
 const errorLink = onError(({ graphQLErrors, networkError }) => {
   if (graphQLErrors)

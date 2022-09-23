@@ -1,6 +1,6 @@
 import { ApolloProvider } from '@apollo/client';
+import { apolloClient } from '@camp/data-layer';
 
-import { apolloClient } from '../apollo/apolloClient';
 import { App } from './App';
 
 describe('<App>', () => {

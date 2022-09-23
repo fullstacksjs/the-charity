@@ -1,6 +1,6 @@
+import { GetAdminListDocument } from '@camp/data-layer';
 import type { Meta, Story } from '@storybook/react';
 
-import { GetAdminListDocument } from '../operations';
 import { App } from './App';
 
 export default {
