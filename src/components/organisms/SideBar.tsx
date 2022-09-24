@@ -8,7 +8,7 @@ export const SideBar = () => {
   return (
     <Container
       sx={{
-        width: '22%',
+        width: '275px',
         height: '98vh',
         background: '#fff',
         display: 'block',
