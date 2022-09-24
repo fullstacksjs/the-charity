@@ -24,3 +24,4 @@ graphqlrc
 dotenv
 xxxs
 truetype
+svgr
