@@ -18,6 +18,10 @@ module.exports = {
     storyStoreV7: true,
   },
   async viteFinal(config) {
-    return { ...config, plugins: [...config.plugins, tsconfigPaths()] };
+    return {
+      ...config,
+      plugins: [...config.plugins, tsconfigPaths()],
+      envPrefix: 'APP',
+    };
   },
 };
