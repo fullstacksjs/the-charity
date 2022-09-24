@@ -1,7 +1,12 @@
-import { ApolloClient, from, HttpLink, InMemoryCache } from '@apollo/client';
+import {
+  ApolloClient,
+  ApolloProvider as BaseApolloProvider,
+  from,
+  HttpLink,
+  InMemoryCache,
+} from '@apollo/client';
 import { onError } from '@apollo/client/link/error';
-
-import { config } from '../config';
+import { config } from '@camp/config';
 
 const errorLink = onError(({ graphQLErrors, networkError }) => {
   if (graphQLErrors)
@@ -19,3 +24,11 @@ export const apolloClient = new ApolloClient({
   link: from([errorLink, httpLink]),
   cache: new InMemoryCache(),
 });
+
+interface Props {
+  children: React.ReactNode;
+}
+
+export const ApolloProvider = (props: Props) => (
+  <BaseApolloProvider client={apolloClient} {...props} />
+);

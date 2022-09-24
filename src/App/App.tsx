@@ -1,7 +1,6 @@
+import { useGetAdminListQuery } from '@camp/data-layer';
 import { Text, Title } from '@mantine/core';
 import { ReactLocation, Router } from '@tanstack/react-location';
-
-import { useGetAdminListQuery } from '../operations';
 
 const location = new ReactLocation();
 
@@ -11,7 +10,7 @@ export const App: React.FC = () => {
     <Router routes={[{ path: '/' }]} location={location}>
       <Title order={1}>The Charity App</Title>
       <br />
-      <Title order={3}>
+      <Title order={3} color="fgDefault">
         {adminListQueryResult.loading
           ? 'loading data'
           : adminListQueryResult.error != null
@@ -19,6 +18,8 @@ export const App: React.FC = () => {
           : adminListQueryResult.data?.admins.map(({ id }) => (
               <Text key={id}>admin with id: {id}</Text>
             ))}
+        <br />
+        یک متن
       </Title>
     </Router>
   );

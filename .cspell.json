@@ -9,5 +9,12 @@
       "addWords": true
     }
   ],
-  "ignorePaths": ["node_modules/", "dist/"]
+  "ignorePaths": ["node_modules/", "dist/"],
+  "patterns": [
+    {
+      "name": "poor persian",
+      "pattern": "/[الفبپتسجچحخدذرزژسشصضطظعغفقکگلمنوهی]/g"
+    }
+  ],
+  "ignoreRegExpList": ["poor persian"]
 }

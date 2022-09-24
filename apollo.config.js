@@ -4,7 +4,10 @@ module.exports = {
       name: 'the-charity-frontend',
       url: 'https://the-charity-backend-staging.herokuapp.com/graphql',
     },
-    includes: ['./src/operations/**/*.graphql', './src/operations/**/*.ts'],
-    excludes: ['./src/operations/__generated__/*.ts'],
+    includes: [
+      './src/data-layer/operations/**/*.graphql',
+      './src/data-layer/operations/**/*.ts',
+    ],
+    excludes: ['./src/data-layer/operations/__generated__/*.ts'],
   },
 };

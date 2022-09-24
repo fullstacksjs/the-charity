@@ -1,5 +1,13 @@
 {
   "root": true,
+  "compilerOptions": {
+    "paths": {
+      "@camp/data-layer": ["./src/data-layer/index.ts"],
+      "@camp/design": ["./src/design/index.ts"],
+      "@camp/domain": ["./src/domain/index.ts"],
+      "@camp/config": ["./src/config/index.ts"]
+    }
+  },
   "extends": "@fullstacksjs/tsconfig/react",
   "include": ["src", "@types"],
   "references": [{ "path": "./tsconfig.vite.json" }]
