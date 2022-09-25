@@ -12,14 +12,15 @@ export const NavLink = ({ links }: { links: NavLinkProps[] }) => {
   const navLink = links.map((link, index) => (
     <Link
       data-test-id="nav-link"
+      color="indigo"
       key={link.label}
       sx={{
         borderRadius: '4px',
         fontWeight: 500,
         padding: 10,
         // textAlign: 'right',
-        margin: 10,
-        width: 270,
+        margin: '15px 0',
+        width: 240,
         height: 44,
       }}
       label={link.label}

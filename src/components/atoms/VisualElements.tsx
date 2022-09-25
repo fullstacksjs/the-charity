@@ -5,26 +5,26 @@ export const VisualElements = ({ icon }: { icon: ReactNode }) => {
   return (
     <>
       <Box
-        sx={{
-          background: '#EDF2FF',
+        sx={theme => ({
+          background: theme.colors['primarySubtle']?.[6],
           marginInline: 'auto',
           borderRadius: ' 50%',
           height: 111,
           width: 111,
           position: 'relative',
-        }}
+        })}
       >
         <Box
-          sx={{
-            background: '#BAC8FF',
+          sx={theme => ({
+            background: theme.colors['indigo']?.[2],
             borderRadius: ' 50%',
             right: '18%',
             top: '18%',
             height: 72,
             width: 72,
             position: 'absolute',
-            boxShadow: '0px 0px 20px #BAC8FF',
-          }}
+            boxShadow: `0px 0px 20px ${theme.colors['indigo']?.[2]}`,
+          })}
         >
           <Box
             sx={{

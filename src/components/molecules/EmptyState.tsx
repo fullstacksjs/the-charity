@@ -16,7 +16,7 @@ export const EmptyState = ({ icon, title, message }: EmptyStateProps) => {
       <Space h="md" />
       <Text weight={700}>{title}</Text>
       <Space h="xs" />
-      <Text color="#495057">{message}</Text>
+      <Text color="fgMuted">{message}</Text>
     </Box>
   );
 };
