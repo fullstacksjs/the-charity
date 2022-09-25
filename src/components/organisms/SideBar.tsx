@@ -8,8 +8,9 @@ export const SideBar = () => {
   return (
     <Container
       sx={{
-        width: '275px',
-        height: '98vh',
+        width: 275,
+        height: 768,
+        marginRight: '2rem',
         background: '#fff',
         display: 'block',
         textAlign: 'center',
@@ -19,7 +20,6 @@ export const SideBar = () => {
       <Center
         sx={{
           background: 'rgba(248, 249, 250, 0.8)',
-          width: '92%',
           padding: '2rem 0',
           margin: '1rem 8px 4rem 0px',
           display: 'block',
@@ -28,7 +28,7 @@ export const SideBar = () => {
         }}
       >
         <Logo logoSrc={MainLogo} />
-        <Text color="#ADB5BD">نامی مناسب برای خیریه</Text>
+        <Text color="fgSubtle">نامی مناسب برای خیریه</Text>
       </Center>
       <NavList />
     </Container>
