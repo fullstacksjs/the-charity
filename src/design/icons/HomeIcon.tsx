@@ -1,4 +1,4 @@
-import { ReactComponent as HomeSvg } from '../../../assets/icons/home2.svg';
+import { HomeSvg } from '../svgs';
 
 export const HomeIcon = ({ w, h }: { w: string; h: string }) => {
   return <HomeSvg width={w} height={h} />;

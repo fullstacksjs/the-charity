@@ -1,9 +1,7 @@
+import { DashboardIcon, PackageIcon, PeopleIcon } from '@camp/design';
 import { Box } from '@mantine/core';
 
-import { DashboardIcon } from '../appShell/icons/DashboardIcon';
-import { PackageIcon } from '../appShell/icons/PackageIcon';
-import { PeopleIcon } from '../appShell/icons/PeopleIcon';
-import { NavLink } from '../atoms/NavLink';
+import { NavLink } from '../../atoms';
 
 export const NavList = () => {
   return (

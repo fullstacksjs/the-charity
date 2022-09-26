@@ -1,7 +1,7 @@
 import { Box, Space, Text } from '@mantine/core';
 import type { ReactNode } from 'react';
 
-import { VisualElements } from '../atoms/VisualElements';
+import { VisualElements } from '../../atoms';
 
 export interface EmptyStateProps {
   icon: ReactNode;
