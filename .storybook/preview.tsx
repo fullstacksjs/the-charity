@@ -1,5 +1,9 @@
+import React from 'react';
+
 import { MockedProvider } from '@apollo/client/testing';
+import { ReactLocation, Router } from '@tanstack/react-location';
 import { initializeRTL } from 'storybook-addon-rtl';
+import { ThemeProvider } from '../src/design';
 
 initializeRTL();
 export const parameters = {
@@ -15,3 +19,13 @@ export const parameters = {
     MockedProvider,
   },
 };
+
+export const decorators = [
+  Story => (
+    <Router routes={[]} location={new ReactLocation()}>
+      <ThemeProvider>
+        <Story />
+      </ThemeProvider>
+    </Router>
+  ),
+];
