@@ -6,7 +6,7 @@ export const VisualElements = ({ icon }: { icon: ReactNode }) => {
     <>
       <Box
         sx={theme => ({
-          background: theme.colors['primarySubtle']?.[6],
+          background: theme.colors.primarySubtle[6],
           marginInline: 'auto',
           borderRadius: ' 50%',
           height: 111,
@@ -16,14 +16,14 @@ export const VisualElements = ({ icon }: { icon: ReactNode }) => {
       >
         <Box
           sx={theme => ({
-            background: theme.colors['indigo']?.[2],
+            background: theme.colors.indigo[2],
             borderRadius: ' 50%',
             right: '18%',
             top: '18%',
             height: 72,
             width: 72,
             position: 'absolute',
-            boxShadow: `0px 0px 20px ${theme.colors['indigo']?.[2]}`,
+            boxShadow: `0px 0px 20px ${theme.colors.indigo[2]}`,
           })}
         >
           <Box

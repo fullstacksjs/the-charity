@@ -18,7 +18,7 @@ export const SideBar = () => {
     >
       <Center
         sx={theme => ({
-          background: theme.colors['secondarySubtle']?.[6],
+          background: theme.colors.secondarySubtle[6],
           padding: '2rem 0',
           margin: '1rem 8px 4rem 0px',
           display: 'block',
