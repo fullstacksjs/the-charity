@@ -1,4 +1,4 @@
-import type { MantineThemeColors, Tuple } from '@mantine/core';
+import type { Tuple } from '@mantine/core';
 
 export type MantineColor = [
   ...Tuple<undefined, 6>,
@@ -26,7 +26,7 @@ const toMantineColor = (color: string): MantineColor => [
 
 export const toMantineColors = (
   tokens: Record<string, string>,
-): MantineThemeColors =>
+): Record<string, string> =>
   Object.entries(tokens).reduce(
     (acc, [key, value]) => ({
       ...acc,
