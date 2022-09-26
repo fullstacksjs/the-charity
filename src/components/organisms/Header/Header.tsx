@@ -1,6 +1,5 @@
+import { HomeIcon } from '@camp/design';
 import { Col, Grid } from '@mantine/core';
-
-import { HomeIcon } from '../appShell/icons/Home';
 
 export const Header = () => {
   return (

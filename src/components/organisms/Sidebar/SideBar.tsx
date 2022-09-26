@@ -1,8 +1,7 @@
 import { Center, Container, Text } from '@mantine/core';
 
-import MainLogo from '../../assets/images/main-logo.svg';
-import { Logo } from '../atoms/Logo';
-import { NavList } from '../molecules/NavList';
+import { Logo } from '../../atoms';
+import { NavList } from '../../molecules';
 
 export const SideBar = () => {
   return (
@@ -26,7 +25,7 @@ export const SideBar = () => {
           borderRadius: '8px',
         })}
       >
-        <Logo logoSrc={MainLogo} />
+        <Logo />
         <Text color="fgSubtle">نامی مناسب برای خیریه</Text>
       </Center>
       <NavList />

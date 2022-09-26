@@ -1,8 +1,6 @@
+import { DashboardIcon, PackageIcon, PeopleIcon } from '@camp/design';
 import type { Meta, Story } from '@storybook/react';
 
-import { DashboardIcon } from '../appShell/icons/DashboardIcon';
-import { PackageIcon } from '../appShell/icons/PackageIcon';
-import { PeopleIcon } from '../appShell/icons/PeopleIcon';
 import type { EmptyStateProps } from './EmptyState';
 import { EmptyState } from './EmptyState';
 
