@@ -1,4 +1,5 @@
 const tsconfigPaths = require('vite-tsconfig-paths').default;
+const svgr = require('vite-plugin-svgr');
 
 /** @type { import('StorybookConfig') } */
 module.exports = {
@@ -9,6 +10,7 @@ module.exports = {
     '@storybook/addon-interactions',
     '@storybook/addon-a11y',
     'storybook-addon-apollo-client',
+    'storybook-addon-rtl',
   ],
   framework: '@storybook/react',
   core: {
@@ -20,7 +22,7 @@ module.exports = {
   async viteFinal(config) {
     return {
       ...config,
-      plugins: [...config.plugins, tsconfigPaths()],
+      plugins: [...config.plugins, tsconfigPaths(), svgr()],
       envPrefix: 'APP',
     };
   },

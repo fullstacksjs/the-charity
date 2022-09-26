@@ -2,7 +2,7 @@ import type { MantineThemeOverride } from '@mantine/core';
 
 import { toMantineColors } from './themeUtils';
 
-const colors = {
+export const colors = {
   required: '#F03E3E',
   fgDefault: '#212529',
   fgMuted: '#495057',
