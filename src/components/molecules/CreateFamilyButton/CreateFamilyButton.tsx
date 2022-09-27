@@ -12,6 +12,11 @@ export const CreateFamilyButton = () => {
         variant="outline"
         color="primaryDefault"
         id="create-draft-family"
+        sx={theme => ({
+          '&:hover': {
+            backgroundColor: theme.colors.primarySubtle[6],
+          },
+        })}
         leftIcon={<PlusIcon />}
       >
         ایجاد خانواده جدید
