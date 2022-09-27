@@ -1,3 +1,4 @@
+import { PlusIcon } from '@camp/design';
 import { Button } from '@mantine/core';
 import { Link } from '@tanstack/react-location';
 

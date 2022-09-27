@@ -1,3 +1,4 @@
+import { HomeIcon } from '@camp/design';
 import { Col, Grid } from '@mantine/core';
 
 export interface HeaderProps {

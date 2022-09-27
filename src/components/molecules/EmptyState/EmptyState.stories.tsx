@@ -10,8 +10,8 @@ export default {
     icon: {
       options: ['dashboard', 'people'],
       mapping: {
-        dashboard: <DashboardIcon h="33" w="33" />,
-        people: <PeopleIcon w="33" h="33" />,
+        dashboard: <DashboardIcon height="33" width="33" />,
+        people: <PeopleIcon width="33" height="33" />,
       },
       control: { type: 'radio' },
     },
@@ -25,5 +25,5 @@ Default.args = {
   title: 'پروژه ها',
   message:
     'متاسفانه لیست پروژه های شما خالی است. لطفا پروژه خود را ایجاد کنید.',
-  icon: <PackageIcon w="33" h="33" />,
+  icon: <PackageIcon width="33" height="33" />,
 };

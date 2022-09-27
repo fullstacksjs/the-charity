@@ -13,9 +13,9 @@ export const EmptyState = ({ icon, title, message }: EmptyStateProps) => {
   return (
     <Box sx={{ textAlign: 'center', marginTop: '10rem' }}>
       <VisualElements icon={icon} />
-      <Space h="md" />
+      <Space height="md" />
       <Text weight={700}>{title}</Text>
-      <Space h="xs" />
+      <Space height="xs" />
       <Text color="fgMuted">{message}</Text>
     </Box>
   );

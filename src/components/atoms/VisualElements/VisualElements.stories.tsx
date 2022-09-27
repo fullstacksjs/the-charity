@@ -11,7 +11,7 @@ export default {
 } as Meta;
 
 const Template: Story = () => (
-  <VisualElements icon={<PeopleIcon w="33" h="33" />} />
+  <VisualElements icon={<PeopleIcon width="33" height="33" />} />
 );
 
 export const Default: Story = Template.bind({});
