@@ -1,11 +1,19 @@
 import { ReactLocation, Router } from '@tanstack/react-location';
 
-import { Home } from '../pages/Home';
+import { Families, Home, Projects } from '../pages';
 
 const location = new ReactLocation();
 
 export const App = () => {
   return (
-    <Router routes={[{ path: '/', element: <Home /> }]} location={location} />
+    <Router
+      routes={[
+        { path: '/families', element: <Families /> },
+        { path: '/projects', element: <Projects /> },
+      ]}
+      location={location}
+    >
+      <Home />
+    </Router>
   );
 };

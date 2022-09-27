@@ -1,12 +1,9 @@
 import { AppShell as Shell, MediaQuery } from '@mantine/core';
+import { Outlet } from '@tanstack/react-location';
 
 import { Header, SideBar } from '../organisms';
 
-interface Props {
-  children: React.ReactNode;
-}
-
-export const AppShell = ({ children }: Props) => {
+export const AppShell = () => {
   return (
     <Shell
       navbarOffsetBreakpoint="sm"
@@ -18,7 +15,7 @@ export const AppShell = ({ children }: Props) => {
       }
     >
       <Header />
-      {children}
+      <Outlet />
     </Shell>
   );
 };
