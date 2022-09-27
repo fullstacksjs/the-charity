@@ -3,7 +3,7 @@ import { Link } from '@tanstack/react-location';
 
 import { PlusIcon } from '../Icons';
 
-export const CreateFamilyButton: React.FC = () => {
+export const CreateFamilyButton = () => {
   return (
     <Link to="/create-draft-family">
       <Button
