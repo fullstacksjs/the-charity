@@ -1,7 +1,7 @@
 import { Button } from '@mantine/core';
 import { Link } from '@tanstack/react-location';
 
-import { PlusIcon } from '../Icons';
+import { PlusIcon } from '../../Icons';
 
 export const CreateFamilyButton = () => {
   return (
