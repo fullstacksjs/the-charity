@@ -1,6 +1,6 @@
 import { gql } from '@apollo/client';
 
-export const ClientSchema = gql`
+export const ClientSideSchema = gql`
   extend type Mutation {
     createProject(name: String!, description: String): Project!
   }
