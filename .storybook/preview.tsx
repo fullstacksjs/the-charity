@@ -2,13 +2,11 @@ import React from 'react';
 
 import { MockedProvider } from '@apollo/client/testing';
 import { ReactLocation, Router } from '@tanstack/react-location';
-import { initializeRTL } from 'storybook-addon-rtl';
 import { ThemeProvider } from '../src/design';
+import { DecoratorFn, Parameters } from '@storybook/react';
 
-initializeRTL();
-export const parameters = {
+export const parameters: Parameters = {
   actions: { argTypesRegex: '^on[A-Z].*' },
-  direction: 'rtl',
   controls: {
     matchers: {
       color: /(background|color)$/i,
@@ -20,7 +18,7 @@ export const parameters = {
   },
 };
 
-export const decorators = [
+export const decorators: DecoratorFn[] = [
   Story => (
     <Router routes={[]} location={new ReactLocation()}>
       <ThemeProvider>
