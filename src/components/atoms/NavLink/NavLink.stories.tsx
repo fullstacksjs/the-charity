@@ -1,4 +1,4 @@
-import { DashboardIcon } from '@camp/design';
+import { PeopleSvg } from '@camp/design';
 import type { Meta, Story } from '@storybook/react';
 
 import { NavLink } from './NavLink';
@@ -9,8 +9,9 @@ export default {
 
 const links = [
   {
-    label: 'داشبورد',
-    icon: <DashboardIcon w="24" h="24" />,
+    label: 'خانواده ها',
+    icon: <PeopleSvg width="24" height="24" />,
+    path: '/families',
   },
 ];
 
