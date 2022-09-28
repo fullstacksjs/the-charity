@@ -1,17 +1,20 @@
 import { HomeIcon } from '@camp/design';
 import { Col, Grid } from '@mantine/core';
 
-import { CreateProjectButton } from '../../CreateProjectButton';
+import { Breadcrumb } from '../../appShell/Breadcrumb';
 
-export const Header = () => {
+export interface HeaderProps {
+  leftButton: React.ReactNode;
+}
+
+export const Header = ({ leftButton, breadcrumbItems }: HeaderProps) => {
   return (
     <Grid>
       <Col span={10}>
         <HomeIcon w="25" h="25" />
+        <Breadcrumb breadcrumbItems={} />
       </Col>
-      <Col span={2}>
-        <CreateProjectButton />
-      </Col>
+      <Col span={2}>{leftButton}</Col>
     </Grid>
   );
 };
