@@ -8,8 +8,20 @@ export const App = () => {
   return (
     <Router
       routes={[
-        { path: '/families', element: <Families /> },
-        { path: '/projects', element: <Projects /> },
+        {
+          path: '/families',
+          element: <Families />,
+          meta: {
+            breadcrumb: () => 'خانواده ها',
+          },
+        },
+        {
+          path: '/projects',
+          element: <Projects />,
+          meta: {
+            breadcrumb: () => 'پروژه ها',
+          },
+        },
       ]}
       location={location}
     >

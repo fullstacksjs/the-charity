@@ -1,11 +1,20 @@
+import { HomeIcon } from '@camp/design';
 import { AppShell as Shell, MediaQuery } from '@mantine/core';
-import { Outlet, useMatchRoute } from '@tanstack/react-location';
+import { Outlet, useMatches, useMatchRoute } from '@tanstack/react-location';
+import { useEffect, useState } from 'react';
 
 import { CreateProjectButton } from '../CreateProjectButton';
 import { Header, SideBar } from '../organisms';
+import { Breadcrumb } from './Breadcrumb';
 
 export const AppShell = () => {
   const matchRoute = useMatchRoute();
+  const matches = useMatches();
+  const [path, setPath] = useState('');
+  useEffect(() => {
+    setPath(matches[1]?.route?.meta?.['breadcrumb']());
+  }, [matches, path]);
+
   return (
     <Shell
       navbarOffsetBreakpoint="sm"
@@ -24,6 +33,18 @@ export const AppShell = () => {
           ) : matchRoute({ to: '/families' }) ? (
             'family button'
           ) : null
+        }
+        breadcrumbs={
+          <Breadcrumb
+            breadcrumbItems={[
+              {
+                icon: <HomeIcon w="25" h="25" />,
+              },
+              {
+                pathname: path,
+              },
+            ]}
+          />
         }
       />
       <Outlet />
