@@ -1,8 +1,4 @@
-<<<<<<< HEAD
 import { PeopleSvg } from '@camp/design';
-=======
-import { DashboardIcon } from '@camp/design';
->>>>>>> 0734b83 (restructure icons)
 import type { Meta, Story } from '@storybook/react';
 
 import { NavLink } from './NavLink';
