@@ -1,4 +1,3 @@
-import { useCreateProjectMutation } from '@camp/data-layer';
 import { yupResolver } from '@hookform/resolvers/yup';
 import { Button, Group, Stack, Textarea, TextInput } from '@mantine/core';
 import React from 'react';
@@ -23,21 +22,9 @@ const FormSchema = yup
   .required();
 
 export const CreateProjectForm: React.FC<Props> = ({ dismiss }) => {
-  const [createProject, mutationResult] = useCreateProjectMutation();
-
-  const onSubmit = React.useCallback(
-    ({ name, description }: FormSchema) => {
-      createProject({
-        variables: { name, description },
-      })
-        .then((result: any) => {
-          dismiss();
-          console.log(result);
-        })
-        .catch(err => console.log(err));
-    },
-    [createProject, dismiss],
-  );
+  const onSubmit = React.useCallback(({ name, description }: FormSchema) => {
+    console.log('name:', name, 'description:', description);
+  }, []);
 
   const { handleSubmit, register, formState } = useForm<FormSchema>({
     resolver: yupResolver(FormSchema),
@@ -69,7 +56,6 @@ export const CreateProjectForm: React.FC<Props> = ({ dismiss }) => {
           <Button
             type="submit"
             size="sm"
-            loading={mutationResult.loading}
             disabled={Boolean(formState.errors.name)}
           >
             ایجاد پروژه جدید

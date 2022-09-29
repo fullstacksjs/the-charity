@@ -15,11 +15,8 @@ export type Scalars = {
   Boolean: boolean;
   Int: number;
   Float: number;
-  /** A date-time string at UTC, such as 2019-12-03T09:54:33Z, compliant with the date-time format. */
   DateTime: any;
-  /** An IBAN */
   IBAN: any;
-  /** A positive number */
   Money: any;
 };
 
@@ -50,18 +47,6 @@ export type BankAccount = {
   bankName: Scalars['String'];
   cardNumber: Scalars['String'];
   iban: Scalars['IBAN'];
-};
-
-export type CompleteFamily = {
-  __typename?: 'CompleteFamily';
-  archived: Scalars['Boolean'];
-  completedDate: Scalars['DateTime'];
-  dependents: Array<Dependent>;
-  draftDate: Scalars['DateTime'];
-  id: Scalars['ID'];
-  name: Scalars['String'];
-  projects: Array<Project>;
-  referrerCode: Scalars['String'];
 };
 
 export type CompleteHouseholder = Member & {
@@ -109,6 +94,20 @@ export type CompleteHouseholder = Member & {
   skills: Array<Skill>;
   ssn?: Maybe<Scalars['String']>;
   subsidies: Array<Subsidy>;
+};
+
+export type CompletedFamily = {
+  __typename?: 'CompletedFamily';
+  archived: Scalars['Boolean'];
+  completedDate: Scalars['DateTime'];
+  dependents: Array<Dependent>;
+  draftDate: Scalars['DateTime'];
+  id: Scalars['ID'];
+  name: Scalars['String'];
+  projects: Array<Project>;
+  referrerCode: Scalars['String'];
+  slug: Scalars['String'];
+  status: FamilyStatus;
 };
 
 export type Contact = {
@@ -185,6 +184,8 @@ export type DraftFamily = {
   name?: Maybe<Scalars['String']>;
   projects: Array<Project>;
   referrerCode?: Maybe<Scalars['String']>;
+  slug: Scalars['String'];
+  status: FamilyStatus;
 };
 
 export type DraftHouseholder = Member & {
@@ -239,6 +240,14 @@ export enum EducationStatus {
 }
 
 /** religion of the members */
+export enum FamilyStatus {
+  /** FamilyStatus is completed. */
+  Completed = 'Completed',
+  /** Family is drafted */
+  Draft = 'Draft'
+}
+
+/** religion of the members */
 export enum Gender {
   /** gender is female. */
   Female = 'Female',
@@ -290,17 +299,6 @@ export type Member = {
   ssn?: Maybe<Scalars['String']>;
 };
 
-export type Mutation = {
-  __typename?: 'Mutation';
-  createProject: Project;
-};
-
-
-export type MutationCreateProjectArgs = {
-  description?: InputMaybe<Scalars['String']>;
-  name: Scalars['String'];
-};
-
 export type Possession = {
   __typename?: 'Possession';
   description: Scalars['String'];
@@ -330,7 +328,7 @@ export type Query = {
   dependent: Dependent;
   dependents: Array<Dependent>;
   families: Array<Family>;
-  family: Family;
+  family?: Maybe<Family>;
   householder: Householder;
   householders: Array<Householder>;
   project: Project;
@@ -349,7 +347,7 @@ export type QueryDependentArgs = {
 
 
 export type QueryFamilyArgs = {
-  id: Scalars['Int'];
+  id: Scalars['String'];
 };
 
 
@@ -392,18 +390,10 @@ export enum SubsidyType {
 }
 
 /** family = [ draft-family, complete-family ] */
-export type Family = CompleteFamily | DraftFamily;
+export type Family = CompletedFamily | DraftFamily;
 
 /** householder = [ draft-house, complete-house ] */
 export type Householder = CompleteHouseholder | DraftHouseholder;
-
-export type CreateProjectMutationVariables = Exact<{
-  name: Scalars['String'];
-  description?: InputMaybe<Scalars['String']>;
-}>;
-
-
-export type CreateProjectMutation = { __typename?: 'Mutation', createProject: { __typename?: 'Project', id: string, name: string } };
 
 export type GetAdminListQueryVariables = Exact<{ [key: string]: never; }>;
 
@@ -411,41 +401,6 @@ export type GetAdminListQueryVariables = Exact<{ [key: string]: never; }>;
 export type GetAdminListQuery = { __typename?: 'Query', admins: Array<{ __typename?: 'Admin', id: string }> };
 
 
-export const CreateProjectDocument = gql`
-    mutation CreateProject($name: String!, $description: String) {
-  createProject(name: $name, description: $description) @client {
-    id
-    name
-  }
-}
-    `;
-export type CreateProjectMutationFn = Apollo.MutationFunction<CreateProjectMutation, CreateProjectMutationVariables>;
-
-/**
- * __useCreateProjectMutation__
- *
- * To run a mutation, you first call `useCreateProjectMutation` within a React component and pass it any options that fit your needs.
- * When your component renders, `useCreateProjectMutation` returns a tuple that includes:
- * - A mutate function that you can call at any time to execute the mutation
- * - An object with fields that represent the current status of the mutation's execution
- *
- * @param baseOptions options that will be passed into the mutation, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options-2;
- *
- * @example
- * const [createProjectMutation, { data, loading, error }] = useCreateProjectMutation({
- *   variables: {
- *      name: // value for 'name'
- *      description: // value for 'description'
- *   },
- * });
- */
-export function useCreateProjectMutation(baseOptions?: Apollo.MutationHookOptions<CreateProjectMutation, CreateProjectMutationVariables>) {
-        const options = {...defaultOptions, ...baseOptions}
-        return Apollo.useMutation<CreateProjectMutation, CreateProjectMutationVariables>(CreateProjectDocument, options);
-      }
-export type CreateProjectMutationHookResult = ReturnType<typeof useCreateProjectMutation>;
-export type CreateProjectMutationResult = Apollo.MutationResult<CreateProjectMutation>;
-export type CreateProjectMutationOptions = Apollo.BaseMutationOptions<CreateProjectMutation, CreateProjectMutationVariables>;
 export const GetAdminListDocument = gql`
     query getAdminList {
   admins {
