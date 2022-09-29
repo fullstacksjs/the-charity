@@ -1,6 +1,6 @@
+import { Logo } from '@camp/design';
 import { Center, Container, Text } from '@mantine/core';
 
-import { Logo } from '../../atoms';
 import { NavList } from '../../molecules';
 
 export const SideBar = () => {
