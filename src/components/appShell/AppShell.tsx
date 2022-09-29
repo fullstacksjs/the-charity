@@ -3,6 +3,7 @@ import { AppShell as Shell, MediaQuery } from '@mantine/core';
 import { Outlet, useMatches, useMatchRoute } from '@tanstack/react-location';
 import { useEffect, useState } from 'react';
 
+import { CreateFamilyButton } from '../CreateFamilyButton';
 import { CreateProjectButton } from '../CreateProjectButton';
 import { Header, SideBar } from '../organisms';
 import { Breadcrumb } from './Breadcrumb';
@@ -32,7 +33,7 @@ export const AppShell = () => {
           matchRoute({ to: '/projects' }) ? (
             <CreateProjectButton />
           ) : matchRoute({ to: '/families' }) ? (
-            'family button'
+            <CreateFamilyButton />
           ) : null
         }
         breadcrumbs={
