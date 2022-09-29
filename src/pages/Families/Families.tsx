@@ -6,7 +6,7 @@ export const Families = () => {
   return (
     <>
       <EmptyState
-        icon={<PeopleIcon w="33" h="33" />}
+        icon={<PeopleIcon width="33" height="33" />}
         title="خانواده ای وجود ندارد!"
         message="متاسفانه لیست خانواده های شما خالی است."
       />

@@ -2,8 +2,6 @@ import { PlusIcon } from '@camp/design';
 import { Button } from '@mantine/core';
 import { Link } from '@tanstack/react-location';
 
-import { PlusIcon } from '../../Icons';
-
 export const CreateFamilyButton = () => {
   return (
     <Link to="/create-draft-family">

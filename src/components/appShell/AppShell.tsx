@@ -39,7 +39,7 @@ export const AppShell = () => {
           <Breadcrumb
             breadcrumbItems={[
               {
-                icon: <HomeIcon w="25" h="25" />,
+                icon: <HomeIcon width="25" height="25" />,
               },
               {
                 pathname: path,

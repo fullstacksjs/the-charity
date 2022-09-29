@@ -12,7 +12,7 @@ export const CreateProjectButton = () => {
         px="lg"
         size="sm"
         data-test-id="create-project"
-        leftIcon={<PlusIcon w="16" h="16" />}
+        leftIcon={<PlusIcon width="16" height="16" />}
       >
         ایجاد پروژه جدید
       </Button>

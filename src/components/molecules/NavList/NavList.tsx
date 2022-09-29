@@ -10,12 +10,12 @@ export const NavList = () => {
         links={[
           {
             label: 'خانواده ها',
-            icon: <PeopleIcon w="24" h="24" />,
+            icon: <PeopleIcon width="24" height="24" />,
             path: 'families',
           },
           {
             label: 'پروژه ها',
-            icon: <PackageIcon w="24" h="24" />,
+            icon: <PackageIcon width="24" height="24" />,
             path: 'projects',
           },
         ]}
