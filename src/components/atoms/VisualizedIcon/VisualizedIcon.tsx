@@ -1,7 +1,7 @@
 import { Box } from '@mantine/core';
 import type { ReactNode } from 'react';
 
-export const VisualElements = ({ icon }: { icon: ReactNode }) => {
+export const VisualizedIcon = ({ icon }: { icon: ReactNode }) => {
   return (
     <>
       <Box
