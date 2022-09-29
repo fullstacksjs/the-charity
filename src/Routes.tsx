@@ -1,6 +1,7 @@
 import { ReactLocation, Router } from '@tanstack/react-location';
 
-import { Families, Home, Projects } from './pages';
+import { AppShell } from './components';
+import { Families, Projects } from './pages';
 
 const location = new ReactLocation();
 
@@ -25,7 +26,7 @@ export const Routes = () => {
       ]}
       location={location}
     >
-      <Home />
+      <AppShell />
     </Router>
   );
 };
