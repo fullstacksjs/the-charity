@@ -1,6 +1,7 @@
 describe('Create Project Button', () => {
   it('Finds the Create Project Button in projects page', () => {
-    cy.visit('/projects');
-    cy.get('[data-test-id="create-project"]').should('exist');
+    cy.visit('/');
+    cy.get('a[href="/projects"]').click();
+    cy.get('#create-project').should('exist');
   });
 });

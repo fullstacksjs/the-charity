@@ -11,7 +11,7 @@ export const CreateProjectButton = () => {
         color="indigo"
         px="lg"
         size="sm"
-        data-test-id="create-project"
+        id="create-project"
         leftIcon={<PlusIcon width="16" height="16" />}
       >
         ایجاد پروژه جدید
