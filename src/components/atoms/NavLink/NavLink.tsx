@@ -1,37 +1,36 @@
 import { NavLink as Link } from '@mantine/core';
-import { Link as TanstackLink } from '@tanstack/react-location';
+import { Link as TanstackLink, useLocation } from '@tanstack/react-location';
 import type { ReactNode } from 'react';
-import { useState } from 'react';
 
-interface NavLinkProps {
+export interface NavLinkProps {
   label: string;
-  icon: ReactNode;
   path: string;
+  icon?: ReactNode;
 }
 
-export const NavLink = ({ links }: { links: NavLinkProps[] }) => {
-  const [isActive, setIsActive] = useState(-1);
-  const navLink = links.map((link, index) => (
+export const NavLink = ({ label, icon, path }: NavLinkProps) => {
+  const {
+    current: { pathname },
+  } = useLocation();
+
+  return (
     <Link
-      to={`/${link.path}`}
+      to={path}
       component={TanstackLink}
       data-test-id="nav-link"
       color="indigo"
-      key={link.label}
+      key={label}
       sx={{
         borderRadius: '4px',
         fontWeight: 500,
         padding: 10,
-        // textAlign: 'right',
         margin: '15px 0',
         width: 240,
         height: 44,
       }}
-      label={link.label}
-      rightSection={link.icon}
-      active={index === isActive}
-      onClick={() => setIsActive(index)}
+      label={label}
+      rightSection={icon}
+      active={pathname === path}
     />
-  ));
-  return <>{navLink}</>;
+  );
 };
