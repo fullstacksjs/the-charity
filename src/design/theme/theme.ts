@@ -99,4 +99,13 @@ export const theme: MantineThemeOverride = {
   headings: {
     fontFamily: 'IRANSansFaNum',
   },
+  components: {
+    /* eslint-disable @typescript-eslint/naming-convention */
+    Button: {
+      styles: {
+        root: { fontWeight: 500 },
+      },
+    },
+    /* eslint-enable @typescript-eslint/naming-convention */
+  },
 };

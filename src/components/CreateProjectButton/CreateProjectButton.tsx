@@ -6,9 +6,14 @@ export const CreateProjectButton = () => {
   return (
     <Link to="/create-project">
       <Button
-        sx={{ fontWeight: 500 }}
         variant="outline"
-        color="indigo"
+        color="primaryDefault"
+        sx={theme => ({
+          // eslint-disable-next-line @typescript-eslint/naming-convention
+          '&:hover': {
+            backgroundColor: theme.colors.primarySubtle[6],
+          },
+        })}
         px="lg"
         size="sm"
         id="create-project"
