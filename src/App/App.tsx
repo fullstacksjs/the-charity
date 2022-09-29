@@ -1,21 +1,31 @@
 import { ReactLocation, Router } from '@tanstack/react-location';
 
-import { AppShell } from '../components/appShell';
-import { PeopleIcon } from '../components/appShell/icons/PeopleIcon';
-import { EmptyState } from '../components/molecules';
+import { Families, Home, Projects } from '../pages';
 
 const location = new ReactLocation();
 
 export const App = () => {
   return (
-    <Router routes={[{ path: '/' }]} location={location}>
-      <AppShell>
-        <EmptyState
-          icon={<PeopleIcon w="33" h="33" />}
-          title="پروژه ای وجود ندارد!"
-          message="متاسفانه لیست پروژه های شما خالی است. لطفا پروژه خود را ایجاد کنید."
-        />
-      </AppShell>
+    <Router
+      routes={[
+        {
+          path: '/families',
+          element: <Families />,
+          meta: {
+            breadcrumb: () => 'خانواده ها',
+          },
+        },
+        {
+          path: '/projects',
+          element: <Projects />,
+          meta: {
+            breadcrumb: () => 'پروژه ها',
+          },
+        },
+      ]}
+      location={location}
+    >
+      <Home />
     </Router>
   );
 };

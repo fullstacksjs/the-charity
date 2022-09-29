@@ -1,13 +1,21 @@
+import { HomeIcon } from '@camp/design';
 import { AppShell as Shell, MediaQuery } from '@mantine/core';
+import { Outlet, useMatches, useMatchRoute } from '@tanstack/react-location';
+import { useEffect, useState } from 'react';
 
-import { Header } from '../organisms/Header';
-import { SideBar } from '../organisms/SideBar';
+import { CreateProjectButton } from '../CreateProjectButton';
+import { Header, SideBar } from '../organisms';
+import { Breadcrumb } from './Breadcrumb';
 
-interface Props {
-  children: React.ReactNode;
-}
+export const AppShell = () => {
+  const matchRoute = useMatchRoute();
+  const matches = useMatches();
+  const [path, setPath] = useState('');
+  useEffect(
+    () => setPath(matches[1]?.route?.meta?.['breadcrumb'] as string),
+    [matches, path],
+  );
 
-export const AppShell = ({ children }: Props) => {
   return (
     <Shell
       navbarOffsetBreakpoint="sm"
@@ -18,8 +26,29 @@ export const AppShell = ({ children }: Props) => {
         </MediaQuery>
       }
     >
-      <Header />
-      {children}
+      <Header
+        leftButton={
+          // NOTE: Im not sure about this way, it's seems a bad way
+          matchRoute({ to: '/projects' }) ? (
+            <CreateProjectButton />
+          ) : matchRoute({ to: '/families' }) ? (
+            'family button'
+          ) : null
+        }
+        breadcrumbs={
+          <Breadcrumb
+            breadcrumbItems={[
+              {
+                icon: <HomeIcon w="25" h="25" />,
+              },
+              {
+                pathname: path,
+              },
+            ]}
+          />
+        }
+      />
+      <Outlet />
     </Shell>
   );
 };
