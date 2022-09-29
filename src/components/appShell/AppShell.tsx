@@ -10,10 +10,9 @@ import { Breadcrumb } from './Breadcrumb';
 export const AppShell = () => {
   const matchRoute = useMatchRoute();
   const matches = useMatches();
-  console.log(matches[1]);
-  const [path, setPath] = useState();
+  const [path, setPath] = useState('');
   useEffect(
-    () => setPath(matches[1]?.route?.meta?.['breadcrumb']),
+    () => setPath(matches[1]?.route?.meta?.['breadcrumb'] as string),
     [matches, path],
   );
 
