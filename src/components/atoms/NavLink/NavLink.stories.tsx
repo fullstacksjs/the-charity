@@ -25,4 +25,5 @@ export const Default: Story<NavLinkProps> = Template.bind({});
 Default.args = {
   label: 'خانواده ها',
   path: '/families',
+  icon: true,
 };
