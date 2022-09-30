@@ -1,6 +1,7 @@
 import { createEmotionCache, MantineProvider } from '@mantine/core';
 import stylisRTLPlugin from 'stylis-plugin-rtl';
 
+import { GlobalStyles } from './GlobalStyles';
 import { IranSans } from './IranSans';
 import { theme } from './theme';
 
@@ -16,6 +17,7 @@ interface Props {
 export const ThemeProvider = (props: Props) => (
   <>
     <IranSans />
+    <GlobalStyles />
     <MantineProvider
       withGlobalStyles
       withCSSVariables

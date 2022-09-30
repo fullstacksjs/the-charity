@@ -1,7 +1,20 @@
+import { Logo, PackageIcon, PeopleIcon } from '@camp/design';
 import { Center, Container, Text } from '@mantine/core';
 
-import { Logo } from '../../atoms';
-import { NavList } from '../../molecules';
+import { NavLink } from '../../atoms';
+
+const links = [
+  {
+    label: 'خانواده ها',
+    icon: <PeopleIcon width="24" height="24" />,
+    path: '/families',
+  },
+  {
+    label: 'پروژه ها',
+    icon: <PackageIcon width="24" height="24" />,
+    path: '/projects',
+  },
+];
 
 export const SideBar = () => {
   return (
@@ -28,7 +41,9 @@ export const SideBar = () => {
         <Logo />
         <Text color="fgSubtle">نامی مناسب برای خیریه</Text>
       </Center>
-      <NavList />
+      {links.map(({ icon, label, path }) => (
+        <NavLink label={label} path={path} icon={icon} key={label} />
+      ))}
     </Container>
   );
 };

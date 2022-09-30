@@ -86,13 +86,26 @@ export const theme: MantineThemeOverride = {
   dir: 'rtl',
   fontFamily: 'IRANSansFaNum',
   colors: toMantineColors(colors),
-  other: {
-    fontSizes: {
-      xxxs: 8,
-      xxs: 10,
-    },
-  },
+  primaryColor: 'primaryDefault',
+  spacing: {
+    xxxs: 8,
+    xxs: 10,
+    xs: 12,
+    sm: 14,
+    md: 16,
+    lg: 18,
+    xl: 20,
+  } as any,
   headings: {
     fontFamily: 'IRANSansFaNum',
+  },
+  components: {
+    /* eslint-disable @typescript-eslint/naming-convention */
+    Button: {
+      styles: {
+        root: { fontWeight: 500 },
+      },
+    },
+    /* eslint-enable @typescript-eslint/naming-convention */
   },
 };

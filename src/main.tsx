@@ -3,7 +3,7 @@ import { ThemeProvider } from '@camp/design';
 import { StrictMode } from 'react';
 import ReactDOM from 'react-dom/client';
 
-import { App } from './App';
+import { Routes } from './Routes';
 
 const root = ReactDOM.createRoot(document.getElementById('root')!);
 
@@ -11,7 +11,7 @@ root.render(
   <StrictMode>
     <ApolloProvider>
       <ThemeProvider>
-        <App />
+        <Routes />
       </ThemeProvider>
     </ApolloProvider>
   </StrictMode>,

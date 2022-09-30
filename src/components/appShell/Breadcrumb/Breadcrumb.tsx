@@ -16,10 +16,8 @@ export const Breadcrumb = ({
   ));
 
   return (
-    <>
-      <Breadcrumbs separator={<BreadcrumbIcon w="16" h="16" />}>
-        {items}
-      </Breadcrumbs>
-    </>
+    <Breadcrumbs separator={<BreadcrumbIcon width="16" height="16" />}>
+      {items}
+    </Breadcrumbs>
   );
 };
