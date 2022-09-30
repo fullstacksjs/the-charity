@@ -52,6 +52,7 @@ export const theme: MantineThemeOverride = {
   fontFamily: 'IRANSansFaNum',
   colors: toMantineColors(colors),
   primaryColor: 'indigo',
+  defaultRadius: 'sm',
   spacing: {
     xxxs: 8,
     xxs: 10,
