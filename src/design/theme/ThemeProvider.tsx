@@ -20,7 +20,6 @@ export const ThemeProvider = (props: Props) => (
     <GlobalStyles />
     <MantineProvider
       withGlobalStyles
-      withCSSVariables
       emotionCache={rtlCache}
       theme={theme}
       {...props}
