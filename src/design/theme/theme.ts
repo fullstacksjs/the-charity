@@ -99,22 +99,22 @@ export const theme: MantineThemeOverride = {
   components: {
     // eslint-disable-next-line @typescript-eslint/naming-convention
     TextInput: {
-      styles: () => ({
+      styles: {
         root: {
           minHeight: '82px',
         },
-      }),
+      },
     },
     // eslint-disable-next-line @typescript-eslint/naming-convention
     Modal: {
-      styles: () => ({
+      styles: {
         modal: {
           padding: '30px !important',
         },
         header: {
           marginBottom: '40px',
         },
-      }),
+      },
     },
   },
   headings: {
