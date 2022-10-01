@@ -7,7 +7,7 @@ import { CreateFamilyButton } from '../CreateFamilyButton';
 import { CreateProjectModal } from '../CreateProject';
 import { CreateProjectButton } from '../CreateProjectButton';
 import { Header, SideBar } from '../organisms';
-import { Breadcrumb } from './Breadcrumb';
+import { Breadcrumbs } from './Breadcrumbs';
 
 export const AppShell = () => {
   const [isCreateProjectModalOpen, setIsCreateProjectModalOpen] =
@@ -42,7 +42,7 @@ export const AppShell = () => {
           ) : null
         }
         breadcrumbs={
-          <Breadcrumb
+          <Breadcrumbs
             breadcrumbItems={[
               {
                 icon: <HomeIcon width="25" height="25" />,

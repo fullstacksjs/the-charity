@@ -1,12 +1,12 @@
-import { BreadcrumbIcon } from '@camp/design';
-import { Breadcrumbs, Text } from '@mantine/core';
+import { ChevronLeftIcon } from '@camp/design';
+import { Breadcrumbs as MantineBreadcrumbs, Text } from '@mantine/core';
 
 export interface BreadcrumbProps {
   pathname?: string;
   icon?: React.ReactNode;
 }
 
-export const Breadcrumb = ({
+export const Breadcrumbs = ({
   breadcrumbItems,
 }: {
   breadcrumbItems: BreadcrumbProps[];
@@ -16,8 +16,8 @@ export const Breadcrumb = ({
   ));
 
   return (
-    <Breadcrumbs separator={<BreadcrumbIcon width="16" height="16" />}>
+    <MantineBreadcrumbs separator={<ChevronLeftIcon width="16" height="16" />}>
       {items}
-    </Breadcrumbs>
+    </MantineBreadcrumbs>
   );
 };
