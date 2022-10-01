@@ -1,7 +1,22 @@
-import { Logo, PackageIcon, PeopleIcon } from '@camp/design';
-import { Center, Container, Text } from '@mantine/core';
+import { PackageIcon, PeopleIcon } from '@camp/design';
+import { createStyles, Image, Stack, Text } from '@mantine/core';
 
 import { NavLink } from '../../atoms';
+
+const useStyles = createStyles(theme => ({
+  root: {
+    width: 275,
+    borderRight: '1px solid',
+    borderColor: theme.colors.gray[2],
+    paddingInline: 20,
+    paddingBlock: 30,
+  },
+  logoArea: {
+    backgroundColor: theme.colors.gray[0],
+    paddingBlock: 20,
+    borderRadius: 8,
+  },
+}));
 
 const links = [
   {
@@ -17,33 +32,30 @@ const links = [
 ];
 
 export const SideBar = () => {
+  const { classes } = useStyles();
   return (
-    <Container
-      sx={{
-        width: 275,
-        height: 768,
-        marginRight: '2rem',
-        display: 'block',
-        textAlign: 'center',
-        borderRight: '1px solid #EAECF0',
-      }}
-    >
-      <Center
-        sx={theme => ({
-          background: theme.colors.secondarySubtle[6],
-          padding: '2rem 0',
-          margin: '1rem 8px 4rem 0px',
-          display: 'block',
-          textAlign: 'center',
-          borderRadius: '8px',
-        })}
+    <Stack spacing={100} justify="start" className={classes.root}>
+      <Stack
+        spacing={10}
+        align="center"
+        justify="center"
+        className={classes.logoArea}
       >
-        <Logo />
-        <Text color="fgSubtle">نامی مناسب برای خیریه</Text>
-      </Center>
-      {links.map(({ icon, label, path }) => (
-        <NavLink label={label} path={path} icon={icon} key={label} />
-      ))}
-    </Container>
+        <Image
+          src="../../../../public/logo.png"
+          width={48}
+          height={48}
+          alt="charity logo"
+        />
+        <Text size="sm" color="fgSubtle">
+          نامی مناسب برای خیریه
+        </Text>
+      </Stack>
+      <Stack spacing={20}>
+        {links.map(({ icon, label, path }) => (
+          <NavLink label={label} path={path} icon={icon} key={label} />
+        ))}
+      </Stack>
+    </Stack>
   );
 };
