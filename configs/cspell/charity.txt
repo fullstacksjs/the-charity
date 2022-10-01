@@ -28,3 +28,4 @@ svgr
 svgs
 hookform
 Appshell
+Navlink
