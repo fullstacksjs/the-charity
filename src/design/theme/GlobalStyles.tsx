@@ -19,7 +19,7 @@ export const GlobalStyles = () => {
             height: '100%',
           },
           /* 4.Improve media defaults */
-          'img, picture, video, canvas, svg': {
+          'img, picture, video, canvas': {
             display: 'block',
             maxWidth: '100%',
           },
