@@ -27,3 +27,4 @@ truetype
 svgr
 svgs
 hookform
+Appshell

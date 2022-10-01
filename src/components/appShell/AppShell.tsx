@@ -1,5 +1,9 @@
 import { HomeIcon } from '@camp/design';
-import { AppShell as Shell, MediaQuery } from '@mantine/core';
+import {
+  AppShell as MantineAppShell,
+  createStyles,
+  MediaQuery,
+} from '@mantine/core';
 import { Outlet, useMatches, useMatchRoute } from '@tanstack/react-location';
 import React, { useEffect, useState } from 'react';
 
@@ -9,11 +13,21 @@ import { CreateProjectButton } from '../CreateProjectButton';
 import { Header, SideBar } from '../organisms';
 import { Breadcrumbs } from './Breadcrumbs';
 
+const useStyles = createStyles(theme => ({
+  main: {
+    paddingTop: 30,
+    paddingBottom: 0,
+    paddingInline: 40,
+    backgroundColor: theme.colors.bgCanvas[6],
+  },
+}));
+
 export const AppShell = () => {
   const [isCreateProjectModalOpen, setIsCreateProjectModalOpen] =
     React.useState(false);
   const matchRoute = useMatchRoute();
   const matches = useMatches();
+  const { classes } = useStyles();
   const [path, setPath] = useState('');
   useEffect(
     () => setPath(matches[1]?.route?.meta?.['breadcrumb'] as string),
@@ -21,7 +35,8 @@ export const AppShell = () => {
   );
 
   return (
-    <Shell
+    <MantineAppShell
+      classNames={{ main: classes.main }}
       navbarOffsetBreakpoint="sm"
       asideOffsetBreakpoint="sm"
       navbar={
@@ -59,6 +74,6 @@ export const AppShell = () => {
         opened={isCreateProjectModalOpen}
         onClose={() => setIsCreateProjectModalOpen(false)}
       />
-    </Shell>
+    </MantineAppShell>
   );
 };
