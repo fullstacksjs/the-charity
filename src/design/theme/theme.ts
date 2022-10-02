@@ -116,6 +116,12 @@ export const theme: MantineThemeOverride = {
         },
       },
     },
+    // eslint-disable-next-line @typescript-eslint/naming-convention
+    Button: {
+      styles: {
+        root: { fontWeight: 500 },
+      },
+    },
   },
   headings: {
     fontFamily: 'IRANSansFaNum',
