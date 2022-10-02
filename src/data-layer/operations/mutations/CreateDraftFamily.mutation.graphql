@@ -1,0 +1,6 @@
+mutation CreateDraftFamily($name: String!) {
+  createDraftFamily(name: $name) @client {
+    id
+    name
+  }
+}

@@ -8,6 +8,9 @@ import {
 import { onError } from '@apollo/client/link/error';
 import { config } from '@camp/config';
 
+import { clientSideResolvers } from './clientSideResolvers';
+import { ClientSideSchema } from './clientSideSchema';
+
 const errorLink = onError(({ graphQLErrors, networkError }) => {
   if (graphQLErrors)
     graphQLErrors.forEach(({ message, locations, path }) =>
@@ -23,6 +26,8 @@ const httpLink = new HttpLink({ uri: config.schemaUrl });
 export const apolloClient = new ApolloClient({
   link: from([errorLink, httpLink]),
   cache: new InMemoryCache(),
+  typeDefs: ClientSideSchema,
+  resolvers: clientSideResolvers,
 });
 
 interface Props {
