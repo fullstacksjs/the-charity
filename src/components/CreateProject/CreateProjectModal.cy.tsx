@@ -1,4 +1,6 @@
 /// <reference types="cypress" />
+import { noop } from '@fullstacksjs/toolbox';
+
 import { CreateProjectModal } from './CreateProjectModal';
 
 const requiredFieldMessage = 'این فیلد ضروری است';
@@ -8,7 +10,7 @@ const submitButtonSelector = '[data-test="submit-button"]';
 
 describe('Create Project Form', () => {
   beforeEach(() => {
-    cy.mount(<CreateProjectModal opened onClose={() => undefined} />);
+    cy.mount(<CreateProjectModal opened onClose={noop} />);
   });
 
   it('contains a text input with label for Project name', () => {
