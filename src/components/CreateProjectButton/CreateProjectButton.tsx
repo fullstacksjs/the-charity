@@ -6,7 +6,7 @@ interface Props {
   onClick?: React.MouseEventHandler<HTMLButtonElement>;
 }
 
-export const CreateProjectButton = ({ onClick }: Props): JSX.Element => {
+export const CreateProjectButton = ({ onClick }: Props) => {
   return (
     <Link to="/create-project">
       <Button
