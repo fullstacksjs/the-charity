@@ -5,7 +5,7 @@ import { CreateProjectForm } from './CreateProjectForm';
 
 type Props = Pick<ModalProps, 'onClose' | 'opened'>;
 
-export const CreateProjectModal = ({ opened, onClose }: Props) => {
+export const CreateProjectModal = ({ opened, onClose }: Props): JSX.Element => {
   return (
     <Modal
       title="ایجاد پروژه جدید"
