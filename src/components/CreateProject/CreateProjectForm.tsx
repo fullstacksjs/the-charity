@@ -37,6 +37,7 @@ export const CreateProjectForm = ({ dismiss }: Props): JSX.Element => {
       <Stack spacing={40}>
         <Stack spacing={10}>
           <TextInput
+            data-test="project-name"
             data-autoFocus
             withAsterisk
             placeholder="برای مثال: خرید مدرسه"
@@ -46,6 +47,7 @@ export const CreateProjectForm = ({ dismiss }: Props): JSX.Element => {
             {...register('name')}
           />
           <Textarea
+            data-test="project-description"
             placeholder="توضیحی درمورد پروژه"
             label="توضیحات"
             error={formState.errors.description?.message}
@@ -54,6 +56,7 @@ export const CreateProjectForm = ({ dismiss }: Props): JSX.Element => {
         </Stack>
         <Group spacing={20}>
           <Button
+            data-test="submit-button"
             type="submit"
             size="sm"
             disabled={Boolean(formState.errors.name)}
