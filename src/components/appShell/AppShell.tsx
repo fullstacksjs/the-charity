@@ -9,7 +9,7 @@ import React, { useEffect, useState } from 'react';
 
 import { CreateProjectModal } from '../CreateProject';
 import { CreateFamilyButton } from '../CreateFamily';
-import { CreateProjectButton } from '../CreateProjectButton';
+import { CreateProjectButton } from '../CreateProject';
 import { Header, SideBar } from '../organisms';
 import { Breadcrumbs } from './Breadcrumbs';
 
