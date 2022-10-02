@@ -17,7 +17,7 @@ const useStyles = createStyles(theme => ({
   },
 }));
 
-export const NavLink: React.FC<NavLinkProps> = ({ label, icon, path }) => {
+export const NavLink = ({ label, icon, path }: NavLinkProps) => {
   const { classes } = useStyles();
   const {
     current: { pathname },
