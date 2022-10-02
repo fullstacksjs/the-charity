@@ -3,12 +3,9 @@ import { Modal } from '@mantine/core';
 
 import { CreateProjectForm } from './CreateProjectForm';
 
-export type CreateProjectModalProps = Pick<ModalProps, 'onClose' | 'opened'>;
+type Props = Pick<ModalProps, 'onClose' | 'opened'>;
 
-export const CreateProjectModal: React.FC<CreateProjectModalProps> = ({
-  opened,
-  onClose,
-}) => {
+export const CreateProjectModal = ({ opened, onClose }: Props) => {
   return (
     <Modal
       title="ایجاد پروژه جدید"

@@ -21,7 +21,7 @@ const FormSchema = yup
   })
   .required();
 
-export const CreateProjectForm: React.FC<Props> = ({ dismiss }) => {
+export const CreateProjectForm = ({ dismiss }: Props): JSX.Element => {
   const onSubmit = React.useCallback(({ name, description }: FormSchema) => {
     console.log('name:', name, 'description:', description);
   }, []);

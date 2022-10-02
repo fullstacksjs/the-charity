@@ -64,7 +64,3 @@ describe('Create Project Form', () => {
     });
   });
 });
-
-// contains a submit button
-// should show an error  (required and min)
-// should be closed after pressing cancel button
