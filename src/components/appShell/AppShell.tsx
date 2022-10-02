@@ -1,14 +1,17 @@
 import { HomeIcon } from '@camp/design';
 import { AppShell as Shell, MediaQuery } from '@mantine/core';
 import { Outlet, useMatches, useMatchRoute } from '@tanstack/react-location';
-import { useEffect, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 
 import { CreateFamilyButton } from '../CreateFamilyButton';
+import { CreateProjectModal } from '../CreateProject';
 import { CreateProjectButton } from '../CreateProjectButton';
 import { Header, SideBar } from '../organisms';
 import { Breadcrumb } from './Breadcrumb';
 
 export const AppShell = () => {
+  const [isCreateProjectModalOpen, setIsCreateProjectModalOpen] =
+    React.useState(false);
   const matchRoute = useMatchRoute();
   const matches = useMatches();
   const [path, setPath] = useState('');
@@ -31,7 +34,9 @@ export const AppShell = () => {
         leftButton={
           // NOTE: Im not sure about this way, it's seems a bad way
           matchRoute({ to: '/projects' }) ? (
-            <CreateProjectButton />
+            <CreateProjectButton
+              onClick={() => setIsCreateProjectModalOpen(true)}
+            />
           ) : matchRoute({ to: '/families' }) ? (
             <CreateFamilyButton />
           ) : null
@@ -50,6 +55,10 @@ export const AppShell = () => {
         }
       />
       <Outlet />
+      <CreateProjectModal
+        opened={isCreateProjectModalOpen}
+        onClose={() => setIsCreateProjectModalOpen(false)}
+      />
     </Shell>
   );
 };
