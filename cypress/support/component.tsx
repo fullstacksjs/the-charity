@@ -1,4 +1,5 @@
 import './commands';
+import '@testing-library/cypress/add-commands';
 
 import { ApolloProvider } from '@apollo/client';
 import { ReactLocation, Router } from '@tanstack/react-location';
