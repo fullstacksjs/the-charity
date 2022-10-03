@@ -1,4 +1,3 @@
-/// <reference types="cypress" />
 import { noop } from '@fullstacksjs/toolbox';
 
 import { CreateProjectModal } from './CreateProjectModal';
