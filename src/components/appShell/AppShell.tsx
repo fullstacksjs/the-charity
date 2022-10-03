@@ -7,9 +7,8 @@ import {
 import { Outlet, useMatches, useMatchRoute } from '@tanstack/react-location';
 import React, { useEffect, useState } from 'react';
 
-import { CreateProjectModal } from '../CreateProject';
-import { CreateFamilyButton } from '../CreateFamily';
-import { CreateProjectButton } from '../CreateProject';
+import { CreateFamilyButton, CreateFamilyModal } from '../CreateFamily';
+import { CreateProjectButton, CreateProjectModal } from '../CreateProject';
 import { Header, SideBar } from '../organisms';
 import { Breadcrumbs } from './Breadcrumbs';
 
@@ -29,6 +28,8 @@ export const AppShell = () => {
   const matches = useMatches();
   const { classes } = useStyles();
   const [path, setPath] = useState('');
+  // eslint-disable-next-line @typescript-eslint/naming-convention
+  const [isCreateFamilyModalOpen, setIsCreateFamilyModalOpen] = useState(false);
   useEffect(
     () => setPath(matches[1]?.route?.meta?.['breadcrumb'] as string),
     [matches, path],
@@ -53,7 +54,9 @@ export const AppShell = () => {
               onClick={() => setIsCreateProjectModalOpen(true)}
             />
           ) : matchRoute({ to: '/families' }) ? (
-            <CreateFamilyButton />
+            <CreateFamilyButton
+              onClick={() => setIsCreateFamilyModalOpen(true)}
+            />
           ) : null
         }
         breadcrumbs={
@@ -73,6 +76,10 @@ export const AppShell = () => {
       <CreateProjectModal
         opened={isCreateProjectModalOpen}
         onClose={() => setIsCreateProjectModalOpen(false)}
+      />
+      <CreateFamilyModal
+        opened={isCreateFamilyModalOpen}
+        onClose={() => setIsCreateFamilyModalOpen(false)}
       />
     </MantineAppShell>
   );

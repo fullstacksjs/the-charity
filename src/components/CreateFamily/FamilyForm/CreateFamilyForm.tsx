@@ -1,5 +1,5 @@
 /* eslint-disable @typescript-eslint/no-misused-promises */
-import { yupResolver } from '@hookform/resolvers/yup/';
+import { yupResolver } from '@hookform/resolvers/yup';
 import { Button, Group, Stack, TextInput } from '@mantine/core';
 import { useCallback } from 'react';
 import { useForm } from 'react-hook-form';
