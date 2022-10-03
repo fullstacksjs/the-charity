@@ -3,9 +3,12 @@ import { Modal } from '@mantine/core';
 
 import { CreateFamilyForm } from './CreateFamilyForm';
 
-type Props = Pick<ModalProps, 'onClose' | 'opened'>;
+export type CreateFamilyModalProps = Pick<ModalProps, 'onClose' | 'opened'>;
 
-export const CreateFamilyModal = ({ opened, onClose }: Props) => {
+export const CreateFamilyModal = ({
+  opened,
+  onClose,
+}: CreateFamilyModalProps) => {
   return (
     <Modal
       title="ایجاد خانواده جدید"
