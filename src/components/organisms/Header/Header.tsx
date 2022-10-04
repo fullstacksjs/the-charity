@@ -1,4 +1,4 @@
-import { Col, Grid } from '@mantine/core';
+import { Group } from '@mantine/core';
 
 export interface HeaderProps {
   leftButton: React.ReactNode;
@@ -7,9 +7,9 @@ export interface HeaderProps {
 
 export const Header = ({ leftButton, breadcrumbs }: HeaderProps) => {
   return (
-    <Grid justify="space-between">
-      <Col span="auto">{breadcrumbs}</Col>
-      <Col span="content">{leftButton}</Col>
-    </Grid>
+    <Group position="apart">
+      {breadcrumbs}
+      {leftButton}
+    </Group>
   );
 };

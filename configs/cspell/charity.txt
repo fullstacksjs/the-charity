@@ -27,3 +27,5 @@ truetype
 svgr
 svgs
 hookform
+Appshell
+Navlink
