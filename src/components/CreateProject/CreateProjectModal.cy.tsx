@@ -6,6 +6,7 @@ const requiredFieldMessage = 'این فیلد ضروری است';
 const minLengthMessage = 'نام پروژه باید حداقل ۳ حرف باشد';
 const projectNameSelector = '[data-test="project-name"]';
 const submitButtonSelector = '[data-test="submit-button"]';
+const projectDescriptionSelector = '[data-test="project-description"]';
 
 describe('Create Project Form', () => {
   beforeEach(() => {
@@ -41,7 +42,6 @@ describe('Create Project Form', () => {
   it('should not show a required error message when Project name is not empty', () => {
     cy.get('form').within(() => {
       cy.get(projectNameSelector).type('نام');
-      cy.root().submit();
       cy.findByText(`/${requiredFieldMessage}/`).should('not.exist');
     });
   });
@@ -60,10 +60,18 @@ describe('Create Project Form', () => {
     });
   });
 
-  it('contains a disabled submit button on form error', () => {
+  it('should have a disabled submit button when form has an error', () => {
     cy.get('form').within(() => {
       cy.root().submit();
       cy.get(submitButtonSelector).should('be.disabled');
+    });
+  });
+
+  it('should not have a disabled submit button when form is valid', () => {
+    cy.get('form').within(() => {
+      cy.get(projectNameSelector).type('نام');
+      cy.get(projectDescriptionSelector).type('توضیح کوتاه');
+      cy.get(submitButtonSelector).should('not.be.disabled');
     });
   });
 });
