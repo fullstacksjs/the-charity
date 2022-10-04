@@ -28,6 +28,7 @@
     "@apollo/client": "3.6.9",
     "@emotion/react": "11.10.4",
     "@fullstacksjs/toolbox": "2.20.0",
+    "@hookform/resolvers": "2.9.8",
     "@mantine/core": "5.4.1",
     "@mantine/hooks": "5.4.1",
     "@tanstack/react-location": "3.7.4",
@@ -36,9 +37,11 @@
     "jsdom": "20.0.0",
     "react": "18.2.0",
     "react-dom": "18.2.0",
+    "react-hook-form": "7.36.1",
     "runtypes": "6.6.0",
     "stylis": "4.0.13",
-    "stylis-plugin-rtl": "2.1.1"
+    "stylis-plugin-rtl": "2.1.1",
+    "yup": "0.32.11"
   },
   "devDependencies": {
     "@babel/core": "7.18.13",

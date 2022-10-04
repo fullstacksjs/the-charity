@@ -49,18 +49,6 @@ export type BankAccount = {
   iban: Scalars['IBAN'];
 };
 
-export type CompleteFamily = {
-  __typename?: 'CompleteFamily';
-  archived: Scalars['Boolean'];
-  completedDate: Scalars['DateTime'];
-  dependents: Array<Dependent>;
-  draftDate: Scalars['DateTime'];
-  id: Scalars['ID'];
-  name: Scalars['String'];
-  projects: Array<Project>;
-  referrerCode: Scalars['String'];
-};
-
 export type CompleteHouseholder = Member & {
   __typename?: 'CompleteHouseholder';
   accommodationType: AccommodationType;
@@ -106,6 +94,20 @@ export type CompleteHouseholder = Member & {
   skills: Array<Skill>;
   ssn?: Maybe<Scalars['String']>;
   subsidies: Array<Subsidy>;
+};
+
+export type CompletedFamily = {
+  __typename?: 'CompletedFamily';
+  archived: Scalars['Boolean'];
+  completedDate: Scalars['DateTime'];
+  dependents: Array<Dependent>;
+  draftDate: Scalars['DateTime'];
+  id: Scalars['ID'];
+  name: Scalars['String'];
+  projects: Array<Project>;
+  referrerCode: Scalars['String'];
+  slug: Scalars['String'];
+  status: FamilyStatus;
 };
 
 export type Contact = {
@@ -182,6 +184,8 @@ export type DraftFamily = {
   name?: Maybe<Scalars['String']>;
   projects: Array<Project>;
   referrerCode?: Maybe<Scalars['String']>;
+  slug: Scalars['String'];
+  status: FamilyStatus;
 };
 
 export type DraftHouseholder = Member & {
@@ -233,6 +237,14 @@ export type DraftHouseholder = Member & {
 /** education status of people */
 export enum EducationStatus {
   Sth = 'Sth'
+}
+
+/** religion of the members */
+export enum FamilyStatus {
+  /** FamilyStatus is completed. */
+  Completed = 'Completed',
+  /** Family is drafted */
+  Draft = 'Draft'
 }
 
 /** religion of the members */
@@ -316,7 +328,7 @@ export type Query = {
   dependent: Dependent;
   dependents: Array<Dependent>;
   families: Array<Family>;
-  family: Family;
+  family?: Maybe<Family>;
   householder: Householder;
   householders: Array<Householder>;
   project: Project;
@@ -335,7 +347,7 @@ export type QueryDependentArgs = {
 
 
 export type QueryFamilyArgs = {
-  id: Scalars['Int'];
+  id: Scalars['String'];
 };
 
 
@@ -378,7 +390,7 @@ export enum SubsidyType {
 }
 
 /** family = [ draft-family, complete-family ] */
-export type Family = CompleteFamily | DraftFamily;
+export type Family = CompletedFamily | DraftFamily;
 
 /** householder = [ draft-house, complete-house ] */
 export type Householder = CompleteHouseholder | DraftHouseholder;

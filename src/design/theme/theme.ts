@@ -96,16 +96,34 @@ export const theme: MantineThemeOverride = {
     lg: 18,
     xl: 20,
   } as any,
-  headings: {
-    fontFamily: 'IRANSansFaNum',
-  },
   components: {
-    /* eslint-disable @typescript-eslint/naming-convention */
+    // eslint-disable-next-line @typescript-eslint/naming-convention
+    TextInput: {
+      styles: {
+        root: {
+          minHeight: '82px',
+        },
+      },
+    },
+    // eslint-disable-next-line @typescript-eslint/naming-convention
+    Modal: {
+      styles: {
+        modal: {
+          padding: '30px !important',
+        },
+        header: {
+          marginBottom: '40px',
+        },
+      },
+    },
+    // eslint-disable-next-line @typescript-eslint/naming-convention
     Button: {
       styles: {
         root: { fontWeight: 500 },
       },
     },
-    /* eslint-enable @typescript-eslint/naming-convention */
+  },
+  headings: {
+    fontFamily: 'IRANSansFaNum',
   },
 };

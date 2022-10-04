@@ -26,3 +26,4 @@ xxxs
 truetype
 svgr
 svgs
+hookform

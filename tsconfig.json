@@ -6,7 +6,8 @@
       "@camp/design": ["./src/design/index.ts"],
       "@camp/domain": ["./src/domain/index.ts"],
       "@camp/config": ["./src/config/index.ts"]
-    }
+    },
+    "types": ["cypress", "@testing-library/cypress"]
   },
   "extends": "@fullstacksjs/tsconfig/react",
   "include": ["src", "@types"],

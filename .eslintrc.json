@@ -16,6 +16,12 @@
     "@fullstacksjs/eslint-config/graphql"
   ],
   "rules": {
+    "import/extensions": [
+      "error",
+      {
+        "mjs": "never"
+      }
+    ],
     "jest/no-deprecated-functions": "off",
 
     // NOTE: https://github.com/jsx-eslint/eslint-plugin-react/blob/master/docs/rules/no-unused-prop-types.md#known-issueslimitations
