@@ -1,6 +1,7 @@
 import { messages } from '@camp/messages';
 import { yupResolver } from '@hookform/resolvers/yup';
 import { Button, Group, Stack, Textarea, TextInput } from '@mantine/core';
+import { showNotification } from '@mantine/notifications';
 import React from 'react';
 import { useForm } from 'react-hook-form';
 import * as yup from 'yup';
@@ -24,15 +25,31 @@ const FormSchema = yup
   })
   .required();
 
+const notifySuccessCreation = (name: string) =>
+  showNotification({
+    color: 'successDefault',
+    title: 'ایجاد پروژه جدید',
+    message: `پروژه با نام ${name} با موفقیت ساخته شد`,
+  });
+
+const notifyFailedCreation = (name: string) =>
+  showNotification({
+    color: 'errorDefault',
+    title: 'ایجاد پروژه جدید',
+    message: `مشکلی در مرحله ایجاد پروژه ای بانام ${name} به وجود آمده است. لطفا دوباره تلاش کنید`,
+  });
+
 export const CreateProjectForm = ({ dismiss }: Props) => {
   const [createProject] = useCreateProjectMutation();
   const onSubmit = React.useCallback(({ name, description }: FormSchema) => {
     createProject({ variables: { name, description } })
-      .then(res => {
-        console.log(res);
+      .then(({ data }) => {
+        console.log(data);
+        notifySuccessCreation(name);
       })
-      .catch(() => {
-        console.error('error');
+      .catch(err => {
+        console.error(err);
+        notifyFailedCreation(name);
       });
   }, []);
 
