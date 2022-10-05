@@ -4,7 +4,7 @@ import { CreateFamilyModal } from './CreateFamilyModal';
 
 const requiredFieldMessage = 'این فیلد ضروری است';
 const minLengthMessage = 'نام خانواده باید حداقل ۳ حرف باشد';
-const buttonSelector = '[data-test="submit-button"]';
+const submitButtonSelector = '[data-test="submit-button"]';
 const inputSelector = '[data-test="family-name"]';
 
 describe('Create Family Form', () => {
@@ -16,7 +16,7 @@ describe('Create Family Form', () => {
   });
   it('should contains submit button to create family', () => {
     cy.get('form')
-      .get(buttonSelector)
+      .get(submitButtonSelector)
       .should('have.attr', 'type')
       .and('equal', 'submit');
   });
@@ -39,18 +39,10 @@ describe('Create Family Form', () => {
       cy.findByRole('alert').should('have.text', minLengthMessage);
     });
   });
-
   it('should not show an error message when family name is more than or equal min length', () => {
     cy.get('form').within(() => {
       cy.get(inputSelector).type('مرادی');
       cy.findByText(`/${minLengthMessage}/`).should('not.exist');
-    });
-  });
-
-  it('should disable the button when the required fields are filled incorrectly', () => {
-    cy.get('form').within(() => {
-      cy.root().submit();
-      cy.get(buttonSelector).should('be.disabled');
     });
   });
   it('should submit when all required fields fill correctly', () => {
