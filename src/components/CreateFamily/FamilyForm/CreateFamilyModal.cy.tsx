@@ -3,7 +3,7 @@ import { noop } from '@fullstacksjs/toolbox';
 import { CreateFamilyModal } from './CreateFamilyModal';
 
 const requiredFieldMessage = 'این فیلد ضروری است';
-const minLengthMessage = 'نام خانواده باید حداقل ۵ حرف باشد';
+const minLengthMessage = 'نام خانواده باید حداقل ۳ حرف باشد';
 const buttonSelector = '[data-test="submit-button"]';
 const inputSelector = '[data-test="family-name"]';
 
