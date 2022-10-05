@@ -17,7 +17,7 @@ const FormSchema = yup
       .string()
       .trim()
       .required('این فیلد ضروری است')
-      .min(5, 'نام خانواده باید حداقل ۵ حرف باشد'),
+      .min(3, 'نام خانواده باید حداقل ۵ حرف باشد'),
   })
   .required();
 
@@ -34,19 +34,17 @@ export const CreateFamilyForm = ({ dismiss }: Props) => {
   return (
     <form onSubmit={handleSubmit(onSubmit)}>
       <Stack spacing={40}>
-        <Stack spacing={10}>
-          <TextInput
-            data-test="family-name"
-            data-autoFocus
-            withAsterisk
-            placeholder="برای مثال: مرادی"
-            label="نام"
-            description="نام مناسب برای خانواده می تواند نام خانوادگی سرپرست خانوار باشد"
-            size="sm"
-            error={formState.errors.name?.message}
-            {...register('name')}
-          />
-        </Stack>
+        <TextInput
+          data-test="family-name"
+          data-autoFocus
+          withAsterisk
+          placeholder="برای مثال: مرادی"
+          label="نام"
+          description="نام مناسب برای خانواده می تواند نام خانوادگی سرپرست خانوار باشد"
+          size="sm"
+          error={formState.errors.name?.message}
+          {...register('name')}
+        />
         <Group spacing={20}>
           <Button
             data-test="submit-button"
