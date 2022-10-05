@@ -7,7 +7,7 @@ const minLengthMessage = 'نام خانواده باید حداقل ۳ حرف ب
 const buttonSelector = '[data-test="submit-button"]';
 const inputSelector = '[data-test="family-name"]';
 
-describe('CreateFamilyModal', () => {
+describe('Create Family Form', () => {
   beforeEach(() => {
     cy.mount(<CreateFamilyModal opened onClose={noop} />);
   });
@@ -22,7 +22,7 @@ describe('CreateFamilyModal', () => {
   });
   it('should not show a required error message when family name is not empty', () => {
     cy.get('form').within(() => {
-      cy.get(inputSelector);
+      cy.get(inputSelector).type('مرادی');
       cy.root().submit();
       cy.findByText(`/${requiredFieldMessage}/`).should('not.exist');
     });
@@ -43,20 +43,20 @@ describe('CreateFamilyModal', () => {
   it('should not show an error message when family name is more than or equal min length', () => {
     cy.get('form').within(() => {
       cy.get(inputSelector).type('مرادی');
-      cy.findByText(`/${minLengthMessage}/`).should('not.exist');
+      cy.findByRole('alert').should('not.have.text', minLengthMessage);
     });
   });
 
-  it('should be disabled the button when the required fields are filled in incorrectly', () => {
+  it('should disable the button when the required fields are filled incorrectly', () => {
     cy.get('form').within(() => {
       cy.root().submit();
       cy.get(buttonSelector).should('be.disabled');
     });
   });
-  it('should submit the form when all required fields fill correctly', () => {
+  it('should submit when all required fields fill correctly', () => {
     cy.get('form').within(() => {
       cy.get(inputSelector).type('مرادی');
-      cy.findByText(`/${minLengthMessage}/`).should('not.exist');
+      cy.findByRole('alert').should('not.have.text', minLengthMessage);
       cy.root().submit();
     });
   });
