@@ -1,15 +1,20 @@
+/* eslint-disable @typescript-eslint/naming-convention */
 import { HomeIcon } from '@camp/design';
 import {
   AppShell as MantineAppShell,
   createStyles,
   MediaQuery,
 } from '@mantine/core';
-import { Outlet, useMatches, useMatchRoute } from '@tanstack/react-location';
+import {
+  Outlet,
+  useMatches,
+  useMatchRoute,
+  useNavigate,
+} from '@tanstack/react-location';
 import React, { useEffect, useState } from 'react';
 
-import { CreateFamilyButton } from '../CreateFamilyButton';
-import { CreateProjectModal } from '../CreateProject';
-import { CreateProjectButton } from '../CreateProjectButton';
+import { CreateFamilyButton, CreateFamilyModal } from '../CreateFamily';
+import { CreateProjectButton, CreateProjectModal } from '../CreateProject';
 import { Header, SideBar } from '../organisms';
 import { Breadcrumbs } from './Breadcrumbs';
 
@@ -29,6 +34,8 @@ export const AppShell = () => {
   const matches = useMatches();
   const { classes } = useStyles();
   const [path, setPath] = useState('');
+  const [isCreateFamilyModalOpen, setIsCreateFamilyModalOpen] = useState(false);
+  const navigate = useNavigate();
   useEffect(
     () => setPath(matches[1]?.route?.meta?.['breadcrumb'] as string),
     [matches, path],
@@ -53,7 +60,9 @@ export const AppShell = () => {
               onClick={() => setIsCreateProjectModalOpen(true)}
             />
           ) : matchRoute({ to: '/families' }) ? (
-            <CreateFamilyButton />
+            <CreateFamilyButton
+              onClick={() => setIsCreateFamilyModalOpen(true)}
+            />
           ) : null
         }
         breadcrumbs={
@@ -72,7 +81,17 @@ export const AppShell = () => {
       <Outlet />
       <CreateProjectModal
         opened={isCreateProjectModalOpen}
-        onClose={() => setIsCreateProjectModalOpen(false)}
+        onClose={() => {
+          setIsCreateProjectModalOpen(false);
+          navigate({ to: '/projects', replace: true });
+        }}
+      />
+      <CreateFamilyModal
+        opened={isCreateFamilyModalOpen}
+        onClose={() => {
+          setIsCreateFamilyModalOpen(false);
+          navigate({ to: '/families', replace: true });
+        }}
       />
     </MantineAppShell>
   );
