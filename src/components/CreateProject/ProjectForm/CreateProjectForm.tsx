@@ -5,6 +5,8 @@ import React from 'react';
 import { useForm } from 'react-hook-form';
 import * as yup from 'yup';
 
+import { useCreateProjectMutation } from '../../data-layer';
+
 interface Props {
   dismiss: () => void;
 }
@@ -23,8 +25,15 @@ const FormSchema = yup
   .required();
 
 export const CreateProjectForm = ({ dismiss }: Props) => {
+  const [createProject] = useCreateProjectMutation();
   const onSubmit = React.useCallback(({ name, description }: FormSchema) => {
-    console.log('name:', name, 'description:', description);
+    createProject({ variables: { name, description } })
+      .then(res => {
+        console.log(res);
+      })
+      .catch(() => {
+        console.error('error');
+      });
   }, []);
 
   const { handleSubmit, register, formState } = useForm<FormSchema>({

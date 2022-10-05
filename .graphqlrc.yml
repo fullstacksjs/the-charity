@@ -5,6 +5,7 @@ define: &HEADER
 schema:
   - ${APP_GRAPHQL_SCHEMA_URL}
   - './src/data-layer/apollo/clientSideSchema.ts'
+
 documents: './src/data-layer/operations/**/*.graphql'
 extensions:
   codegen:
