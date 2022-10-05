@@ -43,7 +43,7 @@ describe('Create Family Form', () => {
   it('should not show an error message when family name is more than or equal min length', () => {
     cy.get('form').within(() => {
       cy.get(inputSelector).type('مرادی');
-      cy.findByRole('alert').should('not.have.text', minLengthMessage);
+      cy.findByText(`/${minLengthMessage}/`).should('not.exist');
     });
   });
 
@@ -56,7 +56,7 @@ describe('Create Family Form', () => {
   it('should submit when all required fields fill correctly', () => {
     cy.get('form').within(() => {
       cy.get(inputSelector).type('مرادی');
-      cy.findByRole('alert').should('not.have.text', minLengthMessage);
+      cy.findByText(`/${minLengthMessage}/`).should('not.exist');
       cy.root().submit();
     });
   });
