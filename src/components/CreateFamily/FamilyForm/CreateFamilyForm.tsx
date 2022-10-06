@@ -1,7 +1,8 @@
+import { useCreateDraftFamilyMutation } from '@camp/data-layer';
 import { messages } from '@camp/messages';
 import { yupResolver } from '@hookform/resolvers/yup';
 import { Button, Group, Stack, TextInput } from '@mantine/core';
-import { useCallback } from 'react';
+import { showNotification } from '@mantine/notifications';
 import { useForm } from 'react-hook-form';
 import * as yup from 'yup';
 
@@ -21,18 +22,41 @@ const FormSchema = yup
   })
   .required();
 
+const showSuccessNotification = ({ name }: FormSchema) =>
+  showNotification({
+    title: 'ایجاد خانواده جدید',
+    message: `خانواده ای با نام “${name}” با موفقیت ایجاد شده است.`,
+    color: 'green',
+  });
+
+const showErrorNotification = ({ name }: FormSchema) =>
+  showNotification({
+    title: 'ایجاد خانواده جدید',
+    message: `مشکلی در مرحله ایجاد خانواده ای با نام “${name}” بوجود آمده است. لطفا دوباره تلاش کنید.`,
+    color: 'red',
+  });
+
 export const CreateFamilyForm = ({ dismiss }: Props) => {
-  const onSubmit = useCallback(({ name }: FormSchema) => {
-    console.log('name:', name);
-  }, []);
+  const [createDraftFamily, mutationResult] = useCreateDraftFamilyMutation();
 
   const { handleSubmit, register, formState } = useForm<FormSchema>({
     resolver: yupResolver(FormSchema),
     mode: 'onChange',
   });
 
+  const onSubmit = handleSubmit(({ name }) => {
+    createDraftFamily({ variables: { name } })
+      .then(res => {
+        const respondedName = res.data?.createDraftFamily.name ?? '';
+        showSuccessNotification({ name: respondedName });
+        dismiss();
+      })
+      .catch(() => showErrorNotification({ name }));
+  });
+
   return (
-    <form onSubmit={handleSubmit(onSubmit)}>
+    // eslint-disable-next-line @typescript-eslint/no-misused-promises
+    <form onSubmit={onSubmit}>
       <Stack spacing={40}>
         <TextInput
           data-test="family-name"
@@ -51,6 +75,7 @@ export const CreateFamilyForm = ({ dismiss }: Props) => {
             type="submit"
             size="sm"
             disabled={Boolean(formState.errors.name)}
+            loading={mutationResult.loading}
           >
             {messages.families.createForm.submitBtn.text}
           </Button>
