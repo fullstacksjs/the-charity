@@ -3,6 +3,7 @@ import { messages } from '@camp/messages';
 import { yupResolver } from '@hookform/resolvers/yup';
 import { Button, Group, Stack, TextInput } from '@mantine/core';
 import { showNotification } from '@mantine/notifications';
+import React from 'react';
 import { useForm } from 'react-hook-form';
 import * as yup from 'yup';
 
@@ -39,7 +40,7 @@ const showErrorNotification = ({ name }: FormSchema) =>
 export const CreateFamilyForm = ({ dismiss }: Props) => {
   const [createDraftFamily, mutationResult] = useCreateDraftFamilyMutation();
 
-  const { handleSubmit, register, formState } = useForm<FormSchema>({
+  const { setFocus, handleSubmit, register, formState } = useForm<FormSchema>({
     resolver: yupResolver(FormSchema),
     mode: 'onChange',
   });
@@ -54,13 +55,16 @@ export const CreateFamilyForm = ({ dismiss }: Props) => {
       .catch(() => showErrorNotification({ name }));
   });
 
+  React.useEffect(() => {
+    setFocus('name');
+  }, [setFocus]);
+
   return (
     // eslint-disable-next-line @typescript-eslint/no-misused-promises
     <form onSubmit={onSubmit}>
       <Stack spacing={40}>
         <TextInput
           data-test="family-name"
-          data-autoFocus
           withAsterisk
           placeholder={messages.families.createForm.nameInput.placeholder}
           label={messages.families.createForm.nameInput.label}
