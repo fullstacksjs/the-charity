@@ -27,7 +27,7 @@ export const NavLink = ({ label, icon, path }: NavLinkProps) => {
     <MantineNavLink
       to={path}
       component={TanstackLink}
-      data-test-id="nav-link"
+      data-test="nav-link"
       key={label}
       label={label}
       rightSection={icon}
