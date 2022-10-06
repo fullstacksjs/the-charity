@@ -1,6 +1,13 @@
 import { messages } from '@camp/messages';
 import { yupResolver } from '@hookform/resolvers/yup';
-import { Button, Group, Stack, Textarea, TextInput } from '@mantine/core';
+import {
+  Button,
+  Group,
+  Notification,
+  Stack,
+  Textarea,
+  TextInput,
+} from '@mantine/core';
 import { showNotification } from '@mantine/notifications';
 import React from 'react';
 import { useForm } from 'react-hook-form';
@@ -25,8 +32,12 @@ const FormSchema = yup
   })
   .required();
 
+// NOTE: the spread is to avoid the type error with notification props not accepting data attribute
+
 const notifySuccessCreation = (name: string) =>
   showNotification({
+    // eslint-disable-next-line @typescript-eslint/naming-convention
+    ...{ 'data-test': 'notification-success' },
     color: 'successDefault',
     title: 'ایجاد پروژه جدید',
     message: `پروژه با نام ${name} با موفقیت ساخته شد`,
@@ -34,6 +45,8 @@ const notifySuccessCreation = (name: string) =>
 
 const notifyFailedCreation = (name: string) =>
   showNotification({
+    // eslint-disable-next-line @typescript-eslint/naming-convention
+    ...{ 'data-test': 'notification-fail' },
     color: 'errorDefault',
     title: 'ایجاد پروژه جدید',
     message: `مشکلی در مرحله ایجاد پروژه ای بانام ${name} به وجود آمده است. لطفا دوباره تلاش کنید`,
@@ -63,6 +76,7 @@ export const CreateProjectForm = ({ dismiss }: Props) => {
     <form onSubmit={handleSubmit(onSubmit)}>
       <Stack spacing={40}>
         <Stack spacing={10}>
+          <Notification data-hey="3" />
           <TextInput
             data-test="project-name"
             data-autoFocus
