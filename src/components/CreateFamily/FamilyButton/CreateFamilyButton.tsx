@@ -14,11 +14,6 @@ export const CreateFamilyButton = ({ onClick }: Props) => {
       data-test="create-family-button"
       leftIcon={<PlusIcon width="16" height="16" />}
       onClick={onClick}
-      sx={theme => ({
-        '&:hover': {
-          backgroundColor: theme.colors.primarySubtle[6],
-        },
-      })}
     >
       {messages.families.create}
     </Button>

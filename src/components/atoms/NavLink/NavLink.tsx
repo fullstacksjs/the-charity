@@ -30,7 +30,6 @@ export const NavLink = ({ label, icon, path }: NavLinkProps) => {
       label={label}
       rightSection={icon}
       active={pathname === path}
-      color="indigo"
       className={classes.root}
     />
   );
