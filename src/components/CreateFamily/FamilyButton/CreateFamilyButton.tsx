@@ -11,7 +11,7 @@ export const CreateFamilyButton = ({ onClick }: Props) => {
     <Button
       variant="outline"
       size="sm"
-      id="create-draft-family"
+      data-test="create-family-button"
       leftIcon={<PlusIcon width="16" height="16" />}
       onClick={onClick}
       sx={theme => ({
