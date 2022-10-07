@@ -1,10 +1,46 @@
-describe('Create Family', () => {
+const createFamilyButtonID = 'create-family-button';
+const createFamilyModalID = 'create-family-modal';
+const createFamilyFormID = 'create-family-form';
+const familyNameID = 'family-name';
+const notificationProviderID = 'notification-provider';
+
+describe('To Create Draft Family', () => {
   beforeEach(() => {
-    cy.visit('/');
+    cy.visit('/families');
   });
 
-  it('Finds the create family Button in families page', () => {
-    cy.get('a[href="/families"]').click();
-    cy.get('#create-draft-family').should('exist');
+  describe('Families Page', () => {
+    it('should have a createFamily button', () => {
+      cy.findByTestId(createFamilyButtonID).should('exist');
+    });
+
+    it('should show createFamily modal after clicking on createFamily button', () => {
+      cy.findByTestId(createFamilyButtonID).click();
+      cy.findByTestId(createFamilyModalID).should('exist');
+    });
+
+    it('should not contain createFamily modal after submitting the valid form ', () => {
+      cy.findByTestId(createFamilyButtonID).click();
+
+      cy.findByTestId(createFamilyFormID).within(() => {
+        cy.findByTestId(familyNameID).type('مرادی');
+        cy.root().submit();
+      });
+
+      cy.findByTestId(createFamilyModalID).should('not.exist');
+    });
+
+    it('should show mutation result notification', () => {
+      cy.findByTestId(createFamilyButtonID).click();
+
+      cy.findByTestId(createFamilyFormID).within(() => {
+        cy.findByTestId(familyNameID).type('مرادی');
+        cy.root().submit();
+      });
+
+      cy.findByTestId(notificationProviderID).within(() => {
+        cy.findByRole('alert').should('contain.text', 'ایجاد خانواده جدید');
+      });
+    });
   });
 });
