@@ -5,7 +5,7 @@ describe('Create Family Button', () => {
     cy.mount(<CreateFamilyButton />);
   });
 
-  it('should be visible to users', () => {
-    cy.get('#create-draft-family').should('exist');
+  it('should be a button with correct label', () => {
+    cy.findByRole('button', { name: /ایجاد خانواده جدید/ }).should('exist');
   });
 });
