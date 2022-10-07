@@ -7,11 +7,19 @@ import React from 'react';
 import { useForm } from 'react-hook-form';
 import * as yup from 'yup';
 
+import { createTestAttr } from '../../../utils/createTestAttr';
+
 type FormSchema = yup.InferType<typeof FormSchema>;
 
 interface Props {
   dismiss: () => void;
 }
+
+export const createFamilyFormIDs = {
+  form: 'create-family-form',
+  nameInput: 'family-name',
+  submitBtn: 'submit-button',
+};
 
 const FormSchema = yup
   .object({
@@ -61,10 +69,9 @@ export const CreateFamilyForm = ({ dismiss }: Props) => {
 
   return (
     // eslint-disable-next-line @typescript-eslint/no-misused-promises
-    <form onSubmit={onSubmit}>
+    <form onSubmit={onSubmit} {...createTestAttr(createFamilyFormIDs.form)}>
       <Stack spacing={40}>
         <TextInput
-          data-test="family-name"
           withAsterisk
           placeholder={messages.families.createForm.nameInput.placeholder}
           label={messages.families.createForm.nameInput.label}
@@ -72,14 +79,15 @@ export const CreateFamilyForm = ({ dismiss }: Props) => {
           size="sm"
           error={formState.errors.name?.message}
           {...register('name')}
+          {...createTestAttr(createFamilyFormIDs.nameInput)}
         />
         <Group spacing={20}>
           <Button
-            data-test="submit-button"
             type="submit"
             size="sm"
             disabled={Boolean(formState.errors.name)}
             loading={mutationResult.loading}
+            {...createTestAttr(createFamilyFormIDs.submitBtn)}
           >
             {messages.families.createForm.submitBtn.text}
           </Button>
