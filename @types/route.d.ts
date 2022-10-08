@@ -1,0 +1,1 @@
+type AppRoute = '/' | '/families' | '/projects';
