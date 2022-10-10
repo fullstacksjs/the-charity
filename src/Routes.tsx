@@ -24,26 +24,27 @@ interface Route extends Omit<LocationRoute<LocationGenerics>, 'path'> {
 
 const routes: Route[] = [
   {
-    path: '/families',
-    element: <Families />,
-    meta: {
-      breadcrumb: messages.families.title,
-    },
+    element: <AppShell />,
+    children: [
+      {
+        path: '/families',
+        element: <Families />,
+        meta: {
+          breadcrumb: messages.families.title,
+        },
+      },
+      {
+        path: '/projects',
+        element: <Projects />,
+        meta: {
+          breadcrumb: messages.projects.title,
+        },
+      },
+      { element: <Navigate to="/families" /> },
+    ],
   },
-  {
-    path: '/projects',
-    element: <Projects />,
-    meta: {
-      breadcrumb: messages.projects.title,
-    },
-  },
-  { element: <Navigate to="/families" /> },
 ];
 
 export const Routes = () => {
-  return (
-    <Router routes={routes} location={location}>
-      <AppShell />
-    </Router>
-  );
+  return <Router routes={routes} location={location} />;
 };
