@@ -11,7 +11,7 @@ import { Families, Projects } from './pages';
 
 const location = new ReactLocation();
 
-type LocationGenerics = MakeGenerics<{
+export type LocationGenerics = MakeGenerics<{
   RouteMeta: {
     breadcrumb: string;
   };

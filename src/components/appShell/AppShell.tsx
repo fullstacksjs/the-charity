@@ -11,8 +11,9 @@ import {
   useMatchRoute,
   useNavigate,
 } from '@tanstack/react-location';
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 
+import type { LocationGenerics } from '../../Routes';
 import { CreateFamilyButton, CreateFamilyModal } from '../CreateFamily';
 import { CreateProjectButton, CreateProjectModal } from '../CreateProject';
 import { Header, SideBar } from '../organisms';
@@ -30,16 +31,14 @@ const useStyles = createStyles(theme => ({
 export const AppShell = () => {
   const [isCreateProjectModalOpen, setIsCreateProjectModalOpen] =
     React.useState(false);
+
+  const matches = useMatches<LocationGenerics>();
+  const path = matches[1]?.route.meta?.breadcrumb;
+
   const matchRoute = useMatchRoute();
-  const matches = useMatches();
   const { classes } = useStyles();
-  const [path, setPath] = useState('');
   const [isCreateFamilyModalOpen, setIsCreateFamilyModalOpen] = useState(false);
   const navigate = useNavigate();
-  useEffect(
-    () => setPath(matches[1]?.route?.meta?.['breadcrumb'] as string),
-    [matches, path],
-  );
 
   return (
     <MantineAppShell
