@@ -1,4 +1,5 @@
 /* eslint-disable @typescript-eslint/naming-convention */
+import { messages } from '@camp/messages';
 import type {
   MakeGenerics,
   Route as LocationRoute,
@@ -26,14 +27,14 @@ const routes: Route[] = [
     path: '/families',
     element: <Families />,
     meta: {
-      breadcrumb: 'خانواده ها',
+      breadcrumb: messages.families.title,
     },
   },
   {
     path: '/projects',
     element: <Projects />,
     meta: {
-      breadcrumb: 'پروژه ها',
+      breadcrumb: messages.projects.title,
     },
   },
   { element: <Navigate to="/families" /> },

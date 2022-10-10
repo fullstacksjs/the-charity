@@ -1,4 +1,5 @@
 import { PlusIcon } from '@camp/design';
+import { messages } from '@camp/messages';
 import { Button } from '@mantine/core';
 import { Link } from '@tanstack/react-location';
 
@@ -22,7 +23,7 @@ export const CreateFamilyButton = ({ onClick }: Props) => {
           },
         })}
       >
-        ایجاد خانواده جدید
+        {messages.families.create}
       </Button>
     </Link>
   );

@@ -22,7 +22,7 @@ const Template: Story<EmptyStateProps> = args => <EmptyState {...args} />;
 
 export const Default: Story<EmptyStateProps> = Template.bind({});
 Default.args = {
-  title: 'پروژه ها',
+  title: messages.projects.title,
   message:
     'متاسفانه لیست پروژه های شما خالی است. لطفا پروژه خود را ایجاد کنید.',
   icon: <PackageIcon width="33" height="33" />,

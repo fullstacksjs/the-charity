@@ -1,4 +1,5 @@
 import { PackageIcon, PeopleIcon } from '@camp/design';
+import { messages } from '@camp/messages';
 import { createStyles, Image, Stack, Text } from '@mantine/core';
 
 import { NavLink } from '../../atoms';
@@ -20,12 +21,12 @@ const useStyles = createStyles(theme => ({
 
 const links = [
   {
-    label: 'خانواده ها',
+    label: messages.families.title,
     icon: <PeopleIcon width="24" height="24" />,
     path: '/families',
   },
   {
-    label: 'پروژه ها',
+    label: messages.projects.title,
     icon: <PackageIcon width="24" height="24" />,
     path: '/projects',
   },

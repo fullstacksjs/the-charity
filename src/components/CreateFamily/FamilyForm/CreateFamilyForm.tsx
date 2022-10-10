@@ -1,4 +1,5 @@
 /* eslint-disable @typescript-eslint/no-misused-promises */
+import { messages } from '@camp/messages';
 import { yupResolver } from '@hookform/resolvers/yup';
 import { Button, Group, Stack, TextInput } from '@mantine/core';
 import { useCallback } from 'react';
@@ -16,8 +17,8 @@ const FormSchema = yup
     name: yup
       .string()
       .trim()
-      .required('این فیلد ضروری است')
-      .min(3, 'نام خانواده باید حداقل ۳ حرف باشد'),
+      .required(messages.families.validation.required)
+      .min(3, messages.families.validation.minLength),
   })
   .required();
 
@@ -38,9 +39,9 @@ export const CreateFamilyForm = ({ dismiss }: Props) => {
           data-test="family-name"
           data-autoFocus
           withAsterisk
-          placeholder="برای مثال: مرادی"
-          label="نام"
-          description="نام مناسب برای خانواده می تواند نام خانوادگی سرپرست خانوار باشد"
+          placeholder={messages.families.createForm.nameInput.placeholder}
+          label={messages.families.createForm.nameInput.label}
+          description={messages.families.createForm.nameInput.description}
           size="sm"
           error={formState.errors.name?.message}
           {...register('name')}
@@ -52,10 +53,10 @@ export const CreateFamilyForm = ({ dismiss }: Props) => {
             size="sm"
             disabled={Boolean(formState.errors.name)}
           >
-            ایجاد خانواده
+            {messages.families.createForm.submitBtn.text}
           </Button>
           <Button size="sm" color="gray" onClick={dismiss}>
-            انصراف
+            {messages.families.createForm.dismissBtn.text}
           </Button>
         </Group>
       </Stack>

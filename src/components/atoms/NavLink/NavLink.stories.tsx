@@ -23,7 +23,7 @@ const Template: Story<NavLinkProps> = args => (
 export const Default: Story<NavLinkProps> = Template.bind({});
 
 Default.args = {
-  label: 'خانواده ها',
+  label: messages.families.title,
   path: '/families',
   icon: true,
 };

@@ -1,4 +1,5 @@
 import { PeopleIcon } from '@camp/design';
+import { messages } from '@camp/messages';
 
 import { EmptyState } from '../../components';
 
@@ -6,8 +7,8 @@ export const Families = () => {
   return (
     <EmptyState
       icon={<PeopleIcon width="33" height="33" />}
-      title="خانواده ای وجود ندارد!"
-      message="متاسفانه لیست خانواده های شما خالی است."
+      title={messages.families.empty.title}
+      message={messages.families.empty.description}
     />
   );
 };

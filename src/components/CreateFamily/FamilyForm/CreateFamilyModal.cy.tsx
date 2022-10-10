@@ -1,9 +1,10 @@
+import { messages } from '@camp/messages';
 import { noop } from '@fullstacksjs/toolbox';
 
 import { CreateFamilyModal } from './CreateFamilyModal';
 
-const requiredFieldMessage = 'این فیلد ضروری است';
-const minLengthMessage = 'نام خانواده باید حداقل ۳ حرف باشد';
+const requiredFieldMessage = messages.families.validation.required;
+const minLengthMessage = messages.families.validation.minLength;
 const submitButtonSelector = '[data-test="submit-button"]';
 const inputSelector = '[data-test="family-name"]';
 
