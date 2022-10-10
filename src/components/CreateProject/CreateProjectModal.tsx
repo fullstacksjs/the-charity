@@ -1,3 +1,4 @@
+import { messages } from '@camp/messages';
 import type { ModalProps } from '@mantine/core';
 import { Modal } from '@mantine/core';
 
@@ -8,7 +9,7 @@ type Props = Pick<ModalProps, 'onClose' | 'opened'>;
 export const CreateProjectModal = ({ opened, onClose }: Props) => {
   return (
     <Modal
-      title="ایجاد پروژه جدید"
+      title={messages.projects.create}
       size="md"
       centered
       opened={opened}

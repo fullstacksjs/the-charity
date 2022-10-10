@@ -1,4 +1,6 @@
 export const messages = {
+  companyName: 'نامی مناسب برای خیریه',
+  actions: { dismiss: 'انصراف' },
   families: {
     title: 'خانواده ها',
     create: 'ایجاد خانواده جدید',
@@ -20,12 +22,31 @@ export const messages = {
       submitBtn: {
         text: 'ایجاد خانواده',
       },
-      dismissBtn: {
-        text: 'انصراف',
-      },
     },
   },
   projects: {
     title: 'پروژه ها',
+    create: 'ایجاد پروژه جدید',
+    empty: {
+      title: 'پروژه ای وجود ندارد!',
+      description: 'متاسفانه لیست پروژه های شما خالی است.',
+    },
+    validation: {
+      required: 'این فیلد ضروری است',
+      minLength: 'نام پروژه باید حداقل ۳ حرف باشد',
+    },
+    createForm: {
+      nameInput: {
+        placeholder: 'برای مثال: خرید مدرسه',
+        label: 'نام پروژه',
+      },
+      descriptionInput: {
+        placeholder: 'توضیحی درمورد پروژه',
+        label: 'توضیحات',
+      },
+      submitBtn: {
+        text: 'ایجاد پروژه',
+      },
+    },
   },
 } as const;

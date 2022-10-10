@@ -56,7 +56,7 @@ export const CreateFamilyForm = ({ dismiss }: Props) => {
             {messages.families.createForm.submitBtn.text}
           </Button>
           <Button size="sm" color="gray" onClick={dismiss}>
-            {messages.families.createForm.dismissBtn.text}
+            {messages.actions.dismiss}
           </Button>
         </Group>
       </Stack>

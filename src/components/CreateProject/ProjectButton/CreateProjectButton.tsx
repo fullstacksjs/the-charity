@@ -1,4 +1,5 @@
 import { PlusIcon } from '@camp/design';
+import { messages } from '@camp/messages';
 import { Button } from '@mantine/core';
 import { Link } from '@tanstack/react-location';
 
@@ -16,7 +17,7 @@ export const CreateProjectButton = ({ onClick }: Props) => {
         leftIcon={<PlusIcon width="16" height="16" />}
         onClick={onClick}
       >
-        ایجاد پروژه جدید
+        {messages.projects.create}
       </Button>
     </Link>
   );

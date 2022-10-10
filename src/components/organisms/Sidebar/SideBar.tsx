@@ -44,7 +44,7 @@ export const SideBar = () => {
       >
         <Image src="/logo.png" width={48} height={48} alt="charity logo" />
         <Text size="sm" color="fgSubtle">
-          نامی مناسب برای خیریه
+          {messages.companyName}
         </Text>
       </Stack>
       <Stack spacing={20}>
