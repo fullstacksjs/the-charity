@@ -1,15 +1,15 @@
 import { Group } from '@mantine/core';
 
 export interface HeaderProps {
-  leftButton: React.ReactNode;
-  breadcrumbs: React.ReactNode;
+  button: React.ReactNode;
+  breadcrumbs?: React.ReactNode;
 }
 
-export const Header = ({ leftButton, breadcrumbs }: HeaderProps) => {
+export const Header = ({ button, breadcrumbs }: HeaderProps) => {
   return (
     <Group position="apart">
       {breadcrumbs}
-      {leftButton}
+      {button}
     </Group>
   );
 };

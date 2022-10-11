@@ -1,23 +1,12 @@
-/* eslint-disable @typescript-eslint/naming-convention */
-import { HomeIcon } from '@camp/design';
 import {
   AppShell as MantineAppShell,
   createStyles,
   MediaQuery,
 } from '@mantine/core';
-import {
-  Outlet,
-  useMatches,
-  useMatchRoute,
-  useNavigate,
-} from '@tanstack/react-location';
-import React, { useState } from 'react';
+import { Outlet, useMatches } from '@tanstack/react-location';
 
 import type { LocationGenerics } from '../../Routes';
-import { CreateFamilyButton, CreateFamilyModal } from '../CreateFamily';
-import { CreateProjectButton, CreateProjectModal } from '../CreateProject';
-import { Header, SideBar } from '../organisms';
-import { Breadcrumbs } from './Breadcrumbs';
+import { SideBar } from '../organisms';
 
 const useStyles = createStyles(theme => ({
   main: {
@@ -29,16 +18,10 @@ const useStyles = createStyles(theme => ({
 }));
 
 export const AppShell = () => {
-  const [isCreateProjectModalOpen, setIsCreateProjectModalOpen] =
-    React.useState(false);
-
+  const { classes } = useStyles();
   const matches = useMatches<LocationGenerics>();
   const path = matches[1]?.route.meta?.breadcrumb;
-
-  const matchRoute = useMatchRoute();
-  const { classes } = useStyles();
-  const [isCreateFamilyModalOpen, setIsCreateFamilyModalOpen] = useState(false);
-  const navigate = useNavigate();
+  console.log(path);
 
   return (
     <MantineAppShell
@@ -51,47 +34,7 @@ export const AppShell = () => {
         </MediaQuery>
       }
     >
-      <Header
-        leftButton={
-          // NOTE: Im not sure about this way, it's seems a bad way
-          matchRoute({ to: '/projects' }) ? (
-            <CreateProjectButton
-              onClick={() => setIsCreateProjectModalOpen(true)}
-            />
-          ) : matchRoute({ to: '/families' }) ? (
-            <CreateFamilyButton
-              onClick={() => setIsCreateFamilyModalOpen(true)}
-            />
-          ) : null
-        }
-        breadcrumbs={
-          <Breadcrumbs
-            breadcrumbItems={[
-              {
-                icon: <HomeIcon width="25" height="25" />,
-              },
-              {
-                pathname: path,
-              },
-            ]}
-          />
-        }
-      />
       <Outlet />
-      <CreateProjectModal
-        opened={isCreateProjectModalOpen}
-        onClose={() => {
-          setIsCreateProjectModalOpen(false);
-          navigate({ to: '/projects', replace: true });
-        }}
-      />
-      <CreateFamilyModal
-        opened={isCreateFamilyModalOpen}
-        onClose={() => {
-          setIsCreateFamilyModalOpen(false);
-          navigate({ to: '/families', replace: true });
-        }}
-      />
     </MantineAppShell>
   );
 };
