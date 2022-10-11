@@ -1,9 +1,8 @@
-import { ChevronLeftIcon } from '@camp/design';
+import { ChevronLeftIcon, HomeIcon } from '@camp/design';
 import { Breadcrumbs as MantineBreadcrumbs, Text } from '@mantine/core';
 
 export interface BreadcrumbProps {
   pathname?: string;
-  icon?: React.ReactNode;
 }
 
 export const Breadcrumbs = ({
@@ -12,11 +11,12 @@ export const Breadcrumbs = ({
   breadcrumbItems: BreadcrumbProps[];
 }) => {
   const items = breadcrumbItems.map(item => (
-    <Text key={`/${item.pathname}`}>{item.pathname ?? item.icon}</Text>
+    <Text key={`/${item.pathname}`}>{item.pathname}</Text>
   ));
 
   return (
     <MantineBreadcrumbs separator={<ChevronLeftIcon width="16" height="16" />}>
+      <HomeIcon width="24" height="24" />
       {items}
     </MantineBreadcrumbs>
   );

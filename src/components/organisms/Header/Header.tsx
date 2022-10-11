@@ -1,14 +1,22 @@
 import { Group } from '@mantine/core';
 
+import { Breadcrumbs } from '../../molecules';
+
 export interface HeaderProps {
   button: React.ReactNode;
-  breadcrumbs?: React.ReactNode;
+  breadcrumbsTitle?: string;
 }
 
-export const Header = ({ button, breadcrumbs }: HeaderProps) => {
+export const Header = ({ button, breadcrumbsTitle }: HeaderProps) => {
   return (
     <Group position="apart">
-      {breadcrumbs}
+      <Breadcrumbs
+        breadcrumbItems={[
+          {
+            pathname: breadcrumbsTitle,
+          },
+        ]}
+      />
       {button}
     </Group>
   );

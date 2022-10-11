@@ -1,4 +1,5 @@
 import { PeopleIcon } from '@camp/design';
+import { messages } from '@camp/messages';
 import type { Meta, Story } from '@storybook/react';
 
 import type { NavLinkProps } from './NavLink';

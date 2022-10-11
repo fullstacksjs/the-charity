@@ -23,12 +23,12 @@ const links = [
   {
     label: messages.families.title,
     icon: <PeopleIcon width="24" height="24" />,
-    path: '/families',
+    path: messages.families.path,
   },
   {
     label: messages.projects.title,
     icon: <PackageIcon width="24" height="24" />,
-    path: '/projects',
+    path: messages.projects.path,
   },
 ];
 

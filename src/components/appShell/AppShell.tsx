@@ -3,9 +3,8 @@ import {
   createStyles,
   MediaQuery,
 } from '@mantine/core';
-import { Outlet, useMatches } from '@tanstack/react-location';
+import { Outlet } from '@tanstack/react-location';
 
-import type { LocationGenerics } from '../../Routes';
 import { SideBar } from '../organisms';
 
 const useStyles = createStyles(theme => ({
@@ -19,9 +18,6 @@ const useStyles = createStyles(theme => ({
 
 export const AppShell = () => {
   const { classes } = useStyles();
-  const matches = useMatches<LocationGenerics>();
-  const path = matches[1]?.route.meta?.breadcrumb;
-  console.log(path);
 
   return (
     <MantineAppShell

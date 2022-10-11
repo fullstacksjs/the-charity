@@ -1,21 +1,21 @@
 /* eslint-disable @typescript-eslint/naming-convention */
 import { PeopleIcon } from '@camp/design';
 import { messages } from '@camp/messages';
-import { useNavigate } from '@tanstack/react-location';
+import { useMatches } from '@tanstack/react-location';
 import { useState } from 'react';
 
 import {
-  Breadcrumbs,
   CreateFamilyButton,
   CreateFamilyModal,
   EmptyState,
   Header,
 } from '../../components';
+import type { LocationGenerics } from '../../Routes';
 
 export const Families = () => {
   const [isCreateFamilyModalOpen, setIsCreateFamilyModalOpen] = useState(false);
-  const navigate = useNavigate();
-
+  const matches = useMatches<LocationGenerics>();
+  const breadcrumbsName = matches[0]?.route.meta?.breadcrumb;
   return (
     <>
       <Header
@@ -24,15 +24,7 @@ export const Families = () => {
             onClick={() => setIsCreateFamilyModalOpen(true)}
           />
         }
-        breadcrumbs={
-          <Breadcrumbs
-            breadcrumbItems={[
-              {
-                pathname: messages.families.path,
-              },
-            ]}
-          />
-        }
+        breadcrumbsTitle={breadcrumbsName}
       />
       <EmptyState
         icon={<PeopleIcon width="33" height="33" />}
@@ -43,7 +35,6 @@ export const Families = () => {
         opened={isCreateFamilyModalOpen}
         onClose={() => {
           setIsCreateFamilyModalOpen(false);
-          navigate({ to: messages.families.path, replace: true });
         }}
       />
     </>

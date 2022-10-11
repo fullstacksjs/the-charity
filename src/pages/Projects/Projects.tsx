@@ -1,21 +1,22 @@
 /* eslint-disable @typescript-eslint/naming-convention */
 import { PackageIcon } from '@camp/design';
 import { messages } from '@camp/messages';
-import { useNavigate } from '@tanstack/react-location';
+import { useMatches } from '@tanstack/react-location';
 import { useState } from 'react';
 
 import {
-  Breadcrumbs,
   CreateProjectButton,
   CreateProjectModal,
   EmptyState,
   Header,
 } from '../../components';
+import type { LocationGenerics } from '../../Routes';
 
 export const Projects = () => {
   const [isCreateProjectModalOpen, setIsCreateProjectModalOpen] =
     useState(false);
-  const navigate = useNavigate();
+  const matches = useMatches<LocationGenerics>();
+  const breadcrumbsName = matches[0]?.route.meta?.breadcrumb;
   return (
     <>
       <Header
@@ -24,15 +25,7 @@ export const Projects = () => {
             onClick={() => setIsCreateProjectModalOpen(true)}
           />
         }
-        breadcrumbs={
-          <Breadcrumbs
-            breadcrumbItems={[
-              {
-                pathname: messages.projects.title,
-              },
-            ]}
-          />
-        }
+        breadcrumbsTitle={breadcrumbsName}
       />
       <EmptyState
         icon={<PackageIcon width="33" height="33" />}
@@ -43,7 +36,6 @@ export const Projects = () => {
         opened={isCreateProjectModalOpen}
         onClose={() => {
           setIsCreateProjectModalOpen(false);
-          navigate({ to: messages.projects.path, replace: true });
         }}
       />
     </>
