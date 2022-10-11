@@ -18,7 +18,6 @@ export default defineConfig({
   server: {
     port: toInteger(getEnv('PORT', ''), 3000),
     host: getEnv('HOST'),
-    open: true,
     proxy: {
       '/graphql': {
         target: getEnv('API_PROXY_TARGET'),
