@@ -6,8 +6,8 @@ import type {
 } from '@tanstack/react-location';
 import { Navigate, ReactLocation, Router } from '@tanstack/react-location';
 
-import { AppShell } from './components';
 import { Families, Projects } from './pages';
+import { DashboardLayout } from './pages/Dashboard/DashboardLayout';
 
 const location = new ReactLocation();
 
@@ -24,7 +24,7 @@ interface Route extends Omit<LocationRoute<LocationGenerics>, 'path'> {
 
 const routes: Route[] = [
   {
-    element: <AppShell />,
+    element: <DashboardLayout />,
     children: [
       {
         path: '/families',

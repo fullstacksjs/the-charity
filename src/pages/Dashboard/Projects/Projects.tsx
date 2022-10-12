@@ -8,7 +8,7 @@ import {
   CreateProjectModal,
   DashboardHeader,
   EmptyState,
-} from '../../components';
+} from '../../../components';
 
 export const Projects = () => {
   const [isCreateProjectModalOpen, setIsCreateProjectModalOpen] =

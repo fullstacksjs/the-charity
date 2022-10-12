@@ -19,16 +19,22 @@ const useStyles = createStyles(theme => ({
   },
 }));
 
-const links = [
+export interface NavLinkItem {
+  label: string;
+  icon: JSX.Element;
+  path: AppRoute;
+}
+
+const links: NavLinkItem[] = [
   {
     label: messages.families.title,
     icon: <PeopleIcon width="24" height="24" />,
-    path: messages.families.path,
+    path: '/families',
   },
   {
     label: messages.projects.title,
     icon: <PackageIcon width="24" height="24" />,
-    path: messages.projects.path,
+    path: '/projects',
   },
 ];
 

@@ -8,7 +8,7 @@ import {
   CreateFamilyModal,
   DashboardHeader,
   EmptyState,
-} from '../../components';
+} from '../../../components';
 
 export const Families = () => {
   const [isCreateFamilyModalOpen, setIsCreateFamilyModalOpen] = useState(false);

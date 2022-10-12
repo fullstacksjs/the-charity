@@ -4,8 +4,7 @@ import {
   MediaQuery,
 } from '@mantine/core';
 import { Outlet } from '@tanstack/react-location';
-
-import { SideBar } from '../organisms';
+import { SideBar } from 'src/components';
 
 const useStyles = createStyles(theme => ({
   main: {
@@ -16,7 +15,7 @@ const useStyles = createStyles(theme => ({
   },
 }));
 
-export const AppShell = () => {
+export const DashboardLayout = () => {
   const { classes } = useStyles();
 
   return (
