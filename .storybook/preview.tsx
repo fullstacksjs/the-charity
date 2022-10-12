@@ -44,11 +44,9 @@ export const decorators: DecoratorFn[] = [
       </Router>
     );
   },
-  Story => {
-    return (
-      <ThemeProvider>
-        <Story />
-      </ThemeProvider>
-    );
-  },
+  Story => (
+    <ThemeProvider>
+      <Story />
+    </ThemeProvider>
+  ),
 ];

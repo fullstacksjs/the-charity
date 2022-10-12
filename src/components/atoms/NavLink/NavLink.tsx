@@ -1,12 +1,10 @@
 import { createStyles, NavLink as MantineNavLink } from '@mantine/core';
 import { Link as TanstackLink, useLocation } from '@tanstack/react-location';
-import type { ReactNode } from 'react';
-import React from 'react';
 
 export interface NavLinkProps {
   label: string;
   path: string;
-  icon?: ReactNode;
+  icon?: React.ReactNode;
 }
 const useStyles = createStyles(theme => ({
   root: {
