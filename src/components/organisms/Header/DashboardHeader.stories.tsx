@@ -1,12 +1,12 @@
 import type { Meta, Story } from '@storybook/react';
 
 import type { HeaderProps } from '../..';
-import { Header } from './Header';
+import { DashboardHeader } from './DashboardHeader';
 
 export default {
-  component: Header,
+  component: DashboardHeader,
 } as Meta;
 
-const Template: Story<HeaderProps> = args => <Header {...args} />;
+const Template: Story<HeaderProps> = args => <DashboardHeader {...args} />;
 
 export const Default: Story<HeaderProps> = Template.bind({});

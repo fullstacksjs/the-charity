@@ -27,14 +27,14 @@ const routes: Route[] = [
     element: <AppShell />,
     children: [
       {
-        path: messages.families.path,
+        path: '/families',
         element: <Families />,
         meta: {
           breadcrumb: messages.families.title,
         },
       },
       {
-        path: messages.projects.path,
+        path: '/projects',
         element: <Projects />,
         meta: {
           breadcrumb: messages.projects.title,

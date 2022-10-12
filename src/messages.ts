@@ -2,7 +2,6 @@ export const messages = {
   companyName: 'نامی مناسب برای خیریه',
   actions: { dismiss: 'انصراف' },
   families: {
-    path: '/families',
     title: 'خانواده ها',
     create: 'ایجاد خانواده جدید',
     empty: {
@@ -26,7 +25,6 @@ export const messages = {
     },
   },
   projects: {
-    path: '/projects',
     title: 'پروژه ها',
     create: 'ایجاد پروژه جدید',
     empty: {

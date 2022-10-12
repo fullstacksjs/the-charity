@@ -1,23 +1,36 @@
 import { ChevronLeftIcon, HomeIcon } from '@camp/design';
-import { Breadcrumbs as MantineBreadcrumbs, Text } from '@mantine/core';
+import { Link } from '@camp/router';
+import { Anchor, Breadcrumbs as MantineBreadcrumbs } from '@mantine/core';
 
-export interface BreadcrumbProps {
-  pathname?: string;
+export interface BreadcrumbItem {
+  path: string;
+  name: string;
 }
 
-export const Breadcrumbs = ({
-  breadcrumbItems,
-}: {
-  breadcrumbItems: BreadcrumbProps[];
-}) => {
-  const items = breadcrumbItems.map(item => (
-    <Text key={`/${item.pathname}`}>{item.pathname}</Text>
-  ));
+interface Props {
+  items: BreadcrumbItem[];
+}
 
+export const Breadcrumbs = ({ items }: Props) => {
   return (
     <MantineBreadcrumbs separator={<ChevronLeftIcon width="16" height="16" />}>
       <HomeIcon width="24" height="24" />
-      {items}
+      {items.map((item, level) => {
+        const composedPath = items.reduce((acc, i, index) => {
+          if (index <= level) return `${acc}/${i.path}`;
+          return acc;
+        }, '') as any;
+
+        return (
+          <Anchor
+            key={item.name + item.path}
+            to={composedPath}
+            component={Link}
+          >
+            {item.name}
+          </Anchor>
+        );
+      })}
     </MantineBreadcrumbs>
   );
 };

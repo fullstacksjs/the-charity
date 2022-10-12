@@ -1,31 +1,26 @@
 /* eslint-disable @typescript-eslint/naming-convention */
 import { PackageIcon } from '@camp/design';
 import { messages } from '@camp/messages';
-import { useMatches } from '@tanstack/react-location';
 import { useState } from 'react';
 
 import {
   CreateProjectButton,
   CreateProjectModal,
+  DashboardHeader,
   EmptyState,
-  Header,
 } from '../../components';
-import type { LocationGenerics } from '../../Routes';
 
 export const Projects = () => {
   const [isCreateProjectModalOpen, setIsCreateProjectModalOpen] =
     useState(false);
-  const matches = useMatches<LocationGenerics>();
-  const breadcrumbsName = matches[0]?.route.meta?.breadcrumb;
   return (
     <>
-      <Header
+      <DashboardHeader
         button={
           <CreateProjectButton
             onClick={() => setIsCreateProjectModalOpen(true)}
           />
         }
-        breadcrumbsTitle={breadcrumbsName}
       />
       <EmptyState
         icon={<PackageIcon width="33" height="33" />}
