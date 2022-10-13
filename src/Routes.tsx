@@ -8,8 +8,10 @@ import { Navigate, ReactLocation, Router } from '@tanstack/react-location';
 
 import { Families, Projects } from './pages';
 import { DashboardLayout } from './pages/Dashboard/DashboardLayout';
+import { Login } from './pages/Login';
 
 const location = new ReactLocation();
+const isAuthorized = false;
 
 export type LocationGenerics = MakeGenerics<{
   RouteMeta: {
@@ -24,7 +26,7 @@ interface Route extends Omit<LocationRoute<LocationGenerics>, 'path'> {
 
 const routes: Route[] = [
   {
-    element: <DashboardLayout />,
+    element: isAuthorized ? <DashboardLayout /> : <Login />,
     children: [
       {
         path: '/families',
@@ -40,7 +42,9 @@ const routes: Route[] = [
           breadcrumb: messages.projects.title,
         },
       },
-      { element: <Navigate to="/families" /> },
+      {
+        element: <Navigate to="families" />,
+      },
     ],
   },
 ];
