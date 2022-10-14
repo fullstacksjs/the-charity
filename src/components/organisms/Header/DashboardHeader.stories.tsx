@@ -1,10 +1,5 @@
 import { messages } from '@camp/messages';
-import type { ComponentMeta, Meta, Story } from '@storybook/react';
-import {
-  createMemoryHistory,
-  ReactLocation,
-  Router,
-} from '@tanstack/react-location';
+import type { ComponentMeta, Story } from '@storybook/react';
 
 import type { HeaderProps } from '../..';
 import { CreateFamilyButton } from '../../CreateFamily/FamilyButton';
@@ -17,7 +12,7 @@ export default {
     router: {
       path: '/',
       meta: {
-        breadcrumb: 'dumb',
+        breadcrumb: messages.families.title,
       },
     },
   },
