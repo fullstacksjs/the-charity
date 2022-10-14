@@ -1,8 +1,8 @@
-import { AppShell } from './AppShell';
+import { DashboardLayout } from './DashboardLayout';
 
 describe('AppShell', () => {
   it('should work', () => {
-    cy.mount(<AppShell />);
+    cy.mount(<DashboardLayout />);
     cy.viewport(1280, 720);
   });
 });

@@ -1,4 +1,5 @@
 import { PeopleIcon } from '@camp/design';
+import { messages } from '@camp/messages';
 import type { Meta, Story } from '@storybook/react';
 
 import type { NavLinkProps } from './NavLink';
@@ -23,7 +24,7 @@ const Template: Story<NavLinkProps> = args => (
 export const Default: Story<NavLinkProps> = Template.bind({});
 
 Default.args = {
-  label: 'خانواده ها',
+  label: messages.families.title,
   path: '/families',
   icon: true,
 };

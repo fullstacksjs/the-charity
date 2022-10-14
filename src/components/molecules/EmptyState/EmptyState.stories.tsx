@@ -1,4 +1,5 @@
 import { DashboardIcon, PackageIcon, PeopleIcon } from '@camp/design';
+import { messages } from '@camp/messages';
 import type { Meta, Story } from '@storybook/react';
 
 import type { EmptyStateProps } from './EmptyState';
@@ -22,8 +23,7 @@ const Template: Story<EmptyStateProps> = args => <EmptyState {...args} />;
 
 export const Default: Story<EmptyStateProps> = Template.bind({});
 Default.args = {
-  title: 'پروژه ها',
-  message:
-    'متاسفانه لیست پروژه های شما خالی است. لطفا پروژه خود را ایجاد کنید.',
+  title: messages.projects.title,
+  message: messages.projects.empty.description,
   icon: <PackageIcon width="33" height="33" />,
 };

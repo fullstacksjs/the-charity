@@ -1,3 +1,4 @@
+import { messages } from '@camp/messages';
 import { yupResolver } from '@hookform/resolvers/yup';
 import { Button, Group, Stack, Textarea, TextInput } from '@mantine/core';
 import React from 'react';
@@ -16,8 +17,8 @@ const FormSchema = yup
     name: yup
       .string()
       .trim()
-      .required('این فیلد ضروری است')
-      .min(3, 'نام پروژه باید حداقل ۳ حرف باشد'),
+      .required(messages.projects.validation.required)
+      .min(3, messages.projects.validation.minLength),
   })
   .required();
 
@@ -40,16 +41,18 @@ export const CreateProjectForm = ({ dismiss }: Props) => {
             data-test="project-name"
             data-autoFocus
             withAsterisk
-            placeholder="برای مثال: خرید مدرسه"
-            label="نام پروژه"
+            placeholder={messages.projects.createForm.nameInput.placeholder}
+            label={messages.projects.createForm.nameInput.label}
             size="sm"
             error={formState.errors.name?.message}
             {...register('name')}
           />
           <Textarea
             data-test="project-description"
-            placeholder="توضیحی درمورد پروژه"
-            label="توضیحات"
+            placeholder={
+              messages.projects.createForm.descriptionInput.placeholder
+            }
+            label={messages.projects.createForm.descriptionInput.label}
             error={formState.errors.description?.message}
             {...register('description')}
           />
@@ -61,10 +64,10 @@ export const CreateProjectForm = ({ dismiss }: Props) => {
             size="sm"
             disabled={Boolean(formState.errors.name)}
           >
-            ایجاد پروژه جدید
+            {messages.projects.createForm.submitBtn.text}
           </Button>
           <Button size="sm" color="gray" onClick={dismiss}>
-            انصراف
+            {messages.actions.dismiss}
           </Button>
         </Group>
       </Stack>

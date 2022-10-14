@@ -1,3 +1,4 @@
+import { messages } from '@camp/messages';
 import type { ModalProps } from '@mantine/core';
 import { Modal } from '@mantine/core';
 
@@ -11,7 +12,7 @@ export const CreateFamilyModal = ({
 }: CreateFamilyModalProps) => {
   return (
     <Modal
-      title="ایجاد خانواده جدید"
+      title={messages.families.create}
       size="md"
       centered
       opened={opened}

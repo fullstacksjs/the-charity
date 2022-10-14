@@ -1,9 +1,10 @@
+import { messages } from '@camp/messages';
 import { noop } from '@fullstacksjs/toolbox';
 
 import { CreateProjectModal } from './CreateProjectModal';
 
-const requiredFieldMessage = 'این فیلد ضروری است';
-const minLengthMessage = 'نام پروژه باید حداقل ۳ حرف باشد';
+const requiredFieldMessage = messages.projects.validation.required;
+const minLengthMessage = messages.projects.validation.minLength;
 const projectNameSelector = '[data-test="project-name"]';
 const submitButtonSelector = '[data-test="submit-button"]';
 const projectDescriptionSelector = '[data-test="project-description"]';
