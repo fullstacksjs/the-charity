@@ -4,7 +4,8 @@ import {
   MediaQuery,
 } from '@mantine/core';
 import { Outlet } from '@tanstack/react-location';
-import { SideBar } from 'src/components';
+
+import { SideBar } from '../../components';
 
 const useStyles = createStyles(theme => ({
   main: {

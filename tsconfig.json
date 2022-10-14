@@ -2,7 +2,6 @@
   "root": true,
   "compilerOptions": {
     "target": "ESNext",
-    "baseUrl": ".",
     "paths": {
       "@camp/data-layer": ["./src/data-layer/index.ts"],
       "@camp/design": ["./src/design/index.ts"],
