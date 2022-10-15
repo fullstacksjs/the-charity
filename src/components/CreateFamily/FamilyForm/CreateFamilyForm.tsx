@@ -55,9 +55,13 @@ export const CreateFamilyForm = ({ dismiss }: Props) => {
 
   const onSubmit = handleSubmit(({ name }) => {
     createDraftFamily({ variables: { name } })
-      .then(res => {
-        const respondedName = res.data?.createDraftFamily.name ?? '';
-        showSuccessNotification({ name: respondedName });
+      .then(({ data }) => {
+        const result = data?.createFamily;
+
+        if (result?.__typename === 'DraftFamily') {
+          showSuccessNotification({ name: result.name ?? '' });
+        }
+
         dismiss();
       })
       .catch(() => showErrorNotification({ name }));

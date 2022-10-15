@@ -1,33 +1,14 @@
 import {
   ApolloClient,
   ApolloProvider as BaseApolloProvider,
-  from,
-  HttpLink,
-  InMemoryCache,
 } from '@apollo/client';
-import { onError } from '@apollo/client/link/error';
-import { config } from '@camp/config';
 
-import { clientSideResolvers } from './clientSideResolvers';
-import { ClientSideSchema } from './clientSideSchema';
-
-const errorLink = onError(({ graphQLErrors, networkError }) => {
-  if (graphQLErrors)
-    graphQLErrors.forEach(({ message, locations, path }) =>
-      console.log(
-        `[GraphQL error]: Message: ${message}, Location: ${locations}, Path: ${path}`,
-      ),
-    );
-  if (networkError) console.log(`[Network error]: ${networkError}`);
-});
-
-const httpLink = new HttpLink({ uri: config.schemaUrl });
+import { apolloLinks } from './apolloLinks';
+import { cache } from './cache';
 
 export const apolloClient = new ApolloClient({
-  link: from([errorLink, httpLink]),
-  cache: new InMemoryCache(),
-  typeDefs: ClientSideSchema,
-  resolvers: clientSideResolvers,
+  link: apolloLinks,
+  cache,
 });
 
 interface Props {
