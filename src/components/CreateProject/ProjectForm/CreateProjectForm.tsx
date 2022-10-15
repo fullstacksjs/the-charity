@@ -1,3 +1,4 @@
+import { useCreateProjectMutation } from '@camp/data-layer';
 import { messages } from '@camp/messages';
 import { yupResolver } from '@hookform/resolvers/yup';
 import {
@@ -12,8 +13,6 @@ import { showNotification } from '@mantine/notifications';
 import React from 'react';
 import { useForm } from 'react-hook-form';
 import * as yup from 'yup';
-
-import { useCreateProjectMutation } from '../../data-layer';
 
 interface Props {
   dismiss: () => void;

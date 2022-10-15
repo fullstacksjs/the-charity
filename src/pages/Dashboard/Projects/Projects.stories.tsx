@@ -1,6 +1,7 @@
+import { messages } from '@camp/messages';
 import type { ComponentStory, Meta, Story } from '@storybook/react';
 
-import { AppShell } from '../../components';
+import { DashboardLayout } from '../DashboardLayout';
 import { Projects } from './Projects';
 
 export default {
@@ -8,9 +9,9 @@ export default {
   args: {
     router: {
       route: '/projects',
-      layout: AppShell,
+      layout: DashboardLayout,
       meta: {
-        breadcrumb: 'پروژه ها',
+        breadcrumb: messages.projects.title,
       },
     },
   },
