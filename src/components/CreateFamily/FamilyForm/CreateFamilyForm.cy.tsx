@@ -1,9 +1,10 @@
+import { messages } from '@camp/messages';
 import { noop } from '@fullstacksjs/toolbox';
 
 import { CreateFamilyForm, createFamilyFormIDs } from './CreateFamilyForm';
 
-const requiredFieldMessage = 'این فیلد ضروری است';
-const minLengthMessage = 'نام خانواده باید حداقل ۳ حرف باشد';
+const { minLength: minLengthMessage, required: requiredFieldMessage } =
+  messages.families.validation;
 
 describe('Create Family Form', () => {
   beforeEach(() => {
