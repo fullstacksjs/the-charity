@@ -1,7 +1,8 @@
-mutation CreateProject($name: String!, $description: String) {
-  createProject(name: $name, description: $description) @client {
+mutation createProject($input: CreateProjectInput!) {
+  createProject(input: $input) {
     id
     name
     description
+    status
   }
 }

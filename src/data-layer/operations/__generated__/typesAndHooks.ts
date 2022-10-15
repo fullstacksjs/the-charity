@@ -21,11 +21,8 @@ export type Scalars = {
   Boolean: boolean;
   Int: number;
   Float: number;
-  /** A date-time string at UTC, such as 2019-12-03T09:54:33Z, compliant with the date-time format. */
   DateTime: any;
-  /** An IBAN */
   IBAN: any;
-  /** A positive number */
   Money: any;
 };
 
@@ -439,13 +436,18 @@ export type Family = CompletedFamily | DraftFamily;
 export type Householder = CompleteHouseholder | DraftHouseholder;
 
 export type CreateProjectMutationVariables = Exact<{
-  name: Scalars['String'];
-  description?: InputMaybe<Scalars['String']>;
+  input: CreateProjectInput;
 }>;
 
 export type CreateProjectMutation = {
   __typename?: 'Mutation';
-  createProject: { __typename?: 'Project'; id: string; name: string };
+  createProject: {
+    __typename?: 'Project';
+    id: string;
+    name: string;
+    description?: string | null;
+    status: ProjectStatus;
+  };
 };
 
 export type GetAdminListQueryVariables = Exact<{ [key: string]: never }>;
@@ -456,10 +458,12 @@ export type GetAdminListQuery = {
 };
 
 export const CreateProjectDocument = gql`
-  mutation CreateProject($name: String!, $description: String) {
-    createProject(name: $name, description: $description) @client {
+  mutation createProject($input: CreateProjectInput!) {
+    createProject(input: $input) {
       id
       name
+      description
+      status
     }
   }
 `;
@@ -481,12 +485,10 @@ export type CreateProjectMutationFn = Apollo.MutationFunction<
  * @example
  * const [createProjectMutation, { data, loading, error }] = useCreateProjectMutation({
  *   variables: {
- *      name: // value for 'name'
- *      description: // value for 'description'
+ *      input: // value for 'input'
  *   },
  * });
  */
-
 export function useCreateProjectMutation(
   baseOptions?: Apollo.MutationHookOptions<
     CreateProjectMutation,

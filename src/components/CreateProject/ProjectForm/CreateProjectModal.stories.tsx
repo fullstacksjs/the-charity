@@ -1,5 +1,6 @@
 import type { ComponentMeta, ComponentStory } from '@storybook/react';
 
+import { createSbApolloMock } from '../../utils/createSbApolloMock';
 import { CreateProjectModal } from './CreateProjectModal';
 
 export default {
@@ -11,6 +12,7 @@ export default {
     },
   },
   component: CreateProjectModal,
+  parameters: createSbApolloMock(),
 } as ComponentMeta<typeof CreateProjectModal>;
 
 const Template: ComponentStory<typeof CreateProjectModal> = args => {

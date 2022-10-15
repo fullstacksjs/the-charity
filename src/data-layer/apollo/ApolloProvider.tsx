@@ -23,15 +23,6 @@ const httpLink = new HttpLink({ uri: config.schemaUrl });
 export const apolloClient = new ApolloClient({
   link: from([errorLink, httpLink]),
   cache: new InMemoryCache(),
-  resolvers: {
-    // eslint-disable-next-line @typescript-eslint/naming-convention
-    Mutation: {
-      createProject: (_, variables) => ({
-        id: `RANDOM_ID_${Math.floor(Math.random() * 1000)}`,
-        name: variables.name,
-      }),
-    },
-  },
 });
 
 interface Props {
