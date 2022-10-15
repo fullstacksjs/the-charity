@@ -46,12 +46,14 @@ export const LoginForm = () => {
         </Text>
         <Box sx={{ padding: '20px 0' }}>
           <TextInput
+            type="email"
             placeholder="you@email.com"
             label="نام کاربری"
             error={formState.errors.userName?.message}
             {...register('userName')}
           />
           <PasswordInput
+            type="password"
             placeholder="رمز عبور"
             label="رمز عبور"
             error={formState.errors.password?.message}
