@@ -39,7 +39,8 @@ export const CreateFamilyForm = ({ dismiss }: Props) => {
     mode: 'onChange',
   });
 
-  const { failure, success } = messages.families.createForm.notification;
+  const { nameInput, notification, submitBtn } = messages.families.createForm;
+
   const onSubmit = handleSubmit(({ name }) => {
     createDraftFamily({ variables: { name } })
       .then(({ data }) => {
@@ -48,7 +49,7 @@ export const CreateFamilyForm = ({ dismiss }: Props) => {
         if (result?.__typename === 'DraftFamily') {
           showNotification({
             title: messages.families.create,
-            message: success(result.name ?? ''),
+            message: notification.success(result.name ?? ''),
             type: 'success',
           });
         }
@@ -58,7 +59,7 @@ export const CreateFamilyForm = ({ dismiss }: Props) => {
       .catch(() =>
         showNotification({
           title: messages.families.create,
-          message: failure(name),
+          message: notification.failure(name),
           type: 'failure',
         }),
       );
@@ -74,9 +75,9 @@ export const CreateFamilyForm = ({ dismiss }: Props) => {
       <Stack spacing={40}>
         <TextInput
           withAsterisk
-          placeholder={messages.families.createForm.nameInput.placeholder}
-          label={messages.families.createForm.nameInput.label}
-          description={messages.families.createForm.nameInput.description}
+          placeholder={nameInput.placeholder}
+          label={nameInput.label}
+          description={nameInput.description}
           size="sm"
           error={formState.errors.name?.message}
           {...register('name')}
@@ -90,7 +91,7 @@ export const CreateFamilyForm = ({ dismiss }: Props) => {
             loading={mutationResult.loading}
             {...createTestAttr(createFamilyFormIDs.submitBtn)}
           >
-            {messages.families.createForm.submitBtn.text}
+            {submitBtn.text}
           </Button>
           <Button size="sm" color="gray" onClick={dismiss}>
             {messages.actions.dismiss}

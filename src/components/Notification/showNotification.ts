@@ -5,9 +5,24 @@ interface Props extends NotificationProps {
   type: 'failure' | 'success';
 }
 
+// this needs refactoring
 export const showNotification = ({ type, ...rest }: Props) => {
   mantineShowNotification({
     ...rest,
     color: type === 'success' ? 'green' : 'red',
+    styles: theme => {
+      const { red, green } = theme.colors;
+      return {
+        root: {
+          backgroundColor: type === 'success' ? green[1] : red[1],
+        },
+        closeButton: {
+          // eslint-disable-next-line @typescript-eslint/naming-convention
+          '&:hover': {
+            backgroundColor: type === 'success' ? green[2] : red[2],
+          },
+        },
+      };
+    },
   });
 };
