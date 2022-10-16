@@ -1,14 +1,7 @@
 import { useCreateProjectMutation } from '@camp/data-layer';
 import { messages } from '@camp/messages';
 import { yupResolver } from '@hookform/resolvers/yup';
-import {
-  Button,
-  Group,
-  Notification,
-  Stack,
-  Textarea,
-  TextInput,
-} from '@mantine/core';
+import { Button, Group, Stack, Textarea, TextInput } from '@mantine/core';
 import { showNotification } from '@mantine/notifications';
 import React from 'react';
 import { useForm } from 'react-hook-form';
@@ -37,7 +30,7 @@ const notifySuccessCreation = (name: string) =>
     // eslint-disable-next-line @typescript-eslint/naming-convention
     ...{ 'data-test': 'notification-success' },
     color: 'successDefault',
-    title: 'ایجاد پروژه جدید',
+    title: messages.projects.create,
     message: `پروژه با نام ${name} با موفقیت ساخته شد`,
   });
 
@@ -46,7 +39,7 @@ const notifyFailedCreation = (name: string) =>
     // eslint-disable-next-line @typescript-eslint/naming-convention
     ...{ 'data-test': 'notification-fail' },
     color: 'errorDefault',
-    title: 'ایجاد پروژه جدید',
+    title: messages.projects.create,
     message: `مشکلی در مرحله ایجاد پروژه ای بانام ${name} به وجود آمده است. لطفا دوباره تلاش کنید`,
   });
 
@@ -55,7 +48,7 @@ export const CreateProjectForm = ({ dismiss }: Props) => {
 
   const onSubmit = React.useCallback(
     ({ name, description }: FormSchema) => {
-      createProject({ variables: { input: { name, description } } })
+      createProject({ variables: { name, description } })
         .then(({ data }) => {
           console.log(data);
           notifySuccessCreation(name);
