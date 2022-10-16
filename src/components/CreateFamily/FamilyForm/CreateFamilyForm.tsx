@@ -1,8 +1,8 @@
 import { useCreateDraftFamilyMutation } from '@camp/data-layer';
+import { useNotification } from '@camp/hooks';
 import { messages } from '@camp/messages';
 import { yupResolver } from '@hookform/resolvers/yup';
 import { Button, Group, Stack, TextInput } from '@mantine/core';
-import { showNotification } from '@mantine/notifications';
 import React from 'react';
 import { useForm } from 'react-hook-form';
 import * as yup from 'yup';
@@ -31,21 +31,10 @@ const FormSchema = yup
   })
   .required();
 
-const showSuccessNotification = ({ name }: FormSchema) =>
-  showNotification({
-    title: 'ایجاد خانواده جدید',
-    message: `خانواده ای با نام “${name}” با موفقیت ایجاد شده است.`,
-    color: 'green',
-  });
-
-const showErrorNotification = ({ name }: FormSchema) =>
-  showNotification({
-    title: 'ایجاد خانواده جدید',
-    message: `مشکلی در مرحله ایجاد خانواده ای با نام “${name}” بوجود آمده است. لطفا دوباره تلاش کنید.`,
-    color: 'red',
-  });
-
 export const CreateFamilyForm = ({ dismiss }: Props) => {
+  const { showNotification } = useNotification();
+
+  const { failure, success } = messages.families.createForm.notification;
   const [createDraftFamily, mutationResult] = useCreateDraftFamilyMutation();
 
   const { setFocus, handleSubmit, register, formState } = useForm<FormSchema>({
@@ -59,12 +48,22 @@ export const CreateFamilyForm = ({ dismiss }: Props) => {
         const result = data?.createFamily;
 
         if (result?.__typename === 'DraftFamily') {
-          showSuccessNotification({ name: result.name ?? '' });
+          showNotification({
+            title: messages.families.create,
+            message: success(result.name ?? ''),
+            type: 'success',
+          });
         }
 
         dismiss();
       })
-      .catch(() => showErrorNotification({ name }));
+      .catch(() =>
+        showNotification({
+          title: messages.families.create,
+          message: failure(name),
+          type: 'failure',
+        }),
+      );
   });
 
   React.useEffect(() => {

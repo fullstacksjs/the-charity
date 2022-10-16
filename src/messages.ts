@@ -22,6 +22,13 @@ export const messages = {
       submitBtn: {
         text: 'ایجاد خانواده',
       },
+      notification: {
+        failure: (name: string) =>
+          `مشکلی در مرحله ایجاد خانواده ای با نام “${name}” بوجود آمده است. لطفا دوباره تلاش کنید.`,
+
+        success: (name: string) =>
+          `خانواده ای با نام “${name}” با موفقیت ایجاد شده است.`,
+      },
     },
   },
   projects: {
