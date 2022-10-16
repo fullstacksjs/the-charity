@@ -1,4 +1,6 @@
 import React from 'react';
+import { NotificationsProvider } from '@mantine/notifications';
+import { CreateProjectDocument } from '../src/data-layer';
 
 import { MockedProvider } from '@apollo/client/testing';
 import {
@@ -20,6 +22,25 @@ export const parameters: Parameters = {
   },
   apolloClient: {
     MockedProvider,
+    mocks: [
+      {
+        request: {
+          query: CreateProjectDocument,
+          variables: {
+            input: {
+              name: 'guy',
+              description: 'description',
+            },
+          },
+        },
+        result: {
+          data: {
+            name: 'guy',
+            description: 'description',
+          },
+        },
+      },
+    ],
   },
 };
 
@@ -46,7 +67,9 @@ export const decorators: DecoratorFn[] = [
   },
   Story => (
     <ThemeProvider>
-      <Story />
+      <NotificationsProvider>
+        <Story />
+      </NotificationsProvider>
     </ThemeProvider>
   ),
 ];
