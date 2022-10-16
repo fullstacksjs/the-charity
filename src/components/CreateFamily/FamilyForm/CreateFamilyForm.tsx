@@ -1,5 +1,4 @@
 import { useCreateDraftFamilyMutation } from '@camp/data-layer';
-import { useNotification } from '@camp/hooks';
 import { messages } from '@camp/messages';
 import { yupResolver } from '@hookform/resolvers/yup';
 import { Button, Group, Stack, TextInput } from '@mantine/core';
@@ -8,6 +7,7 @@ import { useForm } from 'react-hook-form';
 import * as yup from 'yup';
 
 import { createTestAttr } from '../../../utils/createTestAttr';
+import { showNotification } from '../../Notification';
 
 type FormSchema = yup.InferType<typeof FormSchema>;
 
@@ -32,9 +32,6 @@ const FormSchema = yup
   .required();
 
 export const CreateFamilyForm = ({ dismiss }: Props) => {
-  const { showNotification } = useNotification();
-
-  const { failure, success } = messages.families.createForm.notification;
   const [createDraftFamily, mutationResult] = useCreateDraftFamilyMutation();
 
   const { setFocus, handleSubmit, register, formState } = useForm<FormSchema>({
@@ -42,6 +39,7 @@ export const CreateFamilyForm = ({ dismiss }: Props) => {
     mode: 'onChange',
   });
 
+  const { failure, success } = messages.families.createForm.notification;
   const onSubmit = handleSubmit(({ name }) => {
     createDraftFamily({ variables: { name } })
       .then(({ data }) => {
