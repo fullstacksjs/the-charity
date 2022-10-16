@@ -48,7 +48,7 @@ export const CreateProjectForm = ({ dismiss }: Props) => {
 
   const onSubmit = React.useCallback(
     ({ name, description }: FormSchema) => {
-      createProject({ variables: { name, description } })
+      createProject({ variables: { input: { name, description } } })
         .then(({ data }) => {
           console.log(data);
           notifySuccessCreation(name);
