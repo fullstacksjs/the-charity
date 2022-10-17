@@ -11,7 +11,6 @@ export interface HeaderProps {
 export const DashboardHeader = ({ button }: HeaderProps) => {
   const matches = useMatches<LocationGenerics>();
   const breadcrumbsName = matches.reverse()[0]?.route?.meta?.breadcrumb;
-  console.log(matches);
 
   return (
     <Group position="apart">
