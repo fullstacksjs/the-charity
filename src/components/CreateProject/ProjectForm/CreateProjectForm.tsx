@@ -44,7 +44,7 @@ const notifyFailedCreation = (name: string) =>
   });
 
 export const CreateProjectForm = ({ dismiss }: Props) => {
-  const [createProject] = useCreateProjectMutation();
+  const [createProject, { loading }] = useCreateProjectMutation();
 
   const onSubmit = React.useCallback(
     ({ name, description }: FormSchema) => {
@@ -96,6 +96,7 @@ export const CreateProjectForm = ({ dismiss }: Props) => {
             data-test="submit-button"
             type="submit"
             size="sm"
+            loading={loading}
             disabled={Boolean(formState.errors.name)}
           >
             {messages.projects.createForm.submitBtn.text}
