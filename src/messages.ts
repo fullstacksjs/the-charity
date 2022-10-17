@@ -27,6 +27,12 @@ export const messages = {
   projects: {
     title: 'پروژه ها',
     create: 'ایجاد پروژه جدید',
+    notification: {
+      successfulCreate: (name: string) =>
+        `پروژه با نام ${name} با موفقیت ساخته شد`,
+      failedCreate: (name: string) =>
+        `مشکلی در مرحله ایجاد پروژه ای بانام ${name} به وجود آمده است. لطفا دوباره تلاش کنید`,
+    },
     empty: {
       title: 'پروژه ای وجود ندارد!',
       description: 'متاسفانه لیست پروژه های شما خالی است.',

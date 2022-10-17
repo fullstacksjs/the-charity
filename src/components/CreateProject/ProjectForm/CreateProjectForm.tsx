@@ -31,7 +31,7 @@ const notifySuccessCreation = (name: string) =>
     ...{ 'data-test': 'notification-success' },
     color: 'successDefault',
     title: messages.projects.create,
-    message: `پروژه با نام ${name} با موفقیت ساخته شد`,
+    message: messages.projects.notification.successfulCreate(name),
   });
 
 const notifyFailedCreation = (name: string) =>
@@ -40,7 +40,7 @@ const notifyFailedCreation = (name: string) =>
     ...{ 'data-test': 'notification-fail' },
     color: 'errorDefault',
     title: messages.projects.create,
-    message: `مشکلی در مرحله ایجاد پروژه ای بانام ${name} به وجود آمده است. لطفا دوباره تلاش کنید`,
+    message: messages.projects.notification.failedCreate(name),
   });
 
 export const CreateProjectForm = ({ dismiss }: Props) => {
