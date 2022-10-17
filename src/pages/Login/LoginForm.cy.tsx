@@ -1,10 +1,12 @@
+import { messages } from '@camp/messages';
+
 import { LoginForm } from './LoginForm';
 
 const userNameInputSelector = '[type="email"]';
 const passwordInputSelector = '[type="password"]';
 const submitButtonSelector = '[type="submit"]';
-const requiredFieldMessage = 'این فیلد ضروری است';
-const emailErrorMsg = 'لطفا یک ایمیل معتبر را وارد کنید.';
+const requiredFieldMessage = messages.login.loginFrom.validation.required;
+const emailErrorMsg = messages.login.loginFrom.validation.emailErrorMessage;
 
 describe('Login Form', () => {
   beforeEach(() => {

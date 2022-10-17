@@ -1,1 +1,1 @@
-type AppRoute = '/' | '/families' | '/projects';
+type AppRoute = '/' | '/families' | '/login' | '/projects';

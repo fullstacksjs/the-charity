@@ -11,7 +11,6 @@ import { DashboardLayout } from './pages/Dashboard/DashboardLayout';
 import { Login } from './pages/Login';
 
 const location = new ReactLocation();
-const isAuthorized = false;
 
 export type LocationGenerics = MakeGenerics<{
   RouteMeta: {
@@ -25,8 +24,9 @@ interface Route extends Omit<LocationRoute<LocationGenerics>, 'path'> {
 }
 
 const routes: Route[] = [
+  { path: '/login', element: <Login /> },
   {
-    element: isAuthorized ? <DashboardLayout /> : <Login />,
+    element: <DashboardLayout />,
     children: [
       {
         path: '/families',
