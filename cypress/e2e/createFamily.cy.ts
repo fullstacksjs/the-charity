@@ -2,7 +2,8 @@ const createFamilyButtonID = 'create-family-button';
 const createFamilyModalID = 'create-family-modal';
 const createFamilyFormID = 'create-family-form';
 const familyNameID = 'family-name';
-const notificationProviderID = 'notification-provider';
+// const createFamilySuccessNotificationID = 'create-family-success-notification';
+// const createFamilyFailureNotificationID = 'create-family-failure-notification';
 
 describe('To Create Draft Family', () => {
   beforeEach(() => {
@@ -30,17 +31,15 @@ describe('To Create Draft Family', () => {
       cy.findByTestId(createFamilyModalID).should('not.exist');
     });
 
-    it('should show mutation result notification', () => {
-      cy.findByTestId(createFamilyButtonID).click();
+    // it('should show mutation result notification', () => {
+    //   cy.findByTestId(createFamilyButtonID).click();
 
-      cy.findByTestId(createFamilyFormID).within(() => {
-        cy.findByTestId(familyNameID).type('مرادی');
-        cy.root().submit();
-      });
+    //   cy.findByTestId(createFamilyFormID).within(() => {
+    //     cy.findByTestId(familyNameID).type('مرادی');
+    //     cy.root().submit();
+    //   });
 
-      cy.findByTestId(notificationProviderID).within(() => {
-        cy.findByRole('alert').should('contain.text', 'ایجاد خانواده جدید');
-      });
-    });
+    //   cy.findByTestId(createFamilySuccessNotificationID).should('exist');
+    // });
   });
 });

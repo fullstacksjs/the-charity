@@ -19,6 +19,10 @@ export const createFamilyFormIDs = {
   form: 'create-family-form',
   nameInput: 'family-name',
   submitBtn: 'submit-button',
+  notification: {
+    success: 'create-family-success-notification',
+    failure: 'create-family-failure-notification',
+  },
 };
 
 const FormSchema = yup
@@ -51,6 +55,7 @@ export const CreateFamilyForm = ({ dismiss }: Props) => {
             title: messages.families.create,
             message: notification.success(result.name ?? ''),
             type: 'success',
+            ...createTestAttr(createFamilyFormIDs.notification.success),
           });
         }
 
@@ -61,6 +66,7 @@ export const CreateFamilyForm = ({ dismiss }: Props) => {
           title: messages.families.create,
           message: notification.failure(name),
           type: 'failure',
+          ...createTestAttr(createFamilyFormIDs.notification.failure),
         }),
       );
   });
