@@ -36,7 +36,7 @@ export const LoginForm = () => {
 
   const { handleSubmit, register, formState } = useForm<FormInputs>({
     resolver: yupResolver(FormSchema),
-    mode: 'onSubmit',
+    mode: 'onBlur',
   });
 
   return (
@@ -57,14 +57,13 @@ export const LoginForm = () => {
             {...register('userName')}
           />
           <PasswordInput
-            type="password"
             placeholder={messages.login.loginFrom.passwordInput.placeholder}
             label={messages.login.loginFrom.passwordInput.label}
             error={formState.errors.password?.message}
             {...register('password')}
           />
         </Box>
-        <Button type="submit">
+        <Button type="submit" disabled={Boolean(formState.errors.userName)}>
           {messages.login.loginFrom.submitButton.text}
         </Button>
       </Stack>

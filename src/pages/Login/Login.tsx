@@ -4,11 +4,11 @@ import { LoginForm } from './LoginForm';
 
 export const Login = () => {
   return (
-    <Group position="center" spacing="xl" grow align="start">
+    <Group grow align="stretch" spacing={0} sx={{ height: '100vh' }}>
       <Box>
         <LoginForm />
       </Box>
-      <Box>
+      <Box sx={theme => ({ backgroundColor: theme.colors.bgCanvas })}>
         <Image fit="scale-down" alt="login" src="/login-logo.png" />
       </Box>
     </Group>
