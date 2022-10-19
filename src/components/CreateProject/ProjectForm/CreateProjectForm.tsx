@@ -50,8 +50,8 @@ export const CreateProjectForm = ({ dismiss }: Props) => {
     ({ name, description }: FormSchema) => {
       createProject({ variables: { input: { name, description } } })
         .then(({ data }) => {
-          console.log(data);
-          notifySuccessCreation(name);
+          if (data == null) throw new Error('data is null');
+          notifySuccessCreation(data.createProject.name);
         })
         .catch(err => {
           console.error('error occurred', err);
