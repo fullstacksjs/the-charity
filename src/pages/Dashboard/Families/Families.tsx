@@ -1,4 +1,3 @@
-/* eslint-disable @typescript-eslint/naming-convention */
 import { PeopleIcon } from '@camp/design';
 import { messages } from '@camp/messages';
 import { useState } from 'react';

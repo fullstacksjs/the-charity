@@ -30,6 +30,11 @@
     // NOTE: not very helpful
     "jest/require-hook": "off",
 
+    "@typescript-eslint/no-misused-promises": [
+      "warn",
+      { "checksVoidReturn": { "attributes": false } }
+    ],
+
     // Let's customize this rule
     "@typescript-eslint/naming-convention": [
       "warn",
@@ -58,7 +63,7 @@
       {
         "selector": "variable",
         "types": ["boolean"],
-        "format": ["camelCase"],
+        "format": ["PascalCase"],
         "prefix": [
           "is",
           "should",
