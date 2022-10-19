@@ -45,6 +45,7 @@ const notifyFailedCreation = (name: string) =>
 
 export const CreateProjectForm = ({ dismiss }: Props) => {
   const [createProject, { loading }] = useCreateProjectMutation();
+  notifySuccessCreation('hey');
 
   const onSubmit = React.useCallback(
     ({ name, description }: FormSchema) => {
