@@ -21,7 +21,7 @@ describe('Create Project', () => {
     cy.get(createProjectModalSelector).should('exist');
   });
 
-  it('Sees the successful notification when Submits the form correctly', () => {
+  it.skip('Sees the successful notification when submits the form correctly', () => {
     cy.get(createProjectButtonSelector).click();
     cy.get('form').within(() => {
       cy.get(projectNameSelector).type('نام');
