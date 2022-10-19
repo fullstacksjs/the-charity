@@ -12,7 +12,7 @@ export const Login = () => {
       </Box>
       <Box
         sx={theme => ({
-          backgroundColor: theme.colors.bgCanvas,
+          backgroundColor: theme.colors.bgCanvas[6],
           display: 'flex',
           alignItems: 'center',
         })}
