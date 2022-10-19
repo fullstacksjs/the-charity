@@ -35,6 +35,8 @@
       { "checksVoidReturn": { "attributes": false } }
     ],
 
+    "@typescript-eslint/no-namespace": "off",
+
     // Let's customize this rule
     "@typescript-eslint/naming-convention": [
       "warn",
@@ -53,6 +55,10 @@
         "modifiers": ["private"],
         "format": ["camelCase"],
         "leadingUnderscore": "allow"
+      },
+      {
+        "selector": "memberLike",
+        "format": null
       },
       { "selector": "typeLike", "format": ["PascalCase"] },
       {

@@ -27,7 +27,6 @@ const FormSchema = yup
 // NOTE: the spread is to avoid the type error with notification props not accepting data attribute
 const notifySuccessCreation = (name: string) =>
   showNotification({
-    // eslint-disable-next-line @typescript-eslint/naming-convention
     ...{ 'data-test': 'notification-success' },
     color: 'successDefault',
     title: messages.projects.create,
@@ -36,7 +35,6 @@ const notifySuccessCreation = (name: string) =>
 
 const notifyFailedCreation = (name: string) =>
   showNotification({
-    // eslint-disable-next-line @typescript-eslint/naming-convention
     ...{ 'data-test': 'notification-fail' },
     color: 'errorDefault',
     title: messages.projects.create,
@@ -68,7 +66,6 @@ export const CreateProjectForm = ({ dismiss }: Props) => {
   });
 
   return (
-    // eslint-disable-next-line @typescript-eslint/no-misused-promises
     <form onSubmit={handleSubmit(onSubmit)}>
       <Stack spacing={40}>
         <Stack spacing={10}>

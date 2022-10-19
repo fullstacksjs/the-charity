@@ -1,4 +1,3 @@
-/* eslint-disable @typescript-eslint/naming-convention */
 /// <reference types="vitest" />
 
 import { getEnv, toInteger } from '@fullstacksjs/toolbox';

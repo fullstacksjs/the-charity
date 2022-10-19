@@ -38,7 +38,6 @@ export const toMantineColors = (
 export const mkFontFace =
   (name: string) =>
   ({ fontWeight, src }: FontFace) => ({
-    // eslint-disable-next-line @typescript-eslint/naming-convention
     '@font-face': {
       fontFamily: name,
       src: `url('${src}') format("truetype")`,

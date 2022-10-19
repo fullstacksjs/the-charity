@@ -47,7 +47,6 @@ export const colors = {
 
 export const theme: MantineThemeOverride = {
   globalStyles: _theme => ({
-    /* eslint-disable @typescript-eslint/naming-convention */
     /* 1.Use a more-intuitive box-sizing model. */
     '*, *::before, *::after': {
       boxSizing: 'border-box',

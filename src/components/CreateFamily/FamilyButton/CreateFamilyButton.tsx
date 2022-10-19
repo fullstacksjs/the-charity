@@ -15,7 +15,6 @@ export const CreateFamilyButton = ({ onClick }: Props) => {
       leftIcon={<PlusIcon width="16" height="16" />}
       onClick={onClick}
       sx={theme => ({
-        // eslint-disable-next-line @typescript-eslint/naming-convention
         '&:hover': {
           backgroundColor: theme.colors.primarySubtle[6],
         },
