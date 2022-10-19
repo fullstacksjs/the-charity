@@ -65,6 +65,9 @@ export const theme: MantineThemeOverride = {
       display: 'block',
       maxWidth: '100%',
     },
+    '#root': {
+      height: '100%',
+    },
     /* eslint-enable @typescript-eslint/naming-convention */
   }),
   dir: 'rtl',

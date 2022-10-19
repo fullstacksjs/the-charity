@@ -34,36 +34,42 @@ export const LoginForm = () => {
     console.log('username:', userName, 'password:', password);
   };
 
-  const { handleSubmit, register, formState } = useForm<FormInputs>({
+  const {
+    handleSubmit,
+    register,
+    formState: { errors, isValid },
+  } = useForm<FormInputs>({
     resolver: yupResolver(FormSchema),
-    mode: 'onBlur',
+    mode: 'onTouched',
   });
 
   return (
     <form onSubmit={handleSubmit(onSubmit)}>
-      <Stack sx={{ padding: '200px 220px' }} spacing={13}>
-        <Title order={3} color="fgMuted">
-          {messages.login.loginFrom.title}
-        </Title>
-        <Text size="xs" color="fgMuted">
-          {messages.login.loginFrom.description}
-        </Text>
-        <Box sx={{ padding: '20px 0' }}>
+      <Stack sx={{ width: 300 }} spacing={20}>
+        <Stack spacing={13}>
+          <Title order={3} color="fgMuted">
+            {messages.login.loginFrom.title}
+          </Title>
+          <Text size="xs" color="fgMuted">
+            {messages.login.loginFrom.description}
+          </Text>
+        </Stack>
+        <Box>
           <TextInput
             type="email"
             placeholder={messages.login.loginFrom.emailInput.placeholder}
             label={messages.login.loginFrom.emailInput.label}
-            error={formState.errors.userName?.message}
+            error={errors.userName?.message}
             {...register('userName')}
           />
           <PasswordInput
             placeholder={messages.login.loginFrom.passwordInput.placeholder}
             label={messages.login.loginFrom.passwordInput.label}
-            error={formState.errors.password?.message}
+            error={errors.password?.message}
             {...register('password')}
           />
         </Box>
-        <Button type="submit" disabled={Boolean(formState.errors.userName)}>
+        <Button type="submit" disabled={!isValid}>
           {messages.login.loginFrom.submitButton.text}
         </Button>
       </Stack>

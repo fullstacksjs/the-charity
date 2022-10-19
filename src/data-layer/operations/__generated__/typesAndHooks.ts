@@ -99,6 +99,7 @@ export type CompleteHouseholder = Member & {
 export type CompletedFamily = {
   __typename?: 'CompletedFamily';
   archived: Scalars['Boolean'];
+  code: Scalars['String'];
   completedDate: Scalars['DateTime'];
   dependents: Array<Dependent>;
   draftDate: Scalars['DateTime'];
@@ -106,7 +107,7 @@ export type CompletedFamily = {
   name: Scalars['String'];
   projects: Array<Project>;
   referrerCode: Scalars['String'];
-  slug: Scalars['String'];
+  severity: FamilySeverity;
   status: FamilyStatus;
 };
 
@@ -115,6 +116,15 @@ export type Contact = {
   address: Address;
   mobilePhoneNumber: Scalars['String'];
   phoneNumber: Scalars['String'];
+};
+
+export type CreateFamilyInput = {
+  name: Scalars['String'];
+};
+
+export type CreateProjectInput = {
+  description?: InputMaybe<Scalars['String']>;
+  name: Scalars['String'];
 };
 
 export type Death = {
@@ -178,13 +188,14 @@ export type Document = {
 export type DraftFamily = {
   __typename?: 'DraftFamily';
   archived?: Maybe<Scalars['Boolean']>;
+  code: Scalars['String'];
   dependents: Array<Dependent>;
   draftDate: Scalars['DateTime'];
   id: Scalars['ID'];
   name?: Maybe<Scalars['String']>;
   projects: Array<Project>;
   referrerCode?: Maybe<Scalars['String']>;
-  slug: Scalars['String'];
+  severity: FamilySeverity;
   status: FamilyStatus;
 };
 
@@ -239,12 +250,17 @@ export enum EducationStatus {
   Sth = 'Sth'
 }
 
+export enum FamilySeverity {
+  Critical = 'CRITICAL',
+  Normal = 'NORMAL'
+}
+
 /** religion of the members */
 export enum FamilyStatus {
   /** FamilyStatus is completed. */
-  Completed = 'Completed',
+  Completed = 'COMPLETED',
   /** Family is drafted */
-  Draft = 'Draft'
+  Draft = 'DRAFT'
 }
 
 /** religion of the members */
@@ -299,6 +315,22 @@ export type Member = {
   ssn?: Maybe<Scalars['String']>;
 };
 
+export type Mutation = {
+  __typename?: 'Mutation';
+  createFamily: Family;
+  createProject: Project;
+};
+
+
+export type MutationCreateFamilyArgs = {
+  input: CreateFamilyInput;
+};
+
+
+export type MutationCreateProjectArgs = {
+  input: CreateProjectInput;
+};
+
 export type Possession = {
   __typename?: 'Possession';
   description: Scalars['String'];
@@ -316,10 +348,21 @@ export type Prison = {
 
 export type Project = {
   __typename?: 'Project';
-  families: Array<Family>;
+  created_at: Scalars['DateTime'];
+  description?: Maybe<Scalars['String']>;
   id: Scalars['ID'];
   name: Scalars['String'];
+  status: ProjectStatus;
+  updated_at: Scalars['DateTime'];
 };
+
+/** current status of project - default [PLANNING]  */
+export enum ProjectStatus {
+  Done = 'DONE',
+  Inprogress = 'INPROGRESS',
+  Planning = 'PLANNING',
+  Suspended = 'SUSPENDED'
+}
 
 export type Query = {
   __typename?: 'Query';
