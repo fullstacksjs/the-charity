@@ -97,7 +97,7 @@ export const CreateProjectForm = ({ dismiss }: Props) => {
             type="submit"
             size="sm"
             loading={loading}
-            disabled={isValid}
+            disabled={!isValid}
           >
             {messages.projects.createForm.submitBtn.text}
           </Button>

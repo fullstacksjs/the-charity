@@ -261,6 +261,11 @@ export enum FamilySeverity {
   Normal = 'NORMAL',
 }
 
+export enum FamilySeverity {
+  Critical = 'CRITICAL',
+  Normal = 'NORMAL'
+}
+
 /** religion of the members */
 export enum FamilyStatus {
   /** FamilyStatus is completed. */
