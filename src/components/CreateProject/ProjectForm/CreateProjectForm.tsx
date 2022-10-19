@@ -1,9 +1,9 @@
 import { useCreateProjectMutation } from '@camp/data-layer';
 import { messages } from '@camp/messages';
+import { isNull } from '@fullstacksjs/toolbox';
 import { yupResolver } from '@hookform/resolvers/yup';
 import { Button, Group, Stack, Textarea, TextInput } from '@mantine/core';
 import { showNotification } from '@mantine/notifications';
-import React from 'react';
 import { useForm } from 'react-hook-form';
 import * as yup from 'yup';
 
@@ -43,30 +43,28 @@ const notifyFailedCreation = (name: string) =>
 
 export const CreateProjectForm = ({ dismiss }: Props) => {
   const [createProject, { loading }] = useCreateProjectMutation();
-  notifySuccessCreation('hey');
-
-  const onSubmit = React.useCallback(
-    ({ name, description }: FormSchema) => {
-      createProject({ variables: { input: { name, description } } })
-        .then(({ data }) => {
-          if (data == null) throw new Error('data is null');
-          notifySuccessCreation(data.createProject.name);
-        })
-        .catch(err => {
-          console.error('error occurred', err);
-          notifyFailedCreation(name);
-        });
-    },
-    [createProject],
-  );
 
   const { handleSubmit, register, formState } = useForm<FormSchema>({
     resolver: yupResolver(FormSchema),
     mode: 'onChange',
   });
 
+  const onSubmit = handleSubmit(async ({ name, description }) => {
+    try {
+      const { data } = await createProject({
+        variables: { input: { name, description } },
+      });
+
+      if (isNull(data)) throw new Error('data is null');
+      notifySuccessCreation(data.createProject.name);
+    } catch (err) {
+      console.error('error occurred', err);
+      notifyFailedCreation(name);
+    }
+  });
+
   return (
-    <form onSubmit={handleSubmit(onSubmit)}>
+    <form onSubmit={onSubmit}>
       <Stack spacing={40}>
         <Stack spacing={10}>
           <TextInput
