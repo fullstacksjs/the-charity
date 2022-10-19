@@ -44,7 +44,11 @@ const notifyFailedCreation = (name: string) =>
 export const CreateProjectForm = ({ dismiss }: Props) => {
   const [createProject, { loading }] = useCreateProjectMutation();
 
-  const { handleSubmit, register, formState } = useForm<FormSchema>({
+  const {
+    handleSubmit,
+    register,
+    formState: { isValid, errors },
+  } = useForm<FormSchema>({
     resolver: yupResolver(FormSchema),
     mode: 'onChange',
   });
@@ -74,7 +78,7 @@ export const CreateProjectForm = ({ dismiss }: Props) => {
             placeholder={messages.projects.createForm.nameInput.placeholder}
             label={messages.projects.createForm.nameInput.label}
             size="sm"
-            error={formState.errors.name?.message}
+            error={errors.name?.message}
             {...register('name')}
           />
           <Textarea
@@ -83,7 +87,7 @@ export const CreateProjectForm = ({ dismiss }: Props) => {
               messages.projects.createForm.descriptionInput.placeholder
             }
             label={messages.projects.createForm.descriptionInput.label}
-            error={formState.errors.description?.message}
+            error={errors.description?.message}
             {...register('description')}
           />
         </Stack>
@@ -93,11 +97,11 @@ export const CreateProjectForm = ({ dismiss }: Props) => {
             type="submit"
             size="sm"
             loading={loading}
-            disabled={Boolean(formState.errors.name)}
+            disabled={isValid}
           >
             {messages.projects.createForm.submitBtn.text}
           </Button>
-          <Button size="sm" color="gray" onClick={dismiss}>
+          <Button size="sm" color="gray" disabled={loading} onClick={dismiss}>
             {messages.actions.dismiss}
           </Button>
         </Group>

@@ -84,7 +84,6 @@ export const theme: MantineThemeOverride = {
     xl: 20,
   } as any,
   components: {
-    /* eslint-disable @typescript-eslint/naming-convention */
     TextInput: {
       styles: {
         root: {
@@ -119,7 +118,6 @@ export const theme: MantineThemeOverride = {
         },
       },
     },
-    /* eslint-enable @typescript-eslint/naming-convention */
   },
 
   headings: {
