@@ -67,7 +67,7 @@ export const decorators: DecoratorFn[] = [
   },
   Story => (
     <ThemeProvider>
-      <NotificationsProvider>
+      <NotificationsProvider limit={3}>
         <Story />
       </NotificationsProvider>
     </ThemeProvider>
