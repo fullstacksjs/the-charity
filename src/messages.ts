@@ -76,4 +76,12 @@ export const messages = {
       },
     },
   },
+  familyDetail: {
+    title: 'اطلاعات کلی خانواده',
+    id: '(F00005)',
+    familyInfo: {
+      title: (name: string) => name,
+      value: (name: string) => name,
+    },
+  },
 } as const;

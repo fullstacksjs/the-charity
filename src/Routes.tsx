@@ -5,7 +5,7 @@ import type {
 } from '@tanstack/react-location';
 import { Navigate, ReactLocation, Router } from '@tanstack/react-location';
 
-import { Families, Projects } from './pages';
+import { Families, FamilyDetail, Projects } from './pages';
 import { DashboardLayout } from './pages/Dashboard/DashboardLayout';
 import { Login } from './pages/Login';
 
@@ -33,6 +33,15 @@ const routes: Route[] = [
         meta: {
           breadcrumb: messages.families.title,
         },
+        children: [
+          {
+            path: '/family-detail',
+            element: <FamilyDetail />,
+            meta: {
+              breadcrumb: messages.familyDetail.title,
+            },
+          },
+        ],
       },
       {
         path: '/projects',
