@@ -1,7 +1,6 @@
+import { getClientCookie } from '@camp/infra';
 import { isNull } from '@fullstacksjs/toolbox';
 import React, { createContext, useMemo } from 'react';
-
-import { getClientCookie } from '../infra/AuthCookie';
 
 interface AuthCtx {
   isAuth: boolean;
