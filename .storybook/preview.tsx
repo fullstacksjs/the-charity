@@ -39,7 +39,9 @@ export const decorators: DecoratorFn[] = [
         </Layout>
       </Router>
     ) : (
-      <Router routes={[]} location={location}></Router>
+      <Router routes={[]} location={location}>
+        <Story />
+      </Router>
     );
   },
   Story => {
