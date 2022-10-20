@@ -7,6 +7,7 @@ import type {
 import { Navigate, ReactLocation, Router } from '@tanstack/react-location';
 
 import { GuardLayout } from './components/GuardLayout/GuardLayout';
+import { AuthCtxProvider } from './contexts/AuthCtx';
 import {
   DashboardLayout,
   Families,
