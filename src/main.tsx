@@ -4,6 +4,7 @@ import { NotificationsProvider } from '@mantine/notifications';
 import { StrictMode } from 'react';
 import ReactDOM from 'react-dom/client';
 
+import { AuthCtxProvider } from './contexts/AuthCtx';
 import { Routes } from './Routes';
 
 const root = ReactDOM.createRoot(document.getElementById('root')!);
@@ -13,7 +14,9 @@ root.render(
     <ApolloProvider>
       <ThemeProvider>
         <NotificationsProvider limit={3}>
-          <Routes />
+          <AuthCtxProvider>
+            <Routes />
+          </AuthCtxProvider>
         </NotificationsProvider>
       </ThemeProvider>
     </ApolloProvider>
