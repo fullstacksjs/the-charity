@@ -1,8 +1,13 @@
+import { useAuth } from '@camp/hooks';
+import { Navigate } from '@camp/router';
 import { Box, Group, Image } from '@mantine/core';
 
 import { LoginForm } from './LoginForm';
 
 export const Login = () => {
+  const { isAuth } = useAuth();
+
+  if (isAuth) return <Navigate to="/" />;
   return (
     <Group grow align="stretch" spacing={0} sx={{ height: '100%' }}>
       <Box
