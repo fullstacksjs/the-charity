@@ -29,7 +29,7 @@ export const messages = {
     create: 'ایجاد پروژه جدید',
     notification: {
       successfulCreate: (name: string) =>
-        `پروژه با نام ${name} با موفقیت ساخته شد`,
+        `پروژه ای با نام "${name}" با موفقیت ساخته شد`,
       failedCreate: (name: string) =>
         `مشکلی در مرحله ایجاد پروژه ای با نام ${name} به وجود آمده است. لطفا دوباره تلاش کنید`,
     },
@@ -44,7 +44,7 @@ export const messages = {
     createForm: {
       nameInput: {
         placeholder: 'برای مثال: خرید مدرسه',
-        label: 'نام پروژه',
+        label: 'نام',
       },
       descriptionInput: {
         placeholder: 'توضیحی درمورد پروژه',
