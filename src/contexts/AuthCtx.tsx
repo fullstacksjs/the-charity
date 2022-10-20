@@ -1,6 +1,7 @@
-import { AuthCookie } from '@camp/domain';
-import Cookies from 'js-cookie';
+import { isNull } from '@fullstacksjs/toolbox';
 import React, { createContext, useMemo } from 'react';
+
+import { getClientCookie } from '../infra/AuthCookie';
 
 interface AuthCtx {
   isAuth: boolean;
@@ -14,14 +15,9 @@ interface Props {
   children: React.ReactNode;
 }
 
-const getAuthCookie = (): AuthCookie | null => {
-  const cookie = Cookies.get();
-  return AuthCookie.guard(cookie) ? cookie : null;
-};
-
 export const AuthCtxProvider = ({ children }: Props) => {
-  const cookie = getAuthCookie();
-  const isAuth = !!cookie?.isAuth;
+  const cookie = getClientCookie();
+  const isAuth = isNull(cookie) ? false : cookie.isAuth;
 
   const ctx: AuthCtx = useMemo(
     () => ({
