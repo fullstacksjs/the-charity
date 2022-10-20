@@ -6,6 +6,7 @@ import type {
 } from '@tanstack/react-location';
 import { Navigate, ReactLocation, Router } from '@tanstack/react-location';
 
+import { GuardLayout } from './components/GuardLayout/GuardLayout';
 import {
   DashboardLayout,
   Families,
@@ -30,36 +31,39 @@ interface Route extends Omit<LocationRoute<LocationGenerics>, 'path'> {
 const routes: Route[] = [
   { path: '/login', element: <Login /> },
   {
-    element: <DashboardLayout />,
+    element: <GuardLayout />,
     children: [
       {
-        path: '/families',
-        element: <Families />,
-        meta: {
-          breadcrumb: messages.families.title,
-        },
+        element: <DashboardLayout />,
         children: [
           {
-            path: '/family-detail',
-            element: <FamilyDetail />,
+            path: '/families',
+            element: <Families />,
             meta: {
-              breadcrumb: messages.familyDetail.title,
+              breadcrumb: messages.families.title,
             },
+            children: [
+              {
+                path: '/family-detail',
+                element: <FamilyDetail />,
+                meta: {
+                  breadcrumb: messages.familyDetail.title,
+                },
+              },
+              {
+                element: <FamilyEmptyState />,
+              },
+            ],
           },
           {
-            element: <FamilyEmptyState />,
+            path: '/projects',
+            element: <Projects />,
+            meta: {
+              breadcrumb: messages.projects.title,
+            },
           },
+          { element: <Navigate to="/families" /> },
         ],
-      },
-      {
-        path: '/projects',
-        element: <Projects />,
-        meta: {
-          breadcrumb: messages.projects.title,
-        },
-      },
-      {
-        element: <Navigate to="families" />,
       },
     ],
   },
