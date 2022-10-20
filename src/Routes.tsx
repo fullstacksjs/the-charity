@@ -8,6 +8,7 @@ import { Navigate, ReactLocation, Router } from '@tanstack/react-location';
 
 import { Families, Projects } from './pages';
 import { DashboardLayout } from './pages/Dashboard/DashboardLayout';
+import { Login } from './pages/Login';
 
 const location = new ReactLocation();
 
@@ -23,6 +24,7 @@ interface Route extends Omit<LocationRoute<LocationGenerics>, 'path'> {
 }
 
 const routes: Route[] = [
+  { path: '/login', element: <Login /> },
   {
     element: <DashboardLayout />,
     children: [
@@ -40,7 +42,9 @@ const routes: Route[] = [
           breadcrumb: messages.projects.title,
         },
       },
-      { element: <Navigate to="/families" /> },
+      {
+        element: <Navigate to="families" />,
+      },
     ],
   },
 ];

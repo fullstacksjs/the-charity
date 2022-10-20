@@ -49,4 +49,25 @@ export const messages = {
       },
     },
   },
+  login: {
+    loginFrom: {
+      validation: {
+        required: 'این فیلد ضروری است',
+        emailErrorMessage: 'این یک ایمیل معتبر نیست',
+      },
+      title: 'به حساب کاربری خود وارد شوید',
+      description: 'خوش آمدید، لطفا اطلاعات خود را وارد کنید.',
+      emailInput: {
+        label: 'ایمیل',
+        placeholder: 'you@example.com',
+      },
+      passwordInput: {
+        label: 'رمز عبور',
+        placeholder: 'رمز عبور',
+      },
+      submitButton: {
+        text: 'ورود',
+      },
+    },
+  },
 } as const;
