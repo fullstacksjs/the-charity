@@ -9,7 +9,6 @@ const removeClientCookie = () => {
 export const getClientCookie = (): ClientCookie | null => {
   const rawCookie = Cookies.get();
   const isValidCookie = RawClientCookie.guard(rawCookie);
-  console.log(rawCookie, isValidCookie);
 
   if (!isValidCookie) {
     removeClientCookie();
