@@ -8,7 +8,8 @@ describe('Authorization', () => {
     cy.location('pathname').should('eq', '/login');
   });
 
-  it('should be redirected to the families page after successful login', () => {
+  // NOTE this is in scope of FSK-97
+  it.skip('should be redirected to the families page after successful login', () => {
     cy.login();
     cy.location('pathname').should('eq', '/families');
   });
