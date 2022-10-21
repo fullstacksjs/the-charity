@@ -8,6 +8,7 @@ const createProjectModalSelector = '[data-test="create-project-modal"]';
 
 describe('Create Project', () => {
   beforeEach(() => {
+    cy.login();
     cy.visit('/');
     cy.get(createProjectNavSelector).click();
   });

@@ -6,6 +6,7 @@ import {
 
 describe('To Create Draft Family', () => {
   beforeEach(() => {
+    cy.login();
     cy.visit('/families');
   });
 
