@@ -37,6 +37,7 @@ export const LoginForm = () => {
 
   const onSubmit = ({ userName, password }: FormInputs) => {
     console.log('username:', userName, 'password:', password);
+    // FIXME should delete this after backend got integrated
     setFakeLoggedIn();
     navigate({ to: '/families', replace: true });
   };

@@ -1,3 +1,5 @@
+// FIXME should delete this after backend got integrated
+
 export const setFakeLoggedIn = () => {
   const date = new Date();
   date.setTime(date.getTime() + 100 * 60 * 60 * 1000);
