@@ -4,9 +4,15 @@ import { gql } from '@apollo/client';
 import * as Apollo from '@apollo/client';
 export type Maybe<T> = T | null;
 export type InputMaybe<T> = Maybe<T>;
-export type Exact<T extends { [key: string]: unknown }> = { [K in keyof T]: T[K] };
-export type MakeOptional<T, K extends keyof T> = Omit<T, K> & { [SubKey in K]?: Maybe<T[SubKey]> };
-export type MakeMaybe<T, K extends keyof T> = Omit<T, K> & { [SubKey in K]: Maybe<T[SubKey]> };
+export type Exact<T extends { [key: string]: unknown }> = {
+  [K in keyof T]: T[K];
+};
+export type MakeOptional<T, K extends keyof T> = Omit<T, K> & {
+  [SubKey in K]?: Maybe<T[SubKey]>;
+};
+export type MakeMaybe<T, K extends keyof T> = Omit<T, K> & {
+  [SubKey in K]: Maybe<T[SubKey]>;
+};
 const defaultOptions = {} as const;
 /** All built-in and custom scalars, mapped to their actual values */
 export type Scalars = {
@@ -25,7 +31,7 @@ export enum AccommodationType {
   /** householder is owner of the house */
   Owner = 'Owner',
   /** householder rents house for specific range of time */
-  Rent = 'Rent'
+  Rent = 'Rent',
 }
 
 export type Address = {
@@ -161,12 +167,12 @@ export enum Diploma {
   /** master */
   Master = 'Master',
   /** none */
-  None = 'None'
+  None = 'None',
 }
 
 /** disability status */
 export enum DisabilityStatus {
-  Sth = 'Sth'
+  Sth = 'Sth',
 }
 
 export type Divorced = {
@@ -247,12 +253,12 @@ export type DraftHouseholder = Member & {
 
 /** education status of people */
 export enum EducationStatus {
-  Sth = 'Sth'
+  Sth = 'Sth',
 }
 
 export enum FamilySeverity {
   Critical = 'CRITICAL',
-  Normal = 'NORMAL'
+  Normal = 'NORMAL',
 }
 
 /** religion of the members */
@@ -260,7 +266,7 @@ export enum FamilyStatus {
   /** FamilyStatus is completed. */
   Completed = 'COMPLETED',
   /** Family is drafted */
-  Draft = 'DRAFT'
+  Draft = 'DRAFT',
 }
 
 /** religion of the members */
@@ -268,12 +274,12 @@ export enum Gender {
   /** gender is female. */
   Female = 'Female',
   /** gender is male */
-  Male = 'Male'
+  Male = 'Male',
 }
 
 /** health status */
 export enum HealthStatus {
-  Sth = 'Sth'
+  Sth = 'Sth',
 }
 
 export type Insurance = {
@@ -295,7 +301,7 @@ export enum MaritalStatus {
   Married = 'Married',
   Separated = 'Separated',
   Single = 'Single',
-  Widowed = 'Widowed'
+  Widowed = 'Widowed',
 }
 
 export type Member = {
@@ -321,11 +327,9 @@ export type Mutation = {
   createProject: Project;
 };
 
-
 export type MutationCreateFamilyArgs = {
   input: CreateFamilyInput;
 };
-
 
 export type MutationCreateProjectArgs = {
   input: CreateProjectInput;
@@ -361,7 +365,7 @@ export enum ProjectStatus {
   Done = 'DONE',
   Inprogress = 'INPROGRESS',
   Planning = 'PLANNING',
-  Suspended = 'SUSPENDED'
+  Suspended = 'SUSPENDED',
 }
 
 export type Query = {
@@ -378,26 +382,19 @@ export type Query = {
   projects: Array<Project>;
 };
 
-
 export type QueryAdminArgs = {
   id: Scalars['Int'];
 };
-
 
 export type QueryDependentArgs = {
   id: Scalars['Int'];
 };
 
-
-export type QueryFamilyArgs = {
-  id: Scalars['String'];
-};
-
+export type QueryFamilyArgs = { id: Scalars['String'] };
 
 export type QueryHouseholderArgs = {
   id: Scalars['Int'];
 };
-
 
 export type QueryProjectArgs = {
   id: Scalars['Int'];
@@ -408,7 +405,7 @@ export enum Religion {
   /** the religion of the member is christian */
   Christianity = 'Christianity',
   /** the religion of the member is islam */
-  Islam = 'Islam'
+  Islam = 'Islam',
 }
 
 /** second householder problem = [ prison | divorced | death ] */
@@ -429,7 +426,7 @@ export type Subsidy = {
 
 /** subsidy types */
 export enum SubsidyType {
-  Sth = 'Sth'
+  Sth = 'Sth',
 }
 
 /** family = [ draft-family, complete-family ] */
@@ -438,19 +435,88 @@ export type Family = CompletedFamily | DraftFamily;
 /** householder = [ draft-house, complete-house ] */
 export type Householder = CompleteHouseholder | DraftHouseholder;
 
-export type GetAdminListQueryVariables = Exact<{ [key: string]: never; }>;
+export type CreateProjectMutationVariables = Exact<{
+  input: CreateProjectInput;
+}>;
 
+export type CreateProjectMutation = {
+  __typename?: 'Mutation';
+  createProject: {
+    __typename?: 'Project';
+    id: string;
+    name: string;
+    description?: string | null;
+    status: ProjectStatus;
+  };
+};
 
-export type GetAdminListQuery = { __typename?: 'Query', admins: Array<{ __typename?: 'Admin', id: string }> };
+export type GetAdminListQueryVariables = Exact<{ [key: string]: never }>;
 
+export type GetAdminListQuery = {
+  __typename?: 'Query';
+  admins: Array<{ __typename?: 'Admin'; id: string }>;
+};
 
-export const GetAdminListDocument = gql`
-    query getAdminList {
-  admins {
-    id
+export const CreateProjectDocument = gql`
+  mutation createProject($input: CreateProjectInput!) {
+    createProject(input: $input) {
+      id
+      name
+      description
+      status
+    }
   }
+`;
+export type CreateProjectMutationFn = Apollo.MutationFunction<
+  CreateProjectMutation,
+  CreateProjectMutationVariables
+>;
+
+/**
+ * __useCreateProjectMutation__
+ *
+ * To run a mutation, you first call `useCreateProjectMutation` within a React component and pass it any options that fit your needs.
+ * When your component renders, `useCreateProjectMutation` returns a tuple that includes:
+ * - A mutate function that you can call at any time to execute the mutation
+ * - An object with fields that represent the current status of the mutation's execution
+ *
+ * @param baseOptions options that will be passed into the mutation, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options-2;
+ *
+ * @example
+ * const [createProjectMutation, { data, loading, error }] = useCreateProjectMutation({
+ *   variables: {
+ *      input: // value for 'input'
+ *   },
+ * });
+ */
+export function useCreateProjectMutation(
+  baseOptions?: Apollo.MutationHookOptions<
+    CreateProjectMutation,
+    CreateProjectMutationVariables
+  >,
+) {
+  const options = { ...defaultOptions, ...baseOptions };
+  return Apollo.useMutation<
+    CreateProjectMutation,
+    CreateProjectMutationVariables
+  >(CreateProjectDocument, options);
 }
-    `;
+export type CreateProjectMutationHookResult = ReturnType<
+  typeof useCreateProjectMutation
+>;
+export type CreateProjectMutationResult =
+  Apollo.MutationResult<CreateProjectMutation>;
+export type CreateProjectMutationOptions = Apollo.BaseMutationOptions<
+  CreateProjectMutation,
+  CreateProjectMutationVariables
+>;
+export const GetAdminListDocument = gql`
+  query getAdminList {
+    admins {
+      id
+    }
+  }
+`;
 
 /**
  * __useGetAdminListQuery__
@@ -467,14 +533,37 @@ export const GetAdminListDocument = gql`
  *   },
  * });
  */
-export function useGetAdminListQuery(baseOptions?: Apollo.QueryHookOptions<GetAdminListQuery, GetAdminListQueryVariables>) {
-        const options = {...defaultOptions, ...baseOptions}
-        return Apollo.useQuery<GetAdminListQuery, GetAdminListQueryVariables>(GetAdminListDocument, options);
-      }
-export function useGetAdminListLazyQuery(baseOptions?: Apollo.LazyQueryHookOptions<GetAdminListQuery, GetAdminListQueryVariables>) {
-          const options = {...defaultOptions, ...baseOptions}
-          return Apollo.useLazyQuery<GetAdminListQuery, GetAdminListQueryVariables>(GetAdminListDocument, options);
-        }
-export type GetAdminListQueryHookResult = ReturnType<typeof useGetAdminListQuery>;
-export type GetAdminListLazyQueryHookResult = ReturnType<typeof useGetAdminListLazyQuery>;
-export type GetAdminListQueryResult = Apollo.QueryResult<GetAdminListQuery, GetAdminListQueryVariables>;
+export function useGetAdminListQuery(
+  baseOptions?: Apollo.QueryHookOptions<
+    GetAdminListQuery,
+    GetAdminListQueryVariables
+  >,
+) {
+  const options = { ...defaultOptions, ...baseOptions };
+  return Apollo.useQuery<GetAdminListQuery, GetAdminListQueryVariables>(
+    GetAdminListDocument,
+    options,
+  );
+}
+export function useGetAdminListLazyQuery(
+  baseOptions?: Apollo.LazyQueryHookOptions<
+    GetAdminListQuery,
+    GetAdminListQueryVariables
+  >,
+) {
+  const options = { ...defaultOptions, ...baseOptions };
+  return Apollo.useLazyQuery<GetAdminListQuery, GetAdminListQueryVariables>(
+    GetAdminListDocument,
+    options,
+  );
+}
+export type GetAdminListQueryHookResult = ReturnType<
+  typeof useGetAdminListQuery
+>;
+export type GetAdminListLazyQueryHookResult = ReturnType<
+  typeof useGetAdminListLazyQuery
+>;
+export type GetAdminListQueryResult = Apollo.QueryResult<
+  GetAdminListQuery,
+  GetAdminListQueryVariables
+>;

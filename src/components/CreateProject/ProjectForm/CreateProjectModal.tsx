@@ -14,6 +14,7 @@ export const CreateProjectModal = ({ opened, onClose }: Props) => {
       centered
       opened={opened}
       onClose={onClose}
+      data-test="create-project-modal"
     >
       <CreateProjectForm dismiss={onClose} />
     </Modal>

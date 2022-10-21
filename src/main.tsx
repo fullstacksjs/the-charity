@@ -1,5 +1,6 @@
 import { ApolloProvider } from '@camp/data-layer';
 import { ThemeProvider } from '@camp/design';
+import { NotificationsProvider } from '@mantine/notifications';
 import { StrictMode } from 'react';
 import ReactDOM from 'react-dom/client';
 
@@ -11,7 +12,9 @@ root.render(
   <StrictMode>
     <ApolloProvider>
       <ThemeProvider>
-        <Routes />
+        <NotificationsProvider>
+          <Routes />
+        </NotificationsProvider>
       </ThemeProvider>
     </ApolloProvider>
   </StrictMode>,

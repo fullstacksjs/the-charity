@@ -1,4 +1,3 @@
-/* eslint-disable @typescript-eslint/naming-convention */
 import { messages } from '@camp/messages';
 import type {
   MakeGenerics,

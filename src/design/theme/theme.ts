@@ -47,7 +47,6 @@ export const colors = {
 
 export const theme: MantineThemeOverride = {
   globalStyles: _theme => ({
-    /* eslint-disable @typescript-eslint/naming-convention */
     /* 1.Use a more-intuitive box-sizing model. */
     '*, *::before, *::after': {
       boxSizing: 'border-box',
@@ -85,7 +84,6 @@ export const theme: MantineThemeOverride = {
     xl: 20,
   } as any,
   components: {
-    // eslint-disable-next-line @typescript-eslint/naming-convention
     TextInput: {
       styles: {
         root: {
@@ -93,7 +91,6 @@ export const theme: MantineThemeOverride = {
         },
       },
     },
-    // eslint-disable-next-line @typescript-eslint/naming-convention
     Modal: {
       styles: {
         modal: {
@@ -104,13 +101,25 @@ export const theme: MantineThemeOverride = {
         },
       },
     },
-    // eslint-disable-next-line @typescript-eslint/naming-convention
     Button: {
       styles: {
         root: { fontWeight: 500 },
       },
     },
+    Notification: {
+      styles: {
+        root: {
+          paddingBlock: 15,
+          paddingRight: 10,
+          paddingLeft: 27,
+        },
+        title: {
+          marginBottom: 5,
+        },
+      },
+    },
   },
+
   headings: {
     fontFamily: 'IRANSansFaNum',
   },

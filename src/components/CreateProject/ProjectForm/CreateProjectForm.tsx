@@ -1,7 +1,9 @@
+import { useCreateProjectMutation } from '@camp/data-layer';
 import { messages } from '@camp/messages';
+import { isNull } from '@fullstacksjs/toolbox';
 import { yupResolver } from '@hookform/resolvers/yup';
 import { Button, Group, Stack, Textarea, TextInput } from '@mantine/core';
-import React from 'react';
+import { showNotification } from '@mantine/notifications';
 import { useForm } from 'react-hook-form';
 import * as yup from 'yup';
 
@@ -22,19 +24,51 @@ const FormSchema = yup
   })
   .required();
 
-export const CreateProjectForm = ({ dismiss }: Props) => {
-  const onSubmit = React.useCallback(({ name, description }: FormSchema) => {
-    console.log('name:', name, 'description:', description);
-  }, []);
+// NOTE: the spread is to avoid the type error with notification props not accepting data attribute
+const notifySuccessCreation = (name: string) =>
+  showNotification({
+    ...{ 'data-test': 'notification-success' },
+    color: 'successDefault',
+    title: messages.projects.create,
+    message: messages.projects.notification.successfulCreate(name),
+  });
 
-  const { handleSubmit, register, formState } = useForm<FormSchema>({
+const notifyFailedCreation = (name: string) =>
+  showNotification({
+    ...{ 'data-test': 'notification-fail' },
+    color: 'errorDefault',
+    title: messages.projects.create,
+    message: messages.projects.notification.failedCreate(name),
+  });
+
+export const CreateProjectForm = ({ dismiss }: Props) => {
+  const [createProject, { loading }] = useCreateProjectMutation();
+
+  const {
+    handleSubmit,
+    register,
+    formState: { isValid, errors },
+  } = useForm<FormSchema>({
     resolver: yupResolver(FormSchema),
     mode: 'onChange',
   });
 
+  const onSubmit = handleSubmit(async ({ name, description }) => {
+    try {
+      const { data } = await createProject({
+        variables: { input: { name, description } },
+      });
+
+      if (isNull(data)) throw new Error('data is null');
+      notifySuccessCreation(data.createProject.name);
+    } catch (err) {
+      console.error('error occurred', err);
+      notifyFailedCreation(name);
+    }
+  });
+
   return (
-    // eslint-disable-next-line @typescript-eslint/no-misused-promises
-    <form onSubmit={handleSubmit(onSubmit)}>
+    <form onSubmit={onSubmit}>
       <Stack spacing={40}>
         <Stack spacing={10}>
           <TextInput
@@ -44,7 +78,7 @@ export const CreateProjectForm = ({ dismiss }: Props) => {
             placeholder={messages.projects.createForm.nameInput.placeholder}
             label={messages.projects.createForm.nameInput.label}
             size="sm"
-            error={formState.errors.name?.message}
+            error={errors.name?.message}
             {...register('name')}
           />
           <Textarea
@@ -53,7 +87,7 @@ export const CreateProjectForm = ({ dismiss }: Props) => {
               messages.projects.createForm.descriptionInput.placeholder
             }
             label={messages.projects.createForm.descriptionInput.label}
-            error={formState.errors.description?.message}
+            error={errors.description?.message}
             {...register('description')}
           />
         </Stack>
@@ -62,11 +96,12 @@ export const CreateProjectForm = ({ dismiss }: Props) => {
             data-test="submit-button"
             type="submit"
             size="sm"
-            disabled={Boolean(formState.errors.name)}
+            loading={loading}
+            disabled={!isValid}
           >
             {messages.projects.createForm.submitBtn.text}
           </Button>
-          <Button size="sm" color="gray" onClick={dismiss}>
+          <Button size="sm" color="gray" disabled={loading} onClick={dismiss}>
             {messages.actions.dismiss}
           </Button>
         </Group>

@@ -1,4 +1,3 @@
-/* eslint-disable @typescript-eslint/no-misused-promises */
 import { messages } from '@camp/messages';
 import { yupResolver } from '@hookform/resolvers/yup';
 import { Button, Group, Stack, TextInput } from '@mantine/core';

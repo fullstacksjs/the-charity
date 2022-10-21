@@ -16,19 +16,23 @@ describe('Create Project Form', () => {
 
   it('contains a text input with label for Project name', () => {
     cy.get('form')
-      .findByLabelText(/نام پروژه/)
+      .findByLabelText(messages.projects.createForm.nameInput.label, {
+        exact: false,
+      })
       .should('match', 'input');
   });
 
   it('contains a text area with label for Project description', () => {
     cy.get('form')
-      .findByLabelText(/توضیحات/)
+      .findByLabelText(messages.projects.createForm.descriptionInput.label)
       .should('match', 'textarea');
   });
 
   it('contains a submit button to create Project', () => {
     cy.get('form')
-      .findByRole('button', { name: /ایجاد پروژه/ })
+      .findByRole('button', {
+        name: messages.projects.createForm.submitBtn.text,
+      })
       .should('have.attr', 'type')
       .and('equal', 'submit');
   });
