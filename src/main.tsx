@@ -4,7 +4,8 @@ import { NotificationsProvider } from '@mantine/notifications';
 import { StrictMode } from 'react';
 import ReactDOM from 'react-dom/client';
 
-import { AuthCtxProvider } from './contexts/AuthCtx';
+// import { AuthCtxProvider } from './contexts/AuthCtx';
+import { setFakeLoggedIn, setFakeLoggedOut } from './fakeLogin';
 import { Routes } from './Routes';
 
 const root = ReactDOM.createRoot(document.getElementById('root')!);
@@ -14,10 +15,8 @@ const root = ReactDOM.createRoot(document.getElementById('root')!);
 const fakeAuth = () => {
   document.addEventListener('keydown', event => {
     if (event.key === 'A') {
-      const date = new Date();
-      date.setTime(date.getTime() + 100 * 60 * 60 * 1000);
-      document.cookie = `is-logged-in=true; expires=${date.toUTCString()}`;
-    } else if (event.key === 'N') document.cookie = 'is-logged-in=false;';
+      setFakeLoggedIn();
+    } else if (event.key === 'N') setFakeLoggedOut();
   });
 };
 
@@ -28,9 +27,9 @@ root.render(
     <ApolloProvider>
       <ThemeProvider>
         <NotificationsProvider limit={3}>
-          <AuthCtxProvider>
-            <Routes />
-          </AuthCtxProvider>
+          {/* <AuthCtxProvider> */}
+          <Routes />
+          {/* </AuthCtxProvider> */}
         </NotificationsProvider>
       </ThemeProvider>
     </ApolloProvider>
