@@ -16,7 +16,7 @@ interface Props {
 
 export const AuthCtxProvider = ({ children }: Props) => {
   const cookie = getClientCookie();
-  const isAuth = isNull(cookie) ? false : cookie.auth;
+  const isAuth = isNull(cookie) ? false : cookie.isAuth;
 
   const ctx: AuthCtx = useMemo(
     () => ({

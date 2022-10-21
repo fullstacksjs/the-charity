@@ -16,8 +16,8 @@ const fakeAuth = () => {
     if (event.key === 'A') {
       const date = new Date();
       date.setTime(date.getTime() + 100 * 60 * 60 * 1000);
-      document.cookie = `auth=true; expires=${date.toUTCString()}`;
-    } else if (event.key === 'N') document.cookie = 'auth=false;';
+      document.cookie = `is-logged-in=true; expires=${date.toUTCString()}`;
+    } else if (event.key === 'N') document.cookie = 'is-logged-in=false;';
   });
 };
 
