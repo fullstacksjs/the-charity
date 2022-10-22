@@ -23,7 +23,7 @@ export const createFamilyFormIDs = {
     success: 'create-family-success-notification',
     failure: 'create-family-failure-notification',
   },
-};
+} as const;
 
 const FormSchema = yup
   .object({
