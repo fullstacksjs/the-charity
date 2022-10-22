@@ -1,30 +1,29 @@
 import { Group } from '@mantine/core';
 import { useMatches } from '@tanstack/react-location';
 
+import type { LocationGenerics } from '../../../Routes';
 import { Breadcrumbs } from '../../molecules';
 
 export interface HeaderProps {
   button: React.ReactNode;
 }
 
-export const useCreateBreadcrumbsItems = () => {
-  const matches = useMatches();
+export const useBreadcrumbsItems = () => {
+  const matches = useMatches<LocationGenerics>();
 
-  const items = matches.map(match => {
-    const { path, meta } = match.route;
-    return {
-      path: path ?? '',
-      name: meta?.['breadcrumbs'] as string,
-    };
-  });
-
-  return {
-    items,
-  };
+  return matches
+    .filter(match => match.route.meta?.breadcrumb)
+    .map(match => {
+      const { path, meta } = match.route;
+      return {
+        path: path ?? '',
+        name: meta?.breadcrumb ?? '',
+      };
+    });
 };
 
 export const DashboardHeader = ({ button }: HeaderProps) => {
-  const { items } = useCreateBreadcrumbsItems();
+  const items = useBreadcrumbsItems();
 
   return (
     <Group position="apart">
