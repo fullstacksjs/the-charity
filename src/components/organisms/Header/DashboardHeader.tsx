@@ -13,7 +13,7 @@ export const DashboardHeader = ({ button }: HeaderProps) => {
   const breadcrumbsName = matches.reverse()[0]?.route?.meta?.breadcrumb;
 
   return (
-    <Group position="apart">
+    <Group position="apart" mb={40}>
       {breadcrumbsName ? (
         <Breadcrumbs items={[{ name: breadcrumbsName, path: '/' }]} />
       ) : null}

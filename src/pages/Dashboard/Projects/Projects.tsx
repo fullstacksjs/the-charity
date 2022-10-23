@@ -1,13 +1,12 @@
-import { PackageIcon } from '@camp/design';
-import { messages } from '@camp/messages';
-import { useState } from 'react';
-
 import {
   CreateProjectButton,
   CreateProjectModal,
   DashboardHeader,
   EmptyState,
-} from '../../../components';
+} from '@camp/components';
+import { PackageIcon } from '@camp/design';
+import { messages } from '@camp/messages';
+import { useState } from 'react';
 
 export const Projects = () => {
   const [isCreateProjectModalOpen, setIsCreateProjectModalOpen] =

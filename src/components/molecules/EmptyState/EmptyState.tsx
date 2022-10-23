@@ -1,10 +1,9 @@
 import { Box, Space, Text } from '@mantine/core';
-import type { ReactNode } from 'react';
 
 import { VisualizedIcon } from '../../atoms';
 
 export interface EmptyStateProps {
-  icon: ReactNode;
+  icon: React.ReactNode;
   title: string;
   message: string;
 }

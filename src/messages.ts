@@ -76,4 +76,30 @@ export const messages = {
       },
     },
   },
+  familyDetail: {
+    title: 'اطلاعات کلی خانواده',
+    id: '(F00005)',
+    familyFields: {
+      name: {
+        title: 'نام',
+        value: 'فول استک زاده',
+      },
+      householder: {
+        title: 'سرپرست',
+        value: 'جامعه فول استک زاده',
+      },
+      members: {
+        title: 'تعداد اعضا',
+        value: '700 نفر',
+      },
+      severityStatus: {
+        title: 'وضعیت نیازمندی',
+        value: 'بحرانی',
+      },
+      informationStatus: {
+        title: 'وضعیت اطلاعات',
+        value: 'تکمیل نشده',
+      },
+    },
+  },
 } as const;

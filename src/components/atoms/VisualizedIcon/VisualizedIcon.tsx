@@ -1,7 +1,10 @@
 import { Box } from '@mantine/core';
-import type { ReactNode } from 'react';
 
-export const VisualizedIcon = ({ icon }: { icon: ReactNode }) => {
+interface Props {
+  icon: React.ReactNode;
+}
+
+export const VisualizedIcon = ({ icon }: Props) => {
   return (
     <Box
       sx={theme => ({

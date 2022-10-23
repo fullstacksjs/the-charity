@@ -1,13 +1,10 @@
-import { PeopleIcon } from '@camp/design';
-import { messages } from '@camp/messages';
-import { useState } from 'react';
-
 import {
   CreateFamilyButton,
   CreateFamilyModal,
   DashboardHeader,
-  EmptyState,
-} from '../../../components';
+} from '@camp/components';
+import { Outlet } from '@tanstack/react-location';
+import { useState } from 'react';
 
 export const Families = () => {
   const [isCreateFamilyModalOpen, setIsCreateFamilyModalOpen] = useState(false);
@@ -20,11 +17,7 @@ export const Families = () => {
           />
         }
       />
-      <EmptyState
-        icon={<PeopleIcon width="33" height="33" />}
-        title={messages.families.empty.title}
-        message={messages.families.empty.description}
-      />
+      <Outlet />
       <CreateFamilyModal
         opened={isCreateFamilyModalOpen}
         onClose={() => {
