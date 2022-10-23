@@ -1,11 +1,10 @@
+import { SideBar } from '@camp/components';
 import {
   AppShell as MantineAppShell,
   createStyles,
   MediaQuery,
 } from '@mantine/core';
 import { Outlet } from '@tanstack/react-location';
-
-import { SideBar } from '../../components';
 
 const useStyles = createStyles(theme => ({
   main: {

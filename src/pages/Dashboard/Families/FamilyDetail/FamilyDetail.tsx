@@ -1,6 +1,5 @@
+import { DashboardCard } from '@camp/components';
 import { messages } from '@camp/messages';
-
-import { DashboardCard } from '../../../../components';
 
 export const FamilyDetail = () => {
   const t = messages.familyDetail.familyFields;
