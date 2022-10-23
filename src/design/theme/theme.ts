@@ -70,7 +70,7 @@ export const theme: MantineThemeOverride = {
     /* eslint-enable @typescript-eslint/naming-convention */
   }),
   dir: 'rtl',
-  fontFamily: 'IRANSansFaNum',
+  fontFamily: 'IRANSansFaNum, IRANSans',
   colors: toMantineColors(colors),
   primaryColor: 'indigo',
   defaultRadius: 'sm',
@@ -121,6 +121,6 @@ export const theme: MantineThemeOverride = {
   },
 
   headings: {
-    fontFamily: 'IRANSansFaNum',
+    fontFamily: 'IRANSansFaNum, IRANSans',
   },
 };
