@@ -1,9 +1,8 @@
 import { Box, Space, Title } from '@mantine/core';
-import type { ReactNode } from 'react';
 
 interface Props {
   title: string;
-  children: ReactNode;
+  children: React.ReactNode;
 }
 
 export const DashboardCardField = ({ title, children }: Props) => {

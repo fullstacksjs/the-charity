@@ -1,5 +1,4 @@
 import { Card, Group, SimpleGrid, Stack, Title } from '@mantine/core';
-import type { ReactNode } from 'react';
 
 import { DashboardCardBadgeField } from './DashboardCardBadgeField';
 import { DashboardCardTextField } from './DashboardCardTextField';
@@ -7,7 +6,7 @@ import { DashboardCardTextField } from './DashboardCardTextField';
 interface Props {
   title: string;
   id: string;
-  children: ReactNode;
+  children: React.ReactNode;
 }
 
 export const DashboardCard = ({ title, id, children }: Props) => {
