@@ -7,9 +7,19 @@ import { showNotification } from '@mantine/notifications';
 import { useForm } from 'react-hook-form';
 import * as yup from 'yup';
 
+import { createTestAttr } from '../../../utils/createTestAttr';
+
 interface Props {
   dismiss: () => void;
 }
+
+export const projectNameID = 'project-name';
+export const projectDescriptionID = 'project-description';
+export const submitButtonID = 'submit-button';
+export const createProjectNotificationSuccessID =
+  'create-project-notification-success';
+export const createProjectNotificationFailID =
+  'create-project-notification-fail';
 
 type FormSchema = yup.InferType<typeof FormSchema>;
 
@@ -27,7 +37,7 @@ const FormSchema = yup
 // NOTE: the spread is to avoid the type error with notification props not accepting data attribute
 const notifySuccessCreation = (name: string) =>
   showNotification({
-    ...{ 'data-test': 'notification-success' },
+    ...createTestAttr(createProjectNotificationSuccessID),
     color: 'successDefault',
     title: messages.projects.create,
     message: messages.projects.notification.successfulCreate(name),
@@ -35,7 +45,7 @@ const notifySuccessCreation = (name: string) =>
 
 const notifyFailedCreation = (name: string) =>
   showNotification({
-    ...{ 'data-test': 'notification-fail' },
+    ...createTestAttr(createProjectNotificationSuccessID),
     color: 'errorDefault',
     title: messages.projects.create,
     message: messages.projects.notification.failedCreate(name),
@@ -72,7 +82,6 @@ export const CreateProjectForm = ({ dismiss }: Props) => {
       <Stack spacing={40}>
         <Stack spacing={10}>
           <TextInput
-            data-test="project-name"
             data-autoFocus
             withAsterisk
             placeholder={messages.projects.createForm.nameInput.placeholder}
@@ -80,24 +89,25 @@ export const CreateProjectForm = ({ dismiss }: Props) => {
             size="sm"
             error={errors.name?.message}
             {...register('name')}
+            {...createTestAttr(projectNameID)}
           />
           <Textarea
-            data-test="project-description"
             placeholder={
               messages.projects.createForm.descriptionInput.placeholder
             }
             label={messages.projects.createForm.descriptionInput.label}
             error={errors.description?.message}
             {...register('description')}
+            {...createTestAttr(projectDescriptionID)}
           />
         </Stack>
         <Group spacing={20}>
           <Button
-            data-test="submit-button"
             type="submit"
             size="sm"
             loading={loading}
             disabled={!isValid}
+            {...createTestAttr(submitButtonID)}
           >
             {messages.projects.createForm.submitBtn.text}
           </Button>

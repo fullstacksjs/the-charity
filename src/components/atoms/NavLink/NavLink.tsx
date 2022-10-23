@@ -1,6 +1,8 @@
 import { createStyles, NavLink as MantineNavLink } from '@mantine/core';
 import { Link as TanstackLink, useLocation } from '@tanstack/react-location';
 
+import { createTestAttr } from '../../../utils/createTestAttr';
+
 export interface NavLinkProps {
   label: string;
   path: string;
@@ -15,6 +17,8 @@ const useStyles = createStyles(theme => ({
   },
 }));
 
+export const NavlinkID = 'nav-link';
+
 export const NavLink = ({ label, icon, path }: NavLinkProps) => {
   const { classes } = useStyles();
   const {
@@ -25,12 +29,12 @@ export const NavLink = ({ label, icon, path }: NavLinkProps) => {
     <MantineNavLink
       to={path}
       component={TanstackLink}
-      data-test="nav-link"
       key={label}
       label={label}
       rightSection={icon}
       active={pathname === path}
       className={classes.root}
+      {...createTestAttr(NavlinkID)}
     />
   );
 };

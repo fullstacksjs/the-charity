@@ -2,9 +2,12 @@ import { messages } from '@camp/messages';
 import type { ModalProps } from '@mantine/core';
 import { Modal } from '@mantine/core';
 
+import { createTestAttr } from '../../../utils/createTestAttr';
 import { CreateProjectForm } from './CreateProjectForm';
 
 type Props = Pick<ModalProps, 'onClose' | 'opened'>;
+
+export const createProjectModalID = 'create-project-modal';
 
 export const CreateProjectModal = ({ opened, onClose }: Props) => {
   return (
@@ -14,7 +17,7 @@ export const CreateProjectModal = ({ opened, onClose }: Props) => {
       centered
       opened={opened}
       onClose={onClose}
-      data-test="create-project-modal"
+      {...createTestAttr(createProjectModalID)}
     >
       <CreateProjectForm dismiss={onClose} />
     </Modal>
