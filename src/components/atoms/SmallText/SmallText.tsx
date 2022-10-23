@@ -1,13 +1,13 @@
 import { Text } from '@mantine/core';
 
 interface Props {
-  value: string;
+  children: React.ReactNode;
 }
 
-export const TextField = ({ value }: Props) => {
+export const SmallText = ({ children }: Props) => {
   return (
     <Text size={14} color="fgDefault" weight={400}>
-      {value}
+      {children}
     </Text>
   );
 };
