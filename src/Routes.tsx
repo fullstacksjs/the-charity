@@ -22,11 +22,11 @@ const startFakeAuth = () => {
   document.addEventListener('keydown', event => {
     if (event.key === 'A') {
       setFakeLoggedIn();
-      // location.navigate({ ...location.current, pathname: '/' });
+      location.navigate({ ...location.current, pathname: '/' });
     } else if (event.key === 'N') {
       setFakeLoggedOut();
+      location.navigate({ ...location.current, pathname: '/' });
     }
-    location.navigate({ ...location.current, pathname: '/' });
   });
 };
 
