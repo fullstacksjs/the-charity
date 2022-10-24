@@ -1,11 +1,12 @@
-import { useAuth } from '@camp/hooks';
+import { useReactiveVar } from '@apollo/client';
+import { isAuthVar } from '@camp/data-layer';
 import { Navigate } from '@camp/router';
 import { Box, Group, Image } from '@mantine/core';
 
 import { LoginForm } from './LoginForm';
 
 export const Login = () => {
-  const { isAuth } = useAuth();
+  const isAuth = useReactiveVar(isAuthVar);
 
   if (isAuth) return <Navigate to="/" />;
   return (

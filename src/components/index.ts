@@ -3,6 +3,7 @@ export * from './CreateFamily';
 export * from './CreateProject';
 export * from './DashboardCard';
 export * from './FamilyEmptyState';
+export * from './GuardLayout';
 export * from './molecules';
 export * from './Notification';
 export * from './organisms';
