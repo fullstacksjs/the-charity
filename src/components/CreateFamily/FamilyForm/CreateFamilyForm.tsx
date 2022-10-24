@@ -1,15 +1,29 @@
+import { useCreateDraftFamilyMutation } from '@camp/data-layer';
 import { messages } from '@camp/messages';
 import { yupResolver } from '@hookform/resolvers/yup';
 import { Button, Group, Stack, TextInput } from '@mantine/core';
-import { useCallback } from 'react';
+import React from 'react';
 import { useForm } from 'react-hook-form';
 import * as yup from 'yup';
+
+import { createTestAttr } from '../../../utils/createTestAttr';
+import { showNotification } from '../../Notification';
 
 type FormSchema = yup.InferType<typeof FormSchema>;
 
 interface Props {
   dismiss: () => void;
 }
+
+export const createFamilyFormIDs = {
+  form: 'create-family-form',
+  nameInput: 'family-name',
+  submitBtn: 'submit-button',
+  notification: {
+    success: 'create-family-success-notification',
+    failure: 'create-family-failure-notification',
+  },
+} as const;
 
 const FormSchema = yup
   .object({
@@ -22,37 +36,68 @@ const FormSchema = yup
   .required();
 
 export const CreateFamilyForm = ({ dismiss }: Props) => {
-  const onSubmit = useCallback(({ name }: FormSchema) => {
-    console.log('name:', name);
-  }, []);
+  const [createDraftFamily, mutationResult] = useCreateDraftFamilyMutation();
 
-  const { handleSubmit, register, formState } = useForm<FormSchema>({
+  const { setFocus, handleSubmit, register, formState } = useForm<FormSchema>({
     resolver: yupResolver(FormSchema),
     mode: 'onChange',
   });
 
+  const { nameInput, notification, submitBtn } = messages.families.createForm;
+
+  const onSubmit = handleSubmit(({ name }) => {
+    createDraftFamily({ variables: { name } })
+      .then(({ data }) => {
+        const result = data?.createFamily;
+
+        if (result?.__typename === 'DraftFamily') {
+          showNotification({
+            title: messages.families.create,
+            message: notification.success(result.name ?? ''),
+            type: 'success',
+            ...createTestAttr(createFamilyFormIDs.notification.success),
+          });
+        }
+
+        dismiss();
+      })
+      .catch(() =>
+        showNotification({
+          title: messages.families.create,
+          message: notification.failure(name),
+          type: 'failure',
+          ...createTestAttr(createFamilyFormIDs.notification.failure),
+        }),
+      );
+  });
+
+  React.useEffect(() => {
+    setFocus('name');
+  }, [setFocus]);
+
   return (
-    <form onSubmit={handleSubmit(onSubmit)}>
+    // eslint-disable-next-line @typescript-eslint/no-misused-promises
+    <form onSubmit={onSubmit} {...createTestAttr(createFamilyFormIDs.form)}>
       <Stack spacing={40}>
         <TextInput
-          data-test="family-name"
-          data-autoFocus
           withAsterisk
-          placeholder={messages.families.createForm.nameInput.placeholder}
-          label={messages.families.createForm.nameInput.label}
-          description={messages.families.createForm.nameInput.description}
+          placeholder={nameInput.placeholder}
+          label={nameInput.label}
+          description={nameInput.description}
           size="sm"
           error={formState.errors.name?.message}
           {...register('name')}
+          {...createTestAttr(createFamilyFormIDs.nameInput)}
         />
         <Group spacing={20}>
           <Button
-            data-test="submit-button"
             type="submit"
             size="sm"
             disabled={Boolean(formState.errors.name)}
+            loading={mutationResult.loading}
+            {...createTestAttr(createFamilyFormIDs.submitBtn)}
           >
-            {messages.families.createForm.submitBtn.text}
+            {submitBtn.text}
           </Button>
           <Button size="sm" color="gray" onClick={dismiss}>
             {messages.actions.dismiss}

@@ -12,7 +12,7 @@ root.render(
   <StrictMode>
     <ApolloProvider>
       <ThemeProvider>
-        <NotificationsProvider>
+        <NotificationsProvider limit={3}>
           <Routes />
         </NotificationsProvider>
       </ThemeProvider>

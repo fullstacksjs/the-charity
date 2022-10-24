@@ -1,0 +1,8 @@
+mutation CreateDraftFamily($name: String!) {
+  createFamily(input: { name: $name }) {
+    ... on DraftFamily {
+      id
+      name
+    }
+  }
+}
