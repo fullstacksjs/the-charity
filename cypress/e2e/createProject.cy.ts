@@ -1,9 +1,7 @@
 import {
+  createProjectFormIDs,
   createProjectID,
   createProjectModalID,
-  createProjectNotificationSuccessID,
-  projectNameID,
-  submitButtonID,
 } from '../../src/components';
 
 const createProjectNavSelector = 'a[href="/projects"]';
@@ -26,10 +24,12 @@ describe('Create Project', () => {
   it.skip('Sees the successful notification when submits the form correctly', () => {
     cy.findByTestId(createProjectID).click();
     cy.findByTestId('form').within(() => {
-      cy.findByTestId(projectNameID).type('نام');
-      cy.findByTestId(createProjectNotificationSuccessID).type('توضیح کوتاه');
-      cy.findByTestId(submitButtonID).click();
+      cy.findByTestId(createProjectFormIDs.nameInput).type('نام');
+      cy.findByTestId(createProjectFormIDs.notification.success).type(
+        'توضیح کوتاه',
+      );
+      cy.findByTestId(createProjectFormIDs.submitBtn).click();
     });
-    cy.findByTestId(createProjectNotificationSuccessID).should('exist');
+    cy.findByTestId(createProjectFormIDs.notification.success).should('exist');
   });
 });
