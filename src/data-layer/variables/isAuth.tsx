@@ -1,4 +1,5 @@
 import { makeVar } from '@apollo/client';
+import { getClientCookie } from '@camp/infra';
 
-// TODO: use the cookie for knowing if isAuth is true or not
-export const isAuthVar = makeVar(false);
+const clientCookie = getClientCookie();
+export const isAuthVar = makeVar(clientCookie.isAuth);
