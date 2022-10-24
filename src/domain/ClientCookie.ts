@@ -9,6 +9,8 @@ export const ClientCookie = Record({
   isAuth: Boolean,
 });
 
+export const defaultClientCookie: ClientCookie = { isAuth: false };
+
 export type ClientCookie = Static<typeof ClientCookie>;
 export type RawClientCookie = Static<typeof RawClientCookie>;
 
