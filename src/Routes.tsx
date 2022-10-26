@@ -1,3 +1,4 @@
+import { FamilyEmptyState } from '@camp/components';
 import { messages } from '@camp/messages';
 import type {
   MakeGenerics,
@@ -5,11 +6,15 @@ import type {
 } from '@tanstack/react-location';
 import { Navigate, ReactLocation, Router } from '@tanstack/react-location';
 
-import { Families, FamilyDetail, Projects } from './pages';
-import { DashboardLayout } from './pages/Dashboard/DashboardLayout';
-import { Login } from './pages/Login';
+import {
+  DashboardLayout,
+  Families,
+  FamilyDetail,
+  Login,
+  Projects,
+} from './pages';
 
-const location = new ReactLocation();
+export const location = new ReactLocation();
 
 export type LocationGenerics = MakeGenerics<{
   RouteMeta: {
@@ -40,6 +45,9 @@ const routes: Route[] = [
             meta: {
               breadcrumb: messages.familyDetail.title,
             },
+          },
+          {
+            element: <FamilyEmptyState />,
           },
         ],
       },
