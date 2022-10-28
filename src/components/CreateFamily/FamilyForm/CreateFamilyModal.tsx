@@ -7,7 +7,7 @@ import { CreateFamilyForm } from './CreateFamilyForm';
 
 export type CreateFamilyModalProps = Pick<ModalProps, 'onClose' | 'opened'>;
 
-export const createFamilyModalID = 'create-family-modal';
+export const createFamilyModalId = 'create-family-modal';
 
 export const CreateFamilyModal = ({
   opened,
@@ -20,7 +20,7 @@ export const CreateFamilyModal = ({
       centered
       opened={opened}
       onClose={onClose}
-      {...createTestAttr(createFamilyModalID)}
+      {...createTestAttr(createFamilyModalId)}
     >
       <CreateFamilyForm dismiss={onClose} />
     </Modal>

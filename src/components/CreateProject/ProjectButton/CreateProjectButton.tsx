@@ -4,7 +4,7 @@ import { Button } from '@mantine/core';
 
 import { createTestAttr } from '../../../utils/createTestAttr';
 
-export const createProjectID = 'create-project';
+export const createProjectId = 'create-project';
 
 interface Props {
   onClick?: React.MouseEventHandler<HTMLButtonElement>;
@@ -17,7 +17,7 @@ export const CreateProjectButton = ({ onClick }: Props) => {
       size="sm"
       leftIcon={<PlusIcon width="16" height="16" />}
       onClick={onClick}
-      {...createTestAttr(createProjectID)}
+      {...createTestAttr(createProjectId)}
     >
       {messages.projects.create}
     </Button>

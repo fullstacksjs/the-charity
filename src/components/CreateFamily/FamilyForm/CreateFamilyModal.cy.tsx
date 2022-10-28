@@ -1,7 +1,7 @@
 import { noop } from '@fullstacksjs/toolbox';
 
-import { createFamilyFormIDs } from './CreateFamilyForm';
-import { CreateFamilyModal, createFamilyModalID } from './CreateFamilyModal';
+import { createFamilyFormIds } from './CreateFamilyForm';
+import { CreateFamilyModal, createFamilyModalId } from './CreateFamilyModal';
 
 describe('Create Family Modal', () => {
   beforeEach(() => {
@@ -15,8 +15,8 @@ describe('Create Family Modal', () => {
   });
 
   it('should contains createFamily form', () => {
-    cy.findByTestId(createFamilyModalID).within(() => {
-      cy.findByTestId(createFamilyFormIDs.form).should('exist');
+    cy.findByTestId(createFamilyModalId).within(() => {
+      cy.findByTestId(createFamilyFormIds.form).should('exist');
     });
   });
 });

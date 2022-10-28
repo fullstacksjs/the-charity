@@ -1,7 +1,7 @@
 import {
-  createFamilyButtonID,
-  createFamilyFormIDs,
-  createFamilyModalID,
+  createFamilyButtonId,
+  createFamilyFormIds,
+  createFamilyModalId,
 } from '../../src/components';
 
 describe('To Create Draft Family', () => {
@@ -11,34 +11,34 @@ describe('To Create Draft Family', () => {
 
   describe('Families Page', () => {
     it('should have a createFamily button', () => {
-      cy.findByTestId(createFamilyButtonID).should('exist');
+      cy.findByTestId(createFamilyButtonId).should('exist');
     });
 
     it('should show createFamily modal after clicking on createFamily button', () => {
-      cy.findByTestId(createFamilyButtonID).click();
-      cy.findByTestId(createFamilyModalID).should('exist');
+      cy.findByTestId(createFamilyButtonId).click();
+      cy.findByTestId(createFamilyModalId).should('exist');
     });
 
     it.skip('should not contain createFamily modal after submitting the valid form ', () => {
-      cy.findByTestId(createFamilyButtonID).click();
+      cy.findByTestId(createFamilyButtonId).click();
 
-      cy.findByTestId(createFamilyFormIDs.form).within(() => {
-        cy.findByTestId(createFamilyFormIDs.nameInput).type('مرادی');
+      cy.findByTestId(createFamilyFormIds.form).within(() => {
+        cy.findByTestId(createFamilyFormIds.nameInput).type('مرادی');
         cy.root().submit();
       });
 
-      cy.findByTestId(createFamilyModalID).should('not.exist');
+      cy.findByTestId(createFamilyModalId).should('not.exist');
     });
 
     it.skip('should show mutation result notification', () => {
-      cy.findByTestId(createFamilyButtonID).click();
+      cy.findByTestId(createFamilyButtonId).click();
 
-      cy.findByTestId(createFamilyFormIDs.form).within(() => {
-        cy.findByTestId(createFamilyFormIDs.nameInput).type('مرادی');
+      cy.findByTestId(createFamilyFormIds.form).within(() => {
+        cy.findByTestId(createFamilyFormIds.nameInput).type('مرادی');
         cy.root().submit();
       });
 
-      cy.findByTestId(createFamilyFormIDs.notification.success).should('exist');
+      cy.findByTestId(createFamilyFormIds.notification.success).should('exist');
     });
   });
 });

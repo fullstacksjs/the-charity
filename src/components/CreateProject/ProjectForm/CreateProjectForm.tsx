@@ -13,7 +13,7 @@ interface Props {
   dismiss: () => void;
 }
 
-export const createProjectFormIDs = {
+export const createProjectFormIds = {
   form: 'create-project-form',
   nameInput: 'project-name',
   descriptionInput: 'project-description',
@@ -40,7 +40,7 @@ const FormSchema = yup
 // NOTE: the spread is to avoid the type error with notification props not accepting data attribute
 const notifySuccessCreation = (name: string) =>
   showNotification({
-    ...createTestAttr(createProjectFormIDs.notification.success),
+    ...createTestAttr(createProjectFormIds.notification.success),
     color: 'successDefault',
     title: messages.projects.create,
     message: messages.projects.notification.successfulCreate(name),
@@ -48,7 +48,7 @@ const notifySuccessCreation = (name: string) =>
 
 const notifyFailedCreation = (name: string) =>
   showNotification({
-    ...createTestAttr(createProjectFormIDs.notification.success),
+    ...createTestAttr(createProjectFormIds.notification.success),
     color: 'errorDefault',
     title: messages.projects.create,
     message: messages.projects.notification.failedCreate(name),
@@ -92,7 +92,7 @@ export const CreateProjectForm = ({ dismiss }: Props) => {
             size="sm"
             error={errors.name?.message}
             {...register('name')}
-            {...createTestAttr(createProjectFormIDs.nameInput)}
+            {...createTestAttr(createProjectFormIds.nameInput)}
           />
           <Textarea
             placeholder={
@@ -101,7 +101,7 @@ export const CreateProjectForm = ({ dismiss }: Props) => {
             label={messages.projects.createForm.descriptionInput.label}
             error={errors.description?.message}
             {...register('description')}
-            {...createTestAttr(createProjectFormIDs.descriptionInput)}
+            {...createTestAttr(createProjectFormIds.descriptionInput)}
           />
         </Stack>
         <Group spacing={20}>
@@ -110,7 +110,7 @@ export const CreateProjectForm = ({ dismiss }: Props) => {
             size="sm"
             loading={loading}
             disabled={!isValid}
-            {...createTestAttr(createProjectFormIDs.submitBtn)}
+            {...createTestAttr(createProjectFormIds.submitBtn)}
           >
             {messages.projects.createForm.submitBtn.text}
           </Button>

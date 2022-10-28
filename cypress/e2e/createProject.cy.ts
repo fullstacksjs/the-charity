@@ -1,7 +1,7 @@
 import {
-  createProjectFormIDs,
-  createProjectID,
-  createProjectModalID,
+  createProjectFormIds,
+  createProjectId,
+  createProjectModalId,
 } from '../../src/components';
 
 const createProjectNavSelector = 'a[href="/projects"]';
@@ -13,23 +13,23 @@ describe('Create Project', () => {
   });
 
   it('Finds the create project button in projects page', () => {
-    cy.findByTestId(createProjectID).should('exist');
+    cy.findByTestId(createProjectId).should('exist');
   });
 
   it('Finds the modal after clicking on the create project button', () => {
-    cy.findByTestId(createProjectID).click();
-    cy.findByTestId(createProjectModalID).should('exist');
+    cy.findByTestId(createProjectId).click();
+    cy.findByTestId(createProjectModalId).should('exist');
   });
 
   it.skip('Sees the successful notification when submits the form correctly', () => {
-    cy.findByTestId(createProjectID).click();
+    cy.findByTestId(createProjectId).click();
     cy.findByTestId('form').within(() => {
-      cy.findByTestId(createProjectFormIDs.nameInput).type('نام');
-      cy.findByTestId(createProjectFormIDs.notification.success).type(
+      cy.findByTestId(createProjectFormIds.nameInput).type('نام');
+      cy.findByTestId(createProjectFormIds.notification.success).type(
         'توضیح کوتاه',
       );
-      cy.findByTestId(createProjectFormIDs.submitBtn).click();
+      cy.findByTestId(createProjectFormIds.submitBtn).click();
     });
-    cy.findByTestId(createProjectFormIDs.notification.success).should('exist');
+    cy.findByTestId(createProjectFormIds.notification.success).should('exist');
   });
 });

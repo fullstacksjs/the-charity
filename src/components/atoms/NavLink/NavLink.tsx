@@ -17,7 +17,7 @@ const useStyles = createStyles(theme => ({
   },
 }));
 
-export const NavlinkID = 'nav-link';
+export const NavlinkId = 'nav-link';
 
 export const NavLink = ({ label, icon, path }: NavLinkProps) => {
   const { classes } = useStyles();
@@ -34,7 +34,7 @@ export const NavLink = ({ label, icon, path }: NavLinkProps) => {
       rightSection={icon}
       active={pathname === path}
       className={classes.root}
-      {...createTestAttr(NavlinkID)}
+      {...createTestAttr(NavlinkId)}
     />
   );
 };

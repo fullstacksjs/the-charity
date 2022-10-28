@@ -7,7 +7,7 @@ import { CreateProjectForm } from './CreateProjectForm';
 
 type Props = Pick<ModalProps, 'onClose' | 'opened'>;
 
-export const createProjectModalID = 'create-project-modal';
+export const createProjectModalId = 'create-project-modal';
 
 export const CreateProjectModal = ({ opened, onClose }: Props) => {
   return (
@@ -17,7 +17,7 @@ export const CreateProjectModal = ({ opened, onClose }: Props) => {
       centered
       opened={opened}
       onClose={onClose}
-      {...createTestAttr(createProjectModalID)}
+      {...createTestAttr(createProjectModalId)}
     >
       <CreateProjectForm dismiss={onClose} />
     </Modal>

@@ -8,7 +8,7 @@ interface Props {
   onClick?: React.MouseEventHandler<HTMLButtonElement>;
 }
 
-export const createFamilyButtonID = 'create-family-button';
+export const createFamilyButtonId = 'create-family-button';
 
 export const CreateFamilyButton = ({ onClick }: Props) => {
   return (
@@ -17,7 +17,7 @@ export const CreateFamilyButton = ({ onClick }: Props) => {
       size="sm"
       leftIcon={<PlusIcon width="16" height="16" />}
       onClick={onClick}
-      {...createTestAttr(createFamilyButtonID)}
+      {...createTestAttr(createFamilyButtonId)}
     >
       {messages.families.create}
     </Button>
