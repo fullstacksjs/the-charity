@@ -10,8 +10,11 @@ import {
   TextInput,
   Title,
 } from '@mantine/core';
+import { useNavigate } from '@tanstack/react-location';
 import { useForm } from 'react-hook-form';
 import * as yup from 'yup';
+
+import { setFakeLoggedIn } from '../../fakeLogin';
 
 interface FormInputs {
   userName: string;
@@ -30,8 +33,13 @@ const FormSchema = yup.object({
 });
 
 export const LoginForm = () => {
+  const navigate = useNavigate();
+
   const onSubmit = ({ userName, password }: FormInputs) => {
     console.log('username:', userName, 'password:', password);
+    // FIXME should delete this after backend got integrated
+    setFakeLoggedIn();
+    navigate({ to: '/families', replace: true });
   };
 
   const {

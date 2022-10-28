@@ -8,14 +8,6 @@ import { mount } from 'cypress/react18';
 import { apolloClient } from '../../src/data-layer';
 import { ThemeProvider } from '../../src/design';
 
-declare global {
-  namespace Cypress {
-    interface Chainable {
-      mount: typeof mount;
-    }
-  }
-}
-
 Cypress.Commands.add(
   'mount',
   (...[element, ...rest]: Parameters<typeof mount>) =>

@@ -10,7 +10,8 @@
       "@camp/config": ["./src/config/index.ts"],
       "@camp/router": ["./src/router/index.ts"],
       "@camp/messages": ["./src/messages.ts"],
-      "@camp/hooks": ["./src/hooks"]
+      "@camp/hooks": ["./src/hooks/index.ts"],
+      "@camp/infra": ["./src/infra/index.ts"]
     },
     "types": ["cypress", "@testing-library/cypress"]
   },

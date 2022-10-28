@@ -1,4 +1,4 @@
-import { FamilyEmptyState } from '@camp/components';
+import { FamilyEmptyState, GuardLayout } from '@camp/components';
 import { messages } from '@camp/messages';
 import type {
   MakeGenerics,
@@ -6,6 +6,7 @@ import type {
 } from '@tanstack/react-location';
 import { Navigate, ReactLocation, Router } from '@tanstack/react-location';
 
+import { setFakeLoggedIn, setFakeLoggedOut } from './fakeLogin';
 import {
   DashboardLayout,
   Families,
@@ -15,6 +16,21 @@ import {
 } from './pages';
 
 export const location = new ReactLocation();
+
+// FIXME should delete this after backend got integrated
+const startFakeAuth = () => {
+  document.addEventListener('keydown', event => {
+    if (event.key === 'A') {
+      setFakeLoggedIn();
+      location.navigate({ ...location.current, pathname: '/' });
+    } else if (event.key === 'N') {
+      setFakeLoggedOut();
+      location.navigate({ ...location.current, pathname: '/' });
+    }
+  });
+};
+
+startFakeAuth();
 
 export type LocationGenerics = MakeGenerics<{
   RouteMeta: {
@@ -30,36 +46,39 @@ interface Route extends Omit<LocationRoute<LocationGenerics>, 'path'> {
 const routes: Route[] = [
   { path: '/login', element: <Login /> },
   {
-    element: <DashboardLayout />,
+    element: <GuardLayout />,
     children: [
       {
-        path: '/families',
-        element: <Families />,
-        meta: {
-          breadcrumb: messages.families.title,
-        },
+        element: <DashboardLayout />,
         children: [
           {
-            path: '/family-detail',
-            element: <FamilyDetail />,
+            path: '/families',
+            element: <Families />,
             meta: {
-              breadcrumb: messages.familyDetail.title,
+              breadcrumb: messages.families.title,
             },
+            children: [
+              {
+                path: '/family-detail',
+                element: <FamilyDetail />,
+                meta: {
+                  breadcrumb: messages.familyDetail.title,
+                },
+              },
+              {
+                element: <FamilyEmptyState />,
+              },
+            ],
           },
           {
-            element: <FamilyEmptyState />,
+            path: '/projects',
+            element: <Projects />,
+            meta: {
+              breadcrumb: messages.projects.title,
+            },
           },
+          { element: <Navigate to="/families" /> },
         ],
-      },
-      {
-        path: '/projects',
-        element: <Projects />,
-        meta: {
-          breadcrumb: messages.projects.title,
-        },
-      },
-      {
-        element: <Navigate to="families" />,
       },
     ],
   },
