@@ -2,22 +2,22 @@ import { Group } from '@mantine/core';
 import { useMatches } from '@tanstack/react-location';
 
 import type { LocationGenerics } from '../../../Routes';
+import type { BreadcrumbItem } from '../../molecules';
 import { Breadcrumbs } from '../../molecules';
 
 export interface HeaderProps {
   button: React.ReactNode;
 }
 
-export const useBreadcrumbsItems = () => {
+export const useBreadcrumbsItems = (): BreadcrumbItem[] => {
   const matches = useMatches<LocationGenerics>();
 
   return matches
-    .filter(match => match.route.meta?.breadcrumb)
+    .filter(match => match.route.meta?.breadcrumb != null)
     .map(match => {
-      const { path, meta } = match.route;
       return {
-        path: path ?? '',
-        name: meta?.breadcrumb ?? '',
+        path: match.pathname,
+        name: match.route.meta!.breadcrumb,
       };
     });
 };
