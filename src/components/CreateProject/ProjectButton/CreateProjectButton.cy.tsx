@@ -9,6 +9,6 @@ describe('Create Project Button', () => {
   });
 
   it('should be visible to users', () => {
-    cy.get(createProjectButtonId).should('exist');
+    cy.findByTestId(createProjectButtonId).should('exist');
   });
 });
