@@ -1,4 +1,7 @@
-import { CreateProjectButton, createProjectId } from './CreateProjectButton';
+import {
+  CreateProjectButton,
+  createProjectButtonId,
+} from './CreateProjectButton';
 
 describe('Create Project Button', () => {
   beforeEach(() => {
@@ -6,6 +9,6 @@ describe('Create Project Button', () => {
   });
 
   it('should be visible to users', () => {
-    cy.get(createProjectId).should('exist');
+    cy.get(createProjectButtonId).should('exist');
   });
 });

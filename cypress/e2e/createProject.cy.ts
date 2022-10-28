@@ -1,6 +1,6 @@
 import {
+  createProjectButtonId,
   createProjectFormIds,
-  createProjectId,
   createProjectModalId,
 } from '../../src/components';
 
@@ -13,16 +13,16 @@ describe('Create Project', () => {
   });
 
   it('Finds the create project button in projects page', () => {
-    cy.findByTestId(createProjectId).should('exist');
+    cy.findByTestId(createProjectButtonId).should('exist');
   });
 
   it('Finds the modal after clicking on the create project button', () => {
-    cy.findByTestId(createProjectId).click();
+    cy.findByTestId(createProjectButtonId).click();
     cy.findByTestId(createProjectModalId).should('exist');
   });
 
   it.skip('Sees the successful notification when submits the form correctly', () => {
-    cy.findByTestId(createProjectId).click();
+    cy.findByTestId(createProjectButtonId).click();
     cy.findByTestId('form').within(() => {
       cy.findByTestId(createProjectFormIds.nameInput).type('نام');
       cy.findByTestId(createProjectFormIds.notification.success).type(
