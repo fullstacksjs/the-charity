@@ -69,7 +69,7 @@ jobs:
         with:
           record: true
           parallel: true
-          start: npm run dev:ci
+          start: npx vite
           build: npm run build
           wait-on: http://127.0.0.1:${{ env.PORT }}
         env:
@@ -81,6 +81,6 @@ jobs:
         with:
           install: false
           component: true
-          start: npm run dev:ci
+          start: npx vite
           build: npm run build
           wait-on: http://127.0.0.1:${{ env.PORT }}
