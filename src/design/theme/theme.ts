@@ -75,13 +75,6 @@ export const theme: MantineThemeOverride = {
   primaryColor: 'indigo',
   defaultRadius: 'sm',
   components: {
-    TextInput: {
-      styles: {
-        root: {
-          minHeight: '82px',
-        },
-      },
-    },
     Modal: {
       styles: {
         modal: {
