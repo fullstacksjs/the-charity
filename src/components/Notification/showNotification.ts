@@ -14,12 +14,12 @@ export const showNotification = ({ type, ...rest }: Props) => {
       const { red, green } = theme.colors;
       return {
         root: {
-          backgroundColor: type === 'success' ? green[1] : red[1],
+          backgroundColor: type === 'success' ? green[0] : red[0],
         },
         closeButton: {
           // eslint-disable-next-line @typescript-eslint/naming-convention
           '&:hover': {
-            backgroundColor: type === 'success' ? green[2] : red[2],
+            backgroundColor: type === 'success' ? green[1] : red[1],
           },
         },
       };
