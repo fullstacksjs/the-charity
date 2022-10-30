@@ -25,16 +25,19 @@ const styles: Styles<
 });
 
 export const concatPathLevels = (items: BreadcrumbItem[]) => {
-  return items.reduce<BreadcrumbItem[]>((acc, current, level) => {
-    if (level === 0) return [current];
-    return [
-      ...acc,
-      {
-        ...current,
-        path: acc[level - 1]!.path + current.path,
-      },
-    ];
-  }, []);
+  return items.reduce<BreadcrumbItem[]>(
+    (acc, current, level) =>
+      level === 0
+        ? [current]
+        : [
+            ...acc,
+            {
+              ...current,
+              path: acc[level - 1]!.path + current.path,
+            },
+          ],
+    [],
+  );
 };
 
 export const Breadcrumbs = ({ items }: Props) => {

@@ -12,7 +12,7 @@ describe("concatenation of breadcrumbs items' path levels", () => {
     expect(result).toEqual(items);
   });
 
-  it('should generate /level1/level2 for two level', () => {
+  it('should work correctly for two levels', () => {
     const items = [
       { path: '/level1', name: 'levelOne' },
       { path: '/level2', name: 'levelTwo' },
@@ -28,7 +28,7 @@ describe("concatenation of breadcrumbs items' path levels", () => {
     expect(result).toEqual(expectedResult);
   });
 
-  it('should generate /level1/level2/level3 for three level', () => {
+  it('should work correctly for three levels', () => {
     const items = [
       { path: '/level1', name: 'levelOne' },
       { path: '/level2', name: 'levelTwo' },
