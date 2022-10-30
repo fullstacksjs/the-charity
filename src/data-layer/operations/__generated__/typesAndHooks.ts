@@ -4,15 +4,9 @@ import { gql } from '@apollo/client';
 import * as Apollo from '@apollo/client';
 export type Maybe<T> = T | null;
 export type InputMaybe<T> = Maybe<T>;
-export type Exact<T extends { [key: string]: unknown }> = {
-  [K in keyof T]: T[K];
-};
-export type MakeOptional<T, K extends keyof T> = Omit<T, K> & {
-  [SubKey in K]?: Maybe<T[SubKey]>;
-};
-export type MakeMaybe<T, K extends keyof T> = Omit<T, K> & {
-  [SubKey in K]: Maybe<T[SubKey]>;
-};
+export type Exact<T extends { [key: string]: unknown }> = { [K in keyof T]: T[K] };
+export type MakeOptional<T, K extends keyof T> = Omit<T, K> & { [SubKey in K]?: Maybe<T[SubKey]> };
+export type MakeMaybe<T, K extends keyof T> = Omit<T, K> & { [SubKey in K]: Maybe<T[SubKey]> };
 const defaultOptions = {} as const;
 /** All built-in and custom scalars, mapped to their actual values */
 export type Scalars = {
@@ -31,7 +25,7 @@ export enum AccommodationType {
   /** householder is owner of the house */
   Owner = 'Owner',
   /** householder rents house for specific range of time */
-  Rent = 'Rent',
+  Rent = 'Rent'
 }
 
 export type Address = {
@@ -43,8 +37,8 @@ export type Address = {
 
 export type Admin = {
   __typename?: 'Admin';
-  email: Scalars['String'];
   id: Scalars['ID'];
+  username: Scalars['String'];
 };
 
 export type BankAccount = {
@@ -55,13 +49,29 @@ export type BankAccount = {
   iban: Scalars['IBAN'];
 };
 
-export type CompleteHouseholder = Member & {
-  __typename?: 'CompleteHouseholder';
+export type CompletedFamily = {
+  __typename?: 'CompletedFamily';
+  archived: Scalars['Boolean'];
+  code: Scalars['String'];
+  completedDate: Scalars['DateTime'];
+  dependents: Array<Dependent>;
+  draftDate: Scalars['DateTime'];
+  id: Scalars['ID'];
+  name: Scalars['String'];
+  projects: Array<Project>;
+  referrerCode: Scalars['String'];
+  severity: FamilySeverity;
+  status: FamilyStatus;
+};
+
+export type CompletedHouseholder = Member & {
+  __typename?: 'CompletedHouseholder';
   accommodationType: AccommodationType;
   addicted: Scalars['Boolean'];
   bankAccounts: Array<BankAccount>;
   cityOfBirth?: Maybe<Scalars['DateTime']>;
   contacts: Array<Contact>;
+  created_at: Scalars['DateTime'];
   dateOfBirth?: Maybe<Scalars['DateTime']>;
   dependent: Array<Dependent>;
   dependents: Array<Dependent>;
@@ -99,22 +109,9 @@ export type CompleteHouseholder = Member & {
   secondHouseholderProblem: SecondHouseholderProblem;
   skills: Array<Skill>;
   ssn?: Maybe<Scalars['String']>;
+  status: HouseholderStatus;
   subsidies: Array<Subsidy>;
-};
-
-export type CompletedFamily = {
-  __typename?: 'CompletedFamily';
-  archived: Scalars['Boolean'];
-  code: Scalars['String'];
-  completedDate: Scalars['DateTime'];
-  dependents: Array<Dependent>;
-  draftDate: Scalars['DateTime'];
-  id: Scalars['ID'];
-  name: Scalars['String'];
-  projects: Array<Project>;
-  referrerCode: Scalars['String'];
-  severity: FamilySeverity;
-  status: FamilyStatus;
+  updated_at: Scalars['DateTime'];
 };
 
 export type Contact = {
@@ -125,6 +122,11 @@ export type Contact = {
 };
 
 export type CreateFamilyInput = {
+  name: Scalars['String'];
+};
+
+export type CreateHouseholderInput = {
+  family_id: Scalars['String'];
   name: Scalars['String'];
 };
 
@@ -143,6 +145,7 @@ export type Death = {
 export type Dependent = Member & {
   __typename?: 'Dependent';
   cityOfBirth?: Maybe<Scalars['DateTime']>;
+  created_at: Scalars['DateTime'];
   dateOfBirth?: Maybe<Scalars['DateTime']>;
   family: Family;
   fatherName?: Maybe<Scalars['String']>;
@@ -156,6 +159,8 @@ export type Dependent = Member & {
   nationality?: Maybe<Scalars['String']>;
   religion?: Maybe<Religion>;
   ssn?: Maybe<Scalars['String']>;
+  status: HouseholderStatus;
+  updated_at: Scalars['DateTime'];
 };
 
 /** religion of the members */
@@ -167,12 +172,12 @@ export enum Diploma {
   /** master */
   Master = 'Master',
   /** none */
-  None = 'None',
+  None = 'None'
 }
 
 /** disability status */
 export enum DisabilityStatus {
-  Sth = 'Sth',
+  Sth = 'Sth'
 }
 
 export type Divorced = {
@@ -212,6 +217,7 @@ export type DraftHouseholder = Member & {
   bankAccounts?: Maybe<Array<BankAccount>>;
   cityOfBirth?: Maybe<Scalars['DateTime']>;
   contacts?: Maybe<Array<Contact>>;
+  created_at: Scalars['DateTime'];
   dateOfBirth?: Maybe<Scalars['DateTime']>;
   dependent: Array<Dependent>;
   description?: Maybe<Scalars['String']>;
@@ -248,17 +254,19 @@ export type DraftHouseholder = Member & {
   secondHouseholderProblem?: Maybe<SecondHouseholderProblem>;
   skills?: Maybe<Array<Skill>>;
   ssn?: Maybe<Scalars['String']>;
+  status: HouseholderStatus;
   subsidies?: Maybe<Array<Subsidy>>;
+  updated_at: Scalars['DateTime'];
 };
 
 /** education status of people */
 export enum EducationStatus {
-  Sth = 'Sth',
+  Sth = 'Sth'
 }
 
 export enum FamilySeverity {
   Critical = 'CRITICAL',
-  Normal = 'NORMAL',
+  Normal = 'NORMAL'
 }
 
 /** religion of the members */
@@ -266,7 +274,7 @@ export enum FamilyStatus {
   /** FamilyStatus is completed. */
   Completed = 'COMPLETED',
   /** Family is drafted */
-  Draft = 'DRAFT',
+  Draft = 'DRAFT'
 }
 
 /** religion of the members */
@@ -274,12 +282,17 @@ export enum Gender {
   /** gender is female. */
   Female = 'Female',
   /** gender is male */
-  Male = 'Male',
+  Male = 'Male'
 }
 
 /** health status */
 export enum HealthStatus {
-  Sth = 'Sth',
+  Sth = 'Sth'
+}
+
+export enum HouseholderStatus {
+  Completed = 'COMPLETED',
+  Draft = 'DRAFT'
 }
 
 export type Insurance = {
@@ -295,17 +308,23 @@ export type Job = {
   title: Scalars['String'];
 };
 
+export type LoginInput = {
+  password: Scalars['String'];
+  username: Scalars['String'];
+};
+
 /** marital status of the householder */
 export enum MaritalStatus {
   Divorced = 'Divorced',
   Married = 'Married',
   Separated = 'Separated',
   Single = 'Single',
-  Widowed = 'Widowed',
+  Widowed = 'Widowed'
 }
 
 export type Member = {
   cityOfBirth?: Maybe<Scalars['DateTime']>;
+  created_at: Scalars['DateTime'];
   dateOfBirth?: Maybe<Scalars['DateTime']>;
   family: Family;
   fatherName?: Maybe<Scalars['String']>;
@@ -319,20 +338,36 @@ export type Member = {
   nationality?: Maybe<Scalars['String']>;
   religion?: Maybe<Religion>;
   ssn?: Maybe<Scalars['String']>;
+  status: HouseholderStatus;
+  updated_at: Scalars['DateTime'];
 };
 
 export type Mutation = {
   __typename?: 'Mutation';
-  createFamily: Family;
+  createFamily: DraftFamily;
+  createHouseholder: Householder;
   createProject: Project;
+  login?: Maybe<Admin>;
 };
+
 
 export type MutationCreateFamilyArgs = {
   input: CreateFamilyInput;
 };
 
+
+export type MutationCreateHouseholderArgs = {
+  input: CreateHouseholderInput;
+};
+
+
 export type MutationCreateProjectArgs = {
   input: CreateProjectInput;
+};
+
+
+export type MutationLoginArgs = {
+  input: LoginInput;
 };
 
 export type Possession = {
@@ -365,38 +400,29 @@ export enum ProjectStatus {
   Done = 'DONE',
   Inprogress = 'INPROGRESS',
   Planning = 'PLANNING',
-  Suspended = 'SUSPENDED',
+  Suspended = 'SUSPENDED'
 }
 
 export type Query = {
   __typename?: 'Query';
-  admin: Admin;
-  admins: Array<Admin>;
   dependent: Dependent;
   dependents: Array<Dependent>;
   families: Array<Family>;
   family?: Maybe<Family>;
-  householder: Householder;
-  householders: Array<Householder>;
   project: Project;
   projects: Array<Project>;
 };
 
-export type QueryAdminArgs = {
-  id: Scalars['Int'];
-};
 
 export type QueryDependentArgs = {
   id: Scalars['Int'];
 };
 
+
 export type QueryFamilyArgs = {
   id: Scalars['String'];
 };
 
-export type QueryHouseholderArgs = {
-  id: Scalars['Int'];
-};
 
 export type QueryProjectArgs = {
   id: Scalars['Int'];
@@ -407,7 +433,7 @@ export enum Religion {
   /** the religion of the member is christian */
   Christianity = 'Christianity',
   /** the religion of the member is islam */
-  Islam = 'Islam',
+  Islam = 'Islam'
 }
 
 /** second householder problem = [ prison | divorced | death ] */
@@ -428,62 +454,41 @@ export type Subsidy = {
 
 /** subsidy types */
 export enum SubsidyType {
-  Sth = 'Sth',
+  Sth = 'Sth'
 }
 
 /** family = [ draft-family, complete-family ] */
 export type Family = CompletedFamily | DraftFamily;
 
-/** householder = [ draft-house, complete-house ] */
-export type Householder = CompleteHouseholder | DraftHouseholder;
+/** householder = [ draft-householder, completed-householder ] */
+export type Householder = CompletedHouseholder | DraftHouseholder;
 
 export type CreateDraftFamilyMutationVariables = Exact<{
   name: Scalars['String'];
 }>;
 
-export type CreateDraftFamilyMutation = {
-  __typename?: 'Mutation';
-  createFamily:
-    | { __typename?: 'CompletedFamily' }
-    | { __typename?: 'DraftFamily'; id: string; name?: string | null };
-};
+
+export type CreateDraftFamilyMutation = { __typename?: 'Mutation', createFamily: { __typename?: 'DraftFamily', id: string, name?: string | null } };
 
 export type CreateProjectMutationVariables = Exact<{
   input: CreateProjectInput;
 }>;
 
-export type CreateProjectMutation = {
-  __typename?: 'Mutation';
-  createProject: {
-    __typename?: 'Project';
-    id: string;
-    name: string;
-    description?: string | null;
-    status: ProjectStatus;
-  };
-};
 
-export type GetAdminListQueryVariables = Exact<{ [key: string]: never }>;
+export type CreateProjectMutation = { __typename?: 'Mutation', createProject: { __typename?: 'Project', id: string, name: string, description?: string | null, status: ProjectStatus } };
 
-export type GetAdminListQuery = {
-  __typename?: 'Query';
-  admins: Array<{ __typename?: 'Admin'; id: string }>;
-};
 
 export const CreateDraftFamilyDocument = gql`
-  mutation CreateDraftFamily($name: String!) {
-    createFamily(input: { name: $name }) {
-      ... on DraftFamily {
-        id
-        name
-      }
+    mutation CreateDraftFamily($name: String!) {
+  createFamily(input: {name: $name}) {
+    ... on DraftFamily {
+      id
+      name
     }
   }
-`;
-export type CreateDraftFamilyMutationFn = Apollo.MutationFunction<
-  CreateDraftFamilyMutation,
-  CreateDraftFamilyMutationVariables
->;
+}
+    `;
+export type CreateDraftFamilyMutationFn = Apollo.MutationFunction<CreateDraftFamilyMutation, CreateDraftFamilyMutationVariables>;
 
 /**
  * __useCreateDraftFamilyMutation__
@@ -502,41 +507,24 @@ export type CreateDraftFamilyMutationFn = Apollo.MutationFunction<
  *   },
  * });
  */
-export function useCreateDraftFamilyMutation(
-  baseOptions?: Apollo.MutationHookOptions<
-    CreateDraftFamilyMutation,
-    CreateDraftFamilyMutationVariables
-  >,
-) {
-  const options = { ...defaultOptions, ...baseOptions };
-  return Apollo.useMutation<
-    CreateDraftFamilyMutation,
-    CreateDraftFamilyMutationVariables
-  >(CreateDraftFamilyDocument, options);
-}
-export type CreateDraftFamilyMutationHookResult = ReturnType<
-  typeof useCreateDraftFamilyMutation
->;
-export type CreateDraftFamilyMutationResult =
-  Apollo.MutationResult<CreateDraftFamilyMutation>;
-export type CreateDraftFamilyMutationOptions = Apollo.BaseMutationOptions<
-  CreateDraftFamilyMutation,
-  CreateDraftFamilyMutationVariables
->;
+export function useCreateDraftFamilyMutation(baseOptions?: Apollo.MutationHookOptions<CreateDraftFamilyMutation, CreateDraftFamilyMutationVariables>) {
+        const options = {...defaultOptions, ...baseOptions}
+        return Apollo.useMutation<CreateDraftFamilyMutation, CreateDraftFamilyMutationVariables>(CreateDraftFamilyDocument, options);
+      }
+export type CreateDraftFamilyMutationHookResult = ReturnType<typeof useCreateDraftFamilyMutation>;
+export type CreateDraftFamilyMutationResult = Apollo.MutationResult<CreateDraftFamilyMutation>;
+export type CreateDraftFamilyMutationOptions = Apollo.BaseMutationOptions<CreateDraftFamilyMutation, CreateDraftFamilyMutationVariables>;
 export const CreateProjectDocument = gql`
-  mutation createProject($input: CreateProjectInput!) {
-    createProject(input: $input) {
-      id
-      name
-      description
-      status
-    }
+    mutation CreateProject($input: CreateProjectInput!) {
+  createProject(input: $input) {
+    id
+    name
+    description
+    status
   }
-`;
-export type CreateProjectMutationFn = Apollo.MutationFunction<
-  CreateProjectMutation,
-  CreateProjectMutationVariables
->;
+}
+    `;
+export type CreateProjectMutationFn = Apollo.MutationFunction<CreateProjectMutation, CreateProjectMutationVariables>;
 
 /**
  * __useCreateProjectMutation__
@@ -555,81 +543,10 @@ export type CreateProjectMutationFn = Apollo.MutationFunction<
  *   },
  * });
  */
-export function useCreateProjectMutation(
-  baseOptions?: Apollo.MutationHookOptions<
-    CreateProjectMutation,
-    CreateProjectMutationVariables
-  >,
-) {
-  const options = { ...defaultOptions, ...baseOptions };
-  return Apollo.useMutation<
-    CreateProjectMutation,
-    CreateProjectMutationVariables
-  >(CreateProjectDocument, options);
-}
-export type CreateProjectMutationHookResult = ReturnType<
-  typeof useCreateProjectMutation
->;
-export type CreateProjectMutationResult =
-  Apollo.MutationResult<CreateProjectMutation>;
-export type CreateProjectMutationOptions = Apollo.BaseMutationOptions<
-  CreateProjectMutation,
-  CreateProjectMutationVariables
->;
-export const GetAdminListDocument = gql`
-  query getAdminList {
-    admins {
-      id
-    }
-  }
-`;
-
-/**
- * __useGetAdminListQuery__
- *
- * To run a query within a React component, call `useGetAdminListQuery` and pass it any options that fit your needs.
- * When your component renders, `useGetAdminListQuery` returns an object from Apollo Client that contains loading, error, and data properties
- * you can use to render your UI.
- *
- * @param baseOptions options that will be passed into the query, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options;
- *
- * @example
- * const { data, loading, error } = useGetAdminListQuery({
- *   variables: {
- *   },
- * });
- */
-export function useGetAdminListQuery(
-  baseOptions?: Apollo.QueryHookOptions<
-    GetAdminListQuery,
-    GetAdminListQueryVariables
-  >,
-) {
-  const options = { ...defaultOptions, ...baseOptions };
-  return Apollo.useQuery<GetAdminListQuery, GetAdminListQueryVariables>(
-    GetAdminListDocument,
-    options,
-  );
-}
-export function useGetAdminListLazyQuery(
-  baseOptions?: Apollo.LazyQueryHookOptions<
-    GetAdminListQuery,
-    GetAdminListQueryVariables
-  >,
-) {
-  const options = { ...defaultOptions, ...baseOptions };
-  return Apollo.useLazyQuery<GetAdminListQuery, GetAdminListQueryVariables>(
-    GetAdminListDocument,
-    options,
-  );
-}
-export type GetAdminListQueryHookResult = ReturnType<
-  typeof useGetAdminListQuery
->;
-export type GetAdminListLazyQueryHookResult = ReturnType<
-  typeof useGetAdminListLazyQuery
->;
-export type GetAdminListQueryResult = Apollo.QueryResult<
-  GetAdminListQuery,
-  GetAdminListQueryVariables
->;
+export function useCreateProjectMutation(baseOptions?: Apollo.MutationHookOptions<CreateProjectMutation, CreateProjectMutationVariables>) {
+        const options = {...defaultOptions, ...baseOptions}
+        return Apollo.useMutation<CreateProjectMutation, CreateProjectMutationVariables>(CreateProjectDocument, options);
+      }
+export type CreateProjectMutationHookResult = ReturnType<typeof useCreateProjectMutation>;
+export type CreateProjectMutationResult = Apollo.MutationResult<CreateProjectMutation>;
+export type CreateProjectMutationOptions = Apollo.BaseMutationOptions<CreateProjectMutation, CreateProjectMutationVariables>;

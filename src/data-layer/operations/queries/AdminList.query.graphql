@@ -1,5 +1,0 @@
-query getAdminList {
-  admins {
-    id
-  }
-}

@@ -1,4 +1,4 @@
-mutation createProject($input: CreateProjectInput!) {
+mutation CreateProject($input: CreateProjectInput!) {
   createProject(input: $input) {
     id
     name

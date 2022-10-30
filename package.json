@@ -3,9 +3,8 @@
   "private": true,
   "version": "0.0.0",
   "scripts": {
-    "dev:local": "dotenv -e .env.dev -- npm run dev:ci",
-    "dev:ci": "vite",
-    "dev": "npm-run-all -l -p codegen:watch dev:local",
+    "dev:local": "dotenv -e .env.dev -- vite",
+    "dev": "npm run codegen && npm-run-all -l -p codegen:watch dev:local",
     "build": "tsc && vite build",
     "preview": "vite preview",
     "prepare": "./scripts/prepare",
