@@ -24,14 +24,29 @@ const styles: Styles<
   },
 });
 
+export const concatPathLevels = (items: BreadcrumbItem[]) => {
+  return items.reduce<BreadcrumbItem[]>((acc, current, level) => {
+    if (level === 0) return [current];
+    return [
+      ...acc,
+      {
+        ...current,
+        path: acc[level - 1]!.path + current.path,
+      },
+    ];
+  }, []);
+};
+
 export const Breadcrumbs = ({ items }: Props) => {
+  const transformedItems = concatPathLevels(items);
+
   return (
     <MantineBreadcrumbs
       styles={styles}
       separator={<ChevronLeftIcon width="16" height="16" />}
     >
       <HomeIcon width="24" height="24" />
-      {items.map(item => (
+      {transformedItems.map(item => (
         <Anchor
           key={item.name + item.path}
           to={item.path as AppRoute}

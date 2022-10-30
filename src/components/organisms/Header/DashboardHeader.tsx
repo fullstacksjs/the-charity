@@ -10,14 +10,15 @@ export interface HeaderProps {
 
 export const useBreadcrumbsItems = (): BreadcrumbItem[] => {
   const matches = useMatches();
-  console.log(matches);
 
   return matches
-    .filter(match => match.route.meta?.breadcrumb != null)
+    .filter(match => Boolean(match.route.meta?.breadcrumb))
+    .filter(match => Boolean(match.route.path))
     .map(match => {
+      const { path, meta } = match.route;
       return {
-        path: match.pathname,
-        name: match.route.meta!.breadcrumb,
+        path: path!,
+        name: meta!.breadcrumb,
       };
     });
 };
