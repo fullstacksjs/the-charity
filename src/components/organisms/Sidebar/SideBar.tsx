@@ -2,7 +2,9 @@ import { PackageIcon, PeopleIcon } from '@camp/design';
 import { messages } from '@camp/messages';
 import { createStyles, Image, Stack, Text } from '@mantine/core';
 
+import type { NavLinkProps } from '../../atoms';
 import { NavLink } from '../../atoms';
+import { ExitNavLink } from '../../atoms/NavLink/ExitNavLink';
 
 const useStyles = createStyles(theme => ({
   root: {
@@ -19,13 +21,7 @@ const useStyles = createStyles(theme => ({
   },
 }));
 
-export interface NavLinkItem {
-  label: string;
-  icon: JSX.Element;
-  path: AppRoute;
-}
-
-const links: NavLinkItem[] = [
+const links: NavLinkProps[] = [
   {
     label: messages.families.title,
     icon: <PeopleIcon width="24" height="24" />,
@@ -53,10 +49,17 @@ export const SideBar = () => {
           {messages.companyName}
         </Text>
       </Stack>
-      <Stack spacing={20}>
-        {links.map(({ icon, label, path }) => (
-          <NavLink label={label} path={path} icon={icon} key={label} />
-        ))}
+      <Stack justify="space-between" sx={{ height: '100%' }}>
+        <Stack spacing={20}>
+          {links.map(({ icon, label, path }) => (
+            <NavLink label={label} path={path} icon={icon} key={label} />
+          ))}
+        </Stack>
+        <ExitNavLink
+          onClick={() => {
+            console.log('exit');
+          }}
+        />
       </Stack>
     </Stack>
   );
