@@ -1,4 +1,3 @@
-/* eslint-disable @typescript-eslint/no-misused-promises */
 import { messages } from '@camp/messages';
 import { yupResolver } from '@hookform/resolvers/yup';
 import {
@@ -14,14 +13,15 @@ import { useNavigate } from '@tanstack/react-location';
 import { useForm } from 'react-hook-form';
 import * as yup from 'yup';
 
-import { setFakeLoggedIn } from '../../fakeLogin';
+import { useLoginMutation } from '../../data-layer/operations';
+import { loginLocally } from '../../data-layer/variables';
 
 interface FormInputs {
-  userName: string;
+  username: string;
   password: string;
 }
 const FormSchema = yup.object({
-  userName: yup
+  username: yup
     .string()
     .trim()
     .email(messages.login.loginFrom.validation.emailErrorMessage)
@@ -34,11 +34,11 @@ const FormSchema = yup.object({
 
 export const LoginForm = () => {
   const navigate = useNavigate();
+  const [login] = useLoginMutation();
 
-  const onSubmit = ({ userName, password }: FormInputs) => {
-    console.log('username:', userName, 'password:', password);
-    // FIXME should delete this after backend got integrated
-    setFakeLoggedIn();
+  const onSubmit = ({ username, password }: FormInputs) => {
+    const data = login({ variables: { input: { username, password } } });
+    data.then(res => loginLocally()).catch(err => console.log(err));
     navigate({ to: '/families', replace: true });
   };
 
@@ -67,8 +67,8 @@ export const LoginForm = () => {
             type="email"
             placeholder={messages.login.loginFrom.emailInput.placeholder}
             label={messages.login.loginFrom.emailInput.label}
-            error={errors.userName?.message}
-            {...register('userName')}
+            error={errors.username?.message}
+            {...register('username')}
           />
           <PasswordInput
             placeholder={messages.login.loginFrom.passwordInput.placeholder}

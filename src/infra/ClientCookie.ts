@@ -18,3 +18,7 @@ export const getClientCookie = async (): Promise<ClientCookie> => {
   const isValidCookie = RawClientCookie.guard(rawCookie);
   return isValidCookie ? parseClientCookie(rawCookie) : defaultClientCookie;
 };
+
+export const removeClientCookie = () => {
+  Cookies.remove('is-logged-in');
+};

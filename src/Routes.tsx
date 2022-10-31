@@ -6,7 +6,6 @@ import type {
 } from '@tanstack/react-location';
 import { Navigate, ReactLocation, Router } from '@tanstack/react-location';
 
-import { setFakeLoggedIn, setFakeLoggedOut } from './fakeLogin';
 import {
   DashboardLayout,
   Families,
@@ -16,21 +15,6 @@ import {
 } from './pages';
 
 export const location = new ReactLocation();
-
-// FIXME should delete this after backend got integrated
-const startFakeAuth = () => {
-  document.addEventListener('keydown', event => {
-    if (event.key === 'A') {
-      setFakeLoggedIn();
-      location.navigate({ ...location.current, pathname: '/' });
-    } else if (event.key === 'N') {
-      setFakeLoggedOut();
-      location.navigate({ ...location.current, pathname: '/' });
-    }
-  });
-};
-
-startFakeAuth();
 
 export type LocationGenerics = MakeGenerics<{
   RouteMeta: {
