@@ -1,3 +1,5 @@
+import { faker } from '@faker-js/faker';
+
 import {
   createFamilyButtonId,
   createFamilyFormIds,
@@ -20,11 +22,13 @@ describe('To Create Draft Family', () => {
       cy.findByTestId(createFamilyModalId).should('exist');
     });
 
-    it.skip('should not contain createFamily modal after submitting the valid form ', () => {
+    it('should not contain createFamily modal after submitting the valid form ', () => {
       cy.findByTestId(createFamilyButtonId).click();
 
       cy.findByTestId(createFamilyFormIds.form).within(() => {
-        cy.findByTestId(createFamilyFormIds.nameInput).type('مرادی');
+        cy.findByTestId(createFamilyFormIds.nameInput).type(
+          faker.name.fullName(),
+        );
         cy.root().submit();
       });
 
@@ -35,7 +39,9 @@ describe('To Create Draft Family', () => {
       cy.findByTestId(createFamilyButtonId).click();
 
       cy.findByTestId(createFamilyFormIds.form).within(() => {
-        cy.findByTestId(createFamilyFormIds.nameInput).type('مرادی');
+        cy.findByTestId(createFamilyFormIds.nameInput).type(
+          faker.name.fullName(),
+        );
         cy.root().submit();
       });
 

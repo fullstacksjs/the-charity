@@ -1,3 +1,5 @@
+import { faker } from '@faker-js/faker';
+
 import {
   createProjectButtonId,
   createProjectFormIds,
@@ -15,8 +17,11 @@ describe.skip('Create Project', () => {
 
   it('[OK]: Admin creates project', () => {
     cy.get('form').within(() => {
-      cy.findByTestId(createProjectFormIds.nameInput).type('نام');
-      cy.findByTestId(createProjectFormIds.submitBtn).click();
+      cy.findByTestId(createProjectFormIds.nameInput).type(faker.lorem.word(5));
+      cy.findByTestId(createProjectFormIds.descriptionInput).type(
+        faker.lorem.lines(1),
+      );
+      cy.get(createProjectFormIds.submitBtn).click();
     });
     cy.findByTestId(createProjectFormIds.notification.success).should('exist');
   });
