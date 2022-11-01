@@ -28,5 +28,8 @@ export default defineConfig({
     environment: 'jsdom',
     globals: true,
   },
+  build: {
+    target: 'esnext',
+  },
   envPrefix: 'APP',
 });
