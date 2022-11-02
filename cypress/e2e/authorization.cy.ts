@@ -8,9 +8,9 @@ describe('Authorization', () => {
     cy.location('pathname').should('eq', '/login');
   });
 
-  // NOTE this is in scope of FSK-97
-  it.skip('should be redirected to the families page after successful login', () => {
+  it('should be redirected to the families page after successful login', () => {
     cy.login();
+    cy.visit('/families');
     cy.location('pathname').should('eq', '/families');
   });
 
@@ -23,7 +23,6 @@ describe('Authorization', () => {
   // NOTE this is in scope of FSK-97
   it.skip('should not be able to go to login after logging in', () => {
     cy.login();
-    cy.visit('/login');
     cy.location('pathname').should('not.eq', '/login');
   });
 });
