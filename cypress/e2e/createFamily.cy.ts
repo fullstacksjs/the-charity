@@ -3,7 +3,7 @@ import {
   createFamilyFormIds,
   createFamilyModalId,
 } from '../../src/components';
-import { genFakeFamilyName } from '../../src/utils/CharityFaker';
+import { genFakeFamilyName } from '../../src/utils';
 
 describe('To Create Draft Family', () => {
   beforeEach(() => {

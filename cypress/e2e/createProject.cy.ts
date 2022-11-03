@@ -2,10 +2,7 @@ import {
   createProjectButtonId,
   createProjectFormIds,
 } from '../../src/components';
-import {
-  genFakeProjectDescription,
-  genFakeProjectName,
-} from '../../src/utils/CharityFaker';
+import { genFakeProjectDescription, genFakeProjectName } from '../../src/utils';
 
 const createProjectNavSelector = 'a[href="/projects"]';
 
