@@ -10,7 +10,7 @@ describe('To Create Draft Family', () => {
     cy.visit('/families');
   });
 
-  describe('Families Page', () => {
+  describe.skip('Families Page', () => {
     it('should have a createFamily button', () => {
       cy.findByTestId(createFamilyButtonId).should('exist');
     });
