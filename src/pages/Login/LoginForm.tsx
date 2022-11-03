@@ -102,12 +102,7 @@ export const LoginForm = () => {
             title={errMsg}
             color="red"
             sx={theme => ({
-              'color': theme.colors.errorDefault[6],
-              'padding': '12px 14px',
-              '.mantine-rtl-Alert-title': {
-                fontSize: 12,
-                fontWeight: 400,
-              },
+              color: theme.colors.errorDefault[6],
             })}
           >
             {''}

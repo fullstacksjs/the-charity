@@ -13,6 +13,6 @@ export const toClientErrorMessage = (error: unknown): string => {
     case internalServer:
       return messages.errors.INTERNAL_SERVER;
     default:
-      throw new Error('error');
+      throw new Error('unknown error');
   }
 };
