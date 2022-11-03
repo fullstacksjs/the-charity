@@ -1,10 +1,9 @@
-import { faker } from '@faker-js/faker';
-
 import {
   createFamilyButtonId,
   createFamilyFormIds,
   createFamilyModalId,
 } from '../../src/components';
+import { genFakeFamilyName } from '../../src/utils/CharityFaker';
 
 describe('To Create Draft Family', () => {
   beforeEach(() => {
@@ -27,7 +26,7 @@ describe('To Create Draft Family', () => {
 
       cy.findByTestId(createFamilyFormIds.form).within(() => {
         cy.findByTestId(createFamilyFormIds.nameInput).type(
-          faker.name.fullName(),
+          genFakeFamilyName(),
         );
         cy.root().submit();
       });
@@ -40,7 +39,7 @@ describe('To Create Draft Family', () => {
 
       cy.findByTestId(createFamilyFormIds.form).within(() => {
         cy.findByTestId(createFamilyFormIds.nameInput).type(
-          faker.name.fullName(),
+          genFakeFamilyName(),
         );
         cy.root().submit();
       });

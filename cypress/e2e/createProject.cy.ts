@@ -1,9 +1,11 @@
-import { faker } from '@faker-js/faker';
-
 import {
   createProjectButtonId,
   createProjectFormIds,
 } from '../../src/components';
+import {
+  genFakeProjectDescription,
+  genFakeProjectName,
+} from '../../src/utils/CharityFaker';
 
 const createProjectNavSelector = 'a[href="/projects"]';
 
@@ -17,9 +19,11 @@ describe.skip('Create Project', () => {
 
   it('[OK]: Admin creates project', () => {
     cy.get('form').within(() => {
-      cy.findByTestId(createProjectFormIds.nameInput).type(faker.lorem.word(5));
+      cy.findByTestId(createProjectFormIds.nameInput).type(
+        genFakeProjectName(),
+      );
       cy.findByTestId(createProjectFormIds.descriptionInput).type(
-        faker.lorem.lines(1),
+        genFakeProjectDescription(),
       );
       cy.get(createProjectFormIds.submitBtn).click();
     });
