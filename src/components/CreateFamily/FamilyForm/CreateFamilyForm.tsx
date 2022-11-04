@@ -15,7 +15,7 @@ interface Props {
   dismiss: () => void;
 }
 
-export const createFamilyFormIDs = {
+export const createFamilyFormIds = {
   form: 'create-family-form',
   nameInput: 'family-name',
   submitBtn: 'submit-button',
@@ -55,7 +55,7 @@ export const CreateFamilyForm = ({ dismiss }: Props) => {
             title: messages.families.create,
             message: notification.success(result.name ?? ''),
             type: 'success',
-            ...createTestAttr(createFamilyFormIDs.notification.success),
+            ...createTestAttr(createFamilyFormIds.notification.success),
           });
         }
 
@@ -66,7 +66,7 @@ export const CreateFamilyForm = ({ dismiss }: Props) => {
           title: messages.families.create,
           message: notification.failure(name),
           type: 'failure',
-          ...createTestAttr(createFamilyFormIDs.notification.failure),
+          ...createTestAttr(createFamilyFormIds.notification.failure),
         }),
       );
   });
@@ -77,7 +77,7 @@ export const CreateFamilyForm = ({ dismiss }: Props) => {
 
   return (
     // eslint-disable-next-line @typescript-eslint/no-misused-promises
-    <form onSubmit={onSubmit} {...createTestAttr(createFamilyFormIDs.form)}>
+    <form onSubmit={onSubmit} {...createTestAttr(createFamilyFormIds.form)}>
       <Stack spacing={40}>
         <TextInput
           withAsterisk
@@ -87,7 +87,7 @@ export const CreateFamilyForm = ({ dismiss }: Props) => {
           size="sm"
           error={formState.errors.name?.message}
           {...register('name')}
-          {...createTestAttr(createFamilyFormIDs.nameInput)}
+          {...createTestAttr(createFamilyFormIds.nameInput)}
         />
         <Group spacing={20}>
           <Button
@@ -95,7 +95,7 @@ export const CreateFamilyForm = ({ dismiss }: Props) => {
             size="sm"
             disabled={Boolean(formState.errors.name)}
             loading={mutationResult.loading}
-            {...createTestAttr(createFamilyFormIDs.submitBtn)}
+            {...createTestAttr(createFamilyFormIds.submitBtn)}
           >
             {submitBtn.text}
           </Button>
