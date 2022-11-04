@@ -64,6 +64,8 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v3
+      - name: Wake the server up
+        run: curl https://the-charity-backend-staging.herokuapp.com/graphql
       - name: Run E2E tests
         uses: cypress-io/github-action@v4
         with:
