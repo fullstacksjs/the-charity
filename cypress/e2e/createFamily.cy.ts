@@ -21,7 +21,7 @@ describe('To Create Draft Family', () => {
       cy.findByTestId(createFamilyModalId).should('exist');
     });
 
-    it('should not contain createFamily modal after submitting the valid form ', () => {
+    it.skip('should not contain createFamily modal after submitting the valid form ', () => {
       cy.findByTestId(createFamilyButtonId).click();
 
       cy.findByTestId(createFamilyFormIds.form).within(() => {
