@@ -5,7 +5,7 @@ import {
 
 const createProjectNavSelector = 'a[href="/projects"]';
 
-describe('Create Project', () => {
+describe.skip('Create Project', () => {
   beforeEach(() => {
     cy.login();
     cy.visit('/');
@@ -13,7 +13,7 @@ describe('Create Project', () => {
     cy.findByTestId(createProjectButtonId).click();
   });
 
-  it.only('[OK]: Admin creates project', () => {
+  it('[OK]: Admin creates project', () => {
     cy.get('form').within(() => {
       cy.findByTestId(createProjectFormIds.nameInput).type('نام');
       cy.findByTestId(createProjectFormIds.submitBtn).click();
@@ -21,7 +21,7 @@ describe('Create Project', () => {
     cy.findByTestId(createProjectFormIds.notification.success).should('exist');
   });
 
-  it.only('[NOK]: Admin wants to create a project with short name', () => {
+  it('[NOK]: Admin wants to create a project with short name', () => {
     cy.get('form').within(() => {
       cy.findByTestId(createProjectFormIds.nameInput).type('نام');
       cy.findByTestId(createProjectFormIds.submitBtn).click();

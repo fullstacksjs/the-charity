@@ -20,7 +20,8 @@ describe('Authorization', () => {
     cy.location('pathname').should('eq', '/projects');
   });
 
-  it('should not be able to go to login after logging in', () => {
+  // NOTE this is in scope of FSK-97
+  it.skip('should not be able to go to login after logging in', () => {
     cy.login();
     cy.visit('/login');
     cy.location('pathname').should('not.eq', '/login');

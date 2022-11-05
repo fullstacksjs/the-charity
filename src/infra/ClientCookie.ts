@@ -4,10 +4,17 @@ import {
   parseClientCookie,
   RawClientCookie,
 } from '@camp/domain';
-import Cookies from 'js-cookie';
 
-export const getClientCookie = (): ClientCookie => {
-  const rawCookie = Cookies.get();
+const getRawCookies = async (): Promise<Record<string, string>> => {
+  const cookies = await cookieStore.getAll();
+  return cookies.reduce(
+    (acc, cookie) => ({ ...acc, [cookie.name]: cookie.value }),
+    {},
+  );
+};
+
+export const getClientCookie = async (): Promise<ClientCookie> => {
+  const rawCookie = await getRawCookies();
   const isValidCookie = RawClientCookie.guard(rawCookie);
   return isValidCookie ? parseClientCookie(rawCookie) : defaultClientCookie;
 };

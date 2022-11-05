@@ -43,6 +43,7 @@ jobs:
           # NOTE: required because https://www.chromatic.com/docs/github-actions#support-for-codeactionscheckoutv2code-and-above
           fetch-depth: 0
 
+      - uses: volta-cli/action@v3
       - name: Install dependencies
         run: npm ci
 
