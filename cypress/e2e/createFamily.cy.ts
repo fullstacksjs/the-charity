@@ -39,11 +39,10 @@ describe('To Create Draft Family', () => {
       cy.findByTestId(createFamilyButtonId).click();
 
       cy.findByTestId(createFamilyFormIds.form).within(() => {
-        cy.findByTestId(createFamilyFormIds.nameInput)
-          .type(genFakeFamilyName())
-          .then(() => {
-            cy.root().submit();
-          });
+        cy.findByTestId(createFamilyFormIds.nameInput).type(
+          genFakeFamilyName(),
+        );
+        cy.findByTestId(createFamilyFormIds.submitBtn).click();
       });
 
       cy.findByTestId(createFamilyFormIds.notification.success).should('exist');
