@@ -22,9 +22,6 @@ module.exports = {
     return {
       ...config,
       plugins: [...config.plugins, tsconfigPaths(), svgr()],
-      build: {
-        target: 'esnext',
-      },
       envPrefix: 'APP',
     };
   },
