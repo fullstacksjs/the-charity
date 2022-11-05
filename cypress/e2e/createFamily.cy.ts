@@ -25,23 +25,25 @@ describe('To Create Draft Family', () => {
       cy.findByTestId(createFamilyButtonId).click();
 
       cy.findByTestId(createFamilyFormIds.form).within(() => {
-        cy.findByTestId(createFamilyFormIds.nameInput).type(
-          genFakeFamilyName(),
-        );
-        cy.root().submit();
+        cy.findByTestId(createFamilyFormIds.nameInput)
+          .type(genFakeFamilyName())
+          .then(() => {
+            cy.root().submit();
+          });
       });
 
       cy.findByTestId(createFamilyModalId).should('not.exist');
     });
 
-    it.skip('should show mutation result notification', () => {
+    it('should show mutation result notification', () => {
       cy.findByTestId(createFamilyButtonId).click();
 
       cy.findByTestId(createFamilyFormIds.form).within(() => {
-        cy.findByTestId(createFamilyFormIds.nameInput).type(
-          genFakeFamilyName(),
-        );
-        cy.root().submit();
+        cy.findByTestId(createFamilyFormIds.nameInput)
+          .type(genFakeFamilyName())
+          .then(() => {
+            cy.root().submit();
+          });
       });
 
       cy.findByTestId(createFamilyFormIds.notification.success).should('exist');
