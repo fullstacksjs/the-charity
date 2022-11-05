@@ -22,7 +22,7 @@ describe.skip('Create Project', () => {
       cy.findByTestId(createProjectFormIds.descriptionInput).type(
         genFakeProjectDescription(),
       );
-      cy.get(createProjectFormIds.submitBtn).click();
+      cy.findByTestId(createProjectFormIds.submitBtn).click();
     });
     cy.findByTestId(createProjectFormIds.notification.success).should('exist');
   });
