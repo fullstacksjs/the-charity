@@ -55,6 +55,7 @@ export const LoginForm = () => {
       await login({
         variables: { input: { username, password } },
       });
+      setErrMsg(null);
       loginLocally();
       navigate({ to: '/families', replace: true });
     } catch (err) {

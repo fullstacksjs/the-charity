@@ -6,7 +6,7 @@ export const isAuthVar = makeVar(false);
 export const loginLocally = () => {
   const getCookie = getClientCookie();
 
-  if (!getCookie.isAuth) {
+  if (getCookie.isAuth) {
     isAuthVar(true);
   }
 };
