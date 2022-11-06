@@ -1,17 +1,24 @@
 import { makeVar } from '@apollo/client';
-import { getClientCookie, removeClientCookie } from '@camp/infra';
+import {
+  getClientCookie,
+  getRawCookies,
+  removeClientCookie,
+} from '@camp/infra';
 
 export const isAuthVar = makeVar(false);
+await getRawCookies().then(res => console.log(res));
 
-export const loginLocally = () => {
-  const getCookie = getClientCookie();
-
-  if (getCookie.isAuth) {
-    isAuthVar(true);
-  }
+export const loginLocally = async () => {
+  await getClientCookie()
+    .then(cookie => {
+      if (cookie.isAuth) {
+        isAuthVar(true);
+      }
+    })
+    .catch(err => console.log(err));
 };
 
-export const logoutLocally = () => {
-  removeClientCookie();
+export const logoutLocally = async () => {
+  await removeClientCookie();
   isAuthVar(false);
 };
