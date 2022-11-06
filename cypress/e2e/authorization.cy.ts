@@ -8,21 +8,20 @@ describe('Authorization', () => {
     cy.location('pathname').should('eq', '/login');
   });
 
-  it('should be redirected to the families page after successful login', () => {
+  it.skip('should be redirected to the families page after successful login', () => {
     cy.login();
-    cy.visit('/families');
     cy.location('pathname').should('eq', '/families');
   });
 
-  it('should be able to go to protected routes after logging in', () => {
+  it.skip('should be able to go to protected routes after logging in', () => {
     cy.login();
     cy.visit('/projects');
     cy.location('pathname').should('eq', '/projects');
   });
 
-  // NOTE this is in scope of FSK-97
   it.skip('should not be able to go to login after logging in', () => {
     cy.login();
+    cy.visit('/login');
     cy.location('pathname').should('not.eq', '/login');
   });
 });

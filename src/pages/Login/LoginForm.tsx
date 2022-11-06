@@ -56,7 +56,7 @@ export const LoginForm = () => {
         variables: { input: { username, password } },
       });
       setErrMsg(null);
-      loginLocally();
+      await loginLocally();
       navigate({ to: '/families', replace: true });
     } catch (err) {
       const clientError = toClientErrorMessage(err);
@@ -92,7 +92,7 @@ export const LoginForm = () => {
         </Box>
         <Button
           type="submit"
-          disabled={!isValid}
+          // disabled={!isValid}
           loading={mutationResult.loading}
         >
           {messages.login.loginFrom.submitButton.text}
