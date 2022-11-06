@@ -1,23 +1,23 @@
+import { messages } from '@camp/messages';
 import type { ModalProps } from '@mantine/core';
 import { Button, Group, Modal, Stack, Text } from '@mantine/core';
 
 import { setFakeLoggedOut } from '../../fakeLogin';
 
 type Props = Pick<ModalProps, 'onClose' | 'opened'>;
+const texts = messages.logout.modal;
 
 export const LogoutModal = ({ opened, onClose }: Props) => {
   return (
     <Modal
-      title="خروج از حساب کاربری"
+      title={texts.title}
       size="md"
       centered
       opened={opened}
       onClose={onClose}
     >
       <Stack spacing={40}>
-        <Text color="fgDefault">
-          آیا می خواهید از حساب کاربری خود خارج شوید؟
-        </Text>
+        <Text color="fgDefault">{texts.text}</Text>
         <Group spacing={20}>
           <Button
             variant="filled"
@@ -26,10 +26,10 @@ export const LogoutModal = ({ opened, onClose }: Props) => {
               setFakeLoggedOut();
             }}
           >
-            بله، خارج میشوم
+            {texts.accept}
           </Button>
           <Button variant="filled" color="gray" onClick={onClose}>
-            انصراف
+            {texts.cancel}
           </Button>
         </Group>
       </Stack>

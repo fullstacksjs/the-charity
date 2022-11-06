@@ -1,4 +1,5 @@
 import { ExitIcon } from '@camp/design';
+import { messages } from '@camp/messages';
 import { NavLink as MantineNavLink } from '@mantine/core';
 
 import { navLinkRootStyles } from './NavLink';
@@ -17,7 +18,7 @@ export const ExitNavLink = ({ onClick }: ExitNavLinkProps) => {
           color: theme.colors.red[6],
         },
       })}
-      label="خروج"
+      label={messages.logout.link}
       rightSection={<ExitIcon />}
       onClick={onClick}
     />
