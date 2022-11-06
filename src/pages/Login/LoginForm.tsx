@@ -92,7 +92,7 @@ export const LoginForm = () => {
         </Box>
         <Button
           type="submit"
-          // disabled={!isValid}
+          disabled={!isValid}
           loading={mutationResult.loading}
         >
           {messages.login.loginFrom.submitButton.text}
