@@ -1,10 +1,13 @@
 import { PackageIcon, PeopleIcon } from '@camp/design';
 import { messages } from '@camp/messages';
 import { createStyles, Image, Stack, Text } from '@mantine/core';
+import { set } from 'cypress/types/lodash';
+import React from 'react';
 
 import type { NavLinkProps } from '../../atoms';
 import { NavLink } from '../../atoms';
 import { ExitNavLink } from '../../atoms/NavLink/ExitNavLink';
+import { LogoutModal } from '../../LogoutModal';
 
 const useStyles = createStyles(theme => ({
   root: {
@@ -36,6 +39,7 @@ const links: NavLinkProps[] = [
 
 export const SideBar = () => {
   const { classes } = useStyles();
+  const [isOpen, setIsOpen] = React.useState(false);
   return (
     <Stack spacing={100} justify="start" className={classes.root}>
       <Stack
@@ -57,10 +61,16 @@ export const SideBar = () => {
         </Stack>
         <ExitNavLink
           onClick={() => {
-            console.log('exit');
+            setIsOpen(true);
           }}
         />
       </Stack>
+      <LogoutModal
+        opened={isOpen}
+        onClose={() => {
+          setIsOpen(false);
+        }}
+      />
     </Stack>
   );
 };
