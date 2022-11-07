@@ -8,3 +8,4 @@ export * from './Guards';
 export * from './molecules';
 export * from './Notification';
 export * from './organisms';
+export * from './ProjectEmptyState';
