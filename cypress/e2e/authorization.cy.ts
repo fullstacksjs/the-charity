@@ -1,4 +1,4 @@
-describe('Authorization', () => {
+describe.skip('Authorization', () => {
   beforeEach(() => {
     cy.clearCookies();
   });

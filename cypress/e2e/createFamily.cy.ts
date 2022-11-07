@@ -7,11 +7,11 @@ import { genFakeFamilyName } from '../../src/utils';
 
 describe('To Create Draft Family', () => {
   beforeEach(() => {
-    cy.login();
+    // cy.login();
     cy.visit('/families');
   });
 
-  describe.skip('Families Page', () => {
+  describe('Families Page', () => {
     it('should have a createFamily button', () => {
       cy.findByTestId(createFamilyButtonId).should('exist');
     });
@@ -21,7 +21,7 @@ describe('To Create Draft Family', () => {
       cy.findByTestId(createFamilyModalId).should('exist');
     });
 
-    it.skip('should not contain createFamily modal after submitting the valid form ', () => {
+    it('should not contain createFamily modal after submitting the valid form ', () => {
       cy.findByTestId(createFamilyButtonId).click();
 
       cy.findByTestId(createFamilyFormIds.form).within(() => {
