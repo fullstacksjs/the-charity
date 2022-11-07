@@ -24,6 +24,7 @@ interface FormInputs {
   username: string;
   password: string;
 }
+
 const FormSchema = yup.object({
   username: yup
     .string()
@@ -44,7 +45,7 @@ export const LoginForm = () => {
   const {
     handleSubmit,
     register,
-    formState: { errors, isValid },
+    formState: { errors },
   } = useForm<FormInputs>({
     resolver: yupResolver(FormSchema),
     mode: 'onTouched',
@@ -52,10 +53,8 @@ export const LoginForm = () => {
 
   const onSubmit = handleSubmit(async ({ username, password }: FormInputs) => {
     try {
-      await login({
-        variables: { input: { username, password } },
-      });
       setErrMsg(null);
+      await login({ variables: { input: { username, password } } });
       await loginLocally();
       navigate({ to: '/families', replace: true });
     } catch (err) {
@@ -90,11 +89,7 @@ export const LoginForm = () => {
             {...register('password')}
           />
         </Box>
-        <Button
-          type="submit"
-          disabled={!isValid}
-          loading={mutationResult.loading}
-        >
+        <Button type="submit" loading={mutationResult.loading}>
           {messages.login.loginFrom.submitButton.text}
         </Button>
         {errMsg ? (
