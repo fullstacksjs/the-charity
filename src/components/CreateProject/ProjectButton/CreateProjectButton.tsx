@@ -8,12 +8,16 @@ export const createProjectButtonId = 'create-project';
 
 interface Props {
   onClick?: React.MouseEventHandler<HTMLButtonElement>;
+  variant?: 'filled' | 'outline';
 }
 
-export const CreateProjectButton = ({ onClick }: Props) => {
+export const CreateProjectButton = ({
+  onClick,
+  variant = 'outline',
+}: Props) => {
   return (
     <Button
-      variant="outline"
+      variant={variant}
       size="sm"
       leftIcon={<PlusIcon width="16" height="16" />}
       onClick={onClick}

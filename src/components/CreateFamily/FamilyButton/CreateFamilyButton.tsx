@@ -6,14 +6,15 @@ import { createTestAttr } from '../../../utils/createTestAttr';
 
 interface Props {
   onClick?: React.MouseEventHandler<HTMLButtonElement>;
+  variant?: 'filled' | 'outline';
 }
 
 export const createFamilyButtonId = 'create-family-button';
 
-export const CreateFamilyButton = ({ onClick }: Props) => {
+export const CreateFamilyButton = ({ onClick, variant = 'outline' }: Props) => {
   return (
     <Button
-      variant="outline"
+      variant={variant}
       size="sm"
       leftIcon={<PlusIcon width="16" height="16" />}
       onClick={onClick}
