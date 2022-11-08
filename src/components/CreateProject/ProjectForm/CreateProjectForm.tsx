@@ -37,7 +37,6 @@ const FormSchema = yup
   })
   .required();
 
-// NOTE: the spread is to avoid the type error with notification props not accepting data attribute
 const notifySuccessCreation = (name: string) =>
   showNotification({
     ...createTestAttr(createProjectFormIds.notification.success),
@@ -48,7 +47,7 @@ const notifySuccessCreation = (name: string) =>
 
 const notifyFailedCreation = (name: string) =>
   showNotification({
-    ...createTestAttr(createProjectFormIds.notification.success),
+    ...createTestAttr(createProjectFormIds.notification.failure),
     color: 'errorDefault',
     title: messages.projects.create,
     message: messages.projects.notification.failedCreate(name),

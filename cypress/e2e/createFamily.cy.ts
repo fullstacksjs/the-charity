@@ -3,6 +3,7 @@ import {
   createFamilyFormIds,
   createFamilyModalId,
 } from '../../src/components';
+import { genFakeFamilyName } from '../../src/utils';
 
 describe('To Create Draft Family', () => {
   beforeEach(() => {
@@ -24,19 +25,24 @@ describe('To Create Draft Family', () => {
       cy.findByTestId(createFamilyButtonId).click();
 
       cy.findByTestId(createFamilyFormIds.form).within(() => {
-        cy.findByTestId(createFamilyFormIds.nameInput).type('مرادی');
-        cy.root().submit();
+        cy.findByTestId(createFamilyFormIds.nameInput)
+          .type(genFakeFamilyName())
+          .then(() => {
+            cy.root().submit();
+          });
       });
 
       cy.findByTestId(createFamilyModalId).should('not.exist');
     });
 
-    it.skip('should show mutation result notification', () => {
+    it('should show mutation result notification', () => {
       cy.findByTestId(createFamilyButtonId).click();
 
       cy.findByTestId(createFamilyFormIds.form).within(() => {
-        cy.findByTestId(createFamilyFormIds.nameInput).type('مرادی');
-        cy.root().submit();
+        cy.findByTestId(createFamilyFormIds.nameInput).type(
+          genFakeFamilyName(),
+        );
+        cy.findByTestId(createFamilyFormIds.submitBtn).click();
       });
 
       cy.findByTestId(createFamilyFormIds.notification.success).should('exist');
