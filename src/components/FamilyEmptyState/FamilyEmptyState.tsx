@@ -2,6 +2,7 @@ import { PeopleIcon } from '@camp/design';
 import { messages } from '@camp/messages';
 import { useMantineTheme } from '@mantine/core';
 
+import { CreateFamilyButton } from '../CreateFamily';
 import { EmptyState } from '../molecules';
 
 export const FamilyEmptyState = () => {
@@ -17,6 +18,8 @@ export const FamilyEmptyState = () => {
       }
       title={messages.families.empty.title}
       message={messages.families.empty.description}
-    />
+    >
+      <CreateFamilyButton variant="filled" />
+    </EmptyState>
   );
 };

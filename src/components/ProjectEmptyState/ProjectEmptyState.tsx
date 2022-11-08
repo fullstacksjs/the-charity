@@ -2,6 +2,7 @@ import { PackageIcon } from '@camp/design';
 import { messages } from '@camp/messages';
 import { useMantineTheme } from '@mantine/core';
 
+import { CreateProjectButton } from '../CreateProject';
 import { EmptyState } from '../molecules';
 
 export const ProjectEmptyState = () => {
@@ -18,6 +19,8 @@ export const ProjectEmptyState = () => {
       }
       title={messages.projects.empty.title}
       message={messages.projects.empty.description}
-    />
+    >
+      <CreateProjectButton variant="filled" />
+    </EmptyState>
   );
 };

@@ -6,9 +6,15 @@ export interface EmptyStateProps {
   icon: React.ReactNode;
   title: string;
   message: string;
+  children?: React.ReactNode;
 }
 
-export const EmptyState = ({ icon, title, message }: EmptyStateProps) => {
+export const EmptyState = ({
+  icon,
+  title,
+  message,
+  children,
+}: EmptyStateProps) => {
   return (
     <Box sx={{ textAlign: 'center', marginTop: '10rem' }}>
       <VisualizedIcon icon={icon} />
@@ -16,6 +22,7 @@ export const EmptyState = ({ icon, title, message }: EmptyStateProps) => {
       <Text weight={700}>{title}</Text>
       <Space h="xs" />
       <Text color="fgMuted">{message}</Text>
+      <Box p="xl">{children}</Box>
     </Box>
   );
 };
