@@ -1,5 +1,6 @@
 import { AuthGuard, FamilyEmptyState, GuestGuard } from '@camp/components';
 import { messages } from '@camp/messages';
+import { Navigate } from '@camp/router';
 import type {
   MakeGenerics,
   Route as LocationRoute,
@@ -13,7 +14,6 @@ import {
   Login,
   Projects,
 } from './pages';
-import { Navigate } from './router';
 
 export const location = new ReactLocation();
 
