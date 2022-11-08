@@ -1,4 +1,8 @@
+import { useLoginMutation } from '@camp/data-layer';
+import { ErrorAlertIcon } from '@camp/design';
+import { toClientErrorMessage } from '@camp/domain';
 import { messages } from '@camp/messages';
+import { useNavigate } from '@camp/router';
 import { yupResolver } from '@hookform/resolvers/yup';
 import {
   Alert,
@@ -10,15 +14,9 @@ import {
   TextInput,
   Title,
 } from '@mantine/core';
-import { useNavigate } from '@tanstack/react-location';
 import { useState } from 'react';
 import { useForm } from 'react-hook-form';
 import * as yup from 'yup';
-
-import { useLoginMutation } from '../../data-layer/operations';
-import { loginLocally } from '../../data-layer/variables';
-import { ErrorAlertIcon } from '../../design/icons';
-import { toClientErrorMessage } from '../../domain';
 
 interface FormInputs {
   username: string;
@@ -55,8 +53,7 @@ export const LoginForm = () => {
     try {
       setErrMsg(null);
       await login({ variables: { input: { username, password } } });
-      await loginLocally();
-      navigate({ to: '/families', replace: true });
+      navigate({ to: '/dashboard/families', replace: true });
     } catch (err) {
       const clientError = toClientErrorMessage(err);
       setErrMsg(clientError);

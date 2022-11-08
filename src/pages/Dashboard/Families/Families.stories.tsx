@@ -8,7 +8,7 @@ export default {
   component: Families,
   args: {
     router: {
-      route: '/families',
+      route: '/dashboard/families',
       layout: DashboardLayout,
       meta: {
         breadcrumb: messages.families.title,

@@ -1,5 +1,6 @@
 import { ChevronLeftIcon, HomeIcon } from '@camp/design';
 import { Link } from '@camp/router';
+import { joinPath } from '@fullstacksjs/toolbox';
 import type { Styles } from '@mantine/core';
 import { Anchor, Breadcrumbs as MantineBreadcrumbs } from '@mantine/core';
 
@@ -10,6 +11,7 @@ export interface BreadcrumbItem {
 
 interface Props {
   items: BreadcrumbItem[];
+  basePath?: string;
 }
 
 const styles: Styles<
@@ -29,18 +31,12 @@ export const concatPathLevels = (items: BreadcrumbItem[]) => {
     (acc, current, level) =>
       level === 0
         ? [current]
-        : [
-            ...acc,
-            {
-              ...current,
-              path: acc[level - 1]!.path + current.path,
-            },
-          ],
+        : [...acc, { ...current, path: acc[level - 1]!.path + current.path }],
     [],
   );
 };
 
-export const Breadcrumbs = ({ items }: Props) => {
+export const Breadcrumbs = ({ basePath = '', items }: Props) => {
   const transformedItems = concatPathLevels(items);
 
   return (
@@ -52,7 +48,7 @@ export const Breadcrumbs = ({ items }: Props) => {
       {transformedItems.map(item => (
         <Anchor
           key={item.name + item.path}
-          to={item.path as AppRoute}
+          to={`/${joinPath(basePath, item.path)}` as AppRoute}
           component={Link}
         >
           {item.name}

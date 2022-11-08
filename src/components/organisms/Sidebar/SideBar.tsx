@@ -29,12 +29,12 @@ const links: NavLinkItem[] = [
   {
     label: messages.families.title,
     icon: <PeopleIcon width="24" height="24" />,
-    path: '/families',
+    path: '/dashboard/families',
   },
   {
     label: messages.projects.title,
     icon: <PackageIcon width="24" height="24" />,
-    path: '/projects',
+    path: '/dashboard/projects',
   },
 ];
 

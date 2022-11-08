@@ -5,7 +5,7 @@ import { createTestAttr } from '../../../utils/createTestAttr';
 
 export interface NavLinkProps {
   label: string;
-  path: string;
+  path: AppRoute;
   icon?: React.ReactNode;
 }
 const useStyles = createStyles(theme => ({

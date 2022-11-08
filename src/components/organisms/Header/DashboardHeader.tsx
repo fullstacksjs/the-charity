@@ -28,7 +28,7 @@ export const DashboardHeader = ({ button }: HeaderProps) => {
 
   return (
     <Group position="apart">
-      <Breadcrumbs items={items} />
+      <Breadcrumbs basePath="/dashboard" items={items} />
       {button}
     </Group>
   );
