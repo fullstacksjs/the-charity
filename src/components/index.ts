@@ -3,6 +3,7 @@ export * from './AuthProvider';
 export * from './CreateFamily';
 export * from './CreateProject';
 export * from './DashboardCard';
+export * from './DetailCard';
 export * from './FamilyEmptyState';
 export * from './Guards';
 export * from './molecules';

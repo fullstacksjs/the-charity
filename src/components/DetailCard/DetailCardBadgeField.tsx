@@ -7,7 +7,7 @@ interface Props extends BadgeProps {
   title: string;
 }
 
-export const DashboardCardBadgeField = ({ title, ...badgeProps }: Props) => {
+export const DetailCardBadgeField = ({ title, ...badgeProps }: Props) => {
   return (
     <Box sx={{ textAlign: 'left' }}>
       <Title order={6} color="fgSubtle" weight={500}>

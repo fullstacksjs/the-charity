@@ -1,26 +1,23 @@
-import { DashboardCard } from '@camp/components';
+import { DetailCard } from '@camp/components';
 import { messages } from '@camp/messages';
 
 export const FamilyDetail = () => {
   const t = messages.familyDetail.familyFields;
 
   return (
-    <DashboardCard
+    <DetailCard
       title={messages.familyDetail.title}
       id={messages.familyDetail.id}
     >
-      <DashboardCard.TextField title={t.name.title}>
+      <DetailCard.TextField title={t.householder.title}>
         {t.name.value}
-      </DashboardCard.TextField>
-      <DashboardCard.BadgeField status="error" title={t.severityStatus.title}>
+      </DetailCard.TextField>
+      <DetailCard.BadgeField status="error" title={t.severityStatus.title}>
         {t.severityStatus.value}
-      </DashboardCard.BadgeField>
-      <DashboardCard.BadgeField
-        status="warning"
-        title={t.informationStatus.title}
-      >
+      </DetailCard.BadgeField>
+      <DetailCard.BadgeField status="warning" title={t.informationStatus.title}>
         {t.informationStatus.value}
-      </DashboardCard.BadgeField>
-    </DashboardCard>
+      </DetailCard.BadgeField>
+    </DetailCard>
   );
 };
