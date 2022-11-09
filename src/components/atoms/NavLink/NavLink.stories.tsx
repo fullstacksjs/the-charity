@@ -25,6 +25,6 @@ export const Default: Story<NavLinkProps> = Template.bind({});
 
 Default.args = {
   label: messages.families.title,
-  path: '/families',
+  path: '/dashboard/families',
   icon: true,
 };

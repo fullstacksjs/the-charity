@@ -1,3 +1,11 @@
+import type { ServerError } from '@camp/domain';
+
+export const errorMessages: Record<ServerError, string> = {
+  INTERNAL_SERVER: 'خطا در ارتباط با سرور. لطفا دوباره تلاش کنید.',
+  INVALID_CREDENTIALS: 'متاسفانه، کاربری با اطلاعات وارد شده یافت نشد.',
+  UNKNOWN_ERROR: 'متاسفانه خطایی رخ داده است',
+};
+
 export const messages = {
   companyName: 'نامی مناسب برای خیریه',
   actions: { dismiss: 'انصراف' },

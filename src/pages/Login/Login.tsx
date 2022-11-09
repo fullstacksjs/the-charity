@@ -1,14 +1,8 @@
-import { useReactiveVar } from '@apollo/client';
-import { isAuthVar } from '@camp/data-layer';
-import { Navigate } from '@camp/router';
 import { Box, Group, Image } from '@mantine/core';
 
 import { LoginForm } from './LoginForm';
 
 export const Login = () => {
-  const isAuth = useReactiveVar(isAuthVar);
-
-  if (isAuth) return <Navigate to="/" />;
   return (
     <Group grow align="stretch" spacing={0} sx={{ height: '100%' }}>
       <Box

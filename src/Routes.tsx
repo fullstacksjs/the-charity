@@ -1,12 +1,12 @@
-import { FamilyEmptyState, GuardLayout } from '@camp/components';
+import { AuthGuard, FamilyEmptyState, GuestGuard } from '@camp/components';
 import { messages } from '@camp/messages';
+import { Navigate } from '@camp/router';
 import type {
   MakeGenerics,
   Route as LocationRoute,
 } from '@tanstack/react-location';
-import { Navigate, ReactLocation, Router } from '@tanstack/react-location';
+import { ReactLocation, Router } from '@tanstack/react-location';
 
-import { setFakeLoggedIn, setFakeLoggedOut } from './fakeLogin';
 import {
   DashboardLayout,
   Families,
@@ -17,21 +17,6 @@ import {
 
 export const location = new ReactLocation();
 
-// FIXME should delete this after backend got integrated
-const startFakeAuth = () => {
-  document.addEventListener('keydown', event => {
-    if (event.key === 'A') {
-      setFakeLoggedIn();
-      location.navigate({ ...location.current, pathname: '/' });
-    } else if (event.key === 'N') {
-      setFakeLoggedOut();
-      location.navigate({ ...location.current, pathname: '/' });
-    }
-  });
-};
-
-startFakeAuth();
-
 export type LocationGenerics = MakeGenerics<{
   RouteMeta: {
     breadcrumb: string;
@@ -39,51 +24,49 @@ export type LocationGenerics = MakeGenerics<{
 }>;
 
 interface Route extends Omit<LocationRoute<LocationGenerics>, 'path'> {
-  path?: AppRoute;
+  path?: RouteSegment<AppRoute>;
   children?: Route[];
 }
 
 const routes: Route[] = [
-  { path: '/login', element: <Login /> },
   {
-    element: <GuardLayout />,
+    path: '/auth',
+    element: <GuestGuard />,
     children: [
-      {
-        element: <DashboardLayout />,
-        children: [
-          {
-            path: '/families',
-            element: <Families />,
-            meta: {
-              breadcrumb: messages.families.title,
-            },
-            children: [
-              {
-                path: '/family-detail',
-                element: <FamilyDetail />,
-                meta: {
-                  breadcrumb: messages.familyDetail.title,
-                },
-              },
-              {
-                element: <FamilyEmptyState />,
-              },
-            ],
-          },
-          {
-            path: '/projects',
-            element: <Projects />,
-            meta: {
-              breadcrumb: messages.projects.title,
-            },
-          },
-          { element: <Navigate to="/families" /> },
-        ],
-      },
+      { path: '/login', element: <Login /> },
+      { element: <Navigate to="/auth/login" /> },
     ],
   },
+  {
+    path: '/dashboard',
+    element: (
+      <AuthGuard>
+        <DashboardLayout />
+      </AuthGuard>
+    ),
+    children: [
+      {
+        path: '/families',
+        element: <Families />,
+        meta: { breadcrumb: messages.families.title },
+        children: [
+          {
+            path: '/family-detail',
+            element: <FamilyDetail />,
+            meta: { breadcrumb: messages.familyDetail.title },
+          },
+          { element: <FamilyEmptyState /> },
+        ],
+      },
+      {
+        path: '/projects',
+        element: <Projects />,
+        meta: { breadcrumb: messages.projects.title },
+      },
+      { element: <Navigate to="/dashboard/families" /> },
+    ],
+  },
+  { element: <Navigate to="/auth/login" /> },
 ];
 
-export const Routes = () => {
-  return <Router routes={routes} location={location} />;
-};
+export const Routes = () => <Router routes={routes} location={location} />;
