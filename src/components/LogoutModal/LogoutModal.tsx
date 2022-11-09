@@ -1,8 +1,8 @@
+import { logoutLocally } from '@camp/data-layer';
 import { messages } from '@camp/messages';
 import type { ModalProps } from '@mantine/core';
 import { Button, Group, Modal, Stack, Text } from '@mantine/core';
 
-import { setFakeLoggedOut } from '../../fakeLogin';
 import { createTestAttr } from '../../utils/createTestAttr';
 
 type Props = Pick<ModalProps, 'onClose' | 'opened'>;
@@ -28,18 +28,14 @@ export const LogoutModal = ({ opened, onClose }: Props) => {
           <Button
             variant="filled"
             color="red"
+            {...createTestAttr(logoutModalIds.acceptBtn)}
             onClick={() => {
-              setFakeLoggedOut();
+              logoutLocally();
             }}
           >
             {texts.accept}
           </Button>
-          <Button
-            variant="filled"
-            color="gray"
-            onClick={onClose}
-            {...createTestAttr(logoutModalIds.acceptBtn)}
-          >
+          <Button variant="filled" color="gray" onClick={onClose}>
             {texts.cancel}
           </Button>
         </Group>

@@ -1,4 +1,4 @@
-import type { CSSObject, MantineTheme, Sx } from '@mantine/core';
+import type { CSSObject, MantineTheme } from '@mantine/core';
 import { NavLink as MantineNavLink } from '@mantine/core';
 import { Link as TanstackLink, useLocation } from '@tanstack/react-location';
 
