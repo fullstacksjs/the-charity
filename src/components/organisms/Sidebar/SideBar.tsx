@@ -1,7 +1,6 @@
 import { PackageIcon, PeopleIcon } from '@camp/design';
 import { messages } from '@camp/messages';
 import { createStyles, Image, Stack, Text } from '@mantine/core';
-import { set } from 'cypress/types/lodash';
 import React from 'react';
 
 import type { NavLinkProps } from '../../atoms';

@@ -4,12 +4,11 @@ import {
 } from '../../src/components';
 import { genFakeProjectDescription, genFakeProjectName } from '../../src/utils';
 
-const createProjectNavSelector = 'a[href="/projects"]';
+const createProjectNavSelector = 'a[href="/dashboard/projects"]';
 
-describe.skip('Create Project', () => {
+describe('Create Project', () => {
   beforeEach(() => {
     cy.login();
-    cy.visit('/');
     cy.get(createProjectNavSelector).click();
     cy.findByTestId(createProjectButtonId).click();
   });

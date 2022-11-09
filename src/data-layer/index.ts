@@ -1,3 +1,3 @@
 export * from './apollo/ApolloProvider';
 export * from './operations';
-export { AuthState, initiateAuthState } from './variables';
+export { AuthState, initiateAuthState, logoutLocally } from './variables';
