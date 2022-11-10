@@ -1,4 +1,4 @@
-import { Box, Space, Text } from '@mantine/core';
+import { Box, Center, Space, Stack, Text } from '@mantine/core';
 
 import { VisualizedIcon } from '../../atoms';
 
@@ -16,13 +16,22 @@ export const EmptyState = ({
   children,
 }: EmptyStateProps) => {
   return (
-    <Box sx={{ textAlign: 'center', marginTop: '10rem' }}>
-      <VisualizedIcon icon={icon} />
-      <Space h="md" />
-      <Text weight={700}>{title}</Text>
-      <Space h="xs" />
-      <Text color="fgMuted">{message}</Text>
-      <Box p="xl">{children}</Box>
-    </Box>
+    <Center>
+      <Box
+        sx={{
+          textAlign: 'center',
+          position: 'absolute',
+          top: '50%',
+          transform: 'translateY(-50%)',
+        }}
+      >
+        <VisualizedIcon icon={icon} />
+        <Space h="md" />
+        <Text weight={700}>{title}</Text>
+        <Space h="xs" />
+        <Text color="fgMuted">{message}</Text>
+        <Box p="xl">{children}</Box>
+      </Box>
+    </Center>
   );
 };
