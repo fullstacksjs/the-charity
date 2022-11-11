@@ -1,8 +1,8 @@
 import { ExitIcon } from '@camp/design';
 import { messages } from '@camp/messages';
+import { createTestAttr } from '@camp/utils';
 import { NavLink as MantineNavLink } from '@mantine/core';
 
-import { createTestAttr } from '../../../utils/createTestAttr';
 import { navLinkRootStyles } from './NavLink';
 
 interface ExitNavLinkProps {

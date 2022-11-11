@@ -9,7 +9,7 @@ export default {
   component: NavLink,
   argTypes: {
     label: { type: 'string' },
-    path: { type: 'string' },
+    to: { type: 'string' },
   },
 } as Meta<NavLinkProps>;
 
@@ -18,6 +18,6 @@ const Template: Story<NavLinkProps> = args => <NavLink {...args} />;
 export const Default: Story<NavLinkProps> = Template.bind({});
 Default.args = {
   label: messages.families.title,
-  path: '/dashboard/families',
+  to: '/dashboard/families',
   icon: <PeopleIcon width="24" height="24" />,
 };
