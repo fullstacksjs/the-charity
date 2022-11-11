@@ -4,9 +4,13 @@ import { Title } from '@mantine/core';
 
 import { CreateFamilyButton } from '../CreateFamily';
 import { DashboardCard } from '../DashboardCard';
-import type { ShortFamiliesInfo } from './FamilyTable';
 import { FamilyTable } from './FamilyTable';
+import type { ShortFamiliesInfo } from './toShortFamilyInfoTableRow';
 
+/* FIXME
+  this type should be removed in
+  backend integration ticket of FamilyList
+*/
 const shortFamilyInfos: ShortFamiliesInfo = [
   {
     name: 'فول استک زاده',
