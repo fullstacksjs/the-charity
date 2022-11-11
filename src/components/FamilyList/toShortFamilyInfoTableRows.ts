@@ -14,7 +14,7 @@ const t = messages.families.list.table;
 
 export type ShortFamilyInfo = Pick<
   CompletedFamily,
-  'name' | 'severity' | 'status'
+  'id' | 'name' | 'severity' | 'status'
 >;
 export type ShortFamiliesInfo = ShortFamilyInfo[];
 
@@ -41,17 +41,21 @@ const toInformationStatus = (status: FamilyStatus): InformationStatus => {
 };
 
 export interface ShortFamilyInfoTableRow {
+  order: number;
   name: string;
+  id: string;
   severityStatus: SeverityStatus;
   informationStatus: InformationStatus;
 }
+type ShortFamilyInfoTableRows = ShortFamilyInfoTableRow[];
 
-export const toShortFamilyInfoTableRow = ({
-  name,
-  severity,
-  status,
-}: ShortFamilyInfo) => ({
-  name,
-  severityStatus: toSeverityStatus(severity),
-  informationStatus: toInformationStatus(status),
-});
+export const toShortFamilyInfoTableRows = (
+  infos: ShortFamiliesInfo,
+): ShortFamilyInfoTableRows =>
+  infos.map(({ id, name, severity, status }, index) => ({
+    order: index + 1,
+    id: id.replace(/\(|\)/g, ''),
+    name,
+    severityStatus: toSeverityStatus(severity),
+    informationStatus: toInformationStatus(status),
+  }));

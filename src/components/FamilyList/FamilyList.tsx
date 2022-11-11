@@ -5,7 +5,7 @@ import { Title } from '@mantine/core';
 import { CreateFamilyButton } from '../CreateFamily';
 import { DashboardCard } from '../DashboardCard';
 import { FamilyTable } from './FamilyTable';
-import type { ShortFamiliesInfo } from './toShortFamilyInfoTableRow';
+import type { ShortFamiliesInfo } from './toShortFamilyInfoTableRows';
 
 /* FIXME
   this type should be removed in
@@ -13,16 +13,19 @@ import type { ShortFamiliesInfo } from './toShortFamilyInfoTableRow';
 */
 const shortFamilyInfos: ShortFamiliesInfo = [
   {
+    id: '(F00001)',
     name: 'فول استک زاده',
     severity: FamilySeverity.Critical,
     status: FamilyStatus.Completed,
   },
   {
+    id: '(F00002)',
     name: 'فول استک زاده',
     severity: FamilySeverity.Critical,
     status: FamilyStatus.Draft,
   },
   {
+    id: '(F00003)',
     name: 'فول استک زاده',
     severity: FamilySeverity.Normal,
     status: FamilyStatus.Completed,
