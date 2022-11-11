@@ -14,4 +14,5 @@ Cypress.Commands.add('login', () => {
       cy.wait('@login');
     });
   });
+  cy.visit('/dashboard/' as AppRoute);
 });
