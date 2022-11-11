@@ -8,5 +8,5 @@ type AppRoute =
   | '/auth/login'
   | '/dashboard'
   | '/dashboard/families'
-  | '/dashboard/family-detail'
+  | '/dashboard/families/family-detail'
   | '/dashboard/projects';
