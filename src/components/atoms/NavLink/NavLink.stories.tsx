@@ -1,4 +1,4 @@
-import { PackageIcon, PeopleIcon } from '@camp/design';
+import { PeopleIcon } from '@camp/design';
 import { messages } from '@camp/messages';
 import type { Meta, Story } from '@storybook/react';
 
@@ -15,16 +15,9 @@ export default {
 
 const Template: Story<NavLinkProps> = args => <NavLink {...args} />;
 
-export const Families: Story<NavLinkProps> = Template.bind({});
-Families.args = {
+export const Default: Story<NavLinkProps> = Template.bind({});
+Default.args = {
   label: messages.families.title,
   path: '/dashboard/families',
   icon: <PeopleIcon width="24" height="24" />,
-};
-
-export const Projects: Story<NavLinkProps> = Template.bind({});
-Projects.args = {
-  label: messages.projects.title,
-  path: '/dashboard/projects',
-  icon: <PackageIcon width="24" height="24" />,
 };
