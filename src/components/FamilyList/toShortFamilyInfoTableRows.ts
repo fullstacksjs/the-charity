@@ -47,7 +47,7 @@ export interface ShortFamilyInfoTableRow {
   severityStatus: SeverityStatus;
   informationStatus: InformationStatus;
 }
-type ShortFamilyInfoTableRows = ShortFamilyInfoTableRow[];
+export type ShortFamilyInfoTableRows = ShortFamilyInfoTableRow[];
 
 export const toShortFamilyInfoTableRows = (
   infos: ShortFamiliesInfo,
