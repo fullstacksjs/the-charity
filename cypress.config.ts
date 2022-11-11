@@ -9,7 +9,7 @@ export default defineConfig({
   e2e: {
     baseUrl: `http://127.0.0.1:${port}`,
     projectId: '8jt3ix',
-    // experimentalSessionAndOrigin: true,
+    experimentalSessionAndOrigin: true,
     setupNodeEvents(on) {
       on(
         'file:preprocessor',
