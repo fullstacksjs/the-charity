@@ -10,13 +10,7 @@ export const FamilyDetail = () => {
       id={messages.familyDetail.id}
     >
       <DashboardCard.TextField title={t.name.title}>
-        {t.householder.value}
-      </DashboardCard.TextField>
-      <DashboardCard.TextField title={t.householder.title}>
         {t.name.value}
-      </DashboardCard.TextField>
-      <DashboardCard.TextField title={t.members.title}>
-        {t.members.value}
       </DashboardCard.TextField>
       <DashboardCard.BadgeField status="error" title={t.severityStatus.title}>
         {t.severityStatus.value}
