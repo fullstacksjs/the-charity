@@ -99,14 +99,6 @@ export const messages = {
         title: 'نام',
         value: 'فول استک زاده',
       },
-      householder: {
-        title: 'سرپرست',
-        value: 'جامعه فول استک زاده',
-      },
-      members: {
-        title: 'تعداد اعضا',
-        value: '700 نفر',
-      },
       severityStatus: {
         title: 'وضعیت نیازمندی',
         value: 'بحرانی',
