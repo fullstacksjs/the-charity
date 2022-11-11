@@ -23,7 +23,7 @@ const useStyles = createStyles(theme => ({
   },
 }));
 
-export const NavLinkIds = {
+export const navLinkIds = {
   families: 'nav-link-families',
   projects: 'nav-link-projects',
 };
@@ -33,13 +33,13 @@ export const links: NavLinkProps[] = [
     label: messages.families.title,
     icon: <PeopleIcon width="24" height="24" />,
     path: '/dashboard/families',
-    id: NavLinkIds.families,
+    id: navLinkIds.families,
   },
   {
     label: messages.projects.title,
     icon: <PackageIcon width="24" height="24" />,
     path: '/dashboard/projects',
-    id: NavLinkIds.projects,
+    id: navLinkIds.projects,
   },
 ];
 

@@ -2,29 +2,22 @@ import {
   createFamilyButtonId,
   createFamilyFormIds,
   createFamilyModalId,
+  navLinkIds,
 } from '../../src/components';
 import { genFakeFamilyName } from '../../src/utils';
 
-const familiesRoute: AppRoute = '/dashboard/families';
-
-describe('To Create Draft Family', () => {
+describe('Create Draft Family', () => {
   beforeEach(() => {
     cy.login();
-    cy.visit(familiesRoute);
-  });
-
-  it('should have a createFamily button', () => {
-    cy.findByTestId(createFamilyButtonId).should('exist');
+    cy.findByTestId(navLinkIds.families).click();
+    cy.findByTestId(createFamilyButtonId).click();
   });
 
   it('should show createFamily modal after clicking on createFamily button', () => {
-    cy.findByTestId(createFamilyButtonId).click();
     cy.findByTestId(createFamilyModalId).should('exist');
   });
 
   it('should not contain createFamily modal after submitting the valid form ', () => {
-    cy.findByTestId(createFamilyButtonId).click();
-
     cy.findByTestId(createFamilyFormIds.form).within(() => {
       cy.findByTestId(createFamilyFormIds.nameInput)
         .type(genFakeFamilyName())
@@ -37,8 +30,6 @@ describe('To Create Draft Family', () => {
   });
 
   it('should show mutation result notification', () => {
-    cy.findByTestId(createFamilyButtonId).click();
-
     cy.findByTestId(createFamilyFormIds.form).within(() => {
       cy.findByTestId(createFamilyFormIds.nameInput).type(genFakeFamilyName());
       cy.findByTestId(createFamilyFormIds.submitBtn).click();

@@ -11,7 +11,7 @@ export const NavLinks = ({ links }: NavLinksProps) => {
   return (
     <Stack spacing={20}>
       {links.map(link => (
-        <NavLink {...link} key={link.label} />
+        <NavLink {...link} key={link.id} />
       ))}
     </Stack>
   );

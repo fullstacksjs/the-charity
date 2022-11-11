@@ -1,15 +1,14 @@
 import {
   createProjectButtonId,
   createProjectFormIds,
+  navLinkIds,
 } from '../../src/components';
 import { genFakeProjectDescription, genFakeProjectName } from '../../src/utils';
-
-const createProjectNavSelector = 'a[href="/dashboard/projects"]';
 
 describe('Create Project', () => {
   beforeEach(() => {
     cy.login();
-    cy.get(createProjectNavSelector).click();
+    cy.findByTestId(navLinkIds.projects).click();
     cy.findByTestId(createProjectButtonId).click();
   });
 
