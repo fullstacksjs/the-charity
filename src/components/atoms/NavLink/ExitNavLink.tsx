@@ -8,7 +8,7 @@ import { navLinkRootStyles } from './NavLink';
 interface ExitNavLinkProps {
   onClick: React.MouseEventHandler<HTMLButtonElement>;
 }
-export const exitNavLinkId = 'exit-nav-link';
+export const exitNavLinkId = 'nav-link-exit';
 
 export const ExitNavLink = ({ onClick }: ExitNavLinkProps) => {
   return (

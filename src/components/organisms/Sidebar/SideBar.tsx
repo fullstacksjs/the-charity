@@ -4,8 +4,8 @@ import { createStyles, Image, Stack, Text } from '@mantine/core';
 import React from 'react';
 
 import type { NavLinkProps } from '../../atoms';
-import { NavLink } from '../../atoms';
 import { ExitNavLink } from '../../atoms/NavLink/ExitNavLink';
+import { NavLinks } from '../../atoms/NavLink/NavLinks';
 import { LogoutModal } from '../../LogoutModal';
 
 const useStyles = createStyles(theme => ({
@@ -23,16 +23,23 @@ const useStyles = createStyles(theme => ({
   },
 }));
 
-const links: NavLinkProps[] = [
+export const NavLinkIds = {
+  families: 'nav-link-families',
+  projects: 'nav-link-projects',
+};
+
+export const links: NavLinkProps[] = [
   {
     label: messages.families.title,
     icon: <PeopleIcon width="24" height="24" />,
     path: '/dashboard/families',
+    id: NavLinkIds.families,
   },
   {
     label: messages.projects.title,
     icon: <PackageIcon width="24" height="24" />,
     path: '/dashboard/projects',
+    id: NavLinkIds.projects,
   },
 ];
 
@@ -53,11 +60,7 @@ export const SideBar = () => {
         </Text>
       </Stack>
       <Stack justify="space-between" sx={{ height: '100%' }}>
-        <Stack spacing={20}>
-          {links.map(({ icon, label, path }) => (
-            <NavLink label={label} path={path} icon={icon} key={label} />
-          ))}
-        </Stack>
+        <NavLinks links={links} />
         <ExitNavLink
           onClick={() => {
             setIsOpen(true);
