@@ -109,4 +109,13 @@ export const messages = {
       },
     },
   },
+  logout: {
+    link: 'خروج',
+    modal: {
+      title: 'خروج از حساب کاربری',
+      text: 'آیا می خواهید از حساب کاربری خود خارج شوید؟',
+      accept: 'بله، خارج میشوم',
+      cancel: 'انصراف',
+    },
+  },
 } as const;

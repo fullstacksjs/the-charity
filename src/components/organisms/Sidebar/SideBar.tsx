@@ -1,8 +1,12 @@
 import { PackageIcon, PeopleIcon } from '@camp/design';
 import { messages } from '@camp/messages';
 import { createStyles, Image, Stack, Text } from '@mantine/core';
+import React from 'react';
 
-import { NavLink } from '../../atoms';
+import type { NavLinkProps } from '../../atoms';
+import { ExitNavLink } from '../../atoms/NavLink/ExitNavLink';
+import { NavLinks } from '../../atoms/NavLink/NavLinks';
+import { LogoutModal } from '../../LogoutModal';
 
 const useStyles = createStyles(theme => ({
   root: {
@@ -19,27 +23,29 @@ const useStyles = createStyles(theme => ({
   },
 }));
 
-export interface NavLinkItem {
-  label: string;
-  icon: JSX.Element;
-  path: AppRoute;
-}
+export const navLinkIds = {
+  families: 'nav-link-families',
+  projects: 'nav-link-projects',
+};
 
-const links: NavLinkItem[] = [
+export const links: NavLinkProps[] = [
   {
     label: messages.families.title,
     icon: <PeopleIcon width="24" height="24" />,
-    path: '/dashboard/families',
+    to: '/dashboard/families',
+    id: navLinkIds.families,
   },
   {
     label: messages.projects.title,
     icon: <PackageIcon width="24" height="24" />,
-    path: '/dashboard/projects',
+    to: '/dashboard/projects',
+    id: navLinkIds.projects,
   },
 ];
 
 export const SideBar = () => {
   const { classes } = useStyles();
+  const [isOpen, setIsOpen] = React.useState(false);
   return (
     <Stack spacing={100} justify="start" className={classes.root}>
       <Stack
@@ -53,11 +59,20 @@ export const SideBar = () => {
           {messages.companyName}
         </Text>
       </Stack>
-      <Stack spacing={20}>
-        {links.map(({ icon, label, path }) => (
-          <NavLink label={label} path={path} icon={icon} key={label} />
-        ))}
+      <Stack justify="space-between" sx={{ height: '100%' }}>
+        <NavLinks links={links} />
+        <ExitNavLink
+          onClick={() => {
+            setIsOpen(true);
+          }}
+        />
       </Stack>
+      <LogoutModal
+        opened={isOpen}
+        onClose={() => {
+          setIsOpen(false);
+        }}
+      />
     </Stack>
   );
 };

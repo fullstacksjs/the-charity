@@ -11,7 +11,8 @@
       "@camp/router": ["./src/router/index.ts"],
       "@camp/messages": ["./src/messages.ts"],
       "@camp/hooks": ["./src/hooks/index.ts"],
-      "@camp/infra": ["./src/infra/index.ts"]
+      "@camp/infra": ["./src/infra/index.ts"],
+      "@camp/utils": ["./src/utils/index.ts"]
     },
     "types": ["cypress", "@testing-library/cypress"]
   },

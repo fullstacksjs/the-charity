@@ -1,4 +1,4 @@
-import { getEnv, toInteger } from '@fullstacksjs/toolbox';
+import { getBooleanEnv, getEnv, toInteger } from '@fullstacksjs/toolbox';
 import { defineConfig } from 'cypress';
 import vitePreprocessor from 'cypress-vite';
 import path from 'path';
@@ -10,6 +10,7 @@ export default defineConfig({
     baseUrl: `http://127.0.0.1:${port}`,
     projectId: '8jt3ix',
     experimentalSessionAndOrigin: true,
+    video: getBooleanEnv('CY_RECORD_VIDEO', true),
     setupNodeEvents(on) {
       on(
         'file:preprocessor',

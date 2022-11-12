@@ -1,40 +1,37 @@
-import { createStyles, NavLink as MantineNavLink } from '@mantine/core';
+import { createTestAttr } from '@camp/utils';
+import type { CSSObject, Sx } from '@mantine/core';
+import { NavLink as MantineNavLink } from '@mantine/core';
 import { Link as TanstackLink, useLocation } from '@tanstack/react-location';
-
-import { createTestAttr } from '../../../utils/createTestAttr';
 
 export interface NavLinkProps {
   label: string;
-  path: AppRoute;
-  icon?: React.ReactNode;
+  icon: JSX.Element;
+  to: AppRoute;
+  id: string;
 }
-const useStyles = createStyles(theme => ({
-  root: {
-    borderRadius: 4,
-    fontWeight: 500,
-    padding: 10,
-    color: theme.colors.fgMuted[6],
-  },
-}));
 
-export const NavlinkId = 'nav-link';
+export const navLinkRootStyles: Exclude<Sx, CSSObject> = theme => ({
+  borderRadius: 4,
+  fontWeight: 500,
+  padding: 10,
+  color: theme.colors.fgMuted[6],
+});
 
-export const NavLink = ({ label, icon, path }: NavLinkProps) => {
-  const { classes } = useStyles();
+export const NavLink = ({ label, icon, to, id }: NavLinkProps) => {
   const {
     current: { pathname },
   } = useLocation();
 
   return (
     <MantineNavLink
-      to={path}
+      to={to}
       component={TanstackLink}
       key={label}
       label={label}
       rightSection={icon}
-      active={pathname === path}
-      className={classes.root}
-      {...createTestAttr(NavlinkId)}
+      active={pathname === to}
+      sx={navLinkRootStyles}
+      {...createTestAttr(id)}
     />
   );
 };

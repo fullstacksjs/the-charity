@@ -1,18 +1,15 @@
-import './commands';
-
+const familiesRoute: AppRoute = '/dashboard/families';
 const userNameInputSelector = '[type="email"]';
 const passwordInputSelector = '[type="password"]';
 
-Cypress.Commands.add('login', () => {
-  cy.session('login', () => {
+describe('Login', () => {
+  it('should be redirected to the families page after successful login', () => {
     cy.visit('/auth/login' as AppRoute);
     cy.get('form').within(() => {
-      cy.intercept('POST', '/graphql').as('login');
       cy.get(userNameInputSelector).type('admin@gmail.com');
       cy.get(passwordInputSelector).type('123456789');
       cy.root().submit();
-      cy.wait('@login');
     });
+    cy.location('pathname').should('eq', familiesRoute);
   });
-  cy.visit('/dashboard/' as AppRoute);
 });
