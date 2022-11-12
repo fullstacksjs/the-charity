@@ -2,6 +2,7 @@ import {
   createFamilyButtonId,
   createFamilyFormIds,
   createFamilyModalId,
+  familyDashboardHeaderId,
   navLinkIds,
 } from '../../src/components';
 import { genFakeFamilyName } from '../../src/utils';
@@ -10,7 +11,9 @@ describe('Create Draft Family', () => {
   beforeEach(() => {
     cy.login();
     cy.findByTestId(navLinkIds.families).click();
-    cy.findByTestId(createFamilyButtonId).click();
+    cy.findByTestId(familyDashboardHeaderId)
+      .findByTestId(createFamilyButtonId)
+      .click();
   });
 
   it('should show createFamily modal after clicking on createFamily button', () => {

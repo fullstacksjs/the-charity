@@ -1,4 +1,5 @@
 import { useMatches } from '@camp/router';
+import { createTestAttr } from '@camp/utils';
 import { Group } from '@mantine/core';
 
 import type { BreadcrumbItem } from '../../molecules';
@@ -23,11 +24,17 @@ export const useBreadcrumbsItems = (): BreadcrumbItem[] => {
     });
 };
 
+export const familyDashboardHeaderId = 'family-dashboard-header';
+
 export const DashboardHeader = ({ button }: HeaderProps) => {
   const items = useBreadcrumbsItems();
 
   return (
-    <Group position="apart" mb={40}>
+    <Group
+      position="apart"
+      mb={40}
+      {...createTestAttr(familyDashboardHeaderId)}
+    >
       <Breadcrumbs basePath="/dashboard" items={items} />
       {button}
     </Group>
