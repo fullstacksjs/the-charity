@@ -102,12 +102,6 @@ export const theme: MantineThemeOverride = {
         },
       },
     },
-    Alert: {
-      styles: {
-        root: { padding: '12px 14px' },
-        title: { fontWeight: 400, fontSize: 12 },
-      },
-    },
     Table: {
       styles: {
         root: {
