@@ -5,7 +5,7 @@ import { Title } from '@mantine/core';
 import { CreateFamilyButton } from '../CreateFamily';
 import { DashboardCard } from '../DashboardCard';
 import { FamilyTable } from './FamilyTable';
-import type { ShortFamiliesInfo } from './toShortFamilyInfoTableRows';
+import type { ShortFamiliesInfo } from './FamilyTable/toShortFamilyInfoTableRows';
 
 /* FIXME
   this type should be removed in

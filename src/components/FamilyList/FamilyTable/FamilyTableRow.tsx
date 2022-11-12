@@ -2,7 +2,7 @@ import { MenuIcon } from '@camp/design';
 import { Link } from '@camp/router';
 import { ActionIcon, Group, Menu } from '@mantine/core';
 
-import { Badge } from '../atoms';
+import { Badge } from '../../atoms';
 import type { ShortFamilyInfoTableRow } from './toShortFamilyInfoTableRows';
 
 interface Props {

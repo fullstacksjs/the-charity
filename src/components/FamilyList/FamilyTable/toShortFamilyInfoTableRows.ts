@@ -2,7 +2,7 @@ import type { CompletedFamily } from '@camp/data-layer';
 import { FamilySeverity, FamilyStatus } from '@camp/data-layer';
 import { messages } from '@camp/messages';
 
-import type { BadgeStatus } from '../atoms';
+import type { BadgeStatus } from '../../atoms';
 
 const t = messages.families.list.table;
 
