@@ -1,4 +1,5 @@
 import { messages } from '@camp/messages';
+import { createTestAttr } from '@camp/utils';
 import { Table, useMantineTheme } from '@mantine/core';
 
 import { FamilyTableRow } from './FamilyTableRow';
@@ -8,6 +9,8 @@ import { toShortFamilyInfoTableRows } from './toShortFamilyInfoTableRows';
 interface Props {
   shortFamiliesInfo: ShortFamiliesInfo;
 }
+
+export const familyTableId = 'family-list-table';
 
 export const FamilyTable = ({ shortFamiliesInfo }: Props) => {
   const { colors } = useMantineTheme();
@@ -29,6 +32,7 @@ export const FamilyTable = ({ shortFamiliesInfo }: Props) => {
       striped
       highlightOnHover
       withBorder
+      {...createTestAttr(familyTableId)}
     >
       <thead>
         <tr>{columns}</tr>

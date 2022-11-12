@@ -1,5 +1,6 @@
 import { MenuIcon } from '@camp/design';
 import { Link } from '@camp/router';
+import { createTestAttr } from '@camp/utils';
 import { ActionIcon, Group, Menu } from '@mantine/core';
 
 import { Badge } from '../../atoms';
@@ -8,6 +9,9 @@ import type { ShortFamilyInfoTableRow } from './toShortFamilyInfoTableRows';
 interface Props {
   shortFamilyInfoTableRow: ShortFamilyInfoTableRow;
 }
+
+export const familyTableMenuButtonId = 'family-table-menu-button';
+export const familyTableMenuId = 'family-table-menu';
 
 export const FamilyTableRow = ({
   shortFamilyInfoTableRow: {
@@ -29,7 +33,7 @@ export const FamilyTableRow = ({
         <Group position="apart">
           <Badge status={severityStatus.state}>{severityStatus.text}</Badge>
           <Menu width={100} shadow="md" withArrow>
-            <Menu.Dropdown>
+            <Menu.Dropdown {...createTestAttr(familyTableMenuId)}>
               <Menu.Item
                 component={Link}
                 target="_blank"
@@ -39,7 +43,7 @@ export const FamilyTableRow = ({
                 بازکردن
               </Menu.Item>
             </Menu.Dropdown>
-            <Menu.Target>
+            <Menu.Target {...createTestAttr(familyTableMenuButtonId)}>
               <ActionIcon size="sm">
                 <MenuIcon />
               </ActionIcon>

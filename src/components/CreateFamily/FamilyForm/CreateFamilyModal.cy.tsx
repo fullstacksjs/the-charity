@@ -1,11 +1,19 @@
 import { noop } from '@fullstacksjs/toolbox';
 
+import { CreateFamilyModalStateCtx } from '../../../contexts';
 import { createFamilyFormIds } from './CreateFamilyForm';
 import { CreateFamilyModal, createFamilyModalId } from './CreateFamilyModal';
 
 describe('Create Family Modal', () => {
   beforeEach(() => {
-    cy.mount(<CreateFamilyModal opened onClose={noop} />);
+    cy.mount(
+      <CreateFamilyModalStateCtx.Provider
+        // eslint-disable-next-line react/jsx-no-constructed-context-values
+        value={{ isModalOpen: true, closeModal: noop, openModal: noop }}
+      >
+        <CreateFamilyModal />
+      </CreateFamilyModalStateCtx.Provider>,
+    );
   });
 
   it('should contains a modal element with correct title', () => {

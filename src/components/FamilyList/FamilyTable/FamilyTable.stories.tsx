@@ -1,6 +1,6 @@
 import type { ComponentMeta, ComponentStory } from '@storybook/react';
 
-import { shortFamilyInfos } from '../FamilyList';
+import { shortFamiliesInfo } from '../FamilyList';
 import { FamilyTable } from './FamilyTable';
 
 export default {
@@ -12,4 +12,4 @@ const Template: ComponentStory<typeof FamilyTable> = args => (
 );
 
 export const Default = Template.bind({});
-Default.args = { shortFamiliesInfo: shortFamilyInfos };
+Default.args = { shortFamiliesInfo };
