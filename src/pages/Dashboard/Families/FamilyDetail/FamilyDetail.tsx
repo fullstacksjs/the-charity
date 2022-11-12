@@ -1,32 +1,36 @@
 import { DetailCard } from '@camp/components';
 import { messages } from '@camp/messages';
+import { useMatches } from '@camp/router';
+import { Loader } from '@mantine/core';
+import { useEffect, useState } from 'react';
 
 import { useDraftFamilyDetailQuery } from '../../../../data-layer/operations/__generated__/typesAndHooks';
 
 export const FamilyDetail = () => {
   const t = messages.familyDetail.familyFields;
+  const [familyId, setFamilyId] = useState('');
+  const matches = useMatches();
 
-  const { data } = useDraftFamilyDetailQuery({
-    variables: { id: '1' },
+  useEffect(() => {
+    matches.map(match => setFamilyId(match.params.familyId));
+  }, [familyId, matches]);
+
+  const { data, loading } = useDraftFamilyDetailQuery({
+    variables: { id: familyId },
   });
 
-  console.log(
-    data?.family?.__typename === 'DraftFamily' ? data.family.name : null,
-  );
-  return (
-    <DetailCard
-      title={messages.familyDetail.title}
-      id={messages.familyDetail.id}
-    >
+  if (loading) <Loader />;
+  return data?.family?.__typename === 'DraftFamily' ? (
+    <DetailCard title={messages.familyDetail.title} id={data.family.code}>
       <DetailCard.TextField title={t.name.title}>
-        {t.name.value}
+        {data.family.name}
       </DetailCard.TextField>
       <DetailCard.BadgeField status="error" title={t.severityStatus.title}>
-        {t.severityStatus.value}
+        {data.family.severity}
       </DetailCard.BadgeField>
       <DetailCard.BadgeField status="warning" title={t.informationStatus.title}>
-        {t.informationStatus.value}
+        {data.family.status}
       </DetailCard.BadgeField>
     </DetailCard>
-  );
+  ) : null;
 };
