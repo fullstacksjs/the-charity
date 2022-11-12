@@ -28,10 +28,11 @@ export const FamilyTableRow = ({
       <td>
         <Group position="apart">
           <Badge status={severityStatus.state}>{severityStatus.text}</Badge>
-          <Menu width={200} shadow="md">
+          <Menu width={100} shadow="md" withArrow>
             <Menu.Dropdown>
               <Menu.Item
                 component={Link}
+                target="_blank"
                 to="/dashboard/families/:id"
                 params={{ id }}
               >
