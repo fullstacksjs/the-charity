@@ -7,10 +7,10 @@ import { useCreateFamilyModalState } from '@camp/hooks';
 import { Outlet } from '@tanstack/react-location';
 
 export const Families = () => {
-  const { isModalOpen, closeModal, openModal } = useCreateFamilyModalState();
+  const { isModalOpen, closeModal } = useCreateFamilyModalState();
   return (
     <>
-      <DashboardHeader button={<CreateFamilyButton onClick={openModal} />} />
+      <DashboardHeader button={<CreateFamilyButton />} />
       <Outlet />
       <CreateFamilyModal opened={isModalOpen} onClose={closeModal} />
     </>
