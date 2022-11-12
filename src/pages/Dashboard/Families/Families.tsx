@@ -3,27 +3,16 @@ import {
   CreateFamilyModal,
   DashboardHeader,
 } from '@camp/components';
+import { useCreateFamilyModalState } from '@camp/hooks';
 import { Outlet } from '@tanstack/react-location';
-import { useState } from 'react';
 
 export const Families = () => {
-  const [isCreateFamilyModalOpen, setIsCreateFamilyModalOpen] = useState(false);
+  const { isModalOpen, closeModal, openModal } = useCreateFamilyModalState();
   return (
     <>
-      <DashboardHeader
-        button={
-          <CreateFamilyButton
-            onClick={() => setIsCreateFamilyModalOpen(true)}
-          />
-        }
-      />
+      <DashboardHeader button={<CreateFamilyButton onClick={openModal} />} />
       <Outlet />
-      <CreateFamilyModal
-        opened={isCreateFamilyModalOpen}
-        onClose={() => {
-          setIsCreateFamilyModalOpen(false);
-        }}
-      />
+      <CreateFamilyModal opened={isModalOpen} onClose={closeModal} />
     </>
   );
 };
