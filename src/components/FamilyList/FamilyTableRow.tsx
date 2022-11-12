@@ -19,7 +19,7 @@ export const FamilyTableRow = ({
   },
 }: Props) => {
   return (
-    <tr key={informationStatus + name + severityStatus + order}>
+    <tr>
       <td>{order}</td>
       <td>{name}</td>
       <td>

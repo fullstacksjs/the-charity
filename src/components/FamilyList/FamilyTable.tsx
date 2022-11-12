@@ -1,5 +1,5 @@
 import { messages } from '@camp/messages';
-import { Table } from '@mantine/core';
+import { Table, useMantineTheme } from '@mantine/core';
 
 import { FamilyTableRow } from './FamilyTableRow';
 import type { ShortFamiliesInfo } from './toShortFamilyInfoTableRows';
@@ -10,6 +10,7 @@ interface Props {
 }
 
 export const FamilyTable = ({ shortFamiliesInfo }: Props) => {
+  const { colors } = useMantineTheme();
   const t = messages.families.list.table;
 
   const columns = t.columns.map(msg => <th key={msg}>{msg}</th>);
@@ -32,7 +33,7 @@ export const FamilyTable = ({ shortFamiliesInfo }: Props) => {
       <thead>
         <tr>{columns}</tr>
       </thead>
-      <tbody>{rows}</tbody>
+      <tbody style={{ color: colors.fgMuted[6] }}>{rows}</tbody>
     </Table>
   );
 };
