@@ -2,7 +2,7 @@ import {
   createFamilyButtonId,
   createFamilyFormIds,
   createFamilyModalId,
-  familyDashboardHeaderId,
+  dashboardHeaderId,
   navLinkIds,
 } from '../../src/components';
 import { genFakeFamilyName } from '../../src/utils';
@@ -11,7 +11,7 @@ describe('Create Draft Family', () => {
   beforeEach(() => {
     cy.login();
     cy.findByTestId(navLinkIds.families).click();
-    cy.findByTestId(familyDashboardHeaderId)
+    cy.findByTestId(dashboardHeaderId)
       .findByTestId(createFamilyButtonId)
       .click();
   });

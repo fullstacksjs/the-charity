@@ -24,17 +24,13 @@ export const useBreadcrumbsItems = (): BreadcrumbItem[] => {
     });
 };
 
-export const familyDashboardHeaderId = 'family-dashboard-header';
+export const dashboardHeaderId = 'dashboard-header';
 
 export const DashboardHeader = ({ button }: HeaderProps) => {
   const items = useBreadcrumbsItems();
 
   return (
-    <Group
-      position="apart"
-      mb={40}
-      {...createTestAttr(familyDashboardHeaderId)}
-    >
+    <Group position="apart" mb={40} {...createTestAttr(dashboardHeaderId)}>
       <Breadcrumbs basePath="/dashboard" items={items} />
       {button}
     </Group>

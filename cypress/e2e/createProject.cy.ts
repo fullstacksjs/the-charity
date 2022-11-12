@@ -1,16 +1,16 @@
 import {
   createProjectButtonId,
   createProjectFormIds,
+  dashboardHeaderId,
   navLinkIds,
 } from '../../src/components';
-import { projectDashboardHeaderId } from '../../src/pages';
 import { genFakeProjectDescription, genFakeProjectName } from '../../src/utils';
 
 describe('Create Project', () => {
   beforeEach(() => {
     cy.login();
     cy.findByTestId(navLinkIds.projects).click();
-    cy.findByTestId(projectDashboardHeaderId)
+    cy.findByTestId(dashboardHeaderId)
       .findByTestId(createProjectButtonId)
       .click();
   });

@@ -4,10 +4,7 @@ import {
   DashboardHeader,
   ProjectEmptyState,
 } from '@camp/components';
-import { createTestAttr } from '@camp/utils';
 import { useState } from 'react';
-
-export const projectDashboardHeaderId = 'project-dashboard-header';
 
 export const Projects = () => {
   const [isCreateProjectModalOpen, setIsCreateProjectModalOpen] =
@@ -20,7 +17,6 @@ export const Projects = () => {
             onClick={() => setIsCreateProjectModalOpen(true)}
           />
         }
-        {...createTestAttr(projectDashboardHeaderId)}
       />
 
       <ProjectEmptyState />
