@@ -25,10 +25,16 @@ export const FamilyDetail = () => {
       <DetailCard.TextField title={t.name.title}>
         {data.family.name}
       </DetailCard.TextField>
-      <DetailCard.BadgeField status="error" title={t.severityStatus.title}>
+      <DetailCard.BadgeField
+        status={data.family.severity}
+        title={t.severityStatus.title}
+      >
         {data.family.severity}
       </DetailCard.BadgeField>
-      <DetailCard.BadgeField status="warning" title={t.informationStatus.title}>
+      <DetailCard.BadgeField
+        status={data.family.status}
+        title={t.informationStatus.title}
+      >
         {data.family.status}
       </DetailCard.BadgeField>
     </DetailCard>
