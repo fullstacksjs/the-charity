@@ -536,7 +536,7 @@ export type DraftFamilyDetailQueryVariables = Exact<{
 }>;
 
 
-export type DraftFamilyDetailQuery = { __typename?: 'Query', family?: { __typename?: 'CompletedFamily' } | { __typename?: 'DraftFamily', id: string, name?: string | null, status: FamilyStatus, severity: FamilySeverity } | null };
+export type DraftFamilyDetailQuery = { __typename?: 'Query', family?: { __typename?: 'CompletedFamily' } | { __typename?: 'DraftFamily', id: string, name?: string | null, status: FamilyStatus, severity: FamilySeverity, code: string } | null };
 
 
 export const CreateDraftFamilyDocument = gql`
@@ -653,6 +653,7 @@ export const DraftFamilyDetailDocument = gql`
       name
       status
       severity
+      code
     }
   }
 }

@@ -5,6 +5,7 @@ query DraftFamilyDetail($id: String!) {
       name
       status
       severity
+      code
     }
   }
 }

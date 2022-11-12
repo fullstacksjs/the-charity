@@ -109,7 +109,7 @@ export const messages = {
   },
   familyDetail: {
     title: 'اطلاعات کلی خانواده',
-    id: '(F00005)',
+    id: 'F00005',
     familyFields: {
       name: {
         title: 'نام',
