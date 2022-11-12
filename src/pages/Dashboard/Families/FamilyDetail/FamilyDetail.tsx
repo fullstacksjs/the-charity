@@ -9,7 +9,7 @@ export const FamilyDetail = () => {
       title={messages.familyDetail.title}
       id={messages.familyDetail.id}
     >
-      <DetailCard.TextField title={t.householder.title}>
+      <DetailCard.TextField title={t.name.title}>
         {t.name.value}
       </DetailCard.TextField>
       <DetailCard.BadgeField status="error" title={t.severityStatus.title}>
