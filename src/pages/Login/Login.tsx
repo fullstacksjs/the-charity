@@ -11,6 +11,7 @@ export const Login = () => {
       <Center
         sx={theme => ({
           backgroundColor: theme.colors.bgCanvas[6],
+          height: '100%',
         })}
       >
         <Image fit="scale-down" alt="login" src="/login-logo.png" />

@@ -1,11 +1,9 @@
 import { useLoginMutation } from '@camp/data-layer';
-import { ErrorAlertIcon } from '@camp/design';
 import { toClientErrorMessage } from '@camp/domain';
 import { messages } from '@camp/messages';
 import { useNavigate } from '@camp/router';
 import { yupResolver } from '@hookform/resolvers/yup';
 import {
-  Alert,
   Button,
   PasswordInput,
   Stack,
@@ -16,6 +14,8 @@ import {
 import { useState } from 'react';
 import { useForm } from 'react-hook-form';
 import * as yup from 'yup';
+
+import { Alert } from '../../components/Alert';
 
 interface FormInputs {
   username: string;
@@ -88,18 +88,7 @@ export const LoginForm = () => {
         <Button type="submit" loading={mutationResult.loading}>
           {messages.login.loginFrom.submitButton.text}
         </Button>
-        {errMsg ? (
-          <Alert
-            icon={<ErrorAlertIcon width={18} height={18} />}
-            title={errMsg}
-            color="red"
-            sx={theme => ({
-              color: theme.colors.errorDefault[6],
-            })}
-          >
-            {''}
-          </Alert>
-        ) : null}
+        {errMsg ? <Alert type="error" message={errMsg} /> : null}
       </Stack>
     </form>
   );
