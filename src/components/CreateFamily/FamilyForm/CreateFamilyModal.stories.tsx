@@ -1,6 +1,5 @@
 import type { Meta, Story } from '@storybook/react';
 
-import type { CreateFamilyModalProps } from './CreateFamilyModal';
 import { CreateFamilyModal } from './CreateFamilyModal';
 
 export default {
@@ -14,7 +13,7 @@ export default {
   component: CreateFamilyModal,
 } as Meta;
 
-const Template: Story<CreateFamilyModalProps> = args => {
+const Template: Story<typeof CreateFamilyModal> = args => {
   return <CreateFamilyModal {...args} />;
 };
 
