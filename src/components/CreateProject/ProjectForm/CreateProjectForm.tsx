@@ -4,7 +4,6 @@ import { createTestAttr } from '@camp/utils';
 import { isNull } from '@fullstacksjs/toolbox';
 import { yupResolver } from '@hookform/resolvers/yup';
 import { Button, Group, Stack, Textarea, TextInput } from '@mantine/core';
-// import { showNotification } from '@mantine/notifications';
 import { useForm } from 'react-hook-form';
 import * as yup from 'yup';
 
@@ -52,7 +51,7 @@ export const CreateProjectForm = ({ dismiss }: Props) => {
         title: messages.projects.create,
         message: messages.projects.notification.successfulCreate(name),
         type: 'success',
-        ...createTestAttr('notification-success'),
+        ...createTestAttr(createProjectFormIds.notification.success),
       });
       dismiss();
     } catch (err) {
@@ -62,7 +61,7 @@ export const CreateProjectForm = ({ dismiss }: Props) => {
         title: messages.projects.create,
         message: messages.projects.notification.failedCreate(name),
         type: 'failure',
-        ...createTestAttr('notification-fail'),
+        ...createTestAttr(createProjectFormIds.notification.failure),
       });
     }
   });
