@@ -1,8 +1,8 @@
 import { messages } from '@camp/messages';
+import { createTestAttr } from '@camp/utils';
 import type { ModalProps } from '@mantine/core';
 import { Modal } from '@mantine/core';
 
-import { createTestAttr } from '../../../utils/createTestAttr';
 import { CreateProjectForm } from './CreateProjectForm';
 
 type Props = Pick<ModalProps, 'onClose' | 'opened'>;

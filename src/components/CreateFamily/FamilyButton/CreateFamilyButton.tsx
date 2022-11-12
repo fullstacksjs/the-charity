@@ -1,9 +1,8 @@
 import { PlusIcon } from '@camp/design';
 import { useCreateFamilyModalState } from '@camp/hooks';
 import { messages } from '@camp/messages';
+import { createTestAttr } from '@camp/utils';
 import { Button } from '@mantine/core';
-
-import { createTestAttr } from '../../../utils/createTestAttr';
 
 interface Props {
   variant?: 'filled' | 'outline';
