@@ -3,13 +3,16 @@ import {
   createProjectFormIds,
   navLinkIds,
 } from '../../src/components';
+import { projectDashboardHeaderId } from '../../src/pages';
 import { genFakeProjectDescription, genFakeProjectName } from '../../src/utils';
 
 describe('Create Project', () => {
   beforeEach(() => {
     cy.login();
     cy.findByTestId(navLinkIds.projects).click();
-    cy.findByTestId(createProjectButtonId).click();
+    cy.findByTestId(projectDashboardHeaderId)
+      .findByTestId(createProjectButtonId)
+      .click();
   });
 
   it('[OK]: Admin creates project', () => {
