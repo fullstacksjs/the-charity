@@ -11,7 +11,7 @@ import type { ShortFamiliesInfo } from './FamilyTable/toShortFamilyInfoTableRows
   this type should be removed in
   backend integration ticket of FamilyList
 */
-const shortFamilyInfos: ShortFamiliesInfo = [
+export const shortFamilyInfos: ShortFamiliesInfo = [
   {
     id: '(F00001)',
     name: 'فول استک زاده',
