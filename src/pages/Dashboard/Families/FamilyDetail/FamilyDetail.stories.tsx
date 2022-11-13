@@ -7,7 +7,7 @@ export default {
   component: FamilyDetail,
   args: {
     router: {
-      route: '/family-detail',
+      route: ':familyId',
       meta: {
         breadcrumb: messages.familyDetail.title,
       },
