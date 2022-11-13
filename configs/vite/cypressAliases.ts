@@ -1,18 +1,45 @@
-function compileFileToJS(file: string) {
-  return file.replace(
-    /import { (.*?) } from ["']@camp\/test["'];/g,
-    "import { $1 } from '../../lib/test'",
-  );
+import fs from 'node:fs';
+import path from 'node:path';
+
+import type ts from 'typescript';
+import type { Plugin } from 'vite';
+
+const loadJSON = <T>(filePath: string): T =>
+  JSON.parse(fs.readFileSync(filePath, 'utf-8'));
+
+function transformAliases(aliases: Map<string, string>, file: string) {
+  // eslint-disable-next-line fp/no-let
+  let code = file;
+
+  aliases.forEach((v, k) => {
+    const regex = new RegExp(`import {(.*?)} from ["']${k}["'];?`, 'g');
+    code = code.replace(regex, `import { $1 } from '../../${v}'`);
+  });
+
+  return code;
 }
 
-const fileRegex = /cypress\/[e2e|support]/;
+export function cypressAliases(): Plugin {
+  const aliases = new Map<string, string>();
 
-export function cypressAliases() {
   return {
     name: 'cypress-aliases-plugin',
+    enforce: 'pre',
+
+    configResolved({ root }) {
+      const project = path.resolve(root, 'tsconfig.json');
+      const config = loadJSON<ts.TranspileOptions>(project);
+      const tsAliases = config.compilerOptions?.paths;
+      if (tsAliases == null) return;
+      Object.entries(tsAliases).forEach(([key, value]) => {
+        aliases.set(key, value[0]);
+      });
+    },
+
     transform(src: string, id: string) {
-      if (fileRegex.test(id)) {
-        const code = compileFileToJS(src);
+      if (/.*cypress\/e2e\//.test(id)) {
+        console.log(id);
+        const code = transformAliases(aliases, src);
         return { code, map: null };
       }
     },
