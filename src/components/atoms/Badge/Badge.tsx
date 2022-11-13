@@ -3,7 +3,7 @@ import { Badge as MantineBadge } from '@mantine/core';
 
 export type BadgeStatus = 'COMPLETED' | 'CRITICAL' | 'DRAFT' | 'NORMAL';
 export interface BadgeProps {
-  children: string;
+  children: BadgeStatus;
   status: BadgeStatus;
 }
 
@@ -12,6 +12,13 @@ const statusMap: Record<BadgeStatus, MantineColor> = {
   DRAFT: 'orange',
   NORMAL: 'teal',
   COMPLETED: 'teal',
+};
+
+const childrenMap: Record<BadgeStatus, string> = {
+  CRITICAL: 'بحرانی',
+  DRAFT: 'تکمیل نشده',
+  NORMAL: 'عادی',
+  COMPLETED: 'تکمیل شده',
 };
 
 export const Badge = ({ children, status }: BadgeProps) => {
@@ -23,7 +30,7 @@ export const Badge = ({ children, status }: BadgeProps) => {
       color={statusMap[status]}
       sx={{ fontWeight: 500 }}
     >
-      {children}
+      {childrenMap[children]}
     </MantineBadge>
   );
 };
