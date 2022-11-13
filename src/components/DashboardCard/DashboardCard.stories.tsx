@@ -14,11 +14,11 @@ const Template: ComponentStory<typeof DashboardCard> = args => (
     left={<CreateFamilyButton />}
     right={
       <Title order={4} color="fgMuted">
-        آقای هاشمی؟
+        تیتر
       </Title>
     }
   >
-    کی رو میخواستی؟
+    متن
   </DashboardCard>
 );
 
