@@ -115,6 +115,15 @@ export const theme: MantineThemeOverride = {
         title: { fontWeight: 400, fontSize: 12 },
       },
     },
+    Table: {
+      styles: {
+        root: {
+          borderRadius: '4px',
+          borderCollapse: 'separate',
+          borderSpacing: 0,
+        },
+      },
+    },
   },
 
   headings: {
