@@ -46,7 +46,6 @@ export const CreateProjectForm = ({ dismiss }: Props) => {
       });
 
       if (isNull(data)) throw new Error('data is null');
-      // notifySuccessCreation(data.createProject.name);
       showNotification({
         title: messages.projects.create,
         message: messages.projects.notification.successfulCreate(name),
