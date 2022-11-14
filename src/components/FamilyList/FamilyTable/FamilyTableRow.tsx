@@ -1,5 +1,5 @@
 import { MenuIcon } from '@camp/design';
-import { Link } from '@camp/router';
+import { Link, useNavigate } from '@camp/router';
 import { createTestAttr } from '@camp/utils';
 import { ActionIcon, Group, Menu } from '@mantine/core';
 
@@ -22,8 +22,14 @@ export const FamilyTableRow = ({
     order,
   },
 }: Props) => {
+  const navigate = useNavigate();
+
+  const gotoDetail = () => {
+    navigate({ to: `/dashboard/families/${id}` as AppRoute });
+  };
+
   return (
-    <tr>
+    <tr style={{ cursor: 'pointer' }} onClick={gotoDetail}>
       <td>{order}</td>
       <td>{name}</td>
       <td>
@@ -36,7 +42,6 @@ export const FamilyTableRow = ({
             <Menu.Dropdown {...createTestAttr(familyTableMenuId)}>
               <Menu.Item
                 component={Link}
-                target="_blank"
                 to="/dashboard/families/:id"
                 params={{ id }}
               >
@@ -44,7 +49,12 @@ export const FamilyTableRow = ({
               </Menu.Item>
             </Menu.Dropdown>
             <Menu.Target {...createTestAttr(familyTableMenuButtonId)}>
-              <ActionIcon size="sm">
+              <ActionIcon
+                size="sm"
+                onClick={(e: React.MouseEvent<HTMLButtonElement>) =>
+                  e.stopPropagation()
+                }
+              >
                 <MenuIcon />
               </ActionIcon>
             </Menu.Target>
