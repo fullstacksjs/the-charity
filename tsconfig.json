@@ -4,6 +4,7 @@
   "compilerOptions": {
     "target": "ESNext",
     "esModuleInterop": true,
+    "types": ["cypress", "@testing-library/cypress"],
     "paths": {
       "@camp/data-layer": ["./src/data-layer/index.ts"],
       "@camp/design": ["./src/design/index.ts"],
