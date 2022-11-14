@@ -10,7 +10,7 @@ export interface BadgeProps {
 const statusMap: Record<BadgeStatus, MantineColor> = {
   CRITICAL: 'red',
   DRAFT: 'orange',
-  NORMAL: 'teal',
+  NORMAL: 'orange',
   COMPLETED: 'teal',
 };
 
