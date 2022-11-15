@@ -1,19 +1,12 @@
 import { DetailCard } from '@camp/components';
+import { useDraftFamilyDetailQuery } from '@camp/data-layer';
 import { messages } from '@camp/messages';
 import { useMatches } from '@camp/router';
-import { useEffect, useState } from 'react';
-
-import { useDraftFamilyDetailQuery } from '../../../../data-layer/operations/__generated__/typesAndHooks';
 
 export const FamilyDetail = () => {
   const t = messages.familyDetail.familyFields;
-  const [familyId, setFamilyId] = useState('');
-  const matches = useMatches();
-
-  useEffect(() => {
-    matches.map(match => setFamilyId(match.params.familyId));
-  }, [familyId, matches]);
-
+  const [match] = useMatches();
+  const familyId = match!.params.familyId;
   const { data } = useDraftFamilyDetailQuery({
     variables: { id: familyId },
   });
