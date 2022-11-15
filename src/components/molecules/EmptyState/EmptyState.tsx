@@ -1,4 +1,4 @@
-import { Box, Center, Space, Stack, Text } from '@mantine/core';
+import { Box, Center, Space, Text } from '@mantine/core';
 
 import { VisualizedIcon } from '../../atoms';
 
