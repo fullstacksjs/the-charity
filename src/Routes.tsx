@@ -60,7 +60,7 @@ const routes: Route[] = [
             element: <FamilyList />,
           },
           {
-            path: '/family-detail',
+            path: '/:id',
             element: <FamilyDetail />,
             meta: { breadcrumb: messages.familyDetail.title },
           },
