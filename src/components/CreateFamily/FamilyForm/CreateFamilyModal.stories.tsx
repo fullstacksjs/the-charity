@@ -18,7 +18,6 @@ export default {
 const Template: Story<typeof CreateFamilyModal> = () => {
   return (
     <CreateFamilyModalStateCtx.Provider
-      // eslint-disable-next-line react/jsx-no-constructed-context-values
       value={{ isModalOpen: true, closeModal: noop, openModal: noop }}
     >
       <CreateFamilyModal />;

@@ -82,5 +82,19 @@
         ]
       }
     ]
-  }
+  },
+  "overrides": [
+    {
+      "files": ["./**/*.cy.tsx"],
+      "rules": {
+        "react/jsx-no-constructed-context-values": ["off"]
+      }
+    },
+    {
+      "files": ["./**/*.stories.tsx"],
+      "rules": {
+        "react/jsx-no-constructed-context-values": ["off"]
+      }
+    }
+  ]
 }

@@ -8,7 +8,6 @@ describe('Create Family Modal', () => {
   beforeEach(() => {
     cy.mount(
       <CreateFamilyModalStateCtx.Provider
-        // eslint-disable-next-line react/jsx-no-constructed-context-values
         value={{ isModalOpen: true, closeModal: noop, openModal: noop }}
       >
         <CreateFamilyModal />
