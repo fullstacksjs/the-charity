@@ -9,6 +9,4 @@ type AppRoute =
   | '/dashboard'
   | '/dashboard/families'
   | '/dashboard/families/:id'
-  | '/dashboard/families/family-detail'
-  | '/dashboard/family-detail'
   | '/dashboard/projects';
