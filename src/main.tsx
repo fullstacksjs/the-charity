@@ -1,4 +1,4 @@
-import { ContextProvider } from '@camp/contexts';
+import { GlobalContextProvider } from '@camp/contexts';
 import { ApolloProvider } from '@camp/data-layer';
 import { ThemeProvider } from '@camp/design';
 import { NotificationsProvider } from '@mantine/notifications';
@@ -15,11 +15,11 @@ root.render(
     <ApolloProvider>
       <ThemeProvider>
         <NotificationsProvider limit={3}>
-          <ContextProvider>
+          <GlobalContextProvider>
             <AuthProvider fallback={<FullPageLoader />}>
               <Routes />
             </AuthProvider>
-          </ContextProvider>
+          </GlobalContextProvider>
         </NotificationsProvider>
       </ThemeProvider>
     </ApolloProvider>

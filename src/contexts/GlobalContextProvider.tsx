@@ -4,7 +4,7 @@ interface Props {
   children: JSX.Element;
 }
 
-export const ContextProvider = ({ children }: Props) => {
+export const GlobalContextProvider = ({ children }: Props) => {
   return (
     <CreateFamilyModalStateCtxProvider>
       {children}
