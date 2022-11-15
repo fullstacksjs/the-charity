@@ -7,6 +7,10 @@ declare global {
     interface Chainable {
       mount: typeof mount;
       login: () => void;
+      visit(
+        url: AppRoute,
+        options?: Partial<VisitOptions> & { params?: Record<string, string> },
+      ): Chainable<AUTWindow>;
     }
   }
 }

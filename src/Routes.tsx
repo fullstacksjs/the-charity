@@ -15,6 +15,16 @@ import {
   Projects,
 } from './pages';
 
+export const AppRoute = {
+  index: '/',
+  auth: '/auth',
+  login: '/auth/login',
+  dashboard: '/dashboard',
+  families: '/dashboard/families',
+  familyDetail: '/dashboard/families/family-detail',
+  projects: '/dashboard/projects',
+} as const;
+
 export const location = new ReactLocation();
 
 export type LocationGenerics = MakeGenerics<{
