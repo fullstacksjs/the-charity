@@ -1,7 +1,7 @@
 import React from 'react';
 import { NotificationsProvider } from '@mantine/notifications';
 import { CreateProjectDocument } from '../src/data-layer';
-import { ContextProvider } from '../src/contexts';
+import { GlobalContextProvider } from '../src/contexts';
 import { MockedProvider } from '@apollo/client/testing';
 import {
   createMemoryHistory,
@@ -68,9 +68,9 @@ export const decorators: DecoratorFn[] = [
   Story => (
     <ThemeProvider>
       <NotificationsProvider limit={3}>
-        <ContextProvider>
+        <GlobalContextProvider>
           <Story />
-        </ContextProvider>
+        </GlobalContextProvider>
       </NotificationsProvider>
     </ThemeProvider>
   ),
