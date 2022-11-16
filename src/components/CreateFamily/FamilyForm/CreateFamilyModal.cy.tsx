@@ -1,12 +1,22 @@
+import { useEffect } from 'react';
+
 import { createFamilyFormIds } from './CreateFamilyForm';
 import {
   createFamilyModalId,
   openCreateFamilyModal,
 } from './CreateFamilyModal';
 
+const TestModal = () => {
+  useEffect(() => {
+    openCreateFamilyModal();
+  }, []);
+
+  return null;
+};
+
 describe('Create Family Modal', () => {
   beforeEach(() => {
-    cy.mount(<>{openCreateFamilyModal()}</>);
+    cy.mount(<TestModal />);
   });
 
   it('should contains a modal element with correct title', () => {

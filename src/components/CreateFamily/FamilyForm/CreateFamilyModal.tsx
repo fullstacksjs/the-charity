@@ -11,13 +11,9 @@ export const createFamilyModalId = 'create-family-modal';
 export const CreateFamilyModal = ({
   context,
   id,
-}: ContextModalProps<{ modalBody: string }>) => {
-  return (
-    <>
-      <CreateFamilyForm dismiss={() => context.closeModal(id)} />
-    </>
-  );
-};
+}: ContextModalProps<{ modalBody: string }>) => (
+  <CreateFamilyForm dismiss={() => context.closeModal(id)} />
+);
 
 export const openCreateFamilyModal = () =>
   openContextModal({
