@@ -30,7 +30,7 @@ describe('Create Project', () => {
 
   it('[NOK]: Admin wants to create a project with short name', () => {
     cy.get('form').within(() => {
-      cy.findByTestId(createProjectFormIds.nameInput).type('نام');
+      cy.findByTestId(createProjectFormIds.nameInput).type('2');
       cy.findByTestId(createProjectFormIds.submitBtn).click();
     });
     cy.findByTestId(createProjectFormIds.notification.success).should('exist');
