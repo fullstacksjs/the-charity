@@ -1,8 +1,7 @@
-import { noop } from '@fullstacksjs/toolbox';
 import type { Meta, Story } from '@storybook/react';
 
-import { CreateFamilyModalStateCtx } from '../../../contexts';
-import { CreateFamilyModal } from './CreateFamilyModal';
+import { ModalProvider } from '../../ModalProvider';
+import { CreateFamilyModal, openCreateFamilyModal } from './CreateFamilyModal';
 
 export default {
   argTypes: {
@@ -17,11 +16,9 @@ export default {
 
 const Template: Story<typeof CreateFamilyModal> = () => {
   return (
-    <CreateFamilyModalStateCtx.Provider
-      value={{ isModalOpen: true, closeModal: noop, openModal: noop }}
-    >
-      <CreateFamilyModal />;
-    </CreateFamilyModalStateCtx.Provider>
+    <ModalProvider>
+      <>{openCreateFamilyModal()}</>
+    </ModalProvider>
   );
 };
 

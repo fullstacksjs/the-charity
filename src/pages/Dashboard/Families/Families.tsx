@@ -1,8 +1,4 @@
-import {
-  CreateFamilyButton,
-  CreateFamilyModal,
-  DashboardHeader,
-} from '@camp/components';
+import { CreateFamilyButton, DashboardHeader } from '@camp/components';
 import { Outlet } from '@tanstack/react-location';
 
 export const Families = () => {
@@ -10,7 +6,6 @@ export const Families = () => {
     <>
       <DashboardHeader button={<CreateFamilyButton />} />
       <Outlet />
-      <CreateFamilyModal />
     </>
   );
 };

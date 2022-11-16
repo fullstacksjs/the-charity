@@ -7,6 +7,7 @@ export * from './DetailCard';
 export * from './FamilyEmptyState';
 export * from './FamilyList';
 export * from './Guards';
+export * from './ModalProvider';
 export * from './molecules';
 export * from './Notification';
 export * from './organisms';

@@ -1,18 +1,12 @@
-import { noop } from '@fullstacksjs/toolbox';
-
-import { CreateFamilyModalStateCtx } from '../../../contexts';
 import { createFamilyFormIds } from './CreateFamilyForm';
-import { CreateFamilyModal, createFamilyModalId } from './CreateFamilyModal';
+import {
+  createFamilyModalId,
+  openCreateFamilyModal,
+} from './CreateFamilyModal';
 
 describe('Create Family Modal', () => {
   beforeEach(() => {
-    cy.mount(
-      <CreateFamilyModalStateCtx.Provider
-        value={{ isModalOpen: true, closeModal: noop, openModal: noop }}
-      >
-        <CreateFamilyModal />
-      </CreateFamilyModalStateCtx.Provider>,
-    );
+    cy.mount(<>{openCreateFamilyModal()}</>);
   });
 
   it('should contains a modal element with correct title', () => {

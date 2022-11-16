@@ -1,8 +1,4 @@
-import {
-  createFamilyButtonId,
-  CreateFamilyModal,
-  createFamilyModalId,
-} from '../CreateFamily';
+import { createFamilyButtonId, createFamilyModalId } from '../CreateFamily';
 import { FamilyList } from './FamilyList';
 
 describe('Family List', () => {
@@ -10,7 +6,6 @@ describe('Family List', () => {
     cy.mount(
       <>
         <FamilyList />
-        <CreateFamilyModal />
       </>,
     );
   });
