@@ -1,12 +1,11 @@
 import { DetailCard } from '@camp/components';
 import { useDraftFamilyDetailQuery } from '@camp/data-layer';
 import { messages } from '@camp/messages';
-import { useMatches } from '@camp/router';
+import { useParams } from '@camp/router';
 
 export const FamilyDetail = () => {
   const t = messages.familyDetail.familyFields;
-  const [match] = useMatches();
-  const familyId = match!.params.id;
+  const familyId = useParams();
   const { data } = useDraftFamilyDetailQuery({
     variables: { id: familyId },
   });
