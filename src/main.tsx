@@ -1,10 +1,11 @@
 import { ApolloProvider } from '@camp/data-layer';
 import { ThemeProvider } from '@camp/design';
+import { ModalsProvider } from '@mantine/modals';
 import { NotificationsProvider } from '@mantine/notifications';
 import { StrictMode } from 'react';
 import ReactDOM from 'react-dom/client';
 
-import { AuthProvider, FullPageLoader, ModalProvider } from './components';
+import { AuthProvider, FullPageLoader } from './components';
 import { Routes } from './Routes';
 
 const root = ReactDOM.createRoot(document.getElementById('root')!);
@@ -14,11 +15,11 @@ root.render(
     <ApolloProvider>
       <ThemeProvider>
         <NotificationsProvider limit={3}>
-          <ModalProvider>
+          <ModalsProvider>
             <AuthProvider fallback={<FullPageLoader />}>
               <Routes />
             </AuthProvider>
-          </ModalProvider>
+          </ModalsProvider>
         </NotificationsProvider>
       </ThemeProvider>
     </ApolloProvider>
