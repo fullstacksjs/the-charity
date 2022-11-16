@@ -6,7 +6,7 @@ import { useMatches } from '@camp/router';
 export const FamilyDetail = () => {
   const t = messages.familyDetail.familyFields;
   const [match] = useMatches();
-  const familyId = match!.params.familyId;
+  const familyId = match!.params.id;
   const { data } = useDraftFamilyDetailQuery({
     variables: { id: familyId },
   });

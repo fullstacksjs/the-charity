@@ -25,7 +25,7 @@ export const location = new ReactLocation();
 
 export type LocationGenerics = MakeGenerics<{
   Params: {
-    familyId: string;
+    id: string;
   };
   RouteMeta: {
     breadcrumb: string;
