@@ -5,6 +5,7 @@ import {
   GuestGuard,
 } from '@camp/components';
 import { messages } from '@camp/messages';
+import type { RouteSegment } from '@camp/router';
 import { Navigate } from '@camp/router';
 import type {
   MakeGenerics,
@@ -19,6 +20,17 @@ import {
   Login,
   Projects,
 } from './pages';
+
+export const AppRoute = {
+  index: '/',
+  auth: '/auth',
+  login: '/auth/login',
+  dashboard: '/dashboard',
+  families: '/dashboard/families',
+  familyDetail: '/dashboard/families/family-detail',
+  projects: '/dashboard/projects',
+} as const;
+export type AppRoute = typeof AppRoute[keyof typeof AppRoute];
 
 export const location = new ReactLocation();
 

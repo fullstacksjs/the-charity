@@ -1,28 +1,27 @@
-const loginRoute: AppRoute = '/auth/login';
-const projectsRoute: AppRoute = '/dashboard/projects';
+import { AppRoute } from '../../src/Routes';
 
 describe('Authorization', () => {
   it('should not be able to go to login after logging in', () => {
     cy.login();
-    cy.visit(projectsRoute);
-    cy.visit(loginRoute);
-    cy.location('pathname').should('not.eq', loginRoute);
+    cy.visit(AppRoute.projects);
+    cy.visit(AppRoute.login);
+    cy.location('pathname').should('not.eq', AppRoute.login);
   });
 
   it('should be redirected to login if not authenticated', () => {
     cy.visit('/');
-    cy.location('pathname').should('eq', loginRoute);
+    cy.location('pathname').should('eq', AppRoute.login);
   });
 
   it('should be able to go to protected routes after logging in', () => {
     cy.login();
-    cy.visit(projectsRoute);
-    cy.location('pathname').should('eq', projectsRoute);
+    cy.visit(AppRoute.projects);
+    cy.location('pathname').should('eq', AppRoute.projects);
   });
 
   it('should be able to go to protected routes after logging in', () => {
     cy.login();
-    cy.visit(projectsRoute);
-    cy.location('pathname').should('eq', projectsRoute);
+    cy.visit(AppRoute.projects);
+    cy.location('pathname').should('eq', AppRoute.projects);
   });
 });
