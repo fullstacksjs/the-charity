@@ -1,5 +1,6 @@
 import { AuthGuard, FamilyEmptyState, GuestGuard } from '@camp/components';
 import { messages } from '@camp/messages';
+import type { RouteSegment } from '@camp/router';
 import { Navigate } from '@camp/router';
 import type {
   MakeGenerics,
@@ -24,6 +25,7 @@ export const AppRoute = {
   familyDetail: '/dashboard/families/family-detail',
   projects: '/dashboard/projects',
 } as const;
+export type AppRoute = typeof AppRoute[keyof typeof AppRoute];
 
 export const location = new ReactLocation();
 
