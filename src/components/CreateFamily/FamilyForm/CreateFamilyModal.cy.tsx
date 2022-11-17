@@ -1,11 +1,22 @@
-import { noop } from '@fullstacksjs/toolbox';
+import { useEffect } from 'react';
 
 import { createFamilyFormIds } from './CreateFamilyForm';
-import { CreateFamilyModal, createFamilyModalId } from './CreateFamilyModal';
+import {
+  createFamilyModalId,
+  openCreateFamilyModal,
+} from './CreateFamilyModal';
+
+const TestModal = () => {
+  useEffect(() => {
+    openCreateFamilyModal();
+  }, []);
+
+  return null;
+};
 
 describe('Create Family Modal', () => {
   beforeEach(() => {
-    cy.mount(<CreateFamilyModal opened onClose={noop} />);
+    cy.mount(<TestModal />);
   });
 
   it('should contains a modal element with correct title', () => {

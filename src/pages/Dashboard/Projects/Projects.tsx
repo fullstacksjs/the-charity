@@ -2,10 +2,8 @@ import {
   CreateProjectButton,
   CreateProjectModal,
   DashboardHeader,
-  EmptyState,
+  ProjectEmptyState,
 } from '@camp/components';
-import { PackageIcon } from '@camp/design';
-import { messages } from '@camp/messages';
 import { useState } from 'react';
 
 export const Projects = () => {
@@ -20,11 +18,9 @@ export const Projects = () => {
           />
         }
       />
-      <EmptyState
-        icon={<PackageIcon width="33" height="33" />}
-        title={messages.projects.empty.title}
-        message={messages.projects.empty.description}
-      />
+
+      <ProjectEmptyState />
+
       <CreateProjectModal
         opened={isCreateProjectModalOpen}
         onClose={() => {

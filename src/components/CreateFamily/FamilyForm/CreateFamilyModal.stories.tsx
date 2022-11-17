@@ -1,7 +1,7 @@
+import { ModalsProvider } from '@mantine/modals';
 import type { Meta, Story } from '@storybook/react';
 
-import type { CreateFamilyModalProps } from './CreateFamilyModal';
-import { CreateFamilyModal } from './CreateFamilyModal';
+import { CreateFamilyModal, openCreateFamilyModal } from './CreateFamilyModal';
 
 export default {
   argTypes: {
@@ -12,10 +12,17 @@ export default {
     },
   },
   component: CreateFamilyModal,
+  decorators: [
+    Story => (
+      <ModalsProvider>
+        <Story />
+      </ModalsProvider>
+    ),
+  ],
 } as Meta;
 
-const Template: Story<CreateFamilyModalProps> = args => {
-  return <CreateFamilyModal {...args} />;
+const Template: Story<typeof CreateFamilyModal> = () => {
+  return <>{openCreateFamilyModal()}</>;
 };
 
 export const Default = Template.bind({});

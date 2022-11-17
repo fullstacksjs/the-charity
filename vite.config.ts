@@ -6,12 +6,13 @@ import { defineConfig } from 'vite';
 import svgr from 'vite-plugin-svgr';
 import tsconfigPaths from 'vite-tsconfig-paths';
 
+import { cypressAliases } from './configs/vite/cypressAliases';
+
 export default defineConfig({
   plugins: [
     tsconfigPaths(),
-    react({
-      exclude: /\.stories\.(t|j)sx?$/,
-    }),
+    cypressAliases(),
+    react({ exclude: /\.stories\.(t|j)sx?$/ }),
     svgr(),
   ],
   server: {

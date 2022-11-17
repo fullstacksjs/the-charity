@@ -1,22 +1,23 @@
 import { PlusIcon } from '@camp/design';
 import { messages } from '@camp/messages';
+import { createTestAttr } from '@camp/utils';
 import { Button } from '@mantine/core';
 
-import { createTestAttr } from '../../../utils/createTestAttr';
+import { openCreateFamilyModal } from '../FamilyForm';
 
 interface Props {
-  onClick?: React.MouseEventHandler<HTMLButtonElement>;
+  variant?: 'filled' | 'outline';
 }
 
 export const createFamilyButtonId = 'create-family-button';
 
-export const CreateFamilyButton = ({ onClick }: Props) => {
+export const CreateFamilyButton = ({ variant = 'outline' }: Props) => {
   return (
     <Button
-      variant="outline"
+      variant={variant}
       size="sm"
       leftIcon={<PlusIcon width="16" height="16" />}
-      onClick={onClick}
+      onClick={() => openCreateFamilyModal()}
       {...createTestAttr(createFamilyButtonId)}
     >
       {messages.families.create}

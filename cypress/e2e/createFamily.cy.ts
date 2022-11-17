@@ -1,16 +1,20 @@
+import { genFakeFamilyName } from '@camp/utils';
+
 import {
   createFamilyButtonId,
   createFamilyFormIds,
   createFamilyModalId,
+  dashboardHeaderId,
   navLinkIds,
 } from '../../src/components';
-import { genFakeFamilyName } from '../../src/utils';
 
 describe('Create Draft Family', () => {
   beforeEach(() => {
     cy.login();
     cy.findByTestId(navLinkIds.families).click();
-    cy.findByTestId(createFamilyButtonId).click();
+    cy.findByTestId(dashboardHeaderId)
+      .findByTestId(createFamilyButtonId)
+      .click();
   });
 
   it('should show createFamily modal after clicking on createFamily button', () => {
