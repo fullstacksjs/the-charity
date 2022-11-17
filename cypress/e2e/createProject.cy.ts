@@ -1,9 +1,10 @@
+import { genFakeProjectDescription, genFakeProjectName } from '@camp/utils';
+
 import {
   createProjectButtonId,
   createProjectFormIds,
   navLinkIds,
 } from '../../src/components';
-import { genFakeProjectDescription, genFakeProjectName } from '../../src/utils';
 
 describe('Create Project', () => {
   beforeEach(() => {
