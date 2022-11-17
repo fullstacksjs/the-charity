@@ -1,7 +1,6 @@
 import React from 'react';
 import { NotificationsProvider } from '@mantine/notifications';
 import { CreateProjectDocument } from '../src/data-layer';
-
 import { MockedProvider } from '@apollo/client/testing';
 import {
   createMemoryHistory,

@@ -1,25 +1,26 @@
-import { PeopleIcon } from '@camp/design';
+import { PackageIcon } from '@camp/design';
 import { messages } from '@camp/messages';
 import { useMantineTheme } from '@mantine/core';
 
-import { CreateFamilyButton } from '../CreateFamily';
+import { CreateProjectButton } from '../CreateProject';
 import { EmptyState } from '../molecules';
 
-export const FamilyEmptyState = () => {
+export const ProjectEmptyState = () => {
   const theme = useMantineTheme();
+
   return (
     <EmptyState
       icon={
-        <PeopleIcon
+        <PackageIcon
           width="33"
           height="33"
           color={theme.colors.primaryEmphasized[6]}
         />
       }
-      title={messages.families.empty.title}
-      message={messages.families.empty.description}
+      title={messages.projects.empty.title}
+      message={messages.projects.empty.description}
     >
-      <CreateFamilyButton variant="filled" />
+      <CreateProjectButton variant="filled" />
     </EmptyState>
   );
 };

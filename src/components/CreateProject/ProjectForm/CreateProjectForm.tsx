@@ -1,13 +1,12 @@
 import { useCreateProjectMutation } from '@camp/data-layer';
 import { messages } from '@camp/messages';
+import { createTestAttr } from '@camp/utils';
 import { isNull } from '@fullstacksjs/toolbox';
 import { yupResolver } from '@hookform/resolvers/yup';
 import { Button, Group, Stack, Textarea, TextInput } from '@mantine/core';
 import { showNotification } from '@mantine/notifications';
 import { useForm } from 'react-hook-form';
 import * as yup from 'yup';
-
-import { createTestAttr } from '../../../utils/createTestAttr';
 
 interface Props {
   dismiss: () => void;

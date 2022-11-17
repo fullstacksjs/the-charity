@@ -1,18 +1,20 @@
 import { Box, Space, Title } from '@mantine/core';
 
-interface Props {
+import type { BadgeProps } from '../atoms';
+import { Badge } from '../atoms';
+
+interface Props extends BadgeProps {
   title: string;
-  children: React.ReactNode;
 }
 
-export const DashboardCardField = ({ title, children }: Props) => {
+export const DetailCardBadgeField = ({ title, ...badgeProps }: Props) => {
   return (
     <Box sx={{ textAlign: 'left' }}>
       <Title order={6} color="fgSubtle" weight={500}>
         {title}:
       </Title>
       <Space h={5} />
-      {children}
+      <Badge {...badgeProps} />
     </Box>
   );
 };

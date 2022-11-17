@@ -1,28 +1,21 @@
 import { messages } from '@camp/messages';
-import type { ModalProps } from '@mantine/core';
-import { Modal } from '@mantine/core';
+import { createTestAttr } from '@camp/utils';
+import { closeModal, openModal } from '@mantine/modals';
 
-import { createTestAttr } from '../../../utils/createTestAttr';
 import { CreateFamilyForm } from './CreateFamilyForm';
-
-export type CreateFamilyModalProps = Pick<ModalProps, 'onClose' | 'opened'>;
 
 export const createFamilyModalId = 'create-family-modal';
 
-export const CreateFamilyModal = ({
-  opened,
-  onClose,
-}: CreateFamilyModalProps) => {
-  return (
-    <Modal
-      title={messages.families.create}
-      size="md"
-      centered
-      opened={opened}
-      onClose={onClose}
-      {...createTestAttr(createFamilyModalId)}
-    >
-      <CreateFamilyForm dismiss={onClose} />
-    </Modal>
-  );
-};
+export const CreateFamilyModal = () => (
+  <CreateFamilyForm dismiss={() => closeModal(createFamilyModalId)} />
+);
+
+export const openCreateFamilyModal = () =>
+  openModal({
+    modalId: createFamilyModalId,
+    children: <CreateFamilyModal />,
+    title: messages.families.create,
+    size: 'md',
+    centered: true,
+    ...createTestAttr(createFamilyModalId),
+  });

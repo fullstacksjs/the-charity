@@ -3,6 +3,7 @@ import {
   AppShell as MantineAppShell,
   createStyles,
   MediaQuery,
+  Stack,
 } from '@mantine/core';
 import { Outlet } from '@tanstack/react-location';
 
@@ -29,7 +30,9 @@ export const DashboardLayout = () => {
         </MediaQuery>
       }
     >
-      <Outlet />
+      <Stack sx={{ gap: '40px' }}>
+        <Outlet />
+      </Stack>
     </MantineAppShell>
   );
 };

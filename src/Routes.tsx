@@ -1,4 +1,9 @@
-import { AuthGuard, FamilyEmptyState, GuestGuard } from '@camp/components';
+import {
+  AuthGuard,
+  FamilyEmptyState,
+  FamilyList,
+  GuestGuard,
+} from '@camp/components';
 import { messages } from '@camp/messages';
 import { Navigate } from '@camp/router';
 import type {
@@ -51,7 +56,11 @@ const routes: Route[] = [
         meta: { breadcrumb: messages.families.title },
         children: [
           {
-            path: '/family-detail',
+            path: '/',
+            element: <FamilyList />,
+          },
+          {
+            path: '/:id',
             element: <FamilyDetail />,
             meta: { breadcrumb: messages.familyDetail.title },
           },

@@ -10,8 +10,8 @@ export interface BadgeProps {
 
 const statusMap: Record<BadgeStatus, MantineColor> = {
   error: 'red',
-  warning: 'yellow',
-  success: 'green',
+  warning: 'orange',
+  success: 'teal',
 };
 
 export const Badge = ({ children, status }: BadgeProps) => {
@@ -19,6 +19,7 @@ export const Badge = ({ children, status }: BadgeProps) => {
     <MantineBadge
       size="lg"
       radius="lg"
+      variant="light"
       color={statusMap[status]}
       sx={{ fontWeight: 500 }}
     >
