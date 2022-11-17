@@ -1,3 +1,5 @@
+import { genFakeFamilyName } from '@camp/utils';
+
 import {
   createFamilyButtonId,
   createFamilyFormIds,
@@ -5,7 +7,6 @@ import {
   dashboardHeaderId,
   navLinkIds,
 } from '../../src/components';
-import { genFakeFamilyName } from '../../src/utils';
 
 describe('Create Draft Family', () => {
   beforeEach(() => {
