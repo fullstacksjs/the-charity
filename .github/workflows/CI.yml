@@ -75,6 +75,7 @@ jobs:
           start: npx vite
           build: npm run build
           wait-on: http://127.0.0.1:${{ env.PORT }}
+          wait-on-timeout: 20
         env:
           CYPRESS_RECORD_KEY: ${{ secrets.CYPRESS_RECORD_KEY }}
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
@@ -87,3 +88,4 @@ jobs:
           start: npx vite
           build: npm run build
           wait-on: http://127.0.0.1:${{ env.PORT }}
+          wait-on-timeout: 20
