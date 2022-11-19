@@ -26,7 +26,7 @@ export async function processFile(file: Cypress.FileObject): Promise<string> {
       emptyOutDir: false,
       minify: false,
       outDir: path.dirname(outputPath),
-      sourcemap: true,
+      sourcemap: false,
       write: true,
       watch: shouldWatch ? {} : null,
       lib: {
