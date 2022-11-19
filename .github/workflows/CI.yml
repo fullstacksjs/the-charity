@@ -12,6 +12,8 @@ jobs:
   verify:
     concurrency: ci-${{ github.ref }}
     runs-on: ubuntu-latest
+    timeout-minutes: 10
+
     steps:
       - uses: actions/checkout@v3
       - uses: volta-cli/action@v3
@@ -34,6 +36,8 @@ jobs:
   chromatic:
     concurrency: ci-${{ github.ref }}
     runs-on: ubuntu-latest
+    timeout-minutes: 10
+
     env:
       APP_API_ENDPOINT: /graphql
     steps:
@@ -56,7 +60,9 @@ jobs:
   cypress-run:
     concurrency: ci-${{ github.ref }}
     runs-on: ubuntu-latest
+    timeout-minutes: 20
     environment: Preview
+
     env:
       PORT: 5000
       APP_API_ENDPOINT: /graphql
@@ -72,7 +78,7 @@ jobs:
         with:
           record: true
           parallel: true
-          start: npx vite
+          start: npx vite preview
           build: npm run build
           wait-on: http://127.0.0.1:${{ env.PORT }}
           wait-on-timeout: 20
@@ -85,7 +91,7 @@ jobs:
         with:
           install: false
           component: true
-          start: npx vite
+          start: npx vite preview
           build: npm run build
           wait-on: http://127.0.0.1:${{ env.PORT }}
           wait-on-timeout: 20
