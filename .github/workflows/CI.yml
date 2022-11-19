@@ -78,7 +78,7 @@ jobs:
         with:
           record: true
           parallel: true
-          start: npx vite preview
+          start: npx vite preview --port ${{ env.PORT }}
           build: npm run build
           wait-on: http://127.0.0.1:${{ env.PORT }}
           wait-on-timeout: 20
@@ -91,7 +91,7 @@ jobs:
         with:
           install: false
           component: true
-          start: npx vite preview
+          start: npx vite preview --port ${{ env.PORT }}
           build: npm run build
           wait-on: http://127.0.0.1:${{ env.PORT }}
           wait-on-timeout: 20
