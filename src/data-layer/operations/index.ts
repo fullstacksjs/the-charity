@@ -1,4 +1,5 @@
 export type { CompletedFamily } from './__generated__/typesAndHooks';
+export type { DraftFamilyDetailQuery } from './__generated__/typesAndHooks';
 export {
   CreateProjectDocument,
   FamilySeverity,

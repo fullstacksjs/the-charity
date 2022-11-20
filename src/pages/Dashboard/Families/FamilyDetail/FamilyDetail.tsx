@@ -1,13 +1,13 @@
-import { DetailCard } from '@camp/components';
+import type { InformationStatus, SeverityStatus } from '@camp/components';
+import {
+  DetailCard,
+  toInformationStatus,
+  toSeverityStatus,
+} from '@camp/components';
+import type { DraftFamilyDetailQuery } from '@camp/data-layer';
 import { useDraftFamilyDetailQuery } from '@camp/data-layer';
 import { messages } from '@camp/messages';
 import { useParams } from '@camp/router';
-
-import type { InformationStatus } from '../../../../components/FamilyList/FamilyTable/InformationStatus';
-import { toInformationStatus } from '../../../../components/FamilyList/FamilyTable/InformationStatus';
-import type { SeverityStatus } from '../../../../components/FamilyList/FamilyTable/SeverityStatus';
-import { toSeverityStatus } from '../../../../components/FamilyList/FamilyTable/SeverityStatus';
-import type { DraftFamilyDetailQuery } from '../../../../data-layer/operations/__generated__/typesAndHooks';
 
 interface FamilyDetail {
   status: InformationStatus;
