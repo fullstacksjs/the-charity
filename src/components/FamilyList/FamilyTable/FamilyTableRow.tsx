@@ -4,7 +4,7 @@ import { createTestAttr } from '@camp/utils';
 import { ActionIcon, Group, Menu } from '@mantine/core';
 
 import { Badge } from '../../atoms';
-import type { ShortFamilyInfoTableRow } from './ShortFamilyInfoTableRows';
+import type { ShortFamilyInfoTableRow } from './toShortFamilyInfoTableRows';
 
 interface Props {
   shortFamilyInfoTableRow: ShortFamilyInfoTableRow;
