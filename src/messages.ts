@@ -38,20 +38,18 @@ export const messages = {
           `خانواده ای با نام “${name}” با موفقیت ایجاد شده است.`,
       },
     },
+    informationStatus: {
+      completed: 'تکمیل شده',
+      draft: 'تکمیل نشده',
+    },
+    severityStatus: {
+      critical: 'اضطراری',
+      normal: 'عادی',
+    },
     list: {
       title: 'لیست خانواده ها',
       table: {
         columns: ['ردیف', 'نام', 'وضعیت اطلاعات', 'وضعیت نیازمندی'],
-        rows: {
-          informationStatus: {
-            completed: 'تکمیل شده',
-            draft: 'تکمیل نشده',
-          },
-          severityStatus: {
-            critical: 'اضطراری',
-            normal: 'عادی',
-          },
-        },
       },
     },
   },

@@ -1,12 +1,18 @@
+import type { MantineColor } from '@mantine/core';
 import { Badge as MantineBadge } from '@mantine/core';
 
-import type { BadgeStatus } from './BadgeStatusMap';
-import { BadgeChildrenMap, BadgeStatusMap } from './BadgeStatusMap';
+export type BadgeStatus = 'error' | 'success' | 'warning';
 
 export interface BadgeProps {
-  children: BadgeStatus;
+  children: string;
   status: BadgeStatus;
 }
+
+const statusMap: Record<BadgeStatus, MantineColor> = {
+  error: 'red',
+  warning: 'orange',
+  success: 'teal',
+};
 
 export const Badge = ({ children, status }: BadgeProps) => {
   return (
@@ -14,10 +20,10 @@ export const Badge = ({ children, status }: BadgeProps) => {
       size="lg"
       radius="lg"
       variant="light"
-      color={BadgeStatusMap[status]}
+      color={statusMap[status]}
       sx={{ fontWeight: 500 }}
     >
-      {BadgeChildrenMap[children]}
+      {children}
     </MantineBadge>
   );
 };
