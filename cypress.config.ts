@@ -11,6 +11,7 @@ export default defineConfig({
     projectId: '8jt3ix',
     experimentalSessionAndOrigin: true,
     video: getBooleanEnv('CY_RECORD_VIDEO', true),
+    videoUploadOnPasses: false,
     setupNodeEvents(on) {
       on('file:preprocessor', processFile);
     },
