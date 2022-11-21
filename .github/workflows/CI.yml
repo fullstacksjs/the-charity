@@ -76,7 +76,6 @@ jobs:
       - name: Run E2E tests
         uses: cypress-io/github-action@v4
         with:
-          parallel: true
           start: npx vite preview --port ${{ env.PORT }}
           build: npm run build
           wait-on: http://127.0.0.1:${{ env.PORT }}
