@@ -1,32 +1,11 @@
-import {
-  CreateProjectButton,
-  CreateProjectModal,
-  DashboardHeader,
-  ProjectEmptyState,
-} from '@camp/components';
-import { useState } from 'react';
+import { CreateProjectButton, DashboardHeader } from '@camp/components';
+import { Outlet } from '@tanstack/react-location';
 
 export const Projects = () => {
-  const [isCreateProjectModalOpen, setIsCreateProjectModalOpen] =
-    useState(false);
   return (
     <>
-      <DashboardHeader
-        button={
-          <CreateProjectButton
-            onClick={() => setIsCreateProjectModalOpen(true)}
-          />
-        }
-      />
-
-      <ProjectEmptyState />
-
-      <CreateProjectModal
-        opened={isCreateProjectModalOpen}
-        onClose={() => {
-          setIsCreateProjectModalOpen(false);
-        }}
-      />
+      <DashboardHeader button={<CreateProjectButton />} />
+      <Outlet />
     </>
   );
 };
