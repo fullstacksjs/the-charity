@@ -32,8 +32,7 @@ describe('Create Project', () => {
   it('[NOK]: Admin wants to create a project with short name', () => {
     cy.get('form').within(() => {
       cy.findByTestId(createProjectFormIds.nameInput).type('ab');
-      cy.findByTestId(createProjectFormIds.submitBtn).click();
+      cy.findByTestId(createProjectFormIds.submitBtn).should('be.disabled');
     });
-    cy.findByTestId(createProjectFormIds.notification.success).should('exist');
   });
 });

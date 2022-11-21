@@ -2,12 +2,12 @@ import { makeVar } from '@apollo/client';
 import { getClientCookie, removeClientCookie } from '@camp/infra';
 
 export type AuthState = 'Authenticated' | 'NotAuthenticated' | 'NotInitialized';
-export const AuthState = makeVar<AuthState>('Authenticated');
+export const AuthState = makeVar<AuthState>('NotInitialized');
 
 export async function initiateAuthState() {
   try {
     const cookie = await getClientCookie();
-    AuthState(cookie.isAuth ? 'Authenticated' : 'Authenticated');
+    AuthState(cookie.isAuth ? 'Authenticated' : 'NotAuthenticated');
   } catch (err) {
     AuthState('Authenticated');
     console.error(err);
