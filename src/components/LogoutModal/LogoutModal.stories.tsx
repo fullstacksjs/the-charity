@@ -1,6 +1,8 @@
+import { ModalsProvider } from '@mantine/modals';
 import type { ComponentMeta, ComponentStory } from '@storybook/react';
 
-import { LogoutModal } from './LogoutModal';
+import { LogoutConfirm } from './LogoutConfirm';
+import { openLogoutModal } from './LogoutModal';
 
 export default {
   argTypes: {
@@ -10,11 +12,18 @@ export default {
       description: 'Mounts modal if true',
     },
   },
-  component: LogoutModal,
-} as ComponentMeta<typeof LogoutModal>;
+  component: LogoutConfirm,
+  decorators: [
+    Story => (
+      <ModalsProvider>
+        <Story />
+      </ModalsProvider>
+    ),
+  ],
+} as ComponentMeta<typeof LogoutConfirm>;
 
-const Template: ComponentStory<typeof LogoutModal> = args => {
-  return <LogoutModal {...args} />;
+const Template: ComponentStory<typeof LogoutConfirm> = () => {
+  return <>{openLogoutModal()}</>;
 };
 
 export const Default = Template.bind({});

@@ -14,8 +14,8 @@ export default {
   component: ExitNavLink,
 } as ComponentMeta<typeof ExitNavLink>;
 
-const Template: ComponentStory<typeof ExitNavLink> = args => {
-  return <ExitNavLink {...args} />;
+const Template: ComponentStory<typeof ExitNavLink> = () => {
+  return <ExitNavLink />;
 };
 
 export const Default = Template.bind({});
