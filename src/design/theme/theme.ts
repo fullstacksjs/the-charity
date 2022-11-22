@@ -67,6 +67,9 @@ export const theme: MantineThemeOverride = {
     '#root': {
       height: '100%',
     },
+    '.logout-modal': {
+      flexDirection: 'row-reverse',
+    },
     /* eslint-enable @typescript-eslint/naming-convention */
   }),
   dir: 'rtl',
