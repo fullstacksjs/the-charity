@@ -83,6 +83,12 @@ export const messages = {
         text: 'ایجاد پروژه',
       },
     },
+    list: {
+      title: 'لیست پروژه ها',
+      table: {
+        columns: ['ردیف', 'نام'],
+      },
+    },
   },
   login: {
     loginFrom: {

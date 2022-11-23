@@ -10,3 +10,4 @@ export * from './molecules';
 export * from './Notification';
 export * from './organisms';
 export * from './ProjectEmptyState';
+export * from './ProjectList';

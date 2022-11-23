@@ -3,7 +3,7 @@ import {
   FamilyEmptyState,
   FamilyList,
   GuestGuard,
-  ProjectEmptyState,
+  ProjectList,
 } from '@camp/components';
 import { messages } from '@camp/messages';
 import type { RouteSegment } from '@camp/router';
@@ -76,7 +76,7 @@ const routes: Route[] = [
         path: '/projects',
         element: <Projects />,
         meta: { breadcrumb: messages.projects.title },
-        children: [{ element: <ProjectEmptyState /> }],
+        children: [{ path: '/', element: <ProjectList /> }],
       },
       { element: <Navigate to="/dashboard/families" /> },
     ],
