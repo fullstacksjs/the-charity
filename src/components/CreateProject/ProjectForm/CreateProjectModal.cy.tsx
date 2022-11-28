@@ -1,7 +1,7 @@
 import { messages } from '@camp/messages';
 import { noop } from '@fullstacksjs/toolbox';
 
-import { createProjectFormIds } from './CreateProjectForm';
+import { createProjectFormIds } from './CreateProjectForm.ids';
 import { CreateProjectModal } from './CreateProjectModal';
 
 const requiredFieldMessage = messages.projects.validation.required;

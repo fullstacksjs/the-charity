@@ -1,4 +1,4 @@
-import { AppRoute } from '../../src/Routes';
+import { AppRoute } from '../../src/AppRoutes';
 
 describe('Authorization', () => {
   it('should not be able to go to login after logging in', () => {

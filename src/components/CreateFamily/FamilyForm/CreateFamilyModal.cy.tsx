@@ -1,10 +1,8 @@
 import { useEffect } from 'react';
 
-import { createFamilyFormIds } from './CreateFamilyForm';
-import {
-  createFamilyModalId,
-  openCreateFamilyModal,
-} from './CreateFamilyModal';
+import { createFamilyFormIds } from './CreateFamilyForm.ids';
+import { openCreateFamilyModal } from './CreateFamilyModal';
+import { createFamilyModalId } from './CreateFamilyModal.ids';
 
 const TestModal = () => {
   useEffect(() => {

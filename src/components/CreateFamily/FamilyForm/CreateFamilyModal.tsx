@@ -3,19 +3,18 @@ import { createTestAttr } from '@camp/utils';
 import { closeModal, openModal } from '@mantine/modals';
 
 import { CreateFamilyForm } from './CreateFamilyForm';
-
-export const createFamilyModalId = 'create-family-modal';
+import { createFamilyModalId as id } from './CreateFamilyModal.ids';
 
 export const CreateFamilyModal = () => (
-  <CreateFamilyForm dismiss={() => closeModal(createFamilyModalId)} />
+  <CreateFamilyForm dismiss={() => closeModal(id)} />
 );
 
 export const openCreateFamilyModal = () =>
   openModal({
-    modalId: createFamilyModalId,
+    modalId: id,
     children: <CreateFamilyModal />,
     title: messages.families.create,
     size: 'md',
     centered: true,
-    ...createTestAttr(createFamilyModalId),
+    ...createTestAttr(id),
   });

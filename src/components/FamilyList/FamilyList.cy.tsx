@@ -1,4 +1,5 @@
-import { createFamilyButtonId, createFamilyModalId } from '../CreateFamily';
+import { createFamilyButtonId } from '../CreateFamily/FamilyButton/CreateFamilyButton.ids';
+import { createFamilyModalId } from '../CreateFamily/FamilyForm/CreateFamilyModal.ids';
 import { FamilyList } from './FamilyList';
 
 describe('Family List', () => {

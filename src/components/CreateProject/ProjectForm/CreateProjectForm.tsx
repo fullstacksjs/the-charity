@@ -8,20 +8,11 @@ import { showNotification } from '@mantine/notifications';
 import { useForm } from 'react-hook-form';
 import * as yup from 'yup';
 
+import { createProjectFormIds as ids } from './CreateProjectForm.ids';
+
 interface Props {
   dismiss: () => void;
 }
-
-export const createProjectFormIds = {
-  form: 'create-project-form',
-  nameInput: 'project-name',
-  descriptionInput: 'project-description',
-  submitBtn: 'submit-button',
-  notification: {
-    success: 'create-project-success-notification',
-    failure: 'create-project-failure-notification',
-  },
-} as const;
 
 type FormSchema = yup.InferType<typeof FormSchema>;
 
@@ -38,7 +29,7 @@ const FormSchema = yup
 
 const notifySuccessCreation = (name: string) =>
   showNotification({
-    ...createTestAttr(createProjectFormIds.notification.success),
+    ...createTestAttr(ids.notification.success),
     color: 'successDefault',
     title: messages.projects.create,
     message: messages.projects.notification.successfulCreate(name),
@@ -46,7 +37,7 @@ const notifySuccessCreation = (name: string) =>
 
 const notifyFailedCreation = (name: string) =>
   showNotification({
-    ...createTestAttr(createProjectFormIds.notification.failure),
+    ...createTestAttr(ids.notification.failure),
     color: 'errorDefault',
     title: messages.projects.create,
     message: messages.projects.notification.failedCreate(name),
@@ -90,7 +81,7 @@ export const CreateProjectForm = ({ dismiss }: Props) => {
             size="sm"
             error={errors.name?.message}
             {...register('name')}
-            {...createTestAttr(createProjectFormIds.nameInput)}
+            {...createTestAttr(ids.nameInput)}
           />
           <Textarea
             placeholder={
@@ -99,7 +90,7 @@ export const CreateProjectForm = ({ dismiss }: Props) => {
             label={messages.projects.createForm.descriptionInput.label}
             error={errors.description?.message}
             {...register('description')}
-            {...createTestAttr(createProjectFormIds.descriptionInput)}
+            {...createTestAttr(ids.descriptionInput)}
           />
         </Stack>
         <Group spacing={20}>
@@ -108,7 +99,7 @@ export const CreateProjectForm = ({ dismiss }: Props) => {
             size="sm"
             loading={loading}
             disabled={!isValid}
-            {...createTestAttr(createProjectFormIds.submitBtn)}
+            {...createTestAttr(ids.submitBtn)}
           >
             {messages.projects.createForm.submitBtn.text}
           </Button>

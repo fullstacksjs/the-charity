@@ -1,4 +1,4 @@
-import { AppRoute } from '../../src/Routes';
+import { AppRoute } from '../../src/AppRoutes';
 
 const userNameInputSelector = '[type="email"]';
 const passwordInputSelector = '[type="password"]';

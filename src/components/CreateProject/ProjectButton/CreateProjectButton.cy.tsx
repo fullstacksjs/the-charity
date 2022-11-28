@@ -1,7 +1,5 @@
-import {
-  CreateProjectButton,
-  createProjectButtonId,
-} from './CreateProjectButton';
+import { CreateProjectButton } from './CreateProjectButton';
+import { createProjectButtonId } from './CreateProjectButton.ids';
 
 describe('Create Project Button', () => {
   beforeEach(() => {

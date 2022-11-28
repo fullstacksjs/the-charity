@@ -1,7 +1,6 @@
-import { exitNavLinkId } from '../../src/components/atoms';
-import { logoutModalIds } from '../../src/components/LogoutModal';
-
-const loginRoute: AppRoute = '/auth/login';
+import { AppRoute } from '../../src/AppRoutes';
+import { exitNavLinkId } from '../../src/components/atoms/NavLink/ExitNavLink.ids';
+import { logoutModalIds } from '../../src/components/LogoutModal/LogoutModal.ids';
 
 describe('logout', () => {
   beforeEach(() => {
@@ -15,6 +14,6 @@ describe('logout', () => {
 
   it('should navigate to the login page after confirm', () => {
     cy.findByTestId(logoutModalIds.acceptBtn).click();
-    cy.location('pathname').should('eq', loginRoute);
+    cy.location('pathname').should('eq', AppRoute.login);
   });
 });

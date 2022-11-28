@@ -1,4 +1,4 @@
-import { AppRoute } from '../../src/Routes';
+import { AppRoute } from '../../src/AppRoutes';
 
 describe('e2e smoke test', () => {
   it('should visit', () => {
