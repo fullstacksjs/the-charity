@@ -54,6 +54,7 @@ export type CompletedFamily = {
   archived: Scalars['Boolean'];
   code: Scalars['String'];
   completedDate: Scalars['DateTime'];
+  created_at: Scalars['DateTime'];
   dependents: Array<Dependent>;
   draftDate: Scalars['DateTime'];
   id: Scalars['ID'];
@@ -62,6 +63,7 @@ export type CompletedFamily = {
   referrerCode: Scalars['String'];
   severity: FamilySeverity;
   status: FamilyStatus;
+  updated_at: Scalars['DateTime'];
 };
 
 export type CompletedHouseholder = Member & {
@@ -200,6 +202,7 @@ export type DraftFamily = {
   __typename?: 'DraftFamily';
   archived?: Maybe<Scalars['Boolean']>;
   code: Scalars['String'];
+  created_at: Scalars['DateTime'];
   dependents: Array<Dependent>;
   draftDate: Scalars['DateTime'];
   id: Scalars['ID'];
@@ -208,6 +211,7 @@ export type DraftFamily = {
   referrerCode?: Maybe<Scalars['String']>;
   severity: FamilySeverity;
   status: FamilyStatus;
+  updated_at: Scalars['DateTime'];
 };
 
 export type DraftHouseholder = Member & {
@@ -264,6 +268,12 @@ export enum EducationStatus {
   Sth = 'Sth'
 }
 
+export type FamilyResponse = {
+  __typename?: 'FamilyResponse';
+  edges?: Maybe<Array<UndefinedEdge>>;
+  pageInfo?: Maybe<UndefinedPageInfo>;
+};
+
 export enum FamilySeverity {
   Critical = 'CRITICAL',
   Normal = 'NORMAL'
@@ -284,6 +294,14 @@ export enum Gender {
   /** gender is male */
   Male = 'Male'
 }
+
+export type GetFamiliesFilters = {
+  householder_id?: InputMaybe<Scalars['String']>;
+};
+
+export type GetFamiliesOrderBy = {
+  created_at?: InputMaybe<SortOrder>;
+};
 
 /** health status */
 export enum HealthStatus {
@@ -407,7 +425,7 @@ export type Query = {
   __typename?: 'Query';
   dependent: Dependent;
   dependents: Array<Dependent>;
-  families: Array<Family>;
+  families: FamilyResponse;
   family?: Maybe<Family>;
   project: Project;
   projects: Array<Project>;
@@ -416,6 +434,16 @@ export type Query = {
 
 export type QueryDependentArgs = {
   id: Scalars['Int'];
+};
+
+
+export type QueryFamiliesArgs = {
+  after?: InputMaybe<Scalars['String']>;
+  before?: InputMaybe<Scalars['String']>;
+  filter?: InputMaybe<GetFamiliesFilters>;
+  first?: InputMaybe<Scalars['Int']>;
+  last?: InputMaybe<Scalars['Int']>;
+  orderBy?: InputMaybe<GetFamiliesOrderBy>;
 };
 
 
@@ -445,6 +473,11 @@ export type Skill = {
   name: Scalars['String'];
 };
 
+export enum SortOrder {
+  Asc = 'ASC',
+  Desc = 'DESC'
+}
+
 export type Subsidy = {
   __typename?: 'Subsidy';
   description: Scalars['String'];
@@ -462,6 +495,20 @@ export type Family = CompletedFamily | DraftFamily;
 
 /** householder = [ draft-householder, completed-householder ] */
 export type Householder = CompletedHouseholder | DraftHouseholder;
+
+export type UndefinedEdge = {
+  __typename?: 'undefinedEdge';
+  cursor?: Maybe<Scalars['String']>;
+  node?: Maybe<Family>;
+};
+
+export type UndefinedPageInfo = {
+  __typename?: 'undefinedPageInfo';
+  endCursor?: Maybe<Scalars['String']>;
+  hasNextPage: Scalars['Boolean'];
+  hasPreviousPage: Scalars['Boolean'];
+  startCursor?: Maybe<Scalars['String']>;
+};
 
 export type CreateDraftFamilyMutationVariables = Exact<{
   name: Scalars['String'];

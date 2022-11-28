@@ -3,7 +3,7 @@ import { messages } from '@camp/messages';
 import { createTestAttr } from '@camp/utils';
 import { Button } from '@mantine/core';
 
-export const createProjectButtonId = 'create-project';
+import { createProjectButtonId as ids } from './CreateProjectButton.ids';
 
 interface Props {
   onClick?: React.MouseEventHandler<HTMLButtonElement>;
@@ -20,7 +20,7 @@ export const CreateProjectButton = ({
       size="sm"
       leftIcon={<PlusIcon width="16" height="16" />}
       onClick={onClick}
-      {...createTestAttr(createProjectButtonId)}
+      {...createTestAttr(ids)}
     >
       {messages.projects.create}
     </Button>

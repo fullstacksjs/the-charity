@@ -1,7 +1,8 @@
 import { messages } from '@camp/messages';
 import { noop } from '@fullstacksjs/toolbox';
 
-import { CreateFamilyForm, createFamilyFormIds } from './CreateFamilyForm';
+import { CreateFamilyForm } from './CreateFamilyForm';
+import { createFamilyFormIds } from './CreateFamilyForm.ids';
 
 const { minLength: minLengthMessage, required: requiredFieldMessage } =
   messages.families.validation;

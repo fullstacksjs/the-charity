@@ -7,6 +7,7 @@ import type { NavLinkProps } from '../../atoms';
 import { ExitNavLink } from '../../atoms/NavLink/ExitNavLink';
 import { NavLinks } from '../../atoms/NavLink/NavLinks';
 import { LogoutModal } from '../../LogoutModal';
+import { navLinkIds as ids } from './Sidebar.ids';
 
 const useStyles = createStyles(theme => ({
   root: {
@@ -23,23 +24,18 @@ const useStyles = createStyles(theme => ({
   },
 }));
 
-export const navLinkIds = {
-  families: 'nav-link-families',
-  projects: 'nav-link-projects',
-};
-
 export const links: NavLinkProps[] = [
   {
     label: messages.families.title,
     icon: <PeopleIcon width="24" height="24" />,
     to: '/dashboard/families',
-    id: navLinkIds.families,
+    id: ids.families,
   },
   {
     label: messages.projects.title,
     icon: <PackageIcon width="24" height="24" />,
     to: '/dashboard/projects',
-    id: navLinkIds.projects,
+    id: ids.projects,
   },
 ];
 

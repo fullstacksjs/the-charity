@@ -4,6 +4,7 @@ import { Group } from '@mantine/core';
 
 import type { BreadcrumbItem } from '../../molecules';
 import { Breadcrumbs } from '../../molecules';
+import { dashboardHeaderId as ids } from './DashboardHeader.ids';
 
 export interface HeaderProps {
   button: React.ReactNode;
@@ -24,13 +25,11 @@ export const useBreadcrumbsItems = (): BreadcrumbItem[] => {
     });
 };
 
-export const dashboardHeaderId = 'dashboard-header';
-
 export const DashboardHeader = ({ button }: HeaderProps) => {
   const items = useBreadcrumbsItems();
 
   return (
-    <Group position="apart" mb={40} {...createTestAttr(dashboardHeaderId)}>
+    <Group position="apart" mb={40} {...createTestAttr(ids)}>
       <Breadcrumbs basePath="/dashboard" items={items} />
       {button}
     </Group>

@@ -8,22 +8,13 @@ import { useForm } from 'react-hook-form';
 import * as yup from 'yup';
 
 import { showNotification } from '../../Notification';
+import { createFamilyFormIds as ids } from './CreateFamilyForm.ids';
 
 type FormSchema = yup.InferType<typeof FormSchema>;
 
 interface Props {
   dismiss: () => void;
 }
-
-export const createFamilyFormIds = {
-  form: 'create-family-form',
-  nameInput: 'family-name',
-  submitBtn: 'submit-button',
-  notification: {
-    success: 'create-family-success-notification',
-    failure: 'create-family-failure-notification',
-  },
-} as const;
 
 const FormSchema = yup
   .object({
@@ -55,7 +46,7 @@ export const CreateFamilyForm = ({ dismiss }: Props) => {
             title: messages.families.create,
             message: notification.success(result.name ?? ''),
             type: 'success',
-            ...createTestAttr(createFamilyFormIds.notification.success),
+            ...createTestAttr(ids.notification.success),
           });
         }
 
@@ -66,7 +57,7 @@ export const CreateFamilyForm = ({ dismiss }: Props) => {
           title: messages.families.create,
           message: notification.failure(name),
           type: 'failure',
-          ...createTestAttr(createFamilyFormIds.notification.failure),
+          ...createTestAttr(ids.notification.failure),
         }),
       );
   });
@@ -77,7 +68,7 @@ export const CreateFamilyForm = ({ dismiss }: Props) => {
 
   return (
     // eslint-disable-next-line @typescript-eslint/no-misused-promises
-    <form onSubmit={onSubmit} {...createTestAttr(createFamilyFormIds.form)}>
+    <form onSubmit={onSubmit} {...createTestAttr(ids.form)}>
       <Stack spacing={40}>
         <TextInput
           withAsterisk
@@ -87,7 +78,7 @@ export const CreateFamilyForm = ({ dismiss }: Props) => {
           size="sm"
           error={formState.errors.name?.message}
           {...register('name')}
-          {...createTestAttr(createFamilyFormIds.nameInput)}
+          {...createTestAttr(ids.nameInput)}
         />
         <Group spacing={20}>
           <Button
@@ -95,7 +86,7 @@ export const CreateFamilyForm = ({ dismiss }: Props) => {
             size="sm"
             disabled={Boolean(formState.errors.name)}
             loading={mutationResult.loading}
-            {...createTestAttr(createFamilyFormIds.submitBtn)}
+            {...createTestAttr(ids.submitBtn)}
           >
             {submitBtn.text}
           </Button>

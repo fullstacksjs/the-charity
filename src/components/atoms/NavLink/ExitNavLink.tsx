@@ -3,12 +3,12 @@ import { messages } from '@camp/messages';
 import { createTestAttr } from '@camp/utils';
 import { NavLink as MantineNavLink } from '@mantine/core';
 
+import { exitNavLinkId as id } from './ExitNavLink.ids';
 import { navLinkRootStyles } from './NavLink';
 
 interface ExitNavLinkProps {
   onClick: React.MouseEventHandler<HTMLButtonElement>;
 }
-export const exitNavLinkId = 'nav-link-exit';
 
 export const ExitNavLink = ({ onClick }: ExitNavLinkProps) => {
   return (
@@ -23,7 +23,7 @@ export const ExitNavLink = ({ onClick }: ExitNavLinkProps) => {
       label={messages.logout.link}
       rightSection={<ExitIcon />}
       onClick={onClick}
-      {...createTestAttr(exitNavLinkId)}
+      {...createTestAttr(id)}
     />
   );
 };

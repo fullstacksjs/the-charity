@@ -1,7 +1,7 @@
 import './commands';
 
+import { AppRoute } from '../../src/AppRoutes';
 import { buildUrl } from '../../src/router/buildUrl';
-import { AppRoute } from '../../src/Routes';
 
 const userNameInputSelector = '[type="email"]';
 const passwordInputSelector = '[type="password"]';

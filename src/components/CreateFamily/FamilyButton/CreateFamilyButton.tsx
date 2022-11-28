@@ -4,12 +4,11 @@ import { createTestAttr } from '@camp/utils';
 import { Button } from '@mantine/core';
 
 import { openCreateFamilyModal } from '../FamilyForm';
+import { createFamilyButtonId as id } from './CreateFamilyButton.ids';
 
 interface Props {
   variant?: 'filled' | 'outline';
 }
-
-export const createFamilyButtonId = 'create-family-button';
 
 export const CreateFamilyButton = ({ variant = 'outline' }: Props) => {
   return (
@@ -18,7 +17,7 @@ export const CreateFamilyButton = ({ variant = 'outline' }: Props) => {
       size="sm"
       leftIcon={<PlusIcon width="16" height="16" />}
       onClick={() => openCreateFamilyModal()}
-      {...createTestAttr(createFamilyButtonId)}
+      {...createTestAttr(id)}
     >
       {messages.families.create}
     </Button>

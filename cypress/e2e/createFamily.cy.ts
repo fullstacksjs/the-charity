@@ -1,12 +1,9 @@
-import { genFakeFamilyName } from '@camp/utils';
-
-import {
-  createFamilyButtonId,
-  createFamilyFormIds,
-  createFamilyModalId,
-  dashboardHeaderId,
-  navLinkIds,
-} from '../../src/components';
+import { createFamilyButtonId } from '../../src/components/CreateFamily/FamilyButton/CreateFamilyButton.ids';
+import { createFamilyFormIds } from '../../src/components/CreateFamily/FamilyForm/CreateFamilyForm.ids';
+import { createFamilyModalId } from '../../src/components/CreateFamily/FamilyForm/CreateFamilyModal.ids';
+import { dashboardHeaderId } from '../../src/components/organisms/Header/DashboardHeader.ids';
+import { navLinkIds } from '../../src/components/organisms/Sidebar/Sidebar.ids';
+import { genFakeFamilyName } from '../../src/utils';
 
 describe('Create Draft Family', () => {
   beforeEach(() => {

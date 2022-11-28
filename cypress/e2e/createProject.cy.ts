@@ -1,11 +1,8 @@
-import { genFakeProjectDescription, genFakeProjectName } from '@camp/utils';
-
-import {
-  createProjectButtonId,
-  createProjectFormIds,
-  dashboardHeaderId,
-  navLinkIds,
-} from '../../src/components';
+import { createProjectButtonId } from '../../src/components/CreateProject/ProjectButton/CreateProjectButton.ids';
+import { createProjectFormIds } from '../../src/components/CreateProject/ProjectForm/CreateProjectForm.ids';
+import { dashboardHeaderId } from '../../src/components/organisms/Header/DashboardHeader.ids';
+import { navLinkIds } from '../../src/components/organisms/Sidebar/Sidebar.ids';
+import { genFakeProjectDescription, genFakeProjectName } from '../../src/utils';
 
 describe('Create Project', () => {
   beforeEach(() => {
