@@ -50,7 +50,7 @@ export const CreateProjectForm = ({ dismiss }: Props) => {
         title: messages.projects.create,
         message: messages.projects.notification.successfulCreate(name),
         type: 'success',
-        ...createTestAttr(createProjectFormIds.notification.success),
+        ...createTestAttr(ids.notification.success),
       });
       dismiss();
     } catch (err) {
@@ -60,7 +60,7 @@ export const CreateProjectForm = ({ dismiss }: Props) => {
         title: messages.projects.create,
         message: messages.projects.notification.failedCreate(name),
         type: 'failure',
-        ...createTestAttr(createProjectFormIds.notification.failure),
+        ...createTestAttr(ids.notification.failure),
       });
     }
   });
