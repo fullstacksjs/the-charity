@@ -531,6 +531,13 @@ export type LoginMutationVariables = Exact<{
 
 export type LoginMutation = { __typename?: 'Mutation', login?: { __typename?: 'Admin', username: string, id: string } | null };
 
+export type DraftFamilyDetailQueryVariables = Exact<{
+  id: Scalars['String'];
+}>;
+
+
+export type DraftFamilyDetailQuery = { __typename?: 'Query', family?: { __typename?: 'CompletedFamily' } | { __typename?: 'DraftFamily', id: string, name?: string | null, status: FamilyStatus, severity: FamilySeverity, code: string } | null };
+
 
 export const CreateDraftFamilyDocument = gql`
     mutation CreateDraftFamily($name: String!) {
@@ -638,3 +645,44 @@ export function useLoginMutation(baseOptions?: Apollo.MutationHookOptions<LoginM
 export type LoginMutationHookResult = ReturnType<typeof useLoginMutation>;
 export type LoginMutationResult = Apollo.MutationResult<LoginMutation>;
 export type LoginMutationOptions = Apollo.BaseMutationOptions<LoginMutation, LoginMutationVariables>;
+export const DraftFamilyDetailDocument = gql`
+    query DraftFamilyDetail($id: String!) {
+  family(id: $id) {
+    ... on DraftFamily {
+      id
+      name
+      status
+      severity
+      code
+    }
+  }
+}
+    `;
+
+/**
+ * __useDraftFamilyDetailQuery__
+ *
+ * To run a query within a React component, call `useDraftFamilyDetailQuery` and pass it any options that fit your needs.
+ * When your component renders, `useDraftFamilyDetailQuery` returns an object from Apollo Client that contains loading, error, and data properties
+ * you can use to render your UI.
+ *
+ * @param baseOptions options that will be passed into the query, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options;
+ *
+ * @example
+ * const { data, loading, error } = useDraftFamilyDetailQuery({
+ *   variables: {
+ *      id: // value for 'id'
+ *   },
+ * });
+ */
+export function useDraftFamilyDetailQuery(baseOptions: Apollo.QueryHookOptions<DraftFamilyDetailQuery, DraftFamilyDetailQueryVariables>) {
+        const options = {...defaultOptions, ...baseOptions}
+        return Apollo.useQuery<DraftFamilyDetailQuery, DraftFamilyDetailQueryVariables>(DraftFamilyDetailDocument, options);
+      }
+export function useDraftFamilyDetailLazyQuery(baseOptions?: Apollo.LazyQueryHookOptions<DraftFamilyDetailQuery, DraftFamilyDetailQueryVariables>) {
+          const options = {...defaultOptions, ...baseOptions}
+          return Apollo.useLazyQuery<DraftFamilyDetailQuery, DraftFamilyDetailQueryVariables>(DraftFamilyDetailDocument, options);
+        }
+export type DraftFamilyDetailQueryHookResult = ReturnType<typeof useDraftFamilyDetailQuery>;
+export type DraftFamilyDetailLazyQueryHookResult = ReturnType<typeof useDraftFamilyDetailLazyQuery>;
+export type DraftFamilyDetailQueryResult = Apollo.QueryResult<DraftFamilyDetailQuery, DraftFamilyDetailQueryVariables>;

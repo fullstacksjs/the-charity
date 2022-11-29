@@ -1,0 +1,11 @@
+query DraftFamilyDetail($id: String!) {
+  family(id: $id) {
+    ... on DraftFamily {
+      id
+      name
+      status
+      severity
+      code
+    }
+  }
+}

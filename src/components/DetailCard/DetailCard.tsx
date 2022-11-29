@@ -24,7 +24,7 @@ export const DetailCard = ({ title, id, children }: Props) => {
             weight={500}
             sx={{ fontFamily: 'IRANSans' }}
           >
-            {id}
+            ({id})
           </Title>
         </Group>
       }

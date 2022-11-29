@@ -24,6 +24,9 @@ import {
 export const location = new ReactLocation();
 
 export type LocationGenerics = MakeGenerics<{
+  Params: {
+    id: string;
+  };
   RouteMeta: {
     breadcrumb: string;
   };
