@@ -4,10 +4,10 @@ import { createTestAttr } from '@camp/utils';
 import { isNull } from '@fullstacksjs/toolbox';
 import { yupResolver } from '@hookform/resolvers/yup';
 import { Button, Group, Stack, Textarea, TextInput } from '@mantine/core';
-import { showNotification } from '@mantine/notifications';
 import { useForm } from 'react-hook-form';
 import * as yup from 'yup';
 
+import { showNotification } from '../../Notification';
 import { createProjectFormIds as ids } from './CreateProjectForm.ids';
 
 interface Props {
@@ -26,22 +26,6 @@ const FormSchema = yup
       .min(3, messages.projects.validation.minLength),
   })
   .required();
-
-const notifySuccessCreation = (name: string) =>
-  showNotification({
-    ...createTestAttr(ids.notification.success),
-    color: 'successDefault',
-    title: messages.projects.create,
-    message: messages.projects.notification.successfulCreate(name),
-  });
-
-const notifyFailedCreation = (name: string) =>
-  showNotification({
-    ...createTestAttr(ids.notification.failure),
-    color: 'errorDefault',
-    title: messages.projects.create,
-    message: messages.projects.notification.failedCreate(name),
-  });
 
 export const CreateProjectForm = ({ dismiss }: Props) => {
   const [createProject, { loading }] = useCreateProjectMutation();
@@ -62,10 +46,22 @@ export const CreateProjectForm = ({ dismiss }: Props) => {
       });
 
       if (isNull(data)) throw new Error('data is null');
-      notifySuccessCreation(data.createProject.name);
+      showNotification({
+        title: messages.projects.create,
+        message: messages.projects.notification.successfulCreate(name),
+        type: 'success',
+        ...createTestAttr(ids.notification.success),
+      });
+      dismiss();
     } catch (err) {
       console.error('error occurred', err);
-      notifyFailedCreation(name);
+
+      showNotification({
+        title: messages.projects.create,
+        message: messages.projects.notification.failedCreate(name),
+        type: 'failure',
+        ...createTestAttr(ids.notification.failure),
+      });
     }
   });
 

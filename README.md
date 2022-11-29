@@ -24,6 +24,8 @@ npm install
 - `PORT`: **Optional** port for running vite dev server, if not provided, will
   fallback to 3000
 - `HOST`: **Optional** host for running vite dev server.
+- `CY_RECORD_VIDEO`: **Optional** A boolean variable for Cypress video recording
+  (`default=true`)
 
 > Note: if you want add a new environment variables **for using in-app usage**
 > you should prefix it with `APP_`.
