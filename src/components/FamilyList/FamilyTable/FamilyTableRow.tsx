@@ -1,6 +1,7 @@
 import { useNavigate } from '@camp/router';
 import { Group } from '@mantine/core';
 
+import { AppRoute } from '../../../AppRoutes';
 import { ActionButton, Badge } from '../../atoms';
 import type { ShortFamilyInfoTableRow } from './toShortFamilyInfoTableRows';
 
@@ -39,7 +40,7 @@ export const FamilyTableRow = ({
           <ActionButton
             MenuButtonId={familyTableMenuButtonId}
             MenuId={familyTableMenuId}
-            to="/dashboard/families/:id"
+            to={AppRoute.familyDetail}
             params={{ id }}
           />
         </Group>
