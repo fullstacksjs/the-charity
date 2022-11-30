@@ -19,7 +19,9 @@ export const openLogoutModal = () =>
     labels: { cancel: texts.cancel, confirm: texts.accept },
     groupProps: {
       spacing: 20,
-      className: 'logout-modal',
+      sx: {
+        flexDirection: 'row-reverse',
+      },
     },
     confirmProps: {
       variant: 'filled',

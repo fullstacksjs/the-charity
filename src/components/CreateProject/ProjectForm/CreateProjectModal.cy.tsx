@@ -1,7 +1,7 @@
 import { messages } from '@camp/messages';
 import { useEffect } from 'react';
 
-import { openCreateFamilyModal } from '../../CreateFamily';
+import { openCreateProjectModal } from '..';
 import { createProjectFormIds } from './CreateProjectForm.ids';
 
 const requiredFieldMessage = messages.projects.validation.required;
@@ -9,7 +9,7 @@ const minLengthMessage = messages.projects.validation.minLength;
 
 const TestModal = () => {
   useEffect(() => {
-    openCreateFamilyModal();
+    openCreateProjectModal();
   }, []);
 
   return null;
