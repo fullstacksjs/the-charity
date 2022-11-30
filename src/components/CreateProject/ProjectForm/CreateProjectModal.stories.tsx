@@ -1,6 +1,10 @@
+import { ModalsProvider } from '@mantine/modals';
 import type { ComponentMeta, ComponentStory } from '@storybook/react';
 
-import { CreateProjectModal } from './CreateProjectModal';
+import {
+  CreateProjectModal,
+  openCreateProjectModal,
+} from './CreateProjectModal';
 
 export default {
   argTypes: {
@@ -11,10 +15,17 @@ export default {
     },
   },
   component: CreateProjectModal,
+  decorators: [
+    Story => (
+      <ModalsProvider>
+        <Story />
+      </ModalsProvider>
+    ),
+  ],
 } as ComponentMeta<typeof CreateProjectModal>;
 
-const Template: ComponentStory<typeof CreateProjectModal> = args => {
-  return <CreateProjectModal {...args} />;
+const Template: ComponentStory<typeof CreateProjectModal> = () => {
+  return <>{openCreateProjectModal()}</>;
 };
 
 export const Default = Template.bind({});

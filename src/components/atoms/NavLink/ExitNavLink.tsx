@@ -4,12 +4,9 @@ import { createTestAttr } from '@camp/utils';
 import type { CSSObject, Sx } from '@mantine/core';
 import { NavLink as MantineNavLink } from '@mantine/core';
 
+import { openLogoutModal } from '../../LogoutModal';
 import { exitNavLinkId as id } from './ExitNavLink.ids';
 import { navLinkRootStyles } from './NavLink';
-
-interface ExitNavLinkProps {
-  onClick: React.MouseEventHandler<HTMLButtonElement>;
-}
 
 const rootStyles: Exclude<Sx, CSSObject> = theme => ({
   ...navLinkRootStyles(theme),
@@ -19,14 +16,14 @@ const rootStyles: Exclude<Sx, CSSObject> = theme => ({
   },
 });
 
-export const ExitNavLink = ({ onClick }: ExitNavLinkProps) => {
+export const ExitNavLink = () => {
   return (
     <MantineNavLink
       sx={rootStyles}
       label={messages.logout.link}
       rightSection={<ExitIcon />}
-      onClick={onClick}
       {...createTestAttr(id)}
+      onClick={() => openLogoutModal()}
     />
   );
 };

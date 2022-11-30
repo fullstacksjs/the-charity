@@ -1,15 +1,23 @@
 import { messages } from '@camp/messages';
-import { noop } from '@fullstacksjs/toolbox';
+import { useEffect } from 'react';
 
+import { openCreateProjectModal } from '..';
 import { createProjectFormIds } from './CreateProjectForm.ids';
-import { CreateProjectModal } from './CreateProjectModal';
 
 const requiredFieldMessage = messages.projects.validation.required;
 const minLengthMessage = messages.projects.validation.minLength;
 
+const TestModal = () => {
+  useEffect(() => {
+    openCreateProjectModal();
+  }, []);
+
+  return null;
+};
+
 describe('Create Project Form', () => {
   beforeEach(() => {
-    cy.mount(<CreateProjectModal opened onClose={noop} />);
+    cy.mount(<TestModal />);
   });
 
   it('contains a text input with label for Project name', () => {

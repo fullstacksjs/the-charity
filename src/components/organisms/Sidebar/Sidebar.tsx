@@ -1,12 +1,10 @@
 import { PackageIcon, PeopleIcon } from '@camp/design';
 import { messages } from '@camp/messages';
 import { createStyles, Image, Stack, Text } from '@mantine/core';
-import React from 'react';
 
 import type { NavLinkProps } from '../../atoms';
 import { ExitNavLink } from '../../atoms/NavLink/ExitNavLink';
 import { NavLinks } from '../../atoms/NavLink/NavLinks';
-import { LogoutModal } from '../../LogoutModal';
 import { navLinkIds as ids } from './Sidebar.ids';
 
 const useStyles = createStyles(theme => ({
@@ -41,7 +39,7 @@ export const links: NavLinkProps[] = [
 
 export const SideBar = () => {
   const { classes } = useStyles();
-  const [isOpen, setIsOpen] = React.useState(false);
+
   return (
     <Stack spacing={100} justify="start" className={classes.root}>
       <Stack
@@ -57,18 +55,8 @@ export const SideBar = () => {
       </Stack>
       <Stack justify="space-between" sx={{ height: '100%' }}>
         <NavLinks links={links} />
-        <ExitNavLink
-          onClick={() => {
-            setIsOpen(true);
-          }}
-        />
+        <ExitNavLink />
       </Stack>
-      <LogoutModal
-        opened={isOpen}
-        onClose={() => {
-          setIsOpen(false);
-        }}
-      />
     </Stack>
   );
 };
