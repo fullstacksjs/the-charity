@@ -3,8 +3,7 @@ import { createTestAttr } from '@camp/utils';
 import { closeModal, openModal } from '@mantine/modals';
 
 import { CreateProjectForm } from './CreateProjectForm';
-
-export const createProjectModalId = 'create-project-modal';
+import { createProjectModalId } from './CreateProjectModal.ids';
 
 export const CreateProjectModal = () => (
   <CreateProjectForm dismiss={() => closeModal(createProjectModalId)} />
