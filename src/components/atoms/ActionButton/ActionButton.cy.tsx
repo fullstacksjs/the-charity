@@ -1,10 +1,10 @@
-import { ProjectTable } from './ProjectTable';
 import {
+  ProjectTable,
   projectTableMenuButtonId,
   projectTableMenuId,
-} from './ProjectTableRow';
+} from '../../ProjectList';
 
-describe('Project Table', () => {
+describe('Table', () => {
   beforeEach(() => {
     cy.mount(<ProjectTable />);
   });
