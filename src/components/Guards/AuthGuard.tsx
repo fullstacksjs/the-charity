@@ -1,5 +1,4 @@
-import { useReactiveVar } from '@apollo/client';
-import { AuthState } from '@camp/data-layer';
+import { useAuth0 } from '@auth0/auth0-react';
 import { Navigate } from '@camp/router';
 import { Outlet } from '@tanstack/react-location';
 
@@ -12,7 +11,7 @@ export const AuthGuard = ({
   children = <Outlet />,
   to = '/auth/login',
 }: Props) => {
-  const authState = useReactiveVar(AuthState);
+  const { isAuthenticated } = useAuth0();
 
-  return authState === 'Authenticated' ? children : <Navigate to={to} />;
+  return isAuthenticated ? children : <Navigate to={to} />;
 };

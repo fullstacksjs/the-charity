@@ -20,6 +20,10 @@ npm install
 - `APP_GRAPHQL_SCHEMA_URL`: a valid url string for graphql path used in graphql
   tooling.
 - `APP_API_ENDPOINT`: a valid url or path for graphql path used in application.
+- `APP_AUTH0_DOMAIN`: a valid url string for auth0 domain, more info
+  [here][auth0-react-config]
+- `APP_AUTH0_CLIENT_ID`: a valid url string for auth0 clientId, more info
+  [here][auth0-react-config]
 - `API_PROXY_TARGET`: the API target proxy URL for the dev environment.
 - `PORT`: **Optional** port for running vite dev server, if not provided, will
   fallback to 3000
@@ -103,3 +107,5 @@ just add it to the `.cspell/charity.txt` and separate with a new line
 [vscode]: https://code.visualstudio.com/
 [apollo-graphql-extension]:
   https://marketplace.visualstudio.com/items?itemName=apollographql.vscode-apollo
+[auth0-react-config]:
+  https://auth0.com/docs/quickstart/spa/react/interactive#install-the-auth0-react-sdk

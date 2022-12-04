@@ -1,12 +1,16 @@
-import { Center, Group, Image } from '@mantine/core';
-
-import { LoginForm } from './LoginForm';
+import { useAuth0 } from '@auth0/auth0-react';
+import { messages } from '@camp/messages';
+import { Button, Center, Group, Image } from '@mantine/core';
 
 export const Login = () => {
+  const { loginWithRedirect } = useAuth0();
+
   return (
     <Group grow spacing={0} sx={{ height: '100%' }}>
       <Center>
-        <LoginForm />
+        <Button size="xl" onClick={() => loginWithRedirect()}>
+          {messages.login.loginFrom.submitButton.text}
+        </Button>
       </Center>
       <Center
         sx={theme => ({

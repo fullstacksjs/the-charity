@@ -1,7 +1,4 @@
-import { useReactiveVar } from '@apollo/client';
-import { useEffect } from 'react';
-
-import { AuthState, initiateAuthState } from '../../data-layer/variables';
+import { useAuth0 } from '@auth0/auth0-react';
 
 interface Props {
   children: JSX.Element;
@@ -9,11 +6,7 @@ interface Props {
 }
 
 export const AuthProvider = ({ children, fallback }: Props) => {
-  const authState = useReactiveVar(AuthState);
+  const { isLoading } = useAuth0();
 
-  useEffect(() => {
-    void initiateAuthState();
-  }, []);
-
-  return authState === 'NotInitialized' ? fallback : children;
+  return isLoading ? fallback : children;
 };
