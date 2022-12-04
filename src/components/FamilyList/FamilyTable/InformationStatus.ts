@@ -1,4 +1,4 @@
-import { FamilyStatus } from '@camp/data-layer';
+import { FamilyStatusEnum } from '@camp/data-layer';
 import { messages } from '@camp/messages';
 
 import type { BadgeStatus } from '../../atoms';
@@ -9,9 +9,9 @@ export interface InformationStatus {
 }
 
 export const toInformationStatus = (
-  status: FamilyStatus,
+  status: FamilyStatusEnum,
 ): InformationStatus => {
-  return status === FamilyStatus.Completed
+  return status === FamilyStatusEnum.COMPLETED
     ? { text: messages.families.informationStatus.completed, state: 'success' }
     : { text: messages.families.informationStatus.draft, state: 'warning' };
 };

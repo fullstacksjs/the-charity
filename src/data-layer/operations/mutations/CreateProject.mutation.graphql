@@ -1,5 +1,5 @@
-mutation CreateProject($input: CreateProjectInput!) {
-  createProject(input: $input) {
+mutation CreateProject($input: project_insert_input!) {
+  insert_project_one(object: $input) {
     id
     name
     description

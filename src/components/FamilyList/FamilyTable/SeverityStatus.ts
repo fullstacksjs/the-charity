@@ -1,4 +1,4 @@
-import { FamilySeverity } from '@camp/data-layer';
+import type { FamilySeverity } from '@camp/data-layer';
 import { messages } from '@camp/messages';
 
 import type { BadgeStatus } from '../../atoms';
@@ -9,7 +9,7 @@ export interface SeverityStatus {
 }
 
 export const toSeverityStatus = (severity: FamilySeverity): SeverityStatus => {
-  return severity === FamilySeverity.Normal
+  return severity === FamilySeverityEnum.Normal
     ? { text: messages.families.severityStatus.normal, state: 'warning' }
     : { text: messages.families.severityStatus.critical, state: 'error' };
 };

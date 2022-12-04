@@ -1,13 +1,2 @@
-import { loginLocally } from '../../variables';
-import { useLoginMutation as baseUseLoginMutation } from '../__generated__/typesAndHooks';
-
-export function useLoginMutation(
-  options?: Parameters<typeof baseUseLoginMutation>[0],
-) {
-  return baseUseLoginMutation({
-    onCompleted() {
-      return loginLocally();
-    },
-    ...options,
-  });
-}
+// eslint-disable-next-line @typescript-eslint/no-empty-function
+export function useLoginMutation() {}

@@ -1,0 +1,9 @@
+query Family($id: uuid!) {
+  family_by_pk(id: $id) {
+    id
+    name
+    status
+    severity
+    code
+  }
+}
