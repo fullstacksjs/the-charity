@@ -27,4 +27,4 @@ extensions:
           namingConvention:
             default: 'change-case-all#pascalCase'
             typeNames: 'change-case-all#pascalCase'
-            enumValues: 'change-case-all#upperCase'
+            enumValues: 'change-case-all#pascalCase'

@@ -11,7 +11,7 @@ export interface InformationStatus {
 export const toInformationStatus = (
   status: FamilyStatusEnum,
 ): InformationStatus => {
-  return status === FamilyStatusEnum.COMPLETED
+  return status === FamilyStatusEnum.Completed
     ? { text: messages.families.informationStatus.completed, state: 'success' }
     : { text: messages.families.informationStatus.draft, state: 'warning' };
 };

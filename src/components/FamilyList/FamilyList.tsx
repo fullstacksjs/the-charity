@@ -15,20 +15,20 @@ export const shortFamiliesInfo: ShortFamiliesInfo = [
   {
     id: '(F00001)',
     name: 'فول استک زاده',
-    severity: FamilySeverityEnum.CRITICAL,
-    status: FamilyStatusEnum.COMPLETED,
+    severity: FamilySeverityEnum.Critical,
+    status: FamilyStatusEnum.Completed,
   },
   {
     id: '(F00002)',
     name: 'فول استک زاده',
-    severity: FamilySeverityEnum.CRITICAL,
-    status: FamilyStatusEnum.DRAFT,
+    severity: FamilySeverityEnum.Critical,
+    status: FamilyStatusEnum.Draft,
   },
   {
     id: '(F00003)',
     name: 'فول استک زاده',
-    severity: FamilySeverityEnum.NORMAL,
-    status: FamilyStatusEnum.COMPLETED,
+    severity: FamilySeverityEnum.Normal,
+    status: FamilyStatusEnum.Completed,
   },
 ];
 

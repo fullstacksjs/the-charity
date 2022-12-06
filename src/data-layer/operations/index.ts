@@ -1,4 +1,4 @@
-export type { Family } from './__generated__/typesAndHooks';
+export type { Family, FamilyQuery } from './__generated__/typesAndHooks';
 export {
   FamilySeverityEnum,
   FamilyStatusEnum,

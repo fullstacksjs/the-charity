@@ -69,9 +69,9 @@ export type StringComparisonExp = {
 /** ordering argument of a cursor */
 export enum CursorOrdering {
   /** ascending ordering of the cursor */
-  ASC = 'ASC',
+  Asc = 'ASC',
   /** descending ordering of the cursor */
-  DESC = 'DESC'
+  Desc = 'DESC'
 }
 
 /** columns and relationships of "family" */
@@ -141,9 +141,9 @@ export type FamilyBoolExp = {
 /** unique or primary key constraints on table "family" */
 export enum FamilyConstraint {
   /** unique or primary key constraint on columns "db_code" */
-  FAMILY_CODE_KEY = 'family_code_key',
+  FamilyCodeKey = 'family_code_key',
   /** unique or primary key constraint on columns "id" */
-  FAMILY_PKEY = 'family_pkey'
+  FamilyPkey = 'family_pkey'
 }
 
 /** input type for incrementing numeric columns in table "family" */
@@ -218,19 +218,19 @@ export type FamilyPkColumnsInput = {
 /** select columns of table "family" */
 export enum FamilySelectColumn {
   /** column name */
-  CREATED_AT = 'created_at',
+  CreatedAt = 'created_at',
   /** column name */
-  DB_CODE = 'db_code',
+  DbCode = 'db_code',
   /** column name */
-  ID = 'id',
+  Id = 'id',
   /** column name */
-  NAME = 'name',
+  Name = 'name',
   /** column name */
-  SEVERITY = 'severity',
+  Severity = 'severity',
   /** column name */
-  STATUS = 'status',
+  Status = 'status',
   /** column name */
-  UPDATED_AT = 'updated_at'
+  UpdatedAt = 'updated_at'
 }
 
 /** input type for updating data in table "family" */
@@ -285,12 +285,12 @@ export type FamilySeverityBoolExp = {
 /** unique or primary key constraints on table "family_severity" */
 export enum FamilySeverityConstraint {
   /** unique or primary key constraint on columns "value" */
-  FAMILY_SEVERITY_PKEY = 'family_severity_pkey'
+  FamilySeverityPkey = 'family_severity_pkey'
 }
 
 export enum FamilySeverityEnum {
-  CRITICAL = 'CRITICAL',
-  NORMAL = 'NORMAL'
+  Critical = 'Critical',
+  Normal = 'Normal'
 }
 
 /** Boolean expression to compare columns of type "family_severity_enum". All fields are combined with logical 'AND'. */
@@ -352,9 +352,9 @@ export type FamilySeverityPkColumnsInput = {
 /** select columns of table "family_severity" */
 export enum FamilySeveritySelectColumn {
   /** column name */
-  DESCRIPTION = 'description',
+  Description = 'description',
   /** column name */
-  VALUE = 'value'
+  Value = 'value'
 }
 
 /** input type for updating data in table "family_severity" */
@@ -380,9 +380,9 @@ export type FamilySeverityStreamCursorValueInput = {
 /** update columns of table "family_severity" */
 export enum FamilySeverityUpdateColumn {
   /** column name */
-  DESCRIPTION = 'description',
+  Description = 'description',
   /** column name */
-  VALUE = 'value'
+  Value = 'value'
 }
 
 export type FamilySeverityUpdates = {
@@ -432,12 +432,12 @@ export type FamilyStatusBoolExp = {
 /** unique or primary key constraints on table "family_status" */
 export enum FamilyStatusConstraint {
   /** unique or primary key constraint on columns "value" */
-  FAMILY_STATUS_PKEY = 'family_status_pkey'
+  FamilyStatusPkey = 'family_status_pkey'
 }
 
 export enum FamilyStatusEnum {
-  COMPLETED = 'COMPLETED',
-  DRAFT = 'DRAFT'
+  Completed = 'Completed',
+  Draft = 'Draft'
 }
 
 /** Boolean expression to compare columns of type "family_status_enum". All fields are combined with logical 'AND'. */
@@ -499,9 +499,9 @@ export type FamilyStatusPkColumnsInput = {
 /** select columns of table "family_status" */
 export enum FamilyStatusSelectColumn {
   /** column name */
-  DESCRIPTION = 'description',
+  Description = 'description',
   /** column name */
-  VALUE = 'value'
+  Value = 'value'
 }
 
 /** input type for updating data in table "family_status" */
@@ -527,9 +527,9 @@ export type FamilyStatusStreamCursorValueInput = {
 /** update columns of table "family_status" */
 export enum FamilyStatusUpdateColumn {
   /** column name */
-  DESCRIPTION = 'description',
+  Description = 'description',
   /** column name */
-  VALUE = 'value'
+  Value = 'value'
 }
 
 export type FamilyStatusUpdates = {
@@ -584,19 +584,19 @@ export type FamilySumFields = {
 /** update columns of table "family" */
 export enum FamilyUpdateColumn {
   /** column name */
-  CREATED_AT = 'created_at',
+  CreatedAt = 'created_at',
   /** column name */
-  DB_CODE = 'db_code',
+  DbCode = 'db_code',
   /** column name */
-  ID = 'id',
+  Id = 'id',
   /** column name */
-  NAME = 'name',
+  Name = 'name',
   /** column name */
-  SEVERITY = 'severity',
+  Severity = 'severity',
   /** column name */
-  STATUS = 'status',
+  Status = 'status',
   /** column name */
-  UPDATED_AT = 'updated_at'
+  UpdatedAt = 'updated_at'
 }
 
 export type FamilyUpdates = {
@@ -672,7 +672,7 @@ export type HouseholderBoolExp = {
 /** unique or primary key constraints on table "householder" */
 export enum HouseholderConstraint {
   /** unique or primary key constraint on columns "id" */
-  HOUSEHOLDER_PKEY = 'householder_pkey'
+  HouseholderPkey = 'householder_pkey'
 }
 
 /** input type for inserting data into table "householder" */
@@ -735,15 +735,15 @@ export type HouseholderPkColumnsInput = {
 /** select columns of table "householder" */
 export enum HouseholderSelectColumn {
   /** column name */
-  CREATED_AT = 'created_at',
+  CreatedAt = 'created_at',
   /** column name */
-  ID = 'id',
+  Id = 'id',
   /** column name */
-  NAME = 'name',
+  Name = 'name',
   /** column name */
-  STATUS = 'status',
+  Status = 'status',
   /** column name */
-  UPDATED_AT = 'updated_at'
+  UpdatedAt = 'updated_at'
 }
 
 /** input type for updating data in table "householder" */
@@ -796,12 +796,12 @@ export type HouseholderStatusBoolExp = {
 /** unique or primary key constraints on table "householder_status" */
 export enum HouseholderStatusConstraint {
   /** unique or primary key constraint on columns "value" */
-  HOUSEHOLDER_STATUS_PKEY = 'householder_status_pkey'
+  HouseholderStatusPkey = 'householder_status_pkey'
 }
 
 export enum HouseholderStatusEnum {
-  COMPLETED = 'COMPLETED',
-  DRAFT = 'DRAFT'
+  Completed = 'Completed',
+  Draft = 'Draft'
 }
 
 /** Boolean expression to compare columns of type "householder_status_enum". All fields are combined with logical 'AND'. */
@@ -863,9 +863,9 @@ export type HouseholderStatusPkColumnsInput = {
 /** select columns of table "householder_status" */
 export enum HouseholderStatusSelectColumn {
   /** column name */
-  DESCRIPTION = 'description',
+  Description = 'description',
   /** column name */
-  VALUE = 'value'
+  Value = 'value'
 }
 
 /** input type for updating data in table "householder_status" */
@@ -891,9 +891,9 @@ export type HouseholderStatusStreamCursorValueInput = {
 /** update columns of table "householder_status" */
 export enum HouseholderStatusUpdateColumn {
   /** column name */
-  DESCRIPTION = 'description',
+  Description = 'description',
   /** column name */
-  VALUE = 'value'
+  Value = 'value'
 }
 
 export type HouseholderStatusUpdates = {
@@ -922,15 +922,15 @@ export type HouseholderStreamCursorValueInput = {
 /** update columns of table "householder" */
 export enum HouseholderUpdateColumn {
   /** column name */
-  CREATED_AT = 'created_at',
+  CreatedAt = 'created_at',
   /** column name */
-  ID = 'id',
+  Id = 'id',
   /** column name */
-  NAME = 'name',
+  Name = 'name',
   /** column name */
-  STATUS = 'status',
+  Status = 'status',
   /** column name */
-  UPDATED_AT = 'updated_at'
+  UpdatedAt = 'updated_at'
 }
 
 export type HouseholderUpdates = {
@@ -986,7 +986,7 @@ export type MemberBoolExp = {
 /** unique or primary key constraints on table "member" */
 export enum MemberConstraint {
   /** unique or primary key constraint on columns "id" */
-  MEMBER_PKEY = 'member_pkey'
+  MemberPkey = 'member_pkey'
 }
 
 /** input type for inserting data into table "member" */
@@ -1051,15 +1051,15 @@ export type MemberPkColumnsInput = {
 /** select columns of table "member" */
 export enum MemberSelectColumn {
   /** column name */
-  CREATED_AT = 'created_at',
+  CreatedAt = 'created_at',
   /** column name */
-  FAMILY_ID = 'family_id',
+  FamilyId = 'family_id',
   /** column name */
-  ID = 'id',
+  Id = 'id',
   /** column name */
-  NAME = 'name',
+  Name = 'name',
   /** column name */
-  UPDATED_AT = 'updated_at'
+  UpdatedAt = 'updated_at'
 }
 
 /** input type for updating data in table "member" */
@@ -1091,15 +1091,15 @@ export type MemberStreamCursorValueInput = {
 /** update columns of table "member" */
 export enum MemberUpdateColumn {
   /** column name */
-  CREATED_AT = 'created_at',
+  CreatedAt = 'created_at',
   /** column name */
-  FAMILY_ID = 'family_id',
+  FamilyId = 'family_id',
   /** column name */
-  ID = 'id',
+  Id = 'id',
   /** column name */
-  NAME = 'name',
+  Name = 'name',
   /** column name */
-  UPDATED_AT = 'updated_at'
+  UpdatedAt = 'updated_at'
 }
 
 export type MemberUpdates = {
@@ -1598,17 +1598,17 @@ export type MutationRootUpdateProjectStatusManyArgs = {
 /** column ordering options */
 export enum OrderBy {
   /** in ascending order, nulls last */
-  ASC = 'asc',
+  Asc = 'asc',
   /** in ascending order, nulls first */
-  ASC_NULLS_FIRST = 'asc_nulls_first',
+  AscNullsFirst = 'asc_nulls_first',
   /** in ascending order, nulls last */
-  ASC_NULLS_LAST = 'asc_nulls_last',
+  AscNullsLast = 'asc_nulls_last',
   /** in descending order, nulls first */
-  DESC = 'desc',
+  Desc = 'desc',
   /** in descending order, nulls first */
-  DESC_NULLS_FIRST = 'desc_nulls_first',
+  DescNullsFirst = 'desc_nulls_first',
   /** in descending order, nulls last */
-  DESC_NULLS_LAST = 'desc_nulls_last'
+  DescNullsLast = 'desc_nulls_last'
 }
 
 /** columns and relationships of "project" */
@@ -1660,7 +1660,7 @@ export type ProjectBoolExp = {
 /** unique or primary key constraints on table "project" */
 export enum ProjectConstraint {
   /** unique or primary key constraint on columns "id" */
-  PROJECT_PKEY = 'project_pkey'
+  ProjectPkey = 'project_pkey'
 }
 
 /** input type for inserting data into table "project" */
@@ -1727,17 +1727,17 @@ export type ProjectPkColumnsInput = {
 /** select columns of table "project" */
 export enum ProjectSelectColumn {
   /** column name */
-  CREATED_AT = 'created_at',
+  CreatedAt = 'created_at',
   /** column name */
-  DESCRIPTION = 'description',
+  Description = 'description',
   /** column name */
-  ID = 'id',
+  Id = 'id',
   /** column name */
-  NAME = 'name',
+  Name = 'name',
   /** column name */
-  STATUS = 'status',
+  Status = 'status',
   /** column name */
-  UPDATED_AT = 'updated_at'
+  UpdatedAt = 'updated_at'
 }
 
 /** input type for updating data in table "project" */
@@ -1791,14 +1791,14 @@ export type ProjectStatusBoolExp = {
 /** unique or primary key constraints on table "project_status" */
 export enum ProjectStatusConstraint {
   /** unique or primary key constraint on columns "value" */
-  PROJECT_STATUS_PKEY = 'project_status_pkey'
+  ProjectStatusPkey = 'project_status_pkey'
 }
 
 export enum ProjectStatusEnum {
-  DONE = 'DONE',
-  IN_PROGRESS = 'IN_PROGRESS',
-  PLANNING = 'PLANNING',
-  SUSPENDED = 'SUSPENDED'
+  Done = 'Done',
+  InProgress = 'InProgress',
+  Planning = 'Planning',
+  Suspended = 'Suspended'
 }
 
 /** Boolean expression to compare columns of type "project_status_enum". All fields are combined with logical 'AND'. */
@@ -1860,9 +1860,9 @@ export type ProjectStatusPkColumnsInput = {
 /** select columns of table "project_status" */
 export enum ProjectStatusSelectColumn {
   /** column name */
-  COMMENT = 'comment',
+  Comment = 'comment',
   /** column name */
-  VALUE = 'value'
+  Value = 'value'
 }
 
 /** input type for updating data in table "project_status" */
@@ -1888,9 +1888,9 @@ export type ProjectStatusStreamCursorValueInput = {
 /** update columns of table "project_status" */
 export enum ProjectStatusUpdateColumn {
   /** column name */
-  COMMENT = 'comment',
+  Comment = 'comment',
   /** column name */
-  VALUE = 'value'
+  Value = 'value'
 }
 
 export type ProjectStatusUpdates = {
@@ -1920,17 +1920,17 @@ export type ProjectStreamCursorValueInput = {
 /** update columns of table "project" */
 export enum ProjectUpdateColumn {
   /** column name */
-  CREATED_AT = 'created_at',
+  CreatedAt = 'created_at',
   /** column name */
-  DESCRIPTION = 'description',
+  Description = 'description',
   /** column name */
-  ID = 'id',
+  Id = 'id',
   /** column name */
-  NAME = 'name',
+  Name = 'name',
   /** column name */
-  STATUS = 'status',
+  Status = 'status',
   /** column name */
-  UPDATED_AT = 'updated_at'
+  UpdatedAt = 'updated_at'
 }
 
 export type ProjectUpdates = {
@@ -2514,7 +2514,7 @@ export type CreateDraftFamilyMutationVariables = Exact<{
 }>;
 
 
-export type CreateDraftFamilyMutation = { __typename?: 'mutation_root', insert_family_one?: { __typename?: 'family', id: any, code?: string | null } | null };
+export type CreateDraftFamilyMutation = { __typename?: 'mutation_root', insert_family_one?: { __typename?: 'family', id: any, code?: string | null, name: string } | null };
 
 export type CreateProjectMutationVariables = Exact<{
   input: ProjectInsertInput;
@@ -2536,6 +2536,7 @@ export const CreateDraftFamilyDocument = gql`
   insert_family_one(object: {name: $name}) {
     id
     code
+    name
   }
 }
     `;

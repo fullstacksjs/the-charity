@@ -2,5 +2,6 @@ mutation CreateDraftFamily($name: String!) {
   insert_family_one(object: { name: $name }) {
     id
     code
+    name
   }
 }

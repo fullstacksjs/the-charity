@@ -19,8 +19,8 @@ interface FamilyDetail {
 
 const toFamilyDetail = (
   family: FamilyQuery['family_by_pk'],
-): FamilyDetail | null => {
-  if (isNull(family)) return null;
+): FamilyDetail | undefined => {
+  if (isNull(family)) return undefined;
 
   return {
     code: family.code!,
@@ -36,9 +36,12 @@ export const FamilyDetail = () => {
   const { data } = useFamilyQuery({
     variables: { id: familyId },
   });
-  const familyDetail = toFamilyDetail(data?.family);
 
-  return familyDetail === null ? null : (
+  if (data?.family_by_pk == null) return <>Family Not Found</>;
+
+  const familyDetail = toFamilyDetail(data.family_by_pk);
+
+  return isNull(familyDetail) ? null : (
     <DetailCard title={messages.familyDetail.title} id={familyDetail.code}>
       <DetailCard.TextField title={t.name.title}>
         {familyDetail.name}
