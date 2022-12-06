@@ -1,4 +1,4 @@
-import { FamilySeverity, FamilyStatus } from '@camp/data-layer';
+import { FamilySeverityEnum, FamilyStatusEnum } from '@camp/data-layer';
 import { messages } from '@camp/messages';
 import { Title } from '@mantine/core';
 
@@ -15,20 +15,20 @@ export const shortFamiliesInfo: ShortFamiliesInfo = [
   {
     id: '(F00001)',
     name: 'فول استک زاده',
-    severity: FamilySeverity.Critical,
-    status: FamilyStatus.Completed,
+    severity: FamilySeverityEnum.Critical,
+    status: FamilyStatusEnum.Completed,
   },
   {
     id: '(F00002)',
     name: 'فول استک زاده',
-    severity: FamilySeverity.Critical,
-    status: FamilyStatus.Draft,
+    severity: FamilySeverityEnum.Critical,
+    status: FamilyStatusEnum.Draft,
   },
   {
     id: '(F00003)',
     name: 'فول استک زاده',
-    severity: FamilySeverity.Normal,
-    status: FamilyStatus.Completed,
+    severity: FamilySeverityEnum.Normal,
+    status: FamilyStatusEnum.Completed,
   },
 ];
 

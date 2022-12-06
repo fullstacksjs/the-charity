@@ -4,10 +4,11 @@ import {
   toInformationStatus,
   toSeverityStatus,
 } from '@camp/components';
-import type { DraftFamilyDetailQuery } from '@camp/data-layer';
-import { useDraftFamilyDetailQuery } from '@camp/data-layer';
+import type { FamilyQuery } from '@camp/data-layer';
+import { useFamilyQuery } from '@camp/data-layer';
 import { messages } from '@camp/messages';
 import { useParams } from '@camp/router';
+import { isNull } from '@fullstacksjs/toolbox';
 
 interface FamilyDetail {
   status: InformationStatus;
@@ -17,29 +18,30 @@ interface FamilyDetail {
 }
 
 const toFamilyDetail = (
-  family: DraftFamilyDetailQuery['family'],
-): FamilyDetail | null => {
-  if (family?.__typename === 'DraftFamily') {
-    return {
-      code: family.code,
-      name: family.name!,
-      severity: toSeverityStatus(family.severity),
-      status: toInformationStatus(family.status),
-    };
-  }
+  family: FamilyQuery['family_by_pk'],
+): FamilyDetail | undefined => {
+  if (isNull(family)) return undefined;
 
-  return null;
+  return {
+    code: family.code!,
+    name: family.name,
+    severity: toSeverityStatus(family.severity),
+    status: toInformationStatus(family.status),
+  };
 };
 
 export const FamilyDetail = () => {
   const t = messages.familyDetail.familyFields;
   const familyId = useParams();
-  const { data } = useDraftFamilyDetailQuery({
+  const { data } = useFamilyQuery({
     variables: { id: familyId },
   });
-  const familyDetail = toFamilyDetail(data?.family);
 
-  return familyDetail === null ? null : (
+  if (data?.family_by_pk == null) return <>Family Not Found</>;
+
+  const familyDetail = toFamilyDetail(data.family_by_pk);
+
+  return isNull(familyDetail) ? null : (
     <DetailCard title={messages.familyDetail.title} id={familyDetail.code}>
       <DetailCard.TextField title={t.name.title}>
         {familyDetail.name}

@@ -1,13 +1,10 @@
-import { loginLocally } from '../../variables';
-import { useLoginMutation as baseUseLoginMutation } from '../__generated__/typesAndHooks';
-
-export function useLoginMutation(
-  options?: Parameters<typeof baseUseLoginMutation>[0],
-) {
-  return baseUseLoginMutation({
-    onCompleted() {
-      return loginLocally();
+export function useLoginMutation() {
+  return [
+    (_args: {
+      variables: { input: { username: string; password: string } };
+    }) => {
+      return Promise.resolve();
     },
-    ...options,
-  });
+    { loading: false },
+  ] as const;
 }

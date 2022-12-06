@@ -1,9 +1,12 @@
 define: &HEADER
   - '/* This file is generated, do not edit! */'
   - '/* eslint-disable */'
+  - '/* cspell:disable */'
 
 schema:
-  - ${APP_GRAPHQL_SCHEMA_URL}
+  - ${APP_GRAPHQL_SCHEMA_URL}:
+      headers:
+        x-hasura-admin-secret: ${ADMIN_SECRET}
 
 documents: './src/data-layer/operations/**/*.graphql'
 extensions:
@@ -21,3 +24,7 @@ extensions:
         config:
           useTypeImports: true
           withHooks: true
+          namingConvention:
+            default: 'change-case-all#pascalCase'
+            typeNames: 'change-case-all#pascalCase'
+            enumValues: 'change-case-all#pascalCase'

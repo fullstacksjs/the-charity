@@ -1,4 +1,4 @@
-import type { CompletedFamily } from '@camp/data-layer';
+import type { Family } from '@camp/data-layer';
 import { messages } from '@camp/messages';
 
 import type { InformationStatus } from './InformationStatus';
@@ -14,7 +14,7 @@ export const t = messages.families.list.table;
   backend integration ticket of FamilyList
 */
 export type ShortFamilyInfo = Pick<
-  CompletedFamily,
+  Family,
   'id' | 'name' | 'severity' | 'status'
 >;
 export type ShortFamiliesInfo = ShortFamilyInfo[];

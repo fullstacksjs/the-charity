@@ -29,7 +29,7 @@ const FormSchema = yup
 export const CreateFamilyForm = ({ dismiss }: Props) => {
   const [createDraftFamily, mutationResult] = useCreateDraftFamilyMutation();
 
-  const { setFocus, handleSubmit, register, formState } = useForm<FormSchema>({
+  const { handleSubmit, register, formState } = useForm<FormSchema>({
     resolver: yupResolver(FormSchema),
     mode: 'onChange',
   });
@@ -39,16 +39,14 @@ export const CreateFamilyForm = ({ dismiss }: Props) => {
   const onSubmit = handleSubmit(({ name }) => {
     createDraftFamily({ variables: { name } })
       .then(({ data }) => {
-        const result = data?.createFamily;
+        const result = data?.insert_family_one;
 
-        if (result?.__typename === 'DraftFamily') {
-          showNotification({
-            title: messages.families.create,
-            message: notification.success(result.name ?? ''),
-            type: 'success',
-            ...createTestAttr(ids.notification.success),
-          });
-        }
+        showNotification({
+          title: messages.families.create,
+          message: notification.success(result?.name ?? ''),
+          type: 'success',
+          ...createTestAttr(ids.notification.success),
+        });
 
         dismiss();
       })
@@ -62,15 +60,11 @@ export const CreateFamilyForm = ({ dismiss }: Props) => {
       );
   });
 
-  React.useEffect(() => {
-    setFocus('name');
-  }, [setFocus]);
-
   return (
-    // eslint-disable-next-line @typescript-eslint/no-misused-promises
     <form onSubmit={onSubmit} {...createTestAttr(ids.form)}>
       <Stack spacing={40}>
         <TextInput
+          data-autoFocus
           withAsterisk
           placeholder={nameInput.placeholder}
           label={nameInput.label}

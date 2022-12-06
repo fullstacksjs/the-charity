@@ -31,3 +31,4 @@ Appshell
 Navlink
 testid
 ahooks
+hasura

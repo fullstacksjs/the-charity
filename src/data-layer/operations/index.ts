@@ -1,11 +1,13 @@
-export type { CompletedFamily } from './__generated__/typesAndHooks';
-export type { DraftFamilyDetailQuery } from './__generated__/typesAndHooks';
+export type { Family, FamilyQuery } from './__generated__/typesAndHooks';
+export {
+  FamilySeverityEnum,
+  FamilyStatusEnum,
+  ProjectStatusEnum,
+} from './__generated__/typesAndHooks';
 export {
   CreateProjectDocument,
-  FamilySeverity,
-  FamilyStatus,
   useCreateDraftFamilyMutation,
   useCreateProjectMutation,
-  useDraftFamilyDetailQuery,
+  useFamilyQuery,
 } from './__generated__/typesAndHooks';
 export { useLoginMutation } from './mutations/useLoginMutation';

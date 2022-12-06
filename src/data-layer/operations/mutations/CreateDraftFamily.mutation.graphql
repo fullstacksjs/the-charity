@@ -1,8 +1,7 @@
 mutation CreateDraftFamily($name: String!) {
-  createFamily(input: { name: $name }) {
-    ... on DraftFamily {
-      id
-      name
-    }
+  insert_family_one(object: { name: $name }) {
+    id
+    code
+    name
   }
 }
