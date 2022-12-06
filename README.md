@@ -30,6 +30,7 @@ npm install
 - `HOST`: **Optional** host for running vite dev server.
 - `CY_RECORD_VIDEO`: **Optional** A boolean variable for Cypress video recording
   (`default=true`)
+- `HASURA_ADMIN_SECRET`: Hasura admin secret
 
 > Note: if you want add a new environment variables **for using in-app usage**
 > you should prefix it with `APP_`.
