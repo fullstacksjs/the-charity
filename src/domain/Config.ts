@@ -1,5 +1,5 @@
 import type { Static } from 'runtypes';
-import { Record, String, Union } from 'runtypes';
+import { Boolean, Record, String, Union } from 'runtypes';
 
 import { Path } from './Path';
 import { Url } from './Url';
@@ -10,6 +10,7 @@ export const Config = Record({
     domain: String,
     clientId: String,
   }),
+  apolloDevTools: Boolean,
 });
 
 export type Config = Static<typeof Config>;
