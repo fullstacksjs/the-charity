@@ -7,7 +7,7 @@ const port = toInteger(getEnv('PORT', ''), 3000);
 
 export default defineConfig({
   e2e: {
-    baseUrl: `http://127.0.0.1:${port}`,
+    baseUrl: `https://127.0.0.1:${port}`,
     projectId: '8jt3ix',
     experimentalSessionAndOrigin: true,
     video: getBooleanEnv('CY_RECORD_VIDEO', true),
