@@ -78,7 +78,7 @@ jobs:
         with:
           start: npx vite preview --port ${{ env.PORT }}
           build: npm run build
-          wait-on: http://127.0.0.1:${{ env.PORT }}
+          wait-on: https://127.0.0.1:${{ env.PORT }}
           wait-on-timeout: 20
         env:
           CYPRESS_RECORD_KEY: ${{ secrets.CYPRESS_RECORD_KEY }}
@@ -91,5 +91,5 @@ jobs:
           component: true
           start: npx vite preview --port ${{ env.PORT }}
           build: npm run build
-          wait-on: http://127.0.0.1:${{ env.PORT }}
+          wait-on: https://127.0.0.1:${{ env.PORT }}
           wait-on-timeout: 20
