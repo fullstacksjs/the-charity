@@ -11,9 +11,7 @@ Cypress.Commands.add('login', () => {
     cy.intercept('POST', ' https://dev-jxuskaag.us.auth0.com/oauth/token').as(
       'token',
     );
-    // cy.intercept('GET', 'https://dev-jxuskaag.us.auth0.com/authorize').as(
-    //   'auth',
-    // );
+
     cy.origin(
       'https://dev-jxuskaag.us.auth0.com/',
       { args: { email: 'admin@gmail.com', password: '123456789' } } as const,
@@ -21,17 +19,12 @@ Cypress.Commands.add('login', () => {
         cy.get('#username').type(email);
         cy.get('#password').type(password);
         cy.get('button[type="submit"]').click();
-        // cy.intercept('https://localhsot:3000').as('@login');
-        // cy.wait('@login');
       },
     );
     cy.wait('@token').then(() => {
       // eslint-disable-next-line cypress/no-unnecessary-waiting
       cy.wait(1000);
     });
-    // .then(() => {
-    //   //
-    // });
   }).then(() => {
     cy.visit('/');
   });
