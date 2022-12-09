@@ -3,21 +3,38 @@ import './commands';
 import { AppRoute } from '../../src/AppRoutes';
 import { buildUrl } from '../../src/router/buildUrl';
 
-const userNameInputSelector = '[type="email"]';
-const passwordInputSelector = '[type="password"]';
-
 Cypress.Commands.add('login', () => {
   cy.session('login', () => {
     cy.visit(AppRoute.login);
-    cy.get('form').within(() => {
-      cy.intercept('POST', '/graphql').as('login');
-      cy.get(userNameInputSelector).type('admin@gmail.com');
-      cy.get(passwordInputSelector).type('123456789');
-      cy.root().submit();
-      cy.wait('@login');
+    cy.get('button').click();
+
+    cy.intercept('POST', ' https://dev-jxuskaag.us.auth0.com/oauth/token').as(
+      'token',
+    );
+    // cy.intercept('GET', 'https://dev-jxuskaag.us.auth0.com/authorize').as(
+    //   'auth',
+    // );
+    cy.origin(
+      'https://dev-jxuskaag.us.auth0.com/',
+      { args: { email: 'admin@gmail.com', password: '123456789' } } as const,
+      ({ email, password }) => {
+        cy.get('#username').type(email);
+        cy.get('#password').type(password);
+        cy.get('button[type="submit"]').click();
+        // cy.intercept('https://localhsot:3000').as('@login');
+        // cy.wait('@login');
+      },
+    );
+    cy.wait('@token').then(() => {
+      // eslint-disable-next-line cypress/no-unnecessary-waiting
+      cy.wait(1000);
     });
+    // .then(() => {
+    //   //
+    // });
+  }).then(() => {
+    cy.visit('/');
   });
-  cy.visit(AppRoute.dashboard);
 });
 
 Cypress.Commands.overwrite('visit', (visit, url, options) => {
