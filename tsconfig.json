@@ -6,9 +6,9 @@
     "esModuleInterop": true,
     "types": ["cypress", "@testing-library/cypress"],
     "paths": {
-      "@camp/data-layer": ["./src/data-layer/index.ts"],
+      "@camp/data-layer": ["./libs/data-layer/index.ts"],
       "@camp/design": ["./src/design/index.ts"],
-      "@camp/components": ["./src/components/index.ts"],
+      "@camp/ui": ["./libs/ui/index.ts"],
       "@camp/domain": ["./src/domain/index.ts"],
       "@camp/config": ["./src/config/index.ts"],
       "@camp/router": ["./src/router/index.ts"],
@@ -18,6 +18,6 @@
       "@camp/utils": ["./src/utils/index.ts"]
     }
   },
-  "include": ["src", "@types"],
+  "include": ["src", "@types", "libs/data-layer"],
   "references": [{ "path": "./tsconfig.vite.json" }]
 }
