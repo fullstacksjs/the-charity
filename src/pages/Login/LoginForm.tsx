@@ -15,6 +15,7 @@ import { useState } from 'react';
 import { useForm } from 'react-hook-form';
 import * as yup from 'yup';
 
+import { AppRoute } from '../../AppRoutes';
 import { Alert } from '../../components/Alert';
 
 interface FormInputs {
@@ -36,7 +37,7 @@ const FormSchema = yup.object({
 
 export const LoginForm = () => {
   const navigate = useNavigate();
-  const [errMsg, setErrMsg] = useState<string | null>(null);
+  const [error, setError] = useState<string>();
   const [login, mutationResult] = useLoginMutation();
 
   const {
@@ -50,12 +51,12 @@ export const LoginForm = () => {
 
   const onSubmit = handleSubmit(async ({ username, password }: FormInputs) => {
     try {
-      setErrMsg(null);
+      setError(undefined);
       await login({ variables: { input: { username, password } } });
-      navigate({ to: '/dashboard/families', replace: true });
+      navigate({ to: AppRoute.families, replace: true });
     } catch (err) {
       const clientError = toClientErrorMessage(err);
-      setErrMsg(clientError);
+      setError(clientError);
     }
   });
 
@@ -88,7 +89,7 @@ export const LoginForm = () => {
         <Button type="submit" loading={mutationResult.loading}>
           {messages.login.loginFrom.submitButton.text}
         </Button>
-        {errMsg ? <Alert type="error" message={errMsg} /> : null}
+        {error ? <Alert type="error" message={error} /> : null}
       </Stack>
     </form>
   );

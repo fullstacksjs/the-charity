@@ -1,5 +1,5 @@
 /// <reference types="vitest" />
-import { getEnv, toInteger } from '@fullstacksjs/toolbox';
+import { getBooleanEnv, getEnv, toInteger } from '@fullstacksjs/toolbox';
 import basicSsl from '@vitejs/plugin-basic-ssl';
 import react from '@vitejs/plugin-react';
 import { defineConfig } from 'vite';
@@ -19,6 +19,7 @@ export default defineConfig({
   server: {
     port: toInteger(getEnv('PORT', ''), 3000),
     host: getEnv('HOST'),
+    open: getBooleanEnv('OPEN'),
     https: true,
     proxy: {
       '/graphql': {

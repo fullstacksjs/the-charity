@@ -65,14 +65,13 @@ jobs:
 
     env:
       PORT: 5000
-      APP_API_ENDPOINT: /graphql
-      API_PROXY_TARGET: https://the-charity-backend-staging.herokuapp.com/graphql
+      APP_API_ENDPOINT: https://the-charity.hasura.app/v1/graphql/
+      APP_GRAPHQL_SCHEMA_URL: https://the-charity.hasura.app/v1/graphql/
+      APP_AUTH0_AUDIENCE: https://the-charity.hasura.app/v1/graphql/
 
     steps:
       - name: Checkout
         uses: actions/checkout@v3
-      - name: Wake the server up
-        run: curl https://the-charity-backend-staging.herokuapp.com/graphql
       - name: Run E2E tests
         uses: cypress-io/github-action@v4
         with:

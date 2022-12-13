@@ -17,8 +17,8 @@ export const ApolloProvider = ({ children }: Props) => {
   if (!clientRef.current) {
     clientRef.current = createApolloClient(() =>
       getAccessTokenSilently({
-        audience: config.schemaUrl,
-        scope: 'read:current_user',
+        audience: config.auth0.audience,
+        scope: config.auth0.scope,
       }),
     );
     return null;

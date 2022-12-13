@@ -84,4 +84,6 @@ const routes: Route[] = [
   { element: <Navigate to="/auth/login" /> },
 ];
 
-export const Routes = () => <Router routes={routes} location={location} />;
+export const Routes = () => {
+  return <Router routes={routes} location={location} />;
+};

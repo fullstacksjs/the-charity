@@ -4,11 +4,7 @@ import { FamilyList } from './FamilyList';
 
 describe('Family List', () => {
   beforeEach(() => {
-    cy.mount(
-      <>
-        <FamilyList />
-      </>,
-    );
+    cy.mount(<FamilyList />);
   });
 
   it('should close their menu on second click', () => {

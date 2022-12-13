@@ -32,3 +32,4 @@ Navlink
 testid
 ahooks
 hasura
+localstorage

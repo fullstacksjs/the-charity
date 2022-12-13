@@ -8,6 +8,8 @@ import { cache } from './cache';
 export function createApolloClient(getAccessTokenSilently: () => Promise<any>) {
   const authLink = setContext(async () => {
     const token = await getAccessTokenSilently();
+    console.log(token);
+
     return token ? { headers: { Authorization: `Bearer ${token}` } } : {};
   });
 
