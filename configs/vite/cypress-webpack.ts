@@ -1,6 +1,6 @@
 import path from 'node:path';
 
-import { TsconfigPathsPlugin } from 'tsconfig-paths-webpack-plugin';
+// import { TsconfigPathsPlugin } from 'tsconfig-paths-webpack-plugin';
 import type { Configuration } from 'webpack';
 
 export function getWebpackConfig(): Configuration {
@@ -26,11 +26,11 @@ export function getWebpackConfig(): Configuration {
     resolve: {
       extensions,
       plugins: [
-        new TsconfigPathsPlugin({
-          configFile,
-          logInfoToStdOut: true,
-          extensions,
-        }),
+        // new TsconfigPathsPlugin({
+        //   configFile,
+        //   logInfoToStdOut: true,
+        //   extensions,
+        // }),
       ],
     },
   };
