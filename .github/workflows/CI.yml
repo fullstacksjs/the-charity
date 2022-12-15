@@ -68,6 +68,7 @@ jobs:
       APP_API_ENDPOINT: https://the-charity.hasura.app/v1/graphql/
       APP_GRAPHQL_SCHEMA_URL: https://the-charity.hasura.app/v1/graphql/
       APP_AUTH0_AUDIENCE: https://the-charity.hasura.app/v1/graphql/
+      NODE_TLS_REJECT_UNAUTHORIZED: 0
 
     steps:
       - name: Checkout
