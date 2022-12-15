@@ -21,6 +21,7 @@ export default defineConfig({
     host: getEnv('HOST'),
     open: getBooleanEnv('OPEN'),
     https: true,
+    strictPort: true,
     proxy: {
       '/graphql': {
         target: getEnv('API_PROXY_TARGET'),
