@@ -91,15 +91,10 @@
       }
     },
     {
-      "files": ["./**/*.cy.tsx"],
+      "files": ["./**/*.stories.tsx", "./**/*.cy.tsx"],
       "rules": {
-        "react/jsx-no-constructed-context-values": ["off"]
-      }
-    },
-    {
-      "files": ["./**/*.stories.tsx"],
-      "rules": {
-        "react/jsx-no-constructed-context-values": ["off"]
+        "react/jsx-no-constructed-context-values": ["off"],
+        "@typescript-eslint/no-confusing-void-expression": ["off"]
       }
     }
   ]
