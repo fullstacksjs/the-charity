@@ -10,7 +10,7 @@ export default defineConfig({
     baseUrl: `https://127.0.0.1:${port}`,
     projectId: '8jt3ix',
     experimentalSessionAndOrigin: true,
-    video: getBooleanEnv('CY_RECORD_VIDEO', true),
+    video: getBooleanEnv('CYPRESS_RECORD_VIDEO', true),
     videoUploadOnPasses: false,
     setupNodeEvents(on) {
       on('file:preprocessor', processFile);

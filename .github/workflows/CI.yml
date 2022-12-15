@@ -38,8 +38,16 @@ jobs:
     runs-on: ubuntu-latest
     timeout-minutes: 10
 
+    environment: Chromatic
     env:
       APP_API_ENDPOINT: /graphql
+      NODE_ENV: development
+      APP_GRAPHQL_SCHEMA_URL: https://the-charity.hasura.app/v1/graphql/
+      APP_AUTH0_AUDIENCE: https://the-charity.hasura.app/v1/graphql/
+      APP_AUTH0_DOMAIN: dev-jxuskaag.us.auth0.com
+      APP_AUTH0_CLIENT_ID: ${{ secrets.APP_AUTH0_CLIENT_ID }}
+      HASURA_ADMIN_SECRET: ${{ secrets.HASURA_ADMIN_SECRET }}
+
     steps:
       - name: Checkout repository
         uses: actions/checkout@v3
@@ -61,13 +69,18 @@ jobs:
     concurrency: ci-${{ github.ref }}
     runs-on: ubuntu-latest
     timeout-minutes: 20
-    environment: Preview
 
+    environment: Preview
     env:
-      PORT: 5000
-      APP_API_ENDPOINT: https://the-charity.hasura.app/v1/graphql/
+      CYPRESS_AUTH0_AUDIENCE: https://the-charity.hasura.app/v1/graphql/
+      CYPRESS_AUTH0_DOMAIN: https://dev-jxuskaag.us.auth0.com/oauth/token/
       APP_GRAPHQL_SCHEMA_URL: https://the-charity.hasura.app/v1/graphql/
       APP_AUTH0_AUDIENCE: https://the-charity.hasura.app/v1/graphql/
+      APP_AUTH0_DOMAIN: dev-jxuskaag.us.auth0.com
+      APP_AUTH0_CLIENT_ID: ${{ secrets.APP_AUTH0_CLIENT_ID }}
+      CYPRESS_AUTH0_CLIENT_ID: ${{ secrets.APP_AUTH0_CLIENT_ID }}
+      HASURA_ADMIN_SECRET: ${{ secrets.HASURA_ADMIN_SECRET }}
+      PORT: 5000
       NODE_TLS_REJECT_UNAUTHORIZED: 0
 
     steps:
