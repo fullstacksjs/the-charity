@@ -4,6 +4,7 @@ import {
   parseClientCookie,
   RawClientCookie,
 } from '@camp/domain';
+import { noop } from '@fullstacksjs/toolbox';
 
 export const getRawCookies = async (): Promise<Record<string, string>> => {
   const cookies = await cookieStore.getAll();
@@ -19,6 +20,4 @@ export const getClientCookie = async (): Promise<ClientCookie> => {
   return isValidCookie ? parseClientCookie(rawCookie) : defaultClientCookie;
 };
 
-export const removeClientCookie = async () => {
-  await cookieStore.delete('is-logged-in');
-};
+export const removeClientCookie = noop;

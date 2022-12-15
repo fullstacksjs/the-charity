@@ -2509,12 +2509,12 @@ export type UuidComparisonExp = {
   _nin?: InputMaybe<Array<Scalars['uuid']>>;
 };
 
-export type CreateDraftFamilyMutationVariables = Exact<{
+export type CreateFamilyMutationVariables = Exact<{
   name: Scalars['String'];
 }>;
 
 
-export type CreateDraftFamilyMutation = { __typename?: 'mutation_root', insert_family_one?: { __typename?: 'family', id: any, code?: string | null, name: string } | null };
+export type CreateFamilyMutation = { __typename?: 'mutation_root', insert_family_one?: { __typename?: 'family', id: any, code?: string | null, name: string } | null };
 
 export type CreateProjectMutationVariables = Exact<{
   input: ProjectInsertInput;
@@ -2531,8 +2531,8 @@ export type FamilyQueryVariables = Exact<{
 export type FamilyQuery = { __typename?: 'query_root', family_by_pk?: { __typename?: 'family', id: any, name: string, status: FamilyStatusEnum, severity: FamilySeverityEnum, code?: string | null } | null };
 
 
-export const CreateDraftFamilyDocument = gql`
-    mutation CreateDraftFamily($name: String!) {
+export const CreateFamilyDocument = gql`
+    mutation CreateFamily($name: String!) {
   insert_family_one(object: {name: $name}) {
     id
     code
@@ -2540,32 +2540,32 @@ export const CreateDraftFamilyDocument = gql`
   }
 }
     `;
-export type CreateDraftFamilyMutationFn = Apollo.MutationFunction<CreateDraftFamilyMutation, CreateDraftFamilyMutationVariables>;
+export type CreateFamilyMutationFn = Apollo.MutationFunction<CreateFamilyMutation, CreateFamilyMutationVariables>;
 
 /**
- * __useCreateDraftFamilyMutation__
+ * __useCreateFamilyMutation__
  *
- * To run a mutation, you first call `useCreateDraftFamilyMutation` within a React component and pass it any options that fit your needs.
- * When your component renders, `useCreateDraftFamilyMutation` returns a tuple that includes:
+ * To run a mutation, you first call `useCreateFamilyMutation` within a React component and pass it any options that fit your needs.
+ * When your component renders, `useCreateFamilyMutation` returns a tuple that includes:
  * - A mutate function that you can call at any time to execute the mutation
  * - An object with fields that represent the current status of the mutation's execution
  *
  * @param baseOptions options that will be passed into the mutation, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options-2;
  *
  * @example
- * const [createDraftFamilyMutation, { data, loading, error }] = useCreateDraftFamilyMutation({
+ * const [createFamilyMutation, { data, loading, error }] = useCreateFamilyMutation({
  *   variables: {
  *      name: // value for 'name'
  *   },
  * });
  */
-export function useCreateDraftFamilyMutation(baseOptions?: Apollo.MutationHookOptions<CreateDraftFamilyMutation, CreateDraftFamilyMutationVariables>) {
+export function useCreateFamilyMutation(baseOptions?: Apollo.MutationHookOptions<CreateFamilyMutation, CreateFamilyMutationVariables>) {
         const options = {...defaultOptions, ...baseOptions}
-        return Apollo.useMutation<CreateDraftFamilyMutation, CreateDraftFamilyMutationVariables>(CreateDraftFamilyDocument, options);
+        return Apollo.useMutation<CreateFamilyMutation, CreateFamilyMutationVariables>(CreateFamilyDocument, options);
       }
-export type CreateDraftFamilyMutationHookResult = ReturnType<typeof useCreateDraftFamilyMutation>;
-export type CreateDraftFamilyMutationResult = Apollo.MutationResult<CreateDraftFamilyMutation>;
-export type CreateDraftFamilyMutationOptions = Apollo.BaseMutationOptions<CreateDraftFamilyMutation, CreateDraftFamilyMutationVariables>;
+export type CreateFamilyMutationHookResult = ReturnType<typeof useCreateFamilyMutation>;
+export type CreateFamilyMutationResult = Apollo.MutationResult<CreateFamilyMutation>;
+export type CreateFamilyMutationOptions = Apollo.BaseMutationOptions<CreateFamilyMutation, CreateFamilyMutationVariables>;
 export const CreateProjectDocument = gql`
     mutation CreateProject($input: project_insert_input!) {
   insert_project_one(object: $input) {

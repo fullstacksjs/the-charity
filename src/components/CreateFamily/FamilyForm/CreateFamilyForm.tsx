@@ -1,9 +1,8 @@
-import { useCreateDraftFamilyMutation } from '@camp/data-layer';
+import { useCreateFamilyMutation } from '@camp/data-layer';
 import { messages } from '@camp/messages';
 import { createTestAttr } from '@camp/utils';
 import { yupResolver } from '@hookform/resolvers/yup';
 import { Button, Group, Stack, TextInput } from '@mantine/core';
-import React from 'react';
 import { useForm } from 'react-hook-form';
 import * as yup from 'yup';
 
@@ -27,7 +26,7 @@ const FormSchema = yup
   .required();
 
 export const CreateFamilyForm = ({ dismiss }: Props) => {
-  const [createDraftFamily, mutationResult] = useCreateDraftFamilyMutation();
+  const [createDraftFamily, mutationResult] = useCreateFamilyMutation();
 
   const { handleSubmit, register, formState } = useForm<FormSchema>({
     resolver: yupResolver(FormSchema),

@@ -1,14 +1,14 @@
 import { messages } from '@camp/messages';
 import { openConfirmModal } from '@mantine/modals';
 
-import { logoutLocally } from '../../data-layer';
+import { AppRoute } from '../../AppRoutes';
 import { createTestAttr } from '../../utils/createTestAttr';
 import { LogoutConfirm } from './LogoutConfirm';
 import { logoutModalIds as ids } from './LogoutModal.ids';
 
 const texts = messages.logout.modal;
 
-export const openLogoutModal = () =>
+export const openLogoutModal = (logout: (returnTo: AppRoute) => void) =>
   openConfirmModal({
     modalId: ids.modal,
     children: <LogoutConfirm />,
@@ -32,5 +32,5 @@ export const openLogoutModal = () =>
       variant: 'filled',
       color: 'gray',
     },
-    onConfirm: () => logoutLocally(),
+    onConfirm: () => logout(AppRoute.login),
   });

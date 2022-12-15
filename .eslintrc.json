@@ -85,15 +85,16 @@
   },
   "overrides": [
     {
-      "files": ["./**/*.cy.tsx"],
+      "files": ["./cypress/**/*.ts"],
       "rules": {
-        "react/jsx-no-constructed-context-values": ["off"]
+        "node/prefer-global/buffer": "off"
       }
     },
     {
-      "files": ["./**/*.stories.tsx"],
+      "files": ["./**/*.stories.tsx", "./**/*.cy.tsx"],
       "rules": {
-        "react/jsx-no-constructed-context-values": ["off"]
+        "react/jsx-no-constructed-context-values": ["off"],
+        "@typescript-eslint/no-confusing-void-expression": ["off"]
       }
     }
   ]

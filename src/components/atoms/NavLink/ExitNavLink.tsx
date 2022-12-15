@@ -1,3 +1,4 @@
+import { useAuth0 } from '@auth0/auth0-react';
 import { ExitIcon } from '@camp/design';
 import { messages } from '@camp/messages';
 import { createTestAttr } from '@camp/utils';
@@ -17,13 +18,21 @@ const rootStyles: Exclude<Sx, CSSObject> = theme => ({
 });
 
 export const ExitNavLink = () => {
+  const { logout } = useAuth0();
+
+  const handleLogout = () => {
+    openLogoutModal(returnTo => {
+      logout({ returnTo });
+    });
+  };
+
   return (
     <MantineNavLink
       sx={rootStyles}
       label={messages.logout.link}
       rightSection={<ExitIcon />}
       {...createTestAttr(id)}
-      onClick={() => openLogoutModal()}
+      onClick={handleLogout}
     />
   );
 };

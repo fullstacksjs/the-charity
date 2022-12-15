@@ -20,12 +20,19 @@ npm install
 - `APP_GRAPHQL_SCHEMA_URL`: a valid url string for graphql path used in graphql
   tooling.
 - `APP_API_ENDPOINT`: a valid url or path for graphql path used in application.
+- `APP_AUTH0_DOMAIN`: a valid url string for auth0 domain, more info
+  [here][auth0-react-config].
+- `APP_AUTH0_AUDIENCE`: an OAuth2.0 audience, more info [here][oauth-audience].
+- `APP_AUTH0_CLIENT_ID`: a valid url string for auth0 clientId, more info
+  [here][auth0-react-config].
+- `HASURA_ADMIN_SECRET`: Hasura admin secret.
 - `API_PROXY_TARGET`: the API target proxy URL for the dev environment.
 - `PORT`: **Optional** port for running vite dev server, if not provided, will
-  fallback to 3000
+  fallback to 3000.
 - `HOST`: **Optional** host for running vite dev server.
 - `CY_RECORD_VIDEO`: **Optional** A boolean variable for Cypress video recording
-  (`default=true`)
+  (`default=true`).
+- `OPEN`: Open the browser on dev server start (`default=false`).
 
 > Note: if you want add a new environment variables **for using in-app usage**
 > you should prefix it with `APP_`.
@@ -103,3 +110,7 @@ just add it to the `.cspell/charity.txt` and separate with a new line
 [vscode]: https://code.visualstudio.com/
 [apollo-graphql-extension]:
   https://marketplace.visualstudio.com/items?itemName=apollographql.vscode-apollo
+[auth0-react-config]:
+  https://auth0.com/docs/quickstart/spa/react/interactive#install-the-auth0-react-sdk
+[oauth-audience]:
+  https://datatracker.ietf.org/doc/html/draft-tschofenig-oauth-audience-00

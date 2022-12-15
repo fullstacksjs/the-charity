@@ -1,6 +1,6 @@
 /// <reference types="vitest" />
-
-import { getEnv, toInteger } from '@fullstacksjs/toolbox';
+import { getBooleanEnv, getEnv, toInteger } from '@fullstacksjs/toolbox';
+import basicSsl from '@vitejs/plugin-basic-ssl';
 import react from '@vitejs/plugin-react';
 import { defineConfig } from 'vite';
 import svgr from 'vite-plugin-svgr';
@@ -10,6 +10,7 @@ import { cypressAliases } from './configs/vite/cypressAliases';
 
 export default defineConfig({
   plugins: [
+    basicSsl(),
     tsconfigPaths(),
     cypressAliases(),
     react({ exclude: /\.stories\.(t|j)sx?$/ }),
@@ -18,6 +19,9 @@ export default defineConfig({
   server: {
     port: toInteger(getEnv('PORT', ''), 3000),
     host: getEnv('HOST'),
+    open: getBooleanEnv('OPEN'),
+    https: true,
+    strictPort: true,
     proxy: {
       '/graphql': {
         target: getEnv('API_PROXY_TARGET'),

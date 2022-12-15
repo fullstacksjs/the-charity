@@ -1,11 +1,13 @@
 import { AppRoute } from '../../src/AppRoutes';
+import { admin } from '../fixtures/admin';
 
 describe('Authorization', () => {
   it('should not be able to go to login after logging in', () => {
-    cy.login();
-    cy.visit(AppRoute.projects);
-    cy.visit(AppRoute.login);
-    cy.location('pathname').should('not.eq', AppRoute.login);
+    cy.login(admin);
+    cy.visit(AppRoute.projects).then(() => {
+      cy.visit(AppRoute.login);
+      cy.location('pathname').should('not.eq', AppRoute.login);
+    });
   });
 
   it('should be redirected to login if not authenticated', () => {
@@ -14,13 +16,13 @@ describe('Authorization', () => {
   });
 
   it('should be able to go to protected routes after logging in', () => {
-    cy.login();
+    cy.login(admin);
     cy.visit(AppRoute.projects);
     cy.location('pathname').should('eq', AppRoute.projects);
   });
 
   it('should be able to go to protected routes after logging in', () => {
-    cy.login();
+    cy.login(admin);
     cy.visit(AppRoute.projects);
     cy.location('pathname').should('eq', AppRoute.projects);
   });

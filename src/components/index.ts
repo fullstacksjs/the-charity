@@ -1,5 +1,4 @@
 export * from './atoms';
-export * from './AuthProvider';
 export * from './CreateFamily';
 export * from './CreateProject';
 export * from './DashboardCard';

@@ -6,7 +6,7 @@ module.exports = {
       name: 'the-charity-frontend',
       url: 'https://the-charity.hasura.app/v1/graphql',
       headers: {
-        'x-hasura-admin-secret': process.env.ADMIN_SECRET,
+        'x-hasura-admin-secret': process.env.HASURA_ADMIN_SECRET,
       },
     },
     includes: ['./src/data-layer/**/*.graphql', './src/data-layer/**/*.ts'],

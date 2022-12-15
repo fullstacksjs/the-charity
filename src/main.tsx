@@ -5,23 +5,23 @@ import { NotificationsProvider } from '@mantine/notifications';
 import { StrictMode } from 'react';
 import ReactDOM from 'react-dom/client';
 
-import { AuthProvider, FullPageLoader } from './components';
+import { AuthProvider } from './AuthProvider';
 import { Routes } from './Routes';
 
 const root = ReactDOM.createRoot(document.getElementById('root')!);
 
 root.render(
   <StrictMode>
-    <ApolloProvider>
-      <ThemeProvider>
-        <NotificationsProvider limit={3}>
-          <ModalsProvider>
-            <AuthProvider fallback={<FullPageLoader />}>
+    <AuthProvider>
+      <ApolloProvider>
+        <ThemeProvider>
+          <NotificationsProvider limit={3}>
+            <ModalsProvider>
               <Routes />
-            </AuthProvider>
-          </ModalsProvider>
-        </NotificationsProvider>
-      </ThemeProvider>
-    </ApolloProvider>
+            </ModalsProvider>
+          </NotificationsProvider>
+        </ThemeProvider>
+      </ApolloProvider>
+    </AuthProvider>
   </StrictMode>,
 );

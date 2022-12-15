@@ -1,3 +1,4 @@
+import { noop } from '@fullstacksjs/toolbox';
 import { ModalsProvider } from '@mantine/modals';
 import type { ComponentMeta, ComponentStory } from '@storybook/react';
 
@@ -23,7 +24,7 @@ export default {
 } as ComponentMeta<typeof LogoutConfirm>;
 
 const Template: ComponentStory<typeof LogoutConfirm> = () => {
-  return <>{openLogoutModal()}</>;
+  return <>{openLogoutModal(noop)}</>;
 };
 
 export const Default = Template.bind({});

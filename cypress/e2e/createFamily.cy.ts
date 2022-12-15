@@ -1,41 +1,46 @@
+import { AppRoute } from '../../src/AppRoutes';
 import { createFamilyButtonId } from '../../src/components/CreateFamily/FamilyButton/CreateFamilyButton.ids';
 import { createFamilyFormIds } from '../../src/components/CreateFamily/FamilyForm/CreateFamilyForm.ids';
 import { createFamilyModalId } from '../../src/components/CreateFamily/FamilyForm/CreateFamilyModal.ids';
 import { dashboardHeaderId } from '../../src/components/organisms/Header/DashboardHeader.ids';
 import { navLinkIds } from '../../src/components/organisms/Sidebar/Sidebar.ids';
-import { genFakeFamilyName } from '../../src/utils';
+import { admin } from '../fixtures/admin';
+import { familyFixture } from '../fixtures/project';
 
-describe('Create Draft Family', () => {
+describe('Create Family', () => {
   beforeEach(() => {
-    cy.login();
+    cy.login(admin);
+    cy.visit(AppRoute.families);
     cy.findByTestId(navLinkIds.families).click();
     cy.findByTestId(dashboardHeaderId)
       .findByTestId(createFamilyButtonId)
       .click();
   });
 
-  it('should show createFamily modal after clicking on createFamily button', () => {
+  it('should open modal', () => {
     cy.findByTestId(createFamilyModalId).should('exist');
   });
 
-  it('should not contain createFamily modal after submitting the valid form ', () => {
+  it('should close modal after success', () => {
     cy.findByTestId(createFamilyFormIds.form).within(() => {
       cy.findByTestId(createFamilyFormIds.nameInput)
-        .type(genFakeFamilyName())
+        .type(familyFixture.name())
         .then(() => {
           cy.root().submit();
         });
     });
 
-    cy.findByTestId(createFamilyModalId).should('not.exist');
+    cy.findByTestId(createFamilyModalId, { timeout: 1e4 }).should('not.exist');
   });
 
-  it('should show mutation result notification', () => {
+  it('should show result after success', () => {
     cy.findByTestId(createFamilyFormIds.form).within(() => {
-      cy.findByTestId(createFamilyFormIds.nameInput).type(genFakeFamilyName());
+      cy.findByTestId(createFamilyFormIds.nameInput).type(familyFixture.name());
       cy.findByTestId(createFamilyFormIds.submitBtn).click();
     });
 
-    cy.findByTestId(createFamilyFormIds.notification.success).should('exist');
+    cy.findByTestId(createFamilyFormIds.notification.success, {
+      timeout: 1e4,
+    }).should('exist');
   });
 });
