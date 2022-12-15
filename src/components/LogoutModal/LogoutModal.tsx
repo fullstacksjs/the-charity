@@ -1,14 +1,14 @@
 import { messages } from '@camp/messages';
-import type { noop } from '@fullstacksjs/toolbox';
 import { openConfirmModal } from '@mantine/modals';
 
+import { AppRoute } from '../../AppRoutes';
 import { createTestAttr } from '../../utils/createTestAttr';
 import { LogoutConfirm } from './LogoutConfirm';
 import { logoutModalIds as ids } from './LogoutModal.ids';
 
 const texts = messages.logout.modal;
 
-export const openLogoutModal = (logout: typeof noop) =>
+export const openLogoutModal = (logout: (returnTo: AppRoute) => void) =>
   openConfirmModal({
     modalId: ids.modal,
     children: <LogoutConfirm />,
@@ -32,5 +32,5 @@ export const openLogoutModal = (logout: typeof noop) =>
       variant: 'filled',
       color: 'gray',
     },
-    onConfirm: logout,
+    onConfirm: () => logout(AppRoute.login),
   });

@@ -15,4 +15,3 @@ export {
   useFamilyQuery,
 } from './operations/__generated__/typesAndHooks';
 export { useLoginMutation } from './operations/mutations/useLoginMutation';
-export { AuthState, initiateAuthState, logoutLocally } from './variables';

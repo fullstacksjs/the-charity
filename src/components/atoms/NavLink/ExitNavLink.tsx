@@ -20,13 +20,19 @@ const rootStyles: Exclude<Sx, CSSObject> = theme => ({
 export const ExitNavLink = () => {
   const { logout } = useAuth0();
 
+  const handleLogout = () => {
+    openLogoutModal(returnTo => {
+      logout({ returnTo });
+    });
+  };
+
   return (
     <MantineNavLink
       sx={rootStyles}
       label={messages.logout.link}
       rightSection={<ExitIcon />}
       {...createTestAttr(id)}
-      onClick={() => openLogoutModal(() => logout())}
+      onClick={handleLogout}
     />
   );
 };

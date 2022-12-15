@@ -85,6 +85,12 @@
   },
   "overrides": [
     {
+      "files": ["./cypress/**/*.ts"],
+      "rules": {
+        "node/prefer-global/buffer": "off"
+      }
+    },
+    {
       "files": ["./**/*.cy.tsx"],
       "rules": {
         "react/jsx-no-constructed-context-values": ["off"]

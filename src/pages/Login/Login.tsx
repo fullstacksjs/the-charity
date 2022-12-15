@@ -14,8 +14,8 @@ export const Login = () => {
           size="xl"
           onClick={() =>
             loginWithRedirect({
-              audience: config.schemaUrl,
-              scope: 'read:current_user',
+              audience: config.auth0.audience,
+              scope: config.auth0.scope,
             })
           }
         >
