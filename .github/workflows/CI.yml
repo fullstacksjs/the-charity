@@ -81,7 +81,7 @@ jobs:
       APP_AUTH0_CLIENT_ID: ${{ secrets.APP_AUTH0_CLIENT_ID }}
       CYPRESS_AUTH0_CLIENT_ID: ${{ secrets.APP_AUTH0_CLIENT_ID }}
       HASURA_ADMIN_SECRET: ${{ secrets.HASURA_ADMIN_SECRET }}
-      PORT: 6000
+      PORT: 3003
       NODE_TLS_REJECT_UNAUTHORIZED: 0
 
     steps:
