@@ -1,16 +1,19 @@
 import { AppRoute } from '../../src/AppRoutes';
-
-const userNameInputSelector = '[type="email"]';
-const passwordInputSelector = '[type="password"]';
+import { admin } from '../fixtures/admin';
 
 describe('Login', () => {
   it('should be redirected to the families page after successful login', () => {
     cy.visit(AppRoute.login);
-    cy.get('button').within(() => {
-      cy.get(userNameInputSelector).type('admin@gmail.com');
-      cy.get(passwordInputSelector).type('123456789');
-      cy.root().submit();
-    });
-    cy.location('pathname').should('eq', AppRoute.families);
+    cy.get('button').click();
+
+    cy.origin(
+      'https://dev-jxuskaag.us.auth0.com/',
+      { args: admin } as const,
+      ({ username, password }) => {
+        cy.get('#username').type(username);
+        cy.get('#password').type(password);
+        cy.get('button[type="submit"]').click();
+      },
+    );
   });
 });
