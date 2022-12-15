@@ -90,7 +90,6 @@ jobs:
       - name: Run E2E tests
         uses: cypress-io/github-action@v4
         with:
-          start: npx vite --port ${{ env.PORT }}
           build: npm run build
           wait-on: https://127.0.0.1:${{ env.PORT }}
           wait-on-timeout: 20
