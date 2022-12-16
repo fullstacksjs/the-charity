@@ -14,7 +14,7 @@ BOLD='\033[1m'
 
 ME=$(git config --get user.name)
 DEVS=("ASafaeirad" "erfan-goodarzi" "mojtabaesl" "AmirabbasJ")
-REVIEWERS=$(join_arr ${DEVS[@]/$ME/})
+REVIEWERS=$(join_arr "${DEVS[@]/$ME/}")
 
 echo -en "${BOLD}"
 
@@ -26,10 +26,10 @@ type gh >/dev/null 2>&1 || {
 BASE=${1:-"dev"}
 BRANCH_NAME=$(git branch --show-current)
 TITLE=$(
-  echo ${BRANCH_NAME} |
+  echo "${BRANCH_NAME}" |
     sed -r "s/\-/\ /g" |
     sed -r "s/hotfix (.*)/ [Hotfix]: \1/gi" |
-    sed -r "s/FSK ([0-9]*) (.*)/[FSK-\1]: \2/gi" |
+    sed -r "s/FS ([0-9]*) (.*)/[FS-\1]: \2/gi" |
     sed -r 's/[^ _-]*/\u&/g'
 )
 
@@ -39,7 +39,7 @@ echo -ne "${RESET}\n"
 TITLE_WORDS=($TITLE)
 
 VERB=${TITLE_WORDS[1]}
-REST=${TITLE_WORDS[@]:2}
+REST=${TITLE_WORDS[*]:2}
 
 if [[ "$VERB" =~ (s|sh|ch|x|z)$ ]]; then
   VERB+="es"
