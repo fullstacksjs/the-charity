@@ -1,39 +1,22 @@
-import { FamilySeverityEnum, FamilyStatusEnum } from '@camp/data-layer';
+import {
+  FamilySeverityEnum,
+  FamilyStatusEnum,
+  useFamilyListQuery,
+} from '@camp/data-layer';
 import { DashboardCard } from '@camp/design';
 import { messages } from '@camp/messages';
 import { Title } from '@mantine/core';
 
 import { CreateFamilyButton } from '../CreateFamily';
 import { FamilyTable } from './FamilyTable';
-import type { ShortFamiliesInfo } from './FamilyTable/toShortFamilyInfoTableRows';
-
-/* FIXME
-  this type should be removed in
-  backend integration ticket of FamilyList
-*/
-export const shortFamiliesInfo: ShortFamiliesInfo = [
-  {
-    id: '(F00001)',
-    name: 'فول استک زاده',
-    severity: FamilySeverityEnum.Critical,
-    status: FamilyStatusEnum.Completed,
-  },
-  {
-    id: '(F00002)',
-    name: 'فول استک زاده',
-    severity: FamilySeverityEnum.Critical,
-    status: FamilyStatusEnum.Draft,
-  },
-  {
-    id: '(F00003)',
-    name: 'فول استک زاده',
-    severity: FamilySeverityEnum.Normal,
-    status: FamilyStatusEnum.Completed,
-  },
-];
+import type { ShortFamilyInfo } from './FamilyTable/toShortFamilyInfoTableRows';
 
 export const FamilyList = () => {
   const t = messages.families.list;
+  const { data, loading, error } = useFamilyListQuery();
+
+  if (error) return <>error</>;
+  if (loading) return <>Loading</>;
 
   return (
     <DashboardCard
@@ -44,7 +27,7 @@ export const FamilyList = () => {
         </Title>
       }
     >
-      <FamilyTable shortFamiliesInfo={shortFamiliesInfo} />
+      <FamilyTable shortFamiliesInfo={data?.family as ShortFamilyInfo[]} />
     </DashboardCard>
   );
 };

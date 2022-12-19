@@ -2530,6 +2530,11 @@ export type FamilyQueryVariables = Exact<{
 
 export type FamilyQuery = { __typename?: 'query_root', family_by_pk?: { __typename?: 'family', id: any, name: string, status: FamilyStatusEnum, severity: FamilySeverityEnum, code?: string | null } | null };
 
+export type FamilyListQueryVariables = Exact<{ [key: string]: never; }>;
+
+
+export type FamilyListQuery = { __typename?: 'query_root', family: Array<{ __typename?: 'family', id: any, name: string, severity: FamilySeverityEnum, status: FamilyStatusEnum }> };
+
 
 export const CreateFamilyDocument = gql`
     mutation CreateFamily($name: String!) {
@@ -2641,3 +2646,40 @@ export function useFamilyLazyQuery(baseOptions?: Apollo.LazyQueryHookOptions<Fam
 export type FamilyQueryHookResult = ReturnType<typeof useFamilyQuery>;
 export type FamilyLazyQueryHookResult = ReturnType<typeof useFamilyLazyQuery>;
 export type FamilyQueryResult = Apollo.QueryResult<FamilyQuery, FamilyQueryVariables>;
+export const FamilyListDocument = gql`
+    query FamilyList {
+  family {
+    id
+    name
+    severity
+    status
+  }
+}
+    `;
+
+/**
+ * __useFamilyListQuery__
+ *
+ * To run a query within a React component, call `useFamilyListQuery` and pass it any options that fit your needs.
+ * When your component renders, `useFamilyListQuery` returns an object from Apollo Client that contains loading, error, and data properties
+ * you can use to render your UI.
+ *
+ * @param baseOptions options that will be passed into the query, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options;
+ *
+ * @example
+ * const { data, loading, error } = useFamilyListQuery({
+ *   variables: {
+ *   },
+ * });
+ */
+export function useFamilyListQuery(baseOptions?: Apollo.QueryHookOptions<FamilyListQuery, FamilyListQueryVariables>) {
+        const options = {...defaultOptions, ...baseOptions}
+        return Apollo.useQuery<FamilyListQuery, FamilyListQueryVariables>(FamilyListDocument, options);
+      }
+export function useFamilyListLazyQuery(baseOptions?: Apollo.LazyQueryHookOptions<FamilyListQuery, FamilyListQueryVariables>) {
+          const options = {...defaultOptions, ...baseOptions}
+          return Apollo.useLazyQuery<FamilyListQuery, FamilyListQueryVariables>(FamilyListDocument, options);
+        }
+export type FamilyListQueryHookResult = ReturnType<typeof useFamilyListQuery>;
+export type FamilyListLazyQueryHookResult = ReturnType<typeof useFamilyListLazyQuery>;
+export type FamilyListQueryResult = Apollo.QueryResult<FamilyListQuery, FamilyListQueryVariables>;

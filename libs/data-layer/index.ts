@@ -12,6 +12,7 @@ export {
   CreateProjectDocument,
   useCreateFamilyMutation,
   useCreateProjectMutation,
+  useFamilyListQuery,
   useFamilyQuery,
 } from './operations/__generated__/typesAndHooks';
 export { useLoginMutation } from './operations/mutations/useLoginMutation';
