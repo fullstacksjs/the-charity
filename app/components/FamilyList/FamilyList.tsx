@@ -14,7 +14,11 @@ export const FamilyList = () => {
   const families = data?.family;
 
   if (error ?? isNull(families)) {
-    showNotification({ type: 'failure', message: errorMessages.UNKNOWN_ERROR });
+    showNotification({
+      type: 'failure',
+      title: t.title,
+      message: errorMessages.UNKNOWN_ERROR,
+    });
     return null;
   }
   if (loading) return <FullPageLoader />;

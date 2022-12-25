@@ -30,7 +30,7 @@ const toFamilyDetail = (
 };
 
 export const FamilyDetail = () => {
-  const t = messages.familyDetail.familyFields;
+  const t = messages.familyDetail;
   const familyId = useParams();
   const { data, loading, error } = useFamilyQuery({
     variables: { id: familyId },
@@ -39,27 +39,31 @@ export const FamilyDetail = () => {
   if (loading) return <FullPageLoader />;
 
   if (error) {
-    showNotification({ type: 'failure', message: errorMessages.UNKNOWN_ERROR });
+    showNotification({
+      type: 'failure',
+      title: t.title,
+      message: errorMessages.UNKNOWN_ERROR,
+    });
     return null;
   }
-  if (isNull(family)) return <p>{messages.familyDetail.notFound}</p>;
+  if (isNull(family)) return <p>{t.notFound}</p>;
 
   const familyDetail = toFamilyDetail(family);
 
   return isNull(familyDetail) ? null : (
-    <DetailCard title={messages.familyDetail.title} id={familyDetail.code}>
-      <DetailCard.TextField title={t.name.title}>
+    <DetailCard title={t.title} id={familyDetail.code}>
+      <DetailCard.TextField title={t.familyFields.name.title}>
         {familyDetail.name}
       </DetailCard.TextField>
       <DetailCard.BadgeField
         status={familyDetail.severity.state}
-        title={t.severityStatus.title}
+        title={t.familyFields.severityStatus.title}
       >
         {familyDetail.severity.text}
       </DetailCard.BadgeField>
       <DetailCard.BadgeField
         status={familyDetail.status.state}
-        title={t.informationStatus.title}
+        title={t.familyFields.informationStatus.title}
       >
         {familyDetail.status.text}
       </DetailCard.BadgeField>
