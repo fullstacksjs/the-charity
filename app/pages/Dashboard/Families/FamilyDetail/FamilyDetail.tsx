@@ -1,10 +1,11 @@
 import type { FamilyQuery } from '@camp/data-layer';
 import { useFamilyQuery } from '@camp/data-layer';
-import { DetailCard } from '@camp/design';
-import { messages } from '@camp/messages';
+import { DetailCard, FullPageLoader, showNotification } from '@camp/design';
+import { errorMessages, messages } from '@camp/messages';
 import { useParams } from '@camp/router';
 import { isNull } from '@fullstacksjs/toolbox';
 
+// TODO: these should be moved to data-layer
 import type { InformationStatus, SeverityStatus } from '../../../../components';
 import { toInformationStatus, toSeverityStatus } from '../../../../components';
 
@@ -31,13 +32,19 @@ const toFamilyDetail = (
 export const FamilyDetail = () => {
   const t = messages.familyDetail.familyFields;
   const familyId = useParams();
-  const { data } = useFamilyQuery({
+  const { data, loading, error } = useFamilyQuery({
     variables: { id: familyId },
   });
+  const family = data?.family_by_pk;
+  if (loading) return <FullPageLoader />;
 
-  if (data?.family_by_pk == null) return <>Family Not Found</>;
+  if (error) {
+    showNotification({ type: 'failure', message: errorMessages.UNKNOWN_ERROR });
+    return null;
+  }
+  if (isNull(family)) return <p>{messages.familyDetail.notFound}</p>;
 
-  const familyDetail = toFamilyDetail(data.family_by_pk);
+  const familyDetail = toFamilyDetail(family);
 
   return isNull(familyDetail) ? null : (
     <DetailCard title={messages.familyDetail.title} id={familyDetail.code}>
