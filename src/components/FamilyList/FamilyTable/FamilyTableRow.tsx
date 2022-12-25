@@ -1,9 +1,8 @@
-import { MenuIcon } from '@camp/design';
-import { Link, useNavigate } from '@camp/router';
-import { createTestAttr } from '@camp/utils';
-import { ActionIcon, Group, Menu } from '@mantine/core';
+import { useNavigate } from '@camp/router';
+import { Group } from '@mantine/core';
 
-import { Badge } from '../../atoms';
+import { AppRoute } from '../../../AppRoutes';
+import { ActionButton, Badge } from '../../atoms';
 import type { ShortFamilyInfoTableRow } from './toShortFamilyInfoTableRows';
 
 interface Props {
@@ -38,27 +37,12 @@ export const FamilyTableRow = ({
       <td>
         <Group position="apart">
           <Badge status={severityStatus.state}>{severityStatus.text}</Badge>
-          <Menu width={100} shadow="md" withArrow>
-            <Menu.Dropdown {...createTestAttr(familyTableMenuId)}>
-              <Menu.Item
-                component={Link}
-                to="/dashboard/families/:id"
-                params={{ id }}
-              >
-                بازکردن
-              </Menu.Item>
-            </Menu.Dropdown>
-            <Menu.Target {...createTestAttr(familyTableMenuButtonId)}>
-              <ActionIcon
-                size="sm"
-                onClick={(e: React.MouseEvent<HTMLButtonElement>) =>
-                  e.stopPropagation()
-                }
-              >
-                <MenuIcon />
-              </ActionIcon>
-            </Menu.Target>
-          </Menu>
+          <ActionButton
+            MenuButtonId={familyTableMenuButtonId}
+            MenuId={familyTableMenuId}
+            to={AppRoute.familyDetail}
+            params={{ id }}
+          />
         </Group>
       </td>
     </tr>

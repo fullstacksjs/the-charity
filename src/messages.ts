@@ -8,7 +8,7 @@ export const errorMessages: Record<ServerError, string> = {
 
 export const messages = {
   companyName: 'نامی مناسب برای خیریه',
-  actions: { dismiss: 'انصراف' },
+  actions: { dismiss: 'انصراف', open: 'باز کردن' },
   families: {
     title: 'خانواده ها',
     create: 'ایجاد خانواده جدید',
@@ -81,6 +81,12 @@ export const messages = {
       },
       submitBtn: {
         text: 'ایجاد پروژه',
+      },
+    },
+    list: {
+      title: 'لیست پروژه ها',
+      table: {
+        columns: ['ردیف', 'نام'],
       },
     },
   },
