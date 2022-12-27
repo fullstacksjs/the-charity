@@ -15,17 +15,16 @@ export const FamilyList = () => {
   const { data, loading, error } = useFamilyListQuery();
   const families = data?.family;
 
-  if (error ?? isNull(families)) {
+  if (error)
     showNotification({
       type: 'failure',
       title: t.title,
       message: errorMessages.UNKNOWN_ERROR,
       ...createTestAttr(ids.familyListFailureNotification),
     });
-    return null;
-  }
-  if (loading) return <FullPageLoader />;
 
+  if (loading) return <FullPageLoader />;
+  if (isNull(families)) return null;
   if (isEmpty(families)) return <FamilyEmptyState />;
   return (
     <DashboardCard
