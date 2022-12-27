@@ -1,11 +1,13 @@
 import { useFamilyListQuery } from '@camp/data-layer';
 import { DashboardCard, FullPageLoader, showNotification } from '@camp/design';
 import { errorMessages, messages } from '@camp/messages';
+import { createTestAttr } from '@camp/test';
 import { isEmpty, isNull } from '@fullstacksjs/toolbox';
 import { Title } from '@mantine/core';
 
 import { CreateFamilyButton } from '../CreateFamily';
 import { FamilyEmptyState } from '../FamilyEmptyState';
+import * as ids from './FamilyList.ids';
 import { FamilyTable } from './FamilyTable';
 
 export const FamilyList = () => {
@@ -18,6 +20,7 @@ export const FamilyList = () => {
       type: 'failure',
       title: t.title,
       message: errorMessages.UNKNOWN_ERROR,
+      ...createTestAttr(ids.familyListFailureNotification),
     });
     return null;
   }
