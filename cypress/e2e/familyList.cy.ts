@@ -20,7 +20,6 @@ describe('Family List', () => {
   it.only('newly added family should be visible in familyTable', () => {
     const familyName = familyFixture.name();
     cy.createFamily(familyName);
-    cy.visit(AppRoute.families);
     cy.waitForReq();
     cy.findByText(familyName).should('exist');
   });
