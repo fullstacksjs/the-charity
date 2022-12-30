@@ -1,5 +1,5 @@
+import { shortFamiliesInfo } from './FakeShortFamiliesInfo';
 import { FamilyTable } from './FamilyTable';
-import { shortFamiliesInfo } from './FamilyTable.stories';
 import { familyTableMenuButtonId, familyTableMenuId } from './FamilyTableRow';
 
 describe('Family Table', () => {
