@@ -10,6 +10,9 @@ Cypress.Commands.add('createFamily', name => {
     cy.findByTestId(createFamilyFormIds.nameInput).type(name);
     cy.findByTestId(createFamilyFormIds.submitBtn).click();
   });
+  cy.findByTestId(createFamilyFormIds.notification.success, {
+    timeout: 1e4,
+  }).should('exist');
 });
 
 declare global {
