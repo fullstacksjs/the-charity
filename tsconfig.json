@@ -6,11 +6,11 @@
     "esModuleInterop": true,
     "types": ["cypress", "@testing-library/cypress"],
     "paths": {
-      "@camp/data-layer": ["./app/data-layer/index.ts"],
+      "@camp/data-layer": ["./libs/data-layer/index.ts"],
       "@camp/design": ["./app/design/index.ts"],
       "@camp/components": ["./app/components/index.ts"],
       "@camp/domain": ["./app/domain/index.ts"],
-      "@camp/config": ["./app/config/index.ts"],
+      "@camp/config": ["./libs/config/index.ts"],
       "@camp/router": ["./libs/router/index.ts"],
       "@camp/messages": ["./app/messages.ts"],
       "@camp/hooks": ["./app/hooks/index.ts"],

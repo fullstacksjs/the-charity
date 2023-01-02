@@ -9,7 +9,7 @@ module.exports = {
         'x-hasura-admin-secret': process.env.HASURA_ADMIN_SECRET,
       },
     },
-    includes: ['./src/data-layer/**/*.graphql', './src/data-layer/**/*.ts'],
-    excludes: ['./src/data-layer/operations/__generated__/*.ts'],
+    includes: ['./libs/data-layer/**/*.graphql', './libs/data-layer/**/*.ts'],
+    excludes: ['./libs/data-layer/operations/__generated__/*.ts'],
   },
 };

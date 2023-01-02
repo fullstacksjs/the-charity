@@ -1,8 +1,7 @@
 import { useAuth0 } from '@auth0/auth0-react';
+import { config } from '@camp/config';
 import { messages } from '@camp/messages';
 import { Button, Center, Group, Image } from '@mantine/core';
-
-import { config } from '../../config/config';
 
 export const Login = () => {
   const { loginWithRedirect } = useAuth0();

@@ -1,9 +1,9 @@
 import type { ApolloClient, NormalizedCacheObject } from '@apollo/client';
 import { ApolloProvider as BaseApolloProvider } from '@apollo/client';
 import { useAuth0 } from '@auth0/auth0-react';
+import { config } from '@camp/config';
 import { useRef } from 'react';
 
-import { config } from '../../config/config';
 import { createApolloClient } from './createApolloClient';
 
 interface Props {
