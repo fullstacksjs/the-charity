@@ -1,10 +1,9 @@
 import { MenuIcon } from '@camp/design';
 import { messages } from '@camp/messages';
+import type { PathParams } from '@camp/router';
 import { Link } from '@camp/router';
 import { createTestAttr } from '@camp/utils';
 import { ActionIcon, Menu } from '@mantine/core';
-
-import type { PathParams } from '../../../router/PathParams';
 
 interface Props {
   MenuId: string;

@@ -1,7 +1,7 @@
 import { messages } from '@camp/messages';
+import type { AppRoute } from '@camp/router';
 import { openConfirmModal } from '@mantine/modals';
 
-import type { AppRoute } from '../../AppRoutes';
 import { createTestAttr } from '../../utils/createTestAttr';
 import { LogoutConfirm } from './LogoutConfirm';
 import { logoutModalIds as ids } from './LogoutModal.ids';
