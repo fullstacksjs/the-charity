@@ -14,6 +14,7 @@
       "@camp/router": ["./libs/router/index.ts"],
       "@camp/messages": ["./app/messages.ts"],
       "@camp/hooks": ["./app/hooks/index.ts"],
+      "@camp/auth": ["./libs/auth/index.ts"],
       "@camp/infra": ["./app/infra/index.ts"]
     }
   },

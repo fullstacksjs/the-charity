@@ -1,10 +1,5 @@
-import {
-  AuthGuard,
-  FamilyEmptyState,
-  FamilyList,
-  GuestGuard,
-  ProjectList,
-} from '@camp/design';
+import { AuthGuard, GuestGuard } from '@camp/auth';
+import { FamilyEmptyState, FamilyList, ProjectList } from '@camp/design';
 import { messages } from '@camp/messages';
 import type { Route } from '@camp/router';
 import { Navigate, ReactLocation, Router } from '@camp/router';

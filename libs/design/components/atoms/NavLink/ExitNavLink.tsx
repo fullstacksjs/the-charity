@@ -1,4 +1,4 @@
-import { useAuth0 } from '@auth0/auth0-react';
+import { useAuth0 } from '@camp/auth';
 import { messages } from '@camp/messages';
 import { createTestAttr } from '@camp/test';
 import type { CSSObject, Sx } from '@mantine/core';

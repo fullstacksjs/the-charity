@@ -5,7 +5,6 @@ export * from './DashboardCard';
 export * from './DetailCard';
 export * from './FamilyEmptyState';
 export * from './FamilyList';
-export * from './Guards';
 export * from './molecules';
 export * from './Notification';
 export * from './organisms';

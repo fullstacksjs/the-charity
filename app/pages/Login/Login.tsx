@@ -1,4 +1,4 @@
-import { useAuth0 } from '@auth0/auth0-react';
+import { useAuth0 } from '@camp/auth';
 import { config } from '@camp/config';
 import { messages } from '@camp/messages';
 import { Button, Center, Group, Image } from '@mantine/core';
