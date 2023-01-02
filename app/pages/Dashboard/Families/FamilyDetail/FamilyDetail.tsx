@@ -1,11 +1,11 @@
-import type { InformationStatus, SeverityStatus } from '@camp/components';
+import type { FamilyQuery } from '@camp/data-layer';
+import { useFamilyQuery } from '@camp/data-layer';
+import type { InformationStatus, SeverityStatus } from '@camp/design';
 import {
   DetailCard,
   toInformationStatus,
   toSeverityStatus,
-} from '@camp/components';
-import type { FamilyQuery } from '@camp/data-layer';
-import { useFamilyQuery } from '@camp/data-layer';
+} from '@camp/design';
 import { messages } from '@camp/messages';
 import { useParams } from '@camp/router';
 import { isNull } from '@fullstacksjs/toolbox';

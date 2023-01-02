@@ -7,7 +7,7 @@ import {
   ReactLocation,
   Router,
 } from '@tanstack/react-location';
-import { ThemeProvider } from '../app/design';
+import { ThemeProvider } from '../libs/design';
 import { DecoratorFn, Parameters } from '@storybook/react';
 
 export const parameters: Parameters = {

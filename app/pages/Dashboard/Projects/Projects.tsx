@@ -1,4 +1,4 @@
-import { CreateProjectButton, DashboardHeader } from '@camp/components';
+import { CreateProjectButton, DashboardHeader } from '@camp/design';
 import { Outlet } from '@camp/router';
 
 export const Projects = () => {

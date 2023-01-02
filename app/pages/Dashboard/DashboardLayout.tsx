@@ -1,4 +1,4 @@
-import { SideBar } from '@camp/components';
+import { SideBar } from '@camp/design';
 import { Outlet } from '@camp/router';
 import {
   AppShell as MantineAppShell,

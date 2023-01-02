@@ -4,7 +4,7 @@ import {
   FamilyList,
   GuestGuard,
   ProjectList,
-} from '@camp/components';
+} from '@camp/design';
 import { messages } from '@camp/messages';
 import type { Route } from '@camp/router';
 import { Navigate, ReactLocation, Router } from '@camp/router';
