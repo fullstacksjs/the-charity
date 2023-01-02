@@ -1,5 +1,5 @@
 import { messages } from '@camp/messages';
-import { createTestAttr } from '@camp/utils';
+import { createTestAttr } from '@camp/test';
 import { Button } from '@mantine/core';
 
 import { PlusIcon } from '../../../icons';

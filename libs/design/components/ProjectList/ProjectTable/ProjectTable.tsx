@@ -1,5 +1,5 @@
 import { messages } from '@camp/messages';
-import { createTestAttr } from '@camp/utils';
+import { createTestAttr } from '@camp/test';
 import { Table, useMantineTheme } from '@mantine/core';
 
 import { ProjectTableRow } from './ProjectTableRow';

@@ -1,5 +1,5 @@
 import { useMatches } from '@camp/router';
-import { createTestAttr } from '@camp/utils';
+import { createTestAttr } from '@camp/test';
 import { Group } from '@mantine/core';
 
 import type { BreadcrumbItem } from '../../molecules';

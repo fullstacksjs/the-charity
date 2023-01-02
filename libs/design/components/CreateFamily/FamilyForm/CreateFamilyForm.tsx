@@ -1,6 +1,6 @@
 import { useCreateFamilyMutation } from '@camp/data-layer';
 import { messages } from '@camp/messages';
-import { createTestAttr } from '@camp/utils';
+import { createTestAttr } from '@camp/test';
 import { yupResolver } from '@hookform/resolvers/yup';
 import { Button, Group, Stack, TextInput } from '@mantine/core';
 import { useForm } from 'react-hook-form';

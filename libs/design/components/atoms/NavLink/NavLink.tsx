@@ -1,5 +1,5 @@
 import { Link as TanstackLink, useLocation } from '@camp/router';
-import { createTestAttr } from '@camp/utils';
+import { createTestAttr } from '@camp/test';
 import type { CSSObject, Sx } from '@mantine/core';
 import { NavLink as MantineNavLink } from '@mantine/core';
 

@@ -1,6 +1,6 @@
 import { useCreateProjectMutation } from '@camp/data-layer';
 import { messages } from '@camp/messages';
-import { createTestAttr } from '@camp/utils';
+import { createTestAttr } from '@camp/test';
 import { isNull } from '@fullstacksjs/toolbox';
 import { yupResolver } from '@hookform/resolvers/yup';
 import { Button, Group, Stack, Textarea, TextInput } from '@mantine/core';
