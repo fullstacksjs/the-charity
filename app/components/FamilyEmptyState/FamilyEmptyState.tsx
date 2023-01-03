@@ -1,9 +1,9 @@
+import { EmptyState } from '@camp/design';
 import { PeopleIcon } from '@camp/icons';
 import { messages } from '@camp/messages';
 import { useMantineTheme } from '@mantine/core';
 
 import { CreateFamilyButton } from '../CreateFamily';
-import { EmptyState } from '../EmptyState';
 
 export const FamilyEmptyState = () => {
   const theme = useMantineTheme();

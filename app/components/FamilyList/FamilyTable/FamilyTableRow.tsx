@@ -1,8 +1,7 @@
+import { ActionButton, Badge } from '@camp/design';
 import { AppRoute, useNavigate } from '@camp/router';
 import { Group } from '@mantine/core';
 
-import { ActionButton } from '../../ActionButton';
-import { Badge } from '../../Badge';
 import type { ShortFamilyInfoTableRow } from './toShortFamilyInfoTableRows';
 
 interface Props {
@@ -38,8 +37,8 @@ export const FamilyTableRow = ({
         <Group position="apart">
           <Badge status={severityStatus.state}>{severityStatus.text}</Badge>
           <ActionButton
-            MenuButtonId={familyTableMenuButtonId}
-            MenuId={familyTableMenuId}
+            menuButtonId={familyTableMenuButtonId}
+            menuId={familyTableMenuId}
             to={AppRoute.familyDetail}
             params={{ id }}
           />

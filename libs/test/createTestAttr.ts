@@ -1,3 +1,3 @@
-export function createTestAttr(id: string) {
-  return { [`data-testid`]: id };
+export function createTestAttr(id: string | undefined) {
+  return id ? { [`data-testid`]: id } : undefined;
 }

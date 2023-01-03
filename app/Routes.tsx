@@ -1,9 +1,9 @@
 import { AuthGuard, GuestGuard } from '@camp/auth';
-import { FamilyEmptyState, FamilyList, ProjectList } from '@camp/design';
 import { messages } from '@camp/messages';
 import type { Route } from '@camp/router';
 import { Navigate, ReactLocation, Router } from '@camp/router';
 
+import { FamilyEmptyState, FamilyList, ProjectList } from './components';
 import {
   DashboardLayout,
   Families,
@@ -60,6 +60,4 @@ const routes: Route[] = [
   { element: <Navigate to="/auth/login" /> },
 ];
 
-export const Routes = () => {
-  return <Router routes={routes} location={location} />;
-};
+export const Routes = () => <Router routes={routes} location={location} />;

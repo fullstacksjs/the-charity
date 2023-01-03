@@ -1,4 +1,5 @@
 import { useCreateProjectMutation } from '@camp/data-layer';
+import { showNotification } from '@camp/design';
 import { messages } from '@camp/messages';
 import { createTestAttr } from '@camp/test';
 import { isNull } from '@fullstacksjs/toolbox';
@@ -7,7 +8,6 @@ import { Button, Group, Stack, Textarea, TextInput } from '@mantine/core';
 import { useForm } from 'react-hook-form';
 import * as yup from 'yup';
 
-import { showNotification } from '../../Notification';
 import { createProjectFormIds as ids } from './CreateProjectForm.ids';
 
 interface Props {

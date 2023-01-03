@@ -72,8 +72,6 @@ jobs:
 
     environment: Preview
     env:
-      CYPRESS_AUTH0_AUDIENCE: https://the-charity.hasura.app/v1/graphql/
-      CYPRESS_AUTH0_DOMAIN: https://dev-jxuskaag.us.auth0.com/oauth/token/
       APP_GRAPHQL_SCHEMA_URL: https://the-charity.hasura.app/v1/graphql/
       APP_AUTH0_AUDIENCE: https://the-charity.hasura.app/v1/graphql/
       APP_API_ENDPOINT: https://the-charity.hasura.app/v1/graphql/

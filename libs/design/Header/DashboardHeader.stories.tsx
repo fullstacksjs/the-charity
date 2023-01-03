@@ -1,14 +1,14 @@
 import { messages } from '@camp/messages';
+import { Button } from '@mantine/core';
 import type { ComponentMeta, Story } from '@storybook/react';
 
-import { CreateFamilyButton } from '../CreateFamily';
 import type { HeaderProps } from './DashboardHeader';
 import { DashboardHeader } from './DashboardHeader';
 
 export default {
   component: DashboardHeader,
   args: {
-    button: <CreateFamilyButton />,
+    button: <Button>Button</Button>,
     router: {
       path: '/',
       meta: {

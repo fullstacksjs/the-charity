@@ -1,7 +1,6 @@
-import { Title } from '@mantine/core';
+import { Button, Title } from '@mantine/core';
 import type { ComponentMeta, ComponentStory } from '@storybook/react';
 
-import { CreateFamilyButton } from '../CreateFamily';
 import { DashboardCard } from './DashboardCard';
 
 export default {
@@ -11,7 +10,7 @@ export default {
 const Template: ComponentStory<typeof DashboardCard> = args => (
   <DashboardCard
     {...args}
-    left={<CreateFamilyButton />}
+    left={<Button>Button</Button>}
     right={
       <Title order={4} color="fgMuted">
         تیتر

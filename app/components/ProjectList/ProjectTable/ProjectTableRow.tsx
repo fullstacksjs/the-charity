@@ -1,9 +1,10 @@
+import { ActionButton } from '@camp/design';
 import { Group } from '@mantine/core';
 
-import { ActionButton } from '../../ActionButton';
-
-export const projectTableMenuButtonId = 'project-table-menu-button';
-export const projectTableMenuId = 'project-table-menu';
+import {
+  projectTableMenuButtonId,
+  projectTableMenuId,
+} from './ProjectTable.ids';
 
 interface Props {
   order: number;
@@ -18,8 +19,8 @@ export const ProjectTableRow = ({ name, order }: Props) => {
         <Group position="apart">
           {name}
           <ActionButton
-            MenuId={projectTableMenuId}
-            MenuButtonId={projectTableMenuButtonId}
+            menuId={projectTableMenuId}
+            menuButtonId={projectTableMenuButtonId}
             to="/dashboard/projects"
           />
         </Group>

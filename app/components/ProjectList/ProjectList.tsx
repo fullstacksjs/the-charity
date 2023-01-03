@@ -1,8 +1,8 @@
+import { DashboardCard } from '@camp/design';
 import { messages } from '@camp/messages';
 import { Title } from '@mantine/core';
 
 import { CreateProjectButton } from '../CreateProject';
-import { DashboardCard } from '../DashboardCard';
 import { ProjectTable } from './ProjectTable';
 
 export const ProjectList = () => {

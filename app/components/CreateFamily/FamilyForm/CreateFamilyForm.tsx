@@ -1,4 +1,5 @@
 import { useCreateFamilyMutation } from '@camp/data-layer';
+import { showNotification } from '@camp/design';
 import { messages } from '@camp/messages';
 import { createTestAttr } from '@camp/test';
 import { yupResolver } from '@hookform/resolvers/yup';
@@ -6,7 +7,6 @@ import { Button, Group, Stack, TextInput } from '@mantine/core';
 import { useForm } from 'react-hook-form';
 import * as yup from 'yup';
 
-import { showNotification } from '../../Notification';
 import { createFamilyFormIds as ids } from './CreateFamilyForm.ids';
 
 type FormSchema = yup.InferType<typeof FormSchema>;

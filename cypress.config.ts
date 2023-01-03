@@ -2,7 +2,7 @@ import { getBooleanEnv, getEnv, toInteger } from '@fullstacksjs/toolbox';
 import { defineConfig } from 'cypress';
 
 import { processFile } from './configs/vite/cypress-vite';
-import viteConfig from './vite.config';
+import { config } from './vite.config';
 
 const port = toInteger(getEnv('PORT', ''), 3000);
 
@@ -12,6 +12,11 @@ export default defineConfig({
     projectId: '8jt3ix',
     video: getBooleanEnv('CYPRESS_RECORD_VIDEO', true),
     videoUploadOnPasses: false,
+    env: {
+      APP_AUTH0_AUDIENCE: getEnv('APP_AUTH0_AUDIENCE'),
+      APP_AUTH0_DOMAIN: getEnv('APP_AUTH0_DOMAIN'),
+      APP_AUTH0_CLIENT_ID: getEnv('APP_AUTH0_CLIENT_ID'),
+    },
     setupNodeEvents(on) {
       on('file:preprocessor', processFile);
     },
@@ -20,7 +25,7 @@ export default defineConfig({
     devServer: {
       framework: 'react',
       bundler: 'vite',
-      viteConfig,
+      viteConfig: config({ https: false }),
     },
   },
 });
