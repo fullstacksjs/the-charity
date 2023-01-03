@@ -6,16 +6,17 @@
     "esModuleInterop": true,
     "types": ["cypress", "@testing-library/cypress"],
     "paths": {
+      "@camp/auth": ["./libs/auth/index.ts"],
+      "@camp/config": ["./libs/config/index.ts"],
+      "@camp/cookies": ["./libs/cookies/index.ts"],
       "@camp/data-layer": ["./libs/data-layer/index.ts"],
       "@camp/design": ["./libs/design/index.ts"],
       "@camp/domain": ["./libs/domain/index.ts"],
-      "@camp/test": ["./libs/test/index.ts"],
-      "@camp/config": ["./libs/config/index.ts"],
-      "@camp/router": ["./libs/router/index.ts"],
-      "@camp/messages": ["./app/messages.ts"],
       "@camp/hooks": ["./app/hooks/index.ts"],
-      "@camp/auth": ["./libs/auth/index.ts"],
-      "@camp/infra": ["./app/infra/index.ts"]
+      "@camp/infra": ["./libs/infra/index.ts"],
+      "@camp/messages": ["./app/messages.ts"],
+      "@camp/router": ["./libs/router/index.ts"],
+      "@camp/test": ["./libs/test/index.ts"]
     }
   },
   "include": ["app", "@types", "libs"],

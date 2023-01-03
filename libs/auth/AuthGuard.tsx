@@ -1,5 +1,5 @@
 import { useAuth0 } from '@auth0/auth0-react';
-import { Navigate, Outlet } from '@camp/router';
+import { AppRoute, Navigate, Outlet } from '@camp/router';
 
 interface Props {
   children?: JSX.Element;
@@ -8,7 +8,7 @@ interface Props {
 
 export const AuthGuard = ({
   children = <Outlet />,
-  to = '/auth/login',
+  to = AppRoute.login,
 }: Props) => {
   const { isAuthenticated } = useAuth0();
 

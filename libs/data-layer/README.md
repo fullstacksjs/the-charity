@@ -7,7 +7,6 @@
 * Caching
 * Mapping API types to Client types
 
-
 ## Dependency Rules
 
 * @camp/config
