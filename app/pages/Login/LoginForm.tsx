@@ -1,4 +1,5 @@
 import { useLoginMutation } from '@camp/data-layer';
+import { Alert } from '@camp/design';
 import { toClientErrorMessage } from '@camp/domain';
 import { messages } from '@camp/messages';
 import { AppRoute, useNavigate } from '@camp/router';
@@ -14,8 +15,6 @@ import {
 import { useState } from 'react';
 import { useForm } from 'react-hook-form';
 import * as yup from 'yup';
-
-import { Alert } from '../../components/Alert';
 
 interface FormInputs {
   username: string;

@@ -2,7 +2,8 @@
 
 ## Concerns
 
-* A provider using auth0 for authorization
+* Auth Provider
+* Authorization guards
 
 ## Dependency Rules
 
