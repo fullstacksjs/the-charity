@@ -17,9 +17,7 @@ import { cypressAliases } from './configs/vite/cypressAliases';
 interface Options {
   https?: boolean;
 }
-export const config = ({
-  https = getBooleanEnv('HTTPS'),
-}: Options = {}): UserConfig => ({
+export const config = ({ https = true }: Options = {}): UserConfig => ({
   plugins: compact([
     https ? basicSsl() : undefined,
     tsconfigPaths(),
