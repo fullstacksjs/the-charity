@@ -2,7 +2,7 @@ import {
   ProjectTable,
   projectTableMenuButtonId,
   projectTableMenuId,
-} from '../../ProjectList';
+} from '../ProjectList';
 
 describe('Table', () => {
   beforeEach(() => {

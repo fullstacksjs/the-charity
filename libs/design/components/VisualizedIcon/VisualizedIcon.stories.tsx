@@ -1,6 +1,6 @@
+import { PeopleIcon } from '@camp/icons';
 import type { Meta, Story } from '@storybook/react';
 
-import { PeopleIcon } from '../../../icons';
 import { VisualizedIcon } from './VisualizedIcon';
 
 export default {

@@ -1,10 +1,9 @@
+import { PackageIcon, PeopleIcon } from '@camp/icons';
 import { messages } from '@camp/messages';
 import { createStyles, Image, Stack, Text } from '@mantine/core';
 
-import { PackageIcon, PeopleIcon } from '../../../icons';
-import type { NavLinkProps } from '../../atoms';
-import { ExitNavLink } from '../../atoms/NavLink/ExitNavLink';
-import { NavLinks } from '../../atoms/NavLink/NavLinks';
+import type { NavLinkProps } from '../NavLink';
+import { ExitNavLink, NavLinks } from '../NavLink';
 import { navLinkIds as ids } from './Sidebar.ids';
 
 const useStyles = createStyles(theme => ({

@@ -1,9 +1,8 @@
+import { ChevronLeftIcon, HomeIcon } from '@camp/icons';
 import { Link } from '@camp/router';
 import { joinPath } from '@fullstacksjs/toolbox';
 import type { Styles } from '@mantine/core';
 import { Anchor, Breadcrumbs as MantineBreadcrumbs } from '@mantine/core';
-
-import { ChevronLeftIcon, HomeIcon } from '../../../icons';
 
 export interface BreadcrumbItem {
   path: string;

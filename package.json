@@ -48,7 +48,7 @@
   "devDependencies": {
     "@babel/core": "7.19.3",
     "@faker-js/faker": "7.6.0",
-    "@fullstacksjs/eslint-config": "8.9.0",
+    "@fullstacksjs/eslint-config": "8.10.0",
     "@fullstacksjs/tsconfig": "0.6.0",
     "@graphql-codegen/add": "3.2.1",
     "@graphql-codegen/cli": "2.13.7",
@@ -80,7 +80,7 @@
     "cypress-vite": "1.2.1",
     "dotenv": "16.0.3",
     "dotenv-cli": "6.0.0",
-    "eslint": "8.25.0",
+    "eslint": "8.31.0",
     "graphql-config": "4.3.6",
     "husky": "8.0.1",
     "lint-staged": "13.0.3",

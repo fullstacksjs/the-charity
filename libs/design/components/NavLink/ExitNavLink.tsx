@@ -1,11 +1,11 @@
 import { useAuth0 } from '@camp/auth';
+import { ExitIcon } from '@camp/icons';
 import { messages } from '@camp/messages';
 import { createTestAttr } from '@camp/test';
 import type { CSSObject, Sx } from '@mantine/core';
 import { NavLink as MantineNavLink } from '@mantine/core';
 
-import { ExitIcon } from '../../../icons';
-import { openLogoutModal } from '../../LogoutModal';
+import { openLogoutModal } from '../LogoutModal';
 import { exitNavLinkId as id } from './ExitNavLink.ids';
 import { navLinkRootStyles } from './NavLink';
 

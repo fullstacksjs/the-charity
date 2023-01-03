@@ -1,6 +1,6 @@
 import { Group } from '@mantine/core';
 
-import { ActionButton } from '../../atoms';
+import { ActionButton } from '../../ActionButton';
 
 export const projectTableMenuButtonId = 'project-table-menu-button';
 export const projectTableMenuId = 'project-table-menu';

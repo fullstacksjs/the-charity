@@ -1,7 +1,8 @@
 import { AppRoute, useNavigate } from '@camp/router';
 import { Group } from '@mantine/core';
 
-import { ActionButton, Badge } from '../../atoms';
+import { ActionButton } from '../../ActionButton';
+import { Badge } from '../../Badge';
 import type { ShortFamilyInfoTableRow } from './toShortFamilyInfoTableRows';
 
 interface Props {

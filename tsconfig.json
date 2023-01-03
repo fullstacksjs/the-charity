@@ -13,6 +13,7 @@
       "@camp/design": ["./libs/design/index.ts"],
       "@camp/domain": ["./libs/domain/index.ts"],
       "@camp/hooks": ["./app/hooks/index.ts"],
+      "@camp/icons": ["./libs/icons/index.ts"],
       "@camp/infra": ["./libs/infra/index.ts"],
       "@camp/messages": ["./app/messages.ts"],
       "@camp/router": ["./libs/router/index.ts"],

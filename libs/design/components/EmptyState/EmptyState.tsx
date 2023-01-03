@@ -1,6 +1,6 @@
 import { Box, Center, Space, Text } from '@mantine/core';
 
-import { VisualizedIcon } from '../../atoms';
+import { VisualizedIcon } from '../VisualizedIcon';
 
 export interface EmptyStateProps {
   icon: React.ReactNode;

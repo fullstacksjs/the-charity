@@ -1,6 +1,6 @@
 import type { ComponentMeta, ComponentStory } from '@storybook/react';
 
-import { links } from '../../organisms';
+import { links } from '../Sidebar';
 import { NavLinks } from './NavLinks';
 
 export default {

@@ -1,7 +1,7 @@
-import { createProjectButtonId } from '../../app/components/CreateProject/ProjectButton/CreateProjectButton.ids';
-import { createProjectFormIds } from '../../app/components/CreateProject/ProjectForm/CreateProjectForm.ids';
-import { dashboardHeaderId } from '../../app/components/organisms/Header/DashboardHeader.ids';
-import { navLinkIds } from '../../app/components/organisms/Sidebar/Sidebar.ids';
+import { createProjectButtonId } from '../../libs/design/components/CreateProject/ProjectButton/CreateProjectButton.ids';
+import { createProjectFormIds } from '../../libs/design/components/CreateProject/ProjectForm/CreateProjectForm.ids';
+import { dashboardHeaderId } from '../../libs/design/components/Header/DashboardHeader.ids';
+import { navLinkIds } from '../../libs/design/components/Sidebar/Sidebar.ids';
 import { AppRoute } from '../../libs/router/AppRoutes';
 import { admin } from '../fixtures/admin';
 import { projectFixture } from '../fixtures/family';

@@ -1,8 +1,8 @@
 import { messages } from '@camp/messages';
 import type { ComponentMeta, Story } from '@storybook/react';
 
-import type { HeaderProps } from '../..';
-import { CreateFamilyButton } from '../../CreateFamily/FamilyButton';
+import { CreateFamilyButton } from '../CreateFamily';
+import type { HeaderProps } from './DashboardHeader';
 import { DashboardHeader } from './DashboardHeader';
 
 export default {

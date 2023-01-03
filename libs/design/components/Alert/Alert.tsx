@@ -1,11 +1,10 @@
+import { ErrorAlertIcon } from '@camp/icons';
 import type {
   AlertStylesNames,
   AlertStylesParams,
   Styles,
 } from '@mantine/core';
 import { Alert as MantineAlert } from '@mantine/core';
-
-import { ErrorAlertIcon } from '../../icons';
 
 interface AlertProps {
   type: 'error' | 'success' | 'warn';

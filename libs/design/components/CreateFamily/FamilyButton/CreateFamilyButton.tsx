@@ -1,8 +1,8 @@
+import { PlusIcon } from '@camp/icons';
 import { messages } from '@camp/messages';
 import { createTestAttr } from '@camp/test';
 import { Button } from '@mantine/core';
 
-import { PlusIcon } from '../../../icons';
 import { openCreateFamilyModal } from '../FamilyForm';
 import { createFamilyButtonId as id } from './CreateFamilyButton.ids';
 

@@ -1,9 +1,9 @@
+import { PackageIcon } from '@camp/icons';
 import { messages } from '@camp/messages';
 import { useMantineTheme } from '@mantine/core';
 
-import { PackageIcon } from '../../icons';
 import { CreateProjectButton } from '../CreateProject';
-import { EmptyState } from '../molecules';
+import { EmptyState } from '../EmptyState';
 
 export const ProjectEmptyState = () => {
   const theme = useMantineTheme();
