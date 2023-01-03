@@ -101,6 +101,3 @@ jobs:
         with:
           install: false
           component: true
-          build: npm run build
-          wait-on: https://127.0.0.1:${{ env.PORT }}
-          wait-on-timeout: 20
