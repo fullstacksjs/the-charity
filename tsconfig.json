@@ -20,5 +20,6 @@
     }
   },
   "include": ["app", "@types", "libs"],
+  "exclude": ["node_modules"],
   "references": [{ "path": "./tsconfig.vite.json" }]
 }

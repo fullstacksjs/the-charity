@@ -1,4 +1,2 @@
-export * from './Dashboard/DashboardLayout';
-export * from './Dashboard/Families';
-export * from './Dashboard/Projects';
-export * from './Login';
+export * from './Auth';
+export * from './Dashboard';
