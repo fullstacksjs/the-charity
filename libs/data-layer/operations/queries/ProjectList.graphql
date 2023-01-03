@@ -1,0 +1,8 @@
+query ProjectList($offset: Int, $limit: Int) {
+  project_aggregate(offset: $offset, limit: $limit) {
+    nodes {
+      name
+      id
+    }
+  }
+}
