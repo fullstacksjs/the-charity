@@ -1,8 +1,8 @@
-import { createFamilyButtonId } from '../../libs/design/components/CreateFamily/FamilyButton/CreateFamilyButton.ids';
-import { createFamilyFormIds } from '../../libs/design/components/CreateFamily/FamilyForm/CreateFamilyForm.ids';
-import { createFamilyModalId } from '../../libs/design/components/CreateFamily/FamilyForm/CreateFamilyModal.ids';
-import { dashboardHeaderId } from '../../libs/design/components/Header/DashboardHeader.ids';
-import { navLinkIds } from '../../libs/design/components/Sidebar/Sidebar.ids';
+import { createFamilyButtonId } from '../../app/components/CreateFamily/FamilyButton/CreateFamilyButton.ids';
+import { createFamilyFormIds } from '../../app/components/CreateFamily/FamilyForm/CreateFamilyForm.ids';
+import { createFamilyModalId } from '../../app/components/CreateFamily/FamilyForm/CreateFamilyModal.ids';
+import { dashboardHeaderId } from '../../libs/design/Header/DashboardHeader.ids';
+import { navLinkIds } from '../../libs/design/Sidebar/Sidebar.ids';
 import { AppRoute } from '../../libs/router/AppRoutes';
 import { admin } from '../fixtures/admin';
 import { familyFixture } from '../fixtures/project';
