@@ -1,7 +1,6 @@
 import { FamilyStatusEnum } from '@camp/data-layer';
+import type { BadgeStatus } from '@camp/design';
 import { messages } from '@camp/messages';
-
-import type { BadgeStatus } from '../../Badge';
 
 export interface InformationStatus {
   text: string;
