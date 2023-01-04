@@ -14,7 +14,7 @@ describe('Project List', () => {
   });
 
   it('should add a project to the project list when create a project', () => {
-    const name = projectFixture.name()
+    const name = projectFixture.name();
     cy.findByTestId(dashboardHeaderId)
       .findByTestId(createProjectButtonId)
       .click();
