@@ -40,7 +40,6 @@ export const CreateProjectForm = ({ dismiss }: Props) => {
       });
 
       if (prevProjects && newProject) {
-        console.log(prevProjects, newProject);
         cache.writeQuery({
           query: ProjectListDocument,
           data: {
