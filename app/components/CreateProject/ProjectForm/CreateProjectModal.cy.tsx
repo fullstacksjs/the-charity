@@ -43,11 +43,12 @@ describe('Create Project Form', () => {
       .and('equal', 'submit');
   });
 
-  it('should show a required error message when Project name is empty', () => {
-    cy.get('form').within(() => {
-      cy.root().submit();
-      cy.findByRole('alert').should('have.text', requiredFieldMessage);
-    });
+  it('the submit button should be disabled for invalid form', () => {
+    cy.get('form')
+      .findByRole('button', {
+        name: messages.projects.createForm.submitBtn.text,
+      })
+      .should('be.disabled');
   });
 
   it('should not show a required error message when Project name is not empty', () => {
