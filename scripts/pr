@@ -1,7 +1,11 @@
 #!/usr/bin/env bash
 
 join_arr() {
+  # local IFS=","
+  # echo "$*"
+
   local IFS=","
+  shift
   echo "$*"
 }
 
@@ -13,9 +17,8 @@ ERR='\033[1;91m'
 BOLD='\033[1m'
 
 ME=$(git config --get user.name)
-DEVS=("ASafaeirad" "erfan-goodarzi" "mojtabaesl" "AmirabbasJ" "hoseinsoleymani")
-REVIEWERS=$(join_arr "${DEVS[@]/$ME/}")
-
+DEVS=("ASafaeirad","erfan-goodarzi","mojtabaesl","AmirabbasJ","hoseinsoleymani")
+REVIEWERS="$(echo "${DEVS}" | sed -r "s/(,$ME)|($ME,)//g")"
 echo -en "${BOLD}"
 
 type gh >/dev/null 2>&1 || {
