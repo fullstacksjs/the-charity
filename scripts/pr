@@ -13,7 +13,7 @@ ERR='\033[1;91m'
 BOLD='\033[1m'
 
 ME=$(git config --get user.name)
-DEVS=("ASafaeirad" "erfan-goodarzi" "mojtabaesl" "AmirabbasJ")
+DEVS=("ASafaeirad" "erfan-goodarzi" "mojtabaesl" "AmirabbasJ" "hoseinsoleymani")
 REVIEWERS=$(join_arr "${DEVS[@]/$ME/}")
 
 echo -en "${BOLD}"
