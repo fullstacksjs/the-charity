@@ -1,6 +1,6 @@
-import { AppRoute } from '../../src/AppRoutes';
-import { exitNavLinkId } from '../../src/components/atoms/NavLink/ExitNavLink.ids';
-import { logoutModalIds } from '../../src/components/LogoutModal/LogoutModal.ids';
+import { logoutModalIds } from '../../libs/design/LogoutModal/LogoutModal.ids';
+import { exitNavLinkId } from '../../libs/design/NavLink/ExitNavLink.ids';
+import { AppRoute } from '../../libs/router/AppRoutes';
 import { admin } from '../fixtures/admin';
 
 describe('logout', () => {

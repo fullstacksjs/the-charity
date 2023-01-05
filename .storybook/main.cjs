@@ -3,7 +3,7 @@ const svgr = require('vite-plugin-svgr');
 
 /** @type { import('@storybook/builder-vite').StorybookViteConfig } */
 module.exports = {
-  stories: ['../src/**/*.stories.mdx', '../src/**/*.stories.@(js|jsx|ts|tsx)'],
+  stories: ['../app/**/*.stories.tsx', '../libs/design/**/*.stories.tsx'],
   addons: [
     '@storybook/addon-links',
     '@storybook/addon-essentials',

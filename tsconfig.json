@@ -6,18 +6,21 @@
     "esModuleInterop": true,
     "types": ["cypress", "@testing-library/cypress"],
     "paths": {
-      "@camp/data-layer": ["./src/data-layer/index.ts"],
-      "@camp/design": ["./src/design/index.ts"],
-      "@camp/components": ["./src/components/index.ts"],
-      "@camp/domain": ["./src/domain/index.ts"],
-      "@camp/config": ["./src/config/index.ts"],
-      "@camp/router": ["./src/router/index.ts"],
-      "@camp/messages": ["./src/messages.ts"],
-      "@camp/hooks": ["./src/hooks/index.ts"],
-      "@camp/infra": ["./src/infra/index.ts"],
-      "@camp/utils": ["./src/utils/index.ts"]
+      "@camp/auth": ["./libs/auth/index.ts"],
+      "@camp/config": ["./libs/config/index.ts"],
+      "@camp/cookies": ["./libs/cookies/index.ts"],
+      "@camp/data-layer": ["./libs/data-layer/index.ts"],
+      "@camp/design": ["./libs/design/index.ts"],
+      "@camp/domain": ["./libs/domain/index.ts"],
+      "@camp/hooks": ["./app/hooks/index.ts"],
+      "@camp/icons": ["./libs/icons/index.ts"],
+      "@camp/infra": ["./libs/infra/index.ts"],
+      "@camp/messages": ["./app/messages.ts"],
+      "@camp/router": ["./libs/router/index.ts"],
+      "@camp/test": ["./libs/test/index.ts"]
     }
   },
-  "include": ["src", "@types"],
+  "include": ["app", "@types", "libs"],
+  "exclude": ["node_modules"],
   "references": [{ "path": "./tsconfig.vite.json" }]
 }

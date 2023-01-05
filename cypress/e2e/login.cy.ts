@@ -1,4 +1,4 @@
-import { AppRoute } from '../../src/AppRoutes';
+import { AppRoute } from '../../libs/router/AppRoutes';
 import { admin } from '../fixtures/admin';
 
 describe('Login', () => {

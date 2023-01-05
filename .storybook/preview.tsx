@@ -1,13 +1,13 @@
 import React from 'react';
 import { NotificationsProvider } from '@mantine/notifications';
-import { CreateProjectDocument } from '../src/data-layer';
+import { CreateProjectDocument } from '../libs/data-layer';
 import { MockedProvider } from '@apollo/client/testing';
 import {
   createMemoryHistory,
   ReactLocation,
   Router,
 } from '@tanstack/react-location';
-import { ThemeProvider } from '../src/design';
+import { ThemeProvider } from '../libs/design';
 import { DecoratorFn, Parameters } from '@storybook/react';
 
 export const parameters: Parameters = {

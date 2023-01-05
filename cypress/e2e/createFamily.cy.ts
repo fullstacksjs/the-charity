@@ -1,9 +1,9 @@
-import { AppRoute } from '../../src/AppRoutes';
-import { createFamilyButtonId } from '../../src/components/CreateFamily/FamilyButton/CreateFamilyButton.ids';
-import { createFamilyFormIds } from '../../src/components/CreateFamily/FamilyForm/CreateFamilyForm.ids';
-import { createFamilyModalId } from '../../src/components/CreateFamily/FamilyForm/CreateFamilyModal.ids';
-import { dashboardHeaderId } from '../../src/components/organisms/Header/DashboardHeader.ids';
-import { navLinkIds } from '../../src/components/organisms/Sidebar/Sidebar.ids';
+import { createFamilyButtonId } from '../../app/components/CreateFamily/FamilyButton/CreateFamilyButton.ids';
+import { createFamilyFormIds } from '../../app/components/CreateFamily/FamilyForm/CreateFamilyForm.ids';
+import { createFamilyModalId } from '../../app/components/CreateFamily/FamilyForm/CreateFamilyModal.ids';
+import { dashboardHeaderId } from '../../libs/design/Header/DashboardHeader.ids';
+import { navLinkIds } from '../../libs/design/Sidebar/Sidebar.ids';
+import { AppRoute } from '../../libs/router/AppRoutes';
 import { admin } from '../fixtures/admin';
 import { familyFixture } from '../fixtures/project';
 

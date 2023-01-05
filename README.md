@@ -53,9 +53,8 @@ npm install
 npm run dev
 ```
 
-> If you're using [vscode][vscode] you can install [Apollo
-> Graphql][apollo-graphql-extension] extension to get features like autocomplete
-> in your graphql queries
+> If you're using [vscode][vscode] you can install [Apollo Graphql][apollo-graphql-extension]
+> extension to get features like autocomplete in your graphql queries
 
 ### Build:
 
@@ -81,8 +80,7 @@ To run the unit tests run:
 npm run test
 ```
 
-> If you're using [vscode][vscode] like me you can install [vitest
-> extension][vitest-extension] to make your life easier, after installing it
+> If you're using [vscode][vscode] like me you can install [vitest extension][vitest-extension] to make your life easier, after installing it
 > just read it's documentation on the extension description to get started
 
 ## Find Spelling Errors

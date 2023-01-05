@@ -1,1 +1,1 @@
-type AppRoute = import('../src/AppRoutes').AppRoute;
+type AppRoute = import('../libs/router/AppRoutes').AppRoute;

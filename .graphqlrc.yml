@@ -8,13 +8,13 @@ schema:
       headers:
         x-hasura-admin-secret: ${HASURA_ADMIN_SECRET}
 
-documents: './src/data-layer/operations/**/*.graphql'
+documents: './libs/data-layer/operations/**/*.graphql'
 extensions:
   codegen:
     emitLegacyCommonJSImports: false
     overwrite: true
     generates:
-      ./src/data-layer/operations/__generated__/typesAndHooks.ts:
+      ./libs/data-layer/operations/__generated__/typesAndHooks.ts:
         plugins:
           - add:
               content: *HEADER

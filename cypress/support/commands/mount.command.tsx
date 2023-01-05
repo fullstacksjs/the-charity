@@ -3,7 +3,7 @@ import { ModalsProvider } from '@mantine/modals';
 import { ReactLocation, Router } from '@tanstack/react-location';
 import { mount } from 'cypress/react18';
 
-import { ThemeProvider } from '../../../src/design';
+import { ThemeProvider } from '../../../libs/design';
 
 Cypress.Commands.add(
   'mount',

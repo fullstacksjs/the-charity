@@ -1,9 +1,10 @@
 import { Buffer } from 'buffer';
 
-const clientId = Cypress.env('AUTH0_CLIENT_ID');
-const audience = Cypress.env('AUTH0_AUDIENCE');
-const domain = Cypress.env('AUTH0_DOMAIN');
+const clientId = Cypress.env('APP_AUTH0_CLIENT_ID');
+const audience = Cypress.env('APP_AUTH0_AUDIENCE');
+const domain = Cypress.env('APP_AUTH0_DOMAIN');
 const scope = 'openid profile email read:current_user';
+const url = `https://${domain}/oauth/token/`;
 
 const extractUser = (token: string) => {
   const payload = token.split('.')[1];
@@ -18,7 +19,7 @@ Cypress.Commands.add('login', ({ username, password }) => {
   cy.session(username, () => {
     cy.request({
       method: 'POST',
-      url: domain,
+      url,
       body: {
         grant_type: 'password',
         username,

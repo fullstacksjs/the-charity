@@ -72,16 +72,12 @@ jobs:
 
     environment: Preview
     env:
-      CYPRESS_AUTH0_AUDIENCE: https://the-charity.hasura.app/v1/graphql/
-      CYPRESS_AUTH0_DOMAIN: https://dev-jxuskaag.us.auth0.com/oauth/token/
       APP_GRAPHQL_SCHEMA_URL: https://the-charity.hasura.app/v1/graphql/
       APP_AUTH0_AUDIENCE: https://the-charity.hasura.app/v1/graphql/
       APP_API_ENDPOINT: https://the-charity.hasura.app/v1/graphql/
       APP_AUTH0_DOMAIN: dev-jxuskaag.us.auth0.com
       APP_AUTH0_CLIENT_ID: ${{ secrets.APP_AUTH0_CLIENT_ID }}
-      CYPRESS_AUTH0_CLIENT_ID: ${{ secrets.APP_AUTH0_CLIENT_ID }}
       HASURA_ADMIN_SECRET: ${{ secrets.HASURA_ADMIN_SECRET }}
-      PORT: 3003
       NODE_TLS_REJECT_UNAUTHORIZED: 0
 
     steps:
@@ -95,6 +91,7 @@ jobs:
           wait-on: https://127.0.0.1:${{ env.PORT }}
           wait-on-timeout: 20
         env:
+          PORT: 3002
           CYPRESS_RECORD_KEY: ${{ secrets.CYPRESS_RECORD_KEY }}
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
@@ -103,6 +100,4 @@ jobs:
         with:
           install: false
           component: true
-          build: npm run build
-          wait-on: https://127.0.0.1:${{ env.PORT }}
-          wait-on-timeout: 20
+          PORT: 3003

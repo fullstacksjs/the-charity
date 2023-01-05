@@ -1,6 +1,6 @@
 import type { Tuple } from '@mantine/core';
 
-import type { colors } from '../src/design/theme/theme';
+import type { colors } from '../libs/design/theme/theme';
 
 // NOTE: MANTINE SUCKS
 type MantineColors =
