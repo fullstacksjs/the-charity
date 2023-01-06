@@ -12,7 +12,7 @@ import { FamilyTable } from './FamilyTable';
 
 export const FamilyList = () => {
   const t = messages.families.list;
-  const { data, loading, error, refetch } = useFamilyListQuery();
+  const { data, loading, error } = useFamilyListQuery();
   const families = data?.family;
 
   if (error)
