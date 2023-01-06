@@ -23,8 +23,8 @@ extensions:
           - typescript-react-apollo
         config:
           useTypeImports: true
-          withHooks: true
+          withHooks: false
           namingConvention:
             default: 'change-case-all#pascalCase'
-            typeNames: 'change-case-all#pascalCase'
+            typeNames: './configs/graphql-codegen/namingConvetion.js'
             enumValues: 'change-case-all#pascalCase'

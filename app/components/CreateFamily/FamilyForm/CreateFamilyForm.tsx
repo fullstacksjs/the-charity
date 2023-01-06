@@ -50,8 +50,7 @@ export const CreateFamilyForm = ({ dismiss }: Props) => {
   const onSubmit = handleSubmit(({ name }) => {
     createDraftFamily({ variables: { name } })
       .then(({ data }) => {
-        const result = data?.insert_family_one;
-
+        const result = data?.family;
         showNotification({
           title: messages.families.create,
           message: notification.success(result?.name ?? ''),
