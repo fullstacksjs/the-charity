@@ -1,9 +1,9 @@
 import { useProjectListQuery } from '@camp/data-layer';
+import { FullPageLoader } from '@camp/design';
 import { messages } from '@camp/messages';
 import { createTestAttr } from '@camp/test';
 import { Table, useMantineTheme } from '@mantine/core';
 
-import { FullPageLoader } from '../../molecules';
 import { ProjectTableRow } from './ProjectTableRow';
 
 export const projectTableId = 'project-list-table';
