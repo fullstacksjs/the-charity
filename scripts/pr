@@ -1,10 +1,5 @@
 #!/usr/bin/env bash
 
-join_arr() {
-  local IFS=","
-  echo "$*"
-}
-
 RESET='\033[39m'
 CYAN='\033[1;36m'
 YELLOW='\033[1;93m'
@@ -13,9 +8,8 @@ ERR='\033[1;91m'
 BOLD='\033[1m'
 
 ME=$(git config --get user.name)
-DEVS=("ASafaeirad" "erfan-goodarzi" "mojtabaesl" "AmirabbasJ")
-REVIEWERS=$(join_arr "${DEVS[@]/$ME/}")
-
+DEVS=("ASafaeirad","erfan-goodarzi","mojtabaesl","AmirabbasJ","hoseinsoleymani")
+REVIEWERS="$(echo "${DEVS}" | sed -r "s/(,$ME)|($ME,)//g")"
 echo -en "${BOLD}"
 
 type gh >/dev/null 2>&1 || {
