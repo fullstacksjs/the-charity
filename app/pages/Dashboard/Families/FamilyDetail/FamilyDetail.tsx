@@ -1,5 +1,4 @@
-import { type FamilyQuery } from '@camp/data-layer';
-import { useFamilyQuery } from '@camp/data-layer';
+import { type FamilyQuery, useFamilyQuery } from '@camp/data-layer';
 import { DetailCard, FullPageLoader, showNotification } from '@camp/design';
 import { errorMessages, messages } from '@camp/messages';
 import { useParams } from '@camp/router';
@@ -9,8 +8,9 @@ import { isNull } from '@fullstacksjs/toolbox';
 import {
   type InformationStatus,
   type SeverityStatus,
+  toInformationStatus,
+  toSeverityStatus,
 } from '../../../../components';
-import { toInformationStatus, toSeverityStatus } from '../../../../components';
 
 interface FamilyDetail {
   status: InformationStatus;
