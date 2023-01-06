@@ -1,6 +1,6 @@
 import { FamilySeverityEnum, FamilyStatusEnum } from '@camp/data-layer';
 
-import type { ShortFamiliesInfo } from './FamilyTable/toShortFamilyInfoTableRows';
+import type { ShortFamiliesInfo } from './toShortFamilyInfoTableRows';
 
 export const shortFamiliesInfo: ShortFamiliesInfo = [
   {
