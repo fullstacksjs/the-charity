@@ -3,6 +3,7 @@ import { messages } from '@camp/messages';
 import { createTestAttr } from '@camp/test';
 import { Table, useMantineTheme } from '@mantine/core';
 
+import { FullPageLoader } from '../../molecules';
 import { ProjectTableRow } from './ProjectTableRow';
 
 export const projectTableId = 'project-list-table';
@@ -15,7 +16,7 @@ export const ProjectTable = () => {
 
   if (error) console.log(error);
 
-  if (loading) return <h1>loading...</h1>;
+  if (loading) return <FullPageLoader />;
 
   const rows = data?.project_aggregate.nodes.map(({ id, name }, index) => (
     <ProjectTableRow key={id} name={name} order={index + 1} />
