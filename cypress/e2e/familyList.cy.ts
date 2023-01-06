@@ -1,6 +1,6 @@
-import { AppRoute } from '../../src/AppRoutes';
-import { familyListFailureNotification } from '../../src/components/FamilyList/FamilyList.ids';
-import { navLinkIds } from '../../src/components/organisms/Sidebar/Sidebar.ids';
+import { familyListFailureNotification } from '../../app/components/FamilyList/FamilyList.ids';
+import { navLinkIds } from '../../libs/design/Sidebar/Sidebar.ids';
+import { AppRoute } from '../../libs/router';
 import { admin } from '../fixtures/admin';
 import { familyFixture } from '../fixtures/project';
 
