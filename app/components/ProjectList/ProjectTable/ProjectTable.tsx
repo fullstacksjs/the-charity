@@ -14,7 +14,7 @@ export const ProjectTable = () => {
   const columns = t.map(column => <th key={column}>{column}</th>);
   const { data, loading, error } = useProjectListQuery();
 
-  if (error) console.log(error);
+  if (error) return <h1>{error.message}</h1>;
 
   if (loading) return <FullPageLoader />;
 
