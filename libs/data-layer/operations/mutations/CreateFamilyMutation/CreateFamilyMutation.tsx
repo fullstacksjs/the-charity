@@ -3,8 +3,8 @@ import Apollo from '@apollo/client';
 import type {
   ApiCreateFamilyMutation,
   ApiCreateFamilyMutationVariables,
-} from '../../__generated__/api';
-import { ApiCreateFamilyDocument } from '../../__generated__/api';
+} from '../../api';
+import { ApiCreateFamilyDocument } from '../../api';
 import { toClientMutationFn } from '../toClientMutationFn';
 
 export interface CreateFamily {

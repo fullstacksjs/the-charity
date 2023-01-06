@@ -1,4 +1,4 @@
-import { useFamilyListQuery } from '@camp/data-layer';
+import { useFamilyListQue } from '@camp/data-layer';
 import {
   DashboardCard,
   FullPageLoader,
@@ -10,6 +10,10 @@ import { createTestAttr } from '@camp/test';
 import { isEmpty, isNull } from '@fullstacksjs/toolbox';
 import { Title } from '@mantine/core';
 
+import {
+  ApiFamilySeverityEnum,
+  ApiFamilyStatusEnum,
+} from '../../../libs/data-layer/operations/api';
 import { CreateFamilyButton } from '../CreateFamily';
 import { FamilyEmptyState } from '../FamilyEmptyState';
 import * as ids from './FamilyList.ids';

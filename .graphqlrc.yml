@@ -14,7 +14,7 @@ extensions:
     emitLegacyCommonJSImports: false
     overwrite: true
     generates:
-      ./libs/data-layer/operations/__generated__/api.ts:
+      ./libs/data-layer/operations/api.ts:
         plugins:
           - add:
               content: *HEADER

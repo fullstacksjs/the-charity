@@ -1,10 +1,11 @@
 import { type Family } from '@camp/data-layer';
 import { messages } from '@camp/messages';
 
-import { type InformationStatus } from './InformationStatus';
-import { toInformationStatus } from './InformationStatus';
-import { type SeverityStatus } from './SeverityStatus';
-import { toSeverityStatus } from './SeverityStatus';
+import {
+  type InformationStatus,
+  toInformationStatus,
+} from './InformationStatus';
+import { type SeverityStatus, toSeverityStatus } from './SeverityStatus';
 
 export const t = messages.families.list.table;
 
@@ -14,7 +15,7 @@ export const t = messages.families.list.table;
   backend integration ticket of FamilyList
 */
 export type ShortFamilyInfo = Pick<
-  Family,
+  ApiFamily,
   'id' | 'name' | 'severity' | 'status'
 >;
 export type ShortFamiliesInfo = ShortFamilyInfo[];

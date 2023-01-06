@@ -4,8 +4,8 @@ import type {
   ApiCreateProjectMutation,
   ApiCreateProjectMutationVariables,
   ApiProjectStatusEnum,
-} from '../../__generated__/api';
-import { ApiCreateProjectDocument } from '../../__generated__/api';
+} from '../../api';
+import { ApiCreateProjectDocument } from '../../api';
 import { toClientMutationFn } from '../toClientMutationFn';
 
 export interface CreateProject {

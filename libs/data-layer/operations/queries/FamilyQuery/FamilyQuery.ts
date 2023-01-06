@@ -2,15 +2,12 @@ import Apollo from '@apollo/client';
 import type { BadgeStatus } from '@camp/design';
 import { messages } from '@camp/messages';
 
-import type {
-  ApiFamilyQuery,
-  ApiFamilyQueryVariables,
-} from '../../__generated__/api';
+import type { ApiFamilyQuery, ApiFamilyQueryVariables } from '../../api';
 import {
   ApiFamilyDocument,
   ApiFamilySeverityEnum,
   ApiFamilyStatusEnum,
-} from '../../__generated__/api';
+} from '../../api';
 
 export interface SeverityStatus {
   text: string;
