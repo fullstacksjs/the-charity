@@ -16,6 +16,6 @@ describe('logout', () => {
 
   it('should navigate to the login page after confirm', () => {
     cy.findByTestId(logoutModalIds.acceptBtn).click();
-    cy.location('pathname').should('not.eq', AppRoute.dashboard);
+    cy.location('pathname').should('eq', AppRoute.login);
   });
 });
