@@ -3,6 +3,7 @@ import { NotificationsProvider } from '@mantine/notifications';
 import {
   CreateProjectDocument,
   FamilyDocument,
+  FamilyListDocument,
   FamilySeverityEnum,
   FamilyStatusEnum,
 } from '../libs/data-layer';
@@ -14,6 +15,7 @@ import {
 } from '@tanstack/react-location';
 import { ThemeProvider } from '../libs/design';
 import { DecoratorFn, Parameters } from '@storybook/react';
+import { shortFamiliesInfo } from '../app/components/FamilyList/FamilyTable/FakeShortFamiliesInfo';
 
 export const parameters: Parameters = {
   actions: { argTypesRegex: '^on[A-Z].*' },
@@ -59,6 +61,16 @@ export const parameters: Parameters = {
               severity: FamilySeverityEnum.Critical,
               status: FamilyStatusEnum.Completed,
             },
+          },
+        },
+      },
+      {
+        request: {
+          query: FamilyListDocument,
+        },
+        result: {
+          data: {
+            family: shortFamiliesInfo,
           },
         },
       },
