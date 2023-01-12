@@ -11,6 +11,7 @@ export {
 } from './operations/__generated__/typesAndHooks';
 export {
   CreateProjectDocument,
+  FamilyDocument,
   FamilyListDocument,
   useCreateFamilyMutation,
   useCreateProjectMutation,

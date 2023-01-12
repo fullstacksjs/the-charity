@@ -1,6 +1,11 @@
 import React from 'react';
 import { NotificationsProvider } from '@mantine/notifications';
-import { CreateProjectDocument } from '../libs/data-layer';
+import {
+  CreateProjectDocument,
+  FamilyDocument,
+  FamilySeverityEnum,
+  FamilyStatusEnum,
+} from '../libs/data-layer';
 import { MockedProvider } from '@apollo/client/testing';
 import {
   createMemoryHistory,
@@ -36,6 +41,24 @@ export const parameters: Parameters = {
           data: {
             name: 'guy',
             description: 'description',
+          },
+        },
+      },
+      {
+        request: {
+          query: FamilyDocument,
+          variables: {
+            id: undefined,
+          },
+        },
+        result: {
+          data: {
+            family_by_pk: {
+              code: 'F00001',
+              name: 'فول استک زاده',
+              severity: FamilySeverityEnum.Critical,
+              status: FamilyStatusEnum.Completed,
+            },
           },
         },
       },
