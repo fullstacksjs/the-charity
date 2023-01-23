@@ -15,7 +15,7 @@ import {
 } from '@tanstack/react-location';
 import { ThemeProvider } from '../libs/design';
 import { DecoratorFn, Parameters } from '@storybook/react';
-import { shortFamiliesInfo } from '../app/components/FamilyList/FamilyTable/FakeShortFamiliesInfo';
+import { shortFamiliesInfo } from '../app/fixtures/FakeShortFamiliesInfo';
 
 export const parameters: Parameters = {
   actions: { argTypesRegex: '^on[A-Z].*' },
