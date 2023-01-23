@@ -1,6 +1,6 @@
 import type { ComponentMeta, ComponentStory } from '@storybook/react';
 
-import { shortFamiliesInfo } from './FakeShortFamiliesInfo';
+import { shortFamiliesInfo } from '../../../fixtures/FakeShortFamiliesInfo';
 import { FamilyTable } from './FamilyTable';
 
 export default {
