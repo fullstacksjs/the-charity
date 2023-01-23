@@ -4,7 +4,7 @@ module.exports = {
   client: {
     service: {
       name: 'the-charity-frontend',
-      url: 'https://the-charity.hasura.app/v1/graphql',
+      url: 'https://api.fullstacksjs.com/v1/graphql',
       headers: {
         'x-hasura-admin-secret': process.env.HASURA_ADMIN_SECRET,
       },

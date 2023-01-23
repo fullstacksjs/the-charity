@@ -66,17 +66,10 @@ export type StringComparisonExp = {
   _similar?: InputMaybe<Scalars['String']>;
 };
 
-/** ordering argument of a cursor */
-export enum CursorOrdering {
-  /** ascending ordering of the cursor */
-  Asc = 'ASC',
-  /** descending ordering of the cursor */
-  Desc = 'DESC'
-}
-
 /** columns and relationships of "family" */
 export type Family = {
   __typename?: 'family';
+  /** A computed field, executes function "format_code" */
   code?: Maybe<Scalars['String']>;
   created_at: Scalars['timestamptz'];
   db_code: Scalars['Int'];
@@ -140,9 +133,9 @@ export type FamilyBoolExp = {
 
 /** unique or primary key constraints on table "family" */
 export enum FamilyConstraint {
-  /** unique or primary key constraint on columns "db_code" */
+  /** unique or primary key constraint */
   FamilyCodeKey = 'family_code_key',
-  /** unique or primary key constraint on columns "id" */
+  /** unique or primary key constraint */
   FamilyPkey = 'family_pkey'
 }
 
@@ -284,7 +277,7 @@ export type FamilySeverityBoolExp = {
 
 /** unique or primary key constraints on table "family_severity" */
 export enum FamilySeverityConstraint {
-  /** unique or primary key constraint on columns "value" */
+  /** unique or primary key constraint */
   FamilySeverityPkey = 'family_severity_pkey'
 }
 
@@ -363,20 +356,6 @@ export type FamilySeveritySetInput = {
   value?: InputMaybe<Scalars['String']>;
 };
 
-/** Streaming cursor of the table "family_severity" */
-export type FamilySeverityStreamCursorInput = {
-  /** Stream column input with initial value */
-  initial_value: FamilySeverityStreamCursorValueInput;
-  /** cursor ordering */
-  ordering?: InputMaybe<CursorOrdering>;
-};
-
-/** Initial value of the column from where the streaming should start */
-export type FamilySeverityStreamCursorValueInput = {
-  description?: InputMaybe<Scalars['String']>;
-  value?: InputMaybe<Scalars['String']>;
-};
-
 /** update columns of table "family_severity" */
 export enum FamilySeverityUpdateColumn {
   /** column name */
@@ -384,12 +363,6 @@ export enum FamilySeverityUpdateColumn {
   /** column name */
   Value = 'value'
 }
-
-export type FamilySeverityUpdates = {
-  /** sets the columns of the filtered rows to the given values */
-  _set?: InputMaybe<FamilySeveritySetInput>;
-  where: FamilySeverityBoolExp;
-};
 
 /** columns and relationships of "family_status" */
 export type FamilyStatus = {
@@ -431,7 +404,7 @@ export type FamilyStatusBoolExp = {
 
 /** unique or primary key constraints on table "family_status" */
 export enum FamilyStatusConstraint {
-  /** unique or primary key constraint on columns "value" */
+  /** unique or primary key constraint */
   FamilyStatusPkey = 'family_status_pkey'
 }
 
@@ -510,20 +483,6 @@ export type FamilyStatusSetInput = {
   value?: InputMaybe<Scalars['String']>;
 };
 
-/** Streaming cursor of the table "family_status" */
-export type FamilyStatusStreamCursorInput = {
-  /** Stream column input with initial value */
-  initial_value: FamilyStatusStreamCursorValueInput;
-  /** cursor ordering */
-  ordering?: InputMaybe<CursorOrdering>;
-};
-
-/** Initial value of the column from where the streaming should start */
-export type FamilyStatusStreamCursorValueInput = {
-  description?: InputMaybe<Scalars['String']>;
-  value?: InputMaybe<Scalars['String']>;
-};
-
 /** update columns of table "family_status" */
 export enum FamilyStatusUpdateColumn {
   /** column name */
@@ -531,12 +490,6 @@ export enum FamilyStatusUpdateColumn {
   /** column name */
   Value = 'value'
 }
-
-export type FamilyStatusUpdates = {
-  /** sets the columns of the filtered rows to the given values */
-  _set?: InputMaybe<FamilyStatusSetInput>;
-  where: FamilyStatusBoolExp;
-};
 
 /** aggregate stddev on columns */
 export type FamilyStddevFields = {
@@ -554,25 +507,6 @@ export type FamilyStddevPopFields = {
 export type FamilyStddevSampFields = {
   __typename?: 'family_stddev_samp_fields';
   db_code?: Maybe<Scalars['Float']>;
-};
-
-/** Streaming cursor of the table "family" */
-export type FamilyStreamCursorInput = {
-  /** Stream column input with initial value */
-  initial_value: FamilyStreamCursorValueInput;
-  /** cursor ordering */
-  ordering?: InputMaybe<CursorOrdering>;
-};
-
-/** Initial value of the column from where the streaming should start */
-export type FamilyStreamCursorValueInput = {
-  created_at?: InputMaybe<Scalars['timestamptz']>;
-  db_code?: InputMaybe<Scalars['Int']>;
-  id?: InputMaybe<Scalars['uuid']>;
-  name?: InputMaybe<Scalars['String']>;
-  severity?: InputMaybe<FamilySeverityEnum>;
-  status?: InputMaybe<FamilyStatusEnum>;
-  updated_at?: InputMaybe<Scalars['timestamptz']>;
 };
 
 /** aggregate sum on columns */
@@ -598,14 +532,6 @@ export enum FamilyUpdateColumn {
   /** column name */
   UpdatedAt = 'updated_at'
 }
-
-export type FamilyUpdates = {
-  /** increments the numeric columns with given value of the filtered values */
-  _inc?: InputMaybe<FamilyIncInput>;
-  /** sets the columns of the filtered rows to the given values */
-  _set?: InputMaybe<FamilySetInput>;
-  where: FamilyBoolExp;
-};
 
 /** aggregate var_pop on columns */
 export type FamilyVarPopFields = {
@@ -671,7 +597,7 @@ export type HouseholderBoolExp = {
 
 /** unique or primary key constraints on table "householder" */
 export enum HouseholderConstraint {
-  /** unique or primary key constraint on columns "id" */
+  /** unique or primary key constraint */
   HouseholderPkey = 'householder_pkey'
 }
 
@@ -795,7 +721,7 @@ export type HouseholderStatusBoolExp = {
 
 /** unique or primary key constraints on table "householder_status" */
 export enum HouseholderStatusConstraint {
-  /** unique or primary key constraint on columns "value" */
+  /** unique or primary key constraint */
   HouseholderStatusPkey = 'householder_status_pkey'
 }
 
@@ -874,20 +800,6 @@ export type HouseholderStatusSetInput = {
   value?: InputMaybe<Scalars['String']>;
 };
 
-/** Streaming cursor of the table "householder_status" */
-export type HouseholderStatusStreamCursorInput = {
-  /** Stream column input with initial value */
-  initial_value: HouseholderStatusStreamCursorValueInput;
-  /** cursor ordering */
-  ordering?: InputMaybe<CursorOrdering>;
-};
-
-/** Initial value of the column from where the streaming should start */
-export type HouseholderStatusStreamCursorValueInput = {
-  description?: InputMaybe<Scalars['String']>;
-  value?: InputMaybe<Scalars['String']>;
-};
-
 /** update columns of table "householder_status" */
 export enum HouseholderStatusUpdateColumn {
   /** column name */
@@ -895,29 +807,6 @@ export enum HouseholderStatusUpdateColumn {
   /** column name */
   Value = 'value'
 }
-
-export type HouseholderStatusUpdates = {
-  /** sets the columns of the filtered rows to the given values */
-  _set?: InputMaybe<HouseholderStatusSetInput>;
-  where: HouseholderStatusBoolExp;
-};
-
-/** Streaming cursor of the table "householder" */
-export type HouseholderStreamCursorInput = {
-  /** Stream column input with initial value */
-  initial_value: HouseholderStreamCursorValueInput;
-  /** cursor ordering */
-  ordering?: InputMaybe<CursorOrdering>;
-};
-
-/** Initial value of the column from where the streaming should start */
-export type HouseholderStreamCursorValueInput = {
-  created_at?: InputMaybe<Scalars['timestamptz']>;
-  id?: InputMaybe<Scalars['uuid']>;
-  name?: InputMaybe<Scalars['String']>;
-  status?: InputMaybe<HouseholderStatusEnum>;
-  updated_at?: InputMaybe<Scalars['timestamptz']>;
-};
 
 /** update columns of table "householder" */
 export enum HouseholderUpdateColumn {
@@ -932,12 +821,6 @@ export enum HouseholderUpdateColumn {
   /** column name */
   UpdatedAt = 'updated_at'
 }
-
-export type HouseholderUpdates = {
-  /** sets the columns of the filtered rows to the given values */
-  _set?: InputMaybe<HouseholderSetInput>;
-  where: HouseholderBoolExp;
-};
 
 /** columns and relationships of "member" */
 export type Member = {
@@ -985,7 +868,7 @@ export type MemberBoolExp = {
 
 /** unique or primary key constraints on table "member" */
 export enum MemberConstraint {
-  /** unique or primary key constraint on columns "id" */
+  /** unique or primary key constraint */
   MemberPkey = 'member_pkey'
 }
 
@@ -1071,23 +954,6 @@ export type MemberSetInput = {
   updated_at?: InputMaybe<Scalars['timestamptz']>;
 };
 
-/** Streaming cursor of the table "member" */
-export type MemberStreamCursorInput = {
-  /** Stream column input with initial value */
-  initial_value: MemberStreamCursorValueInput;
-  /** cursor ordering */
-  ordering?: InputMaybe<CursorOrdering>;
-};
-
-/** Initial value of the column from where the streaming should start */
-export type MemberStreamCursorValueInput = {
-  created_at?: InputMaybe<Scalars['timestamptz']>;
-  family_id?: InputMaybe<Scalars['uuid']>;
-  id?: InputMaybe<Scalars['uuid']>;
-  name?: InputMaybe<Scalars['String']>;
-  updated_at?: InputMaybe<Scalars['timestamptz']>;
-};
-
 /** update columns of table "member" */
 export enum MemberUpdateColumn {
   /** column name */
@@ -1101,12 +967,6 @@ export enum MemberUpdateColumn {
   /** column name */
   UpdatedAt = 'updated_at'
 }
-
-export type MemberUpdates = {
-  /** sets the columns of the filtered rows to the given values */
-  _set?: InputMaybe<MemberSetInput>;
-  where: MemberBoolExp;
-};
 
 /** mutation root */
 export type MutationRoot = {
@@ -1179,50 +1039,34 @@ export type MutationRoot = {
   update_family?: Maybe<FamilyMutationResponse>;
   /** update single row of the table: "family" */
   update_family_by_pk?: Maybe<Family>;
-  /** update multiples rows of table: "family" */
-  update_family_many?: Maybe<Array<Maybe<FamilyMutationResponse>>>;
   /** update data of the table: "family_severity" */
   update_family_severity?: Maybe<FamilySeverityMutationResponse>;
   /** update single row of the table: "family_severity" */
   update_family_severity_by_pk?: Maybe<FamilySeverity>;
-  /** update multiples rows of table: "family_severity" */
-  update_family_severity_many?: Maybe<Array<Maybe<FamilySeverityMutationResponse>>>;
   /** update data of the table: "family_status" */
   update_family_status?: Maybe<FamilyStatusMutationResponse>;
   /** update single row of the table: "family_status" */
   update_family_status_by_pk?: Maybe<FamilyStatus>;
-  /** update multiples rows of table: "family_status" */
-  update_family_status_many?: Maybe<Array<Maybe<FamilyStatusMutationResponse>>>;
   /** update data of the table: "householder" */
   update_householder?: Maybe<HouseholderMutationResponse>;
   /** update single row of the table: "householder" */
   update_householder_by_pk?: Maybe<Householder>;
-  /** update multiples rows of table: "householder" */
-  update_householder_many?: Maybe<Array<Maybe<HouseholderMutationResponse>>>;
   /** update data of the table: "householder_status" */
   update_householder_status?: Maybe<HouseholderStatusMutationResponse>;
   /** update single row of the table: "householder_status" */
   update_householder_status_by_pk?: Maybe<HouseholderStatus>;
-  /** update multiples rows of table: "householder_status" */
-  update_householder_status_many?: Maybe<Array<Maybe<HouseholderStatusMutationResponse>>>;
   /** update data of the table: "member" */
   update_member?: Maybe<MemberMutationResponse>;
   /** update single row of the table: "member" */
   update_member_by_pk?: Maybe<Member>;
-  /** update multiples rows of table: "member" */
-  update_member_many?: Maybe<Array<Maybe<MemberMutationResponse>>>;
   /** update data of the table: "project" */
   update_project?: Maybe<ProjectMutationResponse>;
   /** update single row of the table: "project" */
   update_project_by_pk?: Maybe<Project>;
-  /** update multiples rows of table: "project" */
-  update_project_many?: Maybe<Array<Maybe<ProjectMutationResponse>>>;
   /** update data of the table: "project_status" */
   update_project_status?: Maybe<ProjectStatusMutationResponse>;
   /** update single row of the table: "project_status" */
   update_project_status_by_pk?: Maybe<ProjectStatus>;
-  /** update multiples rows of table: "project_status" */
-  update_project_status_many?: Maybe<Array<Maybe<ProjectStatusMutationResponse>>>;
 };
 
 
@@ -1451,12 +1295,6 @@ export type MutationRootUpdateFamilyByPkArgs = {
 
 
 /** mutation root */
-export type MutationRootUpdateFamilyManyArgs = {
-  updates: Array<FamilyUpdates>;
-};
-
-
-/** mutation root */
 export type MutationRootUpdateFamilySeverityArgs = {
   _set?: InputMaybe<FamilySeveritySetInput>;
   where: FamilySeverityBoolExp;
@@ -1467,12 +1305,6 @@ export type MutationRootUpdateFamilySeverityArgs = {
 export type MutationRootUpdateFamilySeverityByPkArgs = {
   _set?: InputMaybe<FamilySeveritySetInput>;
   pk_columns: FamilySeverityPkColumnsInput;
-};
-
-
-/** mutation root */
-export type MutationRootUpdateFamilySeverityManyArgs = {
-  updates: Array<FamilySeverityUpdates>;
 };
 
 
@@ -1491,12 +1323,6 @@ export type MutationRootUpdateFamilyStatusByPkArgs = {
 
 
 /** mutation root */
-export type MutationRootUpdateFamilyStatusManyArgs = {
-  updates: Array<FamilyStatusUpdates>;
-};
-
-
-/** mutation root */
 export type MutationRootUpdateHouseholderArgs = {
   _set?: InputMaybe<HouseholderSetInput>;
   where: HouseholderBoolExp;
@@ -1507,12 +1333,6 @@ export type MutationRootUpdateHouseholderArgs = {
 export type MutationRootUpdateHouseholderByPkArgs = {
   _set?: InputMaybe<HouseholderSetInput>;
   pk_columns: HouseholderPkColumnsInput;
-};
-
-
-/** mutation root */
-export type MutationRootUpdateHouseholderManyArgs = {
-  updates: Array<HouseholderUpdates>;
 };
 
 
@@ -1531,12 +1351,6 @@ export type MutationRootUpdateHouseholderStatusByPkArgs = {
 
 
 /** mutation root */
-export type MutationRootUpdateHouseholderStatusManyArgs = {
-  updates: Array<HouseholderStatusUpdates>;
-};
-
-
-/** mutation root */
 export type MutationRootUpdateMemberArgs = {
   _set?: InputMaybe<MemberSetInput>;
   where: MemberBoolExp;
@@ -1547,12 +1361,6 @@ export type MutationRootUpdateMemberArgs = {
 export type MutationRootUpdateMemberByPkArgs = {
   _set?: InputMaybe<MemberSetInput>;
   pk_columns: MemberPkColumnsInput;
-};
-
-
-/** mutation root */
-export type MutationRootUpdateMemberManyArgs = {
-  updates: Array<MemberUpdates>;
 };
 
 
@@ -1571,12 +1379,6 @@ export type MutationRootUpdateProjectByPkArgs = {
 
 
 /** mutation root */
-export type MutationRootUpdateProjectManyArgs = {
-  updates: Array<ProjectUpdates>;
-};
-
-
-/** mutation root */
 export type MutationRootUpdateProjectStatusArgs = {
   _set?: InputMaybe<ProjectStatusSetInput>;
   where: ProjectStatusBoolExp;
@@ -1587,12 +1389,6 @@ export type MutationRootUpdateProjectStatusArgs = {
 export type MutationRootUpdateProjectStatusByPkArgs = {
   _set?: InputMaybe<ProjectStatusSetInput>;
   pk_columns: ProjectStatusPkColumnsInput;
-};
-
-
-/** mutation root */
-export type MutationRootUpdateProjectStatusManyArgs = {
-  updates: Array<ProjectStatusUpdates>;
 };
 
 /** column ordering options */
@@ -1659,7 +1455,7 @@ export type ProjectBoolExp = {
 
 /** unique or primary key constraints on table "project" */
 export enum ProjectConstraint {
-  /** unique or primary key constraint on columns "id" */
+  /** unique or primary key constraint */
   ProjectPkey = 'project_pkey'
 }
 
@@ -1790,7 +1586,7 @@ export type ProjectStatusBoolExp = {
 
 /** unique or primary key constraints on table "project_status" */
 export enum ProjectStatusConstraint {
-  /** unique or primary key constraint on columns "value" */
+  /** unique or primary key constraint */
   ProjectStatusPkey = 'project_status_pkey'
 }
 
@@ -1871,20 +1667,6 @@ export type ProjectStatusSetInput = {
   value?: InputMaybe<Scalars['String']>;
 };
 
-/** Streaming cursor of the table "project_status" */
-export type ProjectStatusStreamCursorInput = {
-  /** Stream column input with initial value */
-  initial_value: ProjectStatusStreamCursorValueInput;
-  /** cursor ordering */
-  ordering?: InputMaybe<CursorOrdering>;
-};
-
-/** Initial value of the column from where the streaming should start */
-export type ProjectStatusStreamCursorValueInput = {
-  comment?: InputMaybe<Scalars['String']>;
-  value?: InputMaybe<Scalars['String']>;
-};
-
 /** update columns of table "project_status" */
 export enum ProjectStatusUpdateColumn {
   /** column name */
@@ -1892,30 +1674,6 @@ export enum ProjectStatusUpdateColumn {
   /** column name */
   Value = 'value'
 }
-
-export type ProjectStatusUpdates = {
-  /** sets the columns of the filtered rows to the given values */
-  _set?: InputMaybe<ProjectStatusSetInput>;
-  where: ProjectStatusBoolExp;
-};
-
-/** Streaming cursor of the table "project" */
-export type ProjectStreamCursorInput = {
-  /** Stream column input with initial value */
-  initial_value: ProjectStreamCursorValueInput;
-  /** cursor ordering */
-  ordering?: InputMaybe<CursorOrdering>;
-};
-
-/** Initial value of the column from where the streaming should start */
-export type ProjectStreamCursorValueInput = {
-  created_at?: InputMaybe<Scalars['timestamptz']>;
-  description?: InputMaybe<Scalars['String']>;
-  id?: InputMaybe<Scalars['uuid']>;
-  name?: InputMaybe<Scalars['String']>;
-  status?: InputMaybe<ProjectStatusEnum>;
-  updated_at?: InputMaybe<Scalars['timestamptz']>;
-};
 
 /** update columns of table "project" */
 export enum ProjectUpdateColumn {
@@ -1932,12 +1690,6 @@ export enum ProjectUpdateColumn {
   /** column name */
   UpdatedAt = 'updated_at'
 }
-
-export type ProjectUpdates = {
-  /** sets the columns of the filtered rows to the given values */
-  _set?: InputMaybe<ProjectSetInput>;
-  where: ProjectBoolExp;
-};
 
 export type QueryRoot = {
   __typename?: 'query_root';
@@ -2189,18 +1941,12 @@ export type SubscriptionRoot = {
   family_severity_aggregate: FamilySeverityAggregate;
   /** fetch data from the table: "family_severity" using primary key columns */
   family_severity_by_pk?: Maybe<FamilySeverity>;
-  /** fetch data from the table in a streaming manner: "family_severity" */
-  family_severity_stream: Array<FamilySeverity>;
   /** fetch data from the table: "family_status" */
   family_status: Array<FamilyStatus>;
   /** fetch aggregated fields from the table: "family_status" */
   family_status_aggregate: FamilyStatusAggregate;
   /** fetch data from the table: "family_status" using primary key columns */
   family_status_by_pk?: Maybe<FamilyStatus>;
-  /** fetch data from the table in a streaming manner: "family_status" */
-  family_status_stream: Array<FamilyStatus>;
-  /** fetch data from the table in a streaming manner: "family" */
-  family_stream: Array<Family>;
   /** fetch data from the table: "householder" */
   householder: Array<Householder>;
   /** fetch aggregated fields from the table: "householder" */
@@ -2213,18 +1959,12 @@ export type SubscriptionRoot = {
   householder_status_aggregate: HouseholderStatusAggregate;
   /** fetch data from the table: "householder_status" using primary key columns */
   householder_status_by_pk?: Maybe<HouseholderStatus>;
-  /** fetch data from the table in a streaming manner: "householder_status" */
-  householder_status_stream: Array<HouseholderStatus>;
-  /** fetch data from the table in a streaming manner: "householder" */
-  householder_stream: Array<Householder>;
   /** fetch data from the table: "member" */
   member: Array<Member>;
   /** fetch aggregated fields from the table: "member" */
   member_aggregate: MemberAggregate;
   /** fetch data from the table: "member" using primary key columns */
   member_by_pk?: Maybe<Member>;
-  /** fetch data from the table in a streaming manner: "member" */
-  member_stream: Array<Member>;
   /** fetch data from the table: "project" */
   project: Array<Project>;
   /** fetch aggregated fields from the table: "project" */
@@ -2237,10 +1977,6 @@ export type SubscriptionRoot = {
   project_status_aggregate: ProjectStatusAggregate;
   /** fetch data from the table: "project_status" using primary key columns */
   project_status_by_pk?: Maybe<ProjectStatus>;
-  /** fetch data from the table in a streaming manner: "project_status" */
-  project_status_stream: Array<ProjectStatus>;
-  /** fetch data from the table in a streaming manner: "project" */
-  project_stream: Array<Project>;
 };
 
 
@@ -2290,13 +2026,6 @@ export type SubscriptionRootFamilySeverityByPkArgs = {
 };
 
 
-export type SubscriptionRootFamilySeverityStreamArgs = {
-  batch_size: Scalars['Int'];
-  cursor: Array<InputMaybe<FamilySeverityStreamCursorInput>>;
-  where?: InputMaybe<FamilySeverityBoolExp>;
-};
-
-
 export type SubscriptionRootFamilyStatusArgs = {
   distinct_on?: InputMaybe<Array<FamilyStatusSelectColumn>>;
   limit?: InputMaybe<Scalars['Int']>;
@@ -2317,20 +2046,6 @@ export type SubscriptionRootFamilyStatusAggregateArgs = {
 
 export type SubscriptionRootFamilyStatusByPkArgs = {
   value: Scalars['String'];
-};
-
-
-export type SubscriptionRootFamilyStatusStreamArgs = {
-  batch_size: Scalars['Int'];
-  cursor: Array<InputMaybe<FamilyStatusStreamCursorInput>>;
-  where?: InputMaybe<FamilyStatusBoolExp>;
-};
-
-
-export type SubscriptionRootFamilyStreamArgs = {
-  batch_size: Scalars['Int'];
-  cursor: Array<InputMaybe<FamilyStreamCursorInput>>;
-  where?: InputMaybe<FamilyBoolExp>;
 };
 
 
@@ -2380,20 +2095,6 @@ export type SubscriptionRootHouseholderStatusByPkArgs = {
 };
 
 
-export type SubscriptionRootHouseholderStatusStreamArgs = {
-  batch_size: Scalars['Int'];
-  cursor: Array<InputMaybe<HouseholderStatusStreamCursorInput>>;
-  where?: InputMaybe<HouseholderStatusBoolExp>;
-};
-
-
-export type SubscriptionRootHouseholderStreamArgs = {
-  batch_size: Scalars['Int'];
-  cursor: Array<InputMaybe<HouseholderStreamCursorInput>>;
-  where?: InputMaybe<HouseholderBoolExp>;
-};
-
-
 export type SubscriptionRootMemberArgs = {
   distinct_on?: InputMaybe<Array<MemberSelectColumn>>;
   limit?: InputMaybe<Scalars['Int']>;
@@ -2414,13 +2115,6 @@ export type SubscriptionRootMemberAggregateArgs = {
 
 export type SubscriptionRootMemberByPkArgs = {
   id: Scalars['uuid'];
-};
-
-
-export type SubscriptionRootMemberStreamArgs = {
-  batch_size: Scalars['Int'];
-  cursor: Array<InputMaybe<MemberStreamCursorInput>>;
-  where?: InputMaybe<MemberBoolExp>;
 };
 
 
@@ -2467,20 +2161,6 @@ export type SubscriptionRootProjectStatusAggregateArgs = {
 
 export type SubscriptionRootProjectStatusByPkArgs = {
   value: Scalars['String'];
-};
-
-
-export type SubscriptionRootProjectStatusStreamArgs = {
-  batch_size: Scalars['Int'];
-  cursor: Array<InputMaybe<ProjectStatusStreamCursorInput>>;
-  where?: InputMaybe<ProjectStatusBoolExp>;
-};
-
-
-export type SubscriptionRootProjectStreamArgs = {
-  batch_size: Scalars['Int'];
-  cursor: Array<InputMaybe<ProjectStreamCursorInput>>;
-  where?: InputMaybe<ProjectBoolExp>;
 };
 
 /** Boolean expression to compare columns of type "timestamptz". All fields are combined with logical 'AND'. */
