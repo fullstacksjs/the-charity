@@ -1,9 +1,8 @@
 import { useLoginMutation } from '@camp/data-layer';
 import { Alert } from '@camp/design';
-import { toClientErrorMessage } from '@camp/domain';
+import { createResolver, toClientErrorMessage, userSchema } from '@camp/domain';
 import { messages } from '@camp/messages';
 import { AppRoute, useNavigate } from '@camp/router';
-import { zodResolver } from '@hookform/resolvers/zod';
 import {
   Button,
   PasswordInput,
@@ -14,22 +13,15 @@ import {
 } from '@mantine/core';
 import { useState } from 'react';
 import { useForm } from 'react-hook-form';
-import { z } from 'zod';
 
 interface FormInputs {
   username: string;
   password: string;
 }
 
-const FormSchema = z.object({
-  username: z
-    .string({ required_error: messages.login.loginFrom.validation.required })
-    .trim()
-    .min(1, messages.login.loginFrom.validation.required)
-    .email(messages.login.loginFrom.validation.emailErrorMessage),
-  password: z
-    .string({ required_error: messages.login.loginFrom.validation.required })
-    .min(1, messages.login.loginFrom.validation.required),
+const resolver = createResolver<FormInputs>({
+  username: userSchema.email(),
+  password: userSchema.password(),
 });
 
 export const LoginForm = () => {
@@ -42,7 +34,7 @@ export const LoginForm = () => {
     register,
     formState: { errors },
   } = useForm<FormInputs>({
-    resolver: zodResolver(FormSchema),
+    resolver,
     mode: 'onTouched',
   });
 

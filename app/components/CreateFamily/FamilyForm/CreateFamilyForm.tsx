@@ -1,30 +1,25 @@
 import type { FamilyListQuery } from '@camp/data-layer';
 import { FamilyListDocument, useCreateFamilyMutation } from '@camp/data-layer';
 import { showNotification } from '@camp/design';
+import { createResolver, familySchema } from '@camp/domain';
 import { messages } from '@camp/messages';
 import { createTestAttr } from '@camp/test';
-import { zodResolver } from '@hookform/resolvers/zod';
 import { Button, Group, Stack, TextInput } from '@mantine/core';
 import { useForm } from 'react-hook-form';
-import { z } from 'zod';
 
 import { createFamilyFormIds as ids } from './CreateFamilyForm.ids';
 
-type FormSchema = z.infer<typeof FormSchema>;
+interface FormSchema {
+  name: string;
+}
 
 interface Props {
   dismiss: () => void;
 }
 
-const FormSchema = z
-  .object({
-    name: z
-      .string({ required_error: messages.families.validation.required })
-      .trim()
-      .min(1, messages.families.validation.required)
-      .min(3, messages.families.validation.minLength),
-  })
-  .required();
+const resolver = createResolver<FormSchema>({
+  name: familySchema.name(),
+});
 
 export const CreateFamilyForm = ({ dismiss }: Props) => {
   const [createDraftFamily, mutationResult] = useCreateFamilyMutation({
@@ -46,7 +41,7 @@ export const CreateFamilyForm = ({ dismiss }: Props) => {
   });
 
   const { handleSubmit, register, formState } = useForm<FormSchema>({
-    resolver: zodResolver(FormSchema),
+    resolver,
     mode: 'onChange',
   });
 

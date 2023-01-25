@@ -1,8 +1,7 @@
-import { Path, Url } from '@camp/domain';
 import { z } from 'zod';
 
 const Config = z.object({
-  schemaUrl: z.union([Url, Path]),
+  schemaUrl: z.union([z.string().url(), z.string().regex(/^\/.*$/)]),
   auth0: z.object({
     domain: z.string(),
     clientId: z.string(),

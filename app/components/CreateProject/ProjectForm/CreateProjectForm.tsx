@@ -1,12 +1,11 @@
 import { useCreateProjectMutation } from '@camp/data-layer';
 import { showNotification } from '@camp/design';
+import { createResolver, projectSchema } from '@camp/domain';
 import { messages } from '@camp/messages';
 import { createTestAttr } from '@camp/test';
 import { isNull } from '@fullstacksjs/toolbox';
-import { zodResolver } from '@hookform/resolvers/zod';
 import { Button, Group, Stack, Textarea, TextInput } from '@mantine/core';
 import { useForm } from 'react-hook-form';
-import { z } from 'zod';
 
 import { createProjectFormIds as ids } from './CreateProjectForm.ids';
 
@@ -14,17 +13,15 @@ interface Props {
   dismiss: () => void;
 }
 
-type FormSchema = z.infer<typeof FormSchema>;
+interface FormSchema {
+  name: string;
+  description: string;
+}
 
-const FormSchema = z
-  .object({
-    description: z.string().trim(),
-    name: z
-      .string({ required_error: messages.projects.validation.required })
-      .trim()
-      .min(3, messages.projects.validation.minLength),
-  })
-  .required();
+const resolver = createResolver<FormSchema>({
+  description: projectSchema.description(),
+  name: projectSchema.name(),
+});
 
 export const CreateProjectForm = ({ dismiss }: Props) => {
   const [createProject, { loading }] = useCreateProjectMutation();
@@ -34,7 +31,7 @@ export const CreateProjectForm = ({ dismiss }: Props) => {
     register,
     formState: { isValid, errors },
   } = useForm<FormSchema>({
-    resolver: zodResolver(FormSchema),
+    resolver,
     mode: 'onChange',
   });
 

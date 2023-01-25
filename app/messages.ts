@@ -7,6 +7,15 @@ export const errorMessages: Record<ServerError, string> = {
 };
 
 export const messages = {
+  validation: {
+    email: {
+      required: 'این فیلد ضروری است',
+      wrong: 'ایمیل وارد شده اشتباه هست',
+    },
+    password: {
+      required: 'این فیلد ضروری است',
+    },
+  },
   companyName: 'نامی مناسب برای خیریه',
   actions: { dismiss: 'انصراف', open: 'باز کردن' },
   families: {
