@@ -10,10 +10,12 @@ export const AuthProvider = ({ children }: Props) => {
     <Auth0Provider
       domain={config.auth0.domain}
       clientId={config.auth0.clientId}
-      redirectUri={window.location.origin}
-      audience={config.auth0.audience}
-      scope={config.auth0.scope}
       cacheLocation={config.auth0.cacheLocation}
+      authorizationParams={{
+        redirect_uri: window.location.origin,
+        audience: config.auth0.audience,
+        scope: config.auth0.scope,
+      }}
     >
       {children}
     </Auth0Provider>

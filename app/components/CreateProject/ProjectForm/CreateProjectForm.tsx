@@ -3,10 +3,10 @@ import { showNotification } from '@camp/design';
 import { messages } from '@camp/messages';
 import { createTestAttr } from '@camp/test';
 import { isNull } from '@fullstacksjs/toolbox';
-import { yupResolver } from '@hookform/resolvers/yup';
+import { zodResolver } from '@hookform/resolvers/zod';
 import { Button, Group, Stack, Textarea, TextInput } from '@mantine/core';
 import { useForm } from 'react-hook-form';
-import * as yup from 'yup';
+import { z } from 'zod';
 
 import { createProjectFormIds as ids } from './CreateProjectForm.ids';
 
@@ -14,15 +14,14 @@ interface Props {
   dismiss: () => void;
 }
 
-type FormSchema = yup.InferType<typeof FormSchema>;
+type FormSchema = z.infer<typeof FormSchema>;
 
-const FormSchema = yup
+const FormSchema = z
   .object({
-    description: yup.string().trim(),
-    name: yup
-      .string()
+    description: z.string().trim(),
+    name: z
+      .string({ required_error: messages.projects.validation.required })
       .trim()
-      .required(messages.projects.validation.required)
       .min(3, messages.projects.validation.minLength),
   })
   .required();
@@ -35,7 +34,7 @@ export const CreateProjectForm = ({ dismiss }: Props) => {
     register,
     formState: { isValid, errors },
   } = useForm<FormSchema>({
-    resolver: yupResolver(FormSchema),
+    resolver: zodResolver(FormSchema),
     mode: 'onChange',
   });
 

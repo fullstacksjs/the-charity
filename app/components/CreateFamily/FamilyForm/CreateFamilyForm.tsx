@@ -3,25 +3,25 @@ import { FamilyListDocument, useCreateFamilyMutation } from '@camp/data-layer';
 import { showNotification } from '@camp/design';
 import { messages } from '@camp/messages';
 import { createTestAttr } from '@camp/test';
-import { yupResolver } from '@hookform/resolvers/yup';
+import { zodResolver } from '@hookform/resolvers/zod';
 import { Button, Group, Stack, TextInput } from '@mantine/core';
 import { useForm } from 'react-hook-form';
-import * as yup from 'yup';
+import { z } from 'zod';
 
 import { createFamilyFormIds as ids } from './CreateFamilyForm.ids';
 
-type FormSchema = yup.InferType<typeof FormSchema>;
+type FormSchema = z.infer<typeof FormSchema>;
 
 interface Props {
   dismiss: () => void;
 }
 
-const FormSchema = yup
+const FormSchema = z
   .object({
-    name: yup
-      .string()
+    name: z
+      .string({ required_error: messages.families.validation.required })
       .trim()
-      .required(messages.families.validation.required)
+      .min(1, messages.families.validation.required)
       .min(3, messages.families.validation.minLength),
   })
   .required();
@@ -46,7 +46,7 @@ export const CreateFamilyForm = ({ dismiss }: Props) => {
   });
 
   const { handleSubmit, register, formState } = useForm<FormSchema>({
-    resolver: yupResolver(FormSchema),
+    resolver: zodResolver(FormSchema),
     mode: 'onChange',
   });
 

@@ -3,7 +3,7 @@ import { Alert } from '@camp/design';
 import { toClientErrorMessage } from '@camp/domain';
 import { messages } from '@camp/messages';
 import { AppRoute, useNavigate } from '@camp/router';
-import { yupResolver } from '@hookform/resolvers/yup';
+import { zodResolver } from '@hookform/resolvers/zod';
 import {
   Button,
   PasswordInput,
@@ -14,23 +14,22 @@ import {
 } from '@mantine/core';
 import { useState } from 'react';
 import { useForm } from 'react-hook-form';
-import * as yup from 'yup';
+import { z } from 'zod';
 
 interface FormInputs {
   username: string;
   password: string;
 }
 
-const FormSchema = yup.object({
-  username: yup
-    .string()
+const FormSchema = z.object({
+  username: z
+    .string({ required_error: messages.login.loginFrom.validation.required })
     .trim()
-    .email(messages.login.loginFrom.validation.emailErrorMessage)
-    .required(messages.login.loginFrom.validation.required),
-  password: yup
-    .string()
-    .trim()
-    .required(messages.login.loginFrom.validation.required),
+    .min(1, messages.login.loginFrom.validation.required)
+    .email(messages.login.loginFrom.validation.emailErrorMessage),
+  password: z
+    .string({ required_error: messages.login.loginFrom.validation.required })
+    .min(1, messages.login.loginFrom.validation.required),
 });
 
 export const LoginForm = () => {
@@ -43,7 +42,7 @@ export const LoginForm = () => {
     register,
     formState: { errors },
   } = useForm<FormInputs>({
-    resolver: yupResolver(FormSchema),
+    resolver: zodResolver(FormSchema),
     mode: 'onTouched',
   });
 

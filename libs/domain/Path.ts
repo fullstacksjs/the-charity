@@ -1,5 +1,3 @@
-import { String } from 'runtypes';
+import { z } from 'zod';
 
-export const Path = String.withBrand('Path').withConstraint(str =>
-  /^\/.*$/.test(str),
-);
+export const Path = z.string().regex(/^\/.*$/);

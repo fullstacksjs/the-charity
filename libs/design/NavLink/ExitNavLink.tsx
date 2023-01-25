@@ -22,7 +22,7 @@ export const ExitNavLink = () => {
 
   const handleLogout = () => {
     openLogoutModal(returnTo => {
-      logout({ returnTo });
+      logout({ logoutParams: { returnTo } });
     });
   };
 

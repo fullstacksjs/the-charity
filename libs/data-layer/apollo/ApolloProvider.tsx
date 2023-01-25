@@ -15,12 +15,7 @@ export const ApolloProvider = ({ children }: Props) => {
   const clientRef = useRef<ApolloClient<NormalizedCacheObject>>();
 
   if (!clientRef.current) {
-    clientRef.current = createApolloClient(() =>
-      getAccessTokenSilently({
-        audience: config.auth0.audience,
-        scope: config.auth0.scope,
-      }),
-    );
+    clientRef.current = createApolloClient(() => getAccessTokenSilently());
     return null;
   }
 
