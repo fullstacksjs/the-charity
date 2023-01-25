@@ -1,6 +1,7 @@
 export * from './apollo/ApolloProvider';
 export type {
   Family,
+  FamilyListQuery,
   FamilyQuery,
 } from './operations/__generated__/typesAndHooks';
 export {
@@ -10,8 +11,11 @@ export {
 } from './operations/__generated__/typesAndHooks';
 export {
   CreateProjectDocument,
+  FamilyDocument,
+  FamilyListDocument,
   useCreateFamilyMutation,
   useCreateProjectMutation,
+  useFamilyListQuery,
   useFamilyQuery,
 } from './operations/__generated__/typesAndHooks';
 export { useLoginMutation } from './operations/mutations/useLoginMutation';

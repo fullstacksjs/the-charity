@@ -1,6 +1,12 @@
 import React from 'react';
 import { NotificationsProvider } from '@mantine/notifications';
-import { CreateProjectDocument } from '../libs/data-layer';
+import {
+  CreateProjectDocument,
+  FamilyDocument,
+  FamilyListDocument,
+  FamilySeverityEnum,
+  FamilyStatusEnum,
+} from '../libs/data-layer';
 import { MockedProvider } from '@apollo/client/testing';
 import {
   createMemoryHistory,
@@ -9,6 +15,7 @@ import {
 } from '@tanstack/react-location';
 import { ThemeProvider } from '../libs/design';
 import { DecoratorFn, Parameters } from '@storybook/react';
+import { shortFamiliesInfo } from '../app/fixtures/FakeShortFamiliesInfo';
 
 export const parameters: Parameters = {
   actions: { argTypesRegex: '^on[A-Z].*' },
@@ -36,6 +43,34 @@ export const parameters: Parameters = {
           data: {
             name: 'guy',
             description: 'description',
+          },
+        },
+      },
+      {
+        request: {
+          query: FamilyDocument,
+          variables: {
+            id: undefined,
+          },
+        },
+        result: {
+          data: {
+            family_by_pk: {
+              code: 'F00001',
+              name: 'فول استک زاده',
+              severity: FamilySeverityEnum.Critical,
+              status: FamilyStatusEnum.Completed,
+            },
+          },
+        },
+      },
+      {
+        request: {
+          query: FamilyListDocument,
+        },
+        result: {
+          data: {
+            family: shortFamiliesInfo,
           },
         },
       },

@@ -1,4 +1,4 @@
-import { shortFamiliesInfo } from '../FamilyList';
+import { shortFamiliesInfo } from '../../../fixtures/FakeShortFamiliesInfo';
 import { FamilyTable } from './FamilyTable';
 import { familyTableMenuButtonId, familyTableMenuId } from './FamilyTableRow';
 

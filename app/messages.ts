@@ -113,7 +113,7 @@ export const messages = {
   },
   familyDetail: {
     title: 'اطلاعات کلی خانواده',
-    id: 'F00005',
+    notFound: 'خانواده مورد نظر یافت نشد',
     familyFields: {
       name: {
         title: 'نام',

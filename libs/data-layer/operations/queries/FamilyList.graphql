@@ -1,0 +1,8 @@
+query FamilyList {
+  family {
+    id
+    name
+    severity
+    status
+  }
+}

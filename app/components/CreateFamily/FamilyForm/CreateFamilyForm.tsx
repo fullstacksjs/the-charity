@@ -1,4 +1,5 @@
-import { useCreateFamilyMutation } from '@camp/data-layer';
+import type { FamilyListQuery } from '@camp/data-layer';
+import { FamilyListDocument, useCreateFamilyMutation } from '@camp/data-layer';
 import { showNotification } from '@camp/design';
 import { messages } from '@camp/messages';
 import { createTestAttr } from '@camp/test';
@@ -26,7 +27,23 @@ const FormSchema = yup
   .required();
 
 export const CreateFamilyForm = ({ dismiss }: Props) => {
-  const [createDraftFamily, mutationResult] = useCreateFamilyMutation();
+  const [createDraftFamily, mutationResult] = useCreateFamilyMutation({
+    update(cache, { data }) {
+      const newFamilies = data?.insert_family_one;
+      const prevFamiliesQuery = cache.readQuery<FamilyListQuery>({
+        query: FamilyListDocument,
+      });
+
+      if (prevFamiliesQuery && newFamilies) {
+        cache.writeQuery({
+          query: FamilyListDocument,
+          data: {
+            family: [...prevFamiliesQuery.family, newFamilies],
+          },
+        });
+      }
+    },
+  });
 
   const { handleSubmit, register, formState } = useForm<FormSchema>({
     resolver: yupResolver(FormSchema),
