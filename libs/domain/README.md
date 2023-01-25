@@ -2,9 +2,8 @@
 
 ## Concerns
 
-* Map ServerError to clientError
-* Provide cookie types 
-* Provide schema url and path
+* Provide domain validation schema
+* Provide domain types
 
 ## Dependency Rules
 
