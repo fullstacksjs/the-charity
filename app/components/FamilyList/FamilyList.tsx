@@ -1,5 +1,10 @@
 import { useFamilyListQuery } from '@camp/data-layer';
-import { DashboardCard, FullPageLoader, showNotification } from '@camp/design';
+import {
+  DashboardCard,
+  FullPageLoader,
+  showNotification,
+  Table,
+} from '@camp/design';
 import { errorMessages, messages } from '@camp/messages';
 import { createTestAttr } from '@camp/test';
 import { isEmpty, isNull } from '@fullstacksjs/toolbox';
@@ -8,7 +13,8 @@ import { Title } from '@mantine/core';
 import { CreateFamilyButton } from '../CreateFamily';
 import { FamilyEmptyState } from '../FamilyEmptyState';
 import * as ids from './FamilyList.ids';
-import { FamilyTable } from './FamilyTable';
+import { FamilyTableRow } from './FamilyTableRow';
+import { toShortFamilyInfoTableRows } from './toShortFamilyInfoTableRows';
 
 export const FamilyList = () => {
   const t = messages.families.list;
@@ -28,6 +34,15 @@ export const FamilyList = () => {
   if (loading) return <FullPageLoader />;
   if (isNull(families)) return null;
   if (isEmpty(families)) return <FamilyEmptyState />;
+
+  // FIXME remove this after adding custom data-layer hooks
+  const rows = toShortFamilyInfoTableRows(families).map(info => (
+    <FamilyTableRow
+      key={Object.values(info).join('-')}
+      shortFamilyInfoTableRow={info}
+    />
+  ));
+
   return (
     <DashboardCard
       left={<CreateFamilyButton />}
@@ -37,7 +52,11 @@ export const FamilyList = () => {
         </Title>
       }
     >
-      <FamilyTable shortFamiliesInfo={families} />
+      <Table
+        id={ids.familyTableId}
+        columns={t.table.columns as unknown as string[]}
+        rows={rows}
+      />
     </DashboardCard>
   );
 };

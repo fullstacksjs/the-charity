@@ -6,6 +6,7 @@ import {
   FamilyListDocument,
   FamilySeverityEnum,
   FamilyStatusEnum,
+  ProjectListDocument,
 } from '../libs/data-layer';
 import { MockedProvider } from '@apollo/client/testing';
 import {
@@ -15,7 +16,7 @@ import {
 } from '@tanstack/react-location';
 import { ThemeProvider } from '../libs/design';
 import { DecoratorFn, Parameters } from '@storybook/react';
-import { shortFamiliesInfo } from '../app/fixtures/FakeShortFamiliesInfo';
+import { shortFamiliesInfo } from '../app/fixtures/shortFamiliesInfo';
 
 export const parameters: Parameters = {
   actions: { argTypesRegex: '^on[A-Z].*' },
@@ -71,6 +72,22 @@ export const parameters: Parameters = {
         result: {
           data: {
             family: shortFamiliesInfo,
+          },
+        },
+      },
+      {
+        request: {
+          query: ProjectListDocument,
+        },
+        result: {
+          data: {
+            project_aggregate: {
+              nodes: [
+                { name: 'name 1', id: '1' },
+                { name: 'name 2', id: '2' },
+                { name: 'name 3', id: '3' },
+              ],
+            },
           },
         },
       },

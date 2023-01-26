@@ -5,7 +5,7 @@ import { errorMessages, messages } from '@camp/messages';
 import { useParams } from '@camp/router';
 import { isNull } from '@fullstacksjs/toolbox';
 
-// TODO: these should be moved to data-layer
+// FIXME: these should be moved to data-layer
 import type { InformationStatus, SeverityStatus } from '../../../../components';
 import { toInformationStatus, toSeverityStatus } from '../../../../components';
 

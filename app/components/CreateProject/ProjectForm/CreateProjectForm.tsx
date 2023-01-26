@@ -1,4 +1,8 @@
-import { useCreateProjectMutation } from '@camp/data-layer';
+import type { ProjectListQuery } from '@camp/data-layer';
+import {
+  ProjectListDocument,
+  useCreateProjectMutation,
+} from '@camp/data-layer';
 import { showNotification } from '@camp/design';
 import { messages } from '@camp/messages';
 import { createTestAttr } from '@camp/test';
@@ -28,7 +32,25 @@ const FormSchema = yup
   .required();
 
 export const CreateProjectForm = ({ dismiss }: Props) => {
-  const [createProject, { loading }] = useCreateProjectMutation();
+  const [createProject, { loading }] = useCreateProjectMutation({
+    update(cache, { data }) {
+      const newProject = data?.insert_project_one;
+      const prevProjects = cache.readQuery<ProjectListQuery>({
+        query: ProjectListDocument,
+      });
+
+      if (prevProjects && newProject) {
+        cache.writeQuery({
+          query: ProjectListDocument,
+          data: {
+            project_aggregate: {
+              nodes: [...prevProjects.project_aggregate.nodes, newProject],
+            },
+          },
+        });
+      }
+    },
+  });
 
   const {
     handleSubmit,
