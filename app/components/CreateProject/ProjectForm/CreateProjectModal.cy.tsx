@@ -4,8 +4,8 @@ import { useEffect } from 'react';
 import { openCreateProjectModal } from '..';
 import { createProjectFormIds } from './CreateProjectForm.ids';
 
-const requiredFieldMessage = messages.projects.validation.required;
-const minLengthMessage = messages.projects.validation.minLength;
+const requiredFieldMessage = messages.validation.required;
+const minLengthMessage = messages.validation.minLength3;
 
 const TestModal = () => {
   useEffect(() => {

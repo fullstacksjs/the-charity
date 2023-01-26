@@ -15,6 +15,8 @@ export const messages = {
     password: {
       required: 'این فیلد ضروری است',
     },
+    minLength3: 'نام خانواده باید حداقل ۳ حرف باشد',
+    required: 'این فیلد ضروری است',
   },
   companyName: 'نامی مناسب برای خیریه',
   actions: { dismiss: 'انصراف', open: 'باز کردن' },
@@ -24,10 +26,6 @@ export const messages = {
     empty: {
       title: 'خانواده ای وجود ندارد!',
       description: 'متاسفانه لیست خانواده های شما خالی است.',
-    },
-    validation: {
-      required: 'این فیلد ضروری است',
-      minLength: 'نام خانواده باید حداقل ۳ حرف باشد',
     },
     createForm: {
       nameInput: {
@@ -75,10 +73,6 @@ export const messages = {
       title: 'پروژه ای وجود ندارد!',
       description: 'متاسفانه لیست پروژه های شما خالی است.',
     },
-    validation: {
-      required: 'این فیلد ضروری است',
-      minLength: 'نام پروژه باید حداقل ۳ حرف باشد',
-    },
     createForm: {
       nameInput: {
         placeholder: 'برای مثال: خرید مدرسه',
@@ -101,10 +95,6 @@ export const messages = {
   },
   login: {
     loginFrom: {
-      validation: {
-        required: 'این فیلد ضروری است',
-        emailErrorMessage: 'این یک ایمیل معتبر نیست',
-      },
       title: 'به حساب کاربری خود وارد شوید',
       description: 'خوش آمدید، لطفا اطلاعات خود را وارد کنید.',
       emailInput: {

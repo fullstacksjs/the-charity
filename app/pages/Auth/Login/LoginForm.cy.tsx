@@ -5,8 +5,8 @@ import { LoginForm } from './LoginForm';
 const userNameInputSelector = '[type="email"]';
 const passwordInputSelector = '[type="password"]';
 const submitButtonSelector = '[type="submit"]';
-const requiredFieldMessage = messages.login.loginFrom.validation.required;
-const emailErrorMsg = messages.login.loginFrom.validation.emailErrorMessage;
+const requiredFieldMessage = messages.validation.email.required;
+const emailErrorMsg = messages.validation.email.wrong;
 
 describe('Login Form', () => {
   beforeEach(() => {
