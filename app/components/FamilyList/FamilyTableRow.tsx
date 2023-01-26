@@ -2,14 +2,13 @@ import { ActionButton, Badge } from '@camp/design';
 import { AppRoute, useNavigate } from '@camp/router';
 import { Group } from '@mantine/core';
 
+import * as ids from './FamilyTableRow.ids';
+// FIXME remove this after adding custom data-layer hooks
 import type { ShortFamilyInfoTableRow } from './toShortFamilyInfoTableRows';
 
 interface Props {
   shortFamilyInfoTableRow: ShortFamilyInfoTableRow;
 }
-
-export const familyTableMenuButtonId = 'family-table-menu-button';
-export const familyTableMenuId = 'family-table-menu';
 
 export const FamilyTableRow = ({
   shortFamilyInfoTableRow: {
@@ -37,8 +36,8 @@ export const FamilyTableRow = ({
         <Group position="apart">
           <Badge status={severityStatus.state}>{severityStatus.text}</Badge>
           <ActionButton
-            menuButtonId={familyTableMenuButtonId}
-            menuId={familyTableMenuId}
+            menuButtonId={ids.familyTableMenuButtonId}
+            menuId={ids.familyTableMenuId}
             to={AppRoute.familyDetail}
             params={{ id }}
           />

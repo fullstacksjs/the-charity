@@ -4,7 +4,7 @@ import { Group } from '@mantine/core';
 import {
   projectTableMenuButtonId,
   projectTableMenuId,
-} from './ProjectTable.ids';
+} from './ProjectTableRow.ids';
 
 interface Props {
   order: number;

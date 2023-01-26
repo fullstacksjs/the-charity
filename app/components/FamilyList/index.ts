@@ -1,2 +1,4 @@
 export * from './FamilyList';
-export * from './FamilyTable';
+export * from './InformationStatus';
+export * from './SeverityStatus';
+export * from './toShortFamilyInfoTableRows';
