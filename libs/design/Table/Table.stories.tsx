@@ -3,7 +3,7 @@ import type { ComponentMeta, ComponentStory } from '@storybook/react';
 
 import { toShortFamilyInfoTableRows } from '../../../app/components';
 import { FamilyTableRow } from '../../../app/components/FamilyList/FamilyTableRow';
-import { shortFamiliesInfo } from '../../../app/fixtures/FakeShortFamiliesInfo';
+import { shortFamiliesInfo } from '../../../app/fixtures/shortFamiliesInfo';
 import { Table } from './Table';
 
 export default {
