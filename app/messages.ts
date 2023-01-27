@@ -15,7 +15,6 @@ export const messages = {
     password: {
       required: 'این فیلد ضروری است',
     },
-    minLength3: 'نام خانواده باید حداقل ۳ حرف باشد',
     required: 'این فیلد ضروری است',
   },
   companyName: 'نامی مناسب برای خیریه',
@@ -26,6 +25,9 @@ export const messages = {
     empty: {
       title: 'خانواده ای وجود ندارد!',
       description: 'متاسفانه لیست خانواده های شما خالی است.',
+    },
+    validation: {
+      minLength: 'نام خانواده باید حداقل ۳ حرف باشد',
     },
     createForm: {
       nameInput: {
@@ -63,6 +65,9 @@ export const messages = {
   projects: {
     title: 'پروژه ها',
     create: 'ایجاد پروژه جدید',
+    validation: {
+      minLength: 'نام پروژه باید حداقل ۳ حرف باشد',
+    },
     notification: {
       successfulCreate: (name: string) =>
         `پروژه ای با نام "${name}" .با موفقیت ایجاد شده است`,

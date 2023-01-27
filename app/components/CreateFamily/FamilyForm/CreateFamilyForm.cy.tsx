@@ -4,8 +4,8 @@ import { noop } from '@fullstacksjs/toolbox';
 import { CreateFamilyForm } from './CreateFamilyForm';
 import { createFamilyFormIds } from './CreateFamilyForm.ids';
 
-const { minLength3: minLengthMessage, required: requiredFieldMessage } =
-  messages.validation;
+const requiredFieldMessage = messages.validation.required;
+const minLengthMessage = messages.families.validation.minLength;
 
 describe('Create Family Form', () => {
   beforeEach(() => {
