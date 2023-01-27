@@ -1,9 +1,8 @@
 import { useLoginMutation } from '@camp/data-layer';
 import { Alert } from '@camp/design';
-import { toClientErrorMessage } from '@camp/domain';
+import { createResolver, toClientErrorMessage, userSchema } from '@camp/domain';
 import { messages } from '@camp/messages';
 import { AppRoute, useNavigate } from '@camp/router';
-import { yupResolver } from '@hookform/resolvers/yup';
 import {
   Button,
   PasswordInput,
@@ -14,23 +13,15 @@ import {
 } from '@mantine/core';
 import { useState } from 'react';
 import { useForm } from 'react-hook-form';
-import * as yup from 'yup';
 
 interface FormInputs {
   username: string;
   password: string;
 }
 
-const FormSchema = yup.object({
-  username: yup
-    .string()
-    .trim()
-    .email(messages.login.loginFrom.validation.emailErrorMessage)
-    .required(messages.login.loginFrom.validation.required),
-  password: yup
-    .string()
-    .trim()
-    .required(messages.login.loginFrom.validation.required),
+const resolver = createResolver<FormInputs>({
+  username: userSchema.email(),
+  password: userSchema.password(),
 });
 
 export const LoginForm = () => {
@@ -43,7 +34,7 @@ export const LoginForm = () => {
     register,
     formState: { errors },
   } = useForm<FormInputs>({
-    resolver: yupResolver(FormSchema),
+    resolver,
     mode: 'onTouched',
   });
 

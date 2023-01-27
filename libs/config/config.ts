@@ -1,22 +1,20 @@
-import { Path, Url } from '@camp/domain';
-import type { Static } from 'runtypes';
-import { Boolean, Literal, Record, String, Union } from 'runtypes';
+import { z } from 'zod';
 
-const Config = Record({
-  schemaUrl: Union(Url, Path),
-  auth0: Record({
-    domain: String,
-    clientId: String,
-    scope: String,
-    audience: String,
-    cacheLocation: Union(Literal('memory'), Literal('localstorage')),
+const Config = z.object({
+  schemaUrl: z.union([z.string().url(), z.string().regex(/^\/.*$/)]),
+  auth0: z.object({
+    domain: z.string(),
+    clientId: z.string(),
+    scope: z.string(),
+    audience: z.string(),
+    cacheLocation: z.union([z.literal('memory'), z.literal('localstorage')]),
   }),
-  apolloDevTools: Boolean,
+  apolloDevTools: z.boolean(),
 });
 
-export type Config = Static<typeof Config>;
+export type Config = z.infer<typeof Config>;
 
-export const config = Config.check({
+export const config = Config.parse({
   schemaUrl: import.meta.env.APP_API_ENDPOINT,
   auth0: {
     domain: import.meta.env.APP_AUTH0_DOMAIN,

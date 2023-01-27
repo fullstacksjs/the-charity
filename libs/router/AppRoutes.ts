@@ -7,4 +7,4 @@ export const AppRoute = {
   familyDetail: '/dashboard/families/:id',
   projects: '/dashboard/projects',
 } as const;
-export type AppRoute = typeof AppRoute[keyof typeof AppRoute];
+export type AppRoute = (typeof AppRoute)[keyof typeof AppRoute];

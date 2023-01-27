@@ -7,6 +7,16 @@ export const errorMessages: Record<ServerError, string> = {
 };
 
 export const messages = {
+  validation: {
+    email: {
+      required: 'این فیلد ضروری است',
+      wrong: 'ایمیل وارد شده اشتباه هست',
+    },
+    password: {
+      required: 'این فیلد ضروری است',
+    },
+    required: 'این فیلد ضروری است',
+  },
   companyName: 'نامی مناسب برای خیریه',
   actions: { dismiss: 'انصراف', open: 'باز کردن' },
   families: {
@@ -17,7 +27,6 @@ export const messages = {
       description: 'متاسفانه لیست خانواده های شما خالی است.',
     },
     validation: {
-      required: 'این فیلد ضروری است',
       minLength: 'نام خانواده باید حداقل ۳ حرف باشد',
     },
     createForm: {
@@ -56,6 +65,9 @@ export const messages = {
   projects: {
     title: 'پروژه ها',
     create: 'ایجاد پروژه جدید',
+    validation: {
+      minLength: 'نام پروژه باید حداقل ۳ حرف باشد',
+    },
     notification: {
       successfulCreate: (name: string) =>
         `پروژه ای با نام "${name}" .با موفقیت ایجاد شده است`,
@@ -65,10 +77,6 @@ export const messages = {
     empty: {
       title: 'پروژه ای وجود ندارد!',
       description: 'متاسفانه لیست پروژه های شما خالی است.',
-    },
-    validation: {
-      required: 'این فیلد ضروری است',
-      minLength: 'نام پروژه باید حداقل ۳ حرف باشد',
     },
     createForm: {
       nameInput: {
@@ -92,10 +100,6 @@ export const messages = {
   },
   login: {
     loginFrom: {
-      validation: {
-        required: 'این فیلد ضروری است',
-        emailErrorMessage: 'این یک ایمیل معتبر نیست',
-      },
       title: 'به حساب کاربری خود وارد شوید',
       description: 'خوش آمدید، لطفا اطلاعات خود را وارد کنید.',
       emailInput: {

@@ -1,30 +1,25 @@
 import type { FamilyListQuery } from '@camp/data-layer';
 import { FamilyListDocument, useCreateFamilyMutation } from '@camp/data-layer';
 import { showNotification } from '@camp/design';
+import { createResolver, familySchema } from '@camp/domain';
 import { messages } from '@camp/messages';
 import { createTestAttr } from '@camp/test';
-import { yupResolver } from '@hookform/resolvers/yup';
 import { Button, Group, Stack, TextInput } from '@mantine/core';
 import { useForm } from 'react-hook-form';
-import * as yup from 'yup';
 
 import { createFamilyFormIds as ids } from './CreateFamilyForm.ids';
 
-type FormSchema = yup.InferType<typeof FormSchema>;
+interface FormSchema {
+  name: string;
+}
 
 interface Props {
   dismiss: () => void;
 }
 
-const FormSchema = yup
-  .object({
-    name: yup
-      .string()
-      .trim()
-      .required(messages.families.validation.required)
-      .min(3, messages.families.validation.minLength),
-  })
-  .required();
+const resolver = createResolver<FormSchema>({
+  name: familySchema.name(),
+});
 
 export const CreateFamilyForm = ({ dismiss }: Props) => {
   const [createDraftFamily, mutationResult] = useCreateFamilyMutation({
@@ -46,7 +41,7 @@ export const CreateFamilyForm = ({ dismiss }: Props) => {
   });
 
   const { handleSubmit, register, formState } = useForm<FormSchema>({
-    resolver: yupResolver(FormSchema),
+    resolver,
     mode: 'onChange',
   });
 

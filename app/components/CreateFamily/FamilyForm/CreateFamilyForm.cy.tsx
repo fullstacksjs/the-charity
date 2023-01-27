@@ -4,8 +4,8 @@ import { noop } from '@fullstacksjs/toolbox';
 import { CreateFamilyForm } from './CreateFamilyForm';
 import { createFamilyFormIds } from './CreateFamilyForm.ids';
 
-const { minLength: minLengthMessage, required: requiredFieldMessage } =
-  messages.families.validation;
+const requiredFieldMsg = messages.validation.required;
+const minLengthMsg = messages.families.validation.minLength;
 
 describe('Create Family Form', () => {
   beforeEach(() => {
@@ -30,35 +30,35 @@ describe('Create Family Form', () => {
     cy.get('form').within(() => {
       cy.findByTestId(createFamilyFormIds.nameInput).type('مرادی');
       cy.root().submit();
-      cy.findByText(`/${requiredFieldMessage}/`).should('not.exist');
+      cy.findByText(`/${requiredFieldMsg}/`).should('not.exist');
     });
   });
 
   it('should show a required error message when family name is empty', () => {
     cy.get('form').within(() => {
       cy.root().submit();
-      cy.findByRole('alert').should('have.text', requiredFieldMessage);
+      cy.findByRole('alert').should('have.text', requiredFieldMsg);
     });
   });
 
   it('should show an error message when family name is less than min length', () => {
     cy.get('form').within(() => {
       cy.findByTestId(createFamilyFormIds.nameInput).type('م');
-      cy.findByRole('alert').should('have.text', minLengthMessage);
+      cy.findByRole('alert').should('have.text', minLengthMsg);
     });
   });
 
   it('should not show an error message when family name is more than or equal min length', () => {
     cy.get('form').within(() => {
       cy.findByTestId(createFamilyFormIds.nameInput).type('مرادی');
-      cy.findByText(`/${minLengthMessage}/`).should('not.exist');
+      cy.findByText(`/${minLengthMsg}/`).should('not.exist');
     });
   });
 
   it('should submit when all required fields fill correctly', () => {
     cy.get('form').within(() => {
       cy.findByTestId(createFamilyFormIds.nameInput).type('مرادی');
-      cy.findByText(`/${minLengthMessage}/`).should('not.exist');
+      cy.findByText(`/${minLengthMsg}/`).should('not.exist');
       cy.root().submit();
     });
   });

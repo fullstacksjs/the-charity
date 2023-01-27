@@ -4,13 +4,12 @@ import {
   useCreateProjectMutation,
 } from '@camp/data-layer';
 import { showNotification } from '@camp/design';
+import { createResolver, projectSchema } from '@camp/domain';
 import { messages } from '@camp/messages';
 import { createTestAttr } from '@camp/test';
 import { isNull } from '@fullstacksjs/toolbox';
-import { yupResolver } from '@hookform/resolvers/yup';
 import { Button, Group, Stack, Textarea, TextInput } from '@mantine/core';
 import { useForm } from 'react-hook-form';
-import * as yup from 'yup';
 
 import { createProjectFormIds as ids } from './CreateProjectForm.ids';
 
@@ -18,18 +17,15 @@ interface Props {
   dismiss: () => void;
 }
 
-type FormSchema = yup.InferType<typeof FormSchema>;
+interface FormSchema {
+  name: string;
+  description: string;
+}
 
-const FormSchema = yup
-  .object({
-    description: yup.string().trim(),
-    name: yup
-      .string()
-      .trim()
-      .required(messages.projects.validation.required)
-      .min(3, messages.projects.validation.minLength),
-  })
-  .required();
+const resolver = createResolver<FormSchema>({
+  description: projectSchema.description(),
+  name: projectSchema.name(),
+});
 
 export const CreateProjectForm = ({ dismiss }: Props) => {
   const [createProject, { loading }] = useCreateProjectMutation({
@@ -57,7 +53,7 @@ export const CreateProjectForm = ({ dismiss }: Props) => {
     register,
     formState: { isValid, errors },
   } = useForm<FormSchema>({
-    resolver: yupResolver(FormSchema),
+    resolver,
     mode: 'onChange',
   });
 

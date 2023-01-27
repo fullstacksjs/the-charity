@@ -1,10 +1,9 @@
 import { noop } from '@fullstacksjs/toolbox';
-import type { Static } from 'runtypes';
-import { Record as RTRecord } from 'runtypes';
+import { z } from 'zod';
 
-const BrowserCookies = RTRecord({});
+const BrowserCookies = z.object({});
 
-type BrowserCookies = Static<typeof BrowserCookies>;
+type BrowserCookies = z.infer<typeof BrowserCookies>;
 
 const parseBrowserCookies = (c: BrowserCookies): Cookies => c;
 
@@ -16,11 +15,11 @@ const getBrowserCookies = async (): Promise<BrowserCookies> => {
     {},
   );
 
-  return BrowserCookies.check(cookies);
+  return BrowserCookies.parse(cookies);
 };
 
-export const Cookies = RTRecord({});
-export type Cookies = Static<typeof Cookies>;
+export const Cookies = z.object({});
+export type Cookies = z.infer<typeof Cookies>;
 
 export const getCookies = async (): Promise<Cookies> => {
   const rawCookie = await getBrowserCookies();

@@ -34,3 +34,5 @@ cypress/screenshots
 
 # vite timestamp
 vite.config.*.timestamp*
+
+tsconfig.tsbuildinfo

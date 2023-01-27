@@ -5,8 +5,8 @@ import { LoginForm } from './LoginForm';
 const userNameInputSelector = '[type="email"]';
 const passwordInputSelector = '[type="password"]';
 const submitButtonSelector = '[type="submit"]';
-const requiredFieldMessage = messages.login.loginFrom.validation.required;
-const emailErrorMsg = messages.login.loginFrom.validation.emailErrorMessage;
+const requiredFieldMsg = messages.validation.email.required;
+const emailErrorMsg = messages.validation.email.wrong;
 
 describe('Login Form', () => {
   beforeEach(() => {
@@ -30,14 +30,14 @@ describe('Login Form', () => {
     cy.get('form').within(() => {
       cy.get(userNameInputSelector).type('you@email.com');
       cy.root().submit();
-      cy.findByText(`/${requiredFieldMessage}/`).should('not.exist');
+      cy.findByText(`/${requiredFieldMsg}/`).should('not.exist');
     });
   });
 
   it('should show a required error message when username is empty', () => {
     cy.get('form').within(() => {
       cy.root().submit();
-      cy.findAllByText(requiredFieldMessage).should('exist');
+      cy.findAllByText(requiredFieldMsg).should('exist');
     });
   });
 
@@ -62,7 +62,7 @@ describe('Login Form', () => {
       cy.get(userNameInputSelector).type('you@email.com');
       cy.get(passwordInputSelector).type('password');
       cy.root().submit();
-      cy.findByText(`/${requiredFieldMessage}/`).should('not.exist');
+      cy.findByText(`/${requiredFieldMsg}/`).should('not.exist');
     });
   });
 
@@ -70,7 +70,7 @@ describe('Login Form', () => {
     cy.get('form').within(() => {
       cy.get(userNameInputSelector).type('you@email.com');
       cy.root().submit();
-      cy.findAllByText(requiredFieldMessage).should('exist');
+      cy.findAllByText(requiredFieldMsg).should('exist');
     });
   });
 });

@@ -4,8 +4,8 @@ import { useEffect } from 'react';
 import { openCreateProjectModal } from '..';
 import { createProjectFormIds } from './CreateProjectForm.ids';
 
-const requiredFieldMessage = messages.projects.validation.required;
-const minLengthMessage = messages.projects.validation.minLength;
+const requiredFieldMsg = messages.validation.required;
+const minLengthMsg = messages.projects.validation.minLength;
 
 const TestModal = () => {
   useEffect(() => {
@@ -54,21 +54,21 @@ describe('Create Project Form', () => {
   it('should not show a required error message when Project name is not empty', () => {
     cy.get('form').within(() => {
       cy.findByTestId(createProjectFormIds.nameInput).type('نام');
-      cy.findByText(`/${requiredFieldMessage}/`).should('not.exist');
+      cy.findByText(`/${requiredFieldMsg}/`).should('not.exist');
     });
   });
 
   it('should show an error message when Project name is less than min length', () => {
     cy.get('form').within(() => {
       cy.findByTestId(createProjectFormIds.nameInput).type('ن');
-      cy.findByRole('alert').should('have.text', minLengthMessage);
+      cy.findByRole('alert').should('have.text', minLengthMsg);
     });
   });
 
   it('should not show an error message when Project name is more than or equal min length', () => {
     cy.get('form').within(() => {
       cy.findByTestId(createProjectFormIds.nameInput).type('نام');
-      cy.findByText(`/${minLengthMessage}/`).should('not.exist');
+      cy.findByText(`/${minLengthMsg}/`).should('not.exist');
     });
   });
 
