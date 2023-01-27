@@ -7,5 +7,5 @@ export const familySchema = {
       .string({ required_error: messages.validation.required })
       .trim()
       .min(1, messages.validation.required)
-      .min(3, messages.validation.minLength3),
+      .min(3, messages.families.validation.minLength),
 };

@@ -7,5 +7,5 @@ export const projectSchema = {
     z
       .string({ required_error: messages.validation.required })
       .trim()
-      .min(3, messages.validation.minLength3),
+      .min(3, messages.projects.validation.minLength),
 };
