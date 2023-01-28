@@ -1,1 +1,1 @@
-export * from './FamilyQuery';
+export * from './useFamilyQuery';
