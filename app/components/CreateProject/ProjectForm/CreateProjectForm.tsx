@@ -1,8 +1,4 @@
-import { type ProjectListQuery } from '@camp/data-layer';
-import {
-  ProjectListDocument,
-  useCreateProjectMutation,
-} from '@camp/data-layer';
+import { useCreateProjectMutation } from '@camp/data-layer';
 import { showNotification } from '@camp/design';
 import { createResolver, projectSchema } from '@camp/domain';
 import { messages } from '@camp/messages';
@@ -28,25 +24,7 @@ const resolver = createResolver<FormSchema>({
 });
 
 export const CreateProjectForm = ({ dismiss }: Props) => {
-  const [createProject, { loading }] = useCreateProjectMutation({
-    update(cache, { data }) {
-      const newProject = data?.insert_project_one;
-      const prevProjects = cache.readQuery<ProjectListQuery>({
-        query: ProjectListDocument,
-      });
-
-      if (prevProjects && newProject) {
-        cache.writeQuery({
-          query: ProjectListDocument,
-          data: {
-            project_aggregate: {
-              nodes: [...prevProjects.project_aggregate.nodes, newProject],
-            },
-          },
-        });
-      }
-    },
-  });
+  const [createProject, { loading }] = useCreateProjectMutation();
 
   const {
     handleSubmit,

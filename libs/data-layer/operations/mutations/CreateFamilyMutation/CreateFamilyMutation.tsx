@@ -3,8 +3,9 @@ import Apollo from '@apollo/client';
 import type {
   ApiCreateFamilyMutation,
   ApiCreateFamilyMutationVariables,
+  ApiFamilyListQuery,
 } from '../../api';
-import { ApiCreateFamilyDocument } from '../../api';
+import { ApiCreateFamilyDocument, ApiFamilyListDocument } from '../../api';
 import { toClientMutationFn } from '../toClientMutationFn';
 
 export interface CreateFamily {
@@ -30,10 +31,24 @@ export function useCreateFamilyMutation(
     ApiCreateFamilyMutationVariables
   >,
 ) {
-  const [m, { data, ...rest }] = Apollo.useMutation(
-    ApiCreateFamilyDocument,
-    options,
-  );
+  const [m, { data, ...rest }] = Apollo.useMutation(ApiCreateFamilyDocument, {
+    ...options,
+    update(cache, { data: families }) {
+      const newFamilies = families?.insert_family_one;
+      const prevFamiliesQuery = cache.readQuery<ApiFamilyListQuery>({
+        query: ApiFamilyListDocument,
+      });
+
+      if (prevFamiliesQuery && newFamilies) {
+        cache.writeQuery({
+          query: ApiFamilyListDocument,
+          data: {
+            family: [...prevFamiliesQuery.family, newFamilies],
+          },
+        });
+      }
+    },
+  });
 
   return [
     toClientMutationFn(m, toClient),

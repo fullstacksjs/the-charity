@@ -1,27 +1,22 @@
-import { FamilySeverityEnum, FamilyStatusEnum } from '@camp/data-layer';
+import type { FamilyListItem } from '@camp/data-layer';
 
-/* FIXME
-  the place that this file is needs a rethink
-*/
-import { type ShortFamiliesInfo } from '../components/FamilyList/toShortFamilyInfoTableRows';
-
-export const shortFamiliesInfo: ShortFamiliesInfo = [
+export const shortFamiliesInfo: FamilyListItem[] = [
   {
     id: '(F00001)',
     name: 'فول استک زاده',
-    severity: FamilySeverityEnum.Critical,
-    status: FamilyStatusEnum.Completed,
+    severityStatus: 'critical',
+    informationStatus: 'completed',
   },
   {
     id: '(F00002)',
     name: 'فول استک زاده',
-    severity: FamilySeverityEnum.Critical,
-    status: FamilyStatusEnum.Draft,
+    severityStatus: 'critical',
+    informationStatus: 'draft',
   },
   {
     id: '(F00003)',
     name: 'فول استک زاده',
-    severity: FamilySeverityEnum.Normal,
-    status: FamilyStatusEnum.Completed,
+    severityStatus: 'normal',
+    informationStatus: 'completed',
   },
 ];

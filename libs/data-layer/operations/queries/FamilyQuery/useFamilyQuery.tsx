@@ -1,6 +1,4 @@
 import Apollo from '@apollo/client';
-import type { BadgeStatus } from '@camp/design';
-import { messages } from '@camp/messages';
 
 import type { ApiFamilyQuery, ApiFamilyQueryVariables } from '../../api';
 import {
@@ -9,50 +7,39 @@ import {
   ApiFamilyStatusEnum,
 } from '../../api';
 
-export interface SeverityStatus {
-  text: string;
-  state: BadgeStatus;
-}
-
-export interface InformationStatus {
-  text: string;
-  state: BadgeStatus;
-}
-
-export const toInformationStatus = (
-  status: ApiFamilyStatusEnum,
-): InformationStatus => {
-  return status === ApiFamilyStatusEnum.Completed
-    ? { text: messages.families.informationStatus.completed, state: 'success' }
-    : { text: messages.families.informationStatus.draft, state: 'warning' };
-};
-
-export const toSeverityStatus = (
-  severity: ApiFamilySeverityEnum,
-): SeverityStatus => {
-  return severity === ApiFamilySeverityEnum.Normal
-    ? { text: messages.families.severityStatus.normal, state: 'warning' }
-    : { text: messages.families.severityStatus.critical, state: 'error' };
-};
+export type SeverityStatus = 'critical' | 'normal';
+export type InformationStatus = 'completed' | 'draft';
 
 export interface Family {
   family: {
+    id: string;
     name: string;
     code: string;
     severity: SeverityStatus;
-    status: InformationStatus;
+    information: InformationStatus;
   };
 }
+
+export const toSeverityStatus = (
+  severity: ApiFamilySeverityEnum,
+): SeverityStatus =>
+  severity === ApiFamilySeverityEnum.Normal ? 'normal' : 'critical';
+
+export const toInformationStatus = (
+  info: ApiFamilyStatusEnum,
+): InformationStatus =>
+  info === ApiFamilyStatusEnum.Completed ? 'completed' : 'draft';
 
 const toClient = (data: ApiFamilyQuery | null | undefined): Family | null =>
   data?.family_by_pk == null
     ? null
     : {
         family: {
+          id: data.family_by_pk.id,
           name: data.family_by_pk.name,
           code: data.family_by_pk.code ?? '',
           severity: toSeverityStatus(data.family_by_pk.severity),
-          status: toInformationStatus(data.family_by_pk.status),
+          information: toInformationStatus(data.family_by_pk.status),
         },
       };
 

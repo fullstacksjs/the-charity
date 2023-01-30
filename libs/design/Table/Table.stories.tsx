@@ -1,7 +1,6 @@
 import { messages } from '@camp/messages';
 import { type ComponentMeta, type ComponentStory } from '@storybook/react';
 
-import { toShortFamilyInfoTableRows } from '../../../app/components';
 import { FamilyTableRow } from '../../../app/components/FamilyList/FamilyTableRow';
 import { shortFamiliesInfo } from '../../../app/fixtures/shortFamiliesInfo';
 import { Table } from './Table';
@@ -17,10 +16,11 @@ const Template: ComponentStory<typeof Table> = args => (
 export const Default = Template.bind({});
 Default.args = {
   columns: messages.families.list.table.columns as unknown as string[],
-  rows: toShortFamilyInfoTableRows(shortFamiliesInfo).map(info => (
+  rows: shortFamiliesInfo.map((info, i) => (
     <FamilyTableRow
       key={Object.values(info).join('-')}
-      shortFamilyInfoTableRow={info}
+      family={info}
+      order={i + 1}
     />
   )),
 };

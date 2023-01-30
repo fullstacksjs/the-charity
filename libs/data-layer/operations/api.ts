@@ -2202,17 +2202,17 @@ export type ApiCreateProjectMutationVariables = Exact<{
 
 export type ApiCreateProjectMutation = { __typename?: 'mutation_root', insert_project_one?: { __typename?: 'project', id: any, name: string, description?: string | null, status: ApiProjectStatusEnum } | null };
 
+export type ApiFamilyListQueryVariables = Exact<{ [key: string]: never; }>;
+
+
+export type ApiFamilyListQuery = { __typename?: 'query_root', family: Array<{ __typename?: 'family', id: any, name: string, severity: ApiFamilySeverityEnum, status: ApiFamilyStatusEnum }> };
+
 export type ApiFamilyQueryVariables = Exact<{
   id: Scalars['uuid'];
 }>;
 
 
 export type ApiFamilyQuery = { __typename?: 'query_root', family_by_pk?: { __typename?: 'family', id: any, name: string, status: ApiFamilyStatusEnum, severity: ApiFamilySeverityEnum, code?: string | null } | null };
-
-export type ApiFamilyListQueryVariables = Exact<{ [key: string]: never; }>;
-
-
-export type ApiFamilyListQuery = { __typename?: 'query_root', family: Array<{ __typename?: 'family', id: any, name: string, severity: ApiFamilySeverityEnum, status: ApiFamilyStatusEnum }> };
 
 export type ApiProjectListQueryVariables = Exact<{
   offset?: InputMaybe<Scalars['Int']>;
@@ -2248,6 +2248,17 @@ export const ApiCreateProjectDocument = gql`
 export type ApiCreateProjectMutationFn = Apollo.MutationFunction<ApiCreateProjectMutation, ApiCreateProjectMutationVariables>;
 export type ApiCreateProjectMutationResult = Apollo.MutationResult<ApiCreateProjectMutation>;
 export type ApiCreateProjectMutationOptions = Apollo.BaseMutationOptions<ApiCreateProjectMutation, ApiCreateProjectMutationVariables>;
+export const ApiFamilyListDocument = gql`
+    query FamilyList {
+  family {
+    id
+    name
+    severity
+    status
+  }
+}
+    `;
+export type ApiFamilyListQueryResult = Apollo.QueryResult<ApiFamilyListQuery, ApiFamilyListQueryVariables>;
 export const ApiFamilyDocument = gql`
     query Family($id: uuid!) {
   family_by_pk(id: $id) {
@@ -2260,17 +2271,6 @@ export const ApiFamilyDocument = gql`
 }
     `;
 export type ApiFamilyQueryResult = Apollo.QueryResult<ApiFamilyQuery, ApiFamilyQueryVariables>;
-export const ApiFamilyListDocument = gql`
-    query FamilyList {
-  family {
-    id
-    name
-    severity
-    status
-  }
-}
-    `;
-export type ApiFamilyListQueryResult = Apollo.QueryResult<ApiFamilyListQuery, ApiFamilyListQueryVariables>;
 export const ApiProjectListDocument = gql`
     query ProjectList($offset: Int, $limit: Int) {
   project_aggregate(offset: $offset, limit: $limit) {

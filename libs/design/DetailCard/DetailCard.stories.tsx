@@ -1,5 +1,6 @@
 import { type ComponentMeta, type ComponentStory } from '@storybook/react';
 
+import { Badge } from '../Badge';
 import { DetailCard } from './DetailCard';
 
 export default {
@@ -8,9 +9,10 @@ export default {
 
 const Template: ComponentStory<typeof DetailCard> = args => (
   <DetailCard {...args}>
-    <DetailCard.BadgeField status="error" title="برچسب">
-      برچسب
-    </DetailCard.BadgeField>
+    <DetailCard.BadgeField
+      title="برچسب"
+      badge={<Badge status="error">برچسب</Badge>}
+    />
     <DetailCard.TextField title="متن">متن</DetailCard.TextField>
   </DetailCard>
 );

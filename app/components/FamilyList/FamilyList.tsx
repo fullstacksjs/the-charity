@@ -1,4 +1,4 @@
-import { useFamilyListQue } from '@camp/data-layer';
+import { useFamilyListQuery } from '@camp/data-layer';
 import {
   DashboardCard,
   FullPageLoader,
@@ -10,20 +10,15 @@ import { createTestAttr } from '@camp/test';
 import { isEmpty, isNull } from '@fullstacksjs/toolbox';
 import { Title } from '@mantine/core';
 
-import {
-  ApiFamilySeverityEnum,
-  ApiFamilyStatusEnum,
-} from '../../../libs/data-layer/operations/api';
 import { CreateFamilyButton } from '../CreateFamily';
 import { FamilyEmptyState } from '../FamilyEmptyState';
 import * as ids from './FamilyList.ids';
 import { FamilyTableRow } from './FamilyTableRow';
-import { toShortFamilyInfoTableRows } from './toShortFamilyInfoTableRows';
 
 export const FamilyList = () => {
   const t = messages.families.list;
   const { data, loading, error } = useFamilyListQuery();
-  const families = data?.family;
+  const families = data.families;
 
   if (error) {
     showNotification({
@@ -39,11 +34,11 @@ export const FamilyList = () => {
   if (isNull(families)) return null;
   if (isEmpty(families)) return <FamilyEmptyState />;
 
-  // FIXME remove this after adding custom data-layer hooks
-  const rows = toShortFamilyInfoTableRows(families).map(info => (
+  const rows = families.map((info, i) => (
     <FamilyTableRow
+      order={i + 1}
       key={Object.values(info).join('-')}
-      shortFamilyInfoTableRow={info}
+      family={info}
     />
   ));
 

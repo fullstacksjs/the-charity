@@ -1,36 +1,10 @@
-import { type FamilyQuery, useFamilyQuery } from '@camp/data-layer';
+import { useFamilyQuery } from '@camp/data-layer';
 import { DetailCard, FullPageLoader, showNotification } from '@camp/design';
 import { errorMessages, messages } from '@camp/messages';
 import { useParams } from '@camp/router';
 import { isNull } from '@fullstacksjs/toolbox';
 
-// FIXME: these should be moved to data-layer
-import {
-  type InformationStatus,
-  type SeverityStatus,
-  toInformationStatus,
-  toSeverityStatus,
-} from '../../../../components';
-
-interface FamilyDetail {
-  status: InformationStatus;
-  severity: SeverityStatus;
-  name: string;
-  code: string;
-}
-
-const toFamilyDetail = (
-  family: FamilyQuery['family_by_pk'],
-): FamilyDetail | undefined => {
-  if (isNull(family)) return undefined;
-
-  return {
-    code: family.code!,
-    name: family.name,
-    severity: toSeverityStatus(family.severity),
-    status: toInformationStatus(family.status),
-  };
-};
+import { InformationBadge, SeverityBadge } from '../../../../components';
 
 export const FamilyDetail = () => {
   const t = messages.familyDetail;
@@ -38,7 +12,7 @@ export const FamilyDetail = () => {
   const { data, loading, error } = useFamilyQuery({
     variables: { id: familyId },
   });
-  const family = data?.family_by_pk;
+  const family = data?.family;
   if (loading) return <FullPageLoader />;
 
   if (error) {
@@ -51,25 +25,19 @@ export const FamilyDetail = () => {
   }
   if (isNull(family)) return <p>{t.notFound}</p>;
 
-  const familyDetail = toFamilyDetail(family);
-
-  return isNull(familyDetail) ? null : (
-    <DetailCard title={t.title} id={familyDetail.code}>
+  return (
+    <DetailCard title={t.title} id={family.code}>
       <DetailCard.TextField title={t.familyFields.name.title}>
-        {familyDetail.name}
+        {family.name}
       </DetailCard.TextField>
       <DetailCard.BadgeField
-        status={familyDetail.severity.state}
         title={t.familyFields.severityStatus.title}
-      >
-        {familyDetail.severity.text}
-      </DetailCard.BadgeField>
+        badge={<SeverityBadge severity={family.severity} />}
+      />
       <DetailCard.BadgeField
-        status={familyDetail.status.state}
+        badge={<InformationBadge information={family.information} />}
         title={t.familyFields.informationStatus.title}
-      >
-        {familyDetail.status.text}
-      </DetailCard.BadgeField>
+      />
     </DetailCard>
   );
 };
