@@ -3,8 +3,8 @@ import * as Apollo from '@apollo/client';
 import type {
   ApiProjectListQuery,
   ApiProjectListQueryVariables,
-} from '../../api';
-import { ApiProjectListDocument } from '../../api';
+} from '../../../api';
+import { ApiProjectListDocument } from '../../../api';
 
 export interface ProjectListItem {
   id: string;

@@ -4,8 +4,8 @@ import type {
   ApiCreateFamilyMutation,
   ApiCreateFamilyMutationVariables,
   ApiFamilyListQuery,
-} from '../../api';
-import { ApiCreateFamilyDocument, ApiFamilyListDocument } from '../../api';
+} from '../../../api';
+import { ApiCreateFamilyDocument, ApiFamilyListDocument } from '../../../api';
 import { toClientMutationFn } from '../toClientMutationFn';
 
 export interface CreateFamily {

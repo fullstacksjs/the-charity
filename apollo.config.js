@@ -10,6 +10,5 @@ module.exports = {
       },
     },
     includes: ['./libs/data-layer/**/*.graphql', './libs/data-layer/**/*.ts'],
-    excludes: ['./libs/data-layer/operations/__generated__/*.ts'],
   },
 };

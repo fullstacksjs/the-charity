@@ -1,11 +1,11 @@
 import * as Apollo from '@apollo/client';
 
-import type { ApiFamilyQuery, ApiFamilyQueryVariables } from '../../api';
+import type { ApiFamilyQuery, ApiFamilyQueryVariables } from '../../../api';
 import {
   ApiFamilyDocument,
   ApiFamilySeverityEnum,
   ApiFamilyStatusEnum,
-} from '../../api';
+} from '../../../api';
 
 export type SeverityStatus = 'critical' | 'normal';
 export type InformationStatus = 'completed' | 'draft';
