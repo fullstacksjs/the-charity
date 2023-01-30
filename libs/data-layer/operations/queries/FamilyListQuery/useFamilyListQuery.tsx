@@ -4,7 +4,7 @@ import type {
   ApiFamilyListQuery,
   ApiFamilyListQueryVariables,
 } from '../../../api';
-import { ApiFamilyDocument } from '../../../api';
+import { ApiFamilyListDocument } from '../../../api';
 import type { InformationStatus, SeverityStatus } from '../FamilyQuery';
 import { toInformationStatus, toSeverityStatus } from '../FamilyQuery';
 
@@ -37,7 +37,7 @@ export function useFamilyListQuery(
     ApiFamilyListQueryVariables
   >,
 ) {
-  const { data, ...rest } = Apollo.useQuery(ApiFamilyDocument, options);
+  const { data, ...rest } = Apollo.useQuery(ApiFamilyListDocument, options);
 
   return { data: toClient(data), ...rest } as const;
 }
