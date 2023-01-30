@@ -1,13 +1,13 @@
 import React from 'react';
 import { NotificationsProvider } from '@mantine/notifications';
 import {
-  CreateProjectDocument,
-  FamilyDocument,
-  FamilyListDocument,
-  FamilySeverityEnum,
-  FamilyStatusEnum,
-  ProjectListDocument,
-} from '../libs/data-layer';
+  ApiCreateProjectDocument,
+  ApiFamilyDocument,
+  ApiFamilyListDocument,
+  ApiFamilySeverityEnum,
+  ApiFamilyStatusEnum,
+  ApiProjectListDocument,
+} from '../libs/data-layer/api';
 import { MockedProvider } from '@apollo/client/testing';
 import {
   createMemoryHistory,
@@ -32,7 +32,7 @@ export const parameters: Parameters = {
     mocks: [
       {
         request: {
-          query: CreateProjectDocument,
+          query: ApiCreateProjectDocument,
           variables: {
             input: {
               name: 'guy',
@@ -49,7 +49,7 @@ export const parameters: Parameters = {
       },
       {
         request: {
-          query: FamilyDocument,
+          query: ApiFamilyDocument,
           variables: {
             id: undefined,
           },
@@ -59,15 +59,15 @@ export const parameters: Parameters = {
             family_by_pk: {
               code: 'F00001',
               name: 'فول استک زاده',
-              severity: FamilySeverityEnum.Critical,
-              status: FamilyStatusEnum.Completed,
+              severity: ApiFamilySeverityEnum.Critical,
+              status: ApiFamilyStatusEnum.Completed,
             },
           },
         },
       },
       {
         request: {
-          query: FamilyListDocument,
+          query: ApiFamilyListDocument,
         },
         result: {
           data: {
@@ -77,7 +77,7 @@ export const parameters: Parameters = {
       },
       {
         request: {
-          query: ProjectListDocument,
+          query: ApiProjectListDocument,
         },
         result: {
           data: {
