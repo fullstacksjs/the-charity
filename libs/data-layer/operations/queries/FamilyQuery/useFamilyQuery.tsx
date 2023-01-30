@@ -1,4 +1,4 @@
-import Apollo from '@apollo/client';
+import * as Apollo from '@apollo/client';
 
 import type { ApiFamilyQuery, ApiFamilyQueryVariables } from '../../api';
 import {
