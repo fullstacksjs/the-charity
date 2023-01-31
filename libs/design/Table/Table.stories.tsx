@@ -3,6 +3,7 @@ import { type ComponentMeta, type ComponentStory } from '@storybook/react';
 
 import { FamilyTableRow } from '../../../app/components/FamilyList/FamilyTableRow';
 import { ApiFamilyList } from '../../../app/fixtures/ApiFamilyList';
+import { toInformationStatus, toSeverityStatus } from '../../data-layer';
 import { Table } from './Table';
 
 export default {
@@ -19,7 +20,12 @@ Default.args = {
   rows: ApiFamilyList.map((info, i) => (
     <FamilyTableRow
       key={Object.values(info).join('-')}
-      family={info}
+      family={{
+        id: info.id,
+        informationStatus: toInformationStatus(info.status),
+        severityStatus: toSeverityStatus(info.severity),
+        name: info.name,
+      }}
       order={i + 1}
     />
   )),
