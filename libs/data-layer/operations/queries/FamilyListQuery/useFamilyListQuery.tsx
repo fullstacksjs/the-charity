@@ -38,6 +38,7 @@ export function useFamilyListQuery(
   >,
 ) {
   const { data, ...rest } = Apollo.useQuery(ApiFamilyListDocument, options);
+  console.log('data', data);
 
   return { data: toClient(data), ...rest } as const;
 }

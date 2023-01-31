@@ -16,7 +16,7 @@ import {
 } from '@tanstack/react-location';
 import { ThemeProvider } from '../libs/design';
 import { DecoratorFn, Parameters } from '@storybook/react';
-import { shortFamiliesInfo } from '../app/fixtures/shortFamiliesInfo';
+import { ApiFamilyList } from '../app/fixtures/ApiFamilyList';
 
 export const parameters: Parameters = {
   actions: { argTypesRegex: '^on[A-Z].*' },
@@ -71,7 +71,7 @@ export const parameters: Parameters = {
         },
         result: {
           data: {
-            family: shortFamiliesInfo,
+            family: ApiFamilyList,
           },
         },
       },
