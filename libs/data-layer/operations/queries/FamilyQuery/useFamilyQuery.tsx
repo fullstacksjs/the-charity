@@ -43,6 +43,7 @@ const toClient = (data: ApiFamilyQuery | null | undefined): Family | null =>
         },
       };
 
+// FIXME: Let's create a custom useQuery
 export function useFamilyQuery(
   options: Apollo.QueryHookOptions<ApiFamilyQuery, ApiFamilyQueryVariables>,
 ) {

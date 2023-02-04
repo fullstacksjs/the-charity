@@ -1,20 +1,34 @@
-import * as Apollo from '@apollo/client';
+import { gql, MutationHookOptions } from '@apollo/client';
+import { Family } from '@camp/domain';
+
+// Custom hook which handles the mapping and cache
 
 import type {
   ApiCreateFamilyMutation,
   ApiCreateFamilyMutationVariables,
   ApiFamilyListQuery,
-} from '../../../api';
-import { ApiCreateFamilyDocument, ApiFamilyListDocument } from '../../../api';
-import { toClientMutationFn } from '../toClientMutationFn';
+} from '../../api';
+import { ApiFamilyListDocument } from '../../api';
+import { useMutation } from './useMutation';
+
+const Document = gql`
+  mutation CreateFamily($name: String!) {
+    insert_family_one(object: { name: $name }) {
+      id
+      code
+      name
+    }
+  }
+`;
 
 export interface CreateFamily {
-  family: { id: string; code?: string | null; name: string };
+  family: Pick<Family, 'code' | 'id' | 'name'>;
 }
 
 const toClient = (
   data: ApiCreateFamilyMutation | null | undefined,
 ): CreateFamily | null =>
+  // @ts-ignore
   data?.insert_family_one == null
     ? null
     : {
@@ -26,14 +40,16 @@ const toClient = (
       };
 
 export function useCreateFamilyMutation(
-  options?: Apollo.MutationHookOptions<
+  options?: MutationHookOptions<
     ApiCreateFamilyMutation,
     ApiCreateFamilyMutationVariables
   >,
 ) {
-  const [m, { data, ...rest }] = Apollo.useMutation(ApiCreateFamilyDocument, {
+  return useMutation(Document, {
     ...options,
-    update(cache, { data: families }) {
+    mapper: toClient,
+    update(cache, result, opts) {
+      const { data: families } = result;
       const newFamilies = families?.insert_family_one;
       const prevFamiliesQuery = cache.readQuery<ApiFamilyListQuery>({
         query: ApiFamilyListDocument,
@@ -47,11 +63,8 @@ export function useCreateFamilyMutation(
           },
         });
       }
+
+      return options?.update?.(cache, result, opts)
     },
   });
-
-  return [
-    toClientMutationFn(m, toClient),
-    { data: toClient(data), ...rest },
-  ] as const;
 }

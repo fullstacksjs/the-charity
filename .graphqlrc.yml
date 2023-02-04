@@ -8,7 +8,7 @@ schema:
       headers:
         x-hasura-admin-secret: ${HASURA_ADMIN_SECRET}
 
-documents: './libs/data-layer/operations/**/*.graphql'
+documents: './libs/data-layer/operations/**/*.ts'
 extensions:
   codegen:
     emitLegacyCommonJSImports: false
@@ -19,8 +19,6 @@ extensions:
           - add:
               content: *HEADER
           - typescript
-          - typescript-operations
-          - typescript-react-apollo
         config:
           useTypeImports: true
           withHooks: false

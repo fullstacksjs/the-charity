@@ -1,13 +1,25 @@
-import * as Apollo from '@apollo/client';
+import type { MutationHookOptions } from '@apollo/client';
+import { gql } from '@apollo/client';
 
 import type {
   ApiCreateProjectMutation,
   ApiCreateProjectMutationVariables,
   ApiProjectListQuery,
   ApiProjectStatusEnum,
-} from '../../../api';
-import { ApiCreateProjectDocument, ApiProjectListDocument } from '../../../api';
-import { toClientMutationFn } from '../toClientMutationFn';
+} from '../../api';
+import { ApiProjectListDocument } from '../../api';
+import { useMutation } from './useMutation';
+
+const Document = gql`
+  mutation CreateProject($input: project_insert_input!) {
+    insert_project_one(object: $input) {
+      id
+      name
+      description
+      status
+    }
+  }
+`;
 
 export interface CreateProject {
   project: {
@@ -33,13 +45,14 @@ const toClient = (
       };
 
 export function useCreateProjectMutation(
-  options?: Apollo.MutationHookOptions<
+  options?: MutationHookOptions<
     ApiCreateProjectMutation,
     ApiCreateProjectMutationVariables
   >,
 ) {
-  const [m, { data, ...rest }] = Apollo.useMutation(ApiCreateProjectDocument, {
+  return useMutation(Document, {
     ...options,
+    mapper: toClient,
     update(cache, { data: project }) {
       const newProject = project?.insert_project_one;
       const prevProjects = cache.readQuery<ApiProjectListQuery>({
@@ -58,9 +71,4 @@ export function useCreateProjectMutation(
       }
     },
   });
-
-  return [
-    toClientMutationFn(m, toClient),
-    { data: toClient(data), ...rest },
-  ] as const;
 }
