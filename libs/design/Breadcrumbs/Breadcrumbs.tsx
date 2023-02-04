@@ -1,4 +1,5 @@
 import { ChevronLeftIcon, HomeIcon } from '@camp/icons';
+import type { AppRoute } from '@camp/router';
 import { Link } from '@camp/router';
 import { joinPath } from '@fullstacksjs/toolbox';
 import type { Styles } from '@mantine/core';

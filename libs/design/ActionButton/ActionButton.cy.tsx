@@ -3,7 +3,7 @@ import { ActionButton } from './ActionButton';
 const menuId = 'menu-id';
 const menuButtonId = 'button-id';
 
-describe('Table', () => {
+describe('ActionButton', () => {
   beforeEach(() => {
     cy.mount(
       <ActionButton to="/" menuButtonId={menuButtonId} menuId={menuId} />,

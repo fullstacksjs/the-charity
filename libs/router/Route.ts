@@ -1,5 +1,6 @@
 import type { Route as LocationRoute } from '@tanstack/react-location';
 
+import type { AppRoute } from './AppRoutes';
 import type { LocationGenerics } from './LocationGenerics';
 import type { RouteSegment } from './RouteSegment';
 

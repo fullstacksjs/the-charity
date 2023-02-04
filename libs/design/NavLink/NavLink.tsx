@@ -1,3 +1,4 @@
+import type { AppRoute } from '@camp/router';
 import { Link as TanstackLink, useLocation } from '@camp/router';
 import { createTestAttr } from '@camp/test';
 import type { CSSObject, Sx } from '@mantine/core';
