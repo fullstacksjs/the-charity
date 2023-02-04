@@ -18,6 +18,7 @@ dist-ssr
 .env.prod*
 
 # Editor directories and files
+.deadcodes/
 .vscode/*
 !.vscode/extensions.json
 .idea

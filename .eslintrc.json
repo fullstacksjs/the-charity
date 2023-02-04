@@ -12,76 +12,13 @@
   },
   "extends": [
     "@fullstacksjs",
+    "@fullstacksjs/eslint-config/esm",
     "@fullstacksjs/eslint-config/typecheck",
     "@fullstacksjs/eslint-config/graphql"
   ],
   "rules": {
-    "import/extensions": [
-      "error",
-      {
-        "mjs": "never"
-      }
-    ],
-    "jest/no-deprecated-functions": "off",
-
     // NOTE: https://github.com/jsx-eslint/eslint-plugin-react/blob/master/docs/rules/no-unused-prop-types.md#known-issueslimitations
-    "react/no-unused-prop-types": "off",
-
-    // NOTE: not very helpful
-    "jest/require-hook": "off",
-
-    "@typescript-eslint/no-misused-promises": [
-      "warn",
-      { "checksVoidReturn": { "attributes": false } }
-    ],
-
-    "@typescript-eslint/no-namespace": "off",
-
-    // Let's customize this rule
-    "@typescript-eslint/naming-convention": [
-      "warn",
-      { "selector": "default", "format": ["camelCase"] },
-      {
-        "selector": "variable",
-        "format": ["camelCase", "UPPER_CASE", "PascalCase"]
-      },
-      {
-        "selector": "parameter",
-        "format": ["camelCase", "PascalCase"],
-        "leadingUnderscore": "allow"
-      },
-      {
-        "selector": "memberLike",
-        "modifiers": ["private"],
-        "format": ["camelCase"],
-        "leadingUnderscore": "allow"
-      },
-      {
-        "selector": "memberLike",
-        "format": null
-      },
-      { "selector": "typeLike", "format": ["PascalCase"] },
-      {
-        "selector": "interface",
-        "format": ["PascalCase"],
-        "custom": { "regex": "^I[A-Z]", "match": false }
-      },
-      {
-        "selector": "variable",
-        "types": ["boolean"],
-        "format": ["PascalCase"],
-        "prefix": [
-          "is",
-          "should",
-          "has",
-          "can",
-          "did",
-          "will",
-          "enable",
-          "loading"
-        ]
-      }
-    ]
+    "react/no-unused-prop-types": "off"
   },
   "overrides": [
     {
@@ -93,7 +30,6 @@
     {
       "files": ["./**/*.stories.tsx", "./**/*.cy.tsx"],
       "rules": {
-        "react/jsx-no-constructed-context-values": ["off"],
         "@typescript-eslint/no-confusing-void-expression": ["off"]
       }
     }

@@ -44,7 +44,7 @@
   "devDependencies": {
     "@babel/core": "7.20.12",
     "@faker-js/faker": "7.6.0",
-    "@fullstacksjs/eslint-config": "8.10.0",
+    "@fullstacksjs/eslint-config": "8.13.0",
     "@fullstacksjs/tsconfig": "1.0.0",
     "@graphql-codegen/add": "3.2.3",
     "@graphql-codegen/cli": "2.16.4",
@@ -82,6 +82,7 @@
     "jsdom": "21.1.0",
     "lint-staged": "13.1.0",
     "prettier": "2.8.3",
+    "rollup": "3.13.0",
     "storybook-addon-apollo-client": "4.0.13",
     "typescript": "4.9.4",
     "vite": "4.0.4",

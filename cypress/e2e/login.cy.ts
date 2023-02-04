@@ -2,7 +2,7 @@ import { AppRoute } from '../../libs/router/AppRoutes';
 import { admin } from '../fixtures/admin';
 
 describe('Login', () => {
-  it.skip('should be redirected to the dashboard page after successful login', () => {
+  it('should be redirected to the dashboard page after successful login', () => {
     cy.visit(AppRoute.login);
     cy.get('button').click();
 

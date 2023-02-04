@@ -2,7 +2,7 @@ import { createProjectButtonId } from '../../app/components/CreateProject/Projec
 import { createProjectFormIds } from '../../app/components/CreateProject/ProjectForm/CreateProjectForm.ids';
 import { dashboardHeaderId } from '../../libs/design/Header/DashboardHeader.ids';
 import { navLinkIds } from '../../libs/design/Sidebar/Sidebar.ids';
-import { AppRoute } from '../../libs/router';
+import { AppRoute } from '../../libs/router/AppRoutes';
 import { admin } from '../fixtures/admin';
 import { projectFixture } from '../fixtures/family';
 

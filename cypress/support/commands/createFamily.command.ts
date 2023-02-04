@@ -1,7 +1,7 @@
 import { createFamilyButtonId } from '../../../app/components/CreateFamily/FamilyButton/CreateFamilyButton.ids';
 import { createFamilyFormIds } from '../../../app/components/CreateFamily/FamilyForm/CreateFamilyForm.ids';
 import { dashboardHeaderId } from '../../../libs/design/Header/DashboardHeader.ids';
-import { AppRoute } from '../../../libs/router';
+import { AppRoute } from '../../../libs/router/index';
 
 Cypress.Commands.add('createFamily', name => {
   cy.visit(AppRoute.families);
