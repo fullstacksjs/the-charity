@@ -1,6 +1,6 @@
 import { noop } from '@fullstacksjs/toolbox';
 import { ModalsProvider } from '@mantine/modals';
-import type { ComponentMeta, ComponentStory } from '@storybook/react';
+import { type ComponentMeta, type ComponentStory } from '@storybook/react';
 
 import { LogoutConfirm } from './LogoutConfirm';
 import { openLogoutModal } from './LogoutModal';

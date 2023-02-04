@@ -14,7 +14,9 @@ describe('Create Family Form', () => {
 
   it('should contains text input to enter family name', () => {
     cy.get('form').within(() => {
-      cy.findByTestId(createFamilyFormIds.nameInput).should('match', 'input');
+      cy.findByTestId(createFamilyFormIds.nameInput)
+        .find('input')
+        .should('match', 'input');
     });
   });
 
@@ -28,7 +30,9 @@ describe('Create Family Form', () => {
 
   it('should not show a required error message when family name is not empty', () => {
     cy.get('form').within(() => {
-      cy.findByTestId(createFamilyFormIds.nameInput).type('مرادی');
+      cy.findByTestId(createFamilyFormIds.nameInput)
+        .find('input')
+        .type('مرادی');
       cy.root().submit();
       cy.findByText(`/${requiredFieldMsg}/`).should('not.exist');
     });
@@ -37,27 +41,35 @@ describe('Create Family Form', () => {
   it('should show a required error message when family name is empty', () => {
     cy.get('form').within(() => {
       cy.root().submit();
-      cy.findByRole('alert').should('have.text', requiredFieldMsg);
+      cy.findByTestId(createFamilyFormIds.nameInput)
+        .findByRole('alert')
+        .should('have.text', requiredFieldMsg);
     });
   });
 
   it('should show an error message when family name is less than min length', () => {
     cy.get('form').within(() => {
-      cy.findByTestId(createFamilyFormIds.nameInput).type('م');
-      cy.findByRole('alert').should('have.text', minLengthMsg);
+      cy.findByTestId(createFamilyFormIds.nameInput).find('input').type('م');
+      cy.findByTestId(createFamilyFormIds.nameInput)
+        .findByRole('alert')
+        .should('have.text', minLengthMsg);
     });
   });
 
   it('should not show an error message when family name is more than or equal min length', () => {
     cy.get('form').within(() => {
-      cy.findByTestId(createFamilyFormIds.nameInput).type('مرادی');
+      cy.findByTestId(createFamilyFormIds.nameInput)
+        .find('input')
+        .type('مرادی');
       cy.findByText(`/${minLengthMsg}/`).should('not.exist');
     });
   });
 
   it('should submit when all required fields fill correctly', () => {
     cy.get('form').within(() => {
-      cy.findByTestId(createFamilyFormIds.nameInput).type('مرادی');
+      cy.findByTestId(createFamilyFormIds.nameInput)
+        .find('input')
+        .type('مرادی');
       cy.findByText(`/${minLengthMsg}/`).should('not.exist');
       cy.root().submit();
     });

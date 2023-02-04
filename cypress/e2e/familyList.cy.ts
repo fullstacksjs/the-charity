@@ -1,6 +1,6 @@
 import { familyListFailureNotification } from '../../app/components/FamilyList/FamilyList.ids';
 import { navLinkIds } from '../../libs/design/Sidebar/Sidebar.ids';
-import { AppRoute } from '../../libs/router';
+import { AppRoute } from '../../libs/router/AppRoutes';
 import { admin } from '../fixtures/admin';
 import { familyFixture } from '../fixtures/project';
 
@@ -17,7 +17,7 @@ describe('Family List', () => {
     );
   });
 
-  it.only('newly added family should be visible in familyTable', () => {
+  it('newly added family should be visible in familyTable', () => {
     const familyName = familyFixture.name();
     cy.createFamily(familyName);
     cy.findByText(familyName).should('exist');

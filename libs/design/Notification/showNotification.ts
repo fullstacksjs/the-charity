@@ -1,5 +1,5 @@
-import type { MantineThemeColors } from '@mantine/core';
-import type { NotificationProps } from '@mantine/notifications';
+import { type MantineThemeColors } from '@mantine/core';
+import { type NotificationProps } from '@mantine/notifications';
 import { showNotification as mantineShowNotification } from '@mantine/notifications';
 
 export type NotificationType = 'failure' | 'success';

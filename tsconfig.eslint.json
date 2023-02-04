@@ -1,13 +1,7 @@
 {
   "extends": "./tsconfig.json",
-  "include": [
-    "libs",
-    "app",
-    "configs/vite",
-    "cypress.config.ts",
-    "vite.config.ts",
-    "cypress",
-    "@types",
-    "apollo.config.js"
-  ]
+  "compilerOptions": {
+    "composite": true
+  },
+  "include": ["**/*.ts", "**/*.tsx"]
 }

@@ -53,21 +53,23 @@ describe('Create Project Form', () => {
 
   it('should not show a required error message when Project name is not empty', () => {
     cy.get('form').within(() => {
-      cy.findByTestId(createProjectFormIds.nameInput).type('نام');
+      cy.findByTestId(createProjectFormIds.nameInput).find('input').type('نام');
       cy.findByText(`/${requiredFieldMsg}/`).should('not.exist');
     });
   });
 
   it('should show an error message when Project name is less than min length', () => {
     cy.get('form').within(() => {
-      cy.findByTestId(createProjectFormIds.nameInput).type('ن');
-      cy.findByRole('alert').should('have.text', minLengthMsg);
+      cy.findByTestId(createProjectFormIds.nameInput).find('input').type('ن');
+      cy.findByTestId(createProjectFormIds.nameInput)
+        .findByRole('alert')
+        .should('have.text', minLengthMsg);
     });
   });
 
   it('should not show an error message when Project name is more than or equal min length', () => {
     cy.get('form').within(() => {
-      cy.findByTestId(createProjectFormIds.nameInput).type('نام');
+      cy.findByTestId(createProjectFormIds.nameInput).find('input').type('نام');
       cy.findByText(`/${minLengthMsg}/`).should('not.exist');
     });
   });
@@ -81,7 +83,7 @@ describe('Create Project Form', () => {
 
   it('should not have a disabled submit button when form is valid', () => {
     cy.get('form').within(() => {
-      cy.findByTestId(createProjectFormIds.nameInput).type('نام');
+      cy.findByTestId(createProjectFormIds.nameInput).find('input').type('نام');
       cy.findByTestId(createProjectFormIds.descriptionInput).type(
         'توضیح کوتاه',
       );

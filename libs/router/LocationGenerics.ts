@@ -1,4 +1,4 @@
-import type { MakeGenerics } from '@tanstack/react-location';
+import { type MakeGenerics } from '@tanstack/react-location';
 
 export type LocationGenerics = MakeGenerics<{
   Params: {

@@ -1,6 +1,4 @@
 {
-  "extends": "../tsconfig.eslint.json",
-  "exclude": [],
   "compilerOptions": {
     "types": ["cypress", "@testing-library/cypress"],
     "target": "ES6",

@@ -7,7 +7,7 @@ import {
 } from '@fullstacksjs/toolbox';
 import basicSsl from '@vitejs/plugin-basic-ssl';
 import react from '@vitejs/plugin-react';
-import type { UserConfig } from 'vite';
+import { type UserConfig } from 'vite';
 import { defineConfig } from 'vite';
 import checker from 'vite-plugin-checker';
 import svgr from 'vite-plugin-svgr';
@@ -43,6 +43,7 @@ export const config = ({ https = true }: Options = {}): UserConfig => ({
   test: {
     environment: 'jsdom',
     globals: true,
+    setupFiles: ['./configs/vitest/setup.ts'],
   },
   envPrefix: 'APP',
 });

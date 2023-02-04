@@ -3,7 +3,7 @@ import { FamilySeverityEnum, FamilyStatusEnum } from '@camp/data-layer';
 /* FIXME
   the place that this file is needs a rethink
 */
-import type { ShortFamiliesInfo } from '../components/FamilyList/toShortFamilyInfoTableRows';
+import { type ShortFamiliesInfo } from '../components/FamilyList/toShortFamilyInfoTableRows';
 
 export const shortFamiliesInfo: ShortFamiliesInfo = [
   {

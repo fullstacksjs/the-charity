@@ -1,4 +1,4 @@
-import type { ProjectListQuery } from '@camp/data-layer';
+import { type ProjectListQuery } from '@camp/data-layer';
 import {
   ProjectListDocument,
   useCreateProjectMutation,
@@ -95,7 +95,7 @@ export const CreateProjectForm = ({ dismiss }: Props) => {
             size="sm"
             error={errors.name?.message}
             {...register('name')}
-            {...createTestAttr(ids.nameInput)}
+            wrapperProps={createTestAttr(ids.nameInput)}
           />
           <Textarea
             placeholder={
@@ -104,7 +104,7 @@ export const CreateProjectForm = ({ dismiss }: Props) => {
             label={messages.projects.createForm.descriptionInput.label}
             error={errors.description?.message}
             {...register('description')}
-            {...createTestAttr(ids.descriptionInput)}
+            wrapperProps={createTestAttr(ids.descriptionInput)}
           />
         </Stack>
         <Group spacing={20}>

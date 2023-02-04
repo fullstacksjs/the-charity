@@ -20,10 +20,4 @@ describe('Authorization', () => {
     cy.visit(AppRoute.projects);
     cy.location('pathname').should('eq', AppRoute.projects);
   });
-
-  it('should be able to go to protected routes after logging in', () => {
-    cy.login(admin);
-    cy.visit(AppRoute.projects);
-    cy.location('pathname').should('eq', AppRoute.projects);
-  });
 });

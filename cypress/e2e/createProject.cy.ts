@@ -18,9 +18,9 @@ describe('Create Project', () => {
 
   it('[OK]: Admin creates project', () => {
     cy.get('form').within(() => {
-      cy.findByTestId(createProjectFormIds.nameInput).type(
-        projectFixture.name(),
-      );
+      cy.findByTestId(createProjectFormIds.nameInput)
+        .find('input')
+        .type(projectFixture.name());
       cy.findByTestId(createProjectFormIds.descriptionInput).type(
         projectFixture.description(),
       );
@@ -33,7 +33,7 @@ describe('Create Project', () => {
 
   it('[NOK]: Admin wants to create a project with short name', () => {
     cy.get('form').within(() => {
-      cy.findByTestId(createProjectFormIds.nameInput).type('ab');
+      cy.findByTestId(createProjectFormIds.nameInput).find('input').type('ab');
       cy.findByTestId(createProjectFormIds.submitBtn).should('be.disabled');
     });
   });

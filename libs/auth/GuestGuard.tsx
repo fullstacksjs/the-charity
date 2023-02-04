@@ -6,8 +6,10 @@ interface Props {
   to?: AppRoute;
 }
 
+const defaultChildren = <Outlet />;
+
 export const GuestGuard = ({
-  children = <Outlet />,
+  children = defaultChildren,
   to = AppRoute.dashboard,
 }: Props) => {
   const { isAuthenticated } = useAuth0();

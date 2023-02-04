@@ -1,4 +1,4 @@
-import type { FamilyListQuery } from '@camp/data-layer';
+import { type FamilyListQuery } from '@camp/data-layer';
 import { FamilyListDocument, useCreateFamilyMutation } from '@camp/data-layer';
 import { showNotification } from '@camp/design';
 import { createResolver, familySchema } from '@camp/domain';
@@ -82,8 +82,8 @@ export const CreateFamilyForm = ({ dismiss }: Props) => {
           description={nameInput.description}
           size="sm"
           error={formState.errors.name?.message}
+          wrapperProps={createTestAttr(ids.nameInput)}
           {...register('name')}
-          {...createTestAttr(ids.nameInput)}
         />
         <Group spacing={20}>
           <Button

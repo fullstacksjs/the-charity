@@ -1,4 +1,4 @@
-import type { MantineColor } from '@mantine/core';
+import { type MantineColor } from '@mantine/core';
 
 export type BadgeStatus = 'COMPLETED' | 'CRITICAL' | 'DRAFT' | 'NORMAL';
 

@@ -8,9 +8,10 @@ on:
     branches:
       - dev
 
+concurrency: ci-${{ github.ref }}
+
 jobs:
   verify:
-    concurrency: ci-${{ github.ref }}
     runs-on: ubuntu-latest
     timeout-minutes: 10
 
@@ -34,7 +35,6 @@ jobs:
         run: npm run test:ci
 
   chromatic:
-    concurrency: ci-${{ github.ref }}
     runs-on: ubuntu-latest
     timeout-minutes: 10
 
@@ -66,7 +66,6 @@ jobs:
           exitZeroOnChanges: true # NOTE: Option to prevent the workflow from failing
 
   cypress-run:
-    concurrency: ci-${{ github.ref }}
     runs-on: ubuntu-latest
     timeout-minutes: 20
 
@@ -102,5 +101,4 @@ jobs:
         with:
           install: false
           component: true
-          PORT: 3003
           browser: chrome
