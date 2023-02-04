@@ -7,7 +7,7 @@ describe('Login', () => {
     cy.get('button').click();
 
     cy.origin(
-      'https://dev-jxuskaag.us.auth0.com/',
+      `https://${Cypress.env('APP_AUTH0_DOMAIN')}/`,
       { args: admin } as const,
       ({ username, password }) => {
         cy.get('#username').type(username);

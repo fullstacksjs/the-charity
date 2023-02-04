@@ -13,6 +13,7 @@ export default defineConfig({
     projectId: '8jt3ix',
     video: getBooleanEnv('CYPRESS_RECORD_VIDEO', true),
     videoUploadOnPasses: false,
+    defaultCommandTimeout: 10000,
     env: {
       APP_AUTH0_AUDIENCE: getEnv('APP_AUTH0_AUDIENCE'),
       APP_AUTH0_DOMAIN: getEnv('APP_AUTH0_DOMAIN'),
