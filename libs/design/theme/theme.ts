@@ -1,4 +1,4 @@
-import { type MantineThemeOverride } from '@mantine/core';
+import { type MantineTheme, type MantineThemeOverride } from '@mantine/core';
 
 import { toMantineColors } from './themeUtils';
 
@@ -75,6 +75,13 @@ export const theme: MantineThemeOverride = {
   primaryColor: 'indigo',
   defaultRadius: 'sm',
   components: {
+    TextInput: {
+      defaultProps: {
+        errorProps: {
+          role: 'alert',
+        },
+      },
+    },
     Modal: {
       styles: {
         modal: {

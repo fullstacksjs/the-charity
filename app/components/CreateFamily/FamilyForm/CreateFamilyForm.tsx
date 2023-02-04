@@ -82,8 +82,8 @@ export const CreateFamilyForm = ({ dismiss }: Props) => {
           description={nameInput.description}
           size="sm"
           error={formState.errors.name?.message}
+          wrapperProps={createTestAttr(ids.nameInput)}
           {...register('name')}
-          {...createTestAttr(ids.nameInput)}
         />
         <Group spacing={20}>
           <Button
