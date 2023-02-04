@@ -1,4 +1,4 @@
-import type { Tuple } from '@mantine/core';
+import { type Tuple } from '@mantine/core';
 
 export type MantineColor = [
   ...Tuple<undefined, 6>,

@@ -1,4 +1,4 @@
-import type { FamilyListQuery } from '@camp/data-layer';
+import { type FamilyListQuery } from '@camp/data-layer';
 import { FamilyListDocument, useCreateFamilyMutation } from '@camp/data-layer';
 import { showNotification } from '@camp/design';
 import { createResolver, familySchema } from '@camp/domain';

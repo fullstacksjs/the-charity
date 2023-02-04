@@ -1,4 +1,4 @@
-import type { ProjectListQuery } from '@camp/data-layer';
+import { type ProjectListQuery } from '@camp/data-layer';
 import {
   ProjectListDocument,
   useCreateProjectMutation,

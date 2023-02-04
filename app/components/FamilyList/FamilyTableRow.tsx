@@ -4,7 +4,7 @@ import { Group } from '@mantine/core';
 
 import * as ids from './FamilyTableRow.ids';
 // FIXME remove this after adding custom data-layer hooks
-import type { ShortFamilyInfoTableRow } from './toShortFamilyInfoTableRows';
+import { type ShortFamilyInfoTableRow } from './toShortFamilyInfoTableRows';
 
 interface Props {
   shortFamilyInfoTableRow: ShortFamilyInfoTableRow;

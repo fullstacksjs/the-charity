@@ -1,4 +1,4 @@
-import type { FamilyQuery } from '@camp/data-layer';
+import { type FamilyQuery } from '@camp/data-layer';
 import { useFamilyQuery } from '@camp/data-layer';
 import { DetailCard, FullPageLoader, showNotification } from '@camp/design';
 import { errorMessages, messages } from '@camp/messages';
@@ -6,7 +6,10 @@ import { useParams } from '@camp/router';
 import { isNull } from '@fullstacksjs/toolbox';
 
 // FIXME: these should be moved to data-layer
-import type { InformationStatus, SeverityStatus } from '../../../../components';
+import {
+  type InformationStatus,
+  type SeverityStatus,
+} from '../../../../components';
 import { toInformationStatus, toSeverityStatus } from '../../../../components';
 
 interface FamilyDetail {

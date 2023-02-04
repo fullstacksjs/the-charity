@@ -1,4 +1,4 @@
-import type { AppRoute } from '../../../libs/router/AppRoutes';
+import { type AppRoute } from '../../../libs/router/AppRoutes';
 import { buildUrl } from '../../../libs/router/buildUrl';
 
 Cypress.Commands.overwrite('visit', (visit, url, options) => {

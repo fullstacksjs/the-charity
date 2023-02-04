@@ -1,6 +1,6 @@
 import { MenuIcon } from '@camp/icons';
 import { messages } from '@camp/messages';
-import type { AppRoute, PathParams } from '@camp/router';
+import { type AppRoute, type PathParams } from '@camp/router';
 import { Link } from '@camp/router';
 import { createTestAttr } from '@camp/test';
 import { ActionIcon, Menu } from '@mantine/core';

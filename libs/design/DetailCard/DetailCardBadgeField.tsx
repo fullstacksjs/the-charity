@@ -1,6 +1,6 @@
 import { Box, Space, Title } from '@mantine/core';
 
-import type { BadgeProps } from '../Badge';
+import { type BadgeProps } from '../Badge';
 import { Badge } from '../Badge';
 
 interface Props extends BadgeProps {

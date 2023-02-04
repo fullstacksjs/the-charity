@@ -1,6 +1,6 @@
 import { Stack } from '@mantine/core';
 
-import type { NavLinkProps } from './NavLink';
+import { type NavLinkProps } from './NavLink';
 import { NavLink } from './NavLink';
 
 interface NavLinksProps {

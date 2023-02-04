@@ -1,9 +1,9 @@
-import type { Family } from '@camp/data-layer';
+import { type Family } from '@camp/data-layer';
 import { messages } from '@camp/messages';
 
-import type { InformationStatus } from './InformationStatus';
+import { type InformationStatus } from './InformationStatus';
 import { toInformationStatus } from './InformationStatus';
-import type { SeverityStatus } from './SeverityStatus';
+import { type SeverityStatus } from './SeverityStatus';
 import { toSeverityStatus } from './SeverityStatus';
 
 export const t = messages.families.list.table;

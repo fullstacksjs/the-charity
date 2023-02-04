@@ -1,5 +1,5 @@
 import { Button, Title } from '@mantine/core';
-import type { ComponentMeta, ComponentStory } from '@storybook/react';
+import { type ComponentMeta, type ComponentStory } from '@storybook/react';
 
 import { DashboardCard } from './DashboardCard';
 

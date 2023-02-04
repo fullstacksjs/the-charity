@@ -1,4 +1,4 @@
-import type { ServerError } from '@camp/domain';
+import { type ServerError } from '@camp/domain';
 
 export const errorMessages: Record<ServerError, string> = {
   INTERNAL_SERVER: 'خطا در ارتباط با سرور. لطفا دوباره تلاش کنید.',

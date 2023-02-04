@@ -1,6 +1,6 @@
 import { Global } from '@mantine/core';
 
-import type { FontFace } from './themeUtils';
+import { type FontFace } from './themeUtils';
 import { mkFontFace } from './themeUtils';
 
 const iranSansFaNumber: FontFace[] = [
