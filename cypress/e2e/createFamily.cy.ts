@@ -22,23 +22,12 @@ describe('Create Family', () => {
   });
 
   it('should close modal after success', () => {
-    cy.findByTestId(createFamilyFormIds.form).within(() => {
-      cy.findByTestId(createFamilyFormIds.nameInput)
-        .type(familyFixture.name())
-        .then(() => {
-          cy.root().submit();
-        });
-    });
-
+    cy.createFamily(familyFixture.name());
     cy.findByTestId(createFamilyModalId, { timeout: 1e4 }).should('not.exist');
   });
 
   it('should show result after success', () => {
-    cy.findByTestId(createFamilyFormIds.form).within(() => {
-      cy.findByTestId(createFamilyFormIds.nameInput).type(familyFixture.name());
-      cy.findByTestId(createFamilyFormIds.submitBtn).click();
-    });
-
+    cy.createFamily(familyFixture.name());
     cy.findByTestId(createFamilyFormIds.notification.success, {
       timeout: 1e4,
     }).should('exist');
