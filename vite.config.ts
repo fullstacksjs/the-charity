@@ -43,6 +43,7 @@ export const config = ({ https = true }: Options = {}): UserConfig => ({
   test: {
     environment: 'jsdom',
     globals: true,
+    setupFiles: ['./configs/vitest/setup.ts'],
   },
   envPrefix: 'APP',
 });
