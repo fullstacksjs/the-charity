@@ -102,5 +102,4 @@ jobs:
         with:
           install: false
           component: true
-          PORT: 3003
           browser: chrome
