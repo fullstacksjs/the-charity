@@ -1,5 +1,5 @@
-import type { InformationStatus } from '@camp/data-layer';
 import { Badge } from '@camp/design';
+import { type InformationStatus } from '@camp/domain';
 import { messages } from '@camp/messages';
 
 interface Props {

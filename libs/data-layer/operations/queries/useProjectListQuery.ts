@@ -1,10 +1,11 @@
-import * as Apollo from '@apollo/client';
+import type * as Apollo from '@apollo/client';
 import { gql } from '@apollo/client';
 
 import {
   type ApiProjectListQuery,
   type ApiProjectListQueryVariables,
 } from '../../api';
+import { useQuery } from './useQuery';
 
 const Document = gql`
   query ProjectList($offset: Int, $limit: Int) {
@@ -38,13 +39,9 @@ const toClient = (
         })),
 });
 
-export function useProjectListQuery(
+export const useProjectListQuery = (
   options?: Apollo.QueryHookOptions<
     ApiProjectListQuery,
     ApiProjectListQueryVariables
   >,
-) {
-  const { data, ...rest } = Apollo.useQuery(Document, options);
-
-  return { data: toClient(data), ...rest } as const;
-}
+) => useQuery(Document, { ...options, mapper: toClient });

@@ -1,4 +1,4 @@
-import type { FamilyListItem } from '@camp/data-layer';
+import { type FamilyListItemDto } from '@camp/data-layer';
 import { ActionButton } from '@camp/design';
 import { AppRoute, useNavigate } from '@camp/router';
 import { Group } from '@mantine/core';
@@ -9,7 +9,7 @@ import * as ids from './FamilyTableRow.ids';
 
 interface Props {
   order: number;
-  family: FamilyListItem;
+  family: FamilyListItemDto;
 }
 
 export const FamilyTableRow = ({ order, family }: Props) => {

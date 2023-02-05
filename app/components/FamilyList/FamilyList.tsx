@@ -18,7 +18,7 @@ import { FamilyTableRow } from './FamilyTableRow';
 export const FamilyList = () => {
   const t = messages.families.list;
   const { data, loading, error } = useFamilyListQuery();
-  const families = data.families;
+  const families = data?.families;
 
   if (error) {
     showNotification({

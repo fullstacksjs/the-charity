@@ -1,4 +1,4 @@
-import * as Apollo from '@apollo/client';
+import type * as Apollo from '@apollo/client';
 import { gql } from '@apollo/client';
 import { type Family } from '@camp/domain';
 
@@ -7,6 +7,7 @@ import {
   type ApiFamilyListQueryVariables,
 } from '../../api';
 import { toInformationStatus, toSeverityStatus } from './useFamilyQuery';
+import { useQuery } from './useQuery';
 
 const Document = gql`
   query FamilyList {
@@ -19,8 +20,12 @@ const Document = gql`
   }
 `;
 
+export type FamilyListItemDto = Pick<
+  Family,
+  'id' | 'informationStatus' | 'name' | 'severityStatus'
+>;
 export interface FamilyListDto {
-  families: Pick<Family, 'id' | 'information' | 'name' | 'severity'>[];
+  families: FamilyListItemDto[];
 }
 
 const toClient = (
@@ -32,19 +37,14 @@ const toClient = (
       : data.family.map(f => ({
           id: f.id,
           name: f.name,
-          severity: toSeverityStatus(f.severity),
-          information: toInformationStatus(f.status),
+          severityStatus: toSeverityStatus(f.severity),
+          informationStatus: toInformationStatus(f.status),
         })),
 });
 
-export function useFamilyListQuery(
+export const useFamilyListQuery = (
   options?: Apollo.QueryHookOptions<
     ApiFamilyListQuery,
     ApiFamilyListQueryVariables
   >,
-) {
-  const { data, ...rest } = Apollo.useQuery(Document, options);
-  console.log('data', data);
-
-  return { data: toClient(data), ...rest } as const;
-}
+) => useQuery(Document, { ...options, mapper: toClient });

@@ -17,6 +17,6 @@ export interface Family {
   id: string;
   name: string;
   code: string;
-  severity: SeverityStatus;
-  information: InformationStatus;
+  severityStatus: SeverityStatus;
+  informationStatus: InformationStatus;
 }

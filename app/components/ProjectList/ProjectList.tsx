@@ -19,7 +19,7 @@ export const ProjectList = () => {
   const t = messages.projects.list;
 
   const { data, loading, error } = useProjectListQuery();
-  const projects = data.projects;
+  const projects = data?.projects;
 
   if (error) {
     showNotification({

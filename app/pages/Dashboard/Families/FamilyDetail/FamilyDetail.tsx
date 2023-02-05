@@ -32,10 +32,10 @@ export const FamilyDetail = () => {
       </DetailCard.TextField>
       <DetailCard.BadgeField
         title={t.familyFields.severityStatus.title}
-        badge={<SeverityBadge severity={family.severity} />}
+        badge={<SeverityBadge severity={family.severityStatus} />}
       />
       <DetailCard.BadgeField
-        badge={<InformationBadge information={family.information} />}
+        badge={<InformationBadge information={family.informationStatus} />}
         title={t.familyFields.informationStatus.title}
       />
     </DetailCard>

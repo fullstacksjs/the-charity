@@ -1,4 +1,4 @@
-import * as Apollo from '@apollo/client';
+import type * as Apollo from '@apollo/client';
 import { gql } from '@apollo/client';
 import {
   type Family,
@@ -8,6 +8,7 @@ import {
 
 import { type ApiFamilyQuery, type ApiFamilyQueryVariables } from '../../api';
 import { ApiFamilySeverityEnum, ApiFamilyStatusEnum } from '../../api';
+import { useQuery } from './useQuery';
 
 const Document = gql`
   query Family($id: uuid!) {
@@ -43,16 +44,11 @@ const toClient = (data: ApiFamilyQuery | null | undefined): FamilyDto | null =>
           id: data.family_by_pk.id,
           name: data.family_by_pk.name,
           code: data.family_by_pk.code ?? '',
-          severity: toSeverityStatus(data.family_by_pk.severity),
-          information: toInformationStatus(data.family_by_pk.status),
+          severityStatus: toSeverityStatus(data.family_by_pk.severity),
+          informationStatus: toInformationStatus(data.family_by_pk.status),
         },
       };
 
-// FIXME: Let's create a custom useQuery
-export function useFamilyQuery(
+export const useFamilyQuery = (
   options: Apollo.QueryHookOptions<ApiFamilyQuery, ApiFamilyQueryVariables>,
-) {
-  const { data, ...rest } = Apollo.useQuery(Document, options);
-
-  return { data: toClient(data), ...rest } as const;
-}
+) => useQuery(Document, { ...options, mapper: toClient });
