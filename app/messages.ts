@@ -98,6 +98,54 @@ export const messages = {
       },
     },
   },
+  householder: {
+    householderIdentityForm: {
+      nameInput: {
+        label: 'نام',
+        placeholder: 'برای مثال: محمد',
+      },
+      lastNameInput: {
+        label: 'نام خانوادگی',
+        placeholder: 'برای مثال: علیان',
+      },
+      fatherNameInput: {
+        label: 'نام پدر',
+        placeholder: 'برای مثال: محمد',
+      },
+      nationalityInput: {
+        label: 'ملیت',
+        placeholder: 'برای مثال: ایرانی',
+      },
+      nationalIdInput: {
+        label: 'شماره کارت ملی',
+        placeholder: 'برای مثال: ۰۱۲۳۴۵۶۷۸۹',
+      },
+      ssnInput: {
+        label: 'شماره شناسنامه',
+        placeholder: 'برای مثال: 12345678',
+      },
+      issuedAtInput: {
+        label: 'محل صدور',
+        placeholder: 'برای مثال: تهران',
+      },
+      religionInput: {
+        label: 'دین',
+        placeholder: 'برای مثال: اسلام',
+      },
+      genderInput: {
+        label: 'جنسیت',
+        placeholder: 'مرد/زن',
+      },
+      dateOfBirthInput: {
+        label: 'تاریخ تولد',
+        placeholder: 'برای مثال: ۱۳۹۹/۱۰/۱۰',
+      },
+      cityOfBirthInput: {
+        label: 'شهر',
+        placeholder: 'برای مثال: تهران',
+      },
+    },
+  },
   login: {
     loginFrom: {
       title: 'به حساب کاربری خود وارد شوید',
