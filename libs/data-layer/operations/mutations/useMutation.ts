@@ -1,41 +1,43 @@
-import type {
-  ApolloCache,
-  DefaultContext,
-  DocumentNode,
-  FetchResult,
-  MutationHookOptions,
-  MutationTuple,
-  OperationVariables,
-  TypedDocumentNode,
+import {
+  type ApolloCache,
+  type DefaultContext,
+  type DocumentNode,
+  type FetchResult,
+  type MutationHookOptions,
+  type MutationTuple,
+  type OperationVariables,
+  type TypedDocumentNode,
 } from '@apollo/client';
 import * as Apollo from '@apollo/client';
 
-export const toClientMutationFn =
-  <Option, Result, Client>(
-    mutation: (
-      o?: Apollo.MutationFunctionOptions<Option, Result>,
-    ) => Promise<FetchResult<Option>>,
-    toClientFn: (o: Option | null | undefined) => Client,
-  ) =>
-  (options?: Apollo.MutationFunctionOptions<Option, Result>) =>
-    mutation(options).then(({ data, ...rest }) => ({
-      data: toClientFn(data),
-      ...rest,
-    }));
-
 export const useMutation = <
-  TData = any,
-  TVariables = OperationVariables,
-  TContext = DefaultContext,
-  TCache extends ApolloCache<any> = ApolloCache<any>,
+  Client,
+  Data = any,
+  Variables = OperationVariables,
+  Ctx = DefaultContext,
+  Cache extends ApolloCache<any> = ApolloCache<any>,
 >(
-  mutation: DocumentNode | TypedDocumentNode<TData, TVariables>,
-  options?: MutationHookOptions<TData, TVariables, TContext, TCache> & {
-    mapper: any;
+  mutation: DocumentNode | TypedDocumentNode<Data, Variables>,
+  options: Partial<MutationHookOptions<Data, Variables, Ctx, Cache>> & {
+    mapper: (d: Data | null | undefined) => Client;
   },
-): MutationTuple<TData, TVariables, TContext, TCache> => {
+): MutationTuple<Client, Variables, Ctx, Cache> => {
   const [fn, { data, ...rest }] = Apollo.useMutation(mutation, options);
-
-  // FIXME: Type safety
-  return [toClientMutationFn(fn), { data: options?.mapper(data), ...rest }];
+  const m = (
+    opts?:
+      | Apollo.MutationFunctionOptions<Client, Variables, Ctx, Cache>
+      | undefined,
+  ): Promise<FetchResult<Client>> =>
+    fn({
+      ...(opts as Omit<typeof opts, 'onCompleted'>),
+      onCompleted: opts?.onCompleted
+        ? (a, ...args) => {
+            opts.onCompleted?.(options.mapper(a), ...args);
+          }
+        : undefined,
+    }).then(({ data: res, ...rests }) => ({
+      data: options.mapper(res),
+      ...rests,
+    }));
+  return [m, { data: options.mapper(data), ...rest }];
 };

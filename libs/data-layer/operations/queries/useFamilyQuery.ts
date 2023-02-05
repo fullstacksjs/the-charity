@@ -1,23 +1,28 @@
 import * as Apollo from '@apollo/client';
-
-import type { ApiFamilyQuery, ApiFamilyQueryVariables } from '../../../api';
+import { gql } from '@apollo/client';
 import {
-  ApiFamilyDocument,
-  ApiFamilySeverityEnum,
-  ApiFamilyStatusEnum,
-} from '../../../api';
+  type Family,
+  type InformationStatus,
+  type SeverityStatus,
+} from '@camp/domain';
 
-export type SeverityStatus = 'critical' | 'normal';
-export type InformationStatus = 'completed' | 'draft';
+import { type ApiFamilyQuery, type ApiFamilyQueryVariables } from '../../api';
+import { ApiFamilySeverityEnum, ApiFamilyStatusEnum } from '../../api';
 
-export interface Family {
-  family: {
-    id: string;
-    name: string;
-    code: string;
-    severity: SeverityStatus;
-    information: InformationStatus;
-  };
+const Document = gql`
+  query Family($id: uuid!) {
+    family_by_pk(id: $id) {
+      id
+      name
+      status
+      severity
+      code
+    }
+  }
+`;
+
+export interface FamilyDto {
+  family: Family;
 }
 
 export const toSeverityStatus = (
@@ -30,7 +35,7 @@ export const toInformationStatus = (
 ): InformationStatus =>
   info === ApiFamilyStatusEnum.Completed ? 'completed' : 'draft';
 
-const toClient = (data: ApiFamilyQuery | null | undefined): Family | null =>
+const toClient = (data: ApiFamilyQuery | null | undefined): FamilyDto | null =>
   data?.family_by_pk == null
     ? null
     : {
@@ -47,7 +52,7 @@ const toClient = (data: ApiFamilyQuery | null | undefined): Family | null =>
 export function useFamilyQuery(
   options: Apollo.QueryHookOptions<ApiFamilyQuery, ApiFamilyQueryVariables>,
 ) {
-  const { data, ...rest } = Apollo.useQuery(ApiFamilyDocument, options);
+  const { data, ...rest } = Apollo.useQuery(Document, options);
 
   return { data: toClient(data), ...rest } as const;
 }

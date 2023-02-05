@@ -1,12 +1,11 @@
-import { gql, MutationHookOptions } from '@apollo/client';
-import { Family } from '@camp/domain';
+import { type MutationHookOptions } from '@apollo/client';
+import { gql } from '@apollo/client';
+import { type Family } from '@camp/domain';
 
-// Custom hook which handles the mapping and cache
-
-import type {
-  ApiCreateFamilyMutation,
-  ApiCreateFamilyMutationVariables,
-  ApiFamilyListQuery,
+import {
+  type ApiCreateFamilyMutation,
+  type ApiCreateFamilyMutationVariables,
+  type ApiFamilyListQuery,
 } from '../../api';
 import { ApiFamilyListDocument } from '../../api';
 import { useMutation } from './useMutation';
@@ -21,14 +20,14 @@ const Document = gql`
   }
 `;
 
-export interface CreateFamily {
+export interface CreateFamilyDto {
   family: Pick<Family, 'code' | 'id' | 'name'>;
 }
 
 const toClient = (
   data: ApiCreateFamilyMutation | null | undefined,
-): CreateFamily | null =>
-  // @ts-ignore
+): CreateFamilyDto | null =>
+  // @ts-ignore the api has some issues
   data?.insert_family_one == null
     ? null
     : {
@@ -64,7 +63,7 @@ export function useCreateFamilyMutation(
         });
       }
 
-      return options?.update?.(cache, result, opts)
+      return options?.update?.(cache, result, opts);
     },
   });
 }

@@ -1,10 +1,11 @@
-import type { MutationHookOptions } from '@apollo/client';
+import { type MutationHookOptions } from '@apollo/client';
 import { gql } from '@apollo/client';
+import { type Project, type ProjectStatus } from '@camp/domain';
 
-import type {
-  ApiCreateProjectMutation,
-  ApiCreateProjectMutationVariables,
-  ApiProjectListQuery,
+import {
+  type ApiCreateProjectMutation,
+  type ApiCreateProjectMutationVariables,
+  type ApiProjectListQuery,
   ApiProjectStatusEnum,
 } from '../../api';
 import { ApiProjectListDocument } from '../../api';
@@ -21,18 +22,22 @@ const Document = gql`
   }
 `;
 
-export interface CreateProject {
-  project: {
-    id: any;
-    name: string;
-    description?: string | null;
-    status: ApiProjectStatusEnum;
-  };
+export const toProjectStatus = (status: ApiProjectStatusEnum): ProjectStatus =>
+  status === ApiProjectStatusEnum.Done
+    ? 'done'
+    : status === ApiProjectStatusEnum.InProgress
+    ? 'inProgress'
+    : status === ApiProjectStatusEnum.Planning
+    ? 'planning'
+    : 'suspended';
+
+export interface CreateProjectDto {
+  project: Project;
 }
 
 const toClient = (
   data: ApiCreateProjectMutation | null | undefined,
-): CreateProject | null =>
+): CreateProjectDto | null =>
   data?.insert_project_one == null
     ? null
     : {
@@ -40,7 +45,7 @@ const toClient = (
           id: data.insert_project_one.id,
           name: data.insert_project_one.name,
           description: data.insert_project_one.description,
-          status: data.insert_project_one.status,
+          status: toProjectStatus(data.insert_project_one.status),
         },
       };
 

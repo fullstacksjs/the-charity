@@ -1,10 +1,21 @@
 import * as Apollo from '@apollo/client';
+import { gql } from '@apollo/client';
 
-import type {
-  ApiProjectListQuery,
-  ApiProjectListQueryVariables,
-} from '../../../api';
-import { ApiProjectListDocument } from '../../../api';
+import {
+  type ApiProjectListQuery,
+  type ApiProjectListQueryVariables,
+} from '../../api';
+
+const Document = gql`
+  query ProjectList($offset: Int, $limit: Int) {
+    project_aggregate(offset: $offset, limit: $limit) {
+      nodes {
+        name
+        id
+      }
+    }
+  }
+`;
 
 export interface ProjectListItem {
   id: string;
@@ -33,7 +44,7 @@ export function useProjectListQuery(
     ApiProjectListQueryVariables
   >,
 ) {
-  const { data, ...rest } = Apollo.useQuery(ApiProjectListDocument, options);
+  const { data, ...rest } = Apollo.useQuery(Document, options);
 
   return { data: toClient(data), ...rest } as const;
 }
