@@ -92,6 +92,20 @@ export const theme: MantineThemeOverride = {
         },
       },
     },
+    Select: {
+      styles: {
+        label: {
+          color: colors.fgSubtle,
+        },
+      },
+    },
+    NumberInput: {
+      styles: {
+        label: {
+          color: colors.fgSubtle,
+        },
+      },
+    },
     Button: {
       styles: {
         root: { fontWeight: 500 },

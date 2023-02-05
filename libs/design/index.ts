@@ -9,6 +9,8 @@ export * from './FullPageLoader';
 export * from './Header';
 export * from './NavLink';
 export * from './Notification';
+export * from './NumberInput';
+export * from './Select';
 export * from './Sidebar';
 export * from './SmallText';
 export * from './Table';
