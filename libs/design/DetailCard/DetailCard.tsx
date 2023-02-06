@@ -13,6 +13,8 @@ interface Props {
 export const DetailCard = ({ title, id, children }: Props) => {
   return (
     <DashboardCard
+      bg="bgCanvas"
+      withBorder={false}
       right={
         <Group>
           <Title order={4} color="fgMuted" weight="bold">
