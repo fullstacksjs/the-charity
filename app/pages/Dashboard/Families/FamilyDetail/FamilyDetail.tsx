@@ -1,11 +1,15 @@
 import { useFamilyQuery } from '@camp/data-layer';
-import { DetailCard, FullPageLoader, showNotification } from '@camp/design';
+import {
+  DetailCard,
+  FullPageLoader,
+  showNotification,
+  Tabs,
+} from '@camp/design';
 import { errorMessages, messages } from '@camp/messages';
 import { useParams } from '@camp/router';
 import { isNull } from '@fullstacksjs/toolbox';
 import { Title } from '@mantine/core';
 
-import { Tabs } from '../../../../../libs/design/Tabs/Tabs';
 import { InformationBadge, SeverityBadge } from '../../../../components';
 
 export const FamilyDetail = () => {
