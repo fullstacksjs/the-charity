@@ -25,8 +25,7 @@ export const DateInput = ({ label, placeholder, error }: InputProps) => {
       placeholder={placeholder}
       style={{ direction: 'rtl' }}
       locale="fa"
-      // defaultDate={new Date()}
-      defaultDate="fs"
+      defaultValue={new Date()}
     />
   );
 };
