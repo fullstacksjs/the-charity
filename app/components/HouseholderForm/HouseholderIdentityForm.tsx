@@ -1,4 +1,4 @@
-import { NumberInput, SelectInput, TextInput } from '@camp/design';
+import { DateInput, NumberInput, SelectInput, TextInput } from '@camp/design';
 import { messages } from '@camp/messages';
 import { SimpleGrid } from '@mantine/core';
 
@@ -60,6 +60,11 @@ export const HouseholderIdentityForm = () => {
           placeholder={t.genderInput.placeholder}
           withAsterisk={false}
           label={t.genderInput.label}
+        />
+        <DateInput
+          label={t.dateOfBirthInput.label}
+          placeholder={t.dateOfBirthInput.placeholder}
+          withAsterisk={false}
         />
         <SelectInput
           data={[{ value: 'tehran', label: 'تهران' }]}
