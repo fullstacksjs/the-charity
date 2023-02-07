@@ -3,11 +3,13 @@ import type { ComponentMeta, ComponentStory } from '@storybook/react';
 
 import { DateInput } from './DateInput';
 
+const t = messages.householder.householderIdentityForm;
+
 export default {
   component: DateInput,
   argTypes: {
     label: {
-      defaultValue: 'تاریخ',
+      defaultValue: t.dateOfBirthInput.label,
     },
     withAsterisk: {
       defaultValue: false,
