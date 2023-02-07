@@ -25,7 +25,12 @@ export const HouseholderIdentityForm = () => {
           withAsterisk={false}
         />
         <SelectInput
-          data={[{ value: 'IR', label: 'ایرانی' }]}
+          data={[
+            {
+              value: t.nationalityInput.data.value,
+              label: t.nationalityInput.data.label,
+            },
+          ]}
           placeholder={t.nationalityInput.placeholder}
           withAsterisk={false}
           label={t.nationalityInput.label}
@@ -41,21 +46,37 @@ export const HouseholderIdentityForm = () => {
           label={t.ssnInput.label}
         />
         <SelectInput
-          data={[{ value: 'tehran', label: 'تهران' }]}
+          data={[
+            {
+              value: t.issuedAtInput.data.value,
+              label: t.issuedAtInput.data.label,
+            },
+          ]}
           placeholder={t.issuedAtInput.placeholder}
           withAsterisk={false}
           label={t.issuedAtInput.label}
         />
         <SelectInput
-          data={[{ value: 'islam', label: 'اسلام' }]}
+          data={[
+            {
+              value: t.religionInput.data.value,
+              label: t.religionInput.data.label,
+            },
+          ]}
           placeholder={t.religionInput.placeholder}
           withAsterisk={false}
           label={t.religionInput.label}
         />
         <SelectInput
           data={[
-            { value: 'male', label: 'مرد' },
-            { value: 'female', label: 'زن' },
+            {
+              value: t.genderInput.data.value,
+              label: t.genderInput.data.label,
+            },
+            {
+              value: t.genderInput.data.secondValue,
+              label: t.genderInput.data.secondLabel,
+            },
           ]}
           placeholder={t.genderInput.placeholder}
           withAsterisk={false}
@@ -67,7 +88,12 @@ export const HouseholderIdentityForm = () => {
           withAsterisk={false}
         />
         <SelectInput
-          data={[{ value: 'tehran', label: 'تهران' }]}
+          data={[
+            {
+              value: t.cityOfBirthInput.data.value,
+              label: t.cityOfBirthInput.data.label,
+            },
+          ]}
           placeholder={t.cityOfBirthInput.placeholder}
           withAsterisk={false}
           label={t.cityOfBirthInput.label}
