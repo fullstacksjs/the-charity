@@ -34,7 +34,7 @@ export const Tabs = ({ tabs, panels }: Props) => {
         setActiveTab(value!);
       }}
     >
-      <MantineTabs.List px="40px">
+      <MantineTabs.List px="40px" bg="transparent">
         {tabs.map(({ tab, value, isBusy = false }) => (
           <MantineTabs.Tab
             key={value}
