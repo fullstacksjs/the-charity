@@ -1,9 +1,9 @@
 import { messages } from '@camp/messages';
 import { type ComponentMeta, type ComponentStory } from '@storybook/react';
 
-import { toShortFamilyInfoTableRows } from '../../../app/components';
 import { FamilyTableRow } from '../../../app/components/FamilyList/FamilyTableRow';
-import { shortFamiliesInfo } from '../../../app/fixtures/shortFamiliesInfo';
+import { ApiFamilyList } from '../../../app/fixtures/ApiFamilyList';
+import { toInformationStatus, toSeverityStatus } from '../../data-layer';
 import { Table } from './Table';
 
 export default {
@@ -17,10 +17,16 @@ const Template: ComponentStory<typeof Table> = args => (
 export const Default = Template.bind({});
 Default.args = {
   columns: messages.families.list.table.columns as unknown as string[],
-  rows: toShortFamilyInfoTableRows(shortFamiliesInfo).map(info => (
+  rows: ApiFamilyList.map((info, i) => (
     <FamilyTableRow
       key={Object.values(info).join('-')}
-      shortFamilyInfoTableRow={info}
+      family={{
+        id: info.id,
+        informationStatus: toInformationStatus(info.status),
+        severityStatus: toSeverityStatus(info.severity),
+        name: info.name,
+      }}
+      order={i + 1}
     />
   )),
 };

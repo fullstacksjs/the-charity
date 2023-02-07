@@ -8,23 +8,21 @@ schema:
       headers:
         x-hasura-admin-secret: ${HASURA_ADMIN_SECRET}
 
-documents: './libs/data-layer/operations/**/*.graphql'
+documents: './libs/data-layer/operations/**/*.ts'
 extensions:
   codegen:
     emitLegacyCommonJSImports: false
     overwrite: true
     generates:
-      ./libs/data-layer/operations/__generated__/typesAndHooks.ts:
+      ./libs/data-layer/api.ts:
         plugins:
           - add:
               content: *HEADER
           - typescript
-          - typescript-operations
-          - typescript-react-apollo
         config:
           useTypeImports: true
-          withHooks: true
+          withHooks: false
           namingConvention:
             default: 'change-case-all#pascalCase'
-            typeNames: 'change-case-all#pascalCase'
+            typeNames: './configs/graphql-codegen/namingConvetion.js'
             enumValues: 'change-case-all#pascalCase'

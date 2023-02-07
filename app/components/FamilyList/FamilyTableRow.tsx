@@ -1,25 +1,20 @@
-import { ActionButton, Badge } from '@camp/design';
+import { type FamilyListItemDto } from '@camp/data-layer';
+import { ActionButton } from '@camp/design';
 import { AppRoute, useNavigate } from '@camp/router';
 import { Group } from '@mantine/core';
 
+import { InformationBadge } from '../InformationBadge';
+import { SeverityBadge } from '../SeverityBadge';
 import * as ids from './FamilyTableRow.ids';
-// FIXME remove this after adding custom data-layer hooks
-import { type ShortFamilyInfoTableRow } from './toShortFamilyInfoTableRows';
 
 interface Props {
-  shortFamilyInfoTableRow: ShortFamilyInfoTableRow;
+  order: number;
+  family: FamilyListItemDto;
 }
 
-export const FamilyTableRow = ({
-  shortFamilyInfoTableRow: {
-    name,
-    informationStatus,
-    severityStatus,
-    id,
-    order,
-  },
-}: Props) => {
+export const FamilyTableRow = ({ order, family }: Props) => {
   const navigate = useNavigate();
+  const { id, informationStatus, name, severityStatus } = family;
 
   const gotoDetail = () => {
     navigate({ to: `/dashboard/families/${id}` as AppRoute });
@@ -30,11 +25,11 @@ export const FamilyTableRow = ({
       <td>{order}</td>
       <td>{name}</td>
       <td>
-        <Badge status={informationStatus.state}>{informationStatus.text}</Badge>
+        <InformationBadge information={informationStatus} />
       </td>
       <td>
         <Group position="apart">
-          <Badge status={severityStatus.state}>{severityStatus.text}</Badge>
+          <SeverityBadge severity={severityStatus} />
           <ActionButton
             menuButtonId={ids.familyTableMenuButtonId}
             menuId={ids.familyTableMenuId}

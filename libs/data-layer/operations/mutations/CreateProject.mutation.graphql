@@ -1,8 +1,0 @@
-mutation CreateProject($input: project_insert_input!) {
-  insert_project_one(object: $input) {
-    id
-    name
-    description
-    status
-  }
-}

@@ -19,7 +19,7 @@ export const ProjectList = () => {
   const t = messages.projects.list;
 
   const { data, loading, error } = useProjectListQuery();
-  const projects = data?.project_aggregate.nodes;
+  const projects = data?.projects;
 
   if (error) {
     showNotification({
