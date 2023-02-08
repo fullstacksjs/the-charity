@@ -16,6 +16,7 @@ type MantineColors =
   | 'pink'
   | 'red'
   | 'teal'
+  | 'transparent'
   | 'violet'
   | 'yellow';
 type Colors = MantineColors | keyof typeof colors;

@@ -12,5 +12,6 @@ export * from './Notification';
 export * from './Sidebar';
 export * from './SmallText';
 export * from './Table';
+export * from './Tabs';
 export * from './theme';
 export * from './VisualizedIcon';
