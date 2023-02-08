@@ -1,3 +1,4 @@
+export { ReactComponent as CheckMark } from './CheckMark.svg';
 export { ReactComponent as ChevronLeftIcon } from './ChevronLeft.svg';
 export { ReactComponent as DashboardIcon } from './Dashboard.svg';
 export { ReactComponent as DateIcon } from './Date.svg';
