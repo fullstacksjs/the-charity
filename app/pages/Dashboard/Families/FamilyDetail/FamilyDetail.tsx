@@ -10,7 +10,11 @@ import { useParams } from '@camp/router';
 import { isNull } from '@fullstacksjs/toolbox';
 import { Title } from '@mantine/core';
 
-import { InformationBadge, SeverityBadge } from '../../../../components';
+import {
+  HouseholderIdentityForm,
+  InformationBadge,
+  SeverityBadge,
+} from '../../../../components';
 
 export const FamilyDetail = () => {
   const t = messages.familyDetail;
@@ -56,7 +60,7 @@ export const FamilyDetail = () => {
           { tab: <Title order={5}>اعضا</Title>, value: '2' },
         ]}
         panels={[
-          { panel: 'First Panel', value: '1' },
+          { panel: <HouseholderIdentityForm />, value: '1' },
           { panel: 'Second Panel', value: '2' },
         ]}
       />
