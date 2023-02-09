@@ -1,10 +1,58 @@
-import { DateInput, NumberInput, SelectInput, TextInput } from '@camp/design';
-import { CheckMark } from '@camp/icons';
+import 'dayjs/locale/fa';
+
+import { createResolver, HouseholderIdentitySchema } from '@camp/domain';
+import { CheckMark, DateIcon } from '@camp/icons';
 import { messages } from '@camp/messages';
-import { Button, Group, SimpleGrid, Stack, Title } from '@mantine/core';
+import {
+  Button,
+  createStyles,
+  Group,
+  Select,
+  SimpleGrid,
+  Stack,
+  TextInput,
+  Title,
+} from '@mantine/core';
+import { DatePickerInput } from 'mantine-datepicker-jalali';
+import { useForm } from 'react-hook-form';
+
+interface FormSchema {
+  firstName: string;
+  lastName: string;
+  fatherName: string;
+  nationalId: string;
+  ssn: string;
+}
+
+const resolver = createResolver<FormSchema>({
+  firstName: HouseholderIdentitySchema.firstName(),
+  lastName: HouseholderIdentitySchema.lastName(),
+  fatherName: HouseholderIdentitySchema.fatherName(),
+  nationalId: HouseholderIdentitySchema.nationalId(),
+  ssn: HouseholderIdentitySchema.ssn(),
+});
+
+const useStyles = createStyles(theme => ({
+  textInput: {
+    label: {
+      color: theme.colors.fgSubtle[6],
+    },
+  },
+  dateInput: {
+    label: {
+      color: theme.colors.fgSubtle[6],
+    },
+  },
+}));
+
+const t = messages.householder.householderIdentityForm;
 
 export const HouseholderIdentityForm = () => {
-  const t = messages.householder.householderIdentityForm;
+  const { classes } = useStyles();
+  const { register, formState } = useForm<FormSchema>({
+    resolver,
+    mode: 'onChange',
+  });
 
   return (
     <form>
@@ -19,21 +67,27 @@ export const HouseholderIdentityForm = () => {
         </Group>
         <SimpleGrid cols={3} spacing="lg" verticalSpacing={20}>
           <TextInput
-            label={t.nameInput.label}
+            {...register('firstName')}
+            className={classes.textInput}
+            label={`${t.nameInput.label}:`}
             placeholder={t.nameInput.placeholder}
-            withAsterisk={false}
+            error={formState.errors.firstName?.message}
           />
           <TextInput
-            label={t.lastNameInput.label}
+            {...register('lastName')}
+            className={classes.textInput}
+            label={`${t.lastNameInput.label}:`}
+            error={formState.errors.lastName?.message}
             placeholder={t.lastNameInput.placeholder}
-            withAsterisk={false}
           />
           <TextInput
-            label={t.fatherNameInput.label}
+            {...register('fatherName')}
+            className={classes.textInput}
+            label={`${t.fatherNameInput.label}:`}
             placeholder={t.fatherNameInput.placeholder}
-            withAsterisk={false}
+            error={formState.errors.fatherName?.message}
           />
-          <SelectInput
+          <Select
             data={[
               {
                 value: t.nationalityInput.data.value,
@@ -41,20 +95,23 @@ export const HouseholderIdentityForm = () => {
               },
             ]}
             placeholder={t.nationalityInput.placeholder}
-            withAsterisk={false}
-            label={t.nationalityInput.label}
+            label={`${t.nationalityInput.label}:`}
           />
-          <NumberInput
+          <TextInput
+            error={formState.errors.nationalId?.message}
+            className={classes.textInput}
+            {...register('nationalId')}
             placeholder={t.nationalIdInput.placeholder}
-            withAsterisk={false}
-            label={t.nationalIdInput.label}
+            label={`${t.nationalIdInput.label}:`}
           />
-          <NumberInput
+          <TextInput
+            error={formState.errors.ssn?.message}
+            className={classes.textInput}
+            {...register('ssn')}
             placeholder={t.ssnInput.placeholder}
-            withAsterisk={false}
-            label={t.ssnInput.label}
+            label={`${t.ssnInput.label}:`}
           />
-          <SelectInput
+          <Select
             data={[
               {
                 value: t.issuedAtInput.data.value,
@@ -62,10 +119,9 @@ export const HouseholderIdentityForm = () => {
               },
             ]}
             placeholder={t.issuedAtInput.placeholder}
-            withAsterisk={false}
-            label={t.issuedAtInput.label}
+            label={`${t.issuedAtInput.label}:`}
           />
-          <SelectInput
+          <Select
             data={[
               {
                 value: t.religionInput.data.value,
@@ -73,10 +129,9 @@ export const HouseholderIdentityForm = () => {
               },
             ]}
             placeholder={t.religionInput.placeholder}
-            withAsterisk={false}
-            label={t.religionInput.label}
+            label={`${t.religionInput.label}:`}
           />
-          <SelectInput
+          <Select
             data={[
               {
                 value: t.genderInput.data.value,
@@ -87,16 +142,18 @@ export const HouseholderIdentityForm = () => {
                 label: t.genderInput.data.secondLabel,
               },
             ]}
+            label={`${t.genderInput.label}:`}
             placeholder={t.genderInput.placeholder}
-            withAsterisk={false}
-            label={t.genderInput.label}
           />
-          <DateInput
-            label={t.dateOfBirthInput.label}
-            placeholder={t.dateOfBirthInput.placeholder}
-            withAsterisk={false}
+          <DatePickerInput
+            className={classes.dateInput}
+            rightSection={<DateIcon />}
+            label={`${t.dateOfBirthInput.label}:`}
+            style={{ direction: 'rtl' }}
+            locale="fa"
+            defaultValue={new Date()}
           />
-          <SelectInput
+          <Select
             data={[
               {
                 value: t.cityOfBirthInput.data.value,
@@ -104,8 +161,7 @@ export const HouseholderIdentityForm = () => {
               },
             ]}
             placeholder={t.cityOfBirthInput.placeholder}
-            withAsterisk={false}
-            label={t.cityOfBirthInput.label}
+            label={`${t.cityOfBirthInput.label}:`}
           />
         </SimpleGrid>
       </Stack>

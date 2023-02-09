@@ -100,6 +100,16 @@ export const messages = {
   },
   householder: {
     householderIdentityForm: {
+      validation: {
+        nameMinLength: 'نام سرپرست باید حداقل ۳ حرف باشد',
+        fatherNameMinLength: 'نام پدر باید حداقل ۳ حرف باشد',
+        nationalIdLength: 'شماره کارت ملی باید حداقل ۱۰ عدد باشد',
+        inValidNationalId: 'لطفا یک شماره کارت ملی معتبر وارد نمایید',
+        inValidSsn: 'لطفا یک شماره شناسنامه معتبر وارد نمایید',
+        ssnLength: 'شماره کارت ملی باید حداقل ۸ عدد باشد',
+      },
+      title: 'اطلاعات هویت',
+      submitBtn: 'ثبت',
       nameInput: {
         label: 'نام',
         placeholder: 'برای مثال: محمد',
