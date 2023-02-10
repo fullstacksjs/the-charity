@@ -8,12 +8,25 @@ export function createFamily(name: string) {
   return client
     .request(
       gql`
-    mutation CreateFamily {
-      insert_family_one(object: { name: "${name}" }) {
-        id
-      }
-    }
-`,
+        mutation CreateFamily {
+          insert_family_one(object: { name: "${name}" }) {
+            id
+          }
+       }`,
     )
     .then(c => c.insert_family_one);
+}
+
+export function createProject(name: string) {
+  return client
+    .request(
+      gql`
+        mutation CreateProject {
+          insert_project_one (object: { name: "${name}" }) {
+            id
+          }
+        }
+      `,
+    )
+    .then(c => c.insert_project_one);
 }
