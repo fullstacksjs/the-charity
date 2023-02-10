@@ -7,6 +7,18 @@ import { AppRoute } from '../../libs/router/AppRoutes';
 import { admin } from '../fixtures/admin';
 import { familyFixture } from '../fixtures/project';
 
+const createFamily = (name: string) => {
+  cy.visit(AppRoute.families);
+  cy.findByTestId(dashboardHeaderId).findByTestId(createFamilyButtonId).click();
+  cy.findByTestId(createFamilyFormIds.form).within(() => {
+    cy.findByTestId(createFamilyFormIds.nameInput).find('input').type(name);
+    cy.findByTestId(createFamilyFormIds.submitBtn).click();
+  });
+  cy.findByTestId(createFamilyFormIds.notification.success, {
+    timeout: 1e4,
+  }).should('exist');
+};
+
 describe('Create Family', () => {
   beforeEach(() => {
     cy.login(admin);
@@ -22,12 +34,12 @@ describe('Create Family', () => {
   });
 
   it('should close modal after success', () => {
-    cy.createFamily(familyFixture.name());
+    createFamily(familyFixture.name());
     cy.findByTestId(createFamilyModalId, { timeout: 1e4 }).should('not.exist');
   });
 
   it('should show result after success', () => {
-    cy.createFamily(familyFixture.name());
+    createFamily(familyFixture.name());
     cy.findByTestId(createFamilyFormIds.notification.success, {
       timeout: 1e4,
     }).should('exist');

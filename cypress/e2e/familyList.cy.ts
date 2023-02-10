@@ -1,8 +1,8 @@
-import { familyListFailureNotification } from '../../app/components/FamilyList/FamilyList.ids';
 import { navLinkIds } from '../../libs/design/Sidebar/Sidebar.ids';
 import { AppRoute } from '../../libs/router/AppRoutes';
 import { admin } from '../fixtures/admin';
 import { familyFixture } from '../fixtures/project';
+import * as api from './api';
 
 describe('Family List', () => {
   beforeEach(() => {
@@ -11,15 +11,21 @@ describe('Family List', () => {
     cy.findByTestId(navLinkIds.families).click();
   });
 
-  it('should be clear of any unexpected errors', () => {
-    cy.findByTestId(familyListFailureNotification, { timeout: 50000 }).should(
-      'not.exist',
-    );
+  it('newly added family should be visible in familyTable', () => {
+    const name = familyFixture.name();
+    cy.wrap(api.createFamily(name));
+    cy.visit(AppRoute.families);
+    cy.findByText(name).should('exist');
   });
 
-  it('newly added family should be visible in familyTable', () => {
-    const familyName = familyFixture.name();
-    cy.createFamily(familyName);
-    cy.findByText(familyName).should('exist');
+  it('clicking on family entry should navigate to id page', () => {
+    const name = familyFixture.name();
+    cy.wrap(api.createFamily(name)).then((data: { id: string }) => {
+      cy.visit(AppRoute.families);
+      cy.findByText(name).click();
+      cy.location().should(loc => {
+        expect(loc.pathname).include(data.id);
+      });
+    });
   });
 });
