@@ -1,7 +1,7 @@
 import { messages } from '@camp/messages';
 import { z } from 'zod';
 
-const numberRegex = /^[\u0660-\u0669\u06F0-\u06F90-9]/;
+const numberRegex = /^[0-9]*[\u0660-\u0669\u06F0-\u06F90-9]*$/;
 
 export const HouseholderIdentitySchema = {
   firstName: () =>
@@ -35,7 +35,7 @@ export const HouseholderIdentitySchema = {
       .min(
         10,
         messages.householder.householderIdentityForm.validation
-          .nationalIdLength,
+          .nationalIdMinLength,
       )
       .regex(
         numberRegex,
@@ -46,7 +46,10 @@ export const HouseholderIdentitySchema = {
   ssn: () =>
     z
       .string()
-      .min(8, messages.householder.householderIdentityForm.validation.ssnLength)
+      .min(
+        8,
+        messages.householder.householderIdentityForm.validation.ssnMinLength,
+      )
       .regex(
         numberRegex,
         messages.householder.householderIdentityForm.validation.inValidSsn,
