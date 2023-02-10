@@ -3,6 +3,7 @@ import 'dayjs/locale/fa';
 import { createResolver, HouseholderIdentitySchema } from '@camp/domain';
 import { CheckMark, DateIcon } from '@camp/icons';
 import { messages } from '@camp/messages';
+import { createTestAttr } from '@camp/test';
 import {
   Button,
   createStyles,
@@ -15,6 +16,8 @@ import {
 } from '@mantine/core';
 import { DatePickerInput } from 'mantine-datepicker-jalali';
 import { useForm } from 'react-hook-form';
+
+import { householderIdentityFormIds as Ids } from './HouseholderIdentityForm.ids';
 
 interface FormSchema {
   firstName: string;
@@ -45,9 +48,8 @@ const useStyles = createStyles(theme => ({
   },
 }));
 
-const t = messages.householder.householderIdentityForm;
-
 export const HouseholderIdentityForm = () => {
+  const t = messages.householder.householderIdentityForm;
   const { classes } = useStyles();
   const { register, formState } = useForm<FormSchema>({
     resolver,
@@ -61,12 +63,18 @@ export const HouseholderIdentityForm = () => {
           <Title order={4} color="fgMuted" weight="bold">
             {t.title}
           </Title>
-          <Button type="submit" size="sm" leftIcon={<CheckMark />}>
+          <Button
+            {...createTestAttr(Ids.submitBtn)}
+            type="submit"
+            size="sm"
+            leftIcon={<CheckMark />}
+          >
             {t.submitBtn}
           </Button>
         </Group>
         <SimpleGrid cols={3} spacing="lg" verticalSpacing={20}>
           <TextInput
+            wrapperProps={createTestAttr(Ids.firstNameInput)}
             {...register('firstName')}
             className={classes.textInput}
             label={`${t.nameInput.label}:`}
@@ -74,6 +82,7 @@ export const HouseholderIdentityForm = () => {
             error={formState.errors.firstName?.message}
           />
           <TextInput
+            wrapperProps={createTestAttr(Ids.lastNameInput)}
             {...register('lastName')}
             className={classes.textInput}
             label={`${t.lastNameInput.label}:`}
@@ -81,6 +90,7 @@ export const HouseholderIdentityForm = () => {
             placeholder={t.lastNameInput.placeholder}
           />
           <TextInput
+            wrapperProps={createTestAttr(Ids.fatherNameInput)}
             {...register('fatherName')}
             className={classes.textInput}
             label={`${t.fatherNameInput.label}:`}
@@ -88,6 +98,7 @@ export const HouseholderIdentityForm = () => {
             error={formState.errors.fatherName?.message}
           />
           <Select
+            wrapperProps={createTestAttr(Ids.nationalityInput)}
             data={[
               {
                 value: t.nationalityInput.data.value,
@@ -98,6 +109,7 @@ export const HouseholderIdentityForm = () => {
             label={`${t.nationalityInput.label}:`}
           />
           <TextInput
+            wrapperProps={createTestAttr(Ids.nationalIdInput)}
             error={formState.errors.nationalId?.message}
             className={classes.textInput}
             {...register('nationalId')}
@@ -105,6 +117,7 @@ export const HouseholderIdentityForm = () => {
             label={`${t.nationalIdInput.label}:`}
           />
           <TextInput
+            wrapperProps={createTestAttr(Ids.ssnInput)}
             error={formState.errors.ssn?.message}
             className={classes.textInput}
             {...register('ssn')}
@@ -112,6 +125,7 @@ export const HouseholderIdentityForm = () => {
             label={`${t.ssnInput.label}:`}
           />
           <Select
+            wrapperProps={createTestAttr(Ids.issuedAtInput)}
             data={[
               {
                 value: t.issuedAtInput.data.value,
@@ -122,6 +136,7 @@ export const HouseholderIdentityForm = () => {
             label={`${t.issuedAtInput.label}:`}
           />
           <Select
+            wrapperProps={createTestAttr(Ids.religionInput)}
             data={[
               {
                 value: t.religionInput.data.value,
@@ -132,6 +147,7 @@ export const HouseholderIdentityForm = () => {
             label={`${t.religionInput.label}:`}
           />
           <Select
+            wrapperProps={createTestAttr(Ids.genderInput)}
             data={[
               {
                 value: t.genderInput.data.value,
@@ -146,14 +162,16 @@ export const HouseholderIdentityForm = () => {
             placeholder={t.genderInput.placeholder}
           />
           <DatePickerInput
+            wrapperProps={createTestAttr(Ids.dateOfBirthInput)}
             className={classes.dateInput}
             rightSection={<DateIcon />}
-            label={`${t.dateOfBirthInput.label}:`}
-            style={{ direction: 'rtl' }}
+            label={t.dateOfBirthInput.label}
+            style={{ direction: 'ltr' }}
             locale="fa"
             defaultValue={new Date()}
           />
           <Select
+            wrapperProps={createTestAttr(Ids.cityOfBirthInput)}
             data={[
               {
                 value: t.cityOfBirthInput.data.value,
