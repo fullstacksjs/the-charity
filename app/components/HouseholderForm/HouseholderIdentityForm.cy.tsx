@@ -1,4 +1,3 @@
-/* eslint-disable max-lines-per-function */
 import { messages } from '@camp/messages';
 
 import { HouseholderIdentityForm } from './HouseholderIdentityForm';
@@ -199,7 +198,7 @@ describe('HouseHolder Identity Form', () => {
         .find('input')
         .type('123456789ABC');
       cy.findByText(
-        householderIdentityForm.validation.inValidNationalId,
+        householderIdentityForm.validation.invalidNationalId,
       ).should('exist');
     });
   });
@@ -210,7 +209,7 @@ describe('HouseHolder Identity Form', () => {
         .find('input')
         .type('0123456789');
       cy.findByText(
-        householderIdentityForm.validation.inValidNationalId,
+        householderIdentityForm.validation.invalidNationalId,
       ).should('not.exist');
     });
   });
@@ -242,7 +241,7 @@ describe('HouseHolder Identity Form', () => {
       cy.findByTestId(householderIdentityFormIds.ssnInput)
         .find('input')
         .type('12345678ABC');
-      cy.findByText(householderIdentityForm.validation.inValidSsn).should(
+      cy.findByText(householderIdentityForm.validation.invalidSsn).should(
         'exist',
       );
     });
@@ -253,7 +252,7 @@ describe('HouseHolder Identity Form', () => {
       cy.findByTestId(householderIdentityFormIds.ssnInput)
         .find('input')
         .type('12345678');
-      cy.findByText(householderIdentityForm.validation.inValidSsn).should(
+      cy.findByText(householderIdentityForm.validation.invalidSsn).should(
         'not.exist',
       );
     });

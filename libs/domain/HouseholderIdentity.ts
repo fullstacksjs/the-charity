@@ -3,7 +3,7 @@ import { z } from 'zod';
 
 const numberRegex = /^[0-9]*[\u0660-\u0669\u06F0-\u06F90-9]*$/;
 
-export const HouseholderIdentitySchema = {
+export const householderIdentitySchema = {
   firstName: () =>
     z
       .string()
@@ -40,7 +40,7 @@ export const HouseholderIdentitySchema = {
       .regex(
         numberRegex,
         messages.householder.householderIdentityForm.validation
-          .inValidNationalId,
+          .invalidNationalId,
       )
       .trim(),
   ssn: () =>
@@ -52,7 +52,7 @@ export const HouseholderIdentitySchema = {
       )
       .regex(
         numberRegex,
-        messages.householder.householderIdentityForm.validation.inValidSsn,
+        messages.householder.householderIdentityForm.validation.invalidSsn,
       )
       .trim(),
 };

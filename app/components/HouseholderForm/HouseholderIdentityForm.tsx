@@ -1,6 +1,6 @@
 import 'dayjs/locale/fa';
 
-import { createResolver, HouseholderIdentitySchema } from '@camp/domain';
+import { createResolver, householderIdentitySchema } from '@camp/domain';
 import { CheckMark, DateIcon } from '@camp/icons';
 import { messages } from '@camp/messages';
 import { createTestAttr } from '@camp/test';
@@ -28,11 +28,11 @@ interface FormSchema {
 }
 
 const resolver = createResolver<FormSchema>({
-  firstName: HouseholderIdentitySchema.firstName(),
-  lastName: HouseholderIdentitySchema.lastName(),
-  fatherName: HouseholderIdentitySchema.fatherName(),
-  nationalId: HouseholderIdentitySchema.nationalId(),
-  ssn: HouseholderIdentitySchema.ssn(),
+  firstName: householderIdentitySchema.firstName(),
+  lastName: householderIdentitySchema.lastName(),
+  fatherName: householderIdentitySchema.fatherName(),
+  nationalId: householderIdentitySchema.nationalId(),
+  ssn: householderIdentitySchema.ssn(),
 });
 
 const useStyles = createStyles(theme => ({
@@ -50,6 +50,7 @@ const useStyles = createStyles(theme => ({
 
 export const HouseholderIdentityForm = () => {
   const t = messages.householder.householderIdentityForm;
+  const [male, female] = t.genderInput.options;
   const { classes } = useStyles();
   const { register, formState } = useForm<FormSchema>({
     resolver,
@@ -150,12 +151,12 @@ export const HouseholderIdentityForm = () => {
             wrapperProps={createTestAttr(Ids.genderInput)}
             data={[
               {
-                value: t.genderInput.data.value,
-                label: t.genderInput.data.label,
+                value: male.value,
+                label: male.label,
               },
               {
-                value: t.genderInput.data.secondValue,
-                label: t.genderInput.data.secondLabel,
+                value: female.value,
+                label: female.label,
               },
             ]}
             label={`${t.genderInput.label}:`}
@@ -165,8 +166,8 @@ export const HouseholderIdentityForm = () => {
             wrapperProps={createTestAttr(Ids.dateOfBirthInput)}
             className={classes.dateInput}
             rightSection={<DateIcon />}
-            label={t.dateOfBirthInput.label}
-            style={{ direction: 'ltr' }}
+            label={`${t.dateOfBirthInput.label}:`}
+            style={{ direction: 'rtl' }}
             locale="fa"
             defaultValue={new Date()}
           />

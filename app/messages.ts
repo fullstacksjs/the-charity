@@ -104,8 +104,8 @@ export const messages = {
         nameMinLength: 'نام سرپرست باید حداقل ۳ حرف باشد',
         fatherNameMinLength: 'نام پدر باید حداقل ۳ حرف باشد',
         nationalIdMinLength: 'شماره کارت ملی باید حداقل ۱۰ عدد باشد',
-        inValidNationalId: 'لطفا یک شماره کارت ملی معتبر وارد نمایید',
-        inValidSsn: 'لطفا یک شماره شناسنامه معتبر وارد نمایید',
+        invalidNationalId: 'لطفا یک شماره کارت ملی معتبر وارد نمایید',
+        invalidSsn: 'لطفا یک شماره شناسنامه معتبر وارد نمایید',
         ssnMinLength: 'شماره کارت ملی باید حداقل ۸ عدد باشد',
       },
       title: 'اطلاعات هویت',
@@ -146,12 +146,10 @@ export const messages = {
         placeholder: 'برای مثال: اسلام',
       },
       genderInput: {
-        data: {
-          value: 'male',
-          label: 'مرد',
-          secondValue: 'female',
-          secondLabel: 'زن',
-        },
+        options: [
+          { value: 'male', label: 'مرد' },
+          { value: 'female', label: 'زن' },
+        ],
         label: 'جنسیت',
         placeholder: 'مرد/زن',
       },
@@ -186,6 +184,13 @@ export const messages = {
   familyDetail: {
     title: 'اطلاعات کلی خانواده',
     notFound: 'خانواده مورد نظر یافت نشد',
+    tabs: {
+      householderTitle: 'سرپرست',
+      membersTitle: 'اعضا',
+    },
+    panels: {
+      title: 'second panel',
+    },
     familyFields: {
       name: {
         title: 'نام',

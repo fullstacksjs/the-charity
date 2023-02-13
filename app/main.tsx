@@ -1,3 +1,5 @@
+import 'dayjs/locale/fa';
+
 import { AuthProvider } from '@camp/auth';
 import { ApolloProvider } from '@camp/data-layer';
 import { ThemeProvider } from '@camp/design';

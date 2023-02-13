@@ -22,6 +22,12 @@
   },
   "overrides": [
     {
+      "files": ["./**/*.cy.tsx"],
+      "rules": {
+        "max-lines-per-function": ["off"]
+      }
+    },
+    {
       "files": ["./cypress/**/*.ts"],
       "rules": {
         "node/prefer-global/buffer": "off"

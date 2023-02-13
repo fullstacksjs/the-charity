@@ -53,15 +53,15 @@ export const FamilyDetail = () => {
       <Tabs
         tabs={[
           {
-            tab: <Title order={5}>سرپرست</Title>,
+            tab: <Title order={5}>{t.tabs.householderTitle}</Title>,
             value: '1',
             isBusy: true,
           },
-          { tab: <Title order={5}>اعضا</Title>, value: '2' },
+          { tab: <Title order={5}>{t.tabs.membersTitle}</Title>, value: '2' },
         ]}
         panels={[
           { panel: <HouseholderIdentityForm />, value: '1' },
-          { panel: 'Second Panel', value: '2' },
+          { panel: t.panels.title, value: '2' },
         ]}
       />
     </>
