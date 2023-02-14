@@ -98,6 +98,75 @@ export const messages = {
       },
     },
   },
+  householder: {
+    householderIdentityForm: {
+      validation: {
+        nameMinLength: 'نام سرپرست باید حداقل ۳ حرف باشد',
+        fatherNameMinLength: 'نام پدر باید حداقل ۳ حرف باشد',
+        nationalIdMinLength: 'شماره کارت ملی باید حداقل ۱۰ عدد باشد',
+        invalidNationalId: 'لطفا یک شماره کارت ملی معتبر وارد نمایید',
+        invalidSsn: 'لطفا یک شماره شناسنامه معتبر وارد نمایید',
+        ssnMinLength: 'شماره کارت ملی باید حداقل ۸ عدد باشد',
+      },
+      title: 'اطلاعات هویت',
+      submitBtn: 'ثبت',
+      selectInputs: {
+        placeholder: 'انتخاب کنید',
+      },
+      nameInput: {
+        label: 'نام',
+        placeholder: 'برای مثال: محمد',
+      },
+      lastNameInput: {
+        label: 'نام خانوادگی',
+        placeholder: 'برای مثال: علیان',
+      },
+      fatherNameInput: {
+        label: 'نام پدر',
+        placeholder: 'برای مثال: محمد',
+      },
+      nationalityInput: {
+        data: { value: 'IR', label: 'ایرانی' },
+        label: 'ملیت',
+        placeholder: 'برای مثال: ایرانی',
+      },
+      nationalIdInput: {
+        label: 'شماره کارت ملی',
+        placeholder: 'برای مثال: ۰۱۲۳۴۵۶۷۸۹',
+      },
+      ssnInput: {
+        label: 'شماره شناسنامه',
+        placeholder: 'برای مثال: 12345678',
+      },
+      issuedAtInput: {
+        data: { value: 'tehran', label: 'تهران' },
+        label: 'محل صدور',
+        placeholder: 'برای مثال: تهران',
+      },
+      religionInput: {
+        data: { value: 'islam', label: 'اسلام' },
+        label: 'دین',
+        placeholder: 'برای مثال: اسلام',
+      },
+      genderInput: {
+        options: [
+          { value: 'male', label: 'مرد' },
+          { value: 'female', label: 'زن' },
+        ],
+        label: 'جنسیت',
+        placeholder: 'مرد/زن',
+      },
+      dateOfBirthInput: {
+        label: 'تاریخ تولد',
+        placeholder: 'برای مثال: ۱۳۹۹/۱۰/۱۰',
+      },
+      cityOfBirthInput: {
+        data: { value: 'tehran', label: 'تهران' },
+        label: 'شهر',
+        placeholder: 'برای مثال: تهران',
+      },
+    },
+  },
   login: {
     loginFrom: {
       title: 'به حساب کاربری خود وارد شوید',
@@ -118,6 +187,13 @@ export const messages = {
   familyDetail: {
     title: 'اطلاعات کلی خانواده',
     notFound: 'خانواده مورد نظر یافت نشد',
+    tabs: {
+      householderTitle: 'سرپرست',
+      membersTitle: 'اعضا',
+    },
+    panels: {
+      title: 'second panel',
+    },
     familyFields: {
       name: {
         title: 'نام',

@@ -39,3 +39,5 @@ hasura
 localstorage
 auth0spajs
 jxuskaag
+datepicker
+jalali
