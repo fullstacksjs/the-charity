@@ -110,6 +110,9 @@ export const messages = {
       },
       title: 'اطلاعات هویت',
       submitBtn: 'ثبت',
+      selectInputs: {
+        placeholder: 'انتخاب کنید',
+      },
       nameInput: {
         label: 'نام',
         placeholder: 'برای مثال: محمد',

@@ -14,7 +14,7 @@ import {
   TextInput,
   Title,
 } from '@mantine/core';
-import { DatePickerInput } from 'mantine-datepicker-jalali';
+import { DateInput } from 'mantine-datepicker-jalali';
 import { useForm } from 'react-hook-form';
 
 import { householderIdentityFormIds as Ids } from './HouseholderIdentityForm.ids';
@@ -106,7 +106,7 @@ export const HouseholderIdentityForm = () => {
                 label: t.nationalityInput.data.label,
               },
             ]}
-            placeholder={t.nationalityInput.placeholder}
+            placeholder={t.selectInputs.placeholder}
             label={`${t.nationalityInput.label}:`}
           />
           <TextInput
@@ -133,7 +133,7 @@ export const HouseholderIdentityForm = () => {
                 label: t.issuedAtInput.data.label,
               },
             ]}
-            placeholder={t.issuedAtInput.placeholder}
+            placeholder={t.selectInputs.placeholder}
             label={`${t.issuedAtInput.label}:`}
           />
           <Select
@@ -144,7 +144,7 @@ export const HouseholderIdentityForm = () => {
                 label: t.religionInput.data.label,
               },
             ]}
-            placeholder={t.religionInput.placeholder}
+            placeholder={t.selectInputs.placeholder}
             label={`${t.religionInput.label}:`}
           />
           <Select
@@ -160,16 +160,16 @@ export const HouseholderIdentityForm = () => {
               },
             ]}
             label={`${t.genderInput.label}:`}
-            placeholder={t.genderInput.placeholder}
+            placeholder={t.selectInputs.placeholder}
           />
-          <DatePickerInput
+          <DateInput
             wrapperProps={createTestAttr(Ids.dateOfBirthInput)}
             className={classes.dateInput}
             rightSection={<DateIcon />}
             label={`${t.dateOfBirthInput.label}:`}
             style={{ direction: 'rtl' }}
             locale="fa"
-            defaultValue={new Date()}
+            placeholder={t.selectInputs.placeholder}
           />
           <Select
             wrapperProps={createTestAttr(Ids.cityOfBirthInput)}
@@ -179,7 +179,7 @@ export const HouseholderIdentityForm = () => {
                 label: t.cityOfBirthInput.data.label,
               },
             ]}
-            placeholder={t.cityOfBirthInput.placeholder}
+            placeholder={t.selectInputs.placeholder}
             label={`${t.cityOfBirthInput.label}:`}
           />
         </SimpleGrid>
