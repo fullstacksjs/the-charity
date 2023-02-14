@@ -3,6 +3,8 @@
     "types": ["cypress", "@testing-library/cypress"],
     "target": "ES6",
     "isolatedModules": false,
+    "moduleResolution": "node",
+    "jsx": "preserve",
     "noEmit": true
   }
 }
