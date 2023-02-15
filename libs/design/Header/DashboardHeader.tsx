@@ -17,9 +17,10 @@ export const useBreadcrumbsItems = (): BreadcrumbItem[] => {
     .filter(match => Boolean(match.route.meta?.breadcrumb))
     .filter(match => Boolean(match.route.path))
     .map(match => {
-      const { path, meta } = match.route;
+      const { meta } = match.route;
+
       return {
-        path: path!,
+        path: match.pathname,
         name: meta!.breadcrumb,
       };
     });
@@ -30,7 +31,7 @@ export const DashboardHeader = ({ button }: HeaderProps) => {
 
   return (
     <Group position="apart" mb={40} {...createTestAttr(ids)}>
-      <Breadcrumbs basePath="/dashboard" items={items} />
+      <Breadcrumbs items={items} />
       {button}
     </Group>
   );

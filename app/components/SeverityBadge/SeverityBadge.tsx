@@ -7,8 +7,6 @@ interface Props {
 }
 
 export const SeverityBadge = ({ severity }: Props) => {
-  console.log(severity);
-
   return severity === 'normal' ? (
     <Badge status="warning">{messages.families.severityStatus.normal}</Badge>
   ) : (
