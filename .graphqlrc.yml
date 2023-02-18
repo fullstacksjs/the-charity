@@ -19,6 +19,9 @@ extensions:
           - add:
               content: *HEADER
           - typescript
+          - typescript-operations
+          - typescript-react-apollo
+
         config:
           useTypeImports: true
           withHooks: false

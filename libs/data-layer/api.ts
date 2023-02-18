@@ -15,6 +15,7 @@ export type Scalars = {
   Boolean: boolean;
   Int: number;
   Float: number;
+  date: any;
   timestamptz: any;
   uuid: any;
 };
@@ -63,6 +64,19 @@ export type ApiStringComparisonExp = {
   _regex?: InputMaybe<Scalars['String']>;
   /** does the column match the given SQL regular expression */
   _similar?: InputMaybe<Scalars['String']>;
+};
+
+/** Boolean expression to compare columns of type "date". All fields are combined with logical 'AND'. */
+export type ApiDateComparisonExp = {
+  _eq?: InputMaybe<Scalars['date']>;
+  _gt?: InputMaybe<Scalars['date']>;
+  _gte?: InputMaybe<Scalars['date']>;
+  _in?: InputMaybe<Array<Scalars['date']>>;
+  _is_null?: InputMaybe<Scalars['Boolean']>;
+  _lt?: InputMaybe<Scalars['date']>;
+  _lte?: InputMaybe<Scalars['date']>;
+  _neq?: InputMaybe<Scalars['date']>;
+  _nin?: InputMaybe<Array<Scalars['date']>>;
 };
 
 /** columns and relationships of "family" */
@@ -553,10 +567,19 @@ export type ApiFamilyVarianceFields = {
 /** columns and relationships of "householder" */
 export type ApiHouseholder = {
   __typename?: 'householder';
+  city?: Maybe<Scalars['String']>;
   created_at: Scalars['timestamptz'];
+  dob?: Maybe<Scalars['date']>;
+  family_id: Scalars['uuid'];
+  father_name?: Maybe<Scalars['String']>;
+  gender?: Maybe<Scalars['String']>;
   id: Scalars['uuid'];
   name: Scalars['String'];
+  nationality?: Maybe<Scalars['String']>;
+  religion?: Maybe<Scalars['String']>;
+  ssn?: Maybe<Scalars['String']>;
   status: ApiHouseholderStatusEnum;
+  surename?: Maybe<Scalars['String']>;
   updated_at: Scalars['timestamptz'];
 };
 
@@ -587,43 +610,81 @@ export type ApiHouseholderBoolExp = {
   _and?: InputMaybe<Array<ApiHouseholderBoolExp>>;
   _not?: InputMaybe<ApiHouseholderBoolExp>;
   _or?: InputMaybe<Array<ApiHouseholderBoolExp>>;
+  city?: InputMaybe<ApiStringComparisonExp>;
   created_at?: InputMaybe<ApiTimestamptzComparisonExp>;
+  dob?: InputMaybe<ApiDateComparisonExp>;
+  family_id?: InputMaybe<ApiUuidComparisonExp>;
+  father_name?: InputMaybe<ApiStringComparisonExp>;
+  gender?: InputMaybe<ApiStringComparisonExp>;
   id?: InputMaybe<ApiUuidComparisonExp>;
   name?: InputMaybe<ApiStringComparisonExp>;
+  nationality?: InputMaybe<ApiStringComparisonExp>;
+  religion?: InputMaybe<ApiStringComparisonExp>;
+  ssn?: InputMaybe<ApiStringComparisonExp>;
   status?: InputMaybe<ApiHouseholderStatusEnumComparisonExp>;
+  surename?: InputMaybe<ApiStringComparisonExp>;
   updated_at?: InputMaybe<ApiTimestamptzComparisonExp>;
 };
 
 /** unique or primary key constraints on table "householder" */
 export enum ApiHouseholderConstraint {
   /** unique or primary key constraint */
+  HouseholderFamilyIdKey = 'householder_family_id_key',
+  /** unique or primary key constraint */
   HouseholderPkey = 'householder_pkey'
 }
 
 /** input type for inserting data into table "householder" */
 export type ApiHouseholderInsertInput = {
+  city?: InputMaybe<Scalars['String']>;
   created_at?: InputMaybe<Scalars['timestamptz']>;
+  dob?: InputMaybe<Scalars['date']>;
+  family_id?: InputMaybe<Scalars['uuid']>;
+  father_name?: InputMaybe<Scalars['String']>;
+  gender?: InputMaybe<Scalars['String']>;
   id?: InputMaybe<Scalars['uuid']>;
   name?: InputMaybe<Scalars['String']>;
+  nationality?: InputMaybe<Scalars['String']>;
+  religion?: InputMaybe<Scalars['String']>;
+  ssn?: InputMaybe<Scalars['String']>;
   status?: InputMaybe<ApiHouseholderStatusEnum>;
+  surename?: InputMaybe<Scalars['String']>;
   updated_at?: InputMaybe<Scalars['timestamptz']>;
 };
 
 /** aggregate max on columns */
 export type ApiHouseholderMaxFields = {
   __typename?: 'householder_max_fields';
+  city?: Maybe<Scalars['String']>;
   created_at?: Maybe<Scalars['timestamptz']>;
+  dob?: Maybe<Scalars['date']>;
+  family_id?: Maybe<Scalars['uuid']>;
+  father_name?: Maybe<Scalars['String']>;
+  gender?: Maybe<Scalars['String']>;
   id?: Maybe<Scalars['uuid']>;
   name?: Maybe<Scalars['String']>;
+  nationality?: Maybe<Scalars['String']>;
+  religion?: Maybe<Scalars['String']>;
+  ssn?: Maybe<Scalars['String']>;
+  surename?: Maybe<Scalars['String']>;
   updated_at?: Maybe<Scalars['timestamptz']>;
 };
 
 /** aggregate min on columns */
 export type ApiHouseholderMinFields = {
   __typename?: 'householder_min_fields';
+  city?: Maybe<Scalars['String']>;
   created_at?: Maybe<Scalars['timestamptz']>;
+  dob?: Maybe<Scalars['date']>;
+  family_id?: Maybe<Scalars['uuid']>;
+  father_name?: Maybe<Scalars['String']>;
+  gender?: Maybe<Scalars['String']>;
   id?: Maybe<Scalars['uuid']>;
   name?: Maybe<Scalars['String']>;
+  nationality?: Maybe<Scalars['String']>;
+  religion?: Maybe<Scalars['String']>;
+  ssn?: Maybe<Scalars['String']>;
+  surename?: Maybe<Scalars['String']>;
   updated_at?: Maybe<Scalars['timestamptz']>;
 };
 
@@ -645,10 +706,19 @@ export type ApiHouseholderOnConflict = {
 
 /** Ordering options when selecting data from "householder". */
 export type ApiHouseholderOrderBy = {
+  city?: InputMaybe<ApiOrderBy>;
   created_at?: InputMaybe<ApiOrderBy>;
+  dob?: InputMaybe<ApiOrderBy>;
+  family_id?: InputMaybe<ApiOrderBy>;
+  father_name?: InputMaybe<ApiOrderBy>;
+  gender?: InputMaybe<ApiOrderBy>;
   id?: InputMaybe<ApiOrderBy>;
   name?: InputMaybe<ApiOrderBy>;
+  nationality?: InputMaybe<ApiOrderBy>;
+  religion?: InputMaybe<ApiOrderBy>;
+  ssn?: InputMaybe<ApiOrderBy>;
   status?: InputMaybe<ApiOrderBy>;
+  surename?: InputMaybe<ApiOrderBy>;
   updated_at?: InputMaybe<ApiOrderBy>;
 };
 
@@ -660,23 +730,50 @@ export type ApiHouseholderPkColumnsInput = {
 /** select columns of table "householder" */
 export enum ApiHouseholderSelectColumn {
   /** column name */
+  City = 'city',
+  /** column name */
   CreatedAt = 'created_at',
+  /** column name */
+  Dob = 'dob',
+  /** column name */
+  FamilyId = 'family_id',
+  /** column name */
+  FatherName = 'father_name',
+  /** column name */
+  Gender = 'gender',
   /** column name */
   Id = 'id',
   /** column name */
   Name = 'name',
   /** column name */
+  Nationality = 'nationality',
+  /** column name */
+  Religion = 'religion',
+  /** column name */
+  Ssn = 'ssn',
+  /** column name */
   Status = 'status',
+  /** column name */
+  Surename = 'surename',
   /** column name */
   UpdatedAt = 'updated_at'
 }
 
 /** input type for updating data in table "householder" */
 export type ApiHouseholderSetInput = {
+  city?: InputMaybe<Scalars['String']>;
   created_at?: InputMaybe<Scalars['timestamptz']>;
+  dob?: InputMaybe<Scalars['date']>;
+  family_id?: InputMaybe<Scalars['uuid']>;
+  father_name?: InputMaybe<Scalars['String']>;
+  gender?: InputMaybe<Scalars['String']>;
   id?: InputMaybe<Scalars['uuid']>;
   name?: InputMaybe<Scalars['String']>;
+  nationality?: InputMaybe<Scalars['String']>;
+  religion?: InputMaybe<Scalars['String']>;
+  ssn?: InputMaybe<Scalars['String']>;
   status?: InputMaybe<ApiHouseholderStatusEnum>;
+  surename?: InputMaybe<Scalars['String']>;
   updated_at?: InputMaybe<Scalars['timestamptz']>;
 };
 
@@ -810,13 +907,31 @@ export enum ApiHouseholderStatusUpdateColumn {
 /** update columns of table "householder" */
 export enum ApiHouseholderUpdateColumn {
   /** column name */
+  City = 'city',
+  /** column name */
   CreatedAt = 'created_at',
+  /** column name */
+  Dob = 'dob',
+  /** column name */
+  FamilyId = 'family_id',
+  /** column name */
+  FatherName = 'father_name',
+  /** column name */
+  Gender = 'gender',
   /** column name */
   Id = 'id',
   /** column name */
   Name = 'name',
   /** column name */
+  Nationality = 'nationality',
+  /** column name */
+  Religion = 'religion',
+  /** column name */
+  Ssn = 'ssn',
+  /** column name */
   Status = 'status',
+  /** column name */
+  Surename = 'surename',
   /** column name */
   UpdatedAt = 'updated_at'
 }
