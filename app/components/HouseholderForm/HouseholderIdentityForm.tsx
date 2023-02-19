@@ -68,7 +68,7 @@ export const HouseholderIdentityForm = () => {
             {...createTestAttr(Ids.submitBtn)}
             type="submit"
             size="sm"
-            leftIcon={<CheckIcon />}
+            leftIcon={<CheckIcon size={16} />}
           >
             {t.submitBtn}
           </Button>
