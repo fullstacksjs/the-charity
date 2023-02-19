@@ -6,7 +6,7 @@ export {
   XCircle as ErrorAlertIcon,
   LogOut as ExitIcon,
   Home as HomeIcon,
-  Menu as MenuIcon,
+  MoreHorizontal as MenuIcon,
   Package as PackageIcon,
   Users as PeopleIcon,
   Plus as PlusIcon,
