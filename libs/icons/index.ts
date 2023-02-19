@@ -3,7 +3,7 @@ export {
   Check as CheckIcon,
   ChevronLeft as ChevronLeftIcon,
   Home as DashboardIcon,
-  AlertCircle as ErrorAlertIcon,
+  XCircle as ErrorAlertIcon,
   LogOut as ExitIcon,
   Home as HomeIcon,
   Menu as MenuIcon,
