@@ -67,7 +67,10 @@ export const CreateFamilyForm = ({ dismiss }: Props) => {
           wrapperProps={createTestAttr(ids.nameInput)}
           {...register('name')}
         />
-        <Group spacing={20}>
+        <Group spacing={20} position="right">
+          <Button size="sm" color="gray" onClick={dismiss}>
+            {messages.actions.dismiss}
+          </Button>
           <Button
             type="submit"
             size="sm"
@@ -76,9 +79,6 @@ export const CreateFamilyForm = ({ dismiss }: Props) => {
             {...createTestAttr(ids.submitBtn)}
           >
             {submitBtn.text}
-          </Button>
-          <Button size="sm" color="gray" onClick={dismiss}>
-            {messages.actions.dismiss}
           </Button>
         </Group>
       </Stack>
