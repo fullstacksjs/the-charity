@@ -1,7 +1,7 @@
 import 'dayjs/locale/fa';
 
 import { createResolver, householderIdentitySchema } from '@camp/domain';
-import { CheckMark, DateIcon } from '@camp/icons';
+import { CalendarIcon, CheckIcon } from '@camp/icons';
 import { messages } from '@camp/messages';
 import { createTestAttr } from '@camp/test';
 import {
@@ -68,7 +68,7 @@ export const HouseholderIdentityForm = () => {
             {...createTestAttr(Ids.submitBtn)}
             type="submit"
             size="sm"
-            leftIcon={<CheckMark />}
+            leftIcon={<CheckIcon size={16} />}
           >
             {t.submitBtn}
           </Button>
@@ -165,9 +165,12 @@ export const HouseholderIdentityForm = () => {
           <DateInput
             wrapperProps={createTestAttr(Ids.dateOfBirthInput)}
             className={classes.dateInput}
-            rightSection={<DateIcon />}
+            rightSection={<CalendarIcon stroke="currentColor" size={16} />}
             label={`${t.dateOfBirthInput.label}:`}
-            style={{ direction: 'rtl' }}
+            sx={theme => ({
+              direction: 'rtl',
+              color: theme.colors.secondaryDefault[6],
+            })}
             locale="fa"
             placeholder={t.selectInputs.placeholder}
           />
