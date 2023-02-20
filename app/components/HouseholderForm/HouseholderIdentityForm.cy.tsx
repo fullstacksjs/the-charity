@@ -51,15 +51,6 @@ describe('HouseHolder Identity Form', () => {
     });
   });
 
-  it('contains a ssn input with correct label', () => {
-    cy.get('form').within(() => {
-      cy.findByLabelText(`${householderIdentityForm.ssnInput.label}:`).should(
-        'match',
-        'input',
-      );
-    });
-  });
-
   it('contains a issuedAt input with correct label', () => {
     cy.get('form').within(() => {
       cy.findByLabelText(
@@ -211,50 +202,6 @@ describe('HouseHolder Identity Form', () => {
       cy.findByText(
         householderIdentityForm.validation.invalidNationalId,
       ).should('not.exist');
-    });
-  });
-
-  it('should show an error message when householder ssn is less than min length', () => {
-    cy.get('form').within(() => {
-      cy.findByTestId(householderIdentityFormIds.ssnInput)
-        .find('input')
-        .type('1234');
-      cy.findByText(householderIdentityForm.validation.ssnMinLength).should(
-        'exist',
-      );
-    });
-  });
-
-  it('should not show an error message when householder ssn is more than or equal to min length', () => {
-    cy.get('form').within(() => {
-      cy.findByTestId(householderIdentityFormIds.ssnInput)
-        .find('input')
-        .type('12345678');
-      cy.findByText(householderIdentityForm.validation.ssnMinLength).should(
-        'not.exist',
-      );
-    });
-  });
-
-  it('should show an error message when householder ssn includes word', () => {
-    cy.get('form').within(() => {
-      cy.findByTestId(householderIdentityFormIds.ssnInput)
-        .find('input')
-        .type('12345678ABC');
-      cy.findByText(householderIdentityForm.validation.invalidSsn).should(
-        'exist',
-      );
-    });
-  });
-
-  it('should not show an error message when householder ssn includes ', () => {
-    cy.get('form').within(() => {
-      cy.findByTestId(householderIdentityFormIds.ssnInput)
-        .find('input')
-        .type('12345678');
-      cy.findByText(householderIdentityForm.validation.invalidSsn).should(
-        'not.exist',
-      );
     });
   });
 });

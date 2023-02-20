@@ -43,16 +43,4 @@ export const householderIdentitySchema = {
           .invalidNationalId,
       )
       .trim(),
-  ssn: () =>
-    z
-      .string()
-      .min(
-        8,
-        messages.householder.householderIdentityForm.validation.ssnMinLength,
-      )
-      .regex(
-        numberRegex,
-        messages.householder.householderIdentityForm.validation.invalidSsn,
-      )
-      .trim(),
 };

@@ -5,7 +5,6 @@ export const householderIdentityFormIds = {
   fatherNameInput: 'householder-father-name',
   nationalityInput: 'householder-nationality',
   nationalIdInput: 'householder-nationalId',
-  ssnInput: 'householder-ssn',
   issuedAtInput: 'householder-issuedAt',
   religionInput: 'householder-religion',
   genderInput: 'householder-gender',
