@@ -6,12 +6,11 @@ import {
   cities,
   countries,
   createResolver,
-  createResolver,
   genders,
-  householderIdentitySchema,
   householderIdentitySchema,
   religions,
 } from '@camp/domain';
+import { type Gender } from '@camp/domain';
 import { CalendarIcon, CheckIcon } from '@camp/icons';
 import { messages } from '@camp/messages';
 import { createTestAttr } from '@camp/test';
@@ -39,6 +38,9 @@ interface FormSchema {
   lastName: string;
   fatherName: string;
   nationalId: string;
+  gender: Gender;
+  nationality: string;
+  religion: string;
 }
 
 const resolver = createResolver<FormSchema>({
@@ -46,6 +48,9 @@ const resolver = createResolver<FormSchema>({
   lastName: householderIdentitySchema.lastName(),
   fatherName: householderIdentitySchema.fatherName(),
   nationalId: householderIdentitySchema.nationalId(),
+  gender: householderIdentitySchema.gender(),
+  nationality: householderIdentitySchema.nationality(),
+  religion: householderIdentitySchema.religion(),
 });
 
 const useStyles = createStyles(theme => ({
@@ -72,7 +77,14 @@ export const HouseholderIdentityForm = ({ currentFamilyId }: Props) => {
 
   const [upsertHouseholder] = useUpsertHouseholder();
   const onSubmit = handleSubmit(
-    ({ fatherName, firstName: name, lastName: surename, nationalId }) => {
+    ({
+      fatherName,
+      firstName: name,
+      lastName: surename,
+      nationality,
+      religion,
+      nationalId,
+    }) => {
       upsertHouseholder({
         variables: {
           input: {
@@ -80,6 +92,8 @@ export const HouseholderIdentityForm = ({ currentFamilyId }: Props) => {
             name,
             surename,
             family_id: currentFamilyId,
+            nationality,
+            religion,
           },
         },
       })
@@ -87,7 +101,7 @@ export const HouseholderIdentityForm = ({ currentFamilyId }: Props) => {
           showNotification({
             title: t.title,
             message: t.notification.successfulUpdate(
-              data?.householder.name ?? '',
+              data?.householder.firstName ?? '',
             ),
             type: 'success',
             ...createTestAttr(ids.notification.success),

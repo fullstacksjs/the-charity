@@ -1,8 +1,13 @@
 import { type MutationHookOptions } from '@apollo/client';
 import { gql } from '@apollo/client';
-import { type Householder, type HouseholderStatus } from '@camp/domain';
+import {
+  type Gender,
+  type Householder,
+  type HouseholderStatus,
+} from '@camp/domain';
 
 import {
+  ApiGenderEnum,
   ApiHouseholderStatusEnum,
   type ApiUpsertHouseholderMutation,
   type ApiUpsertHouseholderMutationVariables,
@@ -54,6 +59,9 @@ export const toHouseholderStatus = (
 ): HouseholderStatus =>
   status === ApiHouseholderStatusEnum.Completed ? 'completed' : 'draft';
 
+export const toHouseholderGender = (gender: ApiGenderEnum): Gender =>
+  gender === ApiGenderEnum.Male ? 'male' : 'female';
+
 const toClient = (
   data: ApiUpsertHouseholderMutation | null | undefined,
 ): UpsertHouseholder | null =>
@@ -61,7 +69,7 @@ const toClient = (
     ? null
     : {
         householder: {
-          name: data.insert_householder_one.name,
+          firstName: data.insert_householder_one.name,
           status: toHouseholderStatus(data.insert_householder_one.status),
           fatherName: data.insert_householder_one.father_name,
           lastName: data.insert_householder_one.surename,

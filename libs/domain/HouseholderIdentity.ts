@@ -1,6 +1,8 @@
 import { messages } from '@camp/messages';
 import { z } from 'zod';
 
+import { type Gender } from './Gender';
+
 const numberRegex = /^[0-9]*[\u0660-\u0669\u06F0-\u06F90-9]*$/;
 
 export const householderIdentitySchema = {
@@ -51,8 +53,8 @@ export type HouseholderStatus = 'completed' | 'draft';
 
 export interface Householder {
   firstName: string;
-  status: HouseholderStatus;
   lastName: string;
+  status: HouseholderStatus;
   fatherName: string;
   nationalId: string;
   name: string;
