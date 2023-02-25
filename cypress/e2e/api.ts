@@ -8,7 +8,7 @@ export function createFamily(name: string) {
   return client
     .request(
       gql`
-        mutation CreateFamily {
+        mutation CreateFamilyTest {
           insert_family_one(object: { name: "${name}" }) {
             id
           }
@@ -21,7 +21,7 @@ export function createProject(name: string) {
   return client
     .request(
       gql`
-        mutation CreateProject {
+        mutation CreateProjectTest {
           insert_project_one (object: { name: "${name}" }) {
             id
           }
