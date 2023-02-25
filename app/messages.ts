@@ -107,6 +107,12 @@ export const messages = {
         invalidNationalId: 'لطفا یک شماره کارت ملی معتبر وارد نمایید',
       },
       title: 'اطلاعات هویت',
+      notification: {
+        successfulUpdate: (name: string) =>
+          `سرپرستی ای با نام "${name}" .با موفقیت آپدیت شد`,
+        failedUpdate: (name: string) =>
+          `مشکلی در مرحله آپدیت سرپرستی ای با نام "${name}" .بوجود آمده است. لطفا دوباره تلاش کنید`,
+      },
       submitBtn: 'ثبت',
       selectInputs: {
         placeholder: 'انتخاب کنید',

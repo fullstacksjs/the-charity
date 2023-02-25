@@ -1,5 +1,6 @@
 import { type ComponentMeta, type ComponentStory } from '@storybook/react';
 
+import { ApiFamilyList } from '../../fixtures/ApiFamilyList';
 import { HouseholderIdentityForm } from './HouseholderIdentityForm';
 
 export default {
@@ -7,7 +8,7 @@ export default {
 } as ComponentMeta<typeof HouseholderIdentityForm>;
 
 const Template: ComponentStory<typeof HouseholderIdentityForm> = () => (
-  <HouseholderIdentityForm />
+  <HouseholderIdentityForm currentFamilyId="null" />
 );
 
 export const Default: ComponentStory<typeof HouseholderIdentityForm> =

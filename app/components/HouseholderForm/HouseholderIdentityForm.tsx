@@ -1,8 +1,14 @@
+import 'dayjs/locale/fa';
+
+import { useUpsertHouseholder } from '@camp/data-layer';
+import { showNotification } from '@camp/design';
 import {
   cities,
   countries,
   createResolver,
+  createResolver,
   genders,
+  householderIdentitySchema,
   householderIdentitySchema,
   religions,
 } from '@camp/domain';
@@ -22,7 +28,11 @@ import {
 import { DateInput } from 'mantine-datepicker-jalali';
 import { useForm } from 'react-hook-form';
 
-import { householderIdentityFormIds as Ids } from './HouseholderIdentityForm.ids';
+import { householderIdentityFormIds as ids } from './HouseholderIdentityForm.ids';
+
+interface Props {
+  currentFamilyId: string;
+}
 
 interface FormSchema {
   firstName: string;
@@ -51,23 +61,58 @@ const useStyles = createStyles(theme => ({
   },
 }));
 
-export const HouseholderIdentityForm = () => {
+// eslint-disable-next-line max-lines-per-function
+export const HouseholderIdentityForm = ({ currentFamilyId }: Props) => {
   const t = messages.householder.householderIdentityForm;
   const { classes } = useStyles();
-  const { register, formState } = useForm<FormSchema>({
+  const { handleSubmit, register, formState } = useForm<FormSchema>({
     resolver,
     mode: 'onChange',
   });
 
+  const [upsertHouseholder] = useUpsertHouseholder();
+  const onSubmit = handleSubmit(
+    ({ fatherName, firstName: name, lastName: surename, nationalId }) => {
+      upsertHouseholder({
+        variables: {
+          input: {
+            father_name: fatherName,
+            name,
+            surename,
+            family_id: currentFamilyId,
+          },
+        },
+      })
+        .then(({ data }) => {
+          showNotification({
+            title: t.title,
+            message: t.notification.successfulUpdate(
+              data?.householder.name ?? '',
+            ),
+            type: 'success',
+            ...createTestAttr(ids.notification.success),
+          });
+        })
+        .catch(() =>
+          showNotification({
+            title: t.title,
+            message: t.notification.failedUpdate(name),
+            type: 'failure',
+            ...createTestAttr(ids.notification.failure),
+          }),
+        );
+    },
+  );
+
   return (
-    <form>
+    <form onSubmit={onSubmit}>
       <Stack spacing={25}>
         <Group position="apart">
           <Title order={4} color="fgMuted" weight="bold">
             {t.title}
           </Title>
           <Button
-            {...createTestAttr(Ids.submitBtn)}
+            {...createTestAttr(ids.submitBtn)}
             type="submit"
             size="sm"
             leftIcon={<CheckIcon size={16} />}
@@ -77,7 +122,7 @@ export const HouseholderIdentityForm = () => {
         </Group>
         <SimpleGrid cols={3} spacing="lg" verticalSpacing={20}>
           <TextInput
-            wrapperProps={createTestAttr(Ids.firstNameInput)}
+            wrapperProps={createTestAttr(ids.firstNameInput)}
             {...register('firstName')}
             className={classes.textInput}
             label={`${t.nameInput.label}:`}
@@ -85,7 +130,7 @@ export const HouseholderIdentityForm = () => {
             error={formState.errors.firstName?.message}
           />
           <TextInput
-            wrapperProps={createTestAttr(Ids.lastNameInput)}
+            wrapperProps={createTestAttr(ids.lastNameInput)}
             {...register('lastName')}
             className={classes.textInput}
             label={`${t.lastNameInput.label}:`}
@@ -93,7 +138,7 @@ export const HouseholderIdentityForm = () => {
             placeholder={t.lastNameInput.placeholder}
           />
           <TextInput
-            wrapperProps={createTestAttr(Ids.fatherNameInput)}
+            wrapperProps={createTestAttr(ids.fatherNameInput)}
             {...register('fatherName')}
             className={classes.textInput}
             label={`${t.fatherNameInput.label}:`}
@@ -101,7 +146,7 @@ export const HouseholderIdentityForm = () => {
             error={formState.errors.fatherName?.message}
           />
           <Select
-            wrapperProps={createTestAttr(Ids.nationalityInput)}
+            wrapperProps={createTestAttr(ids.nationalityInput)}
             data={countries.map(v => ({
               value: v,
               label: t.nationalityInput.options[v],
@@ -110,7 +155,7 @@ export const HouseholderIdentityForm = () => {
             label={`${t.nationalityInput.label}:`}
           />
           <TextInput
-            wrapperProps={createTestAttr(Ids.nationalIdInput)}
+            wrapperProps={createTestAttr(ids.nationalIdInput)}
             error={formState.errors.nationalId?.message}
             className={classes.textInput}
             {...register('nationalId')}
@@ -118,7 +163,7 @@ export const HouseholderIdentityForm = () => {
             label={`${t.nationalIdInput.label}:`}
           />
           <Select
-            wrapperProps={createTestAttr(Ids.genderInput)}
+            wrapperProps={createTestAttr(ids.genderInput)}
             data={genders.map(v => ({
               value: v,
               label: t.genderInput.options[v],
@@ -127,7 +172,7 @@ export const HouseholderIdentityForm = () => {
             placeholder={t.selectInputs.placeholder}
           />
           <Select
-            wrapperProps={createTestAttr(Ids.issuedAtInput)}
+            wrapperProps={createTestAttr(ids.issuedAtInput)}
             data={cities.map(v => ({
               value: v,
               label: t.issuedAtInput.options[v],
@@ -136,7 +181,7 @@ export const HouseholderIdentityForm = () => {
             label={`${t.issuedAtInput.label}:`}
           />
           <Select
-            wrapperProps={createTestAttr(Ids.religionInput)}
+            wrapperProps={createTestAttr(ids.religionInput)}
             data={religions.map(v => ({
               value: v,
               label: t.religionInput.options[v],
@@ -145,7 +190,7 @@ export const HouseholderIdentityForm = () => {
             label={`${t.religionInput.label}:`}
           />
           <Select
-            wrapperProps={createTestAttr(Ids.cityOfBirthInput)}
+            wrapperProps={createTestAttr(ids.cityOfBirthInput)}
             data={cities.map(v => ({
               value: v,
               label: t.cityOfBirthInput.options[v],
@@ -154,7 +199,7 @@ export const HouseholderIdentityForm = () => {
             label={`${t.cityOfBirthInput.label}:`}
           />
           <DateInput
-            wrapperProps={createTestAttr(Ids.dateOfBirthInput)}
+            wrapperProps={createTestAttr(ids.dateOfBirthInput)}
             className={classes.dateInput}
             rightSection={<CalendarIcon stroke="currentColor" size={16} />}
             label={`${t.dateOfBirthInput.label}:`}

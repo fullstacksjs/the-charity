@@ -2322,7 +2322,7 @@ export type ApiUpsertHouseholderMutationVariables = Exact<{
 }>;
 
 
-export type ApiUpsertHouseholderMutation = { __typename?: 'mutation_root', insert_householder_one?: { __typename?: 'householder', city?: string | null, gender?: string | null, dob?: any | null, father_name?: string | null, name: string, nationality?: string | null, religion?: string | null, surename?: string | null, status: ApiHouseholderStatusEnum } | null };
+export type ApiUpsertHouseholderMutation = { __typename?: 'mutation_root', insert_householder_one?: { __typename?: 'householder', city?: string | null, gender?: string | null, ssn?: string | null, dob?: any | null, father_name?: string | null, name: string, nationality?: string | null, religion?: string | null, surename?: string | null, status: ApiHouseholderStatusEnum } | null };
 
 export type ApiFamilyListQueryVariables = Exact<{ [key: string]: never; }>;
 
@@ -2374,10 +2374,11 @@ export const ApiUpsertHouseholderDocument = gql`
     mutation UpsertHouseholder($input: householder_insert_input!) {
   insert_householder_one(
     object: $input
-    on_conflict: {constraint: householder_family_id_key, update_columns: [city, gender, dob, father_name, name, nationality, religion, surename]}
+    on_conflict: {constraint: householder_family_id_key, update_columns: [city, ssn, gender, dob, father_name, name, nationality, religion, surename]}
   ) {
     city
     gender
+    ssn
     dob
     father_name
     name

@@ -7,7 +7,7 @@ const householderIdentityForm = messages.householder.householderIdentityForm;
 
 describe('HouseHolder Identity Form', () => {
   beforeEach(() => {
-    cy.mount(<HouseholderIdentityForm />);
+    cy.mount(<HouseholderIdentityForm currentFamilyId="null" />);
   });
 
   it('contains a first name input with correct label', () => {

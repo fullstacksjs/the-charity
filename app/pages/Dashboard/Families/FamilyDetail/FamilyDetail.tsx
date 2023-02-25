@@ -60,7 +60,10 @@ export const FamilyDetail = () => {
           { tab: <Title order={5}>{t.tabs.membersTitle}</Title>, value: '2' },
         ]}
         panels={[
-          { panel: <HouseholderIdentityForm />, value: '1' },
+          {
+            panel: <HouseholderIdentityForm currentFamilyId={family.id} />,
+            value: '1',
+          },
           { panel: t.panels.title, value: '2' },
         ]}
       />

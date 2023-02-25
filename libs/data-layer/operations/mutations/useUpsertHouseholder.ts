@@ -18,7 +18,6 @@ const Document = gql`
         constraint: householder_family_id_key
         update_columns: [
           city
-          ssn
           gender
           dob
           father_name
@@ -31,7 +30,6 @@ const Document = gql`
     ) {
       city
       gender
-      ssn
       dob
       father_name
       name
