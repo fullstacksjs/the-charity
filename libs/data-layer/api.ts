@@ -2317,6 +2317,13 @@ export type ApiCreateProjectMutationVariables = Exact<{
 
 export type ApiCreateProjectMutation = { __typename?: 'mutation_root', insert_project_one?: { __typename?: 'project', id: any, name: string, description?: string | null, status: ApiProjectStatusEnum } | null };
 
+export type ApiUpsertHouseholderMutationVariables = Exact<{
+  input: ApiHouseholderInsertInput;
+}>;
+
+
+export type ApiUpsertHouseholderMutation = { __typename?: 'mutation_root', insert_householder_one?: { __typename?: 'householder', city?: string | null, gender?: string | null, dob?: any | null, father_name?: string | null, name: string, nationality?: string | null, religion?: string | null, surename?: string | null, status: ApiHouseholderStatusEnum } | null };
+
 export type ApiFamilyListQueryVariables = Exact<{ [key: string]: never; }>;
 
 
@@ -2363,6 +2370,27 @@ export const ApiCreateProjectDocument = gql`
 export type ApiCreateProjectMutationFn = Apollo.MutationFunction<ApiCreateProjectMutation, ApiCreateProjectMutationVariables>;
 export type ApiCreateProjectMutationResult = Apollo.MutationResult<ApiCreateProjectMutation>;
 export type ApiCreateProjectMutationOptions = Apollo.BaseMutationOptions<ApiCreateProjectMutation, ApiCreateProjectMutationVariables>;
+export const ApiUpsertHouseholderDocument = gql`
+    mutation UpsertHouseholder($input: householder_insert_input!) {
+  insert_householder_one(
+    object: $input
+    on_conflict: {constraint: householder_family_id_key, update_columns: [city, gender, dob, father_name, name, nationality, religion, surename]}
+  ) {
+    city
+    gender
+    dob
+    father_name
+    name
+    nationality
+    religion
+    surename
+    status
+  }
+}
+    `;
+export type ApiUpsertHouseholderMutationFn = Apollo.MutationFunction<ApiUpsertHouseholderMutation, ApiUpsertHouseholderMutationVariables>;
+export type ApiUpsertHouseholderMutationResult = Apollo.MutationResult<ApiUpsertHouseholderMutation>;
+export type ApiUpsertHouseholderMutationOptions = Apollo.BaseMutationOptions<ApiUpsertHouseholderMutation, ApiUpsertHouseholderMutationVariables>;
 export const ApiFamilyListDocument = gql`
     query FamilyList {
   family {

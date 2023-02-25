@@ -47,3 +47,15 @@ export const householderIdentitySchema = {
 
 export const genders = ['male', 'female'] as const;
 export const religions = ['islam'] as const;
+export type HouseholderStatus = 'completed' | 'draft';
+
+export interface Householder {
+  firstName: string;
+  status: HouseholderStatus;
+  lastName: string;
+  fatherName: string;
+  nationalId: string;
+  name: string;
+  nationality: string;
+  religion: string;
+}
