@@ -78,14 +78,47 @@ const toClient = (
         },
       };
 
+interface Variables {
+  firstName: string;
+  familyId: string;
+  lastName?: string;
+  fatherName?: string;
+  nationalId?: string;
+  ssn?: string;
+  nationality?: string;
+  religion?: string;
+  gender?: Gender;
+  city?: string;
+}
+
+// FIXME add DOB too
+const toApiVariables = (
+  variables?: Variables | null,
+): ApiUpsertHouseholderMutationVariables | null | undefined =>
+  variables == null
+    ? undefined
+    : {
+        input: {
+          name: variables.firstName,
+          family_id: variables.familyId,
+          surename: variables.lastName,
+          ssn: variables.ssn,
+          nationality: variables.nationality,
+          religion: variables.religion,
+          city: variables.city,
+          gender:
+            variables.gender === 'male'
+              ? ApiGenderEnum.Male
+              : ApiGenderEnum.Female,
+        },
+      };
+
 export function useUpsertHouseholder(
-  options?: MutationHookOptions<
-    ApiUpsertHouseholderMutation,
-    ApiUpsertHouseholderMutationVariables
-  >,
+  options?: MutationHookOptions<ApiUpsertHouseholderMutation, Variables>,
 ) {
   return useMutation(Document, {
     ...options,
-    mapper: toClient,
+    mapData: toClient,
+    mapVariables: toApiVariables,
   });
 }

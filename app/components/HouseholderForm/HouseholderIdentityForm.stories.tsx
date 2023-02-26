@@ -1,6 +1,5 @@
 import { type ComponentMeta, type ComponentStory } from '@storybook/react';
 
-import { ApiFamilyList } from '../../fixtures/ApiFamilyList';
 import { HouseholderIdentityForm } from './HouseholderIdentityForm';
 
 export default {

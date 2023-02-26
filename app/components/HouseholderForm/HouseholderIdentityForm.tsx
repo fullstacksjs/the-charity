@@ -79,22 +79,23 @@ export const HouseholderIdentityForm = ({ currentFamilyId }: Props) => {
   const onSubmit = handleSubmit(
     ({
       fatherName,
-      firstName: name,
-      lastName: surename,
+      firstName,
+      lastName,
       nationality,
       religion,
       nationalId,
+      gender,
     }) => {
       upsertHouseholder({
         variables: {
-          input: {
-            father_name: fatherName,
-            name,
-            surename,
-            family_id: currentFamilyId,
-            nationality,
-            religion,
-          },
+          fatherName,
+          lastName,
+          firstName,
+          familyId: currentFamilyId,
+          nationality,
+          religion,
+          nationalId,
+          gender,
         },
       })
         .then(({ data }) => {
@@ -110,7 +111,7 @@ export const HouseholderIdentityForm = ({ currentFamilyId }: Props) => {
         .catch(() =>
           showNotification({
             title: t.title,
-            message: t.notification.failedUpdate(name),
+            message: t.notification.failedUpdate(firstName),
             type: 'failure',
             ...createTestAttr(ids.notification.failure),
           }),
