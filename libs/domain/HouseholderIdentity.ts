@@ -45,6 +45,9 @@ export const householderIdentitySchema = {
           .invalidNationalId,
       )
       .trim(),
+  gender: () => z.union([z.literal('male'), z.literal('female')]),
+  nationality: () => z.string().trim(),
+  religion: () => z.string().trim(),
 };
 
 export const genders = ['male', 'female'] as const;
