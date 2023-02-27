@@ -74,7 +74,8 @@ const toClient = (
           fatherName: data.insert_householder_one.father_name,
           lastName: data.insert_householder_one.surename,
           nationality: data.insert_householder_one.nationality,
-          religion: data.insert_householder_one.religion,
+          // FIXME
+          religion: data.insert_householder_one.religion as 'islam',
         },
       };
 

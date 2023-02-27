@@ -25,7 +25,7 @@ import {
   Title,
 } from '@mantine/core';
 import { DateInput } from 'mantine-datepicker-jalali';
-import { useForm } from 'react-hook-form';
+import { Controller, useForm } from 'react-hook-form';
 
 import { householderIdentityFormIds as ids } from './HouseholderIdentityForm.ids';
 
@@ -41,6 +41,7 @@ interface FormSchema {
   gender: Gender;
   nationality: string;
   religion: string;
+  cityOfBirthInput: string;
 }
 
 const resolver = createResolver<FormSchema>({
@@ -51,6 +52,7 @@ const resolver = createResolver<FormSchema>({
   gender: householderIdentitySchema.gender(),
   nationality: householderIdentitySchema.nationality(),
   religion: householderIdentitySchema.religion(),
+  cityOfBirthInput: householderIdentitySchema.cityOfBirth(),
 });
 
 const useStyles = createStyles(theme => ({
@@ -70,7 +72,7 @@ const useStyles = createStyles(theme => ({
 export const HouseholderIdentityForm = ({ currentFamilyId }: Props) => {
   const t = messages.householder.householderIdentityForm;
   const { classes } = useStyles();
-  const { handleSubmit, register, formState } = useForm<FormSchema>({
+  const { handleSubmit, register, formState, control } = useForm<FormSchema>({
     resolver,
     mode: 'onChange',
   });
@@ -160,14 +162,22 @@ export const HouseholderIdentityForm = ({ currentFamilyId }: Props) => {
             placeholder={t.fatherNameInput.placeholder}
             error={formState.errors.fatherName?.message}
           />
-          <Select
-            wrapperProps={createTestAttr(ids.nationalityInput)}
-            data={countries.map(v => ({
-              value: v,
-              label: t.nationalityInput.options[v],
-            }))}
-            placeholder={t.selectInputs.placeholder}
-            label={`${t.nationalityInput.label}:`}
+          <Controller
+            name="nationality"
+            control={control}
+            render={({ field }) => (
+              <Select
+                wrapperProps={createTestAttr(ids.nationalityInput)}
+                data={countries.map(v => ({
+                  value: v,
+                  label: t.nationalityInput.options[v],
+                }))}
+                placeholder={t.selectInputs.placeholder}
+                label={`${t.nationalityInput.label}:`}
+                error={formState.errors.nationality?.message}
+                {...field}
+              />
+            )}
           />
           <TextInput
             wrapperProps={createTestAttr(ids.nationalIdInput)}
@@ -195,24 +205,59 @@ export const HouseholderIdentityForm = ({ currentFamilyId }: Props) => {
             placeholder={t.selectInputs.placeholder}
             label={`${t.issuedAtInput.label}:`}
           />
-          <Select
-            wrapperProps={createTestAttr(ids.religionInput)}
-            data={religions.map(v => ({
-              value: v,
-              label: t.religionInput.options[v],
-            }))}
-            placeholder={t.selectInputs.placeholder}
-            label={`${t.religionInput.label}:`}
+          <Controller
+            name="cityOfBirthInput"
+            control={control}
+            render={({ field }) => (
+              <Select
+                wrapperProps={createTestAttr(ids.cityOfBirthInput)}
+                data={cities.map(v => ({
+                  value: v,
+                  label: t.cityOfBirthInput.options[v],
+                }))}
+                placeholder={t.selectInputs.placeholder}
+                label={`${t.cityOfBirthInput.label}:`}
+                error={formState.errors.cityOfBirthInput?.message}
+                {...field}
+              />
+            )}
           />
-          <Select
-            wrapperProps={createTestAttr(ids.cityOfBirthInput)}
-            data={cities.map(v => ({
-              value: v,
-              label: t.cityOfBirthInput.options[v],
-            }))}
-            placeholder={t.selectInputs.placeholder}
-            label={`${t.cityOfBirthInput.label}:`}
+
+          <Controller
+            name="religion"
+            control={control}
+            render={({ field }) => (
+              <Select
+                wrapperProps={createTestAttr(ids.religionInput)}
+                data={religions.map(v => ({
+                  value: v,
+                  label: t.religionInput.options[v],
+                }))}
+                placeholder={t.selectInputs.placeholder}
+                label={`${t.religionInput.label}:`}
+                error={formState.errors.religion?.message}
+                {...field}
+              />
+            )}
           />
+          <Controller
+            name="gender"
+            control={control}
+            render={({ field }) => (
+              <Select
+                wrapperProps={createTestAttr(ids.genderInput)}
+                data={genders.map(v => ({
+                  value: v,
+                  label: t.genderInput.options[v],
+                }))}
+                label={`${t.genderInput.label}:`}
+                placeholder={t.selectInputs.placeholder}
+                error={formState.errors.gender?.message}
+                {...field}
+              />
+            )}
+          />
+
           <DateInput
             wrapperProps={createTestAttr(ids.dateOfBirthInput)}
             className={classes.dateInput}
