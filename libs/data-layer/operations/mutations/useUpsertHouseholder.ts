@@ -94,7 +94,7 @@ interface Variables {
 // FIXME add DOB too
 const toApiVariables = (
   variables?: Variables | null,
-): ApiUpsertHouseholderMutationVariables | null | undefined =>
+): ApiUpsertHouseholderMutationVariables | undefined =>
   variables == null
     ? undefined
     : {
@@ -114,7 +114,10 @@ const toApiVariables = (
       };
 
 export function useUpsertHouseholder(
-  options?: MutationHookOptions<ApiUpsertHouseholderMutation, Variables>,
+  options?: MutationHookOptions<
+    ApiUpsertHouseholderMutation,
+    ApiUpsertHouseholderMutationVariables
+  >,
 ) {
   return useMutation(Document, {
     ...options,

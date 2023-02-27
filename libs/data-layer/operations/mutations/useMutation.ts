@@ -10,20 +10,6 @@ import {
 } from '@apollo/client';
 import * as Apollo from '@apollo/client';
 
-type Options<
-  Client,
-  Variables,
-  Data,
-  ApiVariables,
-  Ctx,
-  Cache extends ApolloCache<any> = ApolloCache<any>,
-> = Partial<MutationHookOptions<Data, Variables, Ctx, Cache>> & {
-  mapData: (d: Data | null | undefined) => Client;
-  mapVariables: (
-    v: Variables | null | undefined,
-  ) => ApiVariables | null | undefined;
-};
-
 export const useMutation = <
   Client,
   Variables,
@@ -33,13 +19,11 @@ export const useMutation = <
   Cache extends ApolloCache<any> = ApolloCache<any>,
 >(
   mutation: DocumentNode | TypedDocumentNode<Data, ApiVariables>,
-  _options: Options<Client, Variables, Data, ApiVariables, Ctx, Cache>,
+  options: Partial<MutationHookOptions<Data, ApiVariables, Ctx, Cache>> & {
+    mapData: (d: Data | null | undefined) => Client;
+    mapVariables: (v: Variables | null | undefined) => ApiVariables | undefined;
+  },
 ): MutationTuple<Client, Variables, Ctx, Cache> => {
-  const options = {
-    ..._options,
-    variables: _options.mapVariables(_options.variables),
-  } as Options<Client, ApiVariables, Data, ApiVariables, Ctx, Cache>;
-
   const [fn, { data, ...rest }] = Apollo.useMutation(mutation, options);
   const m = (
     opts?:
@@ -48,6 +32,7 @@ export const useMutation = <
   ): Promise<FetchResult<Client>> =>
     fn({
       ...(opts as Omit<typeof opts, 'onCompleted'>),
+      variables: options.mapVariables(opts?.variables),
       onCompleted: opts?.onCompleted
         ? (a, ...args) => {
             opts.onCompleted?.(options.mapData(a), ...args);

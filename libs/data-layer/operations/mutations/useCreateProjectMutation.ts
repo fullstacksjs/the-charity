@@ -56,7 +56,7 @@ interface Variables {
 
 const toApiVariables = (
   variables?: Variables | null,
-): ApiCreateProjectMutationVariables | null | undefined =>
+): ApiCreateProjectMutationVariables | undefined =>
   variables == null
     ? undefined
     : {
@@ -67,7 +67,10 @@ const toApiVariables = (
       };
 
 export function useCreateProjectMutation(
-  options?: MutationHookOptions<ApiCreateProjectMutation, Variables>,
+  options?: MutationHookOptions<
+    ApiCreateProjectMutation,
+    ApiCreateProjectMutationVariables
+  >,
 ) {
   return useMutation(Document, {
     ...options,

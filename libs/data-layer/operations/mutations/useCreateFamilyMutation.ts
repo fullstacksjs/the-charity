@@ -44,7 +44,7 @@ interface Variables {
 
 const toApiVariables = (
   variables?: Variables | null,
-): ApiCreateFamilyMutationVariables | null | undefined =>
+): ApiCreateFamilyMutationVariables | undefined =>
   variables == null
     ? undefined
     : {
@@ -52,7 +52,10 @@ const toApiVariables = (
       };
 
 export function useCreateFamilyMutation(
-  options?: MutationHookOptions<ApiCreateFamilyMutation, Variables>,
+  options?: MutationHookOptions<
+    ApiCreateFamilyMutation,
+    ApiCreateFamilyMutationVariables
+  >,
 ) {
   return useMutation(Document, {
     ...options,
