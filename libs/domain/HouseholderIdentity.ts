@@ -1,8 +1,6 @@
 import { messages } from '@camp/messages';
 import { z } from 'zod';
 
-import { type Gender } from './Gender';
-
 const numberRegex = /^[0-9]*[\u0660-\u0669\u06F0-\u06F90-9]*$/;
 
 export const householderIdentitySchema = {
@@ -21,7 +19,8 @@ export const householderIdentitySchema = {
       .min(
         3,
         messages.householder.householderIdentityForm.validation.nameMinLength,
-      ),
+      )
+      .optional(),
   fatherName: () =>
     z
       .string()
@@ -30,7 +29,8 @@ export const householderIdentitySchema = {
         3,
         messages.householder.householderIdentityForm.validation
           .fatherNameMinLength,
-      ),
+      )
+      .optional(),
   nationalId: () =>
     z
       .string()
@@ -44,10 +44,11 @@ export const householderIdentitySchema = {
         messages.householder.householderIdentityForm.validation
           .invalidNationalId,
       )
-      .trim(),
-  gender: () => z.union([z.literal('male'), z.literal('female')]),
-  nationality: () => z.string().trim(),
-  religion: () => z.string().trim(),
+      .trim()
+      .optional(),
+  gender: () => z.union([z.literal('male'), z.literal('female')]).optional(),
+  nationality: () => z.string().trim().optional(),
+  religion: () => z.literal('islam').optional(),
 };
 
 export const genders = ['male', 'female'] as const;
