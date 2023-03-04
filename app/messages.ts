@@ -124,7 +124,7 @@ export const messages = {
         placeholder: 'برای مثال: محمد',
       },
       nationalityInput: {
-        data: { value: 'IR', label: 'ایرانی' },
+        data: { label: 'ایرانی' },
         label: 'ملیت',
         placeholder: 'برای مثال: ایرانی',
       },
@@ -133,20 +133,17 @@ export const messages = {
         placeholder: 'برای مثال: ۰۱۲۳۴۵۶۷۸۹',
       },
       issuedAtInput: {
-        data: { value: 'tehran', label: 'تهران' },
+        data: { label: 'تهران' },
         label: 'محل صدور',
         placeholder: 'برای مثال: تهران',
       },
       religionInput: {
-        data: { value: 'islam', label: 'اسلام' },
+        data: { label: 'اسلام' },
         label: 'دین',
         placeholder: 'برای مثال: اسلام',
       },
       genderInput: {
-        options: [
-          { value: 'male', label: 'مرد' },
-          { value: 'female', label: 'زن' },
-        ],
+        options: [{ label: 'مرد' }, { label: 'زن' }],
         label: 'جنسیت',
         placeholder: 'مرد/زن',
       },
@@ -155,7 +152,7 @@ export const messages = {
         placeholder: 'برای مثال: ۱۳۹۹/۱۰/۱۰',
       },
       cityOfBirthInput: {
-        data: { value: 'tehran', label: 'تهران' },
+        data: { label: 'تهران' },
         label: 'شهر',
         placeholder: 'برای مثال: تهران',
       },

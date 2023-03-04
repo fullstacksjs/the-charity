@@ -1,6 +1,10 @@
 import 'dayjs/locale/fa';
 
-import { createResolver, householderIdentitySchema } from '@camp/domain';
+import {
+  createResolver,
+  householderIdentitySchema,
+  selectInputValue,
+} from '@camp/domain';
 import { CalendarIcon, CheckIcon } from '@camp/icons';
 import { messages } from '@camp/messages';
 import { createTestAttr } from '@camp/test';
@@ -48,7 +52,8 @@ const useStyles = createStyles(theme => ({
 
 export const HouseholderIdentityForm = () => {
   const t = messages.householder.householderIdentityForm;
-  const [male, female] = t.genderInput.options;
+  const [maleValue, femaleValue] = selectInputValue.gender;
+  const [maleLabel, femaleLabel] = t.genderInput.options;
   const { classes } = useStyles();
   const { register, formState } = useForm<FormSchema>({
     resolver,
@@ -100,7 +105,7 @@ export const HouseholderIdentityForm = () => {
             wrapperProps={createTestAttr(Ids.nationalityInput)}
             data={[
               {
-                value: t.nationalityInput.data.value,
+                value: selectInputValue.nationality,
                 label: t.nationalityInput.data.label,
               },
             ]}
@@ -119,12 +124,12 @@ export const HouseholderIdentityForm = () => {
             wrapperProps={createTestAttr(Ids.genderInput)}
             data={[
               {
-                value: male.value,
-                label: male.label,
+                value: maleValue.value,
+                label: maleLabel.label,
               },
               {
-                value: female.value,
-                label: female.label,
+                value: femaleValue.value,
+                label: femaleLabel.label,
               },
             ]}
             label={`${t.genderInput.label}:`}
@@ -134,7 +139,7 @@ export const HouseholderIdentityForm = () => {
             wrapperProps={createTestAttr(Ids.issuedAtInput)}
             data={[
               {
-                value: t.issuedAtInput.data.value,
+                value: selectInputValue.issuedAt,
                 label: t.issuedAtInput.data.label,
               },
             ]}
@@ -145,7 +150,7 @@ export const HouseholderIdentityForm = () => {
             wrapperProps={createTestAttr(Ids.religionInput)}
             data={[
               {
-                value: t.religionInput.data.value,
+                value: selectInputValue.religion,
                 label: t.religionInput.data.label,
               },
             ]}
@@ -156,7 +161,7 @@ export const HouseholderIdentityForm = () => {
             wrapperProps={createTestAttr(Ids.cityOfBirthInput)}
             data={[
               {
-                value: t.cityOfBirthInput.data.value,
+                value: selectInputValue.cityOfBirth,
                 label: t.cityOfBirthInput.data.label,
               },
             ]}

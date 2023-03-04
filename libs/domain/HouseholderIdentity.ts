@@ -44,3 +44,11 @@ export const householderIdentitySchema = {
       )
       .trim(),
 };
+
+export const selectInputValue = {
+  nationality: 'IR',
+  gender: [{ value: 'male' }, { value: 'female' }],
+  issuedAt: 'tehran',
+  religion: 'islam',
+  cityOfBirth: 'tehran',
+} as const;
