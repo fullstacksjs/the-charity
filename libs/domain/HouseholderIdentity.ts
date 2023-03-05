@@ -26,7 +26,9 @@ export const householderIdentitySchema = {
         3,
         messages.householder.householderIdentityForm.validation.nameMinLength,
       )
-      .optional(),
+      .optional()
+      .or(z.literal(''))
+      .transform(e => (e === '' ? undefined : e)),
   fatherName: () =>
     z
       .string()
@@ -36,7 +38,9 @@ export const householderIdentitySchema = {
         messages.householder.householderIdentityForm.validation
           .fatherNameMinLength,
       )
-      .optional(),
+      .optional()
+      .or(z.literal(''))
+      .transform(e => (e === '' ? undefined : e)),
   nationalId: () =>
     z
       .string()
@@ -51,12 +55,34 @@ export const householderIdentitySchema = {
           .invalidNationalId,
       )
       .trim()
-      .optional(),
+      .optional()
+      .or(z.literal(''))
+      .transform(e => (e === '' ? undefined : e)),
   gender: () =>
-    z.union([z.literal(genders[0]), z.literal(genders[1])]).optional(),
-  nationality: () => z.string().trim().optional(),
-  religion: () => z.literal(religions[0]).optional(),
-  cityOfBirth: () => z.literal(cities[0]).optional(),
+    z
+      .union([z.literal(genders[0]), z.literal(genders[1])])
+      .optional()
+      .or(z.literal(''))
+      .transform(e => (e === '' ? undefined : e)),
+  nationality: () =>
+    z
+      .string()
+      .trim()
+      .optional()
+      .or(z.literal(''))
+      .transform(e => (e === '' ? undefined : e)),
+  religion: () =>
+    z
+      .literal(religions[0])
+      .optional()
+      .or(z.literal(''))
+      .transform(e => (e === '' ? undefined : e)),
+  cityOfBirth: () =>
+    z
+      .literal(cities[0])
+      .optional()
+      .or(z.literal(''))
+      .transform(e => (e === '' ? undefined : e)),
 };
 
 export type HouseholderStatus = 'completed' | 'draft';

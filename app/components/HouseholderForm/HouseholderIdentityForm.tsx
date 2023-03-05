@@ -72,7 +72,12 @@ const useStyles = createStyles(theme => ({
 export const HouseholderIdentityForm = ({ currentFamilyId }: Props) => {
   const t = messages.householder.householderIdentityForm;
   const { classes } = useStyles();
-  const { handleSubmit, register, formState, control } = useForm<FormSchema>({
+  const {
+    handleSubmit,
+    register,
+    formState: { errors, isValid },
+    control,
+  } = useForm<FormSchema>({
     resolver,
     mode: 'onChange',
   });
@@ -133,6 +138,7 @@ export const HouseholderIdentityForm = ({ currentFamilyId }: Props) => {
             type="submit"
             size="sm"
             leftIcon={<CheckIcon size={16} />}
+            disabled={!isValid}
           >
             {t.submitBtn}
           </Button>
@@ -144,14 +150,14 @@ export const HouseholderIdentityForm = ({ currentFamilyId }: Props) => {
             className={classes.textInput}
             label={`${t.nameInput.label}:`}
             placeholder={t.nameInput.placeholder}
-            error={formState.errors.firstName?.message}
+            error={errors.firstName?.message}
           />
           <TextInput
             wrapperProps={createTestAttr(ids.lastNameInput)}
             {...register('lastName')}
             className={classes.textInput}
             label={`${t.lastNameInput.label}:`}
-            error={formState.errors.lastName?.message}
+            error={errors.lastName?.message}
             placeholder={t.lastNameInput.placeholder}
           />
           <TextInput
@@ -160,7 +166,7 @@ export const HouseholderIdentityForm = ({ currentFamilyId }: Props) => {
             className={classes.textInput}
             label={`${t.fatherNameInput.label}:`}
             placeholder={t.fatherNameInput.placeholder}
-            error={formState.errors.fatherName?.message}
+            error={errors.fatherName?.message}
           />
           <Controller
             name="nationality"
@@ -174,14 +180,14 @@ export const HouseholderIdentityForm = ({ currentFamilyId }: Props) => {
                 }))}
                 placeholder={t.selectInputs.placeholder}
                 label={`${t.nationalityInput.label}:`}
-                error={formState.errors.nationality?.message}
+                error={errors.nationality?.message}
                 {...field}
               />
             )}
           />
           <TextInput
             wrapperProps={createTestAttr(ids.nationalIdInput)}
-            error={formState.errors.nationalId?.message}
+            error={errors.nationalId?.message}
             className={classes.textInput}
             {...register('nationalId')}
             placeholder={t.nationalIdInput.placeholder}
@@ -217,7 +223,7 @@ export const HouseholderIdentityForm = ({ currentFamilyId }: Props) => {
                 }))}
                 placeholder={t.selectInputs.placeholder}
                 label={`${t.cityOfBirthInput.label}:`}
-                error={formState.errors.cityOfBirthInput?.message}
+                error={errors.cityOfBirthInput?.message}
                 {...field}
               />
             )}
@@ -235,7 +241,7 @@ export const HouseholderIdentityForm = ({ currentFamilyId }: Props) => {
                 }))}
                 placeholder={t.selectInputs.placeholder}
                 label={`${t.religionInput.label}:`}
-                error={formState.errors.religion?.message}
+                error={errors.religion?.message}
                 {...field}
               />
             )}
@@ -252,7 +258,7 @@ export const HouseholderIdentityForm = ({ currentFamilyId }: Props) => {
                 }))}
                 label={`${t.genderInput.label}:`}
                 placeholder={t.selectInputs.placeholder}
-                error={formState.errors.gender?.message}
+                error={errors.gender?.message}
                 {...field}
               />
             )}
