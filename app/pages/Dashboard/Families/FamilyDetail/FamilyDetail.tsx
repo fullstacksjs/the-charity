@@ -61,7 +61,7 @@ export const FamilyDetail = () => {
         ]}
         panels={[
           {
-            panel: <HouseholderIdentityForm currentFamilyId={family.id} />,
+            panel: <HouseholderIdentityForm familyId={family.id} />,
             value: '1',
           },
           { panel: t.panels.title, value: '2' },

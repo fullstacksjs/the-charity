@@ -30,7 +30,7 @@ import { Controller, useForm } from 'react-hook-form';
 import { householderIdentityFormIds as ids } from './HouseholderIdentityForm.ids';
 
 interface Props {
-  currentFamilyId: string;
+  familyId: string;
 }
 
 interface FormSchema {
@@ -69,7 +69,7 @@ const useStyles = createStyles(theme => ({
 }));
 
 // eslint-disable-next-line max-lines-per-function
-export const HouseholderIdentityForm = ({ currentFamilyId }: Props) => {
+export const HouseholderIdentityForm = ({ familyId }: Props) => {
   const t = messages.householder.householderIdentityForm;
   const { classes } = useStyles();
   const {
@@ -98,7 +98,7 @@ export const HouseholderIdentityForm = ({ currentFamilyId }: Props) => {
           fatherName,
           lastName,
           firstName,
-          familyId: currentFamilyId,
+          familyId,
           nationality,
           religion,
           nationalId,
