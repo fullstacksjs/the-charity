@@ -28,7 +28,6 @@ describe('Householder Identity', () => {
   it('[OK]: Admin wants to add householder identity information', () => {
     cy.get('form').within(() => {
       const mock = householderFixture();
-      console.log(mock);
       Object.keys(mock).forEach(key => {
         const inputValue = mock[key];
         const inputTestId = idMapping[key];
