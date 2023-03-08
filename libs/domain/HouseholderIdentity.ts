@@ -18,7 +18,7 @@ export const householderIdentitySchema = {
         3,
         messages.householder.householderIdentityForm.validation.nameMinLength,
       ),
-  lastName: () =>
+  surname: () =>
     z
       .string()
       .trim()
@@ -89,7 +89,7 @@ export type HouseholderStatus = 'completed' | 'draft';
 
 export interface Householder {
   name: string;
-  lastName: string;
+  surname: string;
   status: HouseholderStatus;
   fatherName: string;
   nationalId: string;

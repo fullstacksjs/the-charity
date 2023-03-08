@@ -35,7 +35,7 @@ interface Props {
 
 interface FormSchema {
   name: string;
-  lastName: string;
+  surname: string;
   fatherName: string;
   nationalId: string;
   gender: Gender;
@@ -46,7 +46,7 @@ interface FormSchema {
 
 const resolver = createResolver<FormSchema>({
   name: householderIdentitySchema.name(),
-  lastName: householderIdentitySchema.lastName(),
+  surname: householderIdentitySchema.surname(),
   fatherName: householderIdentitySchema.fatherName(),
   nationalId: householderIdentitySchema.nationalId(),
   gender: householderIdentitySchema.gender(),
@@ -87,7 +87,7 @@ export const HouseholderIdentityForm = ({ familyId }: Props) => {
     ({
       fatherName,
       name,
-      lastName,
+      surname,
       nationality,
       religion,
       nationalId,
@@ -96,7 +96,7 @@ export const HouseholderIdentityForm = ({ familyId }: Props) => {
       upsertHouseholder({
         variables: {
           fatherName,
-          lastName,
+          surname,
           name,
           familyId,
           nationality,
@@ -154,10 +154,10 @@ export const HouseholderIdentityForm = ({ familyId }: Props) => {
           />
           <TextInput
             wrapperProps={createTestAttr(ids.lastNameInput)}
-            {...register('lastName')}
+            {...register('surname')}
             className={classes.textInput}
             label={`${t.lastNameInput.label}:`}
-            error={errors.lastName?.message}
+            error={errors.surname?.message}
             placeholder={t.lastNameInput.placeholder}
           />
           <TextInput

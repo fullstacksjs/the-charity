@@ -71,7 +71,7 @@ const toClient = (
           name: data.insert_householder_one.name,
           status: toHouseholderStatus(data.insert_householder_one.status),
           fatherName: data.insert_householder_one.father_name,
-          lastName: data.insert_householder_one.surname,
+          surname: data.insert_householder_one.surname,
           nationality: data.insert_householder_one.nationality,
           // FIXME
           religion: data.insert_householder_one.religion as 'islam',
@@ -81,10 +81,9 @@ const toClient = (
 interface Variables {
   name: string;
   familyId: string;
-  lastName?: string;
+  surname?: string;
   fatherName?: string;
   nationalId?: string;
-  ssn?: string;
   nationality?: string;
   religion?: string;
   gender?: Gender;
@@ -101,8 +100,7 @@ const toApiVariables = (
         input: {
           name: variables.name,
           family_id: variables.familyId,
-          surname: variables.lastName,
-          ssn: variables.ssn,
+          surname: variables.surname,
           nationality: variables.nationality,
           religion: variables.religion,
           city: variables.city,

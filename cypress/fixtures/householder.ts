@@ -7,7 +7,7 @@ export const householderFixture = () =>
   generateMock(
     z.object({
       name: householderIdentitySchema.name(),
-      lastName: householderIdentitySchema.lastName(),
+      surname: householderIdentitySchema.surname(),
       fatherName: householderIdentitySchema.fatherName(),
       nationalId: householderIdentitySchema.nationalId(),
       gender: householderIdentitySchema.gender(),

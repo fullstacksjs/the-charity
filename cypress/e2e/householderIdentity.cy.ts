@@ -7,10 +7,9 @@ import * as api from './api';
 
 const idMapping = {
   name: ids.firstNameInput,
-  lastName: ids.lastNameInput,
+  surname: ids.lastNameInput,
   fatherName: ids.fatherNameInput,
   nationalId: ids.nationalIdInput,
-  ssn: ids.ssnInput,
   gender: ids.genderInput,
   nationality: ids.nationalityInput,
   religion: ids.religionInput,
