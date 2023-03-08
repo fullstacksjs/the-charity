@@ -43,5 +43,4 @@ datepicker
 jalali
 POSIX
 upsert
-surename
 anatine

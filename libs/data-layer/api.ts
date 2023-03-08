@@ -695,7 +695,7 @@ export type ApiHouseholder = {
   religion?: Maybe<Scalars['String']>;
   ssn?: Maybe<Scalars['String']>;
   status: ApiHouseholderStatusEnum;
-  surename?: Maybe<Scalars['String']>;
+  surname?: Maybe<Scalars['String']>;
   updated_at: Scalars['timestamptz'];
 };
 
@@ -738,7 +738,7 @@ export type ApiHouseholderBoolExp = {
   religion?: InputMaybe<ApiStringComparisonExp>;
   ssn?: InputMaybe<ApiStringComparisonExp>;
   status?: InputMaybe<ApiHouseholderStatusEnumComparisonExp>;
-  surename?: InputMaybe<ApiStringComparisonExp>;
+  surname?: InputMaybe<ApiStringComparisonExp>;
   updated_at?: InputMaybe<ApiTimestamptzComparisonExp>;
 };
 
@@ -764,7 +764,7 @@ export type ApiHouseholderInsertInput = {
   religion?: InputMaybe<Scalars['String']>;
   ssn?: InputMaybe<Scalars['String']>;
   status?: InputMaybe<ApiHouseholderStatusEnum>;
-  surename?: InputMaybe<Scalars['String']>;
+  surname?: InputMaybe<Scalars['String']>;
   updated_at?: InputMaybe<Scalars['timestamptz']>;
 };
 
@@ -781,7 +781,7 @@ export type ApiHouseholderMaxFields = {
   nationality?: Maybe<Scalars['String']>;
   religion?: Maybe<Scalars['String']>;
   ssn?: Maybe<Scalars['String']>;
-  surename?: Maybe<Scalars['String']>;
+  surname?: Maybe<Scalars['String']>;
   updated_at?: Maybe<Scalars['timestamptz']>;
 };
 
@@ -798,7 +798,7 @@ export type ApiHouseholderMinFields = {
   nationality?: Maybe<Scalars['String']>;
   religion?: Maybe<Scalars['String']>;
   ssn?: Maybe<Scalars['String']>;
-  surename?: Maybe<Scalars['String']>;
+  surname?: Maybe<Scalars['String']>;
   updated_at?: Maybe<Scalars['timestamptz']>;
 };
 
@@ -832,7 +832,7 @@ export type ApiHouseholderOrderBy = {
   religion?: InputMaybe<ApiOrderBy>;
   ssn?: InputMaybe<ApiOrderBy>;
   status?: InputMaybe<ApiOrderBy>;
-  surename?: InputMaybe<ApiOrderBy>;
+  surname?: InputMaybe<ApiOrderBy>;
   updated_at?: InputMaybe<ApiOrderBy>;
 };
 
@@ -868,7 +868,7 @@ export enum ApiHouseholderSelectColumn {
   /** column name */
   Status = 'status',
   /** column name */
-  Surename = 'surename',
+  Surname = 'surname',
   /** column name */
   UpdatedAt = 'updated_at'
 }
@@ -887,7 +887,7 @@ export type ApiHouseholderSetInput = {
   religion?: InputMaybe<Scalars['String']>;
   ssn?: InputMaybe<Scalars['String']>;
   status?: InputMaybe<ApiHouseholderStatusEnum>;
-  surename?: InputMaybe<Scalars['String']>;
+  surname?: InputMaybe<Scalars['String']>;
   updated_at?: InputMaybe<Scalars['timestamptz']>;
 };
 
@@ -1045,7 +1045,7 @@ export enum ApiHouseholderUpdateColumn {
   /** column name */
   Status = 'status',
   /** column name */
-  Surename = 'surename',
+  Surname = 'surname',
   /** column name */
   UpdatedAt = 'updated_at'
 }
@@ -2546,7 +2546,7 @@ export type ApiUpsertHouseholderMutationVariables = Exact<{
 }>;
 
 
-export type ApiUpsertHouseholderMutation = { __typename?: 'mutation_root', insert_householder_one?: { __typename?: 'householder', city?: string | null, gender?: ApiGenderEnum | null, ssn?: string | null, dob?: any | null, father_name?: string | null, name: string, nationality?: string | null, religion?: string | null, surename?: string | null, status: ApiHouseholderStatusEnum } | null };
+export type ApiUpsertHouseholderMutation = { __typename?: 'mutation_root', insert_householder_one?: { __typename?: 'householder', city?: string | null, gender?: ApiGenderEnum | null, dob?: any | null, father_name?: string | null, name: string, nationality?: string | null, religion?: string | null, surname?: string | null, status: ApiHouseholderStatusEnum } | null };
 
 export type ApiFamilyListQueryVariables = Exact<{ [key: string]: never; }>;
 
@@ -2598,17 +2598,16 @@ export const ApiUpsertHouseholderDocument = gql`
     mutation UpsertHouseholder($input: householder_insert_input!) {
   insert_householder_one(
     object: $input
-    on_conflict: {constraint: householder_family_id_key, update_columns: [city, ssn, gender, dob, father_name, name, nationality, religion, surename]}
+    on_conflict: {constraint: householder_family_id_key, update_columns: [city, gender, dob, father_name, name, nationality, religion, surname]}
   ) {
     city
     gender
-    ssn
     dob
     father_name
     name
     nationality
     religion
-    surename
+    surname
     status
   }
 }

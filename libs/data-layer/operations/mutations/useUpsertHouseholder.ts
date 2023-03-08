@@ -14,7 +14,6 @@ import {
 } from '../../api';
 import { useMutation } from './useMutation';
 
-// FIXME: surename needs to become surname in schema
 const Document = gql`
   mutation UpsertHouseholder($input: householder_insert_input!) {
     insert_householder_one(
@@ -29,7 +28,7 @@ const Document = gql`
           name
           nationality
           religion
-          surename
+          surname
         ]
       }
     ) {
@@ -40,7 +39,7 @@ const Document = gql`
       name
       nationality
       religion
-      surename
+      surname
       status
     }
   }
@@ -72,7 +71,7 @@ const toClient = (
           firstName: data.insert_householder_one.name,
           status: toHouseholderStatus(data.insert_householder_one.status),
           fatherName: data.insert_householder_one.father_name,
-          lastName: data.insert_householder_one.surename,
+          lastName: data.insert_householder_one.surname,
           nationality: data.insert_householder_one.nationality,
           // FIXME
           religion: data.insert_householder_one.religion as 'islam',
@@ -102,7 +101,7 @@ const toApiVariables = (
         input: {
           name: variables.firstName,
           family_id: variables.familyId,
-          surename: variables.lastName,
+          surname: variables.lastName,
           ssn: variables.ssn,
           nationality: variables.nationality,
           religion: variables.religion,
