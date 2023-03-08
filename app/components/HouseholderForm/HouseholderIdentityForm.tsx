@@ -193,24 +193,7 @@ export const HouseholderIdentityForm = ({ familyId }: Props) => {
             placeholder={t.nationalIdInput.placeholder}
             label={`${t.nationalIdInput.label}:`}
           />
-          <Select
-            wrapperProps={createTestAttr(ids.genderInput)}
-            data={genders.map(v => ({
-              value: v,
-              label: t.genderInput.options[v],
-            }))}
-            label={`${t.genderInput.label}:`}
-            placeholder={t.selectInputs.placeholder}
-          />
-          <Select
-            wrapperProps={createTestAttr(ids.issuedAtInput)}
-            data={cities.map(v => ({
-              value: v,
-              label: t.issuedAtInput.options[v],
-            }))}
-            placeholder={t.selectInputs.placeholder}
-            label={`${t.issuedAtInput.label}:`}
-          />
+
           <Controller
             name="cityOfBirthInput"
             control={control}
