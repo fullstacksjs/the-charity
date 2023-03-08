@@ -68,7 +68,7 @@ const toClient = (
     ? null
     : {
         householder: {
-          firstName: data.insert_householder_one.name,
+          name: data.insert_householder_one.name,
           status: toHouseholderStatus(data.insert_householder_one.status),
           fatherName: data.insert_householder_one.father_name,
           lastName: data.insert_householder_one.surname,
@@ -79,7 +79,7 @@ const toClient = (
       };
 
 interface Variables {
-  firstName: string;
+  name: string;
   familyId: string;
   lastName?: string;
   fatherName?: string;
@@ -99,7 +99,7 @@ const toApiVariables = (
     ? undefined
     : {
         input: {
-          name: variables.firstName,
+          name: variables.name,
           family_id: variables.familyId,
           surname: variables.lastName,
           ssn: variables.ssn,

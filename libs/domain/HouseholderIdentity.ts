@@ -10,7 +10,7 @@ import { religions } from './Religions';
 const numberRegex = /^[0-9]*[\u0660-\u0669\u06F0-\u06F90-9]*$/;
 
 export const householderIdentitySchema = {
-  firstName: () =>
+  name: () =>
     z
       .string()
       .trim()
@@ -88,12 +88,11 @@ export const householderIdentitySchema = {
 export type HouseholderStatus = 'completed' | 'draft';
 
 export interface Householder {
-  firstName: string;
+  name: string;
   lastName: string;
   status: HouseholderStatus;
   fatherName: string;
   nationalId: string;
-  name: string;
   nationality: string;
   religion: Religion;
   cityOfBirth: City;

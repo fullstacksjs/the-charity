@@ -6,11 +6,10 @@ import { householderIdentitySchema } from '../../libs/domain/HouseholderIdentity
 export const householderFixture = () =>
   generateMock(
     z.object({
-      firstName: householderIdentitySchema.firstName(),
+      name: householderIdentitySchema.name(),
       lastName: householderIdentitySchema.lastName(),
       fatherName: householderIdentitySchema.fatherName(),
       nationalId: householderIdentitySchema.nationalId(),
-      ssn: householderIdentitySchema.ssn(),
       gender: householderIdentitySchema.gender(),
       nationality: householderIdentitySchema.nationality(),
       religion: householderIdentitySchema.religion(),

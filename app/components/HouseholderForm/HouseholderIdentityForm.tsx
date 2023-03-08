@@ -34,7 +34,7 @@ interface Props {
 }
 
 interface FormSchema {
-  firstName: string;
+  name: string;
   lastName: string;
   fatherName: string;
   nationalId: string;
@@ -45,7 +45,7 @@ interface FormSchema {
 }
 
 const resolver = createResolver<FormSchema>({
-  firstName: householderIdentitySchema.firstName(),
+  name: householderIdentitySchema.name(),
   lastName: householderIdentitySchema.lastName(),
   fatherName: householderIdentitySchema.fatherName(),
   nationalId: householderIdentitySchema.nationalId(),
@@ -86,7 +86,7 @@ export const HouseholderIdentityForm = ({ familyId }: Props) => {
   const onSubmit = handleSubmit(
     ({
       fatherName,
-      firstName,
+      name,
       lastName,
       nationality,
       religion,
@@ -97,7 +97,7 @@ export const HouseholderIdentityForm = ({ familyId }: Props) => {
         variables: {
           fatherName,
           lastName,
-          firstName,
+          name,
           familyId,
           nationality,
           religion,
@@ -109,7 +109,7 @@ export const HouseholderIdentityForm = ({ familyId }: Props) => {
           showNotification({
             title: t.title,
             message: t.notification.successfulUpdate(
-              data?.householder.firstName ?? '',
+              data?.householder.name ?? '',
             ),
             type: 'success',
             ...createTestAttr(ids.notification.success),
@@ -118,7 +118,7 @@ export const HouseholderIdentityForm = ({ familyId }: Props) => {
         .catch(() =>
           showNotification({
             title: t.title,
-            message: t.notification.failedUpdate(firstName),
+            message: t.notification.failedUpdate(name),
             type: 'failure',
             ...createTestAttr(ids.notification.failure),
           }),
@@ -146,11 +146,11 @@ export const HouseholderIdentityForm = ({ familyId }: Props) => {
         <SimpleGrid cols={3} spacing="lg" verticalSpacing={20}>
           <TextInput
             wrapperProps={createTestAttr(ids.firstNameInput)}
-            {...register('firstName')}
+            {...register('name')}
             className={classes.textInput}
             label={`${t.nameInput.label}:`}
             placeholder={t.nameInput.placeholder}
-            error={errors.firstName?.message}
+            error={errors.name?.message}
           />
           <TextInput
             wrapperProps={createTestAttr(ids.lastNameInput)}

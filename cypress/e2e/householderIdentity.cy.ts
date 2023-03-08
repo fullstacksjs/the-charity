@@ -6,7 +6,7 @@ import { familyFixture } from '../fixtures/project';
 import * as api from './api';
 
 const idMapping = {
-  firstName: ids.firstNameInput,
+  name: ids.firstNameInput,
   lastName: ids.lastNameInput,
   fatherName: ids.fatherNameInput,
   nationalId: ids.nationalIdInput,
