@@ -105,8 +105,6 @@ export const messages = {
         fatherNameMinLength: 'نام پدر باید حداقل ۳ حرف باشد',
         nationalIdMinLength: 'شماره کارت ملی باید حداقل ۱۰ عدد باشد',
         invalidNationalId: 'لطفا یک شماره کارت ملی معتبر وارد نمایید',
-        invalidSsn: 'لطفا یک شماره شناسنامه معتبر وارد نمایید',
-        ssnMinLength: 'شماره کارت ملی باید حداقل ۸ عدد باشد',
       },
       title: 'اطلاعات هویت',
       submitBtn: 'ثبت',
@@ -126,33 +124,28 @@ export const messages = {
         placeholder: 'برای مثال: محمد',
       },
       nationalityInput: {
-        data: { value: 'IR', label: 'ایرانی' },
+        options: {
+          ir: 'ایران',
+        },
         label: 'ملیت',
         placeholder: 'برای مثال: ایرانی',
       },
       nationalIdInput: {
-        label: 'شماره کارت ملی',
+        label: 'شماره ملی',
         placeholder: 'برای مثال: ۰۱۲۳۴۵۶۷۸۹',
       },
-      ssnInput: {
-        label: 'شماره شناسنامه',
-        placeholder: 'برای مثال: 12345678',
-      },
       issuedAtInput: {
-        data: { value: 'tehran', label: 'تهران' },
+        options: { tehran: 'تهران' },
         label: 'محل صدور',
         placeholder: 'برای مثال: تهران',
       },
       religionInput: {
-        data: { value: 'islam', label: 'اسلام' },
+        options: { islam: 'اسلام' },
         label: 'دین',
         placeholder: 'برای مثال: اسلام',
       },
       genderInput: {
-        options: [
-          { value: 'male', label: 'مرد' },
-          { value: 'female', label: 'زن' },
-        ],
+        options: { male: 'مرد', female: 'زن' },
         label: 'جنسیت',
         placeholder: 'مرد/زن',
       },
@@ -161,7 +154,7 @@ export const messages = {
         placeholder: 'برای مثال: ۱۳۹۹/۱۰/۱۰',
       },
       cityOfBirthInput: {
-        data: { value: 'tehran', label: 'تهران' },
+        options: { tehran: 'تهران' },
         label: 'شهر',
         placeholder: 'برای مثال: تهران',
       },

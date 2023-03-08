@@ -1,6 +1,11 @@
-import 'dayjs/locale/fa';
-
-import { createResolver, householderIdentitySchema } from '@camp/domain';
+import {
+  cities,
+  countries,
+  createResolver,
+  genders,
+  householderIdentitySchema,
+  religions,
+} from '@camp/domain';
 import { CalendarIcon, CheckIcon } from '@camp/icons';
 import { messages } from '@camp/messages';
 import { createTestAttr } from '@camp/test';
@@ -24,7 +29,6 @@ interface FormSchema {
   lastName: string;
   fatherName: string;
   nationalId: string;
-  ssn: string;
 }
 
 const resolver = createResolver<FormSchema>({
@@ -32,7 +36,6 @@ const resolver = createResolver<FormSchema>({
   lastName: householderIdentitySchema.lastName(),
   fatherName: householderIdentitySchema.fatherName(),
   nationalId: householderIdentitySchema.nationalId(),
-  ssn: householderIdentitySchema.ssn(),
 });
 
 const useStyles = createStyles(theme => ({
@@ -50,7 +53,6 @@ const useStyles = createStyles(theme => ({
 
 export const HouseholderIdentityForm = () => {
   const t = messages.householder.householderIdentityForm;
-  const [male, female] = t.genderInput.options;
   const { classes } = useStyles();
   const { register, formState } = useForm<FormSchema>({
     resolver,
@@ -100,12 +102,10 @@ export const HouseholderIdentityForm = () => {
           />
           <Select
             wrapperProps={createTestAttr(Ids.nationalityInput)}
-            data={[
-              {
-                value: t.nationalityInput.data.value,
-                label: t.nationalityInput.data.label,
-              },
-            ]}
+            data={countries.map(v => ({
+              value: v,
+              label: t.nationalityInput.options[v],
+            }))}
             placeholder={t.selectInputs.placeholder}
             label={`${t.nationalityInput.label}:`}
           />
@@ -117,50 +117,41 @@ export const HouseholderIdentityForm = () => {
             placeholder={t.nationalIdInput.placeholder}
             label={`${t.nationalIdInput.label}:`}
           />
-          <TextInput
-            wrapperProps={createTestAttr(Ids.ssnInput)}
-            error={formState.errors.ssn?.message}
-            className={classes.textInput}
-            {...register('ssn')}
-            placeholder={t.ssnInput.placeholder}
-            label={`${t.ssnInput.label}:`}
+          <Select
+            wrapperProps={createTestAttr(Ids.genderInput)}
+            data={genders.map(v => ({
+              value: v,
+              label: t.genderInput.options[v],
+            }))}
+            label={`${t.genderInput.label}:`}
+            placeholder={t.selectInputs.placeholder}
           />
           <Select
             wrapperProps={createTestAttr(Ids.issuedAtInput)}
-            data={[
-              {
-                value: t.issuedAtInput.data.value,
-                label: t.issuedAtInput.data.label,
-              },
-            ]}
+            data={cities.map(v => ({
+              value: v,
+              label: t.issuedAtInput.options[v],
+            }))}
             placeholder={t.selectInputs.placeholder}
             label={`${t.issuedAtInput.label}:`}
           />
           <Select
             wrapperProps={createTestAttr(Ids.religionInput)}
-            data={[
-              {
-                value: t.religionInput.data.value,
-                label: t.religionInput.data.label,
-              },
-            ]}
+            data={religions.map(v => ({
+              value: v,
+              label: t.religionInput.options[v],
+            }))}
             placeholder={t.selectInputs.placeholder}
             label={`${t.religionInput.label}:`}
           />
           <Select
-            wrapperProps={createTestAttr(Ids.genderInput)}
-            data={[
-              {
-                value: male.value,
-                label: male.label,
-              },
-              {
-                value: female.value,
-                label: female.label,
-              },
-            ]}
-            label={`${t.genderInput.label}:`}
+            wrapperProps={createTestAttr(Ids.cityOfBirthInput)}
+            data={cities.map(v => ({
+              value: v,
+              label: t.cityOfBirthInput.options[v],
+            }))}
             placeholder={t.selectInputs.placeholder}
+            label={`${t.cityOfBirthInput.label}:`}
           />
           <DateInput
             wrapperProps={createTestAttr(Ids.dateOfBirthInput)}
@@ -168,22 +159,11 @@ export const HouseholderIdentityForm = () => {
             rightSection={<CalendarIcon stroke="currentColor" size={16} />}
             label={`${t.dateOfBirthInput.label}:`}
             sx={theme => ({
-              direction: 'rtl',
+              direction: 'ltr',
               color: theme.colors.secondaryDefault[6],
             })}
             locale="fa"
             placeholder={t.selectInputs.placeholder}
-          />
-          <Select
-            wrapperProps={createTestAttr(Ids.cityOfBirthInput)}
-            data={[
-              {
-                value: t.cityOfBirthInput.data.value,
-                label: t.cityOfBirthInput.data.label,
-              },
-            ]}
-            placeholder={t.selectInputs.placeholder}
-            label={`${t.cityOfBirthInput.label}:`}
           />
         </SimpleGrid>
       </Stack>
