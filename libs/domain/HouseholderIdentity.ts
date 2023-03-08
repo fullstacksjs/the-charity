@@ -89,11 +89,11 @@ export type HouseholderStatus = 'completed' | 'draft';
 
 export interface Householder {
   name: string;
-  surname: string;
   status: HouseholderStatus;
-  fatherName: string;
-  nationalId: string;
-  nationality: string;
-  religion: Religion;
-  cityOfBirth: City;
+  surname?: string;
+  fatherName?: string;
+  nationalId?: string;
+  nationality?: string;
+  religion?: Religion;
+  cityOfBirth?: City;
 }

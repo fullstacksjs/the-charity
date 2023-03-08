@@ -45,12 +45,8 @@ const Document = gql`
   }
 `;
 
-type PartialHouseholder = {
-  [P in keyof Householder]?: Householder[P] | null | undefined;
-};
-
 export interface UpsertHouseholder {
-  householder: PartialHouseholder;
+  householder: Householder;
 }
 
 export const toHouseholderStatus = (
@@ -70,11 +66,12 @@ const toClient = (
         householder: {
           name: data.insert_householder_one.name,
           status: toHouseholderStatus(data.insert_householder_one.status),
-          fatherName: data.insert_householder_one.father_name,
-          surname: data.insert_householder_one.surname,
-          nationality: data.insert_householder_one.nationality,
-          // FIXME
-          religion: data.insert_householder_one.religion as 'islam',
+          fatherName: data.insert_householder_one.father_name ?? undefined,
+          surname: data.insert_householder_one.surname ?? undefined,
+          nationality: data.insert_householder_one.nationality ?? undefined,
+          religion:
+            (data.insert_householder_one.religion as 'islam' | null) ??
+            undefined,
         },
       };
 
