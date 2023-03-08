@@ -83,6 +83,12 @@ export const householderIdentitySchema = {
       .optional()
       .or(z.literal(''))
       .transform(e => (e === '' ? undefined : e)),
+  issuedAt: () =>
+    z
+      .literal(cities[0])
+      .optional()
+      .or(z.literal(''))
+      .transform(e => (e === '' ? undefined : e)),
 };
 
 export type HouseholderStatus = 'completed' | 'draft';
@@ -96,4 +102,5 @@ export interface Householder {
   nationality?: string;
   religion?: Religion;
   cityOfBirth?: City;
+  issuedAt?: City;
 }

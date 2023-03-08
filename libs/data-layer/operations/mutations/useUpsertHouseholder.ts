@@ -25,6 +25,7 @@ const Document = gql`
           gender
           dob
           father_name
+          issued_at
           name
           nationality
           religion
@@ -36,6 +37,7 @@ const Document = gql`
       gender
       dob
       father_name
+      issued_at
       name
       nationality
       religion
@@ -85,6 +87,7 @@ interface Variables {
   religion?: string;
   gender?: Gender;
   city?: string;
+  issuedAt: string;
 }
 
 // FIXME add DOB too
@@ -97,6 +100,8 @@ const toApiVariables = (
         input: {
           name: variables.name,
           family_id: variables.familyId,
+          father_name: variables.fatherName,
+          issued_at: variables.issuedAt,
           surname: variables.surname,
           nationality: variables.nationality,
           religion: variables.religion,

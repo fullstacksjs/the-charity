@@ -42,6 +42,7 @@ interface FormSchema {
   nationality: string;
   religion: string;
   cityOfBirthInput: string;
+  issuedAt: string;
 }
 
 const resolver = createResolver<FormSchema>({
@@ -53,6 +54,7 @@ const resolver = createResolver<FormSchema>({
   nationality: householderIdentitySchema.nationality(),
   religion: householderIdentitySchema.religion(),
   cityOfBirthInput: householderIdentitySchema.cityOfBirth(),
+  issuedAt: householderIdentitySchema.issuedAt(),
 });
 
 const useStyles = createStyles(theme => ({
@@ -92,6 +94,7 @@ export const HouseholderIdentityForm = ({ familyId }: Props) => {
       religion,
       nationalId,
       gender,
+      issuedAt,
     }) => {
       upsertHouseholder({
         variables: {
@@ -103,6 +106,7 @@ export const HouseholderIdentityForm = ({ familyId }: Props) => {
           religion,
           nationalId,
           gender,
+          issuedAt,
         },
       })
         .then(({ data }) => {
@@ -195,18 +199,36 @@ export const HouseholderIdentityForm = ({ familyId }: Props) => {
           />
 
           <Controller
-            name="cityOfBirthInput"
+            name="gender"
             control={control}
             render={({ field }) => (
               <Select
-                wrapperProps={createTestAttr(ids.cityOfBirthInput)}
+                wrapperProps={createTestAttr(ids.genderInput)}
+                data={genders.map(v => ({
+                  value: v,
+                  label: t.genderInput.options[v],
+                }))}
+                label={`${t.genderInput.label}:`}
+                placeholder={t.selectInputs.placeholder}
+                error={errors.gender?.message}
+                {...field}
+              />
+            )}
+          />
+
+          <Controller
+            name="issuedAt"
+            control={control}
+            render={({ field }) => (
+              <Select
+                wrapperProps={createTestAttr(ids.issuedAtInput)}
                 data={cities.map(v => ({
                   value: v,
-                  label: t.cityOfBirthInput.options[v],
+                  label: t.issuedAtInput.options[v],
                 }))}
                 placeholder={t.selectInputs.placeholder}
-                label={`${t.cityOfBirthInput.label}:`}
-                error={errors.cityOfBirthInput?.message}
+                label={`${t.issuedAtInput.label}:`}
+                error={errors.issuedAt?.message}
                 {...field}
               />
             )}
@@ -229,19 +251,20 @@ export const HouseholderIdentityForm = ({ familyId }: Props) => {
               />
             )}
           />
+
           <Controller
-            name="gender"
+            name="cityOfBirthInput"
             control={control}
             render={({ field }) => (
               <Select
-                wrapperProps={createTestAttr(ids.genderInput)}
-                data={genders.map(v => ({
+                wrapperProps={createTestAttr(ids.cityOfBirthInput)}
+                data={cities.map(v => ({
                   value: v,
-                  label: t.genderInput.options[v],
+                  label: t.cityOfBirthInput.options[v],
                 }))}
-                label={`${t.genderInput.label}:`}
                 placeholder={t.selectInputs.placeholder}
-                error={errors.gender?.message}
+                label={`${t.cityOfBirthInput.label}:`}
+                error={errors.cityOfBirthInput?.message}
                 {...field}
               />
             )}
