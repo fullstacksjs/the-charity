@@ -14,6 +14,7 @@
     "test:ci": "npm run test",
     "test:component": "dotenv -e .env.dev -- cypress run --component --browser chrome",
     "test:e2e": "dotenv -e .env.dev -- cypress run --browser chrome",
+    "test:e2ep": "./scripts/e2e-pick",
     "cy:open": "dotenv -e .env.dev -- cypress open",
     "coverage": "vitest run --coverage",
     "storybook": "dotenv -e .env.dev -- start-storybook -p 6006",
