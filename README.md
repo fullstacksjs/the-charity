@@ -1,21 +1,36 @@
-# The Charity Frontend
+# TheCharity
 
-## Prerequisite:
+TheCharity is an open-source, non-profit web application created by FullstacksjsJS community.
 
-- [bash][bash] >= 4
+## CONTRIBUTING
+
+Development of TheCharity happens in GitHub, and we appreciate contributions. Learn
+how you can help improving TheCharity by reading the sections below.
+
+### Prerequisite:
+
+- [POSIX-compliant shell][shell]
 - [git][git] >= 2
 - [volta][volta] >= 1
 
-## Setup:
+### Branch Organization
 
-After you've made sure to have the correct things (and versions) installed just
-run:
+- `main`: latest stable release
+- `dev`: latest development changes
 
-```bash
-npm install
-```
+### Sending a Pull Request
 
-## Envs
+The FullstacksJS team is monitoring for pull requests. We will review your pull request and either merge it, request changes to it, or close it with an explanation.
+
+Before submitting a pull request, please make sure the following is done:
+
+- Fork/Clone the repository and create your feature branch from dev.
+- Run `npm install` to have all dependencies and husky hooks needed for development.
+- To start development run `npm start`.
+- If you've fixed a bug or added code that should be tested, add tests please.
+- Create a PR (You can use `./scripts/pr` to create one).
+
+### Envs
 
 - `APP_GRAPHQL_SCHEMA_URL`: a valid url string for graphql path used in graphql
   tooling.
@@ -41,9 +56,16 @@ recognized env files:
 
 - `.env.dev`: the env file used for dev environment
 
-# Scripts:
+## Project Structure
 
-## Running:
+The project contains multiple modules which has their specific responsibilities and rules. Here you can find a big picture of the code architecture and their dependencies and for more detail you refer to the README file of each module.
+
+![architecture](assets/architecture.png)
+<center><i>An arrow from ModuleA to ModuleB means ModuleA depends on ModuleB</i></center>
+
+## Scripts
+
+### Run
 
 To start the app first set the envs as described in the (envs section)[#Envs]
 then run:
@@ -56,7 +78,7 @@ npm run dev
 > If you're using [vscode][vscode] you can install [Apollo Graphql][apollo-graphql-extension]
 > extension to get features like autocomplete in your graphql queries
 
-### Build:
+### Build
 
 To build the app just run:
 
@@ -64,7 +86,7 @@ To build the app just run:
 npm run build
 ```
 
-## Lint:
+### Lint
 
 To run the linter to auto-fix all the problems run:
 
@@ -72,7 +94,7 @@ To run the linter to auto-fix all the problems run:
 npm run lint
 ```
 
-## Test:
+### Test
 
 To run the unit tests run:
 
@@ -83,7 +105,7 @@ npm run test
 > If you're using [vscode][vscode] like me you can install [vitest extension][vitest-extension] to make your life easier, after installing it
 > just read it's documentation on the extension description to get started
 
-## Find Spelling Errors
+### Spell Check
 
 To find spelling errors just run
 
@@ -112,3 +134,4 @@ just add it to the `.cspell/charity.txt` and separate with a new line
   https://auth0.com/docs/quickstart/spa/react/interactive#install-the-auth0-react-sdk
 [oauth-audience]:
   https://datatracker.ietf.org/doc/html/draft-tschofenig-oauth-audience-00
+[shell]: https://en.wikipedia.org/wiki/Unix_shell

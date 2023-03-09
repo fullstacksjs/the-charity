@@ -41,3 +41,4 @@ auth0spajs
 jxuskaag
 datepicker
 jalali
+POSIX
