@@ -1,18 +1,6 @@
 # TheCharity
 
-- [TheCharity](#thecharity)
-  - [CONTRIBUTING](#contributing)
-    - [Prerequisite:](#prerequisite)
-    - [Branch Organization](#branch-organization)
-    - [Sending a Pull Request](#sending-a-pull-request)
-    - [Envs](#envs)
-  - [Project Structure](#project-structure)
-  - [Scripts](#scripts)
-    - [Run](#run)
-    - [Build](#build)
-    - [Lint](#lint)
-    - [Test](#test)
-    - [Spell Check](#spell-check)
+TheCharity is an open-source, non-profit web application created by FullstacksjsJS community.
 
 ## CONTRIBUTING
 
