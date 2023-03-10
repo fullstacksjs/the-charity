@@ -1,4 +1,4 @@
-#!/usr/bin/env sh
+#!/usr/bin/env bash
 
 RESET='\033[39m'
 ERR='\033[1;91m'
