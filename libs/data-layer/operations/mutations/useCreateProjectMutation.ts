@@ -49,6 +49,23 @@ const toClient = (
         },
       };
 
+interface Variables {
+  description?: string;
+  name: string;
+}
+
+const toApiVariables = (
+  variables?: Variables | null,
+): ApiCreateProjectMutationVariables | undefined =>
+  variables == null
+    ? undefined
+    : {
+        input: {
+          name: variables.name,
+          description: variables.description,
+        },
+      };
+
 export function useCreateProjectMutation(
   options?: MutationHookOptions<
     ApiCreateProjectMutation,
@@ -57,7 +74,8 @@ export function useCreateProjectMutation(
 ) {
   return useMutation(Document, {
     ...options,
-    mapper: toClient,
+    mapData: toClient,
+    mapVariables: toApiVariables,
     update(cache, { data: project }) {
       const newProject = project?.insert_project_one;
       const prevProjects = cache.readQuery<ApiProjectListQuery>({

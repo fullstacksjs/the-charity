@@ -42,3 +42,5 @@ jxuskaag
 datepicker
 jalali
 POSIX
+upsert
+anatine

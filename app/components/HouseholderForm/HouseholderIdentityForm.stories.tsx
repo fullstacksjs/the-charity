@@ -7,7 +7,7 @@ export default {
 } as ComponentMeta<typeof HouseholderIdentityForm>;
 
 const Template: ComponentStory<typeof HouseholderIdentityForm> = () => (
-  <HouseholderIdentityForm />
+  <HouseholderIdentityForm familyId="null" />
 );
 
 export const Default: ComponentStory<typeof HouseholderIdentityForm> =

@@ -11,4 +11,8 @@ export const householderIdentityFormIds = {
   dateOfBirthInput: 'householder-date-of-birth',
   cityOfBirthInput: 'project-city-of-birth',
   submitBtn: 'submit-button',
+  notification: {
+    success: 'householder-successful-update',
+    failure: 'householder-failed-update',
+  },
 } as const;

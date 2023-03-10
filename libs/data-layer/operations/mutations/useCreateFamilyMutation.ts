@@ -38,6 +38,19 @@ const toClient = (
         },
       };
 
+interface Variables {
+  name: string;
+}
+
+const toApiVariables = (
+  variables?: Variables | null,
+): ApiCreateFamilyMutationVariables | undefined =>
+  variables == null
+    ? undefined
+    : {
+        name: variables.name,
+      };
+
 export function useCreateFamilyMutation(
   options?: MutationHookOptions<
     ApiCreateFamilyMutation,
@@ -46,7 +59,8 @@ export function useCreateFamilyMutation(
 ) {
   return useMutation(Document, {
     ...options,
-    mapper: toClient,
+    mapData: toClient,
+    mapVariables: toApiVariables,
     update(cache, result, opts) {
       const { data: families } = result;
       const newFamilies = families?.insert_family_one;

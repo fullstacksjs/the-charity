@@ -24,6 +24,7 @@
   },
   "dependencies": {
     "@apollo/client": "3.7.8",
+    "@anatine/zod-mock": "3.8.4",
     "@auth0/auth0-react": "2.0.0",
     "@emotion/react": "11.10.6",
     "@fullstacksjs/toolbox": "3.0.2",

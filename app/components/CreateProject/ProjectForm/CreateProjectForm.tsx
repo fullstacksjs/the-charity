@@ -38,7 +38,7 @@ export const CreateProjectForm = ({ dismiss }: Props) => {
   const onSubmit = handleSubmit(async ({ name, description }) => {
     try {
       const { data } = await createProject({
-        variables: { input: { name, description } },
+        variables: { name, description },
       });
 
       if (isNull(data)) throw new Error('data is null');
