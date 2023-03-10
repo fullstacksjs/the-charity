@@ -65,6 +65,24 @@ The project contains multiple modules which has their specific responsibilities 
 
 ## Scripts
 
+**e2e-pick:**
+
+If you want to only run a specific e2e test based on a patter you can run this command:
+
+```bash
+npm run test:e2ep pattern
+```
+you can replace pattern with anything e.g:
+```bash
+npm run test:e2ep auth
+```
+this will run the `authorization.cy.ts` test
+or if the pattern matches more than one file it will still run them e.g:
+```bash
+npm run test:e2ep family
+```
+this will run the `createFamily.cy.ts` and `familyList.cy.ts` test
+
 ### Run
 
 To start the app first set the envs as described in the (envs section)[#Envs]

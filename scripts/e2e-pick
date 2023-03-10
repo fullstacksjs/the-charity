@@ -1,0 +1,12 @@
+#!/usr/bin/env bash
+
+RESET='\033[39m'
+ERR='\033[1;91m'
+
+if [[ $1 == '' ]]; then
+  echo -e "${ERR}Error: a pattern to search is required.${RESET}"
+  exit 0
+fi
+
+FILES=$(find ./cypress/e2e/ -iname "*$1*.cy.*" | paste -sd "," -)
+npm run test:e2e -- --spec $FILES
