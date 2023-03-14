@@ -166,6 +166,11 @@ export const messages = {
       },
     },
   },
+  member: {
+    title: 'اعضا',
+    addNewMember: 'افزودن',
+    createForm: {},
+  },
   login: {
     loginFrom: {
       title: 'به حساب کاربری خود وارد شوید',

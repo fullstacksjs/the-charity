@@ -4,6 +4,7 @@ export * from './FamilyEmptyState';
 export * from './FamilyList';
 export * from './HouseholderForm';
 export * from './InformationBadge';
+export * from './MemberForm';
 export * from './ProjectEmptyState';
 export * from './ProjectList';
 export * from './SeverityBadge';

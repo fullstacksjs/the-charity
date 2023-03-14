@@ -13,6 +13,7 @@ import { Title } from '@mantine/core';
 import {
   HouseholderIdentityForm,
   InformationBadge,
+  MemberForm,
   SeverityBadge,
 } from '../../../../components';
 
@@ -55,16 +56,19 @@ export const FamilyDetail = () => {
           {
             tab: <Title order={5}>{t.tabs.householderTitle}</Title>,
             value: '1',
+          },
+          {
+            tab: <Title order={5}>{t.tabs.membersTitle}</Title>,
+            value: '2',
             isBusy: true,
           },
-          { tab: <Title order={5}>{t.tabs.membersTitle}</Title>, value: '2' },
         ]}
         panels={[
           {
             panel: <HouseholderIdentityForm familyId={family.id} />,
             value: '1',
           },
-          { panel: t.panels.title, value: '2' },
+          { panel: <MemberForm />, value: '2' },
         ]}
       />
     </>

@@ -16,7 +16,7 @@ export const DetailCard = ({ title, id, children }: Props) => {
       bg="bgCanvas"
       withBorder={false}
       right={
-        <Group>
+        <Group spacing={10}>
           <Title order={4} color="fgMuted" weight="bold">
             {title}
           </Title>
