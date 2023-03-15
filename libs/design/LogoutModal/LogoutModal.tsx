@@ -1,21 +1,19 @@
 import { messages } from '@camp/messages';
 import { createTestAttr } from '@camp/test';
-import { openConfirmModal } from '@mantine/modals';
 
+import { showModal } from '../Modal/ShowModal';
 import { LogoutConfirm } from './LogoutConfirm';
 import { logoutModalIds as ids } from './LogoutModal.ids';
 
 const texts = messages.logout.modal;
 
 export const openLogoutModal = (logout: (returnTo: string) => void) =>
-  openConfirmModal({
-    modalId: ids.modal,
+  showModal({
+    id: ids.modal,
     children: <LogoutConfirm />,
     title: texts.title,
-    size: 'md',
-    centered: true,
-    ...createTestAttr(ids.modal),
-    labels: { cancel: texts.cancel, confirm: texts.accept },
+    cancelLable: texts.cancel,
+    confirmLabel: texts.accept,
     groupProps: {
       spacing: 20,
       sx: {
