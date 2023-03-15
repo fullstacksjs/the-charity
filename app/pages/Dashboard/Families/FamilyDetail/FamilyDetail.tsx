@@ -56,11 +56,12 @@ export const FamilyDetail = () => {
           {
             tab: <Title order={5}>{t.tabs.householderTitle}</Title>,
             value: '1',
+            isBusy: true,
           },
           {
             tab: <Title order={5}>{t.tabs.membersTitle}</Title>,
             value: '2',
-            isBusy: true,
+            isDefault: true,
           },
         ]}
         panels={[

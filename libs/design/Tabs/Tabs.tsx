@@ -3,6 +3,7 @@ import { useState } from 'react';
 
 interface Tab {
   value: string;
+  isDefault?: boolean;
   isBusy?: boolean;
   tab: React.ReactNode;
 }
@@ -22,7 +23,9 @@ const BusyIcon = () => (
 );
 
 export const Tabs = ({ tabs, panels }: Props) => {
-  const [activeTab, setActiveTab] = useState<string>(tabs[0]!.value);
+  const [activeTab, setActiveTab] = useState<string>(
+    tabs.find(({ isDefault }) => isDefault)?.value ?? tabs[0]!.value,
+  );
 
   return (
     <MantineTabs
