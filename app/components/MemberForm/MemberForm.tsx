@@ -25,7 +25,6 @@ import {
 } from '@mantine/core';
 import { useDisclosure } from '@mantine/hooks';
 import { DateInput } from 'mantine-datepicker-jalali';
-import { useState } from 'react';
 import { Controller, useForm } from 'react-hook-form';
 
 import { InformationBadge } from '../InformationBadge';
