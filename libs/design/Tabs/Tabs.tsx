@@ -51,6 +51,7 @@ export const Tabs = ({ tabs, panels }: Props) => {
         <MantineTabs.Panel
           bg="bgSurface"
           pt="34px"
+          pb="30px"
           px="40px"
           key={value}
           value={value}
