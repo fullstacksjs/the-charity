@@ -23,7 +23,7 @@ export const DashboardCard = ({
           <Box>{right}</Box>
           <Box>{left}</Box>
         </Group>
-        <Box>{children}</Box>
+        {children}
       </Stack>
     </Card>
   );
