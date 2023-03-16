@@ -195,6 +195,7 @@ export const messages = {
   familyDetail: {
     title: 'اطلاعات کلی خانواده',
     notFound: 'خانواده مورد نظر یافت نشد',
+    delete: 'پاک کردن',
     tabs: {
       householderTitle: 'سرپرست',
       membersTitle: 'اعضا',

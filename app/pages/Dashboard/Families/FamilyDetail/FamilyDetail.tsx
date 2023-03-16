@@ -2,6 +2,7 @@ import { useFamilyQuery } from '@camp/data-layer';
 import {
   DetailCard,
   FullPageLoader,
+  openDeleteFamilyModal,
   showNotification,
   Tabs,
 } from '@camp/design';
@@ -37,7 +38,12 @@ export const FamilyDetail = () => {
 
   return (
     <>
-      <DetailCard title={t.title} id={family.code}>
+      <DetailCard
+        title={t.title}
+        id={family.code}
+        deleteButton={t.delete}
+        onDelete={() => openDeleteFamilyModal(family.name)}
+      >
         <DetailCard.TextField title={t.familyFields.name.title}>
           {family.name}
         </DetailCard.TextField>
