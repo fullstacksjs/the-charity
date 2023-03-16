@@ -7,6 +7,7 @@ export * from './DetailCard';
 export * from './EmptyState';
 export * from './FullPageLoader';
 export * from './Header';
+export * from './Modal';
 export * from './NavLink';
 export * from './Notification';
 export * from './Sidebar';
