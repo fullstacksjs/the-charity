@@ -1,6 +1,6 @@
 import { messages } from '@camp/messages';
 
-import { showModal } from '../ShowModal';
+import { showModal } from '../../../libs/design/Modal/ShowModal';
 import { deleteFamilyModalIds as Ids } from './DeleteFamilyModal.ids';
 
 const t = messages.families.list.delete.modal;

@@ -2,7 +2,6 @@ import { useFamilyQuery } from '@camp/data-layer';
 import {
   DetailCard,
   FullPageLoader,
-  openDeleteFamilyModal,
   showNotification,
   Tabs,
 } from '@camp/design';
@@ -14,6 +13,7 @@ import { Title } from '@mantine/core';
 import {
   HouseholderIdentityForm,
   InformationBadge,
+  openDeleteFamilyModal,
   SeverityBadge,
 } from '../../../../components';
 

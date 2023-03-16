@@ -13,7 +13,7 @@ interface Props {
   onDelete?: React.MouseEventHandler<HTMLButtonElement>;
 }
 
-export const ActionButton = ({
+export const FamilyActionButton = ({
   menuId,
   menuButtonId,
   to,
