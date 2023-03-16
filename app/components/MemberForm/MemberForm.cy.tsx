@@ -11,7 +11,7 @@ describe('Create member form Form', () => {
   });
 
   it('contains a first name input with correct label', () => {
-    cy.get('form').within(() => {
+    cy.findByTestId(memberFormIds.form).within(() => {
       cy.findByLabelText(`${createMemberForm.nameInput.label}:`).should(
         'match',
         'input',
@@ -20,7 +20,7 @@ describe('Create member form Form', () => {
   });
 
   it('contains a last name input with correct label', () => {
-    cy.get('form').within(() => {
+    cy.findByTestId(memberFormIds.form).within(() => {
       cy.findByLabelText(`${createMemberForm.lastNameInput.label}:`).should(
         'match',
         'input',
@@ -29,7 +29,7 @@ describe('Create member form Form', () => {
   });
 
   it('contains a father name input with correct label', () => {
-    cy.get('form').within(() => {
+    cy.findByTestId(memberFormIds.form).within(() => {
       cy.findByLabelText(`${createMemberForm.fatherNameInput.label}:`).should(
         'match',
         'input',
@@ -38,7 +38,7 @@ describe('Create member form Form', () => {
   });
 
   it('contains a nationality input with correct label', () => {
-    cy.get('form').within(() => {
+    cy.findByTestId(memberFormIds.form).within(() => {
       cy.findByLabelText(`${createMemberForm.nationalityInput.label}:`).should(
         'match',
         'input',
@@ -47,7 +47,7 @@ describe('Create member form Form', () => {
   });
 
   it('contains a religion input with correct label', () => {
-    cy.get('form').within(() => {
+    cy.findByTestId(memberFormIds.form).within(() => {
       cy.findByLabelText(`${createMemberForm.religionInput.label}:`).should(
         'match',
         'input',
@@ -56,7 +56,7 @@ describe('Create member form Form', () => {
   });
 
   it('contains a gender input with correct label', () => {
-    cy.get('form').within(() => {
+    cy.findByTestId(memberFormIds.form).within(() => {
       cy.findByLabelText(`${createMemberForm.genderInput.label}:`).should(
         'match',
         'input',
@@ -69,7 +69,7 @@ describe('Create member form Form', () => {
   });
 
   it('contains a button to submit the form', () => {
-    cy.get('form').within(() => {
+    cy.findByTestId(memberFormIds.form).within(() => {
       cy.findByTestId(memberFormIds.submitBtn)
         .should('have.attr', 'type')
         .and('equal', 'submit');
@@ -77,14 +77,14 @@ describe('Create member form Form', () => {
   });
 
   it('should show an error message when member first name is less than min length', () => {
-    cy.get('form').within(() => {
+    cy.findByTestId(memberFormIds.form).within(() => {
       cy.findByTestId(memberFormIds.firstNameInput).find('input').type('م');
       cy.findByText(createMemberForm.validation.nameMinLength).should('exist');
     });
   });
 
   it('should not show an error message when member first name is more than or equal to min length', () => {
-    cy.get('form').within(() => {
+    cy.findByTestId(memberFormIds.form).within(() => {
       cy.findByTestId(memberFormIds.firstNameInput).find('input').type('محمد');
       cy.findByText(createMemberForm.validation.nameMinLength).should(
         'not.exist',
@@ -93,14 +93,14 @@ describe('Create member form Form', () => {
   });
 
   it('should show an error message when member last name is less than min length', () => {
-    cy.get('form').within(() => {
+    cy.findByTestId(memberFormIds.form).within(() => {
       cy.findByTestId(memberFormIds.lastNameInput).find('input').type('ع');
       cy.findByText(createMemberForm.validation.nameMinLength).should('exist');
     });
   });
 
   it('should not show an error message when member last name is more than or equal to min length', () => {
-    cy.get('form').within(() => {
+    cy.findByTestId(memberFormIds.form).within(() => {
       cy.findByTestId(memberFormIds.lastNameInput).find('input').type('علیان');
       cy.findByText(createMemberForm.validation.nameMinLength).should(
         'not.exist',
@@ -109,7 +109,7 @@ describe('Create member form Form', () => {
   });
 
   it('should show an error message when member father name is less than min length', () => {
-    cy.get('form').within(() => {
+    cy.findByTestId(memberFormIds.form).within(() => {
       cy.findByTestId(memberFormIds.fatherNameInput).find('input').type('م');
       cy.findByText(createMemberForm.validation.fatherNameMinLength).should(
         'exist',
@@ -118,7 +118,7 @@ describe('Create member form Form', () => {
   });
 
   it('should not show an error message when member father name is more than or equal to min length', () => {
-    cy.get('form').within(() => {
+    cy.findByTestId(memberFormIds.form).within(() => {
       cy.findByTestId(memberFormIds.fatherNameInput).find('input').type('محمد');
       cy.findByText(createMemberForm.validation.fatherNameMinLength).should(
         'not.exist',
@@ -127,7 +127,7 @@ describe('Create member form Form', () => {
   });
 
   it('should show an error message when member nationality id is less than min length', () => {
-    cy.get('form').within(() => {
+    cy.findByTestId(memberFormIds.form).within(() => {
       cy.findByTestId(memberFormIds.nationalIdInput).find('input').type('1234');
       cy.findByText(createMemberForm.validation.nationalIdMinLength).should(
         'exist',
@@ -136,7 +136,7 @@ describe('Create member form Form', () => {
   });
 
   it('should not show an error message when member nationality id is more than or equal to min length', () => {
-    cy.get('form').within(() => {
+    cy.findByTestId(memberFormIds.form).within(() => {
       cy.findByTestId(memberFormIds.nationalIdInput)
         .find('input')
         .type('0123456789');
@@ -147,7 +147,7 @@ describe('Create member form Form', () => {
   });
 
   it('should show an error message when member nationality id includes word', () => {
-    cy.get('form').within(() => {
+    cy.findByTestId(memberFormIds.form).within(() => {
       cy.findByTestId(memberFormIds.nationalIdInput)
         .find('input')
         .type('123456789ABC');
@@ -158,7 +158,7 @@ describe('Create member form Form', () => {
   });
 
   it('should not show an error message when member nationality id includes number', () => {
-    cy.get('form').within(() => {
+    cy.findByTestId(memberFormIds.form).within(() => {
       cy.findByTestId(memberFormIds.nationalIdInput)
         .find('input')
         .type('0123456789');
