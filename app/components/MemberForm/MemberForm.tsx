@@ -28,7 +28,7 @@ import { DateInput } from 'mantine-datepicker-jalali';
 import { Controller, useForm } from 'react-hook-form';
 
 import { InformationBadge } from '../InformationBadge';
-import { memberFormIds } from './MemberForm.ids';
+import { memberFormIds as ids } from './MemberForm.ids';
 
 // FIXME abstract
 const useStyles = createStyles(theme => ({
@@ -70,7 +70,6 @@ export const MemberForm = () => {
 
   const tt = messages.member;
   const t = tt.createForm;
-  const ids = memberFormIds;
   const { classes } = useStyles();
 
   const {
