@@ -1,7 +1,6 @@
 import { messages } from '@camp/messages';
-import { createTestAttr } from '@camp/test';
 
-import { showModal } from '../Modal/ShowModal';
+import { showModal } from '../ShowModal';
 import { LogoutConfirm } from './LogoutConfirm';
 import { logoutModalIds as ids } from './LogoutModal.ids';
 
@@ -14,20 +13,13 @@ export const openLogoutModal = (logout: (returnTo: string) => void) =>
     title: texts.title,
     cancelLable: texts.cancel,
     confirmLabel: texts.accept,
+    size: 'md',
     groupProps: {
       spacing: 20,
       sx: {
         flexDirection: 'row-reverse',
       },
     },
-    confirmProps: {
-      variant: 'filled',
-      color: 'red',
-      ...createTestAttr(ids.acceptBtn),
-    },
-    cancelProps: {
-      variant: 'filled',
-      color: 'gray',
-    },
+    confirmId: ids.acceptBtn,
     onConfirm: () => logout(window.location.origin),
   });
