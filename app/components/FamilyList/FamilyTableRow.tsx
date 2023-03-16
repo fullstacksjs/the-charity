@@ -1,5 +1,5 @@
 import { type FamilyListItemDto } from '@camp/data-layer';
-import { ActionButton } from '@camp/design';
+import { ActionButton, openDeleteFamilyModal } from '@camp/design';
 import { AppRoute, useNavigate } from '@camp/router';
 import { Group } from '@mantine/core';
 
@@ -31,6 +31,10 @@ export const FamilyTableRow = ({ order, family }: Props) => {
         <Group position="apart">
           <SeverityBadge severity={severityStatus} />
           <ActionButton
+            onDelete={e => {
+              e.stopPropagation();
+              openDeleteFamilyModal(name);
+            }}
             menuButtonId={ids.familyTableMenuButtonId}
             menuId={ids.familyTableMenuId}
             to={AppRoute.familyDetail}
