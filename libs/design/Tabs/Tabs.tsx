@@ -1,15 +1,16 @@
+import { createTestAttr } from '@camp/test';
 import { Badge, Tabs as MantineTabs } from '@mantine/core';
 import { useState } from 'react';
 
 interface Tab {
-  value: string;
+  id: string;
   isDefault?: boolean;
   isBusy?: boolean;
   tab: React.ReactNode;
 }
 
 interface Panel {
-  value: string;
+  id: string;
   panel: React.ReactNode;
 }
 
@@ -24,7 +25,7 @@ const BusyIcon = () => (
 
 export const Tabs = ({ tabs, panels }: Props) => {
   const [activeTab, setActiveTab] = useState<string>(
-    tabs.find(({ isDefault }) => isDefault)?.value ?? tabs[0]!.value,
+    tabs.find(({ isDefault }) => isDefault)?.id ?? tabs[0]!.id,
   );
 
   return (
@@ -38,26 +39,27 @@ export const Tabs = ({ tabs, panels }: Props) => {
       }}
     >
       <MantineTabs.List px="40px" bg="transparent">
-        {tabs.map(({ tab, value, isBusy = false }) => (
+        {tabs.map(({ tab, id, isBusy = false }) => (
           <MantineTabs.Tab
-            key={value}
-            value={value}
-            bg={value === activeTab ? 'bgSurface' : 'bgCanvas'}
+            key={id}
+            value={id}
+            bg={id === activeTab ? 'bgSurface' : 'bgCanvas'}
             rightSection={isBusy ? <BusyIcon /> : undefined}
+            {...createTestAttr(id)}
           >
             {tab}
           </MantineTabs.Tab>
         ))}
       </MantineTabs.List>
 
-      {panels.map(({ panel, value }) => (
+      {panels.map(({ panel, id }) => (
         <MantineTabs.Panel
           bg="bgSurface"
           pt="34px"
           pb="30px"
           px="40px"
-          key={value}
-          value={value}
+          key={id}
+          value={id}
         >
           {panel}
         </MantineTabs.Panel>

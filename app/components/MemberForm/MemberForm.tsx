@@ -118,7 +118,7 @@ export const MemberForm = () => {
         }
       >
         <Collapse in={opened}>
-          <form onSubmit={onSubmit}>
+          <form onSubmit={onSubmit} {...createTestAttr(ids.form)}>
             <Stack spacing={25} align="end">
               <SimpleGrid w="100%" cols={3} spacing="lg" verticalSpacing={20}>
                 <TextInput

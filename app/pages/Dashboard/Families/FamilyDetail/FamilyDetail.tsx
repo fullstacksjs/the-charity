@@ -16,6 +16,7 @@ import {
   MemberForm,
   SeverityBadge,
 } from '../../../../components';
+import { familyDetailIds as ids } from './FamilyDetail.ids';
 
 export const FamilyDetail = () => {
   const t = messages.familyDetail;
@@ -55,21 +56,21 @@ export const FamilyDetail = () => {
         tabs={[
           {
             tab: <Title order={5}>{t.tabs.householderTitle}</Title>,
-            value: '1',
+            id: ids.householderIdentityTab,
             isBusy: true,
           },
           {
             tab: <Title order={5}>{t.tabs.membersTitle}</Title>,
-            value: '2',
+            id: ids.memberFormTab,
             isDefault: true,
           },
         ]}
         panels={[
           {
             panel: <HouseholderIdentityForm familyId={family.id} />,
-            value: '1',
+            id: ids.householderIdentityTab,
           },
-          { panel: <MemberForm />, value: '2' },
+          { panel: <MemberForm />, id: ids.memberFormTab },
         ]}
       />
     </>
