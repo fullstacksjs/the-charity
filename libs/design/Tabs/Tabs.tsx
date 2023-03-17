@@ -7,23 +7,18 @@ interface Tab {
   isDefault?: boolean;
   isBusy?: boolean;
   tab: React.ReactNode;
-}
-
-interface Panel {
-  id: string;
   panel: React.ReactNode;
 }
 
 interface Props {
   tabs: Tab[];
-  panels: Panel[];
 }
 
 const BusyIcon = () => (
   <Badge w="8px" h="8px" p="0" variant="filled" color="yellow" />
 );
 
-export const Tabs = ({ tabs, panels }: Props) => {
+export const Tabs = ({ tabs }: Props) => {
   const [activeTab, setActiveTab] = useState<string>(
     tabs.find(({ isDefault }) => isDefault)?.id ?? tabs[0]!.id,
   );
@@ -52,7 +47,7 @@ export const Tabs = ({ tabs, panels }: Props) => {
         ))}
       </MantineTabs.List>
 
-      {panels.map(({ panel, id }) => (
+      {tabs.map(({ panel, id }) => (
         <MantineTabs.Panel
           bg="bgSurface"
           pt="34px"

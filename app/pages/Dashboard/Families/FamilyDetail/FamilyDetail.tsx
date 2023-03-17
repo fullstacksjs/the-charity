@@ -56,21 +56,16 @@ export const FamilyDetail = () => {
         tabs={[
           {
             tab: <Title order={5}>{t.tabs.householderTitle}</Title>,
+            panel: <HouseholderIdentityForm familyId={family.id} />,
             id: ids.householderIdentityTab,
             isBusy: true,
           },
           {
             tab: <Title order={5}>{t.tabs.membersTitle}</Title>,
+            panel: <MemberForm />,
             id: ids.memberFormTab,
             isDefault: true,
           },
-        ]}
-        panels={[
-          {
-            panel: <HouseholderIdentityForm familyId={family.id} />,
-            id: ids.householderIdentityTab,
-          },
-          { panel: <MemberForm />, id: ids.memberFormTab },
         ]}
       />
     </>
