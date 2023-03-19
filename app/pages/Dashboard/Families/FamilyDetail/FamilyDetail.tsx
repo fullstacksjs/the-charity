@@ -5,10 +5,11 @@ import {
   showNotification,
   Tabs,
 } from '@camp/design';
+import { TrashIcon } from '@camp/icons';
 import { errorMessages, messages } from '@camp/messages';
 import { useParams } from '@camp/router';
 import { isNull } from '@fullstacksjs/toolbox';
-import { Title } from '@mantine/core';
+import { Button, Title } from '@mantine/core';
 
 import {
   HouseholderIdentityForm,
@@ -41,8 +42,18 @@ export const FamilyDetail = () => {
       <DetailCard
         title={t.title}
         id={family.code}
-        deleteButton={t.delete}
-        onDelete={() => openDeleteFamilyModal(family.name)}
+        left={
+          <Button
+            variant="outline"
+            color="red"
+            leftIcon={<TrashIcon width="18" height="18" />}
+            px="lg"
+            py="8px"
+            onClick={() => openDeleteFamilyModal(family.name)}
+          >
+            {t.delete}
+          </Button>
+        }
       >
         <DetailCard.TextField title={t.familyFields.name.title}>
           {family.name}

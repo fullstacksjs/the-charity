@@ -1,5 +1,4 @@
-import { TrashIcon } from '@camp/icons';
-import { Button, Group, SimpleGrid, Title } from '@mantine/core';
+import { Group, SimpleGrid, Title } from '@mantine/core';
 
 import { DashboardCard } from '../DashboardCard';
 import { DetailCardBadgeField } from './DetailCardBadgeField';
@@ -8,34 +7,16 @@ import { DetailCardTextField } from './DetailCardTextField';
 interface Props {
   title: string;
   id: string;
-  deleteButton: string;
   children: React.ReactNode;
-  onDelete: React.MouseEventHandler<HTMLButtonElement>;
+  left?: React.ReactNode;
 }
 
-export const DetailCard = ({
-  title,
-  id,
-  children,
-  deleteButton,
-  onDelete,
-}: Props) => {
+export const DetailCard = ({ title, id, children, left }: Props) => {
   return (
     <DashboardCard
       bg="bgCanvas"
       withBorder={false}
-      left={
-        <Button
-          variant="outline"
-          color="red"
-          leftIcon={<TrashIcon width="18" height="18" />}
-          px="lg"
-          py="8px"
-          onClick={onDelete}
-        >
-          {deleteButton}
-        </Button>
-      }
+      left={left}
       right={
         <Group>
           <Title order={4} color="fgMuted" weight="bold">
