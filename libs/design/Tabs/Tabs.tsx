@@ -33,7 +33,7 @@ export const Tabs = ({ tabs }: Props) => {
         setActiveTab(value!);
       }}
     >
-      <MantineTabs.List px="40px" bg="transparent">
+      <MantineTabs.List px="40px" bg="bgCanvas">
         {tabs.map(({ tab, id, isBusy = false }) => (
           <MantineTabs.Tab
             key={id}
