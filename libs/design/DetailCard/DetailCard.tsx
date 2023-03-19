@@ -28,7 +28,9 @@ export const DetailCard = ({
         <Button
           variant="outline"
           color="red"
-          leftIcon={<TrashIcon />}
+          leftIcon={<TrashIcon width="18" height="18" />}
+          px="lg"
+          py="8px"
           onClick={onDelete}
         >
           {deleteButton}
