@@ -59,12 +59,12 @@ export const FamilyDetail = () => {
             panel: <HouseholderIdentityForm familyId={family.id} />,
             id: ids.householderIdentityTab,
             isBusy: true,
+            isDefault: true,
           },
           {
             tab: <Title order={5}>{t.tabs.membersTitle}</Title>,
             panel: <MemberForm />,
             id: ids.memberFormTab,
-            isDefault: true,
           },
         ]}
       />

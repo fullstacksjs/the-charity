@@ -17,12 +17,12 @@ Default.args = {
       panel: 'First Panel',
       id: '1',
       isBusy: true,
+      isDefault: true,
     },
     {
       tab: <Title order={5}>اعضا</Title>,
       panel: 'Second Panel',
       id: '2',
-      isDefault: true,
     },
   ],
 };
