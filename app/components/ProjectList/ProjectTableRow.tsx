@@ -1,4 +1,3 @@
-import { ActionButton } from '@camp/design';
 import { Group } from '@mantine/core';
 
 import {
@@ -16,14 +15,7 @@ export const ProjectTableRow = ({ name, order }: Props) => {
     <tr style={{ cursor: 'pointer' }}>
       <td>{order}</td>
       <td>
-        <Group position="apart">
-          {name}
-          <ActionButton
-            menuId={projectTableMenuId}
-            menuButtonId={projectTableMenuButtonId}
-            to="/dashboard/projects"
-          />
-        </Group>
+        <Group position="apart">{name}</Group>
       </td>
     </tr>
   );

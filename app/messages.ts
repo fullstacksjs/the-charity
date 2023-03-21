@@ -18,7 +18,7 @@ export const messages = {
     required: 'این فیلد ضروری است',
   },
   companyName: 'نامی مناسب برای خیریه',
-  actions: { dismiss: 'انصراف', open: 'باز کردن' },
+  actions: { dismiss: 'انصراف', open: 'باز کردن', delete: 'حذف کردن' },
   families: {
     title: 'خانواده ها',
     create: 'ایجاد خانواده جدید',
@@ -57,6 +57,15 @@ export const messages = {
     },
     list: {
       title: 'لیست خانواده ها',
+      delete: {
+        modal: {
+          title: 'حذف',
+          children: (name: string) =>
+            `آیا از حذف خانواده "${name}" مطمئن هستید؟`,
+          cancel: 'انصراف',
+          confirm: 'حذف',
+        },
+      },
       table: {
         columns: ['ردیف', 'نام', 'وضعیت اطلاعات', 'وضعیت نیازمندی'],
       },
@@ -249,6 +258,7 @@ export const messages = {
   familyDetail: {
     title: 'اطلاعات کلی خانواده',
     notFound: 'خانواده مورد نظر یافت نشد',
+    delete: 'پاک کردن',
     tabs: {
       householderTitle: 'سرپرست',
       membersTitle: 'اعضا',

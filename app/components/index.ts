@@ -1,5 +1,6 @@
 export * from './CreateFamily';
 export * from './CreateProject';
+export * from './DeleteFamilyModal';
 export * from './FamilyEmptyState';
 export * from './FamilyList';
 export * from './HouseholderForm';

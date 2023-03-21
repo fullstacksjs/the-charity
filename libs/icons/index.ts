@@ -11,4 +11,5 @@ export {
   Package as PackageIcon,
   Users as PeopleIcon,
   Plus as PlusIcon,
+  Trash2 as TrashIcon,
 } from 'react-feather';

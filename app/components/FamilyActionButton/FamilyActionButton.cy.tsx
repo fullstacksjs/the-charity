@@ -1,12 +1,12 @@
-import { ActionButton } from './ActionButton';
+import { FamilyActionButton } from './FamilyActionButton';
 
 const menuId = 'menu-id';
 const menuButtonId = 'button-id';
 
-describe('ActionButton', () => {
+describe('FamilyActionButton', () => {
   beforeEach(() => {
     cy.mount(
-      <ActionButton to="/" menuButtonId={menuButtonId} menuId={menuId} />,
+      <FamilyActionButton to="/" menuButtonId={menuButtonId} menuId={menuId} />,
     );
   });
 
