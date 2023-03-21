@@ -8,13 +8,15 @@ interface Props {
   title: string;
   id: string;
   children: React.ReactNode;
+  left?: React.ReactNode;
 }
 
-export const DetailCard = ({ title, id, children }: Props) => {
+export const DetailCard = ({ title, id, children, left }: Props) => {
   return (
     <DashboardCard
       bg="bgCanvas"
       withBorder={false}
+      left={left}
       right={
         <Group>
           <Title order={4} color="fgMuted" weight="bold">

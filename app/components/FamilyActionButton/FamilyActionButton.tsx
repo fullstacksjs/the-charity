@@ -10,9 +10,16 @@ interface Props {
   params?: PathParams<AppRoute>;
   menuId?: string;
   menuButtonId?: string;
+  onDelete?: React.MouseEventHandler<HTMLButtonElement>;
 }
 
-export const ActionButton = ({ menuId, menuButtonId, to, params }: Props) => {
+export const FamilyActionButton = ({
+  menuId,
+  menuButtonId,
+  to,
+  params,
+  onDelete,
+}: Props) => {
   return (
     <Menu width={100} shadow="md" withArrow>
       <Menu.Target {...createTestAttr(menuButtonId)}>
@@ -23,6 +30,9 @@ export const ActionButton = ({ menuId, menuButtonId, to, params }: Props) => {
       <Menu.Dropdown {...createTestAttr(menuId)}>
         <Menu.Item to={to} params={params} component={Link}>
           {messages.actions.open}
+        </Menu.Item>
+        <Menu.Item color="red" onClick={onDelete}>
+          {messages.actions.delete}
         </Menu.Item>
       </Menu.Dropdown>
     </Menu>

@@ -1,35 +1,25 @@
 import { messages } from '@camp/messages';
-import { createTestAttr } from '@camp/test';
-import { openConfirmModal } from '@mantine/modals';
 
+import { showModal } from '../ShowModal';
 import { LogoutConfirm } from './LogoutConfirm';
 import { logoutModalIds as ids } from './LogoutModal.ids';
 
 const texts = messages.logout.modal;
 
 export const openLogoutModal = (logout: (returnTo: string) => void) =>
-  openConfirmModal({
-    modalId: ids.modal,
+  showModal({
+    id: ids.modal,
     children: <LogoutConfirm />,
     title: texts.title,
+    cancelLable: texts.cancel,
+    confirmLabel: texts.accept,
     size: 'md',
-    centered: true,
-    ...createTestAttr(ids.modal),
-    labels: { cancel: texts.cancel, confirm: texts.accept },
     groupProps: {
       spacing: 20,
       sx: {
         flexDirection: 'row-reverse',
       },
     },
-    confirmProps: {
-      variant: 'filled',
-      color: 'red',
-      ...createTestAttr(ids.acceptBtn),
-    },
-    cancelProps: {
-      variant: 'filled',
-      color: 'gray',
-    },
+    confirmId: ids.acceptBtn,
     onConfirm: () => logout(window.location.origin),
   });

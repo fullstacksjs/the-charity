@@ -5,7 +5,7 @@ import { createTestAttr } from '@camp/test';
 import { type CSSObject, type Sx } from '@mantine/core';
 import { NavLink as MantineNavLink } from '@mantine/core';
 
-import { openLogoutModal } from '../LogoutModal';
+import { openLogoutModal } from '../Modal';
 import { exitNavLinkId as id } from './ExitNavLink.ids';
 import { navLinkRootStyles } from './NavLink';
 
