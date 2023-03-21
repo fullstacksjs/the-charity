@@ -3,6 +3,7 @@ export * from './createResolver';
 export * from './Family';
 export * from './Gender';
 export * from './HouseholderIdentity';
+export * from './Member';
 export * from './Project';
 export * from './Religions';
 export * from './ServerErrors';

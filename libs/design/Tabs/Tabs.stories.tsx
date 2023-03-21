@@ -14,13 +14,15 @@ Default.args = {
   tabs: [
     {
       tab: <Title order={5}>سرپرست</Title>,
-      value: '1',
+      panel: 'First Panel',
+      id: '1',
       isBusy: true,
+      isDefault: true,
     },
-    { tab: <Title order={5}>اعضا</Title>, value: '2' },
-  ],
-  panels: [
-    { panel: 'First Panel', value: '1' },
-    { panel: 'Second Panel', value: '2' },
+    {
+      tab: <Title order={5}>اعضا</Title>,
+      panel: 'Second Panel',
+      id: '2',
+    },
   ],
 };

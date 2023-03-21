@@ -14,9 +14,11 @@ import { Button, Title } from '@mantine/core';
 import {
   HouseholderIdentityForm,
   InformationBadge,
+  MemberForm,
   openDeleteFamilyModal,
   SeverityBadge,
 } from '../../../../components';
+import { familyDetailIds as ids } from './FamilyDetail.ids';
 
 export const FamilyDetail = () => {
   const t = messages.familyDetail;
@@ -71,17 +73,16 @@ export const FamilyDetail = () => {
         tabs={[
           {
             tab: <Title order={5}>{t.tabs.householderTitle}</Title>,
-            value: '1',
-            isBusy: true,
-          },
-          { tab: <Title order={5}>{t.tabs.membersTitle}</Title>, value: '2' },
-        ]}
-        panels={[
-          {
             panel: <HouseholderIdentityForm familyId={family.id} />,
-            value: '1',
+            id: ids.householderIdentityTab,
+            isBusy: true,
+            isDefault: true,
           },
-          { panel: t.panels.title, value: '2' },
+          {
+            tab: <Title order={5}>{t.tabs.membersTitle}</Title>,
+            panel: <MemberForm />,
+            id: ids.memberFormTab,
+          },
         ]}
       />
     </>

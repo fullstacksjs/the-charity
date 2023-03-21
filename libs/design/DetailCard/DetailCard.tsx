@@ -18,7 +18,7 @@ export const DetailCard = ({ title, id, children, left }: Props) => {
       withBorder={false}
       left={left}
       right={
-        <Group>
+        <Group spacing={10}>
           <Title order={4} color="fgMuted" weight="bold">
             {title}
           </Title>

@@ -4,7 +4,7 @@ import { Box, Card, Group, Stack } from '@mantine/core';
 interface DashboardCardProps {
   right?: React.ReactNode;
   left?: React.ReactNode;
-  children: React.ReactNode;
+  children?: React.ReactNode;
 }
 
 type Props = DashboardCardProps &
@@ -23,7 +23,7 @@ export const DashboardCard = ({
           <Box>{right}</Box>
           <Box>{left}</Box>
         </Group>
-        <Box>{children}</Box>
+        {children}
       </Stack>
     </Card>
   );

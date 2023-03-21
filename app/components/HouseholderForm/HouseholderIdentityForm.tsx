@@ -131,7 +131,7 @@ export const HouseholderIdentityForm = ({ familyId }: Props) => {
   );
 
   return (
-    <form onSubmit={onSubmit}>
+    <form onSubmit={onSubmit} {...createTestAttr(ids.form)}>
       <Stack spacing={25}>
         <Group position="apart">
           <Title order={4} color="fgMuted" weight="bold">

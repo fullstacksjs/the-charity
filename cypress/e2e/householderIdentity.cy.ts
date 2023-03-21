@@ -1,4 +1,5 @@
 import { householderIdentityFormIds as ids } from '../../app/components/HouseholderForm/HouseholderIdentityForm.ids';
+import { familyDetailIds as tabIds } from '../../app/pages/Dashboard/Families/FamilyDetail/FamilyDetail.ids';
 import { AppRoute } from '../../libs/router/AppRoutes';
 import { admin } from '../fixtures/admin';
 import { householderFixture } from '../fixtures/householder';
@@ -22,10 +23,11 @@ describe('Householder Identity', () => {
     const name = familyFixture.name();
     cy.wrap(api.createFamily(name));
     cy.findByText(name).click();
+    cy.findByTestId(tabIds.householderIdentityTab).click();
   });
 
   it('[OK]: Admin wants to add householder identity information', () => {
-    cy.get('form').within(() => {
+    cy.findByTestId(ids.form).within(() => {
       const mock = householderFixture();
       Object.keys(mock).forEach(key => {
         const inputValue = mock[key];
@@ -41,7 +43,7 @@ describe('Householder Identity', () => {
   });
 
   it('[NOK]: Admin wants to add householder identity without specifying a name', () => {
-    cy.get('form').within(() => {
+    cy.findByTestId(ids.form).within(() => {
       cy.findByTestId(ids.submitBtn).should('be.disabled');
     });
   });

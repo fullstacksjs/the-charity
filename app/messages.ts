@@ -175,6 +175,69 @@ export const messages = {
       },
     },
   },
+  member: {
+    title: 'اعضا',
+    addNewMember: 'افزودن',
+    createForm: {
+      validation: {
+        nameMinLength: 'نام سرپرست باید حداقل ۳ حرف باشد',
+        fatherNameMinLength: 'نام پدر باید حداقل ۳ حرف باشد',
+        nationalIdMinLength: 'شماره کارت ملی باید حداقل ۱۰ عدد باشد',
+        invalidNationalId: 'لطفا یک شماره کارت ملی معتبر وارد نمایید',
+      },
+      submitBtn: 'ثبت',
+      selectInputs: {
+        placeholder: 'انتخاب کنید',
+      },
+      nameInput: {
+        label: 'نام',
+        placeholder: 'برای مثال: محمد',
+      },
+      lastNameInput: {
+        label: 'نام خانوادگی',
+        placeholder: 'برای مثال: علیان',
+      },
+      fatherNameInput: {
+        label: 'نام پدر',
+        placeholder: 'برای مثال: محمد',
+      },
+      nationalityInput: {
+        options: {
+          ir: 'ایران',
+        },
+        label: 'ملیت',
+        placeholder: 'برای مثال: ایرانی',
+      },
+      nationalIdInput: {
+        label: 'شماره ملی',
+        placeholder: 'برای مثال: ۰۱۲۳۴۵۶۷۸۹',
+      },
+      issuedAtInput: {
+        options: { tehran: 'تهران' },
+        label: 'محل صدور',
+        placeholder: 'برای مثال: تهران',
+      },
+      religionInput: {
+        options: { islam: 'اسلام' },
+        label: 'دین',
+        placeholder: 'برای مثال: اسلام',
+      },
+      genderInput: {
+        options: { male: 'مرد', female: 'زن' },
+        label: 'جنسیت',
+        placeholder: 'مرد/زن',
+      },
+      dateOfBirthInput: {
+        label: 'تاریخ تولد',
+        placeholder: 'برای مثال: ۱۳۹۹/۱۰/۱۰',
+      },
+      cityOfBirthInput: {
+        options: { tehran: 'تهران' },
+        label: 'شهر',
+        placeholder: 'برای مثال: تهران',
+      },
+    },
+  },
   login: {
     loginFrom: {
       title: 'به حساب کاربری خود وارد شوید',
