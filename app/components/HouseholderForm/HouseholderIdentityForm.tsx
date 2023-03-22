@@ -1,6 +1,6 @@
 import 'dayjs/locale/fa';
 
-import { useUpsertHouseholder } from '@camp/data-layer';
+import { useHouseholderQuery, useUpsertHouseholder } from '@camp/data-layer';
 import { showNotification } from '@camp/design';
 import type { Gender } from '@camp/domain';
 import {
@@ -25,6 +25,7 @@ import {
   Title,
 } from '@mantine/core';
 import { DateInput } from 'mantine-datepicker-jalali';
+import { useEffect } from 'react';
 import { Controller, useForm } from 'react-hook-form';
 
 import { householderIdentityFormIds as ids } from './HouseholderIdentityForm.ids';
@@ -41,7 +42,7 @@ interface FormSchema {
   gender: Gender;
   nationality: string;
   religion: string;
-  cityOfBirthInput: string;
+  cityOfBirth: string;
   issuedAt: string;
 }
 
@@ -53,7 +54,7 @@ const resolver = createResolver<FormSchema>({
   gender: householderIdentitySchema.gender(),
   nationality: householderIdentitySchema.nationality(),
   religion: householderIdentitySchema.religion(),
-  cityOfBirthInput: householderIdentitySchema.cityOfBirth(),
+  cityOfBirth: householderIdentitySchema.cityOfBirth(),
   issuedAt: householderIdentitySchema.issuedAt(),
 });
 
@@ -74,8 +75,14 @@ const useStyles = createStyles(theme => ({
 export const HouseholderIdentityForm = ({ familyId }: Props) => {
   const t = messages.householder.householderIdentityForm;
   const { classes } = useStyles();
+
+  const { data, loading } = useHouseholderQuery({
+    variables: { family_id: familyId },
+  });
+
   const {
     handleSubmit,
+    reset,
     register,
     formState: { errors, isValid },
     control,
@@ -85,6 +92,12 @@ export const HouseholderIdentityForm = ({ familyId }: Props) => {
   });
 
   const [upsertHouseholder] = useUpsertHouseholder();
+
+  useEffect(() => {
+    if (data != null) reset(data.householder);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [loading, reset]);
+
   const onSubmit = handleSubmit(
     ({
       fatherName,
@@ -109,12 +122,10 @@ export const HouseholderIdentityForm = ({ familyId }: Props) => {
           issuedAt,
         },
       })
-        .then(({ data }) => {
+        .then(({ data: d }) => {
           showNotification({
             title: t.title,
-            message: t.notification.successfulUpdate(
-              data?.householder.name ?? '',
-            ),
+            message: t.notification.successfulUpdate(d?.householder.name ?? ''),
             type: 'success',
             ...createTestAttr(ids.notification.success),
           });
@@ -253,7 +264,7 @@ export const HouseholderIdentityForm = ({ familyId }: Props) => {
           />
 
           <Controller
-            name="cityOfBirthInput"
+            name="cityOfBirth"
             control={control}
             render={({ field }) => (
               <Select
@@ -264,7 +275,7 @@ export const HouseholderIdentityForm = ({ familyId }: Props) => {
                 }))}
                 placeholder={t.selectInputs.placeholder}
                 label={`${t.cityOfBirthInput.label}:`}
-                error={errors.cityOfBirthInput?.message}
+                error={errors.cityOfBirth?.message}
                 {...field}
               />
             )}

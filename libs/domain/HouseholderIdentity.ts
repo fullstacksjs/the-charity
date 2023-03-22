@@ -3,6 +3,7 @@ import { z } from 'zod';
 
 import type { City } from './Country';
 import { cities } from './Country';
+import { type Gender } from './Gender';
 import { genders } from './Gender';
 import type { Religion } from './Religions';
 import { religions } from './Religions';
@@ -102,5 +103,6 @@ export interface Householder {
   nationality?: string;
   religion?: Religion;
   cityOfBirth?: City;
+  gender?: Gender;
   issuedAt?: City;
 }
