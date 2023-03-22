@@ -84,7 +84,7 @@ export const HouseholderIdentityForm = ({ familyId }: Props) => {
     handleSubmit,
     reset,
     register,
-    formState: { errors, isValid },
+    formState: { errors, isValid, isDirty },
     control,
   } = useForm<FormSchema>({
     resolver,
@@ -132,7 +132,7 @@ export const HouseholderIdentityForm = ({ familyId }: Props) => {
             type="submit"
             size="sm"
             leftIcon={<CheckIcon size={16} />}
-            disabled={!isValid}
+            disabled={!isValid || !isDirty}
           >
             {t.submitBtn}
           </Button>
