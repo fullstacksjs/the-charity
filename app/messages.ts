@@ -116,6 +116,7 @@ export const messages = {
         invalidNationalId: 'لطفا یک شماره کارت ملی معتبر وارد نمایید',
       },
       title: 'اطلاعات هویت',
+      undoBtn: 'لغو',
       notification: {
         successfulUpdate: (name: string) =>
           `سرپرستی ای با نام "${name}" .با موفقیت آپدیت شد`,

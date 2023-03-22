@@ -29,7 +29,7 @@ import { useEffect } from 'react';
 import { Controller, useForm } from 'react-hook-form';
 
 import { householderIdentityFormIds as ids } from './HouseholderIdentityForm.ids';
-
+// FIXME fix validation massages to persian
 interface Props {
   familyId: string;
 }
@@ -135,11 +135,9 @@ export const HouseholderIdentityForm = ({ familyId }: Props) => {
               size="sm"
               variant="outline"
               color="red"
-              onClick={() => {
-                reset();
-              }}
+              onClick={() => reset()}
             >
-              لفو
+              {t.undoBtn}
             </Button>
             <Button
               {...createTestAttr(ids.submitBtn)}
