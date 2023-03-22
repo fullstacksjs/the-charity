@@ -98,48 +98,27 @@ export const HouseholderIdentityForm = ({ familyId }: Props) => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [loading, reset]);
 
-  const onSubmit = handleSubmit(
-    ({
-      fatherName,
-      name,
-      surname,
-      nationality,
-      religion,
-      nationalId,
-      gender,
-      issuedAt,
-    }) => {
-      upsertHouseholder({
-        variables: {
-          fatherName,
-          surname,
-          name,
-          familyId,
-          nationality,
-          religion,
-          nationalId,
-          gender,
-          issuedAt,
-        },
+  const onSubmit = handleSubmit(formData => {
+    upsertHouseholder({
+      variables: { ...formData, familyId },
+    })
+      .then(({ data: d }) => {
+        showNotification({
+          title: t.title,
+          message: t.notification.successfulUpdate(d?.householder.name ?? ''),
+          type: 'success',
+          ...createTestAttr(ids.notification.success),
+        });
       })
-        .then(({ data: d }) => {
-          showNotification({
-            title: t.title,
-            message: t.notification.successfulUpdate(d?.householder.name ?? ''),
-            type: 'success',
-            ...createTestAttr(ids.notification.success),
-          });
-        })
-        .catch(() =>
-          showNotification({
-            title: t.title,
-            message: t.notification.failedUpdate(name),
-            type: 'failure',
-            ...createTestAttr(ids.notification.failure),
-          }),
-        );
-    },
-  );
+      .catch(() =>
+        showNotification({
+          title: t.title,
+          message: t.notification.failedUpdate(formData.name),
+          type: 'failure',
+          ...createTestAttr(ids.notification.failure),
+        }),
+      );
+  });
 
   return (
     <form onSubmit={onSubmit} {...createTestAttr(ids.form)}>
