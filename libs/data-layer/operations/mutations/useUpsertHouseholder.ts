@@ -1,12 +1,16 @@
-import type { MutationHookOptions } from '@apollo/client';
-import { gql } from '@apollo/client';
-import type { Gender, Householder, HouseholderStatus } from '@camp/domain';
+import { gql, type MutationHookOptions } from '@apollo/client';
+import {
+  type Gender,
+  type Householder,
+  type HouseholderStatus,
+} from '@camp/domain';
 
-import type {
-  ApiUpsertHouseholderMutation,
-  ApiUpsertHouseholderMutationVariables,
+import {
+  ApiGenderEnum,
+  ApiHouseholderStatusEnum,
+  type ApiUpsertHouseholderMutation,
+  type ApiUpsertHouseholderMutationVariables,
 } from '../../api';
-import { ApiGenderEnum, ApiHouseholderStatusEnum } from '../../api';
 import { useMutation } from './useMutation';
 
 const Document = gql`
@@ -51,7 +55,7 @@ export const toHouseholderStatus = (
 ): HouseholderStatus =>
   status === ApiHouseholderStatusEnum.Completed ? 'completed' : 'draft';
 
-export const toHouseholderGender = (gender: ApiGenderEnum): Gender =>
+export const toGender = (gender: ApiGenderEnum): Gender =>
   gender === ApiGenderEnum.Male ? 'male' : 'female';
 
 const toClient = (
@@ -81,11 +85,14 @@ interface Variables {
   nationality?: string;
   religion?: string;
   gender?: Gender;
-  city?: string;
-  issuedAt: string;
+  cityOfBirth?: string;
+  issuedAt?: string;
 }
 
-// FIXME: add DOB too
+const toApiGender = (gender: Gender): ApiGenderEnum =>
+  gender === 'male' ? ApiGenderEnum.Male : ApiGenderEnum.Female;
+
+// FIXME add DOB too
 const toApiVariables = (
   variables?: Variables | null,
 ): ApiUpsertHouseholderMutationVariables | undefined =>
@@ -100,11 +107,11 @@ const toApiVariables = (
           surname: variables.surname,
           nationality: variables.nationality,
           religion: variables.religion,
-          city: variables.city,
+          city: variables.cityOfBirth,
           gender:
-            variables.gender === 'male'
-              ? ApiGenderEnum.Male
-              : ApiGenderEnum.Female,
+            variables.gender != null
+              ? toApiGender(variables.gender)
+              : undefined,
         },
       };
 

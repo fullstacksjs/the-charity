@@ -6,7 +6,7 @@ import {
   type ApiHouseholderQuery,
   type ApiHouseholderQueryVariables,
 } from '../../api';
-import { toHouseholderGender, toHouseholderStatus } from '../mutations';
+import { toGender, toHouseholderStatus } from '../mutations';
 import { useQuery } from './useQuery';
 
 const Document = gql`
@@ -29,7 +29,7 @@ const Document = gql`
 export interface HouseholderDto {
   householder: Householder;
 }
-// FIXME fix gender being sent as female by default
+
 const toClient = (
   data: ApiHouseholderQuery | null | undefined,
 ): HouseholderDto | null =>
@@ -51,7 +51,7 @@ const toClient = (
           gender:
             data.householder_by_pk.gender == null
               ? undefined
-              : toHouseholderGender(data.householder_by_pk.gender),
+              : toGender(data.householder_by_pk.gender),
         },
       };
 
