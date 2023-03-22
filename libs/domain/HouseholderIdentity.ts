@@ -15,18 +15,12 @@ export const householderIdentitySchema = {
     z
       .string()
       .trim()
-      .min(
-        3,
-        messages.householder.householderIdentityForm.validation.nameMinLength,
-      ),
+      .min(3, messages.householder.householderForm.validation.nameMinLength),
   surname: () =>
     z
       .string()
       .trim()
-      .min(
-        3,
-        messages.householder.householderIdentityForm.validation.nameMinLength,
-      )
+      .min(3, messages.householder.householderForm.validation.nameMinLength)
       .nullish()
       .or(z.literal(''))
       .transform(e => (e === '' || e === null ? undefined : e)),
@@ -36,8 +30,7 @@ export const householderIdentitySchema = {
       .trim()
       .min(
         3,
-        messages.householder.householderIdentityForm.validation
-          .fatherNameMinLength,
+        messages.householder.householderForm.validation.fatherNameMinLength,
       )
       .nullish()
       .or(z.literal(''))
@@ -47,13 +40,11 @@ export const householderIdentitySchema = {
       .string()
       .min(
         10,
-        messages.householder.householderIdentityForm.validation
-          .nationalIdMinLength,
+        messages.householder.householderForm.validation.nationalIdMinLength,
       )
       .regex(
         numberRegex,
-        messages.householder.householderIdentityForm.validation
-          .invalidNationalId,
+        messages.householder.householderForm.validation.invalidNationalId,
       )
       .trim()
       .nullish()

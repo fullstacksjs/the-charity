@@ -1,4 +1,4 @@
-export const householderIdentityFormIds = {
+export const householderFormIds = {
   form: 'householder-identity-form',
   firstNameInput: 'householder-first-name',
   lastNameInput: 'householder-last-name',

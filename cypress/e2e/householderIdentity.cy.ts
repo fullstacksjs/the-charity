@@ -1,4 +1,4 @@
-import { householderIdentityFormIds as ids } from '../../app/components/HouseholderForm/HouseholderIdentityForm.ids';
+import { householderFormIds as ids } from '../../app/components/HouseholderForm/HouseholderForm.ids';
 import { familyDetailIds as tabIds } from '../../app/pages/Dashboard/Families/FamilyDetail/FamilyDetail.ids';
 import { AppRoute } from '../../libs/router/AppRoutes';
 import { admin } from '../fixtures/admin';

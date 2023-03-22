@@ -108,7 +108,7 @@ export const messages = {
     },
   },
   householder: {
-    householderIdentityForm: {
+    householderForm: {
       validation: {
         nameMinLength: 'نام سرپرست باید حداقل ۳ حرف باشد',
         fatherNameMinLength: 'نام پدر باید حداقل ۳ حرف باشد',

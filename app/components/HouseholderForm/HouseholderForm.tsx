@@ -28,7 +28,7 @@ import { DateInput } from 'mantine-datepicker-jalali';
 import { useEffect } from 'react';
 import { Controller, useForm } from 'react-hook-form';
 
-import { householderIdentityFormIds as ids } from './HouseholderIdentityForm.ids';
+import { householderFormIds as ids } from './HouseholderForm.ids';
 // FIXME fix validation massages to persian
 interface Props {
   familyId: string;
@@ -72,8 +72,8 @@ const useStyles = createStyles(theme => ({
 }));
 
 // eslint-disable-next-line max-lines-per-function
-export const HouseholderIdentityForm = ({ familyId }: Props) => {
-  const t = messages.householder.householderIdentityForm;
+export const HouseholderForm = ({ familyId }: Props) => {
+  const t = messages.householder.householderForm;
   const { classes } = useStyles();
 
   const { data, loading } = useHouseholderQuery({
@@ -84,8 +84,7 @@ export const HouseholderIdentityForm = ({ familyId }: Props) => {
     handleSubmit,
     reset,
     register,
-    getValues,
-    formState: { errors, isValid, isDirty, defaultValues },
+    formState: { errors, isValid, isDirty },
     control,
   } = useForm<FormSchema>({
     resolver,
@@ -93,8 +92,6 @@ export const HouseholderIdentityForm = ({ familyId }: Props) => {
   });
 
   const [upsertHouseholder] = useUpsertHouseholder();
-  console.log('default', defaultValues);
-  console.log('current', getValues());
 
   useEffect(() => {
     if (data != null) reset(data.householder);
