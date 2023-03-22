@@ -84,7 +84,8 @@ export const HouseholderIdentityForm = ({ familyId }: Props) => {
     handleSubmit,
     reset,
     register,
-    formState: { errors, isValid, isDirty },
+    getValues,
+    formState: { errors, isValid, isDirty, defaultValues },
     control,
   } = useForm<FormSchema>({
     resolver,
@@ -92,6 +93,8 @@ export const HouseholderIdentityForm = ({ familyId }: Props) => {
   });
 
   const [upsertHouseholder] = useUpsertHouseholder();
+  console.log('default', defaultValues);
+  console.log('current', getValues());
 
   useEffect(() => {
     if (data != null) reset(data.householder);
@@ -127,15 +130,27 @@ export const HouseholderIdentityForm = ({ familyId }: Props) => {
           <Title order={4} color="fgMuted" weight="bold">
             {t.title}
           </Title>
-          <Button
-            {...createTestAttr(ids.submitBtn)}
-            type="submit"
-            size="sm"
-            leftIcon={<CheckIcon size={16} />}
-            disabled={!isValid || !isDirty}
-          >
-            {t.submitBtn}
-          </Button>
+          <Group spacing={20}>
+            <Button
+              size="sm"
+              variant="outline"
+              color="red"
+              onClick={() => {
+                reset();
+              }}
+            >
+              لفو
+            </Button>
+            <Button
+              {...createTestAttr(ids.submitBtn)}
+              type="submit"
+              size="sm"
+              leftIcon={<CheckIcon size={16} />}
+              disabled={!isValid || !isDirty}
+            >
+              {t.submitBtn}
+            </Button>
+          </Group>
         </Group>
         {loading ? (
           <FullPageLoader />
@@ -179,7 +194,8 @@ export const HouseholderIdentityForm = ({ familyId }: Props) => {
                   placeholder={t.selectInputs.placeholder}
                   label={`${t.nationalityInput.label}:`}
                   error={errors.nationality?.message}
-                  {...field}
+                  {...field} // eslint-disable-next-line @typescript-eslint/no-unnecessary-condition
+                  value={field.value ?? null}
                 />
               )}
             />
@@ -206,7 +222,8 @@ export const HouseholderIdentityForm = ({ familyId }: Props) => {
                   label={`${t.genderInput.label}:`}
                   placeholder={t.selectInputs.placeholder}
                   error={errors.gender?.message}
-                  {...field}
+                  {...field} // eslint-disable-next-line @typescript-eslint/no-unnecessary-condition
+                  value={field.value ?? null}
                 />
               )}
             />
@@ -225,7 +242,8 @@ export const HouseholderIdentityForm = ({ familyId }: Props) => {
                   placeholder={t.selectInputs.placeholder}
                   label={`${t.issuedAtInput.label}:`}
                   error={errors.issuedAt?.message}
-                  {...field}
+                  {...field} // eslint-disable-next-line @typescript-eslint/no-unnecessary-condition
+                  value={field.value ?? null}
                 />
               )}
             />
@@ -244,7 +262,8 @@ export const HouseholderIdentityForm = ({ familyId }: Props) => {
                   placeholder={t.selectInputs.placeholder}
                   label={`${t.religionInput.label}:`}
                   error={errors.religion?.message}
-                  {...field}
+                  {...field} // eslint-disable-next-line @typescript-eslint/no-unnecessary-condition
+                  value={field.value ?? null}
                 />
               )}
             />
@@ -263,7 +282,8 @@ export const HouseholderIdentityForm = ({ familyId }: Props) => {
                   placeholder={t.selectInputs.placeholder}
                   label={`${t.cityOfBirthInput.label}:`}
                   error={errors.cityOfBirth?.message}
-                  {...field}
+                  {...field} // eslint-disable-next-line @typescript-eslint/no-unnecessary-condition
+                  value={field.value ?? null}
                 />
               )}
             />
