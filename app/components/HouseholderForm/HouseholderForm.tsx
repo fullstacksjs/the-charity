@@ -40,7 +40,7 @@ interface FormSchema {
   name: string;
   surname: string;
   fatherName: string;
-  // nationalId: string;
+  nationalId: string;
   gender: Gender;
   nationality: string;
   religion: string;
@@ -52,7 +52,7 @@ const resolver = createResolver<FormSchema>({
   name: householderIdentitySchema.name(),
   surname: householderIdentitySchema.surname(),
   fatherName: householderIdentitySchema.fatherName(),
-  // nationalId: householderIdentitySchema.nationalId(),
+  nationalId: householderIdentitySchema.nationalId(),
   gender: householderIdentitySchema.gender(),
   nationality: householderIdentitySchema.nationality(),
   religion: householderIdentitySchema.religion(),
@@ -190,14 +190,14 @@ export const HouseholderForm = ({ initialHouseholder, familyId }: Props) => {
               />
             )}
           />
-          {/* <TextInput
+          <TextInput
             wrapperProps={createTestAttr(ids.nationalIdInput)}
             error={errors.nationalId?.message}
             className={classes.textInput}
             {...register('nationalId')}
             placeholder={t.nationalIdInput.placeholder}
             label={`${t.nationalIdInput.label}:`}
-          /> */}
+          />
 
           <Controller
             name="gender"

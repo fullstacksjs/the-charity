@@ -26,12 +26,14 @@ const Document = gql`
           nationality
           religion
           surname
+          national_id
         ]
       }
     ) {
       city
       gender
       dob
+      national_id
       father_name
       issued_at
       name
@@ -60,7 +62,7 @@ interface Variables {
   familyId: string;
   surname?: string;
   fatherName?: string;
-  // nationalId?: string;
+  nationalId?: string;
   nationality?: string;
   religion?: string;
   gender?: Gender;
@@ -81,6 +83,7 @@ const toApiVariables = (
         input: {
           name: variables.name,
           family_id: variables.familyId,
+          national_id: variables.nationalId,
           father_name: variables.fatherName,
           issued_at: variables.issuedAt,
           surname: variables.surname,

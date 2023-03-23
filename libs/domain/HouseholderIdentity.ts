@@ -90,7 +90,7 @@ interface CompletedHouseholder {
   status: 'completed';
   surname: string;
   fatherName: string;
-  // nationalId: string;
+  nationalId: string;
   nationality: string;
   religion: Religion;
   cityOfBirth: City;
@@ -103,7 +103,7 @@ interface DraftHouseholder {
   status: 'draft';
   surname?: string;
   fatherName?: string;
-  // nationalId?: string;
+  nationalId?: string;
   nationality?: string;
   religion?: Religion;
   cityOfBirth?: City;

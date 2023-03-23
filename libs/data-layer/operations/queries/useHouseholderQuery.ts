@@ -13,7 +13,6 @@ const Document = gql`
   query Householder($family_id: uuid!) {
     householder_by_pk(family_id: $family_id) {
       name
-      family_id
       father_name
       issued_at
       surname
@@ -22,6 +21,7 @@ const Document = gql`
       city
       gender
       status
+      national_id
     }
   }
 `;

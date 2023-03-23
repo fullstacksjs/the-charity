@@ -3,6 +3,7 @@ import { type ApiHouseholder } from '../api';
 import { toGender } from './toGender';
 import { toHouseholderStatus } from './toHouseholderStatus';
 
+// FIXME use null instead of undefined
 // FIXME add other mappers
 export const toHouseholder = (
   householder: Omit<
@@ -24,12 +25,14 @@ export const toHouseholder = (
         householder.gender == null ? undefined : toGender(householder.gender),
       issuedAt: (householder.issued_at as 'tehran' | null) ?? undefined,
       cityOfBirth: (householder.city as 'tehran' | null) ?? undefined,
+      nationalId: householder.national_id ?? undefined,
     };
   return {
     status,
     name: householder.name,
     fatherName: householder.father_name!,
     surname: householder.surname!,
+    nationalId: householder.national_id!,
     nationality: householder.nationality!,
     cityOfBirth: householder.city as 'tehran',
     gender: toGender(householder.gender!),

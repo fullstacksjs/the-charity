@@ -692,9 +692,9 @@ export type ApiHouseholder = {
   id: Scalars['uuid'];
   issued_at?: Maybe<Scalars['String']>;
   name: Scalars['String'];
+  national_id?: Maybe<Scalars['String']>;
   nationality?: Maybe<Scalars['String']>;
   religion?: Maybe<Scalars['String']>;
-  ssn?: Maybe<Scalars['String']>;
   status: ApiHouseholderStatusEnum;
   surname?: Maybe<Scalars['String']>;
   updated_at: Scalars['timestamptz'];
@@ -736,9 +736,9 @@ export type ApiHouseholderBoolExp = {
   id?: InputMaybe<ApiUuidComparisonExp>;
   issued_at?: InputMaybe<ApiStringComparisonExp>;
   name?: InputMaybe<ApiStringComparisonExp>;
+  national_id?: InputMaybe<ApiStringComparisonExp>;
   nationality?: InputMaybe<ApiStringComparisonExp>;
   religion?: InputMaybe<ApiStringComparisonExp>;
-  ssn?: InputMaybe<ApiStringComparisonExp>;
   status?: InputMaybe<ApiHouseholderStatusEnumComparisonExp>;
   surname?: InputMaybe<ApiStringComparisonExp>;
   updated_at?: InputMaybe<ApiTimestamptzComparisonExp>;
@@ -765,9 +765,9 @@ export type ApiHouseholderInsertInput = {
   id?: InputMaybe<Scalars['uuid']>;
   issued_at?: InputMaybe<Scalars['String']>;
   name?: InputMaybe<Scalars['String']>;
+  national_id?: InputMaybe<Scalars['String']>;
   nationality?: InputMaybe<Scalars['String']>;
   religion?: InputMaybe<Scalars['String']>;
-  ssn?: InputMaybe<Scalars['String']>;
   status?: InputMaybe<ApiHouseholderStatusEnum>;
   surname?: InputMaybe<Scalars['String']>;
   updated_at?: InputMaybe<Scalars['timestamptz']>;
@@ -784,9 +784,9 @@ export type ApiHouseholderMaxFields = {
   id?: Maybe<Scalars['uuid']>;
   issued_at?: Maybe<Scalars['String']>;
   name?: Maybe<Scalars['String']>;
+  national_id?: Maybe<Scalars['String']>;
   nationality?: Maybe<Scalars['String']>;
   religion?: Maybe<Scalars['String']>;
-  ssn?: Maybe<Scalars['String']>;
   surname?: Maybe<Scalars['String']>;
   updated_at?: Maybe<Scalars['timestamptz']>;
 };
@@ -802,9 +802,9 @@ export type ApiHouseholderMinFields = {
   id?: Maybe<Scalars['uuid']>;
   issued_at?: Maybe<Scalars['String']>;
   name?: Maybe<Scalars['String']>;
+  national_id?: Maybe<Scalars['String']>;
   nationality?: Maybe<Scalars['String']>;
   religion?: Maybe<Scalars['String']>;
-  ssn?: Maybe<Scalars['String']>;
   surname?: Maybe<Scalars['String']>;
   updated_at?: Maybe<Scalars['timestamptz']>;
 };
@@ -836,9 +836,9 @@ export type ApiHouseholderOrderBy = {
   id?: InputMaybe<ApiOrderBy>;
   issued_at?: InputMaybe<ApiOrderBy>;
   name?: InputMaybe<ApiOrderBy>;
+  national_id?: InputMaybe<ApiOrderBy>;
   nationality?: InputMaybe<ApiOrderBy>;
   religion?: InputMaybe<ApiOrderBy>;
-  ssn?: InputMaybe<ApiOrderBy>;
   status?: InputMaybe<ApiOrderBy>;
   surname?: InputMaybe<ApiOrderBy>;
   updated_at?: InputMaybe<ApiOrderBy>;
@@ -870,11 +870,11 @@ export enum ApiHouseholderSelectColumn {
   /** column name */
   Name = 'name',
   /** column name */
+  NationalId = 'national_id',
+  /** column name */
   Nationality = 'nationality',
   /** column name */
   Religion = 'religion',
-  /** column name */
-  Ssn = 'ssn',
   /** column name */
   Status = 'status',
   /** column name */
@@ -894,9 +894,9 @@ export type ApiHouseholderSetInput = {
   id?: InputMaybe<Scalars['uuid']>;
   issued_at?: InputMaybe<Scalars['String']>;
   name?: InputMaybe<Scalars['String']>;
+  national_id?: InputMaybe<Scalars['String']>;
   nationality?: InputMaybe<Scalars['String']>;
   religion?: InputMaybe<Scalars['String']>;
-  ssn?: InputMaybe<Scalars['String']>;
   status?: InputMaybe<ApiHouseholderStatusEnum>;
   surname?: InputMaybe<Scalars['String']>;
   updated_at?: InputMaybe<Scalars['timestamptz']>;
@@ -1050,11 +1050,11 @@ export enum ApiHouseholderUpdateColumn {
   /** column name */
   Name = 'name',
   /** column name */
+  NationalId = 'national_id',
+  /** column name */
   Nationality = 'nationality',
   /** column name */
   Religion = 'religion',
-  /** column name */
-  Ssn = 'ssn',
   /** column name */
   Status = 'status',
   /** column name */
@@ -2847,7 +2847,7 @@ export type ApiUpsertHouseholderMutationVariables = Exact<{
 }>;
 
 
-export type ApiUpsertHouseholderMutation = { __typename?: 'mutation_root', insert_householder_one?: { __typename?: 'householder', city?: string | null, gender?: ApiGenderEnum | null, dob?: any | null, father_name?: string | null, issued_at?: string | null, name: string, nationality?: string | null, religion?: string | null, surname?: string | null, status: ApiHouseholderStatusEnum } | null };
+export type ApiUpsertHouseholderMutation = { __typename?: 'mutation_root', insert_householder_one?: { __typename?: 'householder', city?: string | null, gender?: ApiGenderEnum | null, dob?: any | null, national_id?: string | null, father_name?: string | null, issued_at?: string | null, name: string, nationality?: string | null, religion?: string | null, surname?: string | null, status: ApiHouseholderStatusEnum } | null };
 
 export type ApiFamilyListQueryVariables = Exact<{ [key: string]: never; }>;
 
@@ -2906,11 +2906,12 @@ export const ApiUpsertHouseholderDocument = gql`
     mutation UpsertHouseholder($input: householder_insert_input!) {
   insert_householder_one(
     object: $input
-    on_conflict: {constraint: householder_family_id_key, update_columns: [city, gender, dob, father_name, issued_at, name, nationality, religion, surname]}
+    on_conflict: {constraint: householder_family_id_key, update_columns: [city, gender, dob, father_name, issued_at, name, nationality, religion, surname, national_id]}
   ) {
     city
     gender
     dob
+    national_id
     father_name
     issued_at
     name

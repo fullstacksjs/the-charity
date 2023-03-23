@@ -8,7 +8,7 @@ import { HouseholderForm } from '../HouseholderForm';
 interface Props {
   familyId: string;
 }
-// FIXME ssn is nationalId
+
 // FIXME whe adding mappers for other field add custom content shower like <Nationality> for those types too
 
 export const HouseholderDetail = ({ familyId }: Props) => {
