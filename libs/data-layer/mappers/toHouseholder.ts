@@ -3,6 +3,7 @@ import { type ApiHouseholder } from '../api';
 import { toGender } from './toGender';
 import { toHouseholderStatus } from './toHouseholderStatus';
 
+// FIXME add other mappers
 export const toHouseholder = (
   householder: Omit<
     ApiHouseholder,
@@ -10,6 +11,7 @@ export const toHouseholder = (
   >,
 ): Householder => {
   const status = toHouseholderStatus(householder.status);
+
   if (status === 'draft')
     return {
       status,
@@ -18,6 +20,10 @@ export const toHouseholder = (
       surname: householder.surname ?? undefined,
       nationality: householder.nationality ?? undefined,
       religion: (householder.religion as 'islam' | null) ?? undefined,
+      gender:
+        householder.gender == null ? undefined : toGender(householder.gender),
+      issuedAt: (householder.issued_at as 'tehran' | null) ?? undefined,
+      cityOfBirth: (householder.city as 'tehran' | null) ?? undefined,
     };
   return {
     status,
