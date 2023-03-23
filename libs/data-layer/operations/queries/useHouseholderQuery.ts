@@ -6,7 +6,7 @@ import {
   type ApiHouseholderQuery,
   type ApiHouseholderQueryVariables,
 } from '../../api';
-import { toGender, toHouseholderStatus } from '../mutations';
+import { toHouseholder } from '../../mappers';
 import { useQuery } from './useQuery';
 
 const Document = gql`
@@ -32,29 +32,11 @@ export interface HouseholderDto {
 
 const toClient = (
   data: ApiHouseholderQuery | null | undefined,
-): HouseholderDto | null =>
-  data?.householder_by_pk == null
-    ? null
-    : {
-        householder: {
-          name: data.householder_by_pk.name,
-          status: toHouseholderStatus(data.householder_by_pk.status),
-          surname: data.householder_by_pk.surname ?? undefined,
-          fatherName: data.householder_by_pk.father_name ?? undefined,
-          nationality: data.householder_by_pk.nationality ?? undefined,
-          religion:
-            (data.householder_by_pk.religion as 'islam' | null) ?? undefined,
-          cityOfBirth:
-            (data.householder_by_pk.city as 'tehran' | null) ?? undefined,
-          issuedAt:
-            (data.householder_by_pk.issued_at as 'tehran' | null) ?? undefined,
-          gender:
-            data.householder_by_pk.gender == null
-              ? undefined
-              : toGender(data.householder_by_pk.gender),
-        },
-      };
-
+): HouseholderDto | null => {
+  const householder = data?.householder_by_pk;
+  if (householder == null) return null;
+  return { householder: toHouseholder(householder) };
+};
 export const useHouseholderQuery = (
   options: Apollo.QueryHookOptions<
     ApiHouseholderQuery,

@@ -1,16 +1,13 @@
-import { gql, type MutationHookOptions } from '@apollo/client';
-import {
-  type Gender,
-  type Householder,
-  type HouseholderStatus,
-} from '@camp/domain';
+import { type MutationHookOptions } from '@apollo/client';
+import { gql } from '@apollo/client';
+import { type Gender, type Householder } from '@camp/domain';
 
 import {
   ApiGenderEnum,
-  ApiHouseholderStatusEnum,
   type ApiUpsertHouseholderMutation,
   type ApiUpsertHouseholderMutationVariables,
 } from '../../api';
+import { toHouseholder } from '../../mappers';
 import { useMutation } from './useMutation';
 
 const Document = gql`
@@ -50,38 +47,20 @@ export interface UpsertHouseholder {
   householder: Householder;
 }
 
-export const toHouseholderStatus = (
-  status: ApiHouseholderStatusEnum,
-): HouseholderStatus =>
-  status === ApiHouseholderStatusEnum.Completed ? 'completed' : 'draft';
-
-export const toGender = (gender: ApiGenderEnum): Gender =>
-  gender === ApiGenderEnum.Male ? 'male' : 'female';
-
-const toClient = (
+export const toClient = (
   data: ApiUpsertHouseholderMutation | null | undefined,
-): UpsertHouseholder | null =>
-  data?.insert_householder_one == null
-    ? null
-    : {
-        householder: {
-          name: data.insert_householder_one.name,
-          status: toHouseholderStatus(data.insert_householder_one.status),
-          fatherName: data.insert_householder_one.father_name ?? undefined,
-          surname: data.insert_householder_one.surname ?? undefined,
-          nationality: data.insert_householder_one.nationality ?? undefined,
-          religion:
-            (data.insert_householder_one.religion as 'islam' | null) ??
-            undefined,
-        },
-      };
+): UpsertHouseholder | null => {
+  const householder = data?.insert_householder_one;
+  if (householder == null) return null;
+  return { householder: toHouseholder(householder) };
+};
 
 interface Variables {
   name: string;
   familyId: string;
   surname?: string;
   fatherName?: string;
-  nationalId?: string;
+  // nationalId?: string;
   nationality?: string;
   religion?: string;
   gender?: Gender;

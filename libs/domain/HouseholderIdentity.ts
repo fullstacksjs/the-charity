@@ -85,15 +85,30 @@ export const householderIdentitySchema = {
 
 export type HouseholderStatus = 'completed' | 'draft';
 
-export interface Householder {
+interface CompletedHouseholder {
   name: string;
-  status: HouseholderStatus;
+  status: 'completed';
+  surname: string;
+  fatherName: string;
+  // nationalId: string;
+  nationality: string;
+  religion: Religion;
+  cityOfBirth: City;
+  gender: Gender;
+  issuedAt: City;
+}
+
+interface DraftHouseholder {
+  name: string;
+  status: 'draft';
   surname?: string;
   fatherName?: string;
-  nationalId?: string;
+  // nationalId?: string;
   nationality?: string;
   religion?: Religion;
   cityOfBirth?: City;
   gender?: Gender;
   issuedAt?: City;
 }
+
+export type Householder = CompletedHouseholder | DraftHouseholder;
