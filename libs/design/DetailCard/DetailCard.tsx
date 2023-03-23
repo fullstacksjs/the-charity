@@ -1,37 +1,42 @@
 import { Group, SimpleGrid, Title } from '@mantine/core';
 
+import { type DashboardCardProps } from '../DashboardCard';
 import { DashboardCard } from '../DashboardCard';
 import { DetailCardBadgeField } from './DetailCardBadgeField';
 import { DetailCardTextField } from './DetailCardTextField';
 
-interface Props {
+interface DetailCardProps {
   title: string;
-  id: string;
+  id?: string;
   children: React.ReactNode;
-  left?: React.ReactNode;
 }
 
-export const DetailCard = ({ title, id, children, left }: Props) => {
+type Props = DashboardCardProps & DetailCardProps;
+
+export const DetailCard = ({ title, id, children, ...cardProps }: Props) => {
   return (
     <DashboardCard
-      bg="bgCanvas"
+      bg="transparent"
       withBorder={false}
-      left={left}
+      pb={25}
       right={
         <Group spacing={10}>
           <Title order={4} color="fgMuted" weight="bold">
             {title}
           </Title>
-          <Title
-            order={6}
-            color="fgSubtle"
-            weight={500}
-            sx={{ fontFamily: 'IRANSans' }}
-          >
-            ({id})
-          </Title>
+          {id == null ? null : (
+            <Title
+              order={6}
+              color="fgSubtle"
+              weight={500}
+              sx={{ fontFamily: 'IRANSans' }}
+            >
+              ({id})
+            </Title>
+          )}
         </Group>
       }
+      {...cardProps}
     >
       <SimpleGrid cols={3} spacing={50} verticalSpacing={20}>
         {children}

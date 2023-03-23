@@ -12,7 +12,7 @@ import { isNull } from '@fullstacksjs/toolbox';
 import { Button, Title } from '@mantine/core';
 
 import {
-  HouseholderForm,
+  HouseholderDetail,
   InformationBadge,
   MemberForm,
   openDeleteFamilyModal,
@@ -44,6 +44,7 @@ export const FamilyDetail = () => {
       <DetailCard
         title={t.title}
         id={family.code}
+        px={0}
         left={
           <Button
             variant="outline"
@@ -73,7 +74,7 @@ export const FamilyDetail = () => {
         tabs={[
           {
             tab: <Title order={5}>{t.tabs.householderTitle}</Title>,
-            panel: <HouseholderForm familyId={family.id} />,
+            panel: <HouseholderDetail familyId={family.id} />,
             id: ids.householderIdentityTab,
             isBusy: true,
             isDefault: true,

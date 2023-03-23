@@ -1,13 +1,13 @@
 import type { CardProps } from '@mantine/core';
 import { Box, Card, Group, Stack } from '@mantine/core';
 
-interface DashboardCardProps {
+interface DashboardCardInternalProps {
   right?: React.ReactNode;
   left?: React.ReactNode;
   children?: React.ReactNode;
 }
 
-type Props = DashboardCardProps &
+export type DashboardCardProps = DashboardCardInternalProps &
   Omit<CardProps, 'children' | 'left' | 'right'>;
 
 export const DashboardCard = ({
@@ -15,7 +15,7 @@ export const DashboardCard = ({
   left,
   children,
   ...cardProps
-}: Props) => {
+}: DashboardCardProps) => {
   return (
     <Card withBorder p={30} {...cardProps}>
       <Stack spacing={30}>
