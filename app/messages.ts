@@ -108,7 +108,11 @@ export const messages = {
     },
   },
   householder: {
-    householderForm: {
+    detail: {
+      title: 'اطلاعات هویت',
+      editBtn: 'ویرایش',
+    },
+    form: {
       validation: {
         nameMinLength: 'نام سرپرست باید حداقل ۳ حرف باشد',
         fatherNameMinLength: 'نام پدر باید حداقل ۳ حرف باشد',

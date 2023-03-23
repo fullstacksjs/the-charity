@@ -81,7 +81,7 @@ const useStyles = createStyles(theme => ({
 
 // eslint-disable-next-line max-lines-per-function
 export const HouseholderForm = ({ initialHouseholder, familyId }: Props) => {
-  const t = messages.householder.householderForm;
+  const t = messages.householder.form;
   const { classes } = useStyles();
 
   const {

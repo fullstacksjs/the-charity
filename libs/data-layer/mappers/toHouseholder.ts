@@ -6,7 +6,6 @@ import { toGender } from './toGender';
 import { toHouseholderStatus } from './toHouseholderStatus';
 import { toReligion } from './toReligion';
 
-// FIXME use null instead of undefined
 export const toHouseholder = (
   householder: Omit<
     ApiHouseholder,

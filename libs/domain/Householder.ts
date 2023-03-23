@@ -16,12 +16,12 @@ export const householderIdentitySchema = {
     z
       .string()
       .trim()
-      .min(3, messages.householder.householderForm.validation.nameMinLength),
+      .min(3, messages.householder.form.validation.nameMinLength),
   surname: () =>
     z
       .string()
       .trim()
-      .min(3, messages.householder.householderForm.validation.nameMinLength)
+      .min(3, messages.householder.form.validation.nameMinLength)
       .nullish()
       .or(z.literal(''))
       .transform(e => (e === '' || e === null ? undefined : e)),
@@ -29,23 +29,17 @@ export const householderIdentitySchema = {
     z
       .string()
       .trim()
-      .min(
-        3,
-        messages.householder.householderForm.validation.fatherNameMinLength,
-      )
+      .min(3, messages.householder.form.validation.fatherNameMinLength)
       .nullish()
       .or(z.literal(''))
       .transform(e => (e === '' || e === null ? undefined : e)),
   nationalId: () =>
     z
       .string()
-      .min(
-        10,
-        messages.householder.householderForm.validation.nationalIdMinLength,
-      )
+      .min(10, messages.householder.form.validation.nationalIdMinLength)
       .regex(
         numberRegex,
-        messages.householder.householderForm.validation.invalidNationalId,
+        messages.householder.form.validation.invalidNationalId,
       )
       .trim()
       .nullish()

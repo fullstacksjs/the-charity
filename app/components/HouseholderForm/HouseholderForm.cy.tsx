@@ -3,7 +3,7 @@ import { messages } from '@camp/messages';
 import { HouseholderForm } from './HouseholderForm';
 import { householderFormIds } from './HouseholderForm.ids';
 
-const householderForm = messages.householder.householderForm;
+const householderForm = messages.householder.form;
 
 describe('HouseHolder Identity Form', () => {
   beforeEach(() => {
