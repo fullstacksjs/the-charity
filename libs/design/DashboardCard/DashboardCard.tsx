@@ -17,7 +17,7 @@ export const DashboardCard = ({
   ...cardProps
 }: Props) => {
   return (
-    <Card withBorder px={30} py={30} {...cardProps}>
+    <Card withBorder p={30} {...cardProps}>
       <Stack spacing={30}>
         <Group position="apart">
           <Box>{right}</Box>
