@@ -109,7 +109,7 @@ export enum ApiCityConstraint {
 }
 
 export enum ApiCityEnum {
-  Tehran = 'Tehran'
+  Tehran = 'tehran'
 }
 
 /** Boolean expression to compare columns of type "city_enum". All fields are combined with logical 'AND'. */
@@ -3016,7 +3016,7 @@ export enum ApiReligionConstraint {
 }
 
 export enum ApiReligionEnum {
-  Islam = 'Islam'
+  Islam = 'islam'
 }
 
 /** Boolean expression to compare columns of type "religion_enum". All fields are combined with logical 'AND'. */

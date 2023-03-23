@@ -186,7 +186,7 @@ export const HouseholderForm = ({ initialHouseholder, familyId }: Props) => {
                 wrapperProps={createTestAttr(ids.nationalityInput)}
                 data={nationalities.map(v => ({
                   value: v,
-                  label: t.nationalityInput.options[v],
+                  label: messages.nationalities[v],
                 }))}
                 placeholder={t.selectInputs.placeholder}
                 label={`${t.nationalityInput.label}:`}
@@ -214,7 +214,7 @@ export const HouseholderForm = ({ initialHouseholder, familyId }: Props) => {
                 wrapperProps={createTestAttr(ids.genderInput)}
                 data={genders.map(v => ({
                   value: v,
-                  label: t.genderInput.options[v],
+                  label: messages.genders[v],
                 }))}
                 label={`${t.genderInput.label}:`}
                 placeholder={t.selectInputs.placeholder}
@@ -234,7 +234,7 @@ export const HouseholderForm = ({ initialHouseholder, familyId }: Props) => {
                 wrapperProps={createTestAttr(ids.issuedAtInput)}
                 data={cities.map(v => ({
                   value: v,
-                  label: t.issuedAtInput.options[v],
+                  label: messages.cities[v],
                 }))}
                 placeholder={t.selectInputs.placeholder}
                 label={`${t.issuedAtInput.label}:`}
@@ -254,7 +254,7 @@ export const HouseholderForm = ({ initialHouseholder, familyId }: Props) => {
                 wrapperProps={createTestAttr(ids.religionInput)}
                 data={religions.map(v => ({
                   value: v,
-                  label: t.religionInput.options[v],
+                  label: messages.religions[v],
                 }))}
                 placeholder={t.selectInputs.placeholder}
                 label={`${t.religionInput.label}:`}
@@ -274,7 +274,7 @@ export const HouseholderForm = ({ initialHouseholder, familyId }: Props) => {
                 wrapperProps={createTestAttr(ids.cityOfBirthInput)}
                 data={cities.map(v => ({
                   value: v,
-                  label: t.cityOfBirthInput.options[v],
+                  label: messages.cities[v],
                 }))}
                 placeholder={t.selectInputs.placeholder}
                 label={`${t.cityOfBirthInput.label}:`}

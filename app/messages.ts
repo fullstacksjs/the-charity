@@ -107,6 +107,19 @@ export const messages = {
       },
     },
   },
+  nationalities: {
+    ir: 'ایران',
+  },
+  genders: {
+    male: 'مرد',
+    female: 'زن',
+  },
+  religions: {
+    islam: 'اسلام',
+  },
+  cities: {
+    tehran: 'تهران',
+  },
   householder: {
     detail: {
       title: 'اطلاعات هویت',
@@ -144,9 +157,6 @@ export const messages = {
         placeholder: 'برای مثال: محمد',
       },
       nationalityInput: {
-        options: {
-          ir: 'ایران',
-        },
         label: 'ملیت',
         placeholder: 'برای مثال: ایرانی',
       },
@@ -155,17 +165,14 @@ export const messages = {
         placeholder: 'برای مثال: ۰۱۲۳۴۵۶۷۸۹',
       },
       issuedAtInput: {
-        options: { tehran: 'تهران' },
         label: 'محل صدور',
         placeholder: 'برای مثال: تهران',
       },
       religionInput: {
-        options: { islam: 'اسلام' },
         label: 'دین',
         placeholder: 'برای مثال: اسلام',
       },
       genderInput: {
-        options: { male: 'مرد', female: 'زن' },
         label: 'جنسیت',
         placeholder: 'مرد/زن',
       },
@@ -174,7 +181,6 @@ export const messages = {
         placeholder: 'برای مثال: ۱۳۹۹/۱۰/۱۰',
       },
       cityOfBirthInput: {
-        options: { tehran: 'تهران' },
         label: 'شهر',
         placeholder: 'برای مثال: تهران',
       },
