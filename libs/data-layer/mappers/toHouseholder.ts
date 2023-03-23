@@ -1,10 +1,12 @@
-import { type Householder } from '../../domain';
+import { type Householder } from '@camp/domain';
+
 import { type ApiHouseholder } from '../api';
+import { toCity } from './toCity';
 import { toGender } from './toGender';
 import { toHouseholderStatus } from './toHouseholderStatus';
+import { toReligion } from './toReligion';
 
 // FIXME use null instead of undefined
-// FIXME add other mappers
 export const toHouseholder = (
   householder: Omit<
     ApiHouseholder,
@@ -20,11 +22,18 @@ export const toHouseholder = (
       fatherName: householder.father_name ?? undefined,
       surname: householder.surname ?? undefined,
       nationality: householder.nationality ?? undefined,
-      religion: (householder.religion as 'islam' | null) ?? undefined,
+      religion:
+        householder.religion == null
+          ? undefined
+          : toReligion(householder.religion),
       gender:
         householder.gender == null ? undefined : toGender(householder.gender),
-      issuedAt: (householder.issued_at as 'tehran' | null) ?? undefined,
-      cityOfBirth: (householder.city as 'tehran' | null) ?? undefined,
+      issuedAt:
+        householder.issued_at == null
+          ? undefined
+          : toCity(householder.issued_at),
+      cityOfBirth:
+        householder.city == null ? undefined : toCity(householder.city),
       nationalId: householder.national_id ?? undefined,
     };
   return {
@@ -34,9 +43,9 @@ export const toHouseholder = (
     surname: householder.surname!,
     nationalId: householder.national_id!,
     nationality: householder.nationality!,
-    cityOfBirth: householder.city as 'tehran',
+    cityOfBirth: toCity(householder.city!),
     gender: toGender(householder.gender!),
-    issuedAt: householder.issued_at as 'tehran',
-    religion: householder.religion as 'islam',
+    issuedAt: toCity(householder.issued_at!),
+    religion: toReligion(householder.religion!),
   };
 };

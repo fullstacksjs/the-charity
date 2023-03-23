@@ -1,10 +1,10 @@
 import { DashboardCard } from '@camp/design';
 import { type Gender } from '@camp/domain';
 import {
-  countries,
   createResolver,
   genders,
   memberSchema,
+  nationalities,
   religions,
 } from '@camp/domain';
 import { ArrowDownIcon, CalendarIcon, CheckIcon, PlusIcon } from '@camp/icons';
@@ -147,7 +147,7 @@ export const MemberForm = () => {
                   render={({ field }) => (
                     <Select
                       wrapperProps={createTestAttr(ids.nationalityInput)}
-                      data={countries.map(v => ({
+                      data={nationalities.map(v => ({
                         value: v,
                         label: t.nationalityInput.options[v],
                       }))}

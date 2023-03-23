@@ -1,11 +1,12 @@
 import { messages } from '@camp/messages';
 import { z } from 'zod';
 
-import type { City } from './Country';
-import { cities } from './Country';
+import { type City } from './City';
+import { cities } from './City';
 import { type Gender } from './Gender';
 import { genders } from './Gender';
-import type { Religion } from './Religions';
+import { nationalities, type Nationality } from './Nationality';
+import { type Religion } from './Religions';
 import { religions } from './Religions';
 
 const numberRegex = /^[0-9]*[\u0660-\u0669\u06F0-\u06F90-9]*$/;
@@ -58,8 +59,7 @@ export const householderIdentitySchema = {
       .transform(e => (e === '' || e === null ? undefined : e)),
   nationality: () =>
     z
-      .string()
-      .trim()
+      .literal(nationalities[0])
       .nullish()
       .or(z.literal(''))
       .transform(e => (e === '' || e === null ? undefined : e)),
@@ -91,7 +91,7 @@ interface CompletedHouseholder {
   surname: string;
   fatherName: string;
   nationalId: string;
-  nationality: string;
+  nationality: Nationality;
   religion: Religion;
   cityOfBirth: City;
   gender: Gender;
@@ -104,7 +104,7 @@ interface DraftHouseholder {
   surname?: string;
   fatherName?: string;
   nationalId?: string;
-  nationality?: string;
+  nationality?: Nationality;
   religion?: Religion;
   cityOfBirth?: City;
   gender?: Gender;

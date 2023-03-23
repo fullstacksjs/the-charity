@@ -1,13 +1,19 @@
 import { useUpsertHouseholder } from '@camp/data-layer';
 import { showNotification } from '@camp/design';
-import { type Gender, type Householder } from '@camp/domain';
+import {
+  type City,
+  type Gender,
+  type Householder,
+  type Nationality,
+  type Religion,
+} from '@camp/domain';
 import {
   cities,
-  countries,
   createResolver,
   type Gender,
   genders,
   householderIdentitySchema,
+  nationalities,
   religions,
 } from '@camp/domain';
 import { CalendarIcon, CheckIcon } from '@camp/icons';
@@ -42,10 +48,10 @@ interface FormSchema {
   fatherName: string;
   nationalId: string;
   gender: Gender;
-  nationality: string;
-  religion: string;
-  cityOfBirth: string;
-  issuedAt: string;
+  nationality: Nationality;
+  religion: Religion;
+  cityOfBirth: City;
+  issuedAt: City;
 }
 
 const resolver = createResolver<FormSchema>({
@@ -178,7 +184,7 @@ export const HouseholderForm = ({ initialHouseholder, familyId }: Props) => {
               <Select
                 clearable
                 wrapperProps={createTestAttr(ids.nationalityInput)}
-                data={countries.map(v => ({
+                data={nationalities.map(v => ({
                   value: v,
                   label: t.nationalityInput.options[v],
                 }))}

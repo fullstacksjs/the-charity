@@ -1,9 +1,18 @@
 import { type MutationHookOptions } from '@apollo/client';
 import { gql } from '@apollo/client';
-import { type Gender, type Householder } from '@camp/domain';
+import {
+  type City,
+  type Gender,
+  type Householder,
+  type Nationality,
+  type Religion,
+} from '@camp/domain';
 
 import {
+  ApiCityEnum,
   ApiGenderEnum,
+  ApiNationalityEnum,
+  ApiReligionEnum,
   type ApiUpsertHouseholderMutation,
   type ApiUpsertHouseholderMutationVariables,
 } from '../../api';
@@ -63,15 +72,19 @@ interface Variables {
   surname?: string;
   fatherName?: string;
   nationalId?: string;
-  nationality?: string;
-  religion?: string;
+  nationality?: Nationality;
+  religion?: Religion;
   gender?: Gender;
-  cityOfBirth?: string;
-  issuedAt?: string;
+  cityOfBirth?: City;
+  issuedAt?: City;
 }
 
 const toApiGender = (gender: Gender): ApiGenderEnum =>
   gender === 'male' ? ApiGenderEnum.Male : ApiGenderEnum.Female;
+const toApiCity = (_: City): ApiCityEnum => ApiCityEnum.Tehran;
+const toApiReligion = (_: Religion): ApiReligionEnum => ApiReligionEnum.Islam;
+const toApiNationality = (_: Nationality): ApiNationalityEnum =>
+  ApiNationalityEnum.Ir;
 
 // FIXME add DOB too
 const toApiVariables = (
@@ -85,11 +98,23 @@ const toApiVariables = (
           family_id: variables.familyId,
           national_id: variables.nationalId,
           father_name: variables.fatherName,
-          issued_at: variables.issuedAt,
+          issued_at:
+            variables.issuedAt == null
+              ? undefined
+              : toApiCity(variables.issuedAt),
           surname: variables.surname,
-          nationality: variables.nationality,
-          religion: variables.religion,
-          city: variables.cityOfBirth,
+          nationality:
+            variables.nationality == null
+              ? undefined
+              : toApiNationality(variables.nationality),
+          religion:
+            variables.religion == null
+              ? undefined
+              : toApiReligion(variables.religion),
+          city:
+            variables.cityOfBirth == null
+              ? undefined
+              : toApiCity(variables.cityOfBirth),
           gender:
             variables.gender != null
               ? toApiGender(variables.gender)
