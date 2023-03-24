@@ -15,9 +15,9 @@ export type Scalars = {
   Boolean: boolean;
   Int: number;
   Float: number;
-  date: any;
+  date: string;
   timestamptz: any;
-  uuid: any;
+  uuid: string;
 };
 
 /** Boolean expression to compare columns of type "Int". All fields are combined with logical 'AND'. */
@@ -3500,33 +3500,33 @@ export type ApiCreateFamilyMutationVariables = Exact<{
 }>;
 
 
-export type ApiCreateFamilyMutation = { __typename?: 'mutation_root', insert_family_one?: { __typename?: 'family', id: any, code?: string | null, name: string } | null };
+export type ApiCreateFamilyMutation = { __typename?: 'mutation_root', insert_family_one?: { __typename?: 'family', id: string, code?: string | null, name: string } | null };
 
 export type ApiCreateProjectMutationVariables = Exact<{
   input: ApiProjectInsertInput;
 }>;
 
 
-export type ApiCreateProjectMutation = { __typename?: 'mutation_root', insert_project_one?: { __typename?: 'project', id: any, name: string, description?: string | null, status: ApiProjectStatusEnum } | null };
+export type ApiCreateProjectMutation = { __typename?: 'mutation_root', insert_project_one?: { __typename?: 'project', id: string, name: string, description?: string | null, status: ApiProjectStatusEnum } | null };
 
 export type ApiUpsertHouseholderMutationVariables = Exact<{
   input: ApiHouseholderInsertInput;
 }>;
 
 
-export type ApiUpsertHouseholderMutation = { __typename?: 'mutation_root', insert_householder_one?: { __typename?: 'householder', city?: ApiCityEnum | null, gender?: ApiGenderEnum | null, dob?: any | null, national_id?: string | null, father_name?: string | null, issued_at?: ApiCityEnum | null, name: string, nationality?: ApiNationalityEnum | null, religion?: ApiReligionEnum | null, surname?: string | null, status: ApiHouseholderStatusEnum } | null };
+export type ApiUpsertHouseholderMutation = { __typename?: 'mutation_root', insert_householder_one?: { __typename?: 'householder', city?: ApiCityEnum | null, gender?: ApiGenderEnum | null, dob?: string | null, national_id?: string | null, father_name?: string | null, issued_at?: ApiCityEnum | null, name: string, nationality?: ApiNationalityEnum | null, religion?: ApiReligionEnum | null, surname?: string | null, status: ApiHouseholderStatusEnum } | null };
 
 export type ApiFamilyListQueryVariables = Exact<{ [key: string]: never; }>;
 
 
-export type ApiFamilyListQuery = { __typename?: 'query_root', family: Array<{ __typename?: 'family', id: any, name: string, severity: ApiFamilySeverityEnum, status: ApiFamilyStatusEnum }> };
+export type ApiFamilyListQuery = { __typename?: 'query_root', family: Array<{ __typename?: 'family', id: string, name: string, severity: ApiFamilySeverityEnum, status: ApiFamilyStatusEnum }> };
 
 export type ApiFamilyQueryVariables = Exact<{
   id: Scalars['uuid'];
 }>;
 
 
-export type ApiFamilyQuery = { __typename?: 'query_root', family_by_pk?: { __typename?: 'family', id: any, name: string, status: ApiFamilyStatusEnum, severity: ApiFamilySeverityEnum, code?: string | null } | null };
+export type ApiFamilyQuery = { __typename?: 'query_root', family_by_pk?: { __typename?: 'family', id: string, name: string, status: ApiFamilyStatusEnum, severity: ApiFamilySeverityEnum, code?: string | null } | null };
 
 export type ApiHouseholderQueryVariables = Exact<{
   family_id: Scalars['uuid'];
@@ -3541,7 +3541,7 @@ export type ApiProjectListQueryVariables = Exact<{
 }>;
 
 
-export type ApiProjectListQuery = { __typename?: 'query_root', project_aggregate: { __typename?: 'project_aggregate', nodes: Array<{ __typename?: 'project', name: string, id: any }> } };
+export type ApiProjectListQuery = { __typename?: 'query_root', project_aggregate: { __typename?: 'project_aggregate', nodes: Array<{ __typename?: 'project', name: string, id: string }> } };
 
 
 export const ApiCreateFamilyDocument = gql`

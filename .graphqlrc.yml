@@ -23,6 +23,9 @@ extensions:
           - typescript-react-apollo
 
         config:
+          scalars:
+            date: 'string'
+            uuid: 'string'
           useTypeImports: true
           withHooks: false
           namingConvention:
