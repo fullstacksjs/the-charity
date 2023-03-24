@@ -123,7 +123,7 @@ const toApiVariables = (
         },
       };
 
-export function useUpsertHouseholder(
+export function useUpsertHouseholderMutation(
   options?: MutationHookOptions<
     ApiUpsertHouseholderMutation,
     ApiUpsertHouseholderMutationVariables

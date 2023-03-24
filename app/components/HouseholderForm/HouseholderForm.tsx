@@ -1,4 +1,4 @@
-import { useUpsertHouseholder } from '@camp/data-layer';
+import { useUpsertHouseholderMutation } from '@camp/data-layer';
 import { showNotification } from '@camp/design';
 import {
   type City,
@@ -34,8 +34,6 @@ import { useEffect } from 'react';
 import { Controller, useForm } from 'react-hook-form';
 
 import { householderFormIds as ids } from './HouseholderForm.ids';
-
-// FIXME fix validation massages to persian
 
 interface Props {
   initialHouseholder?: Householder;
@@ -95,7 +93,7 @@ export const HouseholderForm = ({ initialHouseholder, familyId }: Props) => {
     mode: 'onChange',
   });
 
-  const [upsertHouseholder] = useUpsertHouseholder();
+  const [upsertHouseholder] = useUpsertHouseholderMutation();
 
   useEffect(() => {
     if (initialHouseholder != null) reset(initialHouseholder);
@@ -105,10 +103,12 @@ export const HouseholderForm = ({ initialHouseholder, familyId }: Props) => {
     upsertHouseholder({
       variables: { ...formData, familyId },
     })
-      .then(({ data: d }) => {
+      .then(({ data }) => {
         showNotification({
           title: t.title,
-          message: t.notification.successfulUpdate(d?.householder.name ?? ''),
+          message: t.notification.successfulUpdate(
+            data?.householder.name ?? '',
+          ),
           type: 'success',
           ...createTestAttr(ids.notification.success),
         });
