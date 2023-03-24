@@ -64,8 +64,8 @@ describe('Create member form Form', () => {
     });
   });
 
-  it('contains a dateOfBirth input with correct label', () => {
-    cy.contains(createMemberForm.dateOfBirthInput.label);
+  it('contains a dob input with correct label', () => {
+    cy.contains(createMemberForm.dobInput.label);
   });
 
   it('contains a button to submit the form', () => {

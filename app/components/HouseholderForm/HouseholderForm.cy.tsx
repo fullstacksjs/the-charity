@@ -82,8 +82,8 @@ describe('HouseHolder Identity Form', () => {
     });
   });
 
-  it('contains a dateOfBirth input with correct label', () => {
-    cy.contains(householderForm.dateOfBirthInput.label);
+  it('contains a dob input with correct label', () => {
+    cy.contains(householderForm.dobInput.label);
   });
 
   it('contains a cityOfBirth input with correct label', () => {

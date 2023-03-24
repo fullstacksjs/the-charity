@@ -176,7 +176,7 @@ export const messages = {
         label: 'جنسیت',
         placeholder: 'مرد/زن',
       },
-      dateOfBirthInput: {
+      dobInput: {
         label: 'تاریخ تولد',
         placeholder: 'برای مثال: ۱۳۹۹/۱۰/۱۰',
       },
@@ -238,7 +238,7 @@ export const messages = {
         label: 'جنسیت',
         placeholder: 'مرد/زن',
       },
-      dateOfBirthInput: {
+      dobInput: {
         label: 'تاریخ تولد',
         placeholder: 'برای مثال: ۱۳۹۹/۱۰/۱۰',
       },

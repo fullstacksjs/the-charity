@@ -34,6 +34,7 @@ export const toHouseholder = (
       cityOfBirth:
         householder.city == null ? undefined : toCity(householder.city),
       nationalId: householder.national_id ?? undefined,
+      dob: householder.dob == null ? undefined : new Date(householder.dob),
     };
   return {
     status,
@@ -46,5 +47,6 @@ export const toHouseholder = (
     gender: toGender(householder.gender!),
     issuedAt: toCity(householder.issued_at!),
     religion: toReligion(householder.religion!),
+    dob: new Date(householder.dob!),
   };
 };

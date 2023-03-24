@@ -59,7 +59,7 @@ export interface UpsertHouseholder {
   householder: Householder;
 }
 
-export const toClient = (
+const toClient = (
   data: ApiUpsertHouseholderMutation | null | undefined,
 ): UpsertHouseholder | null => {
   const householder = data?.insert_householder_one;
@@ -73,6 +73,7 @@ interface Variables {
   surname?: string;
   fatherName?: string;
   nationalId?: string;
+  dob?: Date;
   nationality?: Nationality;
   religion?: Religion;
   gender?: Gender;
@@ -86,8 +87,8 @@ const toApiCity = (_: City): ApiCityEnum => ApiCityEnum.Tehran;
 const toApiReligion = (_: Religion): ApiReligionEnum => ApiReligionEnum.Islam;
 const toApiNationality = (_: Nationality): ApiNationalityEnum =>
   ApiNationalityEnum.Ir;
+const toApiDate = (d: Date): string => d.toISOString().split('T')[0]!;
 
-// FIXME add DOB too
 const toApiVariables = (
   variables?: Variables | null,
 ): ApiUpsertHouseholderMutationVariables | undefined =>
@@ -120,6 +121,7 @@ const toApiVariables = (
             variables.gender != null
               ? toApiGender(variables.gender)
               : undefined,
+          dob: variables.dob != null ? toApiDate(variables.dob) : undefined,
         },
       };
 

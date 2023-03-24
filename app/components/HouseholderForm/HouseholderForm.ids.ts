@@ -8,7 +8,7 @@ export const householderFormIds = {
   issuedAtInput: 'householder-issuedAt',
   religionInput: 'householder-religion',
   genderInput: 'householder-gender',
-  dateOfBirthInput: 'householder-date-of-birth',
+  dobInput: 'householder-date-of-birth',
   cityOfBirthInput: 'project-city-of-birth',
   submitBtn: 'submit-button',
   notification: {

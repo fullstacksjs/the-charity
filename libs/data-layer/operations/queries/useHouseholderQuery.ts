@@ -22,6 +22,7 @@ const Document = gql`
       gender
       status
       national_id
+      dob
     }
   }
 `;

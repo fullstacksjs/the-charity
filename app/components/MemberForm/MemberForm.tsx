@@ -185,12 +185,12 @@ export const MemberForm = () => {
                   )}
                 />
                 <DateInput
-                  wrapperProps={createTestAttr(ids.dateOfBirthInput)}
+                  wrapperProps={createTestAttr(ids.dobInput)}
                   className={classes.dateInput}
                   rightSection={
                     <CalendarIcon stroke="currentColor" size={16} />
                   }
-                  label={`${t.dateOfBirthInput.label}:`}
+                  label={`${t.dobInput.label}:`}
                   sx={theme => ({
                     direction: 'ltr',
                     color: theme.colors.secondaryDefault[6],

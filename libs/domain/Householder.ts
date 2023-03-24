@@ -24,7 +24,7 @@ export const householderIdentitySchema = {
       .min(3, messages.householder.form.validation.nameMinLength)
       .nullish()
       .or(z.literal(''))
-      .transform(e => (e === '' || e === null ? undefined : e)),
+      .transform(e => (e === '' || e == null ? undefined : e)),
   fatherName: () =>
     z
       .string()
@@ -32,7 +32,7 @@ export const householderIdentitySchema = {
       .min(3, messages.householder.form.validation.fatherNameMinLength)
       .nullish()
       .or(z.literal(''))
-      .transform(e => (e === '' || e === null ? undefined : e)),
+      .transform(e => (e === '' || e == null ? undefined : e)),
   nationalId: () =>
     z
       .string()
@@ -44,37 +44,38 @@ export const householderIdentitySchema = {
       .trim()
       .nullish()
       .or(z.literal(''))
-      .transform(e => (e === '' || e === null ? undefined : e)),
+      .transform(e => (e === '' || e == null ? undefined : e)),
   gender: () =>
     z
       .union([z.literal(genders[0]), z.literal(genders[1])])
       .nullish()
       .or(z.literal(''))
-      .transform(e => (e === '' || e === null ? undefined : e)),
+      .transform(e => (e === '' || e == null ? undefined : e)),
   nationality: () =>
     z
       .literal(nationalities[0])
       .nullish()
       .or(z.literal(''))
-      .transform(e => (e === '' || e === null ? undefined : e)),
+      .transform(e => (e === '' || e == null ? undefined : e)),
   religion: () =>
     z
       .literal(religions[0])
       .nullish()
       .or(z.literal(''))
-      .transform(e => (e === '' || e === null ? undefined : e)),
+      .transform(e => (e === '' || e == null ? undefined : e)),
   cityOfBirth: () =>
     z
       .literal(cities[0])
       .nullish()
       .or(z.literal(''))
-      .transform(e => (e === '' || e === null ? undefined : e)),
+      .transform(e => (e === '' || e == null ? undefined : e)),
   issuedAt: () =>
     z
       .literal(cities[0])
       .nullish()
       .or(z.literal(''))
-      .transform(e => (e === '' || e === null ? undefined : e)),
+      .transform(e => (e === '' || e == null ? undefined : e)),
+  dob: () => z.date().nullish().or(z.literal('')),
 };
 
 export type HouseholderStatus = 'completed' | 'draft';
@@ -85,6 +86,7 @@ interface CompletedHouseholder {
   surname: string;
   fatherName: string;
   nationalId: string;
+  dob: Date;
   nationality: Nationality;
   religion: Religion;
   cityOfBirth: City;
@@ -98,6 +100,7 @@ interface DraftHouseholder {
   surname?: string;
   fatherName?: string;
   nationalId?: string;
+  dob?: Date;
   nationality?: Nationality;
   religion?: Religion;
   cityOfBirth?: City;

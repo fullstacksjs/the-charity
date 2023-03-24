@@ -51,7 +51,7 @@ export const HouseholderDetail = ({ familyId }: Props) => {
       <DetailCard.TextField title={tt.cityOfBirthInput.label}>
         {messages.cities[householder.cityOfBirth]}
       </DetailCard.TextField>
-      {/* <DetailCard.TextField title={tt.dateOfBirthInput.label}>{householder.}</DetailCard.TextField> */}
+      {/* <DetailCard.TextField title={tt.dobInput.label}>{householder.}</DetailCard.TextField> */}
     </DetailCard>
   ) : (
     <HouseholderForm familyId={familyId} initialHouseholder={householder} />

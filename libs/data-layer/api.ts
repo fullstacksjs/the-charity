@@ -3533,7 +3533,7 @@ export type ApiHouseholderQueryVariables = Exact<{
 }>;
 
 
-export type ApiHouseholderQuery = { __typename?: 'query_root', householder_by_pk?: { __typename?: 'householder', name: string, father_name?: string | null, issued_at?: ApiCityEnum | null, surname?: string | null, nationality?: ApiNationalityEnum | null, religion?: ApiReligionEnum | null, city?: ApiCityEnum | null, gender?: ApiGenderEnum | null, status: ApiHouseholderStatusEnum, national_id?: string | null } | null };
+export type ApiHouseholderQuery = { __typename?: 'query_root', householder_by_pk?: { __typename?: 'householder', name: string, father_name?: string | null, issued_at?: ApiCityEnum | null, surname?: string | null, nationality?: ApiNationalityEnum | null, religion?: ApiReligionEnum | null, city?: ApiCityEnum | null, gender?: ApiGenderEnum | null, status: ApiHouseholderStatusEnum, national_id?: string | null, dob?: string | null } | null };
 
 export type ApiProjectListQueryVariables = Exact<{
   offset?: InputMaybe<Scalars['Int']>;
@@ -3628,6 +3628,7 @@ export const ApiHouseholderDocument = gql`
     gender
     status
     national_id
+    dob
   }
 }
     `;

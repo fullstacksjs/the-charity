@@ -8,7 +8,7 @@ export const memberFormIds = {
   issuedAtInput: 'member-issuedAt',
   religionInput: 'member-religion',
   genderInput: 'member-gender',
-  dateOfBirthInput: 'member-date-of-birth',
+  dobInput: 'member-date-of-birth',
   cityOfBirthInput: 'project-city-of-birth',
   submitBtn: 'submit-button',
   notification: {

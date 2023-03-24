@@ -45,6 +45,7 @@ interface FormSchema {
   surname: string;
   fatherName: string;
   nationalId: string;
+  dob: Date;
   gender: Gender;
   nationality: Nationality;
   religion: Religion;
@@ -62,6 +63,7 @@ const resolver = createResolver<FormSchema>({
   religion: householderIdentitySchema.religion(),
   cityOfBirth: householderIdentitySchema.cityOfBirth(),
   issuedAt: householderIdentitySchema.issuedAt(),
+  dob: householderIdentitySchema.dob(),
 });
 
 const useStyles = createStyles(theme => ({
@@ -284,17 +286,25 @@ export const HouseholderForm = ({ initialHouseholder, familyId }: Props) => {
             )}
           />
 
-          <DateInput
-            wrapperProps={createTestAttr(ids.dateOfBirthInput)}
-            className={classes.dateInput}
-            rightSection={<CalendarIcon stroke="currentColor" size={16} />}
-            label={`${t.dateOfBirthInput.label}:`}
-            sx={theme => ({
-              direction: 'ltr',
-              color: theme.colors.secondaryDefault[6],
-            })}
-            locale="fa"
-            placeholder={t.selectInputs.placeholder}
+          <Controller
+            name="dob"
+            control={control}
+            render={({ field }) => (
+              <DateInput
+                clearable
+                wrapperProps={createTestAttr(ids.dobInput)}
+                className={classes.dateInput}
+                rightSection={<CalendarIcon stroke="currentColor" size={16} />}
+                label={`${t.dobInput.label}:`}
+                sx={theme => ({
+                  direction: 'ltr',
+                  color: theme.colors.secondaryDefault[6],
+                })}
+                locale="fa"
+                placeholder={t.selectInputs.placeholder}
+                {...field}
+              />
+            )}
           />
         </SimpleGrid>
       </Stack>

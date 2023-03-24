@@ -1,7 +1,7 @@
 import { generateMock } from '@anatine/zod-mock';
 import { z } from 'zod';
 
-import { householderIdentitySchema } from '../../libs/domain/HouseholderIdentity';
+import { householderIdentitySchema } from '../../libs/domain/Householder';
 
 export const householderFixture = () =>
   generateMock(
