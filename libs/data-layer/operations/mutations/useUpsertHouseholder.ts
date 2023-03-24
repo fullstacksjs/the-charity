@@ -11,6 +11,7 @@ import {
 import {
   ApiCityEnum,
   ApiGenderEnum,
+  ApiHouseholderDocument,
   ApiNationalityEnum,
   ApiReligionEnum,
   type ApiUpsertHouseholderMutation,
@@ -132,5 +133,21 @@ export function useUpsertHouseholder(
     ...options,
     mapData: toClient,
     mapVariables: toApiVariables,
+    update(cache, { data: householder }, { variables }) {
+      const newHouseholder = householder?.insert_householder_one;
+      const familyId = variables?.input.family_id;
+
+      if (newHouseholder) {
+        cache.writeQuery({
+          query: ApiHouseholderDocument,
+          variables: { family_id: familyId },
+          data: {
+            householder_by_pk: {
+              ...newHouseholder,
+            },
+          },
+        });
+      }
+    },
   });
 }

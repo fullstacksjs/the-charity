@@ -99,8 +99,7 @@ export const HouseholderForm = ({ initialHouseholder, familyId }: Props) => {
 
   useEffect(() => {
     if (initialHouseholder != null) reset(initialHouseholder);
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
+  }, [initialHouseholder, reset]);
 
   const onSubmit = handleSubmit(formData => {
     upsertHouseholder({
