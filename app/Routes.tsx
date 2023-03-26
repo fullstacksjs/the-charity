@@ -1,14 +1,13 @@
 import { AuthGuard, GuestGuard } from '@camp/auth';
 import { messages } from '@camp/messages';
 import type { Route } from '@camp/router';
-import { Navigate, ReactLocation, Router } from '@camp/router';
+import { lazy, Navigate, ReactLocation, Router } from '@camp/router';
 
 import { FamilyEmptyState, FamilyList, ProjectList } from './components';
 import {
   DashboardLayout,
   Families,
   FamilyDetail,
-  GraphiQLPage,
   Login,
   Projects,
 } from './pages';
@@ -18,7 +17,7 @@ export const location = new ReactLocation();
 const routes: Route[] = [
   {
     path: '/graphiql',
-    element: <GraphiQLPage />,
+    import: lazy(() => import('./pages/GraphiQL')),
   },
   {
     path: '/auth',

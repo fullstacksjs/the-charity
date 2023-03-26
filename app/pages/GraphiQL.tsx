@@ -10,4 +10,9 @@ const fetcher = createGraphiQLFetcher({
   },
 });
 
-export const GraphiQLPage = () => <GraphiQL fetcher={fetcher} />;
+const GraphiQLPage = () => <GraphiQL fetcher={fetcher} />;
+
+export const routes = {
+  path: '/graphiql',
+  element: <GraphiQLPage />,
+};
