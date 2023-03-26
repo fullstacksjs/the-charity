@@ -85,7 +85,7 @@ interface Variables {
   issuedAt: string;
 }
 
-// FIXME add DOB too
+// FIXME: add DOB too
 const toApiVariables = (
   variables?: Variables | null,
 ): ApiUpsertHouseholderMutationVariables | undefined =>
