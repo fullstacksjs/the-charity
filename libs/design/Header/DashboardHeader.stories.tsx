@@ -1,8 +1,8 @@
 import { messages } from '@camp/messages';
 import { Button } from '@mantine/core';
-import { type ComponentMeta, type Story } from '@storybook/react';
+import type { ComponentMeta, Story } from '@storybook/react';
 
-import { type HeaderProps } from './DashboardHeader';
+import type { HeaderProps } from './DashboardHeader';
 import { DashboardHeader } from './DashboardHeader';
 
 export default {

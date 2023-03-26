@@ -1,4 +1,4 @@
-import { type ApiFamilyListQuery } from '../../libs/data-layer/api';
+import type { ApiFamilyListQuery } from '../../libs/data-layer/api';
 import {
   ApiFamilySeverityEnum,
   ApiFamilyStatusEnum,

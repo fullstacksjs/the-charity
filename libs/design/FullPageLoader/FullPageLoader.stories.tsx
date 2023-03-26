@@ -1,8 +1,4 @@
-import {
-  type ComponentMeta,
-  type ComponentStory,
-  type Story,
-} from '@storybook/react';
+import type { ComponentMeta, ComponentStory, Story } from '@storybook/react';
 
 import { FullPageLoader } from './FullPageLoader';
 

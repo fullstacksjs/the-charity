@@ -1,5 +1,5 @@
 import { PeopleIcon } from '@camp/icons';
-import { type Meta, type Story } from '@storybook/react';
+import type { Meta, Story } from '@storybook/react';
 
 import { VisualizedIcon } from './VisualizedIcon';
 

@@ -1,4 +1,4 @@
-import { type FamilyListItemDto } from '@camp/data-layer';
+import type { FamilyListItemDto } from '@camp/data-layer';
 import { AppRoute, useNavigate } from '@camp/router';
 import { Group } from '@mantine/core';
 

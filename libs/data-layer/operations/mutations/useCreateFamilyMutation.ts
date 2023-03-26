@@ -1,11 +1,11 @@
-import { type MutationHookOptions } from '@apollo/client';
+import type { MutationHookOptions } from '@apollo/client';
 import { gql } from '@apollo/client';
-import { type Family } from '@camp/domain';
+import type { Family } from '@camp/domain';
 
-import {
-  type ApiCreateFamilyMutation,
-  type ApiCreateFamilyMutationVariables,
-  type ApiFamilyListQuery,
+import type {
+  ApiCreateFamilyMutation,
+  ApiCreateFamilyMutationVariables,
+  ApiFamilyListQuery,
 } from '../../api';
 import { ApiFamilyListDocument } from '../../api';
 import { useMutation } from './useMutation';

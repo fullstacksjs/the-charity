@@ -2,7 +2,7 @@ import { useAuth0 } from '@camp/auth';
 import { ExitIcon } from '@camp/icons';
 import { messages } from '@camp/messages';
 import { createTestAttr } from '@camp/test';
-import { type CSSObject, type Sx } from '@mantine/core';
+import type { CSSObject, Sx } from '@mantine/core';
 import { NavLink as MantineNavLink } from '@mantine/core';
 
 import { openLogoutModal } from '../Modal';

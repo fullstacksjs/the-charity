@@ -1,5 +1,5 @@
 import { ModalsProvider } from '@mantine/modals';
-import { type Meta, type Story } from '@storybook/react';
+import type { Meta, Story } from '@storybook/react';
 
 import { CreateFamilyModal, openCreateFamilyModal } from './CreateFamilyModal';
 

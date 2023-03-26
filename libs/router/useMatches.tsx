@@ -1,6 +1,6 @@
 import { useMatches as useReactLocationMatches } from '@tanstack/react-location';
 
-import { type LocationGenerics } from './LocationGenerics';
+import type { LocationGenerics } from './LocationGenerics';
 
 export const useMatches = () => {
   const matches = useReactLocationMatches<LocationGenerics>();

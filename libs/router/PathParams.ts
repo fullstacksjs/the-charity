@@ -1,4 +1,4 @@
-import { type AppRoute } from './AppRoutes';
+import type { AppRoute } from './AppRoutes';
 
 type ExtractRouteParams<T> = string extends T
   ? Record<string, string>

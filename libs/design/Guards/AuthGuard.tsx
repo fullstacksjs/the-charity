@@ -1,5 +1,5 @@
 import { useAuth0 } from '@auth0/auth0-react';
-import { type AppRoute } from '@camp/router';
+import type { AppRoute } from '@camp/router';
 import { Navigate, Outlet } from '@camp/router';
 
 interface Props {

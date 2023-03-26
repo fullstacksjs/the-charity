@@ -18,6 +18,7 @@ export const buildUrl = (
 
   return parts.reduce((acc, part) => {
     const param = part.startsWith(':') ? params[part.slice(1)] : part;
+    // eslint-disable-next-line @typescript-eslint/restrict-template-expressions
     return `${acc}/${param ?? part}`;
   });
 };

@@ -1,7 +1,7 @@
 import { ChevronLeftIcon, HomeIcon } from '@camp/icons';
-import { type AppRoute } from '@camp/router';
+import type { AppRoute } from '@camp/router';
 import { Link } from '@camp/router';
-import { type Styles } from '@mantine/core';
+import type { Styles } from '@mantine/core';
 import { Anchor, Breadcrumbs as MantineBreadcrumbs } from '@mantine/core';
 
 export interface BreadcrumbItem {

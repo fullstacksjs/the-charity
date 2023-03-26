@@ -1,4 +1,4 @@
-import { type CardProps } from '@mantine/core';
+import type { CardProps } from '@mantine/core';
 import { Box, Card, Group, Stack } from '@mantine/core';
 
 interface DashboardCardProps {

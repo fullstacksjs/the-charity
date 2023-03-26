@@ -1,14 +1,13 @@
-import { type MutationHookOptions } from '@apollo/client';
+import type { MutationHookOptions } from '@apollo/client';
 import { gql } from '@apollo/client';
-import { type Project, type ProjectStatus } from '@camp/domain';
+import type { Project, ProjectStatus } from '@camp/domain';
 
-import {
-  type ApiCreateProjectMutation,
-  type ApiCreateProjectMutationVariables,
-  type ApiProjectListQuery,
-  ApiProjectStatusEnum,
+import type {
+  ApiCreateProjectMutation,
+  ApiCreateProjectMutationVariables,
+  ApiProjectListQuery,
 } from '../../api';
-import { ApiProjectListDocument } from '../../api';
+import { ApiProjectListDocument, ApiProjectStatusEnum } from '../../api';
 import { useMutation } from './useMutation';
 
 const Document = gql`

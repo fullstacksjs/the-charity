@@ -1,10 +1,10 @@
 import { messages } from '@camp/messages';
 import { z } from 'zod';
 
-import { type City } from './Country';
+import type { City } from './Country';
 import { cities } from './Country';
 import { genders } from './Gender';
-import { type Religion } from './Religions';
+import type { Religion } from './Religions';
 import { religions } from './Religions';
 
 const numberRegex = /^[0-9]*[\u0660-\u0669\u06F0-\u06F90-9]*$/;

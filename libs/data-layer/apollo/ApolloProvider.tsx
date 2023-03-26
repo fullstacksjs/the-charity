@@ -1,4 +1,4 @@
-import { type ApolloClient, type NormalizedCacheObject } from '@apollo/client';
+import type { ApolloClient, NormalizedCacheObject } from '@apollo/client';
 import { ApolloProvider as BaseApolloProvider } from '@apollo/client';
 import { useAuth0 } from '@camp/auth';
 import { useRef } from 'react';

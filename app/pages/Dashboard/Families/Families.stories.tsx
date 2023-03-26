@@ -1,5 +1,5 @@
 import { messages } from '@camp/messages';
-import { type Meta, type Story } from '@storybook/react';
+import type { Meta, Story } from '@storybook/react';
 
 import { DashboardLayout } from '../DashboardLayout';
 import { Families } from './Families';

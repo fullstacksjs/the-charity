@@ -1,4 +1,4 @@
-import { type Meta, type Story } from '@storybook/react';
+import type { Meta, Story } from '@storybook/react';
 
 import { SideBar } from './Sidebar';
 

@@ -1,5 +1,5 @@
 import { Badge } from '@camp/design';
-import { type SeverityStatus } from '@camp/domain';
+import type { SeverityStatus } from '@camp/domain';
 import { messages } from '@camp/messages';
 
 interface Props {

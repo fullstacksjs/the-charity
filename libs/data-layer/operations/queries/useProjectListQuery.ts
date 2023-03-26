@@ -1,9 +1,9 @@
 import type * as Apollo from '@apollo/client';
 import { gql } from '@apollo/client';
 
-import {
-  type ApiProjectListQuery,
-  type ApiProjectListQueryVariables,
+import type {
+  ApiProjectListQuery,
+  ApiProjectListQueryVariables,
 } from '../../api';
 import { useQuery } from './useQuery';
 

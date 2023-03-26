@@ -6,7 +6,7 @@ module.exports = init({
     esm: true,
     typescript: {
       parserProject: ['./tsconfig.eslint.json'],
-      resolverProject: ['tsconfig.json'],
+      resolverProject: ['./tsconfig.json'],
     },
   },
   root: true,

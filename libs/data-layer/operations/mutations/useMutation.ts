@@ -1,12 +1,12 @@
-import {
-  type ApolloCache,
-  type DefaultContext,
-  type DocumentNode,
-  type FetchResult,
-  type MutationHookOptions,
-  type MutationTuple,
-  type OperationVariables,
-  type TypedDocumentNode,
+import type {
+  ApolloCache,
+  DefaultContext,
+  DocumentNode,
+  FetchResult,
+  MutationHookOptions,
+  MutationTuple,
+  OperationVariables,
+  TypedDocumentNode,
 } from '@apollo/client';
 import * as Apollo from '@apollo/client';
 
