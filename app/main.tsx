@@ -4,7 +4,7 @@ import { AuthProvider } from '@camp/auth';
 import { ApolloProvider } from '@camp/data-layer';
 import { ThemeProvider } from '@camp/design';
 import { ModalsProvider } from '@mantine/modals';
-import { NotificationsProvider } from '@mantine/notifications';
+import { Notifications } from '@mantine/notifications';
 import { StrictMode } from 'react';
 import ReactDOM from 'react-dom/client';
 
@@ -17,11 +17,10 @@ root.render(
     <AuthProvider>
       <ApolloProvider>
         <ThemeProvider>
-          <NotificationsProvider limit={3}>
-            <ModalsProvider>
-              <Routes />
-            </ModalsProvider>
-          </NotificationsProvider>
+          <ModalsProvider>
+            <Notifications limit={3} />
+            <Routes />
+          </ModalsProvider>
         </ThemeProvider>
       </ApolloProvider>
     </AuthProvider>
