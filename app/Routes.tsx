@@ -8,6 +8,7 @@ import {
   DashboardLayout,
   Families,
   FamilyDetail,
+  GraphiQLPage,
   Login,
   Projects,
 } from './pages';
@@ -15,6 +16,10 @@ import {
 export const location = new ReactLocation();
 
 const routes: Route[] = [
+  {
+    path: '/graphiql',
+    element: <GraphiQLPage />,
+  },
   {
     path: '/auth',
     element: <GuestGuard />,

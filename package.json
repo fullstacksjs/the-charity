@@ -24,11 +24,12 @@
     "codegen:watch": "npm run codegen -- --watch"
   },
   "dependencies": {
-    "@apollo/client": "3.7.8",
     "@anatine/zod-mock": "3.8.4",
+    "@apollo/client": "3.7.8",
     "@auth0/auth0-react": "2.0.0",
     "@emotion/react": "11.10.6",
     "@fullstacksjs/toolbox": "3.0.2",
+    "@graphiql/toolkit": "0.8.2",
     "@hookform/resolvers": "2.9.11",
     "@mantine/core": "5.10.4",
     "@mantine/hooks": "5.10.4",
@@ -36,6 +37,7 @@
     "@mantine/notifications": "5.10.4",
     "@tanstack/react-location": "3.7.4",
     "dayjs": "1.11.7",
+    "graphiql": "2.4.0",
     "graphql": "16.6.0",
     "mantine-datepicker-jalali": "1.2.3",
     "react": "18.2.0",
