@@ -91,15 +91,14 @@
     "jsdom": "21.1.0",
     "lint-staged": "13.1.2",
     "prettier": "2.8.4",
-    "rollup": "3.17.1",
     "storybook-addon-apollo-client": "4.0.13",
     "ts-node": "10.9.1",
     "typescript": "5.0.2",
-    "vite": "4.1.2",
+    "vite": "4.2.1",
     "vite-plugin-checker": "0.5.6",
     "vite-plugin-svgr": "2.4.0",
     "vite-tsconfig-paths": "4.0.5",
-    "vitest": "0.28.5",
+    "vitest": "0.29.7",
     "vitest-dom": "0.0.4"
   },
   "volta": {
