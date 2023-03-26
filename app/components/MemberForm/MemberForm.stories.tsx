@@ -1,11 +1,11 @@
 import type { Meta, StoryObj } from '@storybook/react';
 
-import { MemberForm } from './MemberForm';
+import { MemberList } from './MemberForm';
 
 export default {
-  component: MemberForm,
-} as Meta<typeof MemberForm>;
+  component: MemberList,
+} as Meta<typeof MemberList>;
 
-type Story = StoryObj<typeof MemberForm>;
+type Story = StoryObj<typeof MemberList>;
 
 export const Default: Story = {};

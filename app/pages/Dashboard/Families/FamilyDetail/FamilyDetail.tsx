@@ -15,7 +15,7 @@ import { Button, Title } from '@mantine/core';
 import {
   HouseholderDetail,
   InformationBadge,
-  MemberForm,
+  MemberList,
   openDeleteFamilyModal,
   SeverityBadge,
 } from '../../../../components';
@@ -113,7 +113,7 @@ export const FamilyDetail = () => {
           },
           {
             tab: <Title order={5}>{t.tabs.membersTitle}</Title>,
-            panel: <MemberForm />,
+            panel: <MemberList />,
             id: ids.memberFormTab,
           },
         ]}
