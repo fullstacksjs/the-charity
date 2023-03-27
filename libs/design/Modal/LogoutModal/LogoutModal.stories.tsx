@@ -21,6 +21,7 @@ export default {
       </ModalsProvider>
     ),
   ],
+  chromatic: { delay: 500 },
 } as Meta<typeof LogoutConfirm>;
 
 type Story = StoryObj<typeof LogoutConfirm>;

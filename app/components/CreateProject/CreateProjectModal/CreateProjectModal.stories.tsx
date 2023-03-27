@@ -22,6 +22,7 @@ export default {
       </ModalsProvider>
     ),
   ],
+  chromatic: { delay: 500 },
 } as Meta<typeof CreateProjectModal>;
 
 type Story = StoryObj<typeof CreateProjectModal>;
