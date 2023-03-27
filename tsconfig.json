@@ -20,7 +20,7 @@
       "@camp/test": ["./libs/test/index.ts"]
     }
   },
-  "include": ["app", "@types", "libs"],
+  "include": ["app", "libs", "@types/index.d.ts"],
   "exclude": ["node_modules"],
   "references": [{ "path": "./tsconfig.vite.json" }]
 }
