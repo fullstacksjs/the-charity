@@ -1,8 +1,8 @@
 import { messages } from '@camp/messages';
 import type { ComponentMeta, ComponentStory } from '@storybook/react';
 
+import { ApiFamilyList } from '../../../.storybook/fixtures/ApiFamilyList';
 import { FamilyTableRow } from '../../../app/components/FamilyList/FamilyTableRow';
-import { ApiFamilyList } from '../../../app/fixtures/ApiFamilyList';
 import { toInformationStatus, toSeverityStatus } from '../../data-layer';
 import { Table } from './Table';
 

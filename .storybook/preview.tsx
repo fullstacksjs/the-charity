@@ -1,22 +1,13 @@
-import React from 'react';
-import { NotificationsProvider } from '@mantine/notifications';
-import {
-  ApiCreateProjectDocument,
-  ApiFamilyDocument,
-  ApiFamilyListDocument,
-  ApiFamilySeverityEnum,
-  ApiFamilyStatusEnum,
-  ApiProjectListDocument,
-} from '../libs/data-layer/api';
-import { MockedProvider } from '@apollo/client/testing';
+import { Notifications } from '@mantine/notifications';
+import { Decorator, Parameters } from '@storybook/react';
 import {
   createMemoryHistory,
   ReactLocation,
-  Router,
+  Router
 } from '@tanstack/react-location';
+import React from 'react';
 import { ThemeProvider } from '../libs/design';
-import { DecoratorFn, Parameters } from '@storybook/react';
-import { ApiFamilyList } from '../app/fixtures/ApiFamilyList';
+import { apolloMocks } from './apolloMocks';
 
 export const parameters: Parameters = {
   actions: { argTypesRegex: '^on[A-Z].*' },
@@ -27,75 +18,10 @@ export const parameters: Parameters = {
       date: /Date$/,
     },
   },
-  apolloClient: {
-    MockedProvider,
-    mocks: [
-      {
-        request: {
-          query: ApiCreateProjectDocument,
-          variables: {
-            input: {
-              name: 'guy',
-              description: 'description',
-            },
-          },
-        },
-        result: {
-          data: {
-            name: 'guy',
-            description: 'description',
-          },
-        },
-      },
-      {
-        request: {
-          query: ApiFamilyDocument,
-          variables: {
-            id: undefined,
-          },
-        },
-        result: {
-          data: {
-            family_by_pk: {
-              code: 'F00001',
-              name: 'فول استک زاده',
-              severity: ApiFamilySeverityEnum.Critical,
-              status: ApiFamilyStatusEnum.Completed,
-            },
-          },
-        },
-      },
-      {
-        request: {
-          query: ApiFamilyListDocument,
-        },
-        result: {
-          data: {
-            family: ApiFamilyList,
-          },
-        },
-      },
-      {
-        request: {
-          query: ApiProjectListDocument,
-        },
-        result: {
-          data: {
-            project_aggregate: {
-              nodes: [
-                { name: 'name 1', id: '1' },
-                { name: 'name 2', id: '2' },
-                { name: 'name 3', id: '3' },
-              ],
-            },
-          },
-        },
-      },
-    ],
-  },
+  apolloClient: apolloMocks,
 };
 
-export const decorators: DecoratorFn[] = [
+export const decorators: Decorator[] = [
   (Story, { args }) => {
     const router = args.router;
     const { layout, ...routes } = args.router ?? {};
@@ -118,9 +44,8 @@ export const decorators: DecoratorFn[] = [
   },
   Story => (
     <ThemeProvider>
-      <NotificationsProvider limit={3}>
+      <Notifications limit={3}/>
         <Story />
-      </NotificationsProvider>
     </ThemeProvider>
   ),
 ];
