@@ -2,7 +2,7 @@ import { messages } from '@camp/messages';
 import { createTestAttr } from '@camp/test';
 import { closeModal, openModal } from '@mantine/modals';
 
-import { CreateProjectForm } from './CreateProjectForm';
+import { CreateProjectForm } from '../CreateProjectForm';
 import { createProjectModalId } from './CreateProjectModal.ids';
 
 export const CreateProjectModal = () => (

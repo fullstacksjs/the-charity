@@ -1,16 +1,13 @@
-import type { ComponentMeta, ComponentStory } from '@storybook/react';
+import type { Meta, StoryObj } from '@storybook/react';
 
 import { FamilyActionButton } from './FamilyActionButton';
 
 export default {
   component: FamilyActionButton,
-} as ComponentMeta<typeof FamilyActionButton>;
+} as Meta<typeof FamilyActionButton>;
 
-const Template: ComponentStory<typeof FamilyActionButton> = args => (
-  <FamilyActionButton {...args} />
-);
+type Story = StoryObj<typeof FamilyActionButton>;
 
-export const Default = Template.bind({});
-Default.args = {
-  to: '/',
+export const Default: Story = {
+  args: { to: '/' },
 };

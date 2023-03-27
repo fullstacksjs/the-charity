@@ -1,17 +1,18 @@
-import type { ComponentMeta, ComponentStory } from '@storybook/react';
+import type { Meta, StoryObj } from '@storybook/react';
 
 import { links } from '../Sidebar';
 import { NavLinks } from './NavLinks';
 
 export default {
   component: NavLinks,
-} as ComponentMeta<typeof NavLinks>;
+} as Meta<typeof NavLinks>;
 
-const Template: ComponentStory<typeof NavLinks> = args => (
-  <NavLinks {...args} />
-);
+type Story = StoryObj<typeof NavLinks>;
 
-export const Default = Template.bind({});
-Default.args = {
-  links,
+export const Default: Story = {
+  render: args => <NavLinks {...args} />,
+
+  args: {
+    links,
+  },
 };

@@ -1,8 +1,8 @@
 import { messages } from '@camp/messages';
 import { useEffect } from 'react';
 
-import { openCreateProjectModal } from '..';
-import { createProjectFormIds } from './CreateProjectForm.ids';
+import { createProjectFormIds } from '../CreateProjectForm/CreateProjectForm.ids';
+import { openCreateProjectModal } from './CreateProjectModal';
 
 const requiredFieldMsg = messages.validation.required;
 const minLengthMsg = messages.projects.validation.minLength;

@@ -24,7 +24,8 @@ module.exports = init({
     {
       files: ['./**/*.stories.tsx', './**/*.cy.tsx'],
       rules: {
-        '@typescript-eslint/no-confusing-void-expression': ['off'],
+        '@typescript-eslint/no-confusing-void-expression': 'off',
+        'react/jsx-no-useless-fragment': 'off',
       },
     },
   ],

@@ -1,8 +1,7 @@
 import { DashboardIcon, PackageIcon, PeopleIcon } from '@camp/icons';
 import { messages } from '@camp/messages';
-import type { Meta, Story } from '@storybook/react';
+import type { Meta, StoryObj } from '@storybook/react';
 
-import type { EmptyStateProps } from './EmptyState';
 import { EmptyState } from './EmptyState';
 
 export default {
@@ -17,13 +16,14 @@ export default {
       control: { type: 'radio' },
     },
   },
-} as Meta;
+} as Meta<typeof EmptyState>;
 
-const Template: Story<EmptyStateProps> = args => <EmptyState {...args} />;
+type Story = StoryObj<typeof EmptyState>;
 
-export const Default: Story<EmptyStateProps> = Template.bind({});
-Default.args = {
-  title: messages.projects.title,
-  message: messages.projects.empty.description,
-  icon: <PackageIcon width="33" height="33" />,
+export const Default: Story = {
+  args: {
+    title: messages.projects.title,
+    message: messages.projects.empty.description,
+    icon: <PackageIcon width="33" height="33" />,
+  },
 };

@@ -1,8 +1,7 @@
 import { messages } from '@camp/messages';
 import { Button } from '@mantine/core';
-import type { ComponentMeta, Story } from '@storybook/react';
+import type { Meta, StoryObj } from '@storybook/react';
 
-import type { HeaderProps } from './DashboardHeader';
 import { DashboardHeader } from './DashboardHeader';
 
 export default {
@@ -16,8 +15,8 @@ export default {
       },
     },
   },
-} as ComponentMeta<typeof DashboardHeader>;
+} as Meta<typeof DashboardHeader>;
 
-const Template: Story<HeaderProps> = args => <DashboardHeader {...args} />;
+type Story = StoryObj<typeof DashboardHeader>;
 
-export const Default: Story<HeaderProps> = Template.bind({});
+export const Default: Story = {};

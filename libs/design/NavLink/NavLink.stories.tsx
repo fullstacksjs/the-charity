@@ -1,8 +1,7 @@
 import { PeopleIcon } from '@camp/icons';
 import { messages } from '@camp/messages';
-import type { Meta, Story } from '@storybook/react';
+import type { Meta, StoryObj } from '@storybook/react';
 
-import type { NavLinkProps } from './NavLink';
 import { NavLink } from './NavLink';
 
 export default {
@@ -11,13 +10,14 @@ export default {
     label: { type: 'string' },
     to: { type: 'string' },
   },
-} as Meta<NavLinkProps>;
+} as Meta<typeof NavLink>;
 
-const Template: Story<NavLinkProps> = args => <NavLink {...args} />;
+type Story = StoryObj<typeof NavLink>;
 
-export const Default: Story<NavLinkProps> = Template.bind({});
-Default.args = {
-  label: messages.families.title,
-  to: '/dashboard/families',
-  icon: <PeopleIcon width="24" height="24" />,
+export const Default: Story = {
+  args: {
+    label: messages.families.title,
+    to: '/dashboard/families',
+    icon: <PeopleIcon width="24" height="24" />,
+  },
 };

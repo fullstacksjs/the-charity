@@ -1,5 +1,5 @@
 import { ModalsProvider } from '@mantine/modals';
-import type { Meta, Story } from '@storybook/react';
+import type { Meta, StoryObj } from '@storybook/react';
 
 import { CreateFamilyModal, openCreateFamilyModal } from './CreateFamilyModal';
 
@@ -19,10 +19,13 @@ export default {
       </ModalsProvider>
     ),
   ],
-} as Meta;
+} as Meta<typeof CreateFamilyModal>;
 
-const Template: Story<typeof CreateFamilyModal> = () => {
-  return <>{openCreateFamilyModal()}</>;
+type Story = StoryObj<typeof CreateFamilyModal>;
+
+export const Default: Story = {
+  render: () => {
+    openCreateFamilyModal();
+    return <></>;
+  },
 };
-
-export const Default = Template.bind({});

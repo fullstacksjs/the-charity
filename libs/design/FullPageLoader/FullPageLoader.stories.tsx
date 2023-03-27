@@ -1,12 +1,11 @@
-import type { ComponentMeta, ComponentStory, Story } from '@storybook/react';
+import type { Meta, StoryObj } from '@storybook/react';
 
 import { FullPageLoader } from './FullPageLoader';
 
 export default {
   component: FullPageLoader,
-} as ComponentMeta<typeof FullPageLoader>;
+} as Meta<typeof FullPageLoader>;
 
-const Template: ComponentStory<typeof FullPageLoader> = () => (
-  <FullPageLoader />
-);
-export const Default: Story = Template.bind({});
+type Story = StoryObj<typeof FullPageLoader>;
+
+export const Default: Story = {};

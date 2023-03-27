@@ -1,5 +1,5 @@
 import { messages } from '@camp/messages';
-import type { ComponentStory, Meta, Story } from '@storybook/react';
+import type { Meta, StoryObj } from '@storybook/react';
 
 import { DashboardLayout } from '../DashboardLayout';
 import { Projects } from './Projects';
@@ -15,7 +15,8 @@ export default {
       },
     },
   },
-} as Meta;
+} as Meta<typeof Projects>;
 
-const Template: ComponentStory<typeof Projects> = () => <Projects />;
-export const Default: Story = Template.bind({});
+type Story = StoryObj<typeof Projects>;
+
+export const Default: Story = {};

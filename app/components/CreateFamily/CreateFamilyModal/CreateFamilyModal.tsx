@@ -2,7 +2,7 @@ import { messages } from '@camp/messages';
 import { createTestAttr } from '@camp/test';
 import { closeModal, openModal } from '@mantine/modals';
 
-import { CreateFamilyForm } from './CreateFamilyForm';
+import { CreateFamilyForm } from '../CreateFamilyForm';
 import { createFamilyModalId as id } from './CreateFamilyModal.ids';
 
 export const CreateFamilyModal = () => (

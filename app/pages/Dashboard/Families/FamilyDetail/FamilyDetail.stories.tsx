@@ -1,5 +1,5 @@
 import { messages } from '@camp/messages';
-import type { ComponentMeta, ComponentStory } from '@storybook/react';
+import type { Meta, StoryObj } from '@storybook/react';
 
 import { FamilyDetail } from './FamilyDetail';
 
@@ -13,8 +13,8 @@ export default {
       },
     },
   },
-} as ComponentMeta<typeof FamilyDetail>;
+} as Meta<typeof FamilyDetail>;
 
-const Template: ComponentStory<typeof FamilyDetail> = () => <FamilyDetail />;
+type Story = StoryObj<typeof FamilyDetail>;
 
-export const Default: ComponentStory<typeof FamilyDetail> = Template.bind({});
+export const Default: Story = {};

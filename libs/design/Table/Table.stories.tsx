@@ -1,5 +1,5 @@
 import { messages } from '@camp/messages';
-import type { ComponentMeta, ComponentStory } from '@storybook/react';
+import type { ComponentStory, Meta, StoryObj } from '@storybook/react';
 
 import { ApiFamilyList } from '../../../.storybook/fixtures/ApiFamilyList';
 import { FamilyTableRow } from '../../../app/components/FamilyList/FamilyTableRow';
@@ -8,25 +8,25 @@ import { Table } from './Table';
 
 export default {
   component: Table,
-} as ComponentMeta<typeof Table>;
+} as Meta<typeof Table>;
 
-const Template: ComponentStory<typeof Table> = args => (
-  <Table {...args} id="table" />
-);
+type Story = StoryObj<typeof Table>;
 
-export const Default = Template.bind({});
-Default.args = {
-  columns: messages.families.list.table.columns as unknown as string[],
-  rows: ApiFamilyList.map((info, i) => (
-    <FamilyTableRow
-      key={Object.values(info).join('-')}
-      family={{
-        id: info.id,
-        informationStatus: toInformationStatus(info.status),
-        severityStatus: toSeverityStatus(info.severity),
-        name: info.name,
-      }}
-      order={i + 1}
-    />
-  )),
+export const Default: Story = {
+  render: ({ ...args }) => <Table {...args} id="table" />,
+  args: {
+    columns: messages.families.list.table.columns as unknown as string[],
+    rows: ApiFamilyList.map((info, i) => (
+      <FamilyTableRow
+        key={Object.values(info).join('-')}
+        family={{
+          id: info.id,
+          informationStatus: toInformationStatus(info.status),
+          severityStatus: toSeverityStatus(info.severity),
+          name: info.name,
+        }}
+        order={i + 1}
+      />
+    )),
+  },
 };

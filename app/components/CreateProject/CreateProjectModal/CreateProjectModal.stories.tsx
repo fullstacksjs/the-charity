@@ -1,5 +1,5 @@
 import { ModalsProvider } from '@mantine/modals';
-import type { ComponentMeta, ComponentStory } from '@storybook/react';
+import type { Meta, StoryObj } from '@storybook/react';
 
 import {
   CreateProjectModal,
@@ -22,10 +22,13 @@ export default {
       </ModalsProvider>
     ),
   ],
-} as ComponentMeta<typeof CreateProjectModal>;
+} as Meta<typeof CreateProjectModal>;
 
-const Template: ComponentStory<typeof CreateProjectModal> = () => {
-  return <>{openCreateProjectModal()}</>;
+type Story = StoryObj<typeof CreateProjectModal>;
+
+export const Default: Story = {
+  render: () => {
+    openCreateProjectModal();
+    return <></>;
+  },
 };
-
-export const Default = Template.bind({});

@@ -3,7 +3,7 @@ import { messages } from '@camp/messages';
 import { createTestAttr } from '@camp/test';
 import { Button } from '@mantine/core';
 
-import { openCreateProjectModal } from '../ProjectForm';
+import { openCreateProjectModal } from '../CreateProjectModal';
 import { createProjectButtonId as ids } from './CreateProjectButton.ids';
 
 interface Props {
