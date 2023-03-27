@@ -1,5 +1,5 @@
 import { messages } from '@camp/messages';
-import type { ComponentStory, Meta, StoryObj } from '@storybook/react';
+import type { Meta, StoryObj } from '@storybook/react';
 
 import { ApiFamilyList } from '../../../.storybook/fixtures/ApiFamilyList';
 import { FamilyTableRow } from '../../../app/components/FamilyList/FamilyTableRow';
