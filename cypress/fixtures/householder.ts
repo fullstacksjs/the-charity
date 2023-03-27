@@ -13,5 +13,10 @@ export const householderFixture = () =>
       gender: householderIdentitySchema.gender(),
       nationality: householderIdentitySchema.nationality(),
       religion: householderIdentitySchema.religion(),
+      dob: householderIdentitySchema
+        .dob()
+        .transform(d => (d != null ? d.toISOString() : d)),
+      city: householderIdentitySchema.cityOfBirth(),
+      issuedAt: householderIdentitySchema.issuedAt(),
     }),
   );

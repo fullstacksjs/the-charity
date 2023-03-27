@@ -9,8 +9,9 @@ export const householderFormIds = {
   religionInput: 'householder-religion',
   genderInput: 'householder-gender',
   dobInput: 'householder-date-of-birth',
-  cityOfBirthInput: 'project-city-of-birth',
-  submitBtn: 'submit-button',
+  cityOfBirthInput: 'householder-city-of-birth',
+  submitBtn: 'householder-submit-button',
+  undoBtn: 'householder-undo-button',
   notification: {
     success: 'householder-successful-update',
     failure: 'householder-failed-update',

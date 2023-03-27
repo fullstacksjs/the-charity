@@ -75,7 +75,12 @@ export const householderIdentitySchema = {
       .nullish()
       .or(z.literal(''))
       .transform(e => (e === '' || e == null ? undefined : e)),
-  dob: () => z.date().nullish().or(z.literal('')),
+  dob: () =>
+    z
+      .date()
+      .nullish()
+      .or(z.literal(''))
+      .transform(e => (e === '' || e == null ? undefined : e)),
 };
 
 export type HouseholderStatus = 'completed' | 'draft';
