@@ -20,7 +20,7 @@ export default defineConfig({
       APP_AUTH0_DOMAIN: getEnv('APP_AUTH0_DOMAIN'),
       APP_AUTH0_CLIENT_ID: getEnv('APP_AUTH0_CLIENT_ID'),
       APP_API_ENDPOINT: getEnv('APP_API_ENDPOINT'),
-      HASURA_ADMIN_SECRET: getEnv('HASURA_ADMIN_SECRET'),
+      APP_HASURA_ADMIN_SECRET: getEnv('APP_HASURA_ADMIN_SECRET'),
     },
     setupNodeEvents(on) {
       on('file:preprocessor', viteProcessor());

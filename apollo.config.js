@@ -6,7 +6,7 @@ module.exports = {
       name: 'the-charity-frontend',
       url: 'https://api.fullstacksjs.com/v1/graphql',
       headers: {
-        'x-hasura-admin-secret': process.env.HASURA_ADMIN_SECRET,
+        'x-hasura-admin-secret': process.env.APP_HASURA_ADMIN_SECRET,
       },
     },
     includes: [

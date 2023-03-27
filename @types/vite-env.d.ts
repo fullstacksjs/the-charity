@@ -6,6 +6,8 @@ interface ImportMetaEnv {
   readonly APP_AUTH0_CLIENT_ID: string;
   readonly APP_APOLLO_DEV_TOOLS?: string;
   readonly APP_AUTH0_AUDIENCE: string;
+  readonly APP_HASURA_ADMIN_SECRET?: string;
+  readonly NODE_ENV?: string;
 }
 
 interface ImportMeta {

@@ -6,7 +6,7 @@ define: &HEADER
 schema:
   - ${APP_GRAPHQL_SCHEMA_URL}:
       headers:
-        x-hasura-admin-secret: ${HASURA_ADMIN_SECRET}
+        x-hasura-admin-secret: ${APP_HASURA_ADMIN_SECRET}
 
 documents: './libs/data-layer/operations/**/*.ts'
 extensions:

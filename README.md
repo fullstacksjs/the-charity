@@ -40,7 +40,7 @@ Before submitting a pull request, please make sure the following is done:
 - `APP_AUTH0_AUDIENCE`: an OAuth2.0 audience, more info [here][oauth-audience].
 - `APP_AUTH0_CLIENT_ID`: a valid url string for auth0 clientId, more info
   [here][auth0-react-config].
-- `HASURA_ADMIN_SECRET`: Hasura admin secret.
+- `APP_HASURA_ADMIN_SECRET`: Hasura admin secret.
 - `API_PROXY_TARGET`: the API target proxy URL for the dev environment.
 - `PORT`: **Optional** port for running vite dev server, if not provided, will
   fallback to 3000.
