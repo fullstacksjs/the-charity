@@ -134,6 +134,7 @@ export const HouseholderForm = ({ initialHouseholder, familyId }: Props) => {
           </Title>
           <Group spacing={20}>
             <Button
+              {...createTestAttr(ids.undoBtn)}
               size="sm"
               variant="outline"
               color="red"

@@ -144,4 +144,52 @@ describe('Householder', () => {
           .should('have.value', inputValue);
     });
   });
+
+  it('[OK]: Admin wants to revisit householder information', () => {
+    const mock = pruneUndefinedOrEmpty(householderFixture());
+
+    cy.findByTestId(ids.form).within(() => {
+      Object.keys(mock).forEach(key => {
+        const input = idMapping[key];
+        const mockValue = mock[key];
+
+        const { id, type } = input;
+        const inputValue =
+          type === 'text' ? mockValue : input.options[mockValue];
+
+        if (inputValue == null) return;
+        if (type === 'text')
+          cy.findByTestId(id).find('input').type(inputValue).blur();
+        if (type === 'select')
+          cy.findByTestId(id).click('bottom').findByText(inputValue).click();
+      });
+
+      cy.root().submit();
+    });
+
+    cy.findByTestId(ids.notification.success, {
+      timeout: 1e4,
+    }).should('exist');
+
+    cy.reload();
+
+    Object.keys(mock).forEach(key => {
+      const input = idMapping[key];
+      const mockValue = mock[key];
+
+      const { id, type } = input;
+      const inputValue = type === 'text' ? mockValue : input.options[mockValue];
+
+      if (inputValue == null) return;
+      // FIXME
+      if (id === ids.dobInput)
+        cy.findByTestId(id).find('input').should('not.have.value', '');
+      else if (type === 'text')
+        cy.findByTestId(id).find('input').should('have.value', inputValue);
+      else if (type === 'select')
+        cy.findByTestId(id)
+          .find('input[type="search"]')
+          .should('have.value', inputValue);
+    });
+  });
 });
