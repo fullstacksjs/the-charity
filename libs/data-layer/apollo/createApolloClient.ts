@@ -27,7 +27,7 @@ export function createApolloClient(
       console.log(`[Network error]: ${JSON.stringify(networkError)}`);
   });
 
-  const httpLink = new HttpLink({ uri: config.schemaUrl });
+  const httpLink = new HttpLink({ uri: config.apiEndpoint });
 
   const client = new ApolloClient({
     link: from([errorLink, authLink, httpLink]),
