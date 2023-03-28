@@ -1,5 +1,5 @@
 /* eslint-disable max-lines-per-function */
-import { DashboardCard } from '@camp/design';
+import { DashboardCard, DetailCardTextField } from '@camp/design';
 import type { Gender } from '@camp/domain';
 import {
   createResolver,
@@ -70,23 +70,22 @@ const t = tt.createForm;
 
 const MemberForm = () => {
   const [opened, { toggle }] = useDisclosure(true);
-
   const { classes } = useStyles();
 
   const {
     handleSubmit,
     register,
-    formState: { errors, isValid },
+    watch,
+    formState: { errors, isValid, isSubmitSuccessful },
     control,
   } = useForm<FormSchema>({
     resolver,
     mode: 'onChange',
   });
-
+  const watchAllFields = watch();
   const onSubmit = handleSubmit(() => {
     noop();
   });
-
   return (
     <DashboardCard
       left={
@@ -97,7 +96,7 @@ const MemberForm = () => {
       right={
         <Group spacing={10}>
           <Title order={4} color="fgDefault" weight="bold">
-            {'علی علیان'}
+            {watchAllFields.name} {watchAllFields.surname}
           </Title>
           <InformationBadge information="draft" />
         </Group>
@@ -107,73 +106,108 @@ const MemberForm = () => {
         <form onSubmit={onSubmit} {...createTestAttr(ids.form)}>
           <Stack spacing={25} align="end">
             <SimpleGrid w="100%" cols={3} spacing="lg" verticalSpacing={20}>
-              <TextInput
-                wrapperProps={createTestAttr(ids.firstNameInput)}
-                {...register('name')}
-                className={classes.textInput}
-                label={`${t.nameInput.label}:`}
-                placeholder={t.nameInput.placeholder}
-                error={errors.name?.message}
-              />
-              <TextInput
-                wrapperProps={createTestAttr(ids.lastNameInput)}
-                {...register('surname')}
-                className={classes.textInput}
-                label={`${t.lastNameInput.label}:`}
-                error={errors.surname?.message}
-                placeholder={t.lastNameInput.placeholder}
-              />
-              <TextInput
-                wrapperProps={createTestAttr(ids.fatherNameInput)}
-                {...register('fatherName')}
-                className={classes.textInput}
-                label={`${t.fatherNameInput.label}:`}
-                placeholder={t.fatherNameInput.placeholder}
-                error={errors.fatherName?.message}
-              />
-              <Controller
-                name="nationality"
-                control={control}
-                render={({ field }) => (
-                  <Select
-                    wrapperProps={createTestAttr(ids.nationalityInput)}
-                    data={nationalities.map(v => ({
-                      value: v,
-                      label: t.nationalityInput.options[v],
-                    }))}
-                    placeholder={t.selectInputs.placeholder}
-                    label={`${t.nationalityInput.label}:`}
-                    error={errors.nationality?.message}
-                    {...field}
-                  />
-                )}
-              />
-              <TextInput
-                wrapperProps={createTestAttr(ids.nationalIdInput)}
-                error={errors.nationalId?.message}
-                className={classes.textInput}
-                {...register('nationalId')}
-                placeholder={t.nationalIdInput.placeholder}
-                label={`${t.nationalIdInput.label}:`}
-              />
-
-              <Controller
-                name="gender"
-                control={control}
-                render={({ field }) => (
-                  <Select
-                    wrapperProps={createTestAttr(ids.genderInput)}
-                    data={genders.map(v => ({
-                      value: v,
-                      label: t.genderInput.options[v],
-                    }))}
-                    label={`${t.genderInput.label}:`}
-                    placeholder={t.selectInputs.placeholder}
-                    error={errors.gender?.message}
-                    {...field}
-                  />
-                )}
-              />
+              {isSubmitSuccessful ? (
+                <DetailCardTextField title={t.nameInput.label}>
+                  {watchAllFields.name}
+                </DetailCardTextField>
+              ) : (
+                <TextInput
+                  wrapperProps={createTestAttr(ids.firstNameInput)}
+                  {...register('name')}
+                  className={classes.textInput}
+                  label={`${t.nameInput.label}:`}
+                  placeholder={t.nameInput.placeholder}
+                  error={errors.name?.message}
+                />
+              )}
+              {isSubmitSuccessful ? (
+                <DetailCardTextField title={t.lastNameInput.label}>
+                  {watchAllFields.surname}
+                </DetailCardTextField>
+              ) : (
+                <TextInput
+                  wrapperProps={createTestAttr(ids.lastNameInput)}
+                  {...register('surname')}
+                  className={classes.textInput}
+                  label={`${t.lastNameInput.label}:`}
+                  error={errors.surname?.message}
+                  placeholder={t.lastNameInput.placeholder}
+                />
+              )}
+              {isSubmitSuccessful ? (
+                <DetailCardTextField title={t.fatherNameInput.label}>
+                  {watchAllFields.fatherName}
+                </DetailCardTextField>
+              ) : (
+                <TextInput
+                  wrapperProps={createTestAttr(ids.fatherNameInput)}
+                  {...register('fatherName')}
+                  className={classes.textInput}
+                  label={`${t.fatherNameInput.label}:`}
+                  placeholder={t.fatherNameInput.placeholder}
+                  error={errors.fatherName?.message}
+                />
+              )}
+              {isSubmitSuccessful ? (
+                <DetailCardTextField title={t.nationalityInput.label}>
+                  {watchAllFields.nationality}
+                </DetailCardTextField>
+              ) : (
+                <Controller
+                  name="nationality"
+                  control={control}
+                  render={({ field }) => (
+                    <Select
+                      wrapperProps={createTestAttr(ids.nationalityInput)}
+                      data={nationalities.map(v => ({
+                        value: v,
+                        label: t.nationalityInput.options[v],
+                      }))}
+                      placeholder={t.selectInputs.placeholder}
+                      label={`${t.nationalityInput.label}:`}
+                      error={errors.nationality?.message}
+                      {...field}
+                    />
+                  )}
+                />
+              )}
+              {isSubmitSuccessful ? (
+                <DetailCardTextField title={t.nationalIdInput.label}>
+                  {watchAllFields.nationalId}
+                </DetailCardTextField>
+              ) : (
+                <TextInput
+                  wrapperProps={createTestAttr(ids.nationalIdInput)}
+                  error={errors.nationalId?.message}
+                  className={classes.textInput}
+                  {...register('nationalId')}
+                  placeholder={t.nationalIdInput.placeholder}
+                  label={`${t.nationalIdInput.label}:`}
+                />
+              )}
+              {isSubmitSuccessful ? (
+                <DetailCardTextField title={t.genderInput.label}>
+                  {watchAllFields.gender}
+                </DetailCardTextField>
+              ) : (
+                <Controller
+                  name="gender"
+                  control={control}
+                  render={({ field }) => (
+                    <Select
+                      wrapperProps={createTestAttr(ids.genderInput)}
+                      data={genders.map(v => ({
+                        value: v,
+                        label: t.genderInput.options[v],
+                      }))}
+                      label={`${t.genderInput.label}:`}
+                      placeholder={t.selectInputs.placeholder}
+                      error={errors.gender?.message}
+                      {...field}
+                    />
+                  )}
+                />
+              )}
               <DateInput
                 wrapperProps={createTestAttr(ids.dobInput)}
                 className={classes.dateInput}
@@ -186,24 +220,29 @@ const MemberForm = () => {
                 locale="fa"
                 placeholder={t.selectInputs.placeholder}
               />
-
-              <Controller
-                name="religion"
-                control={control}
-                render={({ field }) => (
-                  <Select
-                    wrapperProps={createTestAttr(ids.religionInput)}
-                    data={religions.map(v => ({
-                      value: v,
-                      label: t.religionInput.options[v],
-                    }))}
-                    placeholder={t.selectInputs.placeholder}
-                    label={`${t.religionInput.label}:`}
-                    error={errors.religion?.message}
-                    {...field}
-                  />
-                )}
-              />
+              {isSubmitSuccessful ? (
+                <DetailCardTextField title={t.religionInput.label}>
+                  {watchAllFields.religion}
+                </DetailCardTextField>
+              ) : (
+                <Controller
+                  name="religion"
+                  control={control}
+                  render={({ field }) => (
+                    <Select
+                      wrapperProps={createTestAttr(ids.religionInput)}
+                      data={religions.map(v => ({
+                        value: v,
+                        label: t.religionInput.options[v],
+                      }))}
+                      placeholder={t.selectInputs.placeholder}
+                      label={`${t.religionInput.label}:`}
+                      error={errors.religion?.message}
+                      {...field}
+                    />
+                  )}
+                />
+              )}
             </SimpleGrid>
             <Button
               {...createTestAttr(ids.submitBtn)}
