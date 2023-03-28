@@ -13,4 +13,5 @@ export {
   Users as PeopleIcon,
   Plus as PlusIcon,
   Trash2 as TrashIcon,
+  User as UserIcon,
 } from 'react-feather';

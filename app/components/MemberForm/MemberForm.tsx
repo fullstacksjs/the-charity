@@ -8,13 +8,14 @@ import {
   nationalities,
   religions,
 } from '@camp/domain';
-import { ArrowDownIcon, CalendarIcon, CheckIcon, PlusIcon } from '@camp/icons';
+import { ArrowDownIcon, CalendarIcon, CheckIcon } from '@camp/icons';
 import { messages } from '@camp/messages';
 import { createTestAttr } from '@camp/test';
 import { noop } from '@fullstacksjs/toolbox';
 import {
   ActionIcon,
   Button,
+  Center,
   Collapse,
   createStyles,
   Group,
@@ -30,6 +31,8 @@ import React, { useState } from 'react';
 import { Controller, useForm } from 'react-hook-form';
 
 import { InformationBadge } from '../InformationBadge';
+import { MemberEmptyState } from '../MemberEmptyState';
+import { CreateMemberButton } from './CreateMemberButton';
 import { memberFormIds as ids } from './MemberForm.ids';
 
 const useStyles = createStyles(theme => ({
@@ -268,19 +271,15 @@ export const MemberList = () => {
   };
 
   return (
-    <Stack spacing={25}>
+    <Stack spacing={25} sx={{ position: 'relative' }}>
       <Group position="apart">
         <DashboardTitle>{tt.title}</DashboardTitle>
-        <Button
-          variant="outline"
-          size="sm"
-          onClick={addNewMemberHandler}
-          leftIcon={<PlusIcon width="16" height="16" />}
-        >
-          {tt.addNewMember}
-        </Button>
+        <CreateMemberButton onAddNewMember={addNewMemberHandler} />
       </Group>
       {memberForm}
+      <Center h={400}>
+        <MemberEmptyState addNewMember={addNewMemberHandler} />
+      </Center>
     </Stack>
   );
 };

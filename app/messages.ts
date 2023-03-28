@@ -209,7 +209,11 @@ export const messages = {
   },
   member: {
     title: 'اعضا',
-    addNewMember: 'افزودن',
+    addNewMember: 'افزودن عضو',
+    empty: {
+      title: 'عضوی وجود ندارد!',
+      description: 'عضوی برای این خانواده ثبت نشده است',
+    },
     createForm: {
       submitBtn: 'ثبت',
       selectInputs: {
