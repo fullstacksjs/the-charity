@@ -48,3 +48,4 @@ iname
 graphiql
 tsbuildinfo
 huskyrc
+pkey

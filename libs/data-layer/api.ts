@@ -1478,11 +1478,13 @@ export enum ApiHouseholderUpdateColumn {
 export type ApiMember = {
   __typename?: 'member';
   created_at: Scalars['timestamptz'];
+  dob?: Maybe<Scalars['date']>;
   family_id: Scalars['uuid'];
   father_name?: Maybe<Scalars['String']>;
   gender?: Maybe<ApiGenderEnum>;
   id: Scalars['uuid'];
   name: Scalars['String'];
+  national_id?: Maybe<Scalars['String']>;
   nationality?: Maybe<Scalars['String']>;
   religion?: Maybe<Scalars['String']>;
   status: ApiMemberStatusEnum;
@@ -1518,11 +1520,13 @@ export type ApiMemberBoolExp = {
   _not?: InputMaybe<ApiMemberBoolExp>;
   _or?: InputMaybe<Array<ApiMemberBoolExp>>;
   created_at?: InputMaybe<ApiTimestamptzComparisonExp>;
+  dob?: InputMaybe<ApiDateComparisonExp>;
   family_id?: InputMaybe<ApiUuidComparisonExp>;
   father_name?: InputMaybe<ApiStringComparisonExp>;
   gender?: InputMaybe<ApiGenderEnumComparisonExp>;
   id?: InputMaybe<ApiUuidComparisonExp>;
   name?: InputMaybe<ApiStringComparisonExp>;
+  national_id?: InputMaybe<ApiStringComparisonExp>;
   nationality?: InputMaybe<ApiStringComparisonExp>;
   religion?: InputMaybe<ApiStringComparisonExp>;
   status?: InputMaybe<ApiMemberStatusEnumComparisonExp>;
@@ -1539,11 +1543,13 @@ export enum ApiMemberConstraint {
 /** input type for inserting data into table "member" */
 export type ApiMemberInsertInput = {
   created_at?: InputMaybe<Scalars['timestamptz']>;
+  dob?: InputMaybe<Scalars['date']>;
   family_id?: InputMaybe<Scalars['uuid']>;
   father_name?: InputMaybe<Scalars['String']>;
   gender?: InputMaybe<ApiGenderEnum>;
   id?: InputMaybe<Scalars['uuid']>;
   name?: InputMaybe<Scalars['String']>;
+  national_id?: InputMaybe<Scalars['String']>;
   nationality?: InputMaybe<Scalars['String']>;
   religion?: InputMaybe<Scalars['String']>;
   status?: InputMaybe<ApiMemberStatusEnum>;
@@ -1555,10 +1561,12 @@ export type ApiMemberInsertInput = {
 export type ApiMemberMaxFields = {
   __typename?: 'member_max_fields';
   created_at?: Maybe<Scalars['timestamptz']>;
+  dob?: Maybe<Scalars['date']>;
   family_id?: Maybe<Scalars['uuid']>;
   father_name?: Maybe<Scalars['String']>;
   id?: Maybe<Scalars['uuid']>;
   name?: Maybe<Scalars['String']>;
+  national_id?: Maybe<Scalars['String']>;
   nationality?: Maybe<Scalars['String']>;
   religion?: Maybe<Scalars['String']>;
   surname?: Maybe<Scalars['String']>;
@@ -1569,10 +1577,12 @@ export type ApiMemberMaxFields = {
 export type ApiMemberMinFields = {
   __typename?: 'member_min_fields';
   created_at?: Maybe<Scalars['timestamptz']>;
+  dob?: Maybe<Scalars['date']>;
   family_id?: Maybe<Scalars['uuid']>;
   father_name?: Maybe<Scalars['String']>;
   id?: Maybe<Scalars['uuid']>;
   name?: Maybe<Scalars['String']>;
+  national_id?: Maybe<Scalars['String']>;
   nationality?: Maybe<Scalars['String']>;
   religion?: Maybe<Scalars['String']>;
   surname?: Maybe<Scalars['String']>;
@@ -1598,11 +1608,13 @@ export type ApiMemberOnConflict = {
 /** Ordering options when selecting data from "member". */
 export type ApiMemberOrderBy = {
   created_at?: InputMaybe<ApiOrderBy>;
+  dob?: InputMaybe<ApiOrderBy>;
   family_id?: InputMaybe<ApiOrderBy>;
   father_name?: InputMaybe<ApiOrderBy>;
   gender?: InputMaybe<ApiOrderBy>;
   id?: InputMaybe<ApiOrderBy>;
   name?: InputMaybe<ApiOrderBy>;
+  national_id?: InputMaybe<ApiOrderBy>;
   nationality?: InputMaybe<ApiOrderBy>;
   religion?: InputMaybe<ApiOrderBy>;
   status?: InputMaybe<ApiOrderBy>;
@@ -1620,6 +1632,8 @@ export enum ApiMemberSelectColumn {
   /** column name */
   CreatedAt = 'created_at',
   /** column name */
+  Dob = 'dob',
+  /** column name */
   FamilyId = 'family_id',
   /** column name */
   FatherName = 'father_name',
@@ -1629,6 +1643,8 @@ export enum ApiMemberSelectColumn {
   Id = 'id',
   /** column name */
   Name = 'name',
+  /** column name */
+  NationalId = 'national_id',
   /** column name */
   Nationality = 'nationality',
   /** column name */
@@ -1644,11 +1660,13 @@ export enum ApiMemberSelectColumn {
 /** input type for updating data in table "member" */
 export type ApiMemberSetInput = {
   created_at?: InputMaybe<Scalars['timestamptz']>;
+  dob?: InputMaybe<Scalars['date']>;
   family_id?: InputMaybe<Scalars['uuid']>;
   father_name?: InputMaybe<Scalars['String']>;
   gender?: InputMaybe<ApiGenderEnum>;
   id?: InputMaybe<Scalars['uuid']>;
   name?: InputMaybe<Scalars['String']>;
+  national_id?: InputMaybe<Scalars['String']>;
   nationality?: InputMaybe<Scalars['String']>;
   religion?: InputMaybe<Scalars['String']>;
   status?: InputMaybe<ApiMemberStatusEnum>;
@@ -1777,6 +1795,8 @@ export enum ApiMemberUpdateColumn {
   /** column name */
   CreatedAt = 'created_at',
   /** column name */
+  Dob = 'dob',
+  /** column name */
   FamilyId = 'family_id',
   /** column name */
   FatherName = 'father_name',
@@ -1786,6 +1806,8 @@ export enum ApiMemberUpdateColumn {
   Id = 'id',
   /** column name */
   Name = 'name',
+  /** column name */
+  NationalId = 'national_id',
   /** column name */
   Nationality = 'nationality',
   /** column name */
@@ -3994,6 +4016,13 @@ export type ApiDeleteFamilyMutationMutationVariables = Exact<{
 
 export type ApiDeleteFamilyMutationMutation = { __typename?: 'mutation_root', delete_family_by_pk?: { __typename?: 'family', id: string, name: string } | null };
 
+export type ApiMemberMutationVariables = Exact<{
+  input: ApiMemberInsertInput;
+}>;
+
+
+export type ApiMemberMutation = { __typename?: 'mutation_root', insert_member_one?: { __typename?: 'member', id: string, name: string, surname?: string | null, father_name?: string | null, nationality?: string | null, gender?: ApiGenderEnum | null, religion?: string | null, status: ApiMemberStatusEnum } | null };
+
 export type ApiUpsertHouseholderMutationVariables = Exact<{
   input: ApiHouseholderInsertInput;
 }>;
@@ -4065,6 +4094,23 @@ export const ApiDeleteFamilyMutationDocument = gql`
 export type ApiDeleteFamilyMutationMutationFn = Apollo.MutationFunction<ApiDeleteFamilyMutationMutation, ApiDeleteFamilyMutationMutationVariables>;
 export type ApiDeleteFamilyMutationMutationResult = Apollo.MutationResult<ApiDeleteFamilyMutationMutation>;
 export type ApiDeleteFamilyMutationMutationOptions = Apollo.BaseMutationOptions<ApiDeleteFamilyMutationMutation, ApiDeleteFamilyMutationMutationVariables>;
+export const ApiMemberDocument = gql`
+    mutation Member($input: member_insert_input!) {
+  insert_member_one(object: $input, on_conflict: {constraint: member_pkey}) {
+    id
+    name
+    surname
+    father_name
+    nationality
+    gender
+    religion
+    status
+  }
+}
+    `;
+export type ApiMemberMutationFn = Apollo.MutationFunction<ApiMemberMutation, ApiMemberMutationVariables>;
+export type ApiMemberMutationResult = Apollo.MutationResult<ApiMemberMutation>;
+export type ApiMemberMutationOptions = Apollo.BaseMutationOptions<ApiMemberMutation, ApiMemberMutationVariables>;
 export const ApiUpsertHouseholderDocument = gql`
     mutation UpsertHouseholder($input: householder_insert_input!) {
   insert_householder_one(
