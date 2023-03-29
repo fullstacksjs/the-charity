@@ -113,7 +113,7 @@ export const FamilyDetail = () => {
           },
           {
             tab: <Title order={5}>{t.tabs.membersTitle}</Title>,
-            panel: <MemberList />,
+            panel: <MemberList familyId={family.id} />,
             id: ids.memberFormTab,
           },
         ]}
