@@ -1,3 +1,4 @@
+export * from './MemberListQuery';
 export * from './useHouseholderQuery';
 export * from './useHouseholdListQuery';
 export * from './useHouseholdQuery';

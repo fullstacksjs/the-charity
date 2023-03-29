@@ -19,7 +19,7 @@ import { Button, Title } from '@mantine/core';
 import {
   HouseholderDetail,
   InformationBadge,
-  MemberForm,
+  MemberForme
   SeverityBadge,
 } from '../../../../components';
 import { openDeleteHouseholdModal } from '../DeleteHouseholdModal';
