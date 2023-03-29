@@ -1,6 +1,6 @@
 import { messages } from '@camp/messages';
 
-import { MemberList } from './MemberForm';
+import { MemberForm } from './MemberForm';
 import { memberFormIds } from './MemberForm.ids';
 
 const createMemberForm = messages.member.createForm;
@@ -8,7 +8,7 @@ const validation = messages.validation;
 
 describe('Create member form Form', () => {
   beforeEach(() => {
-    cy.mount(<MemberList />);
+    cy.mount(<MemberForm />);
   });
 
   it('contains a first name input with correct label', () => {

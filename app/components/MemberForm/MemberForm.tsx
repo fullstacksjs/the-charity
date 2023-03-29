@@ -1,5 +1,5 @@
 /* eslint-disable max-lines-per-function */
-import { DashboardCard, DashboardTitle, DetailCardField } from '@camp/design';
+import { DashboardCard, DetailCardField } from '@camp/design';
 import type { GenderEnum } from '@camp/domain';
 import {
   createResolver,
@@ -15,7 +15,6 @@ import { noop } from '@fullstacksjs/toolbox';
 import {
   ActionIcon,
   Button,
-  Center,
   Collapse,
   createStyles,
   Group,
@@ -27,12 +26,9 @@ import {
 } from '@mantine/core';
 import { useDisclosure } from '@mantine/hooks';
 import { DateInput } from 'mantine-datepicker-jalali';
-import React, { useState } from 'react';
 import { Controller, useForm } from 'react-hook-form';
 
 import { InformationBadge } from '../InformationBadge';
-import { MemberEmptyState } from '../MemberEmptyState';
-import { CreateMemberButton } from './CreateMemberButton';
 import { memberFormIds as ids } from './MemberForm.ids';
 
 const useStyles = createStyles(theme => ({
@@ -68,13 +64,12 @@ const resolver = createResolver<FormSchema>({
   religion: memberSchema.religion(),
 });
 
-const tt = messages.member;
-const t = tt.createForm;
+const t = messages.member.createForm;
 
-const MemberForm = () => {
+export const MemberForm = () => {
   const [opened, { toggle }] = useDisclosure(true);
-  const { classes } = useStyles();
 
+  const { classes } = useStyles();
   const {
     handleSubmit,
     register,
@@ -89,6 +84,7 @@ const MemberForm = () => {
   const onSubmit = handleSubmit(() => {
     noop();
   });
+
   return (
     <DashboardCard
       left={
@@ -260,26 +256,5 @@ const MemberForm = () => {
         </form>
       </Collapse>
     </DashboardCard>
-  );
-};
-
-export const MemberList = () => {
-  const [memberForm, setMemberForm] = useState<React.ReactNode[]>([]);
-
-  const addNewMemberHandler = () => {
-    setMemberForm(memberForm.concat(<MemberForm key={memberForm.length} />));
-  };
-
-  return (
-    <Stack spacing={25} sx={{ position: 'relative' }}>
-      <Group position="apart">
-        <DashboardTitle>{tt.title}</DashboardTitle>
-        <CreateMemberButton onAddNewMember={addNewMemberHandler} />
-      </Group>
-      {memberForm}
-      <Center h={400}>
-        <MemberEmptyState addNewMember={addNewMemberHandler} />
-      </Center>
-    </Stack>
   );
 };
