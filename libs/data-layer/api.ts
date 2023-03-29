@@ -4030,6 +4030,13 @@ export type ApiUpsertHouseholderMutationVariables = Exact<{
 
 export type ApiUpsertHouseholderMutation = { __typename?: 'mutation_root', insert_householder_one?: { __typename?: 'householder', city?: ApiCityEnum | null, gender?: ApiGenderEnum | null, dob?: string | null, national_id?: string | null, father_name?: string | null, name: string, nationality?: ApiNationalityEnum | null, religion?: ApiReligionEnum | null, surname?: string | null, status: ApiHouseholderStatusEnum } | null };
 
+export type ApiMemberListQueryVariables = Exact<{
+  id: Scalars['uuid'];
+}>;
+
+
+export type ApiMemberListQuery = { __typename?: 'query_root', member_by_pk?: { __typename?: 'member', id: any, family_id: any, father_name?: string | null, gender?: ApiGenderEnum | null, name: string, surname?: string | null, religion?: string | null, status: ApiMemberStatusEnum, nationality?: string | null } | null };
+
 export type ApiFamilyListQueryVariables = Exact<{ [key: string]: never; }>;
 
 
@@ -4133,6 +4140,22 @@ export const ApiUpsertHouseholderDocument = gql`
 export type ApiUpsertHouseholderMutationFn = Apollo.MutationFunction<ApiUpsertHouseholderMutation, ApiUpsertHouseholderMutationVariables>;
 export type ApiUpsertHouseholderMutationResult = Apollo.MutationResult<ApiUpsertHouseholderMutation>;
 export type ApiUpsertHouseholderMutationOptions = Apollo.BaseMutationOptions<ApiUpsertHouseholderMutation, ApiUpsertHouseholderMutationVariables>;
+export const ApiMemberListDocument = gql`
+    query MemberList($id: uuid!) {
+  member_by_pk(id: $id) {
+    id
+    family_id
+    father_name
+    gender
+    name
+    surname
+    religion
+    status
+    nationality
+  }
+}
+    `;
+export type ApiMemberListQueryResult = Apollo.QueryResult<ApiMemberListQuery, ApiMemberListQueryVariables>;
 export const ApiFamilyListDocument = gql`
     query FamilyList {
   family {
