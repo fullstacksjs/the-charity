@@ -1,6 +1,7 @@
 /* eslint-disable max-lines-per-function */
+import { useMemberMutation } from '@camp/data-layer';
 import { DashboardCard, DetailCardTextField } from '@camp/design';
-import type { Gender } from '@camp/domain';
+import type { Gender, Member } from '@camp/domain';
 import {
   createResolver,
   genders,
@@ -11,7 +12,6 @@ import {
 import { ArrowDownIcon, CalendarIcon, CheckIcon } from '@camp/icons';
 import { messages } from '@camp/messages';
 import { createTestAttr } from '@camp/test';
-import { noop } from '@fullstacksjs/toolbox';
 import {
   ActionIcon,
   Button,
@@ -66,10 +66,16 @@ const resolver = createResolver<FormSchema>({
 
 const t = messages.member.createForm;
 
-export const MemberForm = () => {
-  const [opened, { toggle }] = useDisclosure(true);
+interface Props {
+  member: Member[] | null;
+  familyId: string;
+}
 
+export const MemberForm = ({ member, familyId }: Props) => {
+  const [opened, { toggle }] = useDisclosure(true);
+  const [MemberMutation] = useMemberMutation();
   const { classes } = useStyles();
+
   const {
     handleSubmit,
     register,
@@ -81,10 +87,36 @@ export const MemberForm = () => {
     mode: 'onChange',
   });
   const watchAllFields = watch();
-  const onSubmit = handleSubmit(() => {
-    noop();
-  });
-
+  const onSubmit = handleSubmit(
+    ({
+      fatherName,
+      name,
+      surname,
+      nationality,
+      religion,
+      nationalId,
+      gender,
+    }) => {
+      MemberMutation({
+        variables: {
+          fatherName,
+          surname,
+          name,
+          familyId,
+          nationality,
+          religion,
+          nationalId,
+          gender,
+        },
+      })
+        .then(({ data }) => {
+          console.log(data);
+        })
+        .catch(() => {
+          console.log('error');
+        });
+    },
+  );
   return (
     <DashboardCard
       left={

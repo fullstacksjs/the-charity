@@ -7,7 +7,7 @@ import {
   type ApiMemberListQueryVariables,
 } from '../../api';
 import { ApiGenderEnum, ApiMemberStatusEnum } from '../../api';
-import { useQuery } from './useQuery';
+import { useQuery } from '../../apiClient';
 
 const Document = gql`
   query memberList($family_id: uuid!) {

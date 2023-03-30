@@ -7,7 +7,7 @@ import {
   type ApiMemberMutationVariables,
 } from '../../api';
 import { ApiGenderEnum, ApiMemberStatusEnum } from '../../api';
-import { useMutation } from './useMutation';
+import { useMutation } from '../../apiClient';
 
 const Document = gql`
   mutation Member($input: member_insert_input!) {
@@ -31,10 +31,10 @@ export interface InsertMember {
   member: Member;
 }
 
-export const toMemberStatus = (status: ApiMemberStatusEnum): MemberStatus =>
+const toMemberStatus = (status: ApiMemberStatusEnum): MemberStatus =>
   status === ApiMemberStatusEnum.Completed ? 'completed' : 'draft';
 
-export const toMemberGender = (gender: ApiGenderEnum): Gender =>
+const toMemberGender = (gender: ApiGenderEnum): Gender =>
   gender === ApiGenderEnum.Male ? 'male' : 'female';
 
 const toClient = (
