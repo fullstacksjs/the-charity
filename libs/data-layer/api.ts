@@ -4031,11 +4031,11 @@ export type ApiUpsertHouseholderMutationVariables = Exact<{
 export type ApiUpsertHouseholderMutation = { __typename?: 'mutation_root', insert_householder_one?: { __typename?: 'householder', city?: ApiCityEnum | null, gender?: ApiGenderEnum | null, dob?: string | null, national_id?: string | null, father_name?: string | null, name: string, nationality?: ApiNationalityEnum | null, religion?: ApiReligionEnum | null, surname?: string | null, status: ApiHouseholderStatusEnum } | null };
 
 export type ApiMemberListQueryVariables = Exact<{
-  id: Scalars['uuid'];
+  family_id: Scalars['uuid'];
 }>;
 
 
-export type ApiMemberListQuery = { __typename?: 'query_root', member_by_pk?: { __typename?: 'member', id: any, family_id: any, father_name?: string | null, gender?: ApiGenderEnum | null, name: string, surname?: string | null, religion?: string | null, status: ApiMemberStatusEnum, nationality?: string | null } | null };
+export type ApiMemberListQuery = { __typename?: 'query_root', member: Array<{ __typename?: 'member', id: any, status: ApiMemberStatusEnum, name: string, surname?: string | null, father_name?: string | null, nationality?: string | null, gender?: ApiGenderEnum | null, religion?: string | null }> };
 
 export type ApiFamilyListQueryVariables = Exact<{ [key: string]: never; }>;
 
@@ -4141,17 +4141,16 @@ export type ApiUpsertHouseholderMutationFn = Apollo.MutationFunction<ApiUpsertHo
 export type ApiUpsertHouseholderMutationResult = Apollo.MutationResult<ApiUpsertHouseholderMutation>;
 export type ApiUpsertHouseholderMutationOptions = Apollo.BaseMutationOptions<ApiUpsertHouseholderMutation, ApiUpsertHouseholderMutationVariables>;
 export const ApiMemberListDocument = gql`
-    query MemberList($id: uuid!) {
-  member_by_pk(id: $id) {
+    query memberList($family_id: uuid!) {
+  member(where: {family_id: {_eq: $family_id}}) {
     id
-    family_id
-    father_name
-    gender
+    status
     name
     surname
-    religion
-    status
+    father_name
     nationality
+    gender
+    religion
   }
 }
     `;

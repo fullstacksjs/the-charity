@@ -10,23 +10,22 @@ import { ApiGenderEnum, ApiMemberStatusEnum } from '../../api';
 import { useQuery } from './useQuery';
 
 const Document = gql`
-  query MemberList($id: uuid!) {
-    member_by_pk(id: $id) {
+  query memberList($family_id: uuid!) {
+    member(where: { family_id: { _eq: $family_id } }) {
       id
-      family_id
-      father_name
-      gender
+      status
       name
       surname
-      religion
-      status
+      father_name
       nationality
+      gender
+      religion
     }
   }
 `;
 
 export interface MemberList {
-  member: Member;
+  members: Member[];
 }
 
 export const toMemberStatus = (status: ApiMemberStatusEnum): MemberStatus =>
@@ -37,19 +36,21 @@ export const toMemberGender = (gender: ApiGenderEnum): Gender =>
 
 const toClient = (
   data: ApiMemberListQuery | null | undefined,
-): MemberList | null =>
-  data?.member_by_pk == null
-    ? null
-    : {
-        member: {
-          name: data.member_by_pk.name,
-          surname: data.member_by_pk.surname ?? undefined,
-          fatherName: data.member_by_pk.father_name ?? undefined,
-          nationality: data.member_by_pk.nationality ?? undefined,
-          religion: (data.member_by_pk.religion as 'islam' | null) ?? undefined,
-          status: toMemberStatus(data.member_by_pk.status),
-        },
-      };
+): MemberList | null => ({
+  members:
+    data?.member == null
+      ? []
+      : data.member.map(m => ({
+          id: m.id,
+          name: m.name,
+          surname: m.surname ?? undefined,
+          gender: toMemberGender(m.gender!),
+          fatherName: m.father_name ?? undefined,
+          nationality: m.nationality ?? undefined,
+          religion: (m.religion as 'islam' | null) ?? undefined,
+          status: toMemberStatus(m.status),
+        })),
+});
 
 export const useMemberQuery = (
   options: Apollo.QueryHookOptions<
