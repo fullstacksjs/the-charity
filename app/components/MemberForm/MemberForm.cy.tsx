@@ -8,7 +8,7 @@ const validation = messages.validation;
 
 describe('Create member form Form', () => {
   beforeEach(() => {
-    cy.mount(<MemberForm />);
+    cy.mount(<MemberForm member={null} familyId="null" />);
   });
 
   it('contains a first name input with correct label', () => {
