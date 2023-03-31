@@ -9,7 +9,7 @@ import { nationalities, type Nationality } from './Nationality';
 import { type Religion } from './Religions';
 import { religions } from './Religions';
 
-const numberRegex = /^[0-9]*[\u0660-\u0669\u06F0-\u06F90-9]*$/;
+export const numberRegex = /^[0-9]*[\u0660-\u0669\u06F0-\u06F90-9]*$/;
 
 export const householderIdentitySchema = {
   name: () =>
@@ -75,12 +75,10 @@ export const householderIdentitySchema = {
       .nullish()
       .or(z.literal(''))
       .transform(e => (e === '' || e == null ? undefined : e)),
-  dob: () =>
-    z
-      .date()
-      .nullish()
-      .or(z.literal(''))
-      .transform(e => (e === '' || e == null ? undefined : e)),
+  dob: () => z.date(),
+  // .nullish()
+  // .or(z.literal(''))
+  // .transform(e => (e === '' || e == null ? undefined : e)),
 };
 
 export type HouseholderStatus = 'completed' | 'draft';

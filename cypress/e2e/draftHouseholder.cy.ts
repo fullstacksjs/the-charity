@@ -23,7 +23,7 @@ interface SelectInput {
 interface DateInput {
   type: 'date';
   id: string;
-  format: (d: Date) => string;
+  format: (IsoString: string) => string;
 }
 //
 
@@ -48,8 +48,10 @@ const idMapping = {
   dob: {
     id: ids.dobInput,
     type: 'date',
-    format: (d: Date) =>
-      new Intl.DateTimeFormat('fa-IR', { dateStyle: 'long' } as any).format(d),
+    format: (IsoString: string) =>
+      new Intl.DateTimeFormat('fa-IR', { dateStyle: 'long' } as any).format(
+        new Date(IsoString),
+      ),
   },
   city: { id: ids.cityOfBirthInput, type: 'select', options: messages.cities },
   issuedAt: { id: ids.issuedAtInput, type: 'select', options: messages.cities },
@@ -103,11 +105,11 @@ function emptyHouseholderForm(mock: Mock) {
     const inputValue = type === 'select' ? input.options[mockValue] : mockValue;
 
     if (inputValue == null) return;
-    if (type === 'text' || type === 'date')
-      cy.findByTestId(id).find('input').clear().blur();
+
     // NOTE: clicking on the same selected element unselects it
     if (type === 'select')
       cy.findByTestId(id).click('bottom').findByText(inputValue).click();
+    else cy.findByTestId(id).find('input').clear().blur();
   });
 }
 
@@ -122,10 +124,10 @@ function addHouseholder(mock: Mock) {
         type === 'select' ? input.options[mockValue] : mockValue;
 
       if (inputValue == null) return;
-      if (type === 'text' || type === 'date')
-        cy.findByTestId(id).find('input').type(inputValue).blur();
+
       if (type === 'select')
         cy.findByTestId(id).click('bottom').findByText(inputValue).click();
+      else cy.findByTestId(id).find('input').type(inputValue).blur();
     });
 
     cy.root().submit();
@@ -147,9 +149,10 @@ function compareHouseholderForm(mock: Mock) {
     const inputValue = type === 'select' ? input.options[mockValue] : mockValue;
 
     if (inputValue == null) return;
-    // FIXME
-    if (id === ids.dobInput)
-      cy.findByTestId(id).find('input').should('not.have.value', '');
+    if (type === 'date')
+      cy.findByTestId(id)
+        .find('input')
+        .should('have.value', input.format(inputValue));
     else if (type === 'text')
       cy.findByTestId(id).find('input').should('have.value', inputValue);
     else if (type === 'select')

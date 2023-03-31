@@ -1,22 +1,27 @@
 import { generateMock } from '@anatine/zod-mock';
 import { z } from 'zod';
 
-import { householderIdentitySchema } from '../../libs/domain/Householder';
+import {
+  cities,
+  genders,
+  householderIdentitySchema,
+  nationalities,
+  numberRegex,
+  religions,
+} from '../../libs/domain';
 
 export const householderFixture = () =>
   generateMock(
     z.object({
       name: householderIdentitySchema.name(),
-      surname: householderIdentitySchema.surname(),
-      fatherName: householderIdentitySchema.fatherName(),
-      nationalId: householderIdentitySchema.nationalId(),
-      gender: householderIdentitySchema.gender(),
-      nationality: householderIdentitySchema.nationality(),
-      religion: householderIdentitySchema.religion(),
-      dob: householderIdentitySchema
-        .dob()
-        .transform(d => (d != null ? d.toISOString() : d)),
-      city: householderIdentitySchema.cityOfBirth(),
-      issuedAt: householderIdentitySchema.issuedAt(),
+      surname: z.string().trim().min(3).max(20),
+      fatherName: z.string().trim().min(3).max(20),
+      nationalId: z.string().min(10).max(20).regex(numberRegex).trim(),
+      gender: z.union([z.literal(genders[0]), z.literal(genders[1])]),
+      nationality: z.literal(nationalities[0]),
+      religion: z.literal(religions[0]),
+      city: z.literal(cities[0]),
+      issuedAt: z.literal(cities[0]),
+      dob: z.date().transform(d => d.toISOString()),
     }),
   );
