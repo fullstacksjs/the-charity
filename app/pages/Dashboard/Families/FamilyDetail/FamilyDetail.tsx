@@ -75,7 +75,7 @@ export const FamilyDetail = () => {
           {
             tab: <Title order={5}>{t.tabs.householderTitle}</Title>,
             panel: <HouseholderDetail familyId={family.id} />,
-            id: ids.householderIdentityTab,
+            id: ids.householderTab,
             isBusy: true,
             isDefault: true,
           },

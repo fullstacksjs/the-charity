@@ -5,13 +5,14 @@ import { type City } from './City';
 import { cities } from './City';
 import { type Gender } from './Gender';
 import { genders } from './Gender';
-import { nationalities, type Nationality } from './Nationality';
+import { type Nationality } from './Nationality';
+import { nationalities } from './Nationality';
 import { type Religion } from './Religions';
 import { religions } from './Religions';
 
 export const numberRegex = /^[0-9]*[\u0660-\u0669\u06F0-\u06F90-9]*$/;
 
-export const householderIdentitySchema = {
+export const householderSchema = {
   name: () =>
     z
       .string()
@@ -75,10 +76,12 @@ export const householderIdentitySchema = {
       .nullish()
       .or(z.literal(''))
       .transform(e => (e === '' || e == null ? undefined : e)),
-  dob: () => z.date(),
-  // .nullish()
-  // .or(z.literal(''))
-  // .transform(e => (e === '' || e == null ? undefined : e)),
+  dob: () =>
+    z
+      .date()
+      .nullish()
+      .or(z.literal(''))
+      .transform(e => (e === '' || e == null ? undefined : e)),
 };
 
 export type HouseholderStatus = 'completed' | 'draft';

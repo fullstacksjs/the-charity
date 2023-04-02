@@ -1,5 +1,5 @@
 export const memberFormIds = {
-  form: 'member-identity-form',
+  form: 'member-form',
   firstNameInput: 'member-first-name',
   lastNameInput: 'member-last-name',
   fatherNameInput: 'member-father-name',

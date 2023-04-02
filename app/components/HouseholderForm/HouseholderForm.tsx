@@ -12,7 +12,7 @@ import {
   createResolver,
   type Gender,
   genders,
-  householderIdentitySchema,
+  householderSchema,
   nationalities,
   religions,
 } from '@camp/domain';
@@ -54,16 +54,16 @@ interface FormSchema {
 }
 
 const resolver = createResolver<FormSchema>({
-  name: householderIdentitySchema.name(),
-  surname: householderIdentitySchema.surname(),
-  fatherName: householderIdentitySchema.fatherName(),
-  nationalId: householderIdentitySchema.nationalId(),
-  gender: householderIdentitySchema.gender(),
-  nationality: householderIdentitySchema.nationality(),
-  religion: householderIdentitySchema.religion(),
-  cityOfBirth: householderIdentitySchema.cityOfBirth(),
-  issuedAt: householderIdentitySchema.issuedAt(),
-  dob: householderIdentitySchema.dob(),
+  name: householderSchema.name(),
+  surname: householderSchema.surname(),
+  fatherName: householderSchema.fatherName(),
+  nationalId: householderSchema.nationalId(),
+  gender: householderSchema.gender(),
+  nationality: householderSchema.nationality(),
+  religion: householderSchema.religion(),
+  cityOfBirth: householderSchema.cityOfBirth(),
+  issuedAt: householderSchema.issuedAt(),
+  dob: householderSchema.dob(),
 });
 
 const useStyles = createStyles(theme => ({

@@ -23,9 +23,8 @@ interface SelectInput {
 interface DateInput {
   type: 'date';
   id: string;
-  format: (IsoString: string) => string;
+  format: (date: Date) => string;
 }
-//
 
 type Input = DateInput | SelectInput | TextInput;
 
@@ -64,7 +63,7 @@ describe('Householder', () => {
     const name = familyFixture.name();
     cy.wrap(api.createFamily(name));
     cy.findByText(name).click();
-    cy.findByTestId(tabIds.householderIdentityTab).click();
+    cy.findByTestId(tabIds.householderTab).click();
   });
 
   it('[OK]: Admin wants to add householder information', () => {

@@ -5,7 +5,7 @@ import { householderFormIds } from './HouseholderForm.ids';
 
 const householderForm = messages.householder.form;
 
-describe('HouseHolder Identity Form', () => {
+describe('HouseHolder Form', () => {
   beforeEach(() => {
     cy.mount(<HouseholderForm familyId="null" />);
   });

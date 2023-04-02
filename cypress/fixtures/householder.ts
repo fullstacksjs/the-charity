@@ -4,7 +4,7 @@ import { z } from 'zod';
 import {
   cities,
   genders,
-  householderIdentitySchema,
+  householderSchema,
   nationalities,
   numberRegex,
   religions,
@@ -13,7 +13,7 @@ import {
 export const householderFixture = () =>
   generateMock(
     z.object({
-      name: householderIdentitySchema.name(),
+      name: householderSchema.name(),
       surname: z.string().trim().min(3).max(20),
       fatherName: z.string().trim().min(3).max(20),
       nationalId: z.string().min(10).max(20).regex(numberRegex).trim(),

@@ -1,5 +1,5 @@
 export const householderFormIds = {
-  form: 'householder-identity-form',
+  form: 'householder-form',
   firstNameInput: 'householder-first-name',
   lastNameInput: 'householder-last-name',
   fatherNameInput: 'householder-father-name',
