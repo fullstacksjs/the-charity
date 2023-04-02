@@ -47,9 +47,9 @@ const idMapping = {
   dob: {
     id: ids.dobInput,
     type: 'date',
-    format: (IsoString: string) =>
+    format: (date: Date) =>
       new Intl.DateTimeFormat('fa-IR', { dateStyle: 'long' } as any).format(
-        new Date(IsoString),
+        date,
       ),
   },
   city: { id: ids.cityOfBirthInput, type: 'select', options: messages.cities },
@@ -107,7 +107,7 @@ function emptyHouseholderForm(mock: Mock) {
 
     // NOTE: clicking on the same selected element unselects it
     if (type === 'select')
-      cy.findByTestId(id).click('bottom').findByText(inputValue).click();
+      cy.findByTestId(id).click().findByText(inputValue).click();
     else cy.findByTestId(id).find('input').clear().blur();
   });
 }
@@ -125,7 +125,7 @@ function addHouseholder(mock: Mock) {
       if (inputValue == null) return;
 
       if (type === 'select')
-        cy.findByTestId(id).click('bottom').findByText(inputValue).click();
+        cy.findByTestId(id).click().findByText(inputValue).click();
       else cy.findByTestId(id).find('input').type(inputValue).blur();
     });
 
@@ -143,15 +143,14 @@ function compareHouseholderForm(mock: Mock) {
   Object.keys(mock).forEach(key => {
     const input = idMapping[key];
     const mockValue = mock[key];
-
     const { id, type } = input;
     const inputValue = type === 'select' ? input.options[mockValue] : mockValue;
-
     if (inputValue == null) return;
+
     if (type === 'date')
       cy.findByTestId(id)
         .find('input')
-        .should('have.value', input.format(inputValue));
+        .should('have.value', input.format(new Date(inputValue)));
     else if (type === 'text')
       cy.findByTestId(id).find('input').should('have.value', inputValue);
     else if (type === 'select')

@@ -39,19 +39,18 @@ export const HouseholderDetail = ({ familyId }: Props) => {
       <DetailCard.TextField title={tt.nationalityInput.label}>
         {messages.nationalities[householder.nationality]}
       </DetailCard.TextField>
-      <DetailCard.TextField title={tt.issuedAtInput.label}>
-        {messages.cities[householder.issuedAt]}
-      </DetailCard.TextField>
-      <DetailCard.TextField title={tt.religionInput.label}>
-        {messages.religions[householder.religion]}
+      <DetailCard.TextField title={tt.nationalIdInput.label}>
+        {householder.nationalId}
       </DetailCard.TextField>
       <DetailCard.TextField title={tt.genderInput.label}>
         {messages.genders[householder.gender]}
       </DetailCard.TextField>
-      <DetailCard.TextField title={tt.cityOfBirthInput.label}>
-        {messages.cities[householder.cityOfBirth]}
+      <DetailCard.TextField title={tt.dobInput.label}>
+        {messages.date.format(householder.dob)}
       </DetailCard.TextField>
-      {/* <DetailCard.TextField title={tt.dobInput.label}>{householder.}</DetailCard.TextField> */}
+      <DetailCard.TextField title={tt.religionInput.label}>
+        {messages.religions[householder.religion]}
+      </DetailCard.TextField>
     </DetailCard>
   ) : (
     <HouseholderForm familyId={familyId} initialHouseholder={householder} />

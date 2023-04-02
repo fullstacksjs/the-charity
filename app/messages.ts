@@ -7,6 +7,9 @@ export const errorMessages: Record<ServerError, string> = {
 };
 
 export const messages = {
+  date: {
+    format: (date: Date) => new Intl.DateTimeFormat('fa-IR').format(date),
+  },
   validation: {
     email: {
       required: 'این فیلد ضروری است',
