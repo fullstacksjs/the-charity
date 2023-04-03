@@ -31,10 +31,10 @@ export interface MemberList {
   members: Member[];
 }
 
-export const toMemberStatus = (status: ApiMemberStatusEnum): MemberStatus =>
+const toMemberStatus = (status: ApiMemberStatusEnum): MemberStatus =>
   status === ApiMemberStatusEnum.Completed ? 'completed' : 'draft';
 
-export const toMemberGender = (gender: ApiGenderEnum): Gender =>
+const toMemberGender = (gender: ApiGenderEnum): Gender =>
   gender === ApiGenderEnum.Male ? 'male' : 'female';
 
 const toClient = (

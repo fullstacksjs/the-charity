@@ -45,6 +45,7 @@ const toClient = (
     : {
         member: {
           name: data.insert_member_one.name,
+          id: data.insert_member_one.id,
           status: toMemberStatus(data.insert_member_one.status),
           surname: data.insert_member_one.surname ?? undefined,
           fatherName: data.insert_member_one.father_name ?? undefined,

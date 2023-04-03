@@ -1,4 +1,4 @@
-import type { CityEnum, ReligionEnum } from './ApiSchema';
+import type { CityEnum, GenderEnum, ReligionEnum } from './ApiSchema';
 import { Schema } from './Schema';
 
 export const memberSchema = {
@@ -15,8 +15,10 @@ export type MemberStatus = 'completed' | 'draft';
 
 export interface Member {
   name: string;
+  id: string;
   status: MemberStatus;
   surname?: string;
+  gender?: GenderEnum;
   fatherName?: string;
   nationalId?: string;
   nationality?: string;
