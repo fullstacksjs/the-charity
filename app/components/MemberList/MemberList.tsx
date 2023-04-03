@@ -23,7 +23,7 @@ export const MemberList = ({ familyId }: Props) => {
   const member = data?.members;
 
   const addNewMemberHandler = () => {
-    setMemberForm(memberForm.concat(<MemberForm key={member?.length} />));
+    setMemberForm(memberForm.concat(<MemberForm />));
     setIsMemberEmpty(true);
   };
 
