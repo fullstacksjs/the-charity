@@ -9,7 +9,7 @@ import {
   nationalities,
   religions,
 } from '@camp/domain';
-import { ArrowDownIcon, CalendarIcon, CheckIcon } from '@camp/icons';
+import { ArrowDownIcon, CalendarIcon, CheckIcon, EditIcon } from '@camp/icons';
 import { messages } from '@camp/messages';
 import { createTestAttr } from '@camp/test';
 import {
@@ -24,8 +24,9 @@ import {
   TextInput,
   Title,
 } from '@mantine/core';
-import { useDisclosure } from '@mantine/hooks';
+import { useDisclosure, useToggle } from '@mantine/hooks';
 import { DateInput } from 'mantine-datepicker-jalali';
+import { useEffect } from 'react';
 import { Controller, useForm } from 'react-hook-form';
 
 import { InformationBadge } from '../InformationBadge';
@@ -67,56 +68,34 @@ const resolver = createResolver<FormSchema>({
 const t = messages.member.createForm;
 
 interface Props {
-  member: Member[] | null;
-  familyId: string;
+  member?: Member | null;
 }
 
-export const MemberForm = ({ member, familyId }: Props) => {
+export const MemberForm = ({ member }: Props) => {
   const [opened, { toggle }] = useDisclosure(true);
-  const [MemberMutation] = useMemberMutation();
+  const [value, toggleButton] = useToggle();
   const { classes } = useStyles();
+
+  useEffect(() => {
+    if (!member) {
+      toggleButton(false);
+    } else {
+      toggleButton(true);
+    }
+  }, [member, toggleButton]);
 
   const {
     handleSubmit,
     register,
     watch,
-    formState: { errors, isValid, isSubmitSuccessful },
+    formState: { errors, isValid },
     control,
   } = useForm<FormSchema>({
     resolver,
     mode: 'onChange',
   });
   const watchAllFields = watch();
-  const onSubmit = handleSubmit(
-    ({
-      fatherName,
-      name,
-      surname,
-      nationality,
-      religion,
-      nationalId,
-      gender,
-    }) => {
-      MemberMutation({
-        variables: {
-          fatherName,
-          surname,
-          name,
-          familyId,
-          nationality,
-          religion,
-          nationalId,
-          gender,
-        },
-      })
-        .then(({ data }) => {
-          console.log(data);
-        })
-        .catch(() => {
-          console.log('error');
-        });
-    },
-  );
+
   return (
     <DashboardCard
       left={
@@ -127,6 +106,7 @@ export const MemberForm = ({ member, familyId }: Props) => {
       right={
         <Group spacing={10}>
           <Title order={4} color="fgDefault" weight="bold">
+            {member?.name} {member?.surname}
             {watchAllFields.name} {watchAllFields.surname}
           </Title>
           <InformationBadge information="draft" />
@@ -134,24 +114,30 @@ export const MemberForm = ({ member, familyId }: Props) => {
       }
     >
       <Collapse in={opened}>
-        <form onSubmit={onSubmit} {...createTestAttr(ids.form)}>
+        <form {...createTestAttr(ids.form)}>
           <Stack spacing={25} align="end">
             <SimpleGrid w="100%" cols={3} spacing="lg" verticalSpacing={20}>
-              {isSubmitSuccessful ? (
+              {value ? (
                 <DetailCardTextField title={t.nameInput.label}>
                   {watchAllFields.name}
                 </DetailCardTextField>
               ) : (
-                <TextInput
-                  wrapperProps={createTestAttr(ids.firstNameInput)}
-                  {...register('name')}
-                  className={classes.textInput}
-                  label={`${t.nameInput.label}:`}
-                  placeholder={t.nameInput.placeholder}
-                  error={errors.name?.message}
+                <Controller
+                  name="name"
+                  control={control}
+                  render={({ field }) => (
+                    <TextInput
+                      wrapperProps={createTestAttr(ids.firstNameInput)}
+                      className={classes.textInput}
+                      label={`${t.nameInput.label}:`}
+                      placeholder={t.nameInput.placeholder}
+                      error={errors.name?.message}
+                      {...field}
+                    />
+                  )}
                 />
               )}
-              {isSubmitSuccessful ? (
+              {value ? (
                 <DetailCardTextField title={t.lastNameInput.label}>
                   {watchAllFields.surname}
                 </DetailCardTextField>
@@ -165,7 +151,7 @@ export const MemberForm = ({ member, familyId }: Props) => {
                   placeholder={t.lastNameInput.placeholder}
                 />
               )}
-              {isSubmitSuccessful ? (
+              {value ? (
                 <DetailCardTextField title={t.fatherNameInput.label}>
                   {watchAllFields.fatherName}
                 </DetailCardTextField>
@@ -179,7 +165,7 @@ export const MemberForm = ({ member, familyId }: Props) => {
                   error={errors.fatherName?.message}
                 />
               )}
-              {isSubmitSuccessful ? (
+              {value ? (
                 <DetailCardTextField title={t.nationalityInput.label}>
                   {watchAllFields.nationality}
                 </DetailCardTextField>
@@ -202,7 +188,7 @@ export const MemberForm = ({ member, familyId }: Props) => {
                   )}
                 />
               )}
-              {isSubmitSuccessful ? (
+              {value ? (
                 <DetailCardTextField title={t.nationalIdInput.label}>
                   {watchAllFields.nationalId}
                 </DetailCardTextField>
@@ -216,7 +202,7 @@ export const MemberForm = ({ member, familyId }: Props) => {
                   label={`${t.nationalIdInput.label}:`}
                 />
               )}
-              {isSubmitSuccessful ? (
+              {value ? (
                 <DetailCardTextField title={t.genderInput.label}>
                   {watchAllFields.gender}
                 </DetailCardTextField>
@@ -251,7 +237,7 @@ export const MemberForm = ({ member, familyId }: Props) => {
                 locale="fa"
                 placeholder={t.selectInputs.placeholder}
               />
-              {isSubmitSuccessful ? (
+              {value ? (
                 <DetailCardTextField title={t.religionInput.label}>
                   {watchAllFields.religion}
                 </DetailCardTextField>
@@ -279,10 +265,17 @@ export const MemberForm = ({ member, familyId }: Props) => {
               {...createTestAttr(ids.submitBtn)}
               type="submit"
               size="sm"
-              leftIcon={<CheckIcon size={16} />}
-              disabled={!isValid}
+              variant={value ? 'outline' : 'filled'}
+              leftIcon={
+                value ? <EditIcon size={16} /> : <CheckIcon size={16} />
+              }
+              disabled={!isValid && !value}
+              onClick={e => {
+                e.preventDefault();
+                toggleButton();
+              }}
             >
-              {t.submitBtn}
+              {value ? t.editBtn : t.submitBtn}
             </Button>
           </Stack>
         </form>

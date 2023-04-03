@@ -1,30 +1,29 @@
 import { useMemberQuery } from '@camp/data-layer';
 import { FullPageLoader, showNotification } from '@camp/design';
 import { errorMessages, messages } from '@camp/messages';
-import { isNull } from '@fullstacksjs/toolbox';
 import { Center, Group, Stack, Title } from '@mantine/core';
 import { useState } from 'react';
 
 import { MemberEmptyState } from '../MemberEmptyState';
 import { CreateMemberButton, MemberForm } from '../MemberForm';
 
-export interface MemberProps {
+interface Props {
   familyId: string;
 }
 
 const t = messages.member;
 
-export const MemberList = ({ familyId }: MemberProps) => {
+export const MemberList = ({ familyId }: Props) => {
   const [memberForm, setMemberForm] = useState<React.ReactNode[]>([]);
   const [isMemberEmpty, setIsMemberEmpty] = useState<boolean>();
 
   const { data, error, loading } = useMemberQuery({
-    variables: { id: familyId },
+    variables: { family_id: familyId },
   });
-  const member = data?.member;
+  const member = data?.members;
 
   const addNewMemberHandler = () => {
-    setMemberForm(memberForm.concat(<MemberForm key={memberForm.length} />));
+    setMemberForm(memberForm.concat(<MemberForm key={member?.length} />));
     setIsMemberEmpty(true);
   };
 
@@ -47,13 +46,19 @@ export const MemberList = ({ familyId }: MemberProps) => {
         </Title>
         <CreateMemberButton onAddNewMember={addNewMemberHandler} />
       </Group>
-      {isNull(member) && !isMemberEmpty ? (
+      {member?.length === 0 && !isMemberEmpty ? (
         <Center h={400}>
           <MemberEmptyState addNewMember={addNewMemberHandler} />
         </Center>
       ) : (
-        <> {memberForm}</>
+        <>
+          {' '}
+          {member?.map(m => (
+            <MemberForm member={m} key={m.id} />
+          ))}
+        </>
       )}
+      {memberForm}
     </Stack>
   );
 };

@@ -1,4 +1,5 @@
 import type { City } from './City';
+import type { Gender } from './Gender';
 import type { Religion } from './Religions';
 import { Schema } from './Schema';
 
@@ -16,8 +17,10 @@ export type MemberStatus = 'completed' | 'draft';
 
 export interface Member {
   name: string;
+  id: string;
   status: MemberStatus;
   surname?: string;
+  gender?: Gender;
   fatherName?: string;
   nationalId?: string;
   nationality?: string;

@@ -216,6 +216,7 @@ export const messages = {
     },
     createForm: {
       submitBtn: 'ثبت',
+      editBtn: 'ویرایش',
       selectInputs: {
         placeholder: 'انتخاب کنید',
       },
