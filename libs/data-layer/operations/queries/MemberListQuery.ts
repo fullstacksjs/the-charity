@@ -46,7 +46,7 @@ const toClient = (
           surname: m.surname ?? undefined,
           gender: toMemberGender(m.gender!),
           fatherName: m.father_name ?? undefined,
-          nationality: m.nationality ?? undefined,
+          nationality: (m.nationality as 'ir' | null) ?? undefined,
           religion: (m.religion as 'islam' | null) ?? undefined,
           status: toMemberStatus(m.status),
         })),

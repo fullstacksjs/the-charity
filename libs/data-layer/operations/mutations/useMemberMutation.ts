@@ -1,6 +1,12 @@
 import { type MutationHookOptions } from '@apollo/client';
 import { gql } from '@apollo/client';
-import { type Gender, type Member, type MemberStatus } from '@camp/domain';
+import {
+  type Country,
+  type Gender,
+  type Member,
+  type MemberStatus,
+  type Religion,
+} from '@camp/domain';
 
 import {
   type ApiMemberMutation,
@@ -49,7 +55,8 @@ const toClient = (
           status: toMemberStatus(data.insert_member_one.status),
           surname: data.insert_member_one.surname ?? undefined,
           fatherName: data.insert_member_one.father_name ?? undefined,
-          nationality: data.insert_member_one.nationality ?? undefined,
+          nationality:
+            (data.insert_member_one.nationality as 'ir' | null) ?? undefined,
           religion:
             (data.insert_member_one.religion as 'islam' | null) ?? undefined,
         },
@@ -61,8 +68,8 @@ interface Variables {
   surname?: string;
   fatherName?: string;
   nationalId?: string;
-  nationality?: string;
-  religion?: string;
+  nationality?: Country;
+  religion?: Religion;
   gender?: Gender;
 }
 

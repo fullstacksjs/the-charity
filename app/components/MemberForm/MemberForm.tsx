@@ -1,7 +1,7 @@
 /* eslint-disable max-lines-per-function */
 import { useMemberMutation } from '@camp/data-layer';
 import { DashboardCard, DetailCardTextField } from '@camp/design';
-import type { Gender, Member } from '@camp/domain';
+import type { Gender, Member, Nationality, Religion } from '@camp/domain';
 import {
   createResolver,
   genders,
@@ -51,8 +51,8 @@ interface FormSchema {
   fatherName: string;
   nationalId: string;
   gender: Gender;
-  nationality: string;
-  religion: string;
+  nationality: Nationality;
+  religion: Religion;
 }
 
 const resolver = createResolver<FormSchema>({
@@ -73,16 +73,16 @@ interface Props {
 
 export const MemberForm = ({ member }: Props) => {
   const [opened, { toggle }] = useDisclosure(true);
-  const [value, toggleButton] = useToggle();
+  const [isEditable, toggleMode] = useToggle();
   const { classes } = useStyles();
 
   useEffect(() => {
     if (!member) {
-      toggleButton(false);
+      toggleMode(false);
     } else {
-      toggleButton(true);
+      toggleMode(true);
     }
-  }, [member, toggleButton]);
+  }, [member, toggleMode]);
 
   const {
     handleSubmit,
@@ -106,8 +106,15 @@ export const MemberForm = ({ member }: Props) => {
       right={
         <Group spacing={10}>
           <Title order={4} color="fgDefault" weight="bold">
-            {member?.name} {member?.surname}
-            {watchAllFields.name} {watchAllFields.surname}
+            {!isEditable ? (
+              <>
+                {member?.name} {member?.surname}
+              </>
+            ) : (
+              <>
+                {watchAllFields.name} {watchAllFields.surname}
+              </>
+            )}
           </Title>
           <InformationBadge information="draft" />
         </Group>
@@ -117,7 +124,7 @@ export const MemberForm = ({ member }: Props) => {
         <form {...createTestAttr(ids.form)}>
           <Stack spacing={25} align="end">
             <SimpleGrid w="100%" cols={3} spacing="lg" verticalSpacing={20}>
-              {value ? (
+              {isEditable ? (
                 <DetailCardTextField title={t.nameInput.label}>
                   {watchAllFields.name}
                 </DetailCardTextField>
@@ -125,6 +132,7 @@ export const MemberForm = ({ member }: Props) => {
                 <Controller
                   name="name"
                   control={control}
+                  defaultValue={member?.name}
                   render={({ field }) => (
                     <TextInput
                       wrapperProps={createTestAttr(ids.firstNameInput)}
@@ -137,35 +145,49 @@ export const MemberForm = ({ member }: Props) => {
                   )}
                 />
               )}
-              {value ? (
+              {isEditable ? (
                 <DetailCardTextField title={t.lastNameInput.label}>
                   {watchAllFields.surname}
                 </DetailCardTextField>
               ) : (
-                <TextInput
-                  wrapperProps={createTestAttr(ids.lastNameInput)}
-                  {...register('surname')}
-                  className={classes.textInput}
-                  label={`${t.lastNameInput.label}:`}
-                  error={errors.surname?.message}
-                  placeholder={t.lastNameInput.placeholder}
+                <Controller
+                  name="surname"
+                  control={control}
+                  defaultValue={member?.surname}
+                  render={({ field }) => (
+                    <TextInput
+                      wrapperProps={createTestAttr(ids.lastNameInput)}
+                      className={classes.textInput}
+                      label={`${t.lastNameInput.label}:`}
+                      error={errors.surname?.message}
+                      placeholder={t.lastNameInput.placeholder}
+                      {...field}
+                    />
+                  )}
                 />
               )}
-              {value ? (
+              {isEditable ? (
                 <DetailCardTextField title={t.fatherNameInput.label}>
                   {watchAllFields.fatherName}
                 </DetailCardTextField>
               ) : (
-                <TextInput
-                  wrapperProps={createTestAttr(ids.fatherNameInput)}
-                  {...register('fatherName')}
-                  className={classes.textInput}
-                  label={`${t.fatherNameInput.label}:`}
-                  placeholder={t.fatherNameInput.placeholder}
-                  error={errors.fatherName?.message}
+                <Controller
+                  name="fatherName"
+                  control={control}
+                  defaultValue={member?.fatherName}
+                  render={({ field }) => (
+                    <TextInput
+                      wrapperProps={createTestAttr(ids.fatherNameInput)}
+                      className={classes.textInput}
+                      label={`${t.fatherNameInput.label}:`}
+                      error={errors.fatherName?.message}
+                      placeholder={t.fatherNameInput.placeholder}
+                      {...field}
+                    />
+                  )}
                 />
               )}
-              {value ? (
+              {isEditable ? (
                 <DetailCardTextField title={t.nationalityInput.label}>
                   {watchAllFields.nationality}
                 </DetailCardTextField>
@@ -173,6 +195,7 @@ export const MemberForm = ({ member }: Props) => {
                 <Controller
                   name="nationality"
                   control={control}
+                  defaultValue={member?.nationality}
                   render={({ field }) => (
                     <Select
                       wrapperProps={createTestAttr(ids.nationalityInput)}
@@ -188,21 +211,28 @@ export const MemberForm = ({ member }: Props) => {
                   )}
                 />
               )}
-              {value ? (
+              {isEditable ? (
                 <DetailCardTextField title={t.nationalIdInput.label}>
                   {watchAllFields.nationalId}
                 </DetailCardTextField>
               ) : (
-                <TextInput
-                  wrapperProps={createTestAttr(ids.nationalIdInput)}
-                  error={errors.nationalId?.message}
-                  className={classes.textInput}
-                  {...register('nationalId')}
-                  placeholder={t.nationalIdInput.placeholder}
-                  label={`${t.nationalIdInput.label}:`}
+                <Controller
+                  name="nationalId"
+                  control={control}
+                  defaultValue={member?.nationalId}
+                  render={({ field }) => (
+                    <TextInput
+                      wrapperProps={createTestAttr(ids.nationalIdInput)}
+                      className={classes.textInput}
+                      label={`${t.nationalIdInput.label}:`}
+                      error={errors.nationalId?.message}
+                      placeholder={t.nationalIdInput.placeholder}
+                      {...field}
+                    />
+                  )}
                 />
               )}
-              {value ? (
+              {isEditable ? (
                 <DetailCardTextField title={t.genderInput.label}>
                   {watchAllFields.gender}
                 </DetailCardTextField>
@@ -210,6 +240,7 @@ export const MemberForm = ({ member }: Props) => {
                 <Controller
                   name="gender"
                   control={control}
+                  defaultValue={member?.gender}
                   render={({ field }) => (
                     <Select
                       wrapperProps={createTestAttr(ids.genderInput)}
@@ -237,7 +268,7 @@ export const MemberForm = ({ member }: Props) => {
                 locale="fa"
                 placeholder={t.selectInputs.placeholder}
               />
-              {value ? (
+              {isEditable ? (
                 <DetailCardTextField title={t.religionInput.label}>
                   {watchAllFields.religion}
                 </DetailCardTextField>
@@ -245,6 +276,7 @@ export const MemberForm = ({ member }: Props) => {
                 <Controller
                   name="religion"
                   control={control}
+                  defaultValue={member?.religion}
                   render={({ field }) => (
                     <Select
                       wrapperProps={createTestAttr(ids.religionInput)}
@@ -265,17 +297,17 @@ export const MemberForm = ({ member }: Props) => {
               {...createTestAttr(ids.submitBtn)}
               type="submit"
               size="sm"
-              variant={value ? 'outline' : 'filled'}
+              variant={isEditable ? 'outline' : 'filled'}
               leftIcon={
-                value ? <EditIcon size={16} /> : <CheckIcon size={16} />
+                isEditable ? <EditIcon size={16} /> : <CheckIcon size={16} />
               }
-              disabled={!isValid && !value}
+              disabled={!isValid && !isEditable}
               onClick={e => {
                 e.preventDefault();
-                toggleButton();
+                toggleMode();
               }}
             >
-              {value ? t.editBtn : t.submitBtn}
+              {isEditable ? t.editBtn : t.submitBtn}
             </Button>
           </Stack>
         </form>

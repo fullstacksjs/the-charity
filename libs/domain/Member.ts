@@ -1,4 +1,5 @@
 import type { City } from './City';
+import type { Country } from './Country';
 import type { Gender } from './Gender';
 import type { Religion } from './Religions';
 import { Schema } from './Schema';
@@ -23,7 +24,7 @@ export interface Member {
   gender?: Gender;
   fatherName?: string;
   nationalId?: string;
-  nationality?: string;
+  nationality?: Country;
   religion?: Religion;
   cityOfBirth?: City;
   issuedAt?: City;
