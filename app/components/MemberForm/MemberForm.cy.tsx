@@ -152,4 +152,19 @@ describe('Create member form Form', () => {
       cy.findByText(validation.nationalId.invalid).should('not.exist');
     });
   });
+
+  it('submit button should be disabled for invalid form', () => {
+    cy.findByTestId(memberFormIds.form).within(() => {
+      cy.findByTestId(memberFormIds.submitBtn).should('be.disabled');
+    });
+  });
+
+  it('should switch to edit mode when the user clicks on submit button', () => {
+    cy.findByTestId(memberFormIds.form).within(() => {
+      cy.findByTestId(memberFormIds.firstNameInput).find('input').type('محمد');
+      cy.findByTestId(memberFormIds.submitBtn)
+        .click()
+        .should('contain', createMemberForm.editBtn);
+    });
+  });
 });
