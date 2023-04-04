@@ -12,7 +12,7 @@ export const memberFormIds = {
   cityOfBirthInput: 'project-city-of-birth',
   submitBtn: 'submit-button',
   notification: {
-    success: 'member-successful-update',
-    failure: 'member-failed-update',
+    success: 'member-successful',
+    failure: 'member-failed',
   },
 } as const;

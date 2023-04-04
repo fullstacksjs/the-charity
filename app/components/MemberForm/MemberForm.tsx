@@ -1,6 +1,6 @@
 /* eslint-disable max-lines-per-function */
 import { useMemberMutation } from '@camp/data-layer';
-import { DashboardCard, DetailCardField } from '@camp/design';
+import { DashboardCard, DetailCardField, showNotification } from '@camp/design';
 import type { GenderEnum, Member } from '@camp/domain';
 import {
   createResolver,
@@ -65,13 +65,16 @@ const resolver = createResolver<FormSchema>({
   religion: memberSchema.religion(),
 });
 
-const t = messages.member.createForm;
+const t = messages.member;
+const tt = t.createForm;
 
 interface Props {
   member?: Member | null;
+  familyId: string;
 }
 
-export const MemberForm = ({ member }: Props) => {
+export const MemberForm = ({ member, familyId }: Props) => {
+  const [memberMutation] = useMemberMutation();
   const [opened, { toggle }] = useDisclosure(true);
   const [isEditable, toggleMode] = useToggle();
   const { classes } = useStyles();
@@ -85,6 +88,7 @@ export const MemberForm = ({ member }: Props) => {
   }, [member, toggleMode]);
 
   const {
+    handleSubmit,
     watch,
     formState: { errors, isValid },
     control,
@@ -93,6 +97,35 @@ export const MemberForm = ({ member }: Props) => {
     mode: 'onChange',
   });
   const watchAllFields = watch();
+
+  const onSubmit = handleSubmit(FormData => {
+    toggleMode();
+
+    if (!isEditable) {
+      memberMutation({
+        variables: {
+          ...FormData,
+          familyId,
+        },
+      })
+        .then(({ data }) => {
+          showNotification({
+            title: t.title,
+            message: t.notification.successful(data?.member.name ?? ''),
+            type: 'success',
+            ...createTestAttr(ids.notification.success),
+          });
+        })
+        .catch(() =>
+          showNotification({
+            title: t.title,
+            message: t.notification.failed(FormData.name),
+            type: 'failure',
+            ...createTestAttr(ids.notification.failure),
+          }),
+        );
+    }
+  });
 
   return (
     <DashboardCard
@@ -119,11 +152,11 @@ export const MemberForm = ({ member }: Props) => {
       }
     >
       <Collapse in={opened}>
-        <form {...createTestAttr(ids.form)}>
+        <form {...createTestAttr(ids.form)} onSubmit={onSubmit}>
           <Stack spacing={25} align="end">
             <SimpleGrid w="100%" cols={3} spacing="lg" verticalSpacing={20}>
               {isEditable ? (
-                <DetailCardField title={t.nameInput.label}>
+                <DetailCardField title={tt.nameInput.label}>
                   {watchAllFields.name}
                 </DetailCardField>
               ) : (
@@ -135,8 +168,8 @@ export const MemberForm = ({ member }: Props) => {
                     <TextInput
                       wrapperProps={createTestAttr(ids.firstNameInput)}
                       className={classes.textInput}
-                      label={`${t.nameInput.label}:`}
-                      placeholder={t.nameInput.placeholder}
+                      label={`${tt.nameInput.label}:`}
+                      placeholder={tt.nameInput.placeholder}
                       error={errors.name?.message}
                       {...field}
                     />
@@ -144,7 +177,7 @@ export const MemberForm = ({ member }: Props) => {
                 />
               )}
               {isEditable ? (
-                <DetailCardField title={t.lastNameInput.label}>
+                <DetailCardField title={tt.lastNameInput.label}>
                   {watchAllFields.surname}
                 </DetailCardField>
               ) : (
@@ -156,16 +189,16 @@ export const MemberForm = ({ member }: Props) => {
                     <TextInput
                       wrapperProps={createTestAttr(ids.lastNameInput)}
                       className={classes.textInput}
-                      label={`${t.lastNameInput.label}:`}
+                      label={`${tt.lastNameInput.label}:`}
                       error={errors.surname?.message}
-                      placeholder={t.lastNameInput.placeholder}
+                      placeholder={tt.lastNameInput.placeholder}
                       {...field}
                     />
                   )}
                 />
               )}
               {isEditable ? (
-                <DetailCardField title={t.fatherNameInput.label}>
+                <DetailCardField title={tt.fatherNameInput.label}>
                   {watchAllFields.fatherName}
                 </DetailCardField>
               ) : (
@@ -177,16 +210,16 @@ export const MemberForm = ({ member }: Props) => {
                     <TextInput
                       wrapperProps={createTestAttr(ids.fatherNameInput)}
                       className={classes.textInput}
-                      label={`${t.fatherNameInput.label}:`}
+                      label={`${tt.fatherNameInput.label}:`}
                       error={errors.fatherName?.message}
-                      placeholder={t.fatherNameInput.placeholder}
+                      placeholder={tt.fatherNameInput.placeholder}
                       {...field}
                     />
                   )}
                 />
               )}
               {isEditable ? (
-                <DetailCardField title={t.nationalityInput.label}>
+                <DetailCardField title={tt.nationalityInput.label}>
                   {watchAllFields.nationality}
                 </DetailCardField>
               ) : (
@@ -201,8 +234,8 @@ export const MemberForm = ({ member }: Props) => {
                         value: v,
                         label: messages.nationalities[v],
                       }))}
-                      placeholder={t.selectInputs.placeholder}
-                      label={`${t.nationalityInput.label}:`}
+                      placeholder={tt.selectInputs.placeholder}
+                      label={`${tt.nationalityInput.label}:`}
                       error={errors.nationality?.message}
                       {...field}
                     />
@@ -210,7 +243,7 @@ export const MemberForm = ({ member }: Props) => {
                 />
               )}
               {isEditable ? (
-                <DetailCardField title={t.nationalIdInput.label}>
+                <DetailCardField title={tt.nationalIdInput.label}>
                   {watchAllFields.nationalId}
                 </DetailCardField>
               ) : (
@@ -222,16 +255,16 @@ export const MemberForm = ({ member }: Props) => {
                     <TextInput
                       wrapperProps={createTestAttr(ids.nationalIdInput)}
                       className={classes.textInput}
-                      label={`${t.nationalIdInput.label}:`}
+                      label={`${tt.nationalIdInput.label}:`}
                       error={errors.nationalId?.message}
-                      placeholder={t.nationalIdInput.placeholder}
+                      placeholder={tt.nationalIdInput.placeholder}
                       {...field}
                     />
                   )}
                 />
               )}
               {isEditable ? (
-                <DetailCardField title={t.genderInput.label}>
+                <DetailCardField title={tt.genderInput.label}>
                   {watchAllFields.gender}
                 </DetailCardField>
               ) : (
@@ -246,8 +279,8 @@ export const MemberForm = ({ member }: Props) => {
                         value: v,
                         label: messages.genders[v],
                       }))}
-                      label={`${t.genderInput.label}:`}
-                      placeholder={t.selectInputs.placeholder}
+                      label={`${tt.genderInput.label}:`}
+                      placeholder={tt.selectInputs.placeholder}
                       error={errors.gender?.message}
                       {...field}
                     />
@@ -258,16 +291,16 @@ export const MemberForm = ({ member }: Props) => {
                 wrapperProps={createTestAttr(ids.dobInput)}
                 className={classes.dateInput}
                 rightSection={<CalendarIcon stroke="currentColor" size={16} />}
-                label={`${t.dobInput.label}:`}
+                label={`${tt.dobInput.label}:`}
                 sx={theme => ({
                   direction: 'ltr',
                   color: theme.colors.secondaryDefault[6],
                 })}
                 locale="fa"
-                placeholder={t.selectInputs.placeholder}
+                placeholder={tt.selectInputs.placeholder}
               />
               {isEditable ? (
-                <DetailCardField title={t.religionInput.label}>
+                <DetailCardField title={tt.religionInput.label}>
                   {watchAllFields.religion}
                 </DetailCardField>
               ) : (
@@ -282,8 +315,8 @@ export const MemberForm = ({ member }: Props) => {
                         value: v,
                         label: messages.religions[v],
                       }))}
-                      placeholder={t.selectInputs.placeholder}
-                      label={`${t.religionInput.label}:`}
+                      placeholder={tt.selectInputs.placeholder}
+                      label={`${tt.religionInput.label}:`}
                       error={errors.religion?.message}
                       {...field}
                     />
@@ -300,12 +333,8 @@ export const MemberForm = ({ member }: Props) => {
                 isEditable ? <EditIcon size={16} /> : <CheckIcon size={16} />
               }
               disabled={!isValid && !isEditable}
-              onClick={e => {
-                e.preventDefault();
-                toggleMode();
-              }}
             >
-              {isEditable ? t.editBtn : t.submitBtn}
+              {isEditable ? tt.editBtn : tt.submitBtn}
             </Button>
           </Stack>
         </form>

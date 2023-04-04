@@ -210,6 +210,11 @@ export const messages = {
   member: {
     title: 'اعضا',
     addNewMember: 'افزودن عضو',
+    notification: {
+      successful: (name: string) => `عضوی با نام "${name}" .با موفقیت ایجاد شد`,
+      failed: (name: string) =>
+        `مشکلی در مرحله ایجاد عضوی با نام "${name}" .بوجود آمده است. لطفا دوباره تلاش کنید`,
+    },
     empty: {
       title: 'عضوی وجود ندارد!',
       description: 'عضوی برای این خانواده ثبت نشده است',

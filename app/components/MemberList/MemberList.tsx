@@ -23,7 +23,7 @@ export const MemberList = ({ familyId }: Props) => {
   const member = data?.members;
 
   const addNewMemberHandler = () => {
-    setMemberForm(memberForm.concat(<MemberForm />));
+    setMemberForm(memberForm.concat(<MemberForm familyId={familyId} />));
     setIsMemberEmpty(true);
   };
 
@@ -54,7 +54,7 @@ export const MemberList = ({ familyId }: Props) => {
         <>
           {' '}
           {member?.map(m => (
-            <MemberForm member={m} key={m.id} />
+            <MemberForm member={m} key={m.id} familyId={familyId} />
           ))}
         </>
       )}
