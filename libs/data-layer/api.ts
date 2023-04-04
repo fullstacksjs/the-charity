@@ -4103,7 +4103,10 @@ export type ApiDeleteFamilyMutationMutationResult = Apollo.MutationResult<ApiDel
 export type ApiDeleteFamilyMutationMutationOptions = Apollo.BaseMutationOptions<ApiDeleteFamilyMutationMutation, ApiDeleteFamilyMutationMutationVariables>;
 export const ApiMemberDocument = gql`
     mutation Member($input: member_insert_input!) {
-  insert_member_one(object: $input, on_conflict: {constraint: member_pkey}) {
+  insert_member_one(
+    object: $input
+    on_conflict: {constraint: member_pkey, update_columns: [name, surname, father_name, nationality, gender, religion]}
+  ) {
     id
     name
     surname

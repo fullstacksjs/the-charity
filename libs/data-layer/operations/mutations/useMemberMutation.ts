@@ -19,7 +19,17 @@ const Document = gql`
   mutation Member($input: member_insert_input!) {
     insert_member_one(
       object: $input
-      on_conflict: { constraint: member_pkey }
+      on_conflict: {
+        constraint: member_pkey
+        update_columns: [
+          name
+          surname
+          father_name
+          nationality
+          gender
+          religion
+        ]
+      }
     ) {
       id
       name
