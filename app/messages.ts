@@ -149,7 +149,7 @@ export const messages = {
         successfulUpdate: (name: string) =>
           `سرپرستی ای با نام "${name}" .با موفقیت آپدیت شد`,
         failedUpdate: (name: string) =>
-          `مشکلی در مرحله آپدیت سرپرستی ای با نام "${name}" .ب وجود آمده است. لطفا دوباره تلاش کنید`,
+          `مشکلی در مرحله آپدیت سرپرستی ای با نام "${name}" .به وجود آمده است. لطفا دوباره تلاش کنید`,
       },
       submitBtn: 'ثبت',
       selectInputs: {
