@@ -9,6 +9,7 @@ import { type Nationality } from './Nationality';
 import { nationalities } from './Nationality';
 import { type Religion } from './Religions';
 import { religions } from './Religions';
+import { Schema } from './Schema';
 
 export const numberRegex = /^[0-9]*[\u0660-\u0669\u06F0-\u06F90-9]*$/;
 
@@ -77,8 +78,7 @@ export const householderSchema = {
       .or(z.literal(''))
       .transform(e => (e === '' || e == null ? undefined : e)),
   dob: () =>
-    z
-      .date()
+    Schema.dob()
       .nullish()
       .or(z.literal(''))
       .transform(e => (e === '' || e == null ? undefined : e)),

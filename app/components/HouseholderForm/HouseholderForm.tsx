@@ -1,16 +1,15 @@
 import { useUpsertHouseholderMutation } from '@camp/data-layer';
 import { ControlledSelect, showNotification } from '@camp/design';
-import {
-  type City,
-  type Gender,
-  type Householder,
-  type Nationality,
-  type Religion,
+import type {
+  City,
+  Gender,
+  Householder,
+  Nationality,
+  Religion,
 } from '@camp/domain';
 import {
   cities,
   createResolver,
-  type Gender,
   genders,
   householderSchema,
   nationalities,
@@ -19,6 +18,7 @@ import {
 import { CalendarIcon, CheckIcon } from '@camp/icons';
 import { messages } from '@camp/messages';
 import { createTestAttr } from '@camp/test';
+import { isNull } from '@fullstacksjs/toolbox';
 import {
   Button,
   createStyles,
@@ -101,6 +101,7 @@ export const HouseholderForm = ({ initialHouseholder, familyId }: Props) => {
       variables: { ...formData, familyId },
     })
       .then(({ data }) => {
+        if (!isNull(data)) reset(data.householder);
         showNotification({
           title: t.title,
           message: t.notification.successfulUpdate(
@@ -133,6 +134,7 @@ export const HouseholderForm = ({ initialHouseholder, familyId }: Props) => {
               size="sm"
               variant="outline"
               color="red"
+              disabled={!isDirty}
               onClick={() => reset()}
             >
               {t.undoBtn}
@@ -185,7 +187,6 @@ export const HouseholderForm = ({ initialHouseholder, familyId }: Props) => {
             }))}
             placeholder={t.selectInputs.placeholder}
             label={`${t.nationalityInput.label}:`}
-            error={errors.nationality?.message}
           />
           <TextInput
             wrapperProps={createTestAttr(ids.nationalIdInput)}
@@ -207,7 +208,6 @@ export const HouseholderForm = ({ initialHouseholder, familyId }: Props) => {
             }))}
             label={`${t.genderInput.label}:`}
             placeholder={t.selectInputs.placeholder}
-            error={errors.gender?.message}
           />
 
           <ControlledSelect
@@ -221,7 +221,6 @@ export const HouseholderForm = ({ initialHouseholder, familyId }: Props) => {
             }))}
             placeholder={t.selectInputs.placeholder}
             label={`${t.issuedAtInput.label}:`}
-            error={errors.issuedAt?.message}
           />
 
           <ControlledSelect
@@ -235,7 +234,6 @@ export const HouseholderForm = ({ initialHouseholder, familyId }: Props) => {
             }))}
             placeholder={t.selectInputs.placeholder}
             label={`${t.religionInput.label}:`}
-            error={errors.religion?.message}
           />
 
           <ControlledSelect
@@ -249,7 +247,6 @@ export const HouseholderForm = ({ initialHouseholder, familyId }: Props) => {
             }))}
             placeholder={t.selectInputs.placeholder}
             label={`${t.cityOfBirthInput.label}:`}
-            error={errors.cityOfBirth?.message}
           />
 
           <Controller
@@ -268,6 +265,7 @@ export const HouseholderForm = ({ initialHouseholder, familyId }: Props) => {
                 })}
                 locale="fa"
                 placeholder={t.selectInputs.placeholder}
+                error={errors.dob?.message}
                 {...field}
               />
             )}
