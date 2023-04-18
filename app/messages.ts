@@ -132,7 +132,7 @@ export const messages = {
       validation: {
         nameMinLength: 'نام سرپرست باید حداقل ۳ حرف باشد',
         fatherNameMinLength: 'نام پدر باید حداقل ۳ حرف باشد',
-        nationalIdMinLength: 'شماره کارت ملی باید حداقل ۱۰ عدد باشد',
+        nationalIdLength: 'شماره کارت ملی باید ۱۰ عدد باشد',
         invalidNationalId: 'لطفا یک شماره کارت ملی معتبر وارد نمایید',
       },
       title: 'اطلاعات هویت',

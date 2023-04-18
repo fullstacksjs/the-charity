@@ -168,7 +168,7 @@ describe('HouseHolder Form', () => {
       cy.findByTestId(householderFormIds.nationalIdInput)
         .find('input')
         .type('1234');
-      cy.findByText(householderForm.validation.nationalIdMinLength).should(
+      cy.findByText(householderForm.validation.nationalIdLength).should(
         'exist',
       );
     });
@@ -179,7 +179,7 @@ describe('HouseHolder Form', () => {
       cy.findByTestId(householderFormIds.nationalIdInput)
         .find('input')
         .type('0123456789');
-      cy.findByText(householderForm.validation.nationalIdMinLength).should(
+      cy.findByText(householderForm.validation.nationalIdLength).should(
         'not.exist',
       );
     });

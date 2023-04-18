@@ -14,31 +14,21 @@ import { Schema } from './Schema';
 export const numberRegex = /^[0-9]*[\u0660-\u0669\u06F0-\u06F90-9]*$/;
 
 export const householderSchema = {
-  name: () =>
-    z
-      .string()
-      .trim()
-      .min(3, messages.householder.form.validation.nameMinLength),
+  name: () => Schema.name(),
   surname: () =>
-    z
-      .string()
-      .trim()
-      .min(3, messages.householder.form.validation.nameMinLength)
+    Schema.name()
       .nullish()
       .or(z.literal(''))
       .transform(e => (e === '' || e == null ? undefined : e)),
   fatherName: () =>
-    z
-      .string()
-      .trim()
-      .min(3, messages.householder.form.validation.fatherNameMinLength)
+    Schema.name()
       .nullish()
       .or(z.literal(''))
       .transform(e => (e === '' || e == null ? undefined : e)),
   nationalId: () =>
     z
       .string()
-      .min(10, messages.householder.form.validation.nationalIdMinLength)
+      .length(10, messages.householder.form.validation.nationalIdLength)
       .regex(
         numberRegex,
         messages.householder.form.validation.invalidNationalId,
