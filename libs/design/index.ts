@@ -9,6 +9,7 @@ export * from './Header';
 export * from './Modal';
 export * from './NavLink';
 export * from './Notification';
+export * from './Select';
 export * from './Sidebar';
 export * from './SmallText';
 export * from './Table';

@@ -1,5 +1,5 @@
 import { useUpsertHouseholderMutation } from '@camp/data-layer';
-import { showNotification } from '@camp/design';
+import { ControlledSelect, showNotification } from '@camp/design';
 import {
   type City,
   type Gender,
@@ -23,14 +23,12 @@ import {
   Button,
   createStyles,
   Group,
-  Select,
   SimpleGrid,
   Stack,
   TextInput,
   Title,
 } from '@mantine/core';
 import { DateInput } from 'mantine-datepicker-jalali';
-import { useEffect } from 'react';
 import { Controller, useForm } from 'react-hook-form';
 
 import { householderFormIds as ids } from './HouseholderForm.ids';
@@ -92,14 +90,11 @@ export const HouseholderForm = ({ initialHouseholder, familyId }: Props) => {
     control,
   } = useForm<FormSchema>({
     resolver,
+    defaultValues: initialHouseholder,
     mode: 'onChange',
   });
 
   const [upsertHouseholder] = useUpsertHouseholderMutation();
-
-  useEffect(() => {
-    if (initialHouseholder != null) reset(initialHouseholder);
-  }, [initialHouseholder, reset]);
 
   const onSubmit = handleSubmit(formData => {
     upsertHouseholder({
@@ -179,24 +174,18 @@ export const HouseholderForm = ({ initialHouseholder, familyId }: Props) => {
             placeholder={t.fatherNameInput.placeholder}
             error={errors.fatherName?.message}
           />
-          <Controller
+          <ControlledSelect
             name="nationality"
             control={control}
-            render={({ field }) => (
-              <Select
-                clearable
-                wrapperProps={createTestAttr(ids.nationalityInput)}
-                data={nationalities.map(v => ({
-                  value: v,
-                  label: messages.nationalities[v],
-                }))}
-                placeholder={t.selectInputs.placeholder}
-                label={`${t.nationalityInput.label}:`}
-                error={errors.nationality?.message}
-                {...field} // eslint-disable-next-line @typescript-eslint/no-unnecessary-condition
-                value={field.value ?? null}
-              />
-            )}
+            clearable
+            wrapperProps={createTestAttr(ids.nationalityInput)}
+            data={nationalities.map(v => ({
+              value: v,
+              label: messages.nationalities[v],
+            }))}
+            placeholder={t.selectInputs.placeholder}
+            label={`${t.nationalityInput.label}:`}
+            error={errors.nationality?.message}
           />
           <TextInput
             wrapperProps={createTestAttr(ids.nationalIdInput)}
@@ -207,84 +196,60 @@ export const HouseholderForm = ({ initialHouseholder, familyId }: Props) => {
             label={`${t.nationalIdInput.label}:`}
           />
 
-          <Controller
+          <ControlledSelect
             name="gender"
             control={control}
-            render={({ field }) => (
-              <Select
-                clearable
-                wrapperProps={createTestAttr(ids.genderInput)}
-                data={genders.map(v => ({
-                  value: v,
-                  label: messages.genders[v],
-                }))}
-                label={`${t.genderInput.label}:`}
-                placeholder={t.selectInputs.placeholder}
-                error={errors.gender?.message}
-                {...field} // eslint-disable-next-line @typescript-eslint/no-unnecessary-condition
-                value={field.value ?? null}
-              />
-            )}
+            clearable
+            wrapperProps={createTestAttr(ids.genderInput)}
+            data={genders.map(v => ({
+              value: v,
+              label: messages.genders[v],
+            }))}
+            label={`${t.genderInput.label}:`}
+            placeholder={t.selectInputs.placeholder}
+            error={errors.gender?.message}
           />
 
-          <Controller
+          <ControlledSelect
             name="issuedAt"
             control={control}
-            render={({ field }) => (
-              <Select
-                clearable
-                wrapperProps={createTestAttr(ids.issuedAtInput)}
-                data={cities.map(v => ({
-                  value: v,
-                  label: messages.cities[v],
-                }))}
-                placeholder={t.selectInputs.placeholder}
-                label={`${t.issuedAtInput.label}:`}
-                error={errors.issuedAt?.message}
-                {...field} // eslint-disable-next-line @typescript-eslint/no-unnecessary-condition
-                value={field.value ?? null}
-              />
-            )}
+            clearable
+            wrapperProps={createTestAttr(ids.issuedAtInput)}
+            data={cities.map(v => ({
+              value: v,
+              label: messages.cities[v],
+            }))}
+            placeholder={t.selectInputs.placeholder}
+            label={`${t.issuedAtInput.label}:`}
+            error={errors.issuedAt?.message}
           />
 
-          <Controller
+          <ControlledSelect
             name="religion"
             control={control}
-            render={({ field }) => (
-              <Select
-                clearable
-                wrapperProps={createTestAttr(ids.religionInput)}
-                data={religions.map(v => ({
-                  value: v,
-                  label: messages.religions[v],
-                }))}
-                placeholder={t.selectInputs.placeholder}
-                label={`${t.religionInput.label}:`}
-                error={errors.religion?.message}
-                {...field} // eslint-disable-next-line @typescript-eslint/no-unnecessary-condition
-                value={field.value ?? null}
-              />
-            )}
+            clearable
+            wrapperProps={createTestAttr(ids.religionInput)}
+            data={religions.map(v => ({
+              value: v,
+              label: messages.religions[v],
+            }))}
+            placeholder={t.selectInputs.placeholder}
+            label={`${t.religionInput.label}:`}
+            error={errors.religion?.message}
           />
 
-          <Controller
+          <ControlledSelect
             name="cityOfBirth"
             control={control}
-            render={({ field }) => (
-              <Select
-                clearable
-                wrapperProps={createTestAttr(ids.cityOfBirthInput)}
-                data={cities.map(v => ({
-                  value: v,
-                  label: messages.cities[v],
-                }))}
-                placeholder={t.selectInputs.placeholder}
-                label={`${t.cityOfBirthInput.label}:`}
-                error={errors.cityOfBirth?.message}
-                {...field} // eslint-disable-next-line @typescript-eslint/no-unnecessary-condition
-                value={field.value ?? null}
-              />
-            )}
+            clearable
+            wrapperProps={createTestAttr(ids.cityOfBirthInput)}
+            data={cities.map(v => ({
+              value: v,
+              label: messages.cities[v],
+            }))}
+            placeholder={t.selectInputs.placeholder}
+            label={`${t.cityOfBirthInput.label}:`}
+            error={errors.cityOfBirth?.message}
           />
 
           <Controller
