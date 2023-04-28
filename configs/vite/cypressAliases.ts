@@ -2,7 +2,7 @@ import fs from 'node:fs';
 import path from 'node:path';
 
 import type ts from 'typescript';
-import { type Plugin } from 'vite';
+import type { Plugin } from 'vite';
 
 const loadJSON = <T>(filePath: string): T =>
   JSON.parse(fs.readFileSync(filePath, 'utf-8'));

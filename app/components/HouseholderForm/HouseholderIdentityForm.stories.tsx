@@ -1,14 +1,13 @@
-import { type ComponentMeta, type ComponentStory } from '@storybook/react';
+import type { Meta, StoryObj } from '@storybook/react';
 
 import { HouseholderIdentityForm } from './HouseholderIdentityForm';
 
 export default {
   component: HouseholderIdentityForm,
-} as ComponentMeta<typeof HouseholderIdentityForm>;
+} as Meta<typeof HouseholderIdentityForm>;
 
-const Template: ComponentStory<typeof HouseholderIdentityForm> = () => (
-  <HouseholderIdentityForm familyId="null" />
-);
+type Story = StoryObj<typeof HouseholderIdentityForm>;
 
-export const Default: ComponentStory<typeof HouseholderIdentityForm> =
-  Template.bind({});
+export const Default: Story = {
+  args: { familyId: 'null' },
+};

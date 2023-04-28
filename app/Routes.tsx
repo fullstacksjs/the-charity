@@ -1,7 +1,8 @@
 import { AuthGuard, GuestGuard } from '@camp/auth';
+import { config } from '@camp/config';
 import { messages } from '@camp/messages';
-import { type Route } from '@camp/router';
-import { Navigate, ReactLocation, Router } from '@camp/router';
+import type { Route } from '@camp/router';
+import { lazy, Navigate, ReactLocation, Router } from '@camp/router';
 
 import { FamilyEmptyState, FamilyList, ProjectList } from './components';
 import {
@@ -13,6 +14,13 @@ import {
 } from './pages';
 
 export const location = new ReactLocation();
+
+const devRoutes: Route[] = [
+  {
+    path: '/graphiql',
+    import: lazy(() => import('./pages/GraphiQL')),
+  },
+];
 
 const routes: Route[] = [
   {
@@ -59,5 +67,7 @@ const routes: Route[] = [
   },
   { element: <Navigate to="/auth/login" /> },
 ];
+
+if (config.isDev) routes.unshift(...devRoutes);
 
 export const Routes = () => <Router routes={routes} location={location} />;

@@ -45,3 +45,4 @@ POSIX
 upsert
 anatine
 iname
+graphiql

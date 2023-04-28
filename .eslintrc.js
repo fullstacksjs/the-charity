@@ -6,7 +6,7 @@ module.exports = init({
     esm: true,
     typescript: {
       parserProject: ['./tsconfig.eslint.json'],
-      resolverProject: ['tsconfig.json'],
+      resolverProject: ['./tsconfig.json'],
     },
   },
   root: true,
@@ -24,7 +24,8 @@ module.exports = init({
     {
       files: ['./**/*.stories.tsx', './**/*.cy.tsx'],
       rules: {
-        '@typescript-eslint/no-confusing-void-expression': ['off'],
+        '@typescript-eslint/no-confusing-void-expression': 'off',
+        'react/jsx-no-useless-fragment': 'off',
       },
     },
   ],

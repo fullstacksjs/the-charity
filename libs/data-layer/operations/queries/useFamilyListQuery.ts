@@ -1,10 +1,10 @@
 import type * as Apollo from '@apollo/client';
 import { gql } from '@apollo/client';
-import { type Family } from '@camp/domain';
+import type { Family } from '@camp/domain';
 
-import {
-  type ApiFamilyListQuery,
-  type ApiFamilyListQueryVariables,
+import type {
+  ApiFamilyListQuery,
+  ApiFamilyListQueryVariables,
 } from '../../api';
 import { toInformationStatus, toSeverityStatus } from './useFamilyQuery';
 import { useQuery } from './useQuery';

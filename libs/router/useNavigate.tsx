@@ -1,7 +1,7 @@
 import { useNavigate as useReactNavigate } from '@tanstack/react-location';
 
-import { type AppRoute } from './AppRoutes';
-import { type LocationGenerics } from './LocationGenerics';
+import type { AppRoute } from './AppRoutes';
+import type { LocationGenerics } from './LocationGenerics';
 
 const typedUseReactNavigate = useReactNavigate<LocationGenerics>;
 

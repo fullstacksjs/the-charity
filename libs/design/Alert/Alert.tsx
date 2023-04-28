@@ -1,8 +1,8 @@
 import { ErrorAlertIcon } from '@camp/icons';
-import {
-  type AlertStylesNames,
-  type AlertStylesParams,
-  type Styles,
+import type {
+  AlertStylesNames,
+  AlertStylesParams,
+  Styles,
 } from '@mantine/core';
 import { Alert as MantineAlert } from '@mantine/core';
 

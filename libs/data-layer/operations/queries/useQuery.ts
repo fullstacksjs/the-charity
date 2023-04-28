@@ -1,11 +1,11 @@
-import {
-  type OperationVariables,
-  type QueryHookOptions,
-  type QueryResult,
-  type TypedDocumentNode,
-  useQuery as ApolloUseQuery,
+import type {
+  OperationVariables,
+  QueryHookOptions,
+  QueryResult,
+  TypedDocumentNode,
 } from '@apollo/client';
-import { type DocumentNode } from 'graphql';
+import { useQuery as ApolloUseQuery } from '@apollo/client';
+import type { DocumentNode } from 'graphql';
 
 export const useQuery = <
   Client,

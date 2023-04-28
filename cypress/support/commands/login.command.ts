@@ -1,8 +1,8 @@
 import { Buffer } from 'buffer';
 
-const clientId = Cypress.env('APP_AUTH0_CLIENT_ID');
-const audience = Cypress.env('APP_AUTH0_AUDIENCE');
-const domain = Cypress.env('APP_AUTH0_DOMAIN');
+const clientId: string = Cypress.env('APP_AUTH0_CLIENT_ID');
+const audience: string = Cypress.env('APP_AUTH0_AUDIENCE');
+const domain: string = Cypress.env('APP_AUTH0_DOMAIN');
 const scope = 'openid profile email read:current_user';
 const url = `https://${domain}/oauth/token/`;
 

@@ -5,11 +5,12 @@ import viteProcessor from 'cypress-vite';
 import { config } from './vite.config';
 
 const port = toInteger(getEnv('PORT', ''), 3000);
+const host = getEnv('HOST', 'localhost');
 
 export default defineConfig({
   e2e: {
     retries: 1,
-    baseUrl: `https://127.0.0.1:${port}`,
+    baseUrl: `https://${host}:${port}`,
     projectId: '8jt3ix',
     video: getBooleanEnv('CYPRESS_RECORD_VIDEO', true),
     videoUploadOnPasses: false,
@@ -19,7 +20,7 @@ export default defineConfig({
       APP_AUTH0_DOMAIN: getEnv('APP_AUTH0_DOMAIN'),
       APP_AUTH0_CLIENT_ID: getEnv('APP_AUTH0_CLIENT_ID'),
       APP_API_ENDPOINT: getEnv('APP_API_ENDPOINT'),
-      HASURA_ADMIN_SECRET: getEnv('HASURA_ADMIN_SECRET'),
+      APP_HASURA_ADMIN_SECRET: getEnv('APP_HASURA_ADMIN_SECRET'),
     },
     setupNodeEvents(on) {
       on('file:preprocessor', viteProcessor());

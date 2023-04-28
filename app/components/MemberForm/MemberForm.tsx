@@ -1,5 +1,5 @@
 import { DashboardCard } from '@camp/design';
-import { type Gender } from '@camp/domain';
+import type { Gender } from '@camp/domain';
 import {
   countries,
   createResolver,
@@ -30,7 +30,7 @@ import { Controller, useForm } from 'react-hook-form';
 import { InformationBadge } from '../InformationBadge';
 import { memberFormIds as ids } from './MemberForm.ids';
 
-// FIXME abstract
+// FIXME: abstract
 const useStyles = createStyles(theme => ({
   textInput: {
     label: {
@@ -99,9 +99,7 @@ export const MemberForm = () => {
           {tt.addNewMember}
         </Button>
       </Group>
-      {
-        // FIXME maybe abstract
-      }
+      {/* FIXME: maybe abstract */}
       <DashboardCard
         left={
           <ActionIcon onClick={toggle}>

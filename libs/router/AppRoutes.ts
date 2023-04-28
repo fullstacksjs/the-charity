@@ -6,5 +6,6 @@ export const AppRoute = {
   families: '/dashboard/families',
   familyDetail: '/dashboard/families/:id',
   projects: '/dashboard/projects',
+  graphql: '/graphiql',
 } as const;
 export type AppRoute = (typeof AppRoute)[keyof typeof AppRoute];

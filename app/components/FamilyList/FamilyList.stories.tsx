@@ -1,11 +1,11 @@
-import { type ComponentMeta, type ComponentStory } from '@storybook/react';
+import type { Meta, StoryObj } from '@storybook/react';
 
 import { FamilyList } from './FamilyList';
 
 export default {
   component: FamilyList,
-} as ComponentMeta<typeof FamilyList>;
+} as Meta<typeof FamilyList>;
 
-const Template: ComponentStory<typeof FamilyList> = () => <FamilyList />;
+type Story = StoryObj<typeof FamilyList>;
 
-export const Default = Template.bind({});
+export const Default: Story = {};

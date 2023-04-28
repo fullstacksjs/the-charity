@@ -11,18 +11,5 @@ module.exports = {
     '@storybook/addon-a11y',
     'storybook-addon-apollo-client',
   ],
-  framework: '@storybook/react',
-  core: {
-    builder: '@storybook/builder-vite',
-  },
-  features: {
-    storyStoreV7: true,
-  },
-  async viteFinal(config) {
-    return {
-      ...config,
-      plugins: [...config.plugins, tsconfigPaths(), svgr()],
-      envPrefix: 'APP',
-    };
-  },
+  framework: '@storybook/react-vite',
 };

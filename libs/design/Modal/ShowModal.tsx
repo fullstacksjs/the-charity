@@ -1,7 +1,7 @@
 import { createTestAttr } from '@camp/test';
 import { openConfirmModal } from '@mantine/modals';
-import { type ConfirmModalProps } from '@mantine/modals/lib/ConfirmModal';
-import { type ReactNode } from 'react';
+import type { ConfirmModalProps } from '@mantine/modals/lib/ConfirmModal';
+import type { ReactNode } from 'react';
 
 type ModalSize = number | 'lg' | 'md' | 'sm' | 'xl' | 'xs';
 

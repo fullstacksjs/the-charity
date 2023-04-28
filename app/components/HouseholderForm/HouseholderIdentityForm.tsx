@@ -2,6 +2,7 @@ import 'dayjs/locale/fa';
 
 import { useUpsertHouseholder } from '@camp/data-layer';
 import { showNotification } from '@camp/design';
+import type { Gender } from '@camp/domain';
 import {
   cities,
   countries,
@@ -10,7 +11,6 @@ import {
   householderIdentitySchema,
   religions,
 } from '@camp/domain';
-import { type Gender } from '@camp/domain';
 import { CalendarIcon, CheckIcon } from '@camp/icons';
 import { messages } from '@camp/messages';
 import { createTestAttr } from '@camp/test';

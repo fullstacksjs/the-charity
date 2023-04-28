@@ -46,7 +46,7 @@ jobs:
       APP_AUTH0_AUDIENCE: https://api.fullstacksjs.com/v1/graphql/
       APP_AUTH0_DOMAIN: dev-jxuskaag.us.auth0.com
       APP_AUTH0_CLIENT_ID: ${{ secrets.APP_AUTH0_CLIENT_ID }}
-      HASURA_ADMIN_SECRET: ${{ secrets.HASURA_ADMIN_SECRET }}
+      APP_HASURA_ADMIN_SECRET: ${{ secrets.APP_HASURA_ADMIN_SECRET }}
 
     steps:
       - name: Checkout repository
@@ -76,7 +76,7 @@ jobs:
       APP_API_ENDPOINT: https://api.fullstacksjs.com/v1/graphql/
       APP_AUTH0_DOMAIN: dev-jxuskaag.us.auth0.com
       APP_AUTH0_CLIENT_ID: ${{ secrets.APP_AUTH0_CLIENT_ID }}
-      HASURA_ADMIN_SECRET: ${{ secrets.HASURA_ADMIN_SECRET }}
+      APP_HASURA_ADMIN_SECRET: ${{ secrets.APP_HASURA_ADMIN_SECRET }}
       NODE_TLS_REJECT_UNAUTHORIZED: 0
 
     steps:

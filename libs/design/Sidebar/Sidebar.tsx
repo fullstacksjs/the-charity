@@ -2,7 +2,7 @@ import { PackageIcon, PeopleIcon } from '@camp/icons';
 import { messages } from '@camp/messages';
 import { createStyles, Image, Stack, Text } from '@mantine/core';
 
-import { type NavLinkProps } from '../NavLink';
+import type { NavLinkProps } from '../NavLink';
 import { ExitNavLink, NavLinks } from '../NavLink';
 import { navLinkIds as ids } from './Sidebar.ids';
 

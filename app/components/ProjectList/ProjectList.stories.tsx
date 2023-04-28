@@ -1,11 +1,11 @@
-import { type ComponentMeta, type ComponentStory } from '@storybook/react';
+import type { Meta, StoryObj } from '@storybook/react';
 
 import { ProjectList } from './ProjectList';
 
 export default {
   component: ProjectList,
-} as ComponentMeta<typeof ProjectList>;
+} as Meta<typeof ProjectList>;
 
-const Template: ComponentStory<typeof ProjectList> = () => <ProjectList />;
+type Story = StoryObj<typeof ProjectList>;
 
-export const Default: ComponentStory<typeof ProjectList> = Template.bind({});
+export const Default: Story = {};

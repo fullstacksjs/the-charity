@@ -1,11 +1,11 @@
-import { type ComponentMeta, type ComponentStory } from '@storybook/react';
+import type { Meta, StoryObj } from '@storybook/react';
 
 import { MemberForm } from './MemberForm';
 
 export default {
   component: MemberForm,
-} as ComponentMeta<typeof MemberForm>;
+} as Meta<typeof MemberForm>;
 
-const Template: ComponentStory<typeof MemberForm> = () => <MemberForm />;
+type Story = StoryObj<typeof MemberForm>;
 
-export const Default: ComponentStory<typeof MemberForm> = Template.bind({});
+export const Default: Story = {};

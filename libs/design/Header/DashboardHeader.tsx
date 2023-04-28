@@ -2,7 +2,7 @@ import { useMatches } from '@camp/router';
 import { createTestAttr } from '@camp/test';
 import { Group } from '@mantine/core';
 
-import { type BreadcrumbItem } from '../Breadcrumbs';
+import type { BreadcrumbItem } from '../Breadcrumbs';
 import { Breadcrumbs } from '../Breadcrumbs';
 import { dashboardHeaderId as ids } from './DashboardHeader.ids';
 

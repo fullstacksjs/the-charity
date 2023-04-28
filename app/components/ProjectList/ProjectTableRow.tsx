@@ -1,10 +1,5 @@
 import { Group } from '@mantine/core';
 
-import {
-  projectTableMenuButtonId,
-  projectTableMenuId,
-} from './ProjectTableRow.ids';
-
 interface Props {
   order: number;
   name: string;

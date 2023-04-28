@@ -1,6 +1,6 @@
 import { useEffect } from 'react';
 
-import { createFamilyFormIds } from './CreateFamilyForm.ids';
+import { createFamilyFormIds } from '../CreateFamilyForm/CreateFamilyForm.ids';
 import { openCreateFamilyModal } from './CreateFamilyModal';
 import { createFamilyModalId } from './CreateFamilyModal.ids';
 

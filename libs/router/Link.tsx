@@ -1,9 +1,9 @@
-import { type LinkProps } from '@tanstack/react-location';
+import type { LinkProps } from '@tanstack/react-location';
 import { Link as LocationLink } from '@tanstack/react-location';
 
-import { type AppRoute } from './AppRoutes';
+import type { AppRoute } from './AppRoutes';
 import { buildUrl } from './buildUrl';
-import { type PathParams } from './PathParams';
+import type { PathParams } from './PathParams';
 
 interface Props<P extends AppRoute> extends Omit<LinkProps, 'to'> {
   to: P;

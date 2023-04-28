@@ -1,12 +1,12 @@
-import {
-  type DefaultGenerics,
-  type NavigateOptions,
+import type {
+  DefaultGenerics,
+  NavigateOptions,
 } from '@tanstack/react-location';
 import { Navigate as LocationNavigate } from '@tanstack/react-location';
 
-import { type AppRoute } from './AppRoutes';
+import type { AppRoute } from './AppRoutes';
 import { buildUrl } from './buildUrl';
-import { type PathParams } from './PathParams';
+import type { PathParams } from './PathParams';
 
 interface Props<
   TGeneric extends Partial<DefaultGenerics> = DefaultGenerics,

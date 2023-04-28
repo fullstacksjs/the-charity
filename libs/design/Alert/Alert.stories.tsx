@@ -1,16 +1,17 @@
 import { errorMessages } from '@camp/messages';
-import { type ComponentMeta, type ComponentStory } from '@storybook/react';
+import type { Meta, StoryObj } from '@storybook/react';
 
 import { Alert } from './Alert';
 
 export default {
   component: Alert,
-} as ComponentMeta<typeof Alert>;
+} as Meta<typeof Alert>;
 
-const Template: ComponentStory<typeof Alert> = args => <Alert {...args} />;
-
-export const Error = Template.bind({});
-Error.args = {
-  message: errorMessages.UNKNOWN_ERROR,
-  type: 'error',
+type Story = StoryObj<typeof Alert>;
+export const Error: Story = {
+  render: args => <Alert {...args} />,
+  args: {
+    message: errorMessages.UNKNOWN_ERROR,
+    type: 'error',
+  },
 };

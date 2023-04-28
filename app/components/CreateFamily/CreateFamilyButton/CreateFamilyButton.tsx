@@ -3,7 +3,7 @@ import { messages } from '@camp/messages';
 import { createTestAttr } from '@camp/test';
 import { Button } from '@mantine/core';
 
-import { openCreateFamilyModal } from '../FamilyForm';
+import { openCreateFamilyModal } from '../CreateFamilyModal';
 import { createFamilyButtonId as id } from './CreateFamilyButton.ids';
 
 interface Props {
