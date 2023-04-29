@@ -1,6 +1,5 @@
-import { type City } from '@camp/domain';
-import { cities } from '@camp/domain';
+import { City } from '@camp/domain';
 
-import { type ApiCityEnum } from '../api';
+import type { ApiCityEnum } from '../api';
 
-export const toCity = (_: ApiCityEnum): City => cities[0];
+export const toCity = (_: ApiCityEnum): City => City.Tehran;

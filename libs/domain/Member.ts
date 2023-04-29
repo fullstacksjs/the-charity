@@ -1,9 +1,9 @@
 import { messages } from '@camp/messages';
 import { z } from 'zod';
 
-import { type City } from './City';
-import { genders } from './Gender';
-import { type Religion } from './Religions';
+import type { City } from './City';
+import { Gender } from './Gender';
+import type { Religion } from './Religions';
 import { religions } from './Religions';
 
 const numberRegex = /^[0-9]*[\u0660-\u0669\u06F0-\u06F90-9]*$/;
@@ -44,7 +44,7 @@ export const memberSchema = {
       .transform(e => (e === '' ? undefined : e)),
   gender: () =>
     z
-      .union([z.literal(genders[0]), z.literal(genders[1])])
+      .union([z.literal(Gender.Male), z.literal(Gender.Female)])
       .optional()
       .or(z.literal(''))
       .transform(e => (e === '' ? undefined : e)),

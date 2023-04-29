@@ -1,3 +1,4 @@
-export const cities = ['tehran'] as const;
+export const City = { Tehran: 'tehran' } as const;
+export const cities = Object.values(City);
 
-export type City = (typeof cities)[number];
+export type City = (typeof City)[keyof typeof City];

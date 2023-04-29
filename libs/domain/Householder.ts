@@ -1,14 +1,10 @@
 import { messages } from '@camp/messages';
 import { z } from 'zod';
 
-import { type City } from './City';
-import { cities } from './City';
-import { type Gender } from './Gender';
-import { genders } from './Gender';
-import { type Nationality } from './Nationality';
-import { nationalities } from './Nationality';
-import { type Religion } from './Religions';
-import { religions } from './Religions';
+import { City } from './City';
+import { Gender } from './Gender';
+import { Nationality } from './Nationality';
+import { Religion } from './Religions';
 import { Schema } from './Schema';
 
 export const numberRegex = /^[0-9]*[\u0660-\u0669\u06F0-\u06F90-9]*$/;
@@ -39,31 +35,31 @@ export const householderSchema = {
       .transform(e => (e === '' || e == null ? undefined : e)),
   gender: () =>
     z
-      .union([z.literal(genders[0]), z.literal(genders[1])])
+      .union([z.literal(Gender.Female), z.literal(Gender.Male)])
       .nullish()
       .or(z.literal(''))
       .transform(e => (e === '' || e == null ? undefined : e)),
   nationality: () =>
     z
-      .literal(nationalities[0])
+      .literal(Nationality.Ir)
       .nullish()
       .or(z.literal(''))
       .transform(e => (e === '' || e == null ? undefined : e)),
   religion: () =>
     z
-      .literal(religions[0])
+      .literal(Religion.Islam)
       .nullish()
       .or(z.literal(''))
       .transform(e => (e === '' || e == null ? undefined : e)),
   cityOfBirth: () =>
     z
-      .literal(cities[0])
+      .literal(City.Tehran)
       .nullish()
       .or(z.literal(''))
       .transform(e => (e === '' || e == null ? undefined : e)),
   issuedAt: () =>
     z
-      .literal(cities[0])
+      .literal(City.Tehran)
       .nullish()
       .or(z.literal(''))
       .transform(e => (e === '' || e == null ? undefined : e)),

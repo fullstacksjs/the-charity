@@ -1,2 +1,4 @@
-export const genders = ['male', 'female'] as const;
-export type Gender = (typeof genders)[number];
+export const Gender = { Male: 'male', Female: 'female' } as const;
+export const genders = Object.values(Gender);
+
+export type Gender = (typeof Gender)[keyof typeof Gender];

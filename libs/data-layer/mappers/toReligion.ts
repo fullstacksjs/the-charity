@@ -1,6 +1,5 @@
-import { type Religion } from '@camp/domain';
-import { religions } from '@camp/domain';
+import { Religion } from '@camp/domain';
 
-import { type ApiReligionEnum } from '../api';
+import type { ApiReligionEnum } from '../api';
 
-export const toReligion = (_: ApiReligionEnum): Religion => religions[0];
+export const toReligion = (_: ApiReligionEnum): Religion => Religion.Islam;
