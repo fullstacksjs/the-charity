@@ -1,7 +1,11 @@
-import { useUpsertHouseholderMutation } from '@camp/data-layer';
+import {
+  useHouseholderQuery,
+  useUpsertHouseholderMutation,
+} from '@camp/data-layer';
 import {
   ControlledSelect,
   EditableTextInput,
+  FullPageLoader,
   showNotification,
 } from '@camp/design';
 import type {
@@ -76,11 +80,14 @@ const useStyles = createStyles(theme => ({
 }));
 
 // eslint-disable-next-line max-lines-per-function
-export const HouseholderForm = ({ initialHouseholder, familyId }: Props) => {
+export const HouseholderForm = ({ familyId }: Props) => {
   const t = messages.householder.form;
   const { classes } = useStyles();
-  const isReadOnly = initialHouseholder?.status === 'completed';
-  console.log(initialHouseholder);
+  const { data, loading } = useHouseholderQuery({
+    variables: { family_id: familyId },
+  });
+
+  const initialHouseholder = data?.householder;
 
   const {
     handleSubmit,
@@ -94,19 +101,19 @@ export const HouseholderForm = ({ initialHouseholder, familyId }: Props) => {
     mode: 'onChange',
   });
 
+  const isReadOnly = initialHouseholder?.status === 'completed';
+
   const [upsertHouseholder] = useUpsertHouseholderMutation();
 
   const onSubmit = handleSubmit(formData => {
     upsertHouseholder({
       variables: { ...formData, familyId },
     })
-      .then(({ data }) => {
-        if (!isNull(data)) reset(data.householder);
+      .then(({ data: d }) => {
+        if (!isNull(d)) reset(d.householder);
         showNotification({
           title: t.title,
-          message: t.notification.successfulUpdate(
-            data?.householder.name ?? '',
-          ),
+          message: t.notification.successfulUpdate(d?.householder.name ?? ''),
           type: 'success',
           ...createTestAttr(ids.notification.success),
         });
@@ -121,7 +128,9 @@ export const HouseholderForm = ({ initialHouseholder, familyId }: Props) => {
       );
   });
 
-  return (
+  return loading ? (
+    <FullPageLoader />
+  ) : (
     <form onSubmit={onSubmit} {...createTestAttr(ids.form)}>
       <Stack spacing={25}>
         <Group position="apart" mih="100%">
