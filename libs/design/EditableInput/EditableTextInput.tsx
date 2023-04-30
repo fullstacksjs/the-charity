@@ -13,9 +13,15 @@ const useStyles = createStyles(theme => ({
     },
     input: {
       ':read-only': {
-        border: 'none',
-        padding: 0,
-        fontSize: theme.fontSizes.md,
+        'border': 'none',
+        'padding': 0,
+        'fontSize': theme.fontSizes.md,
+        ':placeholder-shown': {
+          cursor: 'default',
+        },
+        '::placeholder': {
+          opacity: 0,
+        },
       },
     },
   },
