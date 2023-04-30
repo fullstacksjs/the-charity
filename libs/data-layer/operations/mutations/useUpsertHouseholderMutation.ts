@@ -1,21 +1,23 @@
-import { type MutationHookOptions } from '@apollo/client';
+import type { MutationHookOptions } from '@apollo/client';
 import { gql } from '@apollo/client';
-import {
-  type City,
-  type Gender,
-  type Householder,
-  type Nationality,
-  type Religion,
+import type {
+  City,
+  Gender,
+  Householder,
+  Nationality,
+  Religion,
 } from '@camp/domain';
 
+import type {
+  ApiUpsertHouseholderMutation,
+  ApiUpsertHouseholderMutationVariables,
+} from '../../api';
 import {
   ApiCityEnum,
   ApiGenderEnum,
   ApiHouseholderDocument,
   ApiNationalityEnum,
   ApiReligionEnum,
-  type ApiUpsertHouseholderMutation,
-  type ApiUpsertHouseholderMutationVariables,
 } from '../../api';
 import { toHouseholder } from '../../mappers';
 import { useMutation } from './useMutation';

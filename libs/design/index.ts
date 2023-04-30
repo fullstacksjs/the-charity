@@ -3,6 +3,7 @@ export * from './Badge';
 export * from './Breadcrumbs';
 export * from './DashboardCard';
 export * from './DetailCard';
+export * from './EditableInput';
 export * from './EmptyState';
 export * from './FullPageLoader';
 export * from './Header';

@@ -1,5 +1,9 @@
 import { useUpsertHouseholderMutation } from '@camp/data-layer';
-import { ControlledSelect, showNotification } from '@camp/design';
+import {
+  ControlledSelect,
+  EditableTextInput,
+  showNotification,
+} from '@camp/design';
 import type {
   City,
   Gender,
@@ -25,7 +29,6 @@ import {
   Group,
   SimpleGrid,
   Stack,
-  TextInput,
   Title,
 } from '@mantine/core';
 import { DateInput } from 'mantine-datepicker-jalali';
@@ -65,11 +68,6 @@ const resolver = createResolver<FormSchema>({
 });
 
 const useStyles = createStyles(theme => ({
-  textInput: {
-    label: {
-      color: theme.colors.fgSubtle[6],
-    },
-  },
   dateInput: {
     label: {
       color: theme.colors.fgSubtle[6],
@@ -81,6 +79,8 @@ const useStyles = createStyles(theme => ({
 export const HouseholderForm = ({ initialHouseholder, familyId }: Props) => {
   const t = messages.householder.form;
   const { classes } = useStyles();
+  const isReadOnly = initialHouseholder?.status === 'completed';
+  console.log(initialHouseholder);
 
   const {
     handleSubmit,
@@ -152,26 +152,26 @@ export const HouseholderForm = ({ initialHouseholder, familyId }: Props) => {
         </Group>
 
         <SimpleGrid cols={3} spacing="lg" verticalSpacing={20}>
-          <TextInput
+          <EditableTextInput
+            readOnly={isReadOnly}
             wrapperProps={createTestAttr(ids.firstNameInput)}
             {...register('name')}
-            className={classes.textInput}
             label={`${t.nameInput.label}:`}
             placeholder={t.nameInput.placeholder}
             error={errors.name?.message}
           />
-          <TextInput
+          <EditableTextInput
+            readOnly={isReadOnly}
             wrapperProps={createTestAttr(ids.lastNameInput)}
             {...register('surname')}
-            className={classes.textInput}
             label={`${t.lastNameInput.label}:`}
             error={errors.surname?.message}
             placeholder={t.lastNameInput.placeholder}
           />
-          <TextInput
+          <EditableTextInput
+            readOnly={isReadOnly}
             wrapperProps={createTestAttr(ids.fatherNameInput)}
             {...register('fatherName')}
-            className={classes.textInput}
             label={`${t.fatherNameInput.label}:`}
             placeholder={t.fatherNameInput.placeholder}
             error={errors.fatherName?.message}
@@ -188,10 +188,10 @@ export const HouseholderForm = ({ initialHouseholder, familyId }: Props) => {
             placeholder={t.selectInputs.placeholder}
             label={`${t.nationalityInput.label}:`}
           />
-          <TextInput
+          <EditableTextInput
+            readOnly={isReadOnly}
             wrapperProps={createTestAttr(ids.nationalIdInput)}
             error={errors.nationalId?.message}
-            className={classes.textInput}
             {...register('nationalId')}
             placeholder={t.nationalIdInput.placeholder}
             label={`${t.nationalIdInput.label}:`}
