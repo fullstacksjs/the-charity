@@ -1,5 +1,5 @@
 import type { TextInputProps } from '@mantine/core';
-import { createStyles, TextInput } from '@mantine/core';
+import { createStyles, TextInput as MantineTextInput } from '@mantine/core';
 import { forwardRef } from 'react';
 
 interface Props extends TextInputProps {
@@ -27,12 +27,12 @@ const useStyles = createStyles(theme => ({
   },
 }));
 
-export const EditableTextInput = forwardRef<HTMLInputElement, Props>(
+export const TextInput = forwardRef<HTMLInputElement, Props>(
   ({ label, ...rest }: Props, ref) => {
     const { classes } = useStyles();
 
     return (
-      <TextInput
+      <MantineTextInput
         label={label}
         ref={ref}
         {...rest}

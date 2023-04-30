@@ -4,9 +4,9 @@ import {
 } from '@camp/data-layer';
 import {
   ControlledSelect,
-  EditableTextInput,
   FullPageLoader,
   showNotification,
+  TextInput,
 } from '@camp/design';
 import type {
   City,
@@ -161,7 +161,7 @@ export const HouseholderForm = ({ familyId }: Props) => {
         </Group>
 
         <SimpleGrid cols={3} spacing="lg" verticalSpacing={20}>
-          <EditableTextInput
+          <TextInput
             readOnly={isReadOnly}
             wrapperProps={createTestAttr(ids.firstNameInput)}
             {...register('name')}
@@ -169,7 +169,7 @@ export const HouseholderForm = ({ familyId }: Props) => {
             placeholder={t.nameInput.placeholder}
             error={errors.name?.message}
           />
-          <EditableTextInput
+          <TextInput
             readOnly={isReadOnly}
             wrapperProps={createTestAttr(ids.lastNameInput)}
             {...register('surname')}
@@ -177,7 +177,7 @@ export const HouseholderForm = ({ familyId }: Props) => {
             error={errors.surname?.message}
             placeholder={t.lastNameInput.placeholder}
           />
-          <EditableTextInput
+          <TextInput
             readOnly={isReadOnly}
             wrapperProps={createTestAttr(ids.fatherNameInput)}
             {...register('fatherName')}
@@ -197,7 +197,7 @@ export const HouseholderForm = ({ familyId }: Props) => {
             placeholder={t.selectInputs.placeholder}
             label={`${t.nationalityInput.label}:`}
           />
-          <EditableTextInput
+          <TextInput
             readOnly={isReadOnly}
             wrapperProps={createTestAttr(ids.nationalIdInput)}
             error={errors.nationalId?.message}
