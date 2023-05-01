@@ -1,10 +1,7 @@
-import {
-  useHouseholderQuery,
-  useUpsertHouseholderMutation,
-} from '@camp/data-layer';
+import { useUpsertHouseholderMutation } from '@camp/data-layer';
 import {
   ControlledSelect,
-  FullPageLoader,
+  DateInput,
   showNotification,
   TextInput,
 } from '@camp/design';
@@ -35,8 +32,6 @@ import {
   Stack,
   Title,
 } from '@mantine/core';
-import { DateInput } from 'mantine-datepicker-jalali';
-import { useEffect } from 'react';
 import { Controller, useForm } from 'react-hook-form';
 
 import { householderFormIds as ids } from './HouseholderForm.ids';
@@ -157,6 +152,7 @@ export const HouseholderForm = ({ initialHouseholder, familyId }: Props) => {
         <SimpleGrid cols={3} spacing="lg" verticalSpacing={20}>
           <TextInput
             readOnly={isReadOnly}
+            className={classes.dateInput}
             wrapperProps={createTestAttr(ids.firstNameInput)}
             {...register('name')}
             label={`${t.nameInput.label}:`}
@@ -165,6 +161,7 @@ export const HouseholderForm = ({ initialHouseholder, familyId }: Props) => {
           />
           <TextInput
             readOnly={isReadOnly}
+            className={classes.dateInput}
             wrapperProps={createTestAttr(ids.lastNameInput)}
             {...register('surname')}
             label={`${t.lastNameInput.label}:`}
@@ -173,6 +170,7 @@ export const HouseholderForm = ({ initialHouseholder, familyId }: Props) => {
           />
           <TextInput
             readOnly={isReadOnly}
+            className={classes.dateInput}
             wrapperProps={createTestAttr(ids.fatherNameInput)}
             {...register('fatherName')}
             label={`${t.fatherNameInput.label}:`}
@@ -194,6 +192,7 @@ export const HouseholderForm = ({ initialHouseholder, familyId }: Props) => {
           />
           <TextInput
             readOnly={isReadOnly}
+            className={classes.dateInput}
             wrapperProps={createTestAttr(ids.nationalIdInput)}
             error={errors.nationalId?.message}
             {...register('nationalId')}
@@ -263,6 +262,7 @@ export const HouseholderForm = ({ initialHouseholder, familyId }: Props) => {
             render={({ field }) => (
               <DateInput
                 clearable
+                readOnly={isReadOnly}
                 wrapperProps={createTestAttr(ids.dobInput)}
                 className={classes.dateInput}
                 rightSection={<CalendarIcon stroke="currentColor" size={16} />}
