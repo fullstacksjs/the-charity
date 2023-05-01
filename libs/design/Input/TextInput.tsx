@@ -7,11 +7,13 @@ import { useReadonlyInputStyles } from './useReadonlyInputStyles';
 const useStyles = createStyles(_ => ({
   textInput: {
     input: {
-      ':placeholder-shown': {
-        cursor: 'default',
-      },
-      '::placeholder': {
-        opacity: 0,
+      ':read-only': {
+        ':placeholder-shown': {
+          cursor: 'default',
+        },
+        '::placeholder': {
+          opacity: 0,
+        },
       },
     },
   },

@@ -68,7 +68,7 @@ const resolver = createResolver<FormSchema>({
 });
 
 const useStyles = createStyles(theme => ({
-  dateInput: {
+  input: {
     label: {
       color: theme.colors.fgSubtle[6],
     },
@@ -152,7 +152,7 @@ export const HouseholderForm = ({ initialHouseholder, familyId }: Props) => {
         <SimpleGrid cols={3} spacing="lg" verticalSpacing={20}>
           <TextInput
             readOnly={isReadOnly}
-            className={classes.dateInput}
+            className={classes.input}
             wrapperProps={createTestAttr(ids.firstNameInput)}
             {...register('name')}
             label={`${t.nameInput.label}:`}
@@ -161,7 +161,7 @@ export const HouseholderForm = ({ initialHouseholder, familyId }: Props) => {
           />
           <TextInput
             readOnly={isReadOnly}
-            className={classes.dateInput}
+            className={classes.input}
             wrapperProps={createTestAttr(ids.lastNameInput)}
             {...register('surname')}
             label={`${t.lastNameInput.label}:`}
@@ -170,7 +170,7 @@ export const HouseholderForm = ({ initialHouseholder, familyId }: Props) => {
           />
           <TextInput
             readOnly={isReadOnly}
-            className={classes.dateInput}
+            className={classes.input}
             wrapperProps={createTestAttr(ids.fatherNameInput)}
             {...register('fatherName')}
             label={`${t.fatherNameInput.label}:`}
@@ -192,7 +192,7 @@ export const HouseholderForm = ({ initialHouseholder, familyId }: Props) => {
           />
           <TextInput
             readOnly={isReadOnly}
-            className={classes.dateInput}
+            className={classes.input}
             wrapperProps={createTestAttr(ids.nationalIdInput)}
             error={errors.nationalId?.message}
             {...register('nationalId')}
@@ -264,7 +264,7 @@ export const HouseholderForm = ({ initialHouseholder, familyId }: Props) => {
                 clearable
                 readOnly={isReadOnly}
                 wrapperProps={createTestAttr(ids.dobInput)}
-                className={classes.dateInput}
+                className={classes.input}
                 rightSection={<CalendarIcon stroke="currentColor" size={16} />}
                 label={`${t.dobInput.label}:`}
                 sx={theme => ({
