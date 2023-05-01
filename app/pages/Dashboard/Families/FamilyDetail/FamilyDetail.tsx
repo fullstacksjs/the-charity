@@ -12,7 +12,7 @@ import { isNull } from '@fullstacksjs/toolbox';
 import { Button, Title } from '@mantine/core';
 
 import {
-  HouseholderForm,
+  HouseholderDetail,
   InformationBadge,
   MemberForm,
   openDeleteFamilyModal,
@@ -74,7 +74,7 @@ export const FamilyDetail = () => {
         tabs={[
           {
             tab: <Title order={5}>{t.tabs.householderTitle}</Title>,
-            panel: <HouseholderForm familyId={family.id} />,
+            panel: <HouseholderDetail familyId={family.id} />,
             id: ids.householderTab,
             isBusy: true,
             isDefault: true,

@@ -36,6 +36,7 @@ import {
   Title,
 } from '@mantine/core';
 import { DateInput } from 'mantine-datepicker-jalali';
+import { useEffect } from 'react';
 import { Controller, useForm } from 'react-hook-form';
 
 import { householderFormIds as ids } from './HouseholderForm.ids';
@@ -80,14 +81,9 @@ const useStyles = createStyles(theme => ({
 }));
 
 // eslint-disable-next-line max-lines-per-function
-export const HouseholderForm = ({ familyId }: Props) => {
+export const HouseholderForm = ({ initialHouseholder, familyId }: Props) => {
   const t = messages.householder.form;
   const { classes } = useStyles();
-  const { data, loading } = useHouseholderQuery({
-    variables: { family_id: familyId },
-  });
-
-  const initialHouseholder = data?.householder;
 
   const {
     handleSubmit,
@@ -128,9 +124,7 @@ export const HouseholderForm = ({ familyId }: Props) => {
       );
   });
 
-  return loading ? (
-    <FullPageLoader />
-  ) : (
+  return (
     <form onSubmit={onSubmit} {...createTestAttr(ids.form)}>
       <Stack spacing={25}>
         <Group position="apart" mih="100%">
@@ -186,6 +180,7 @@ export const HouseholderForm = ({ familyId }: Props) => {
             error={errors.fatherName?.message}
           />
           <ControlledSelect
+            readOnly={isReadOnly}
             name="nationality"
             control={control}
             clearable
@@ -207,6 +202,7 @@ export const HouseholderForm = ({ familyId }: Props) => {
           />
 
           <ControlledSelect
+            readOnly={isReadOnly}
             name="gender"
             control={control}
             clearable
@@ -220,6 +216,7 @@ export const HouseholderForm = ({ familyId }: Props) => {
           />
 
           <ControlledSelect
+            readOnly={isReadOnly}
             name="issuedAt"
             control={control}
             clearable
@@ -233,6 +230,7 @@ export const HouseholderForm = ({ familyId }: Props) => {
           />
 
           <ControlledSelect
+            readOnly={isReadOnly}
             name="religion"
             control={control}
             clearable
@@ -246,6 +244,7 @@ export const HouseholderForm = ({ familyId }: Props) => {
           />
 
           <ControlledSelect
+            readOnly={isReadOnly}
             name="cityOfBirth"
             control={control}
             clearable
