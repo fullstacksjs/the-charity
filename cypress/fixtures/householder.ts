@@ -9,6 +9,7 @@ import {
   numberRegex,
   Religion,
 } from '../../libs/domain';
+import { Schema } from '../../libs/domain/Schema';
 
 export const householderFixture = () =>
   generateMock(
@@ -27,13 +28,13 @@ export const householderFixture = () =>
       religion: z.literal(Religion.Islam),
       city: z.literal(City.Tehran),
       issuedAt: z.literal(City.Tehran),
-      dob: z.date().transform(d => d.toISOString()),
+      dob: Schema.dob().transform(d => d.toISOString()),
     }),
     {
       stringMap: {
-        name: () => faFaker.name.firstName(),
-        surname: () => faFaker.name.lastName(),
-        fatherName: () => faFaker.name.firstName(),
+        name: () => faFaker.name.firstName().replace(/(\s|\u200c)/g, ''),
+        surname: () => faFaker.name.lastName().replace(/(\s|\u200c)/g, ''),
+        fatherName: () => faFaker.name.firstName().replace(/(\s|\u200c)/g, ''),
       },
     },
   );
