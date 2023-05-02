@@ -189,7 +189,7 @@ describe('HouseHolder Form', () => {
     cy.findByTestId(householderFormIds.form).within(() => {
       cy.findByTestId(householderFormIds.nationalIdInput)
         .find('input')
-        .type('123456789ABC');
+        .type('1234567ABC');
       cy.findByText(householderForm.validation.invalidNationalId).should(
         'exist',
       );

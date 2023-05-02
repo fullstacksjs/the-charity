@@ -10,14 +10,17 @@ import { Schema } from './Schema';
 export const numberRegex = /^[0-9]*[\u0660-\u0669\u06F0-\u06F90-9]*$/;
 
 export const householderSchema = {
-  name: () => Schema.name(),
+  name: () =>
+    Schema.name().min(3, messages.householder.form.validation.nameMinLength),
   surname: () =>
     Schema.name()
+      .min(3, messages.householder.form.validation.nameMinLength)
       .nullish()
       .or(z.literal(''))
       .transform(e => (e === '' || e == null ? undefined : e)),
   fatherName: () =>
     Schema.name()
+      .min(3, messages.householder.form.validation.fatherNameMinLength)
       .nullish()
       .or(z.literal(''))
       .transform(e => (e === '' || e == null ? undefined : e)),
