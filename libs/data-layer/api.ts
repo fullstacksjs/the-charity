@@ -3982,6 +3982,13 @@ export type ApiCreateProjectMutationVariables = Exact<{
 
 export type ApiCreateProjectMutation = { __typename?: 'mutation_root', insert_project_one?: { __typename?: 'project', id: string, name: string, description?: string | null, status: ApiProjectStatusEnum } | null };
 
+export type ApiDeleteFamilyMutationMutationVariables = Exact<{
+  id: Scalars['uuid'];
+}>;
+
+
+export type ApiDeleteFamilyMutationMutation = { __typename?: 'mutation_root', delete_family_by_pk?: { __typename?: 'family', id: any } | null };
+
 export type ApiUpsertHouseholderMutationVariables = Exact<{
   input: ApiHouseholderInsertInput;
 }>;
@@ -4042,6 +4049,16 @@ export const ApiCreateProjectDocument = gql`
 export type ApiCreateProjectMutationFn = Apollo.MutationFunction<ApiCreateProjectMutation, ApiCreateProjectMutationVariables>;
 export type ApiCreateProjectMutationResult = Apollo.MutationResult<ApiCreateProjectMutation>;
 export type ApiCreateProjectMutationOptions = Apollo.BaseMutationOptions<ApiCreateProjectMutation, ApiCreateProjectMutationVariables>;
+export const ApiDeleteFamilyMutationDocument = gql`
+    mutation DeleteFamilyMutation($id: uuid!) {
+  delete_family_by_pk(id: $id) {
+    id
+  }
+}
+    `;
+export type ApiDeleteFamilyMutationMutationFn = Apollo.MutationFunction<ApiDeleteFamilyMutationMutation, ApiDeleteFamilyMutationMutationVariables>;
+export type ApiDeleteFamilyMutationMutationResult = Apollo.MutationResult<ApiDeleteFamilyMutationMutation>;
+export type ApiDeleteFamilyMutationMutationOptions = Apollo.BaseMutationOptions<ApiDeleteFamilyMutationMutation, ApiDeleteFamilyMutationMutationVariables>;
 export const ApiUpsertHouseholderDocument = gql`
     mutation UpsertHouseholder($input: householder_insert_input!) {
   insert_householder_one(
