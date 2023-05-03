@@ -1,11 +1,19 @@
 import type {
   OperationVariables,
-  QueryHookOptions,
+  QueryHookOptions as ApolloQueryHookOptions,
   QueryResult,
   TypedDocumentNode,
 } from '@apollo/client';
-import { useQuery as ApolloUseQuery } from '@apollo/client';
+import { useQuery as useApolloQuery } from '@apollo/client';
 import type { DocumentNode } from 'graphql';
+
+export type QueryHookOptions<
+  TData = any,
+  TVariables extends OperationVariables = OperationVariables,
+  TClient = any,
+> = ApolloQueryHookOptions<TData, TVariables> & {
+  mapper: (d: TData | null | undefined) => TClient;
+};
 
 export const useQuery = <
   Client,
@@ -13,11 +21,10 @@ export const useQuery = <
   Variables extends OperationVariables = OperationVariables,
 >(
   query: DocumentNode | TypedDocumentNode<Data, Variables>,
-  options: Partial<QueryHookOptions<Data, Variables>> & {
-    mapper: (d: Data | null | undefined) => Client;
-  },
+  options: QueryHookOptions<Data, Variables, Client>,
 ): QueryResult<Client, Variables> => {
-  const { data, ...rest } = ApolloUseQuery(query, options);
+  const { data, ...rest } = useApolloQuery(query, options);
+
   // NOTE we need to implement other functions that rely on Data type ourself
   return {
     ...rest,

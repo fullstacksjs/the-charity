@@ -11,9 +11,23 @@ export const messages = {
     format: (date: Date) => new Intl.DateTimeFormat('fa-IR').format(date),
   },
   validation: {
+    dob: {
+      max: 'تاریخ تولد نمی‌تواند آینده باشد',
+    },
     email: {
       required: 'این فیلد ضروری است',
       wrong: 'ایمیل وارد شده اشتباه هست',
+    },
+    name: {
+      invalid: 'لطفا یک نام معتبر وارد نمایید',
+      minLength: 'نام سرپرست باید حداقل ۳ حرف باشد',
+    },
+    surname: {
+      minLength: 'نام خانوادگی سرپرست باید حداقل ۳ حرف باشد',
+    },
+    nationalId: {
+      length: 'شماره کارت ملی باید ۱۰ عدد باشد',
+      invalid: 'لطفا یک شماره کارت ملی معتبر وارد نمایید',
     },
     password: {
       required: 'این فیلد ضروری است',
@@ -129,12 +143,6 @@ export const messages = {
       editBtn: 'ویرایش',
     },
     form: {
-      validation: {
-        nameMinLength: 'نام سرپرست باید حداقل ۳ حرف باشد',
-        fatherNameMinLength: 'نام پدر باید حداقل ۳ حرف باشد',
-        nationalIdLength: 'شماره کارت ملی باید ۱۰ عدد باشد',
-        invalidNationalId: 'لطفا یک شماره کارت ملی معتبر وارد نمایید',
-      },
       title: 'اطلاعات هویت',
       undoBtn: 'لغو',
       notification: {
@@ -193,12 +201,6 @@ export const messages = {
     title: 'اعضا',
     addNewMember: 'افزودن',
     createForm: {
-      validation: {
-        nameMinLength: 'نام سرپرست باید حداقل ۳ حرف باشد',
-        fatherNameMinLength: 'نام پدر باید حداقل ۳ حرف باشد',
-        nationalIdMinLength: 'شماره کارت ملی باید حداقل ۱۰ عدد باشد',
-        invalidNationalId: 'لطفا یک شماره کارت ملی معتبر وارد نمایید',
-      },
       submitBtn: 'ثبت',
       selectInputs: {
         placeholder: 'انتخاب کنید',
