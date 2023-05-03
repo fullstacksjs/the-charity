@@ -51,7 +51,6 @@ interface FormSchema {
   nationality: Nationality;
   religion: Religion;
   cityOfBirth: City;
-  issuedAt: City;
 }
 
 const resolver = createResolver<FormSchema>({
@@ -63,7 +62,6 @@ const resolver = createResolver<FormSchema>({
   nationality: householderSchema.nationality(),
   religion: householderSchema.religion(),
   cityOfBirth: householderSchema.cityOfBirth(),
-  issuedAt: householderSchema.issuedAt(),
   dob: householderSchema.dob(),
 });
 
@@ -212,20 +210,6 @@ export const HouseholderForm = ({ initialHouseholder, familyId }: Props) => {
             }))}
             label={`${t.genderInput.label}:`}
             placeholder={t.selectInputs.placeholder}
-          />
-
-          <ControlledSelect
-            readOnly={isReadOnly}
-            name="issuedAt"
-            control={control}
-            clearable
-            wrapperProps={createTestAttr(ids.issuedAtInput)}
-            data={cities.map(v => ({
-              value: v,
-              label: messages.cities[v],
-            }))}
-            placeholder={t.selectInputs.placeholder}
-            label={`${t.issuedAtInput.label}:`}
           />
 
           <ControlledSelect

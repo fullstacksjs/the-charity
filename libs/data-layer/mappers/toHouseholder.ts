@@ -1,6 +1,6 @@
-import { type Householder } from '@camp/domain';
+import type { Householder } from '@camp/domain';
 
-import { type ApiHouseholder } from '../api';
+import type { ApiHouseholder } from '../api';
 import { toCity } from './toCity';
 import { toGender } from './toGender';
 import { toHouseholderStatus } from './toHouseholderStatus';
@@ -27,10 +27,6 @@ export const toHouseholder = (
           : toReligion(householder.religion),
       gender:
         householder.gender == null ? undefined : toGender(householder.gender),
-      issuedAt:
-        householder.issued_at == null
-          ? undefined
-          : toCity(householder.issued_at),
       cityOfBirth:
         householder.city == null ? undefined : toCity(householder.city),
       nationalId: householder.national_id ?? undefined,
@@ -45,7 +41,6 @@ export const toHouseholder = (
     nationality: householder.nationality!,
     cityOfBirth: toCity(householder.city!),
     gender: toGender(householder.gender!),
-    issuedAt: toCity(householder.issued_at!),
     religion: toReligion(householder.religion!),
     dob: new Date(householder.dob!),
   };

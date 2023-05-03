@@ -14,9 +14,9 @@ export const HouseholderDetail = ({ familyId }: Props) => {
 
   const householder = data?.householder;
 
-  return loading ? (
-    <FullPageLoader />
-  ) : (
+  if (loading) return <FullPageLoader />;
+
+  return (
     <HouseholderForm familyId={familyId} initialHouseholder={householder} />
   );
 };

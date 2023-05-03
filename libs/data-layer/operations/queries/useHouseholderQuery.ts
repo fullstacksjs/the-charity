@@ -1,10 +1,10 @@
 import type * as Apollo from '@apollo/client';
 import { gql } from '@apollo/client';
-import { type Householder } from '@camp/domain';
+import type { Householder } from '@camp/domain';
 
-import {
-  type ApiHouseholderQuery,
-  type ApiHouseholderQueryVariables,
+import type {
+  ApiHouseholderQuery,
+  ApiHouseholderQueryVariables,
 } from '../../api';
 import { toHouseholder } from '../../mappers';
 import { useQuery } from './useQuery';
@@ -14,7 +14,6 @@ const Document = gql`
     householder_by_pk(family_id: $family_id) {
       name
       father_name
-      issued_at
       surname
       nationality
       religion
