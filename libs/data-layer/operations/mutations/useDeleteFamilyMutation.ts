@@ -12,12 +12,13 @@ const Document = gql`
   mutation DeleteFamilyMutation($id: uuid!) {
     delete_family_by_pk(id: $id) {
       id
+      name
     }
   }
 `;
 
 export interface DeleteFamily {
-  family: Pick<Family, 'id'>;
+  family: Pick<Family, 'id' | 'name'>;
 }
 
 const toClient = (
@@ -28,6 +29,7 @@ const toClient = (
     : {
         family: {
           id: data.delete_family_by_pk.id,
+          name: data.delete_family_by_pk.name,
         },
       };
 
