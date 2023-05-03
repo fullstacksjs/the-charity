@@ -60,12 +60,6 @@ export const householderSchema = {
       .nullish()
       .or(z.literal(''))
       .transform(e => (e === '' || e == null ? undefined : e)),
-  issuedAt: () =>
-    z
-      .literal(City.Tehran)
-      .nullish()
-      .or(z.literal(''))
-      .transform(e => (e === '' || e == null ? undefined : e)),
   dob: () =>
     Schema.dob()
       .nullish()
@@ -86,7 +80,6 @@ interface CompletedHouseholder {
   religion: Religion;
   cityOfBirth: City;
   gender: Gender;
-  issuedAt: City;
 }
 
 interface DraftHouseholder {
@@ -100,7 +93,6 @@ interface DraftHouseholder {
   religion?: Religion;
   cityOfBirth?: City;
   gender?: Gender;
-  issuedAt?: City;
 }
 
 export type Householder = CompletedHouseholder | DraftHouseholder;
