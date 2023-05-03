@@ -68,6 +68,15 @@ export const messages = {
       completed: 'تکمیل شده',
       draft: 'تکمیل نشده',
     },
+    deleteFamily: {
+      title: 'حذف خانواده',
+      notification: {
+        successfulDeleted: (name: string) =>
+          `خانواده ی “${name}” با موفقیت حذف شد.`,
+        failedDeleted: (name: string) =>
+          `مشکلی در مرحله حذف خانواده ی "${name}" بوجود آمده است. لطفا دوباره تلاش کنید.`,
+      },
+    },
     severityStatus: {
       critical: 'اضطراری',
       normal: 'عادی',

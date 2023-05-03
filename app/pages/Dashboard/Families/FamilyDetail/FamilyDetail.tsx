@@ -52,7 +52,7 @@ export const FamilyDetail = () => {
             leftIcon={<TrashIcon width="18" height="18" />}
             px="lg"
             py="8px"
-            onClick={() => openDeleteFamilyModal(family.name)}
+            // onClick={() => openDeleteFamilyModal(family.name)}
           >
             {t.delete}
           </Button>
