@@ -4,6 +4,7 @@ import { HouseholderForm } from './HouseholderForm';
 import { householderFormIds } from './HouseholderForm.ids';
 
 const householderForm = messages.householder.form;
+const validation = messages.validation;
 
 describe('HouseHolder Form', () => {
   beforeEach(() => {
@@ -108,7 +109,7 @@ describe('HouseHolder Form', () => {
       cy.findByTestId(householderFormIds.firstNameInput)
         .find('input')
         .type('م');
-      cy.findByText(householderForm.validation.nameMinLength).should('exist');
+      cy.findByText(validation.name.minLength).should('exist');
     });
   });
 
@@ -117,16 +118,14 @@ describe('HouseHolder Form', () => {
       cy.findByTestId(householderFormIds.firstNameInput)
         .find('input')
         .type('محمد');
-      cy.findByText(householderForm.validation.nameMinLength).should(
-        'not.exist',
-      );
+      cy.findByText(validation.name.minLength).should('not.exist');
     });
   });
 
   it('should show an error message when householder last name is less than min length', () => {
     cy.findByTestId(householderFormIds.form).within(() => {
       cy.findByTestId(householderFormIds.lastNameInput).find('input').type('ع');
-      cy.findByText(householderForm.validation.nameMinLength).should('exist');
+      cy.findByText(validation.surname.minLength).should('exist');
     });
   });
 
@@ -135,9 +134,7 @@ describe('HouseHolder Form', () => {
       cy.findByTestId(householderFormIds.lastNameInput)
         .find('input')
         .type('علیان');
-      cy.findByText(householderForm.validation.nameMinLength).should(
-        'not.exist',
-      );
+      cy.findByText(validation.surname.minLength).should('not.exist');
     });
   });
 
@@ -146,9 +143,7 @@ describe('HouseHolder Form', () => {
       cy.findByTestId(householderFormIds.fatherNameInput)
         .find('input')
         .type('م');
-      cy.findByText(householderForm.validation.fatherNameMinLength).should(
-        'exist',
-      );
+      cy.findByText(validation.name.minLength).should('exist');
     });
   });
 
@@ -157,9 +152,7 @@ describe('HouseHolder Form', () => {
       cy.findByTestId(householderFormIds.fatherNameInput)
         .find('input')
         .type('محمد');
-      cy.findByText(householderForm.validation.fatherNameMinLength).should(
-        'not.exist',
-      );
+      cy.findByText(validation.name.minLength).should('not.exist');
     });
   });
 
@@ -168,9 +161,7 @@ describe('HouseHolder Form', () => {
       cy.findByTestId(householderFormIds.nationalIdInput)
         .find('input')
         .type('1234');
-      cy.findByText(householderForm.validation.nationalIdLength).should(
-        'exist',
-      );
+      cy.findByText(validation.nationalId.length).should('exist');
     });
   });
 
@@ -179,9 +170,7 @@ describe('HouseHolder Form', () => {
       cy.findByTestId(householderFormIds.nationalIdInput)
         .find('input')
         .type('0123456789');
-      cy.findByText(householderForm.validation.nationalIdLength).should(
-        'not.exist',
-      );
+      cy.findByText(validation.nationalId.length).should('not.exist');
     });
   });
 
@@ -190,9 +179,7 @@ describe('HouseHolder Form', () => {
       cy.findByTestId(householderFormIds.nationalIdInput)
         .find('input')
         .type('1234567ABC');
-      cy.findByText(householderForm.validation.invalidNationalId).should(
-        'exist',
-      );
+      cy.findByText(validation.nationalId.invalid).should('exist');
     });
   });
 
@@ -201,9 +188,7 @@ describe('HouseHolder Form', () => {
       cy.findByTestId(householderFormIds.nationalIdInput)
         .find('input')
         .type('0123456789');
-      cy.findByText(householderForm.validation.invalidNationalId).should(
-        'not.exist',
-      );
+      cy.findByText(validation.nationalId.invalid).should('not.exist');
     });
   });
 });

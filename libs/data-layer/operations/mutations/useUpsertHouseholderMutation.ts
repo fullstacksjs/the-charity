@@ -33,7 +33,6 @@ const Document = gql`
           gender
           dob
           father_name
-          issued_at
           name
           nationality
           religion
@@ -47,7 +46,6 @@ const Document = gql`
       dob
       national_id
       father_name
-      issued_at
       name
       nationality
       religion
@@ -102,10 +100,6 @@ const toApiVariables = (
           family_id: variables.familyId,
           national_id: variables.nationalId,
           father_name: variables.fatherName,
-          issued_at:
-            variables.issuedAt == null
-              ? undefined
-              : toApiCity(variables.issuedAt),
           surname: variables.surname,
           nationality:
             variables.nationality == null
