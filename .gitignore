@@ -39,3 +39,6 @@ vite.config.*.timestamp*
 # tsconfig cache
 tsconfig.tsbuildinfo
 tsconfig.*.tsbuildinfo
+
+# Storybook
+/storybook-static/
