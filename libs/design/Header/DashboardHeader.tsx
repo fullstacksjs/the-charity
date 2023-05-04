@@ -30,7 +30,7 @@ export const DashboardHeader = ({ button }: HeaderProps) => {
   const items = useBreadcrumbsItems();
 
   return (
-    <Group position="apart" mb={40} {...createTestAttr(ids)}>
+    <Group position="apart" {...createTestAttr(ids)}>
       <Breadcrumbs items={items} />
       {button}
     </Group>

@@ -1,5 +1,5 @@
-export const householderIdentityFormIds = {
-  form: 'householder-identity-form',
+export const householderFormIds = {
+  form: 'householder-form',
   firstNameInput: 'householder-first-name',
   lastNameInput: 'householder-last-name',
   fatherNameInput: 'householder-father-name',
@@ -8,9 +8,10 @@ export const householderIdentityFormIds = {
   issuedAtInput: 'householder-issuedAt',
   religionInput: 'householder-religion',
   genderInput: 'householder-gender',
-  dateOfBirthInput: 'householder-date-of-birth',
-  cityOfBirthInput: 'project-city-of-birth',
-  submitBtn: 'submit-button',
+  dobInput: 'householder-date-of-birth',
+  cityOfBirthInput: 'householder-city-of-birth',
+  submitBtn: 'householder-submit-button',
+  undoBtn: 'householder-undo-button',
   notification: {
     success: 'householder-successful-update',
     failure: 'householder-failed-update',

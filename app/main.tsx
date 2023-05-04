@@ -1,4 +1,5 @@
 import 'dayjs/locale/fa';
+import '../libs/monkeyPatchZod';
 
 import { AuthProvider } from '@camp/auth';
 import { ApolloProvider } from '@camp/data-layer';

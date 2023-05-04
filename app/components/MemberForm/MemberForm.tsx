@@ -1,10 +1,10 @@
 import { DashboardCard } from '@camp/design';
 import type { Gender } from '@camp/domain';
 import {
-  countries,
   createResolver,
   genders,
   memberSchema,
+  nationalities,
   religions,
 } from '@camp/domain';
 import { ArrowDownIcon, CalendarIcon, CheckIcon, PlusIcon } from '@camp/icons';
@@ -30,7 +30,6 @@ import { Controller, useForm } from 'react-hook-form';
 import { InformationBadge } from '../InformationBadge';
 import { memberFormIds as ids } from './MemberForm.ids';
 
-// FIXME: abstract
 const useStyles = createStyles(theme => ({
   textInput: {
     label: {
@@ -99,7 +98,6 @@ export const MemberForm = () => {
           {tt.addNewMember}
         </Button>
       </Group>
-      {/* FIXME: maybe abstract */}
       <DashboardCard
         left={
           <ActionIcon onClick={toggle}>
@@ -149,7 +147,7 @@ export const MemberForm = () => {
                   render={({ field }) => (
                     <Select
                       wrapperProps={createTestAttr(ids.nationalityInput)}
-                      data={countries.map(v => ({
+                      data={nationalities.map(v => ({
                         value: v,
                         label: t.nationalityInput.options[v],
                       }))}
@@ -187,12 +185,12 @@ export const MemberForm = () => {
                   )}
                 />
                 <DateInput
-                  wrapperProps={createTestAttr(ids.dateOfBirthInput)}
+                  wrapperProps={createTestAttr(ids.dobInput)}
                   className={classes.dateInput}
                   rightSection={
                     <CalendarIcon stroke="currentColor" size={16} />
                   }
-                  label={`${t.dateOfBirthInput.label}:`}
+                  label={`${t.dobInput.label}:`}
                   sx={theme => ({
                     direction: 'ltr',
                     color: theme.colors.secondaryDefault[6],

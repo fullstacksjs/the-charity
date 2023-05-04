@@ -4,7 +4,7 @@ import type { Family, InformationStatus, SeverityStatus } from '@camp/domain';
 
 import type { ApiFamilyQuery, ApiFamilyQueryVariables } from '../../api';
 import { ApiFamilySeverityEnum, ApiFamilyStatusEnum } from '../../api';
-import { useQuery } from './useQuery';
+import { useQuery } from '../../apiClient';
 
 const Document = gql`
   query Family($id: uuid!) {

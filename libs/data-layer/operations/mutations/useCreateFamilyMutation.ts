@@ -1,4 +1,3 @@
-import type { MutationHookOptions } from '@apollo/client';
 import { gql } from '@apollo/client';
 import type { Family } from '@camp/domain';
 
@@ -8,7 +7,8 @@ import type {
   ApiFamilyListQuery,
 } from '../../api';
 import { ApiFamilyListDocument } from '../../api';
-import { useMutation } from './useMutation';
+import type { MutationOptions } from '../../apiClient/types';
+import { useMutation } from '../../apiClient/useMutation';
 
 const Document = gql`
   mutation CreateFamily($name: String!) {
@@ -43,19 +43,13 @@ interface Variables {
 }
 
 const toApiVariables = (
-  variables?: Variables | null,
-): ApiCreateFamilyMutationVariables | undefined =>
-  variables == null
-    ? undefined
-    : {
-        name: variables.name,
-      };
+  variables: Variables,
+): ApiCreateFamilyMutationVariables => ({
+  name: variables.name,
+});
 
 export function useCreateFamilyMutation(
-  options?: MutationHookOptions<
-    ApiCreateFamilyMutation,
-    ApiCreateFamilyMutationVariables
-  >,
+  options?: MutationOptions<typeof toClient, typeof toApiVariables>,
 ) {
   return useMutation(Document, {
     ...options,

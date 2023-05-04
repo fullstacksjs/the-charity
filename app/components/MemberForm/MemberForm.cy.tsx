@@ -4,6 +4,7 @@ import { MemberForm } from './MemberForm';
 import { memberFormIds } from './MemberForm.ids';
 
 const createMemberForm = messages.member.createForm;
+const validation = messages.validation;
 
 describe('Create member form Form', () => {
   beforeEach(() => {
@@ -64,8 +65,8 @@ describe('Create member form Form', () => {
     });
   });
 
-  it('contains a dateOfBirth input with correct label', () => {
-    cy.contains(createMemberForm.dateOfBirthInput.label);
+  it('contains a dob input with correct label', () => {
+    cy.contains(createMemberForm.dobInput.label);
   });
 
   it('contains a button to submit the form', () => {
@@ -79,59 +80,49 @@ describe('Create member form Form', () => {
   it('should show an error message when member first name is less than min length', () => {
     cy.findByTestId(memberFormIds.form).within(() => {
       cy.findByTestId(memberFormIds.firstNameInput).find('input').type('م');
-      cy.findByText(createMemberForm.validation.nameMinLength).should('exist');
+      cy.findByText(validation.name.minLength).should('exist');
     });
   });
 
   it('should not show an error message when member first name is more than or equal to min length', () => {
     cy.findByTestId(memberFormIds.form).within(() => {
       cy.findByTestId(memberFormIds.firstNameInput).find('input').type('محمد');
-      cy.findByText(createMemberForm.validation.nameMinLength).should(
-        'not.exist',
-      );
+      cy.findByText(validation.name.minLength).should('not.exist');
     });
   });
 
   it('should show an error message when member last name is less than min length', () => {
     cy.findByTestId(memberFormIds.form).within(() => {
       cy.findByTestId(memberFormIds.lastNameInput).find('input').type('ع');
-      cy.findByText(createMemberForm.validation.nameMinLength).should('exist');
+      cy.findByText(validation.surname.minLength).should('exist');
     });
   });
 
   it('should not show an error message when member last name is more than or equal to min length', () => {
     cy.findByTestId(memberFormIds.form).within(() => {
       cy.findByTestId(memberFormIds.lastNameInput).find('input').type('علیان');
-      cy.findByText(createMemberForm.validation.nameMinLength).should(
-        'not.exist',
-      );
+      cy.findByText(validation.surname.minLength).should('not.exist');
     });
   });
 
   it('should show an error message when member father name is less than min length', () => {
     cy.findByTestId(memberFormIds.form).within(() => {
       cy.findByTestId(memberFormIds.fatherNameInput).find('input').type('م');
-      cy.findByText(createMemberForm.validation.fatherNameMinLength).should(
-        'exist',
-      );
+      cy.findByText(validation.name.minLength).should('exist');
     });
   });
 
   it('should not show an error message when member father name is more than or equal to min length', () => {
     cy.findByTestId(memberFormIds.form).within(() => {
       cy.findByTestId(memberFormIds.fatherNameInput).find('input').type('محمد');
-      cy.findByText(createMemberForm.validation.fatherNameMinLength).should(
-        'not.exist',
-      );
+      cy.findByText(validation.name.minLength).should('not.exist');
     });
   });
 
   it('should show an error message when member nationality id is less than min length', () => {
     cy.findByTestId(memberFormIds.form).within(() => {
       cy.findByTestId(memberFormIds.nationalIdInput).find('input').type('1234');
-      cy.findByText(createMemberForm.validation.nationalIdMinLength).should(
-        'exist',
-      );
+      cy.findByText(validation.nationalId.length).should('exist');
     });
   });
 
@@ -140,9 +131,7 @@ describe('Create member form Form', () => {
       cy.findByTestId(memberFormIds.nationalIdInput)
         .find('input')
         .type('0123456789');
-      cy.findByText(createMemberForm.validation.nationalIdMinLength).should(
-        'not.exist',
-      );
+      cy.findByText(validation.nationalId.length).should('not.exist');
     });
   });
 
@@ -151,9 +140,7 @@ describe('Create member form Form', () => {
       cy.findByTestId(memberFormIds.nationalIdInput)
         .find('input')
         .type('123456789ABC');
-      cy.findByText(createMemberForm.validation.invalidNationalId).should(
-        'exist',
-      );
+      cy.findByText(validation.nationalId.invalid).should('exist');
     });
   });
 
@@ -162,9 +149,7 @@ describe('Create member form Form', () => {
       cy.findByTestId(memberFormIds.nationalIdInput)
         .find('input')
         .type('0123456789');
-      cy.findByText(createMemberForm.validation.invalidNationalId).should(
-        'not.exist',
-      );
+      cy.findByText(validation.nationalId.invalid).should('not.exist');
     });
   });
 });

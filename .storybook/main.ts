@@ -1,8 +1,6 @@
-const tsconfigPaths = require('vite-tsconfig-paths').default;
-const svgr = require('vite-plugin-svgr');
+import { StorybookConfig } from '@storybook/react-vite';
 
-/** @type { import('@storybook/builder-vite').StorybookViteConfig } */
-module.exports = {
+const config: StorybookConfig = {
   stories: ['../app/**/*.stories.tsx', '../libs/design/**/*.stories.tsx'],
   addons: [
     '@storybook/addon-links',
@@ -13,3 +11,5 @@ module.exports = {
   ],
   framework: '@storybook/react-vite',
 };
+
+export default config;
