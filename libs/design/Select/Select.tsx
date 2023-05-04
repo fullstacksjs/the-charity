@@ -7,14 +7,14 @@ import { useReadonlyInputStyles } from '../Input/useReadonlyInputStyles';
 export type SelectProps = MantineSelectProps;
 
 export const Select = forwardRef<HTMLInputElement, SelectProps>(
-  ({ className = '', readOnly, ...rest }: SelectProps, ref) => {
-    const { classes } = useReadonlyInputStyles();
+  ({ className, readOnly, ...rest }: SelectProps, ref) => {
+    const { classes, cx } = useReadonlyInputStyles();
 
     return (
       <MantineSelect
         ref={ref}
         {...rest}
-        className={`${readOnly ? classes.readonlyInput : ''} ${className}`}
+        className={cx({ [classes.readonlyInput]: readOnly }, className)}
       />
     );
   },

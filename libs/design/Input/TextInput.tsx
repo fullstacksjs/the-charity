@@ -20,8 +20,8 @@ const useStyles = createStyles(_ => ({
 }));
 
 export const TextInput = forwardRef<HTMLInputElement, TextInputProps>(
-  ({ className = '', ...rest }: TextInputProps, ref) => {
-    const { classes } = useStyles();
+  ({ className, ...rest }: TextInputProps, ref) => {
+    const { classes, cx } = useStyles();
     const {
       classes: { readonlyInput: readonlyInputClass },
     } = useReadonlyInputStyles();
@@ -30,7 +30,7 @@ export const TextInput = forwardRef<HTMLInputElement, TextInputProps>(
       <MantineTextInput
         ref={ref}
         {...rest}
-        className={`${readonlyInputClass} ${classes.textInput} ${className}`}
+        className={cx(readonlyInputClass, classes.textInput, className)}
       />
     );
   },
