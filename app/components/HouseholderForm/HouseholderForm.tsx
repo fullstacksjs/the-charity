@@ -43,14 +43,14 @@ interface Props {
 
 interface FormSchema {
   name: string;
-  surname: string;
-  fatherName: string;
-  nationalId: string;
-  dob: Date;
-  gender: Gender;
-  nationality: Nationality;
-  religion: Religion;
-  cityOfBirth: City;
+  surname: string | undefined;
+  fatherName: string | undefined;
+  nationalId: string | undefined;
+  dob: Date | null;
+  gender: Gender | undefined;
+  nationality: Nationality | undefined;
+  religion: Religion | undefined;
+  cityOfBirth: City | undefined;
 }
 
 const resolver = createResolver<FormSchema>({
@@ -94,28 +94,32 @@ export const HouseholderForm = ({ initialHouseholder, familyId }: Props) => {
 
   const [upsertHouseholder] = useUpsertHouseholderMutation();
 
-  const onSubmit = handleSubmit(formData => {
-    upsertHouseholder({
-      variables: { ...formData, familyId },
-    })
-      .then(({ data: d }) => {
-        if (!isNull(d)) reset(d.householder);
-        showNotification({
-          title: t.title,
-          message: t.notification.successfulUpdate(d?.householder.name ?? ''),
-          type: 'success',
-          ...createTestAttr(ids.notification.success),
-        });
-      })
-      .catch(() =>
-        showNotification({
-          title: t.title,
-          message: t.notification.failedUpdate(formData.name),
-          type: 'failure',
-          ...createTestAttr(ids.notification.failure),
-        }),
-      );
+  const onSubmit = handleSubmit(async formData => {
+    try {
+      const { data } = await upsertHouseholder({
+        variables: { ...formData, familyId },
+      });
+
+      if (!isNull(data)) reset(data.householder);
+      showNotification({
+        title: t.title,
+        message: t.notification.successfulUpdate(data?.householder.name ?? ''),
+        type: 'success',
+        ...createTestAttr(ids.notification.success),
+      });
+    } catch {
+      showNotification({
+        title: t.title,
+        message: t.notification.failedUpdate(formData.name),
+        type: 'failure',
+        ...createTestAttr(ids.notification.failure),
+      });
+    }
   });
+
+  const handleReset = () => {
+    reset();
+  };
 
   return (
     <form onSubmit={onSubmit} {...createTestAttr(ids.form)}>
@@ -131,7 +135,7 @@ export const HouseholderForm = ({ initialHouseholder, familyId }: Props) => {
               variant="outline"
               color="red"
               disabled={!isDirty}
-              onClick={() => reset()}
+              onClick={handleReset}
             >
               {t.undoBtn}
             </Button>
@@ -249,7 +253,11 @@ export const HouseholderForm = ({ initialHouseholder, familyId }: Props) => {
                 readOnly={isReadOnly}
                 wrapperProps={createTestAttr(ids.dobInput)}
                 className={classes.input}
-                rightSection={<CalendarIcon stroke="currentColor" size={16} />}
+                rightSection={
+                  field.value ? undefined : (
+                    <CalendarIcon stroke="currentColor" size={16} />
+                  )
+                }
                 label={`${t.dobInput.label}:`}
                 sx={theme => ({
                   direction: 'ltr',
@@ -259,6 +267,7 @@ export const HouseholderForm = ({ initialHouseholder, familyId }: Props) => {
                 placeholder={t.selectInputs.placeholder}
                 error={errors.dob?.message}
                 {...field}
+                value={field.value ?? null} // NOTE: undefined will be treated as not provided value, and it cannot reset the field.
               />
             )}
           />

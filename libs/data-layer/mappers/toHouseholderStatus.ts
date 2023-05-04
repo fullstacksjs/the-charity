@@ -1,4 +1,4 @@
-import { type HouseholderStatus } from '@camp/domain';
+import type { HouseholderStatus } from '@camp/domain';
 
 import { ApiHouseholderStatusEnum } from '../api';
 

@@ -8,7 +8,7 @@ import type {
   ApiProjectListQuery,
 } from '../../api';
 import { ApiProjectListDocument, ApiProjectStatusEnum } from '../../api';
-import { useMutation } from './useMutation';
+import { useMutation } from '../../apiClient/useMutation';
 
 const Document = gql`
   mutation CreateProject($input: project_insert_input!) {
@@ -54,22 +54,16 @@ interface Variables {
 }
 
 const toApiVariables = (
-  variables?: Variables | null,
-): ApiCreateProjectMutationVariables | undefined =>
-  variables == null
-    ? undefined
-    : {
-        input: {
-          name: variables.name,
-          description: variables.description,
-        },
-      };
+  variables: Variables,
+): ApiCreateProjectMutationVariables => ({
+  input: {
+    name: variables.name,
+    description: variables.description,
+  },
+});
 
 export function useCreateProjectMutation(
-  options?: MutationHookOptions<
-    ApiCreateProjectMutation,
-    ApiCreateProjectMutationVariables
-  >,
+  options?: MutationHookOptions<typeof toClient, typeof toApiVariables>,
 ) {
   return useMutation(Document, {
     ...options,

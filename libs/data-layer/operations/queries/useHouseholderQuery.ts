@@ -6,8 +6,8 @@ import type {
   ApiHouseholderQuery,
   ApiHouseholderQueryVariables,
 } from '../../api';
+import { useQuery } from '../../apiClient';
 import { toHouseholder } from '../../mappers';
-import { useQuery } from './useQuery';
 
 const Document = gql`
   query Householder($family_id: uuid!) {

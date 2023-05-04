@@ -6,8 +6,8 @@ import type {
   ApiFamilyListQuery,
   ApiFamilyListQueryVariables,
 } from '../../api';
+import { useQuery } from '../../apiClient';
 import { toInformationStatus, toSeverityStatus } from './useFamilyQuery';
-import { useQuery } from './useQuery';
 
 const Document = gql`
   query FamilyList {

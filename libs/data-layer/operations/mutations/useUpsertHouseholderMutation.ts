@@ -1,4 +1,3 @@
-import type { MutationHookOptions } from '@apollo/client';
 import { gql } from '@apollo/client';
 import type {
   City,
@@ -12,15 +11,17 @@ import type {
   ApiUpsertHouseholderMutation,
   ApiUpsertHouseholderMutationVariables,
 } from '../../api';
+import { ApiHouseholderDocument } from '../../api';
+import type { MutationOptions } from '../../apiClient';
+import { useMutation } from '../../apiClient';
 import {
-  ApiCityEnum,
-  ApiGenderEnum,
-  ApiHouseholderDocument,
-  ApiNationalityEnum,
-  ApiReligionEnum,
-} from '../../api';
-import { toHouseholder } from '../../mappers';
-import { useMutation } from './useMutation';
+  toApiCity,
+  toApiDate,
+  toApiGender,
+  toApiNationality,
+  toApiReligion,
+  toHouseholder,
+} from '../../mappers';
 
 const Document = gql`
   mutation UpsertHouseholder($input: householder_insert_input!) {
@@ -73,7 +74,7 @@ interface Variables {
   surname?: string;
   fatherName?: string;
   nationalId?: string;
-  dob?: Date;
+  dob?: Date | null;
   nationality?: Nationality;
   religion?: Religion;
   gender?: Gender;
@@ -81,51 +82,35 @@ interface Variables {
   issuedAt?: City;
 }
 
-const toApiGender = (gender: Gender): ApiGenderEnum =>
-  gender === 'male' ? ApiGenderEnum.Male : ApiGenderEnum.Female;
-const toApiCity = (_: City): ApiCityEnum => ApiCityEnum.Tehran;
-const toApiReligion = (_: Religion): ApiReligionEnum => ApiReligionEnum.Islam;
-const toApiNationality = (_: Nationality): ApiNationalityEnum =>
-  ApiNationalityEnum.Ir;
-const toApiDate = (d: Date): string => d.toISOString().split('T')[0]!;
-
 const toApiVariables = (
-  variables?: Variables | null,
-): ApiUpsertHouseholderMutationVariables | undefined =>
-  variables == null
-    ? undefined
-    : {
-        input: {
-          name: variables.name,
-          family_id: variables.familyId,
-          national_id: variables.nationalId,
-          father_name: variables.fatherName,
-          surname: variables.surname,
-          nationality:
-            variables.nationality == null
-              ? undefined
-              : toApiNationality(variables.nationality),
-          religion:
-            variables.religion == null
-              ? undefined
-              : toApiReligion(variables.religion),
-          city:
-            variables.cityOfBirth == null
-              ? undefined
-              : toApiCity(variables.cityOfBirth),
-          gender:
-            variables.gender != null
-              ? toApiGender(variables.gender)
-              : undefined,
-          dob: variables.dob != null ? toApiDate(variables.dob) : undefined,
-        },
-      };
+  variables: Variables,
+): ApiUpsertHouseholderMutationVariables => ({
+  input: {
+    name: variables.name,
+    family_id: variables.familyId,
+    national_id: variables.nationalId,
+    father_name: variables.fatherName,
+    surname: variables.surname,
+    nationality:
+      variables.nationality == null
+        ? undefined
+        : toApiNationality(variables.nationality),
+    religion:
+      variables.religion == null
+        ? undefined
+        : toApiReligion(variables.religion),
+    city:
+      variables.cityOfBirth == null
+        ? undefined
+        : toApiCity(variables.cityOfBirth),
+    gender:
+      variables.gender == null ? undefined : toApiGender(variables.gender),
+    dob: variables.dob == null ? undefined : toApiDate(variables.dob),
+  },
+});
 
 export function useUpsertHouseholderMutation(
-  options?: MutationHookOptions<
-    ApiUpsertHouseholderMutation,
-    ApiUpsertHouseholderMutationVariables
-  >,
+  options?: MutationOptions<typeof toClient, typeof toApiVariables>,
 ) {
   return useMutation(Document, {
     ...options,
