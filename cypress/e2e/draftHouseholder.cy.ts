@@ -53,7 +53,6 @@ const idMapping = {
       ),
   },
   city: { id: ids.cityOfBirthInput, type: 'select', options: messages.cities },
-  issuedAt: { id: ids.issuedAtInput, type: 'select', options: messages.cities },
 } as Record<string, Input>;
 
 describe('Householder', () => {
@@ -100,6 +99,7 @@ function emptyHouseholderForm(mock: Mock) {
   Object.keys(mock).forEach(key => {
     const input = idMapping[key];
     const mockValue = mock[key];
+    if (input == null) throw Error(`mock for ${key} is not defined`);
     const { id, type } = input;
     const inputValue = type === 'select' ? input.options[mockValue] : mockValue;
 
