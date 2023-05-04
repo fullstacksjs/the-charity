@@ -1,17 +1,15 @@
 import { Group, SimpleGrid, Title } from '@mantine/core';
 
-import { type DashboardCardProps } from '../DashboardCard';
+import type { DashboardCardProps } from '../DashboardCard';
 import { DashboardCard } from '../DashboardCard';
 import { DetailCardBadgeField } from './DetailCardBadgeField';
 import { DetailCardTextField } from './DetailCardTextField';
 
-interface DetailCardProps {
+interface Props extends DashboardCardProps {
   title: string;
   id?: string;
   children: React.ReactNode;
 }
-
-type Props = DashboardCardProps & DetailCardProps;
 
 export const DetailCard = ({ title, id, children, ...cardProps }: Props) => {
   return (

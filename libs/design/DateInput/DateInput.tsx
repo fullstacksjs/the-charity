@@ -2,7 +2,7 @@ import type { DateInputProps } from 'mantine-datepicker-jalali';
 import { DateInput as MantineJalaliDateInput } from 'mantine-datepicker-jalali';
 import { forwardRef } from 'react';
 
-import { useReadonlyInputStyles } from './useReadonlyInputStyles';
+import { useReadonlyInputStyles } from '../Input/useReadonlyInputStyles';
 
 export const DateInput = forwardRef<HTMLInputElement, DateInputProps>(
   ({ className, readOnly, ...rest }: DateInputProps, ref) => {

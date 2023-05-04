@@ -2,6 +2,7 @@ export * from './Alert';
 export * from './Badge';
 export * from './Breadcrumbs';
 export * from './DashboardCard';
+export * from './DateInput';
 export * from './DetailCard';
 export * from './EmptyState';
 export * from './FullPageLoader';

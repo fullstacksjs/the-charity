@@ -7,8 +7,9 @@ interface DashboardCardInternalProps {
   children?: React.ReactNode;
 }
 
-export type DashboardCardProps = DashboardCardInternalProps &
-  Omit<CardProps, 'children' | 'left' | 'right'>;
+export interface DashboardCardProps
+  extends DashboardCardInternalProps,
+    Omit<CardProps, 'children' | 'left' | 'right'> {}
 
 export const DashboardCard = ({
   right,
