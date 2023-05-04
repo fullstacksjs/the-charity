@@ -5,8 +5,8 @@ import { forwardRef } from 'react';
 import { useReadonlyInputStyles } from './useReadonlyInputStyles';
 
 export const DateInput = forwardRef<HTMLInputElement, DateInputProps>(
-  ({ className = '', readOnly, ...rest }: DateInputProps, ref) => {
-    const { classes } = useReadonlyInputStyles();
+  ({ className, readOnly, ...rest }: DateInputProps, ref) => {
+    const { classes, cx } = useReadonlyInputStyles();
 
     return (
       <MantineJalaliDateInput
@@ -14,7 +14,7 @@ export const DateInput = forwardRef<HTMLInputElement, DateInputProps>(
         {...rest}
         readOnly={readOnly}
         rightSection={!readOnly ? rest.rightSection : null}
-        className={`${classes.readonlyInput} ${className}`}
+        className={cx(classes.readonlyInput, className)}
       />
     );
   },
