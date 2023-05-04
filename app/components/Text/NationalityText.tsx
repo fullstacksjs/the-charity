@@ -1,4 +1,4 @@
-import { type Nationality } from '@camp/domain';
+import type { Nationality } from '@camp/domain';
 
 import { messages } from '../../messages';
 

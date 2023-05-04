@@ -1,7 +1,7 @@
 import { useUpsertHouseholderMutation } from '@camp/data-layer';
 import {
+  ControlledDateInput,
   ControlledSelect,
-  DateInput,
   showNotification,
   TextInput,
 } from '@camp/design';
@@ -20,7 +20,7 @@ import {
   nationalities,
   religions,
 } from '@camp/domain';
-import { CalendarIcon, CheckIcon } from '@camp/icons';
+import { CheckIcon } from '@camp/icons';
 import { messages } from '@camp/messages';
 import { createTestAttr } from '@camp/test';
 import { isNull } from '@fullstacksjs/toolbox';
@@ -32,7 +32,7 @@ import {
   Stack,
   Title,
 } from '@mantine/core';
-import { Controller, useForm } from 'react-hook-form';
+import { useForm } from 'react-hook-form';
 
 import { householderFormIds as ids } from './HouseholderForm.ids';
 
@@ -244,32 +244,15 @@ export const HouseholderForm = ({ initialHouseholder, familyId }: Props) => {
             label={`${t.cityOfBirthInput.label}:`}
           />
 
-          <Controller
+          <ControlledDateInput
             name="dob"
             control={control}
-            render={({ field }) => (
-              <DateInput
-                clearable
-                readOnly={isReadOnly}
-                wrapperProps={createTestAttr(ids.dobInput)}
-                className={classes.input}
-                rightSection={
-                  field.value ? undefined : (
-                    <CalendarIcon stroke="currentColor" size={16} />
-                  )
-                }
-                label={`${t.dobInput.label}:`}
-                sx={theme => ({
-                  direction: 'ltr',
-                  color: theme.colors.secondaryDefault[6],
-                })}
-                locale="fa"
-                placeholder={t.selectInputs.placeholder}
-                error={errors.dob?.message}
-                {...field}
-                value={field.value ?? null} // NOTE: undefined will be treated as not provided value, and it cannot reset the field.
-              />
-            )}
+            clearable
+            readOnly={isReadOnly}
+            wrapperProps={createTestAttr(ids.dobInput)}
+            className={classes.input}
+            label={`${t.dobInput.label}:`}
+            placeholder={t.selectInputs.placeholder}
           />
         </SimpleGrid>
       </Stack>

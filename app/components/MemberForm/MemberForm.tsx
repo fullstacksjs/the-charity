@@ -1,5 +1,5 @@
 import { DashboardCard } from '@camp/design';
-import { type Gender } from '@camp/domain';
+import type { Gender } from '@camp/domain';
 import {
   createResolver,
   genders,
