@@ -17,7 +17,7 @@ interface Props {
   family: FamilyListItemDto;
 }
 
-const t = messages.families.deleteFamily;
+const t = messages.families.list.delete.modal;
 
 export const FamilyTableRow = ({ order, family }: Props) => {
   const navigate = useNavigate();
@@ -44,6 +44,7 @@ export const FamilyTableRow = ({ order, family }: Props) => {
               openDeleteFamilyModal({
                 name,
                 onDeleteFamily: async () => {
+                  // FIXME: maybe abstract
                   try {
                     const { data } = await DeleteFamilyMutation({
                       variables: { id },
@@ -51,7 +52,7 @@ export const FamilyTableRow = ({ order, family }: Props) => {
 
                     if (isNull(data)) throw new Error('data is null');
                     showNotification({
-                      title: t.title,
+                      title: t.notification.title,
                       message: t.notification.successfulDeleted(
                         data.family.name,
                       ),
@@ -60,7 +61,7 @@ export const FamilyTableRow = ({ order, family }: Props) => {
                   } catch (err) {
                     console.error('error occurred', err);
                     showNotification({
-                      title: t.title,
+                      title: t.notification.title,
                       message: t.notification.failedDeleted(name),
                       type: 'failure',
                     });
