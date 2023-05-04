@@ -2,7 +2,7 @@ import type { SelectProps as MantineSelectProps } from '@mantine/core';
 import { Select as MantineSelect } from '@mantine/core';
 import { forwardRef } from 'react';
 
-import { useReadonlyInputStyles } from '../Input/useReadonlyInputStyles';
+import { useReadonlyInputStyles } from '../TextInput/useReadonlyInputStyles';
 
 export type SelectProps = MantineSelectProps;
 
