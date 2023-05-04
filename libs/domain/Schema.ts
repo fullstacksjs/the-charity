@@ -31,8 +31,8 @@ export const Schema = {
   nationalId: () =>
     z
       .string()
-      .length(10, messages.validation.nationalId.length)
       .regex(digitsRegex, messages.validation.nationalId.invalid)
+      .length(10, messages.validation.nationalId.length)
       .trim(),
   gender: () => z.union([z.literal(Gender.Female), z.literal(Gender.Male)]),
   nationality: () => z.literal(Nationality.Ir),

@@ -56,15 +56,6 @@ describe('HouseHolder Form', () => {
     });
   });
 
-  it('contains a issuedAt input with correct label', () => {
-    cy.findByTestId(householderFormIds.form).within(() => {
-      cy.findByLabelText(`${householderForm.issuedAtInput.label}:`).should(
-        'match',
-        'input',
-      );
-    });
-  });
-
   it('contains a religion input with correct label', () => {
     cy.findByTestId(householderFormIds.form).within(() => {
       cy.findByLabelText(`${householderForm.religionInput.label}:`).should(
