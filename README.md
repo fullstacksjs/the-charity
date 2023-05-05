@@ -13,6 +13,15 @@
 
 Development of TheCharity happens in GitHub, and we appreciate contributions. Learn how you can help improve TheCharity by reading the sections below.
 
+## Project Glossary
+
+To have a better knowledge of the project domain, please read the [Project Glossary](./docs/Glossary.md).
+
+## Non-functional Requirements
+
+[Non-functional requirements](./docs/NonFunctionRequirements.md)
+
+
 ### Prerequisite:
 
 - [POSIX-compliant shell][shell]
