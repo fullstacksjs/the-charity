@@ -72,24 +72,6 @@ The project contains multiple modules which has their specific responsibilities 
 
 ## Scripts
 
-**e2e-pick:**
-
-If you want to only run a specific e2e test based on a patter you can run this command:
-
-```bash
-npm run test:e2ep pattern
-```
-you can replace pattern with anything e.g:
-```bash
-npm run test:e2ep auth
-```
-this will run the `authorization.cy.ts` test
-or if the pattern matches more than one file it will still run them e.g:
-```bash
-npm run test:e2ep family
-```
-this will run the `createFamily.cy.ts` and `familyList.cy.ts` test
-
 ### Run
 
 To start the app first set the envs as described in the (envs section)[#Envs]
@@ -97,11 +79,21 @@ then run:
 
 ```bash
 npm install
+npm run codegen
 npm run dev
 ```
 
 > If you're using [vscode][vscode] you can install [Apollo Graphql][apollo-graphql-extension]
 > extension to get features like autocomplete in your graphql queries
+
+### Codegen
+This project uses [GraphQL Code Generator][codegen] to generate types and interfaces from our API schema. This ensures type safety in our operations and queries, reducing the risk of errors and improving the overall quality of our code.
+
+to generate the latest type from the API you need to have proper environment in place and run:
+
+```bash
+npm run codegen
+```
 
 ### Build
 
@@ -124,11 +116,42 @@ npm run lint
 To run the unit tests run:
 
 ```bash
-npm run test
+npm run test:unit
 ```
 
-> If you're using [vscode][vscode] like me you can install [vitest extension][vitest-extension] to make your life easier, after installing it
-> just read it's documentation on the extension description to get started
+To run e2e tests you need to have dev server running at configured port and run:
+
+```bash
+npm run test:e2e
+```
+
+If you want to only run a specific e2e test based on a patter you can run `test:e2ep` command:
+
+```bash
+npm run test:e2ep [PATTERN]
+```
+
+if the pattern matches more than one file it will still run all of them, for example the following command will run the `createFamily.cy.ts` and `familyList.cy.ts` test
+
+```bash
+npm run test:e2ep family
+```
+
+To run component tests run:
+
+```bash
+npm run test:component
+```
+
+### Storybook
+
+[Storybook][storybook] is used by for sandbox development and UI regression testing. It enables us to build and test UI components in isolation, speeding up development and reducing errors.
+
+To run storybook dev server run:
+
+```bash
+npm run storybook
+```
 
 ### Spell Check
 
@@ -160,3 +183,5 @@ just add it to the `.cspell/charity.txt` and separate with a new line
 [oauth-audience]:
   https://datatracker.ietf.org/doc/html/draft-tschofenig-oauth-audience-00
 [shell]: https://en.wikipedia.org/wiki/Unix_shell
+[storybook]: https://storybook.js.org/
+[codegen]: https://the-guild.dev/graphql/codegen

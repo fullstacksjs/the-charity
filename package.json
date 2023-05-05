@@ -10,7 +10,7 @@
     "lint:ci": "eslint . --ext .ts,.tsx",
     "lint": "npm run lint:ci -- --fix",
     "spell": "./scripts/spell",
-    "test": "dotenv -e .env.dev -- vitest",
+    "test:unit": "dotenv -e .env.dev -- vitest",
     "test:ci": "npm run test",
     "test:component": "dotenv -e .env.dev -- cypress run --component",
     "test:e2e": "dotenv -e .env.dev -- cypress run",
