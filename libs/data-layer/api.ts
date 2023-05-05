@@ -3987,7 +3987,7 @@ export type ApiDeleteFamilyMutationMutationVariables = Exact<{
 }>;
 
 
-export type ApiDeleteFamilyMutationMutation = { __typename?: 'mutation_root', delete_family_by_pk?: { __typename?: 'family', id: any, name: string } | null };
+export type ApiDeleteFamilyMutationMutation = { __typename?: 'mutation_root', delete_family_by_pk?: { __typename?: 'family', id: string, name: string } | null };
 
 export type ApiUpsertHouseholderMutationVariables = Exact<{
   input: ApiHouseholderInsertInput;
@@ -3995,13 +3995,6 @@ export type ApiUpsertHouseholderMutationVariables = Exact<{
 
 
 export type ApiUpsertHouseholderMutation = { __typename?: 'mutation_root', insert_householder_one?: { __typename?: 'householder', city?: ApiCityEnum | null, gender?: ApiGenderEnum | null, dob?: string | null, national_id?: string | null, father_name?: string | null, name: string, nationality?: ApiNationalityEnum | null, religion?: ApiReligionEnum | null, surname?: string | null, status: ApiHouseholderStatusEnum } | null };
-
-export type ApiMemberListQueryVariables = Exact<{
-  family_id: Scalars['uuid'];
-}>;
-
-
-export type ApiMemberListQuery = { __typename?: 'query_root', member: Array<{ __typename?: 'member', id: any, status: ApiMemberStatusEnum, name: string, surname?: string | null, father_name?: string | null, nationality?: string | null, gender?: ApiGenderEnum | null, religion?: string | null }> };
 
 export type ApiFamilyListQueryVariables = Exact<{ [key: string]: never; }>;
 

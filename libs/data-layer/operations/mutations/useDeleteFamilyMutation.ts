@@ -1,4 +1,3 @@
-import type { MutationHookOptions } from '@apollo/client';
 import { gql } from '@apollo/client';
 import type { Family } from '@camp/domain';
 
@@ -6,6 +5,8 @@ import type {
   ApiDeleteFamilyMutationMutation,
   ApiDeleteFamilyMutationMutationVariables,
 } from '../../api';
+import { ApiDeleteFamilyMutationDocument } from '../../api';
+import type { MutationOptions } from '../../apiClient';
 import { useMutation } from '../../apiClient';
 
 const Document = gql`
@@ -38,23 +39,33 @@ interface Variables {
 }
 
 const toApiVariables = (
-  variables?: Variables | null,
-): ApiDeleteFamilyMutationMutationVariables | undefined =>
-  variables == null
-    ? undefined
-    : {
-        id: variables.id,
-      };
+  variables: Variables,
+): ApiDeleteFamilyMutationMutationVariables => ({
+  id: variables.id,
+});
 
 export const useDeleteFamilyMutation = (
-  options?: MutationHookOptions<
-    ApiDeleteFamilyMutationMutation,
-    ApiDeleteFamilyMutationMutationVariables
-  >,
+  options?: MutationOptions<typeof toClient, typeof toApiVariables>,
 ): any => {
   return useMutation(Document, {
     ...options,
     mapData: toClient,
     mapVariables: toApiVariables,
+    update(cache, { data: family }, { variables }) {
+      const deleteFamily = family?.delete_family_by_pk;
+      const id = variables?.id;
+
+      if (deleteFamily) {
+        cache.writeQuery({
+          query: ApiDeleteFamilyMutationDocument,
+          variables: { id },
+          data: {
+            delete_family_by_pk: {
+              ...deleteFamily,
+            },
+          },
+        });
+      }
+    },
   });
 };
