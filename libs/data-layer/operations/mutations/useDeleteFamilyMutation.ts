@@ -6,7 +6,7 @@ import type {
   ApiDeleteFamilyMutationMutation,
   ApiDeleteFamilyMutationMutationVariables,
 } from '../../api';
-import { useMutation } from './useMutation';
+import { useMutation } from '../../apiClient';
 
 const Document = gql`
   mutation DeleteFamilyMutation($id: uuid!) {
