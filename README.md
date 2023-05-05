@@ -1,6 +1,13 @@
-# TheCharity
+<center>
+  <img src="./assets/logo.png" width="160" />
+</center>
 
-TheCharity is an open-source, non-profit web application created by FullstacksjsJS community.
+<center><h1>The Charity</h1></center>
+
+<center>TheCharity is an open-source, non-profit web application created by FullstacksjsJS community.</center>
+
+<br />
+<br />
 
 ## CONTRIBUTING
 
@@ -56,7 +63,7 @@ recognized env files:
 
 - `.env.dev`: the env file used for dev environment
 
-## Project Structure
+## Architecture
 
 The project contains multiple modules which has their specific responsibilities and rules. Here you can find a big picture of the code architecture and their dependencies and for more detail you refer to the README file of each module.
 
