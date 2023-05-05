@@ -280,7 +280,7 @@ export const messages = {
   familyDetail: {
     title: 'اطلاعات کلی خانواده',
     notFound: 'خانواده مورد نظر یافت نشد',
-    delete: 'پاک کردن',
+    delete: 'حذف کردن',
     tabs: {
       householderTitle: 'سرپرست',
       membersTitle: 'اعضا',
