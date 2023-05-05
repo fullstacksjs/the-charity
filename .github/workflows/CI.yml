@@ -32,7 +32,7 @@ jobs:
         run: npm run build
 
       - name: Test
-        run: npm run test:ci
+        run: npm run test:unit
 
   chromatic:
     runs-on: ubuntu-latest

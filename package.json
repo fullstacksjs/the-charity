@@ -11,7 +11,6 @@
     "lint": "npm run lint:ci -- --fix",
     "spell": "./scripts/spell",
     "test:unit": "dotenv -e .env.dev -- vitest",
-    "test:ci": "npm run test",
     "test:component": "dotenv -e .env.dev -- cypress run --component",
     "test:e2e": "dotenv -e .env.dev -- cypress run",
     "test:e2ep": "./scripts/e2e-pick",
