@@ -53,16 +53,14 @@ export const FamilyTableRow = ({ order, family }: Props) => {
                     if (isNull(data)) throw new Error('data is null');
                     showNotification({
                       title: t.notification.title,
-                      message: t.notification.successfulDeleted(
-                        data.family.name,
-                      ),
+                      message: t.notification.success(data.family.name),
                       type: 'success',
                     });
                   } catch (err) {
                     console.error('error occurred', err);
                     showNotification({
                       title: t.notification.title,
-                      message: t.notification.failedDeleted(name),
+                      message: t.notification.failed(name),
                       type: 'failure',
                     });
                   }

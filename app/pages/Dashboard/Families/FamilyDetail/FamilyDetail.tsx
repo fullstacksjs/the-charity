@@ -69,9 +69,7 @@ export const FamilyDetail = () => {
                     if (isNull(familyData)) throw new Error('data is null');
                     showNotification({
                       title: deleteFamily.notification.title,
-                      message: deleteFamily.notification.successfulDeleted(
-                        family.name,
-                      ),
+                      message: deleteFamily.notification.success(family.name),
                       type: 'success',
                     });
                     navigate({ to: '/' });
@@ -79,9 +77,7 @@ export const FamilyDetail = () => {
                     console.error('error occurred', err);
                     showNotification({
                       title: deleteFamily.notification.title,
-                      message: deleteFamily.notification.failedDeleted(
-                        family.name,
-                      ),
+                      message: deleteFamily.notification.failed(family.name),
                       type: 'failure',
                     });
                   }

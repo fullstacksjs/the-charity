@@ -78,10 +78,9 @@ export const messages = {
         modal: {
           notification: {
             title: 'حذف خانواده',
-            successfulDeleted: (name: string) =>
-              `خانواده ی “${name}” با موفقیت حذف شد.`,
-            failedDeleted: (name: string) =>
-              `مشکلی در مرحله حذف خانواده ی "${name}" بوجود آمده است. لطفا دوباره تلاش کنید.`,
+            success: (name: string) => `خانوار “${name}” با موفقیت حذف شد.`,
+            failed: (name: string) =>
+              `مشکلی در مرحله حذف خانوار "${name}" بوجود آمده است. لطفا دوباره تلاش کنید.`,
           },
           title: 'حذف',
           children: (name: string) =>
