@@ -1,10 +1,10 @@
-<center>
+<p align="center">
   <img src="./assets/logo.png" width="160" />
-</center>
+</p>
 
-<center><h1>The Charity</h1></center>
+<h1 align="center">The Charity</h1>
 
-<center>TheCharity is an open-source, non-profit web application created by the FullstacksjsJS community.</center>
+<p align="center">TheCharity is an open-source, non-profit web application created by the [FullstacksJS][fullstacksjs] community.</p>
 
 <br />
 <br />
@@ -72,7 +72,7 @@ The project contains multiple modules which have their specific responsibilities
 
 
 ![architecture](assets/architecture.png)
-<center><i>An arrow from ModuleA to ModuleB means ModuleA depends on ModuleB</i></center>
+<p align="center"><i>An arrow from ModuleA to ModuleB means ModuleA depends on ModuleB</i></p>
 
 ## Scripts
 
@@ -169,6 +169,7 @@ And if you want to add a new word so that it won't count as a spelling error, ju
 > Note: These two (linting and finding spelling errors) are run automatically on each commit and the commit won't be done if there's anything wrong, even for the commit messages, so be careful what you write as a commit message :)
 
 
+[fullstacksjs]: https://fullstacksjs.com/
 [bash]: https://www.gnu.org/software/bash/
 [git]: https://git-scm.com/
 [nodejs]: https://nodejs.org/en/

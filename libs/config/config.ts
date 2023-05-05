@@ -21,7 +21,7 @@ export const config = Config.parse({
   apiEndpoint: import.meta.env.APP_API_ENDPOINT,
   schemaUrl: import.meta.env.APP_GRAPHQL_SCHEMA_URL,
   hasuraSecret: import.meta.env.APP_HASURA_ADMIN_SECRET,
-  isDev: import.meta.env.NODE_ENV !== 'production',
+  isDev: import.meta.env.DEV,
   auth0: {
     domain: import.meta.env.APP_AUTH0_DOMAIN,
     clientId: import.meta.env.APP_AUTH0_CLIENT_ID,

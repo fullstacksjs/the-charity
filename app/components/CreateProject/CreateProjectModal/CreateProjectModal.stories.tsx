@@ -1,5 +1,6 @@
 import { ModalsProvider } from '@mantine/modals';
 import type { Meta, StoryObj } from '@storybook/react';
+import { useEffect } from 'react';
 
 import {
   CreateProjectModal,
@@ -29,7 +30,10 @@ type Story = StoryObj<typeof CreateProjectModal>;
 
 export const Default: Story = {
   render: () => {
-    openCreateProjectModal();
+    useEffect(() => {
+      openCreateProjectModal();
+    }, []);
+
     return <></>;
   },
 };
