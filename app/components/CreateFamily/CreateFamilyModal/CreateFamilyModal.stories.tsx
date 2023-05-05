@@ -1,5 +1,6 @@
 import { ModalsProvider } from '@mantine/modals';
 import type { Meta, StoryObj } from '@storybook/react';
+import { useEffect } from 'react';
 
 import { CreateFamilyModal, openCreateFamilyModal } from './CreateFamilyModal';
 
@@ -26,7 +27,9 @@ type Story = StoryObj<typeof CreateFamilyModal>;
 
 export const Default: Story = {
   render: () => {
-    openCreateFamilyModal();
+    useEffect(() => {
+      openCreateFamilyModal();
+    }, []);
     return <></>;
   },
 };

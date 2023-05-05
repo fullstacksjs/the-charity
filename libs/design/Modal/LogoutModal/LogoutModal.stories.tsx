@@ -1,6 +1,7 @@
 import { noop } from '@fullstacksjs/toolbox';
 import { ModalsProvider } from '@mantine/modals';
 import type { Meta, StoryObj } from '@storybook/react';
+import { useEffect } from 'react';
 
 import { LogoutConfirm } from './LogoutConfirm';
 import { openLogoutModal } from './LogoutModal';
@@ -27,5 +28,11 @@ export default {
 type Story = StoryObj<typeof LogoutConfirm>;
 
 export const Default: Story = {
-  render: () => <>{openLogoutModal(noop)}</>,
+  render: () => {
+    useEffect(() => {
+      openLogoutModal(noop);
+    }, []);
+
+    return <></>;
+  },
 };
