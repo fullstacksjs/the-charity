@@ -1,17 +1,14 @@
-import { type MutationHookOptions } from '@apollo/client';
+import type { MutationHookOptions } from '@apollo/client';
 import { gql } from '@apollo/client';
-import {
-  type Country,
-  type Gender,
-  type Member,
-  type MemberStatus,
-  type Religion,
+import type {
+  Gender,
+  Member,
+  MemberStatus,
+  Nationality,
+  Religion,
 } from '@camp/domain';
 
-import {
-  type ApiMemberMutation,
-  type ApiMemberMutationVariables,
-} from '../../api';
+import type { ApiMemberMutation, ApiMemberMutationVariables } from '../../api';
 import { ApiGenderEnum, ApiMemberStatusEnum } from '../../api';
 import { useMutation } from '../../apiClient';
 
@@ -78,7 +75,7 @@ interface Variables {
   surname?: string;
   fatherName?: string;
   nationalId?: string;
-  nationality?: Country;
+  nationality?: Nationality;
   religion?: Religion;
   gender?: Gender;
 }
