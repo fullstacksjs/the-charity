@@ -43,6 +43,33 @@ export const FamilyDetail = () => {
   }
   if (isNull(family)) return <p>{t.notFound}</p>;
 
+  const onDeleteFamily = async () => {
+    try {
+      const { data: familyData } = await DeleteFamilyMutation({
+        variables: { id: family.id },
+      });
+
+      if (isNull(familyData)) throw new Error('data is null');
+      showNotification({
+        title: deleteFamily.notification.title,
+        message: deleteFamily.notification.success(family.name),
+        type: 'success',
+      });
+      navigate({ to: '/' });
+    } catch (err) {
+      console.error('error occurred', err);
+      showNotification({
+        title: deleteFamily.notification.title,
+        message: deleteFamily.notification.failed(family.name),
+        type: 'failure',
+      });
+    }
+  };
+
+  const handleDeleteFamily = () => {
+    openDeleteFamilyModal({ name: family.name, onDeleteFamily });
+  };
+
   return (
     <>
       <DetailCard
@@ -56,34 +83,7 @@ export const FamilyDetail = () => {
             leftIcon={<TrashIcon width="18" height="18" />}
             px="lg"
             py="8px"
-            onClick={() =>
-              openDeleteFamilyModal({
-                name: family.name,
-                onDeleteFamily: async () => {
-                  // FIXME: maybe abstract
-                  try {
-                    const { data: familyData } = await DeleteFamilyMutation({
-                      variables: { id: family.id },
-                    });
-
-                    if (isNull(familyData)) throw new Error('data is null');
-                    showNotification({
-                      title: deleteFamily.notification.title,
-                      message: deleteFamily.notification.success(family.name),
-                      type: 'success',
-                    });
-                    navigate({ to: '/' });
-                  } catch (err) {
-                    console.error('error occurred', err);
-                    showNotification({
-                      title: deleteFamily.notification.title,
-                      message: deleteFamily.notification.failed(family.name),
-                      type: 'failure',
-                    });
-                  }
-                },
-              })
-            }
+            onClick={handleDeleteFamily}
           >
             {t.delete}
           </Button>

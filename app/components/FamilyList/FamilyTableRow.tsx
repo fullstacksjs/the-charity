@@ -28,6 +28,32 @@ export const FamilyTableRow = ({ order, family }: Props) => {
     navigate({ to: `/dashboard/families/${id}` as AppRoute });
   };
 
+  const onDeleteFamily = async () => {
+    try {
+      const { data } = await DeleteFamilyMutation({
+        variables: { id },
+      });
+
+      if (isNull(data)) throw new Error('data is null');
+      showNotification({
+        title: t.notification.title,
+        message: t.notification.success(data.family.name),
+        type: 'success',
+      });
+    } catch (err) {
+      console.error('error occurred', err);
+      showNotification({
+        title: t.notification.title,
+        message: t.notification.failed(name),
+        type: 'failure',
+      });
+    }
+  };
+
+  const handleDeleteFamily = () => {
+    openDeleteFamilyModal({ name, onDeleteFamily });
+  };
+
   return (
     <tr style={{ cursor: 'pointer' }} onClick={gotoDetail}>
       <td>{order}</td>
@@ -41,31 +67,7 @@ export const FamilyTableRow = ({ order, family }: Props) => {
           <FamilyActionButton
             onDelete={e => {
               e.stopPropagation();
-              openDeleteFamilyModal({
-                name,
-                onDeleteFamily: async () => {
-                  // FIXME: maybe abstract
-                  try {
-                    const { data } = await DeleteFamilyMutation({
-                      variables: { id },
-                    });
-
-                    if (isNull(data)) throw new Error('data is null');
-                    showNotification({
-                      title: t.notification.title,
-                      message: t.notification.success(data.family.name),
-                      type: 'success',
-                    });
-                  } catch (err) {
-                    console.error('error occurred', err);
-                    showNotification({
-                      title: t.notification.title,
-                      message: t.notification.failed(name),
-                      type: 'failure',
-                    });
-                  }
-                },
-              });
+              handleDeleteFamily();
             }}
             menuButtonId={ids.familyTableMenuButtonId}
             menuId={ids.familyTableMenuId}
