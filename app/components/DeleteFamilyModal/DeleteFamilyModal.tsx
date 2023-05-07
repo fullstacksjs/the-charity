@@ -1,6 +1,5 @@
 import { showModal } from '@camp/design';
 import { messages } from '@camp/messages';
-import type { VoidFn } from '@fullstacksjs/toolbox';
 
 import { deleteFamilyModalIds as Ids } from './DeleteFamilyModal.ids';
 
@@ -8,7 +7,7 @@ const t = messages.families.list.delete.modal;
 
 interface Props {
   name: string;
-  onDeleteFamily: () => VoidFn;
+  onDeleteFamily: () => Promise<void>;
 }
 
 export const openDeleteFamilyModal = ({ name, onDeleteFamily }: Props) =>
