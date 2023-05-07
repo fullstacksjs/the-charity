@@ -58,7 +58,7 @@ export const messages = {
       },
       notification: {
         failure: (name: string) =>
-          `مشکلی در مرحله ایجاد خانواده ای با نام “${name}” بوجود آمده است. لطفا دوباره تلاش کنید.`,
+          `مشکلی در مرحله ایجاد خانواده ای با نام “${name}” به وجود آمده است. لطفا دوباره تلاش کنید.`,
 
         success: (name: string) =>
           `خانواده ای با نام “${name}” با موفقیت ایجاد شده است.`,
@@ -98,7 +98,7 @@ export const messages = {
       successfulCreate: (name: string) =>
         `پروژه ای با نام "${name}" .با موفقیت ایجاد شده است`,
       failedCreate: (name: string) =>
-        `مشکلی در مرحله ایجاد پروژه ای با نام "${name}" .بوجود آمده است. لطفا دوباره تلاش کنید`,
+        `مشکلی در مرحله ایجاد پروژه ای با نام "${name}" .به وجود آمده است. لطفا دوباره تلاش کنید`,
     },
     empty: {
       title: 'پروژه ای وجود ندارد!',
@@ -110,7 +110,7 @@ export const messages = {
         label: 'نام',
       },
       descriptionInput: {
-        placeholder: 'توضیحی درمورد پروژه',
+        placeholder: 'توضیحی در مورد پروژه',
         label: 'توضیحات',
       },
       submitBtn: {
@@ -149,7 +149,7 @@ export const messages = {
         successfulUpdate: (name: string) =>
           `سرپرستی ای با نام "${name}" .با موفقیت آپدیت شد`,
         failedUpdate: (name: string) =>
-          `مشکلی در مرحله آپدیت سرپرستی ای با نام "${name}" .بوجود آمده است. لطفا دوباره تلاش کنید`,
+          `مشکلی در مرحله آپدیت سرپرستی ای با نام "${name}" .به وجود آمده است. لطفا دوباره تلاش کنید`,
       },
       submitBtn: 'ثبت',
       selectInputs: {
@@ -302,7 +302,7 @@ export const messages = {
     modal: {
       title: 'خروج از حساب کاربری',
       confirmMessage: 'آیا می خواهید از حساب کاربری خود خارج شوید؟',
-      accept: 'بله، خارج میشوم',
+      accept: 'بله، خارج می شوم',
       cancel: 'انصراف',
     },
   },

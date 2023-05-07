@@ -1,20 +1,20 @@
 {
+  "$schema": "https://raw.githubusercontent.com/streetsidesoftware/cspell/main/cspell.schema.json",
   "version": "0.2",
-  "dictionaries": ["charity"],
-
+  "language": "en,fa",
   "dictionaryDefinitions": [
     {
-      "name": "charity",
-      "path": "./configs/cspell/charity.txt",
+      "name": "charity-en",
+      "path": "./configs/cspell/charity.en.txt",
+      "addWords": true
+    },
+    {
+      "name": "charity-fa",
+      "path": "./configs/cspell/charity.fa.txt",
       "addWords": true
     }
   ],
+  "dictionaries": ["charity-en", "charity-fa"],
   "ignorePaths": ["node_modules/", "dist/"],
-  "patterns": [
-    {
-      "name": "poor persian",
-      "pattern": "/[الفبپتسجچحخدذرزژسشصضطظعغفقکگلمنوهی]/g"
-    }
-  ],
-  "ignoreRegExpList": ["poor persian"]
+  "import": ["@cspell/dict-fa-ir/cspell-ext.json"]
 }

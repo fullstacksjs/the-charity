@@ -26,6 +26,7 @@
     "@anatine/zod-mock": "3.11.0",
     "@apollo/client": "3.7.14",
     "@auth0/auth0-react": "2.0.2",
+    "@cspell/dict-fa-ir": "2.0.0",
     "@emotion/react": "11.10.8",
     "@fullstacksjs/toolbox": "3.0.2",
     "@graphiql/toolkit": "0.8.4",
