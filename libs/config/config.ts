@@ -29,8 +29,7 @@ export const config = Config.parse({
   debug: {
     // @ts-expect-error Zod will handle that in run time.
     level: import.meta.env.APP_LOG_LEVEL ?? 'silent',
-    // @ts-expect-error Zod will handle that in run time.
-    scopes: import.meta.env.APP_DEBUG_SCOPES?.split(','),
+    scopes: import.meta.env.APP_DEBUG_SCOPES?.split(',') ?? [],
   },
   auth0: {
     domain: import.meta.env.APP_AUTH0_DOMAIN,
