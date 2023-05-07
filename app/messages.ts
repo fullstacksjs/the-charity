@@ -76,6 +76,12 @@ export const messages = {
       title: 'لیست خانواده ها',
       delete: {
         modal: {
+          notification: {
+            title: 'حذف خانواده',
+            success: (name: string) => `خانوار “${name}” با موفقیت حذف شد.`,
+            failed: (name: string) =>
+              `مشکلی در مرحله حذف خانوار "${name}" بوجود آمده است. لطفا دوباره تلاش کنید.`,
+          },
           title: 'حذف',
           children: (name: string) =>
             `آیا از حذف خانواده "${name}" مطمئن هستید؟`,
@@ -274,7 +280,7 @@ export const messages = {
   familyDetail: {
     title: 'اطلاعات کلی خانواده',
     notFound: 'خانواده مورد نظر یافت نشد',
-    delete: 'پاک کردن',
+    delete: 'حذف کردن',
     tabs: {
       householderTitle: 'سرپرست',
       membersTitle: 'اعضا',

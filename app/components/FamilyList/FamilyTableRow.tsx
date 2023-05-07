@@ -1,5 +1,9 @@
 import type { FamilyListItemDto } from '@camp/data-layer';
+import { useDeleteFamilyMutation } from '@camp/data-layer';
+import { showNotification } from '@camp/design';
+import { messages } from '@camp/messages';
 import { AppRoute, useNavigate } from '@camp/router';
+import { isNull } from '@fullstacksjs/toolbox';
 import { Group } from '@mantine/core';
 
 import { openDeleteFamilyModal } from '../DeleteFamilyModal';
@@ -13,12 +17,41 @@ interface Props {
   family: FamilyListItemDto;
 }
 
+const t = messages.families.list.delete.modal;
+
 export const FamilyTableRow = ({ order, family }: Props) => {
   const navigate = useNavigate();
   const { id, informationStatus, name, severityStatus } = family;
+  const [DeleteFamilyMutation] = useDeleteFamilyMutation();
 
   const gotoDetail = () => {
     navigate({ to: `/dashboard/families/${id}` as AppRoute });
+  };
+
+  const onDeleteFamily = async () => {
+    try {
+      const { data } = await DeleteFamilyMutation({
+        variables: { id },
+      });
+
+      if (isNull(data)) throw new Error('data is null');
+      showNotification({
+        title: t.notification.title,
+        message: t.notification.success(data.family.name),
+        type: 'success',
+      });
+    } catch (err) {
+      console.error('error occurred', err);
+      showNotification({
+        title: t.notification.title,
+        message: t.notification.failed(name),
+        type: 'failure',
+      });
+    }
+  };
+
+  const handleDeleteFamily = () => {
+    openDeleteFamilyModal({ name, onDeleteFamily });
   };
 
   return (
@@ -34,7 +67,7 @@ export const FamilyTableRow = ({ order, family }: Props) => {
           <FamilyActionButton
             onDelete={e => {
               e.stopPropagation();
-              openDeleteFamilyModal(name);
+              handleDeleteFamily();
             }}
             menuButtonId={ids.familyTableMenuButtonId}
             menuId={ids.familyTableMenuId}

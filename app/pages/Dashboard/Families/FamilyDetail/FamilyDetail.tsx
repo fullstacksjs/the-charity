@@ -1,4 +1,4 @@
-import { useFamilyQuery } from '@camp/data-layer';
+import { useDeleteFamilyMutation, useFamilyQuery } from '@camp/data-layer';
 import {
   DetailCard,
   FullPageLoader,
@@ -7,7 +7,7 @@ import {
 } from '@camp/design';
 import { TrashIcon } from '@camp/icons';
 import { errorMessages, messages } from '@camp/messages';
-import { useParams } from '@camp/router';
+import { useNavigate, useParams } from '@camp/router';
 import { isNull } from '@fullstacksjs/toolbox';
 import { Button, Title } from '@mantine/core';
 
@@ -22,10 +22,14 @@ import { familyDetailIds as ids } from './FamilyDetail.ids';
 
 export const FamilyDetail = () => {
   const t = messages.familyDetail;
+  const deleteFamily = messages.families.list.delete.modal;
   const familyId = useParams();
+  const navigate = useNavigate();
   const { data, loading, error } = useFamilyQuery({
     variables: { id: familyId },
   });
+  const [DeleteFamilyMutation] = useDeleteFamilyMutation();
+
   const family = data?.family;
   if (loading) return <FullPageLoader />;
 
@@ -38,6 +42,33 @@ export const FamilyDetail = () => {
     return null;
   }
   if (isNull(family)) return <p>{t.notFound}</p>;
+
+  const onDeleteFamily = async () => {
+    try {
+      const { data: familyData } = await DeleteFamilyMutation({
+        variables: { id: family.id },
+      });
+
+      if (isNull(familyData)) throw new Error('data is null');
+      showNotification({
+        title: deleteFamily.notification.title,
+        message: deleteFamily.notification.success(family.name),
+        type: 'success',
+      });
+      navigate({ to: '/' });
+    } catch (err) {
+      console.error('error occurred', err);
+      showNotification({
+        title: deleteFamily.notification.title,
+        message: deleteFamily.notification.failed(family.name),
+        type: 'failure',
+      });
+    }
+  };
+
+  const handleDeleteFamily = () => {
+    openDeleteFamilyModal({ name: family.name, onDeleteFamily });
+  };
 
   return (
     <>
@@ -52,7 +83,7 @@ export const FamilyDetail = () => {
             leftIcon={<TrashIcon width="18" height="18" />}
             px="lg"
             py="8px"
-            onClick={() => openDeleteFamilyModal(family.name)}
+            onClick={handleDeleteFamily}
           >
             {t.delete}
           </Button>

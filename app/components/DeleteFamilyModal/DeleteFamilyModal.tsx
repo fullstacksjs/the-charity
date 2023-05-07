@@ -5,7 +5,12 @@ import { deleteFamilyModalIds as Ids } from './DeleteFamilyModal.ids';
 
 const t = messages.families.list.delete.modal;
 
-export const openDeleteFamilyModal = (name: string) =>
+interface Props {
+  name: string;
+  onDeleteFamily: VoidFunction;
+}
+
+export const openDeleteFamilyModal = ({ name, onDeleteFamily }: Props) =>
   showModal({
     id: Ids.modal,
     title: t.title,
@@ -13,4 +18,5 @@ export const openDeleteFamilyModal = (name: string) =>
     cancelLable: t.cancel,
     confirmLabel: t.confirm,
     size: 'sm',
+    onConfirm: () => onDeleteFamily(),
   });
