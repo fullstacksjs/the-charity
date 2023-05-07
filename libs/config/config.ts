@@ -27,8 +27,7 @@ export const config = Config.parse({
   hasuraSecret: import.meta.env.APP_HASURA_ADMIN_SECRET,
   isDev: import.meta.env.DEV,
   debug: {
-    // @ts-expect-error Zod will handle that in run time.
-    level: import.meta.env.APP_LOG_LEVEL ?? 'silent',
+    level: (import.meta.env.APP_LOG_LEVEL ?? 'silent') as 'silent',
     scopes: import.meta.env.APP_DEBUG_SCOPES?.split(',') ?? [],
   },
   auth0: {
