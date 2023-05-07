@@ -1,4 +1,4 @@
-import type { CityEnum, GenderEnum, ReligionEnum } from './ApiSchema';
+import type { CityEnum, GenderEnum, NationalityEnum, ReligionEnum } from './ApiSchema';
 import { Schema } from './Schema';
 
 export const memberSchema = {
@@ -13,16 +13,31 @@ export const memberSchema = {
 
 export type MemberStatus = 'completed' | 'draft';
 
-export interface Member {
+interface CompletedMember {
   name: string;
+  status: 'completed';
   id: string;
-  status: MemberStatus;
+  surname: string;
+  fatherName: string;
+  nationalId: string;
+  dob: Date;
+  nationality: NationalityEnum;
+  religion: ReligionEnum;
+  gender: GenderEnum;
+}
+
+interface DraftMember {
+  name: string;
+  status: 'draft';
+  id: string;
   surname?: string;
   gender?: GenderEnum;
   fatherName?: string;
   nationalId?: string;
-  nationality?: string;
+  nationality?: NationalityEnum;
   religion?: ReligionEnum;
   cityOfBirth?: CityEnum;
   issuedAt?: CityEnum;
 }
+
+export type Member = CompletedMember | DraftMember;
