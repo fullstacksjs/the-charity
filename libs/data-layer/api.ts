@@ -4021,7 +4021,7 @@ export type ApiMemberMutationVariables = Exact<{
 }>;
 
 
-export type ApiMemberMutation = { __typename?: 'mutation_root', insert_member_one?: { __typename?: 'member', id: string, name: string, surname?: string | null, father_name?: string | null, nationality?: string | null, gender?: ApiGenderEnum | null, religion?: string | null, status: ApiMemberStatusEnum } | null };
+export type ApiMemberMutation = { __typename?: 'mutation_root', insert_member_one?: { __typename?: 'member', id: string, gender?: ApiGenderEnum | null, father_name?: string | null, name: string, nationality?: string | null, religion?: string | null, national_id?: string | null, status: ApiMemberStatusEnum, surname?: string | null, dob?: string | null } | null };
 
 export type ApiUpsertHouseholderMutationVariables = Exact<{
   input: ApiHouseholderInsertInput;
@@ -4035,7 +4035,7 @@ export type ApiMemberListQueryVariables = Exact<{
 }>;
 
 
-export type ApiMemberListQuery = { __typename?: 'query_root', member: Array<{ __typename?: 'member', id: any, status: ApiMemberStatusEnum, name: string, surname?: string | null, father_name?: string | null, nationality?: string | null, gender?: ApiGenderEnum | null, religion?: string | null }> };
+export type ApiMemberListQuery = { __typename?: 'query_root', member: Array<{ __typename?: 'member', id: string, status: ApiMemberStatusEnum, name: string, surname?: string | null, father_name?: string | null, nationality?: string | null, gender?: ApiGenderEnum | null, religion?: string | null }> };
 
 export type ApiFamilyListQueryVariables = Exact<{ [key: string]: never; }>;
 
@@ -4105,15 +4105,18 @@ export const ApiMemberDocument = gql`
     mutation Member($input: member_insert_input!) {
   insert_member_one(
     object: $input
-    on_conflict: {constraint: member_pkey, update_columns: [name, surname, father_name, nationality, gender, religion]}
+    on_conflict: {constraint: member_pkey, update_columns: [id, gender, father_name, name, nationality, national_id, religion, status, surname, dob]}
   ) {
     id
-    name
-    surname
-    father_name
-    nationality
     gender
+    father_name
+    name
+    nationality
     religion
+    national_id
+    status
+    surname
+    dob
     status
   }
 }
