@@ -1,5 +1,6 @@
 import type { FamilyListItemDto } from '@camp/data-layer';
 import { useDeleteFamilyMutation } from '@camp/data-layer';
+import { debug } from '@camp/debug';
 import { showNotification } from '@camp/design';
 import { messages } from '@camp/messages';
 import { AppRoute, useNavigate } from '@camp/router';
@@ -41,7 +42,7 @@ export const FamilyTableRow = ({ order, family }: Props) => {
         type: 'success',
       });
     } catch (err) {
-      console.error('error occurred', err);
+      debug.error(err);
       showNotification({
         title: t.notification.title,
         message: t.notification.failed(name),

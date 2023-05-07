@@ -1,4 +1,5 @@
 import { useDeleteFamilyMutation, useFamilyQuery } from '@camp/data-layer';
+import { debug } from '@camp/debug';
 import {
   DetailCard,
   FullPageLoader,
@@ -57,7 +58,7 @@ export const FamilyDetail = () => {
       });
       navigate({ to: '/' });
     } catch (err) {
-      console.error('error occurred', err);
+      debug.error(err);
       showNotification({
         title: deleteFamily.notification.title,
         message: deleteFamily.notification.failed(family.name),

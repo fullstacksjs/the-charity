@@ -1,5 +1,6 @@
 import { showModal } from '@camp/design';
 import { messages } from '@camp/messages';
+import type { VoidFn } from '@fullstacksjs/toolbox';
 
 import { deleteFamilyModalIds as Ids } from './DeleteFamilyModal.ids';
 
@@ -7,7 +8,7 @@ const t = messages.families.list.delete.modal;
 
 interface Props {
   name: string;
-  onDeleteFamily: VoidFunction;
+  onDeleteFamily: () => VoidFn;
 }
 
 export const openDeleteFamilyModal = ({ name, onDeleteFamily }: Props) =>
@@ -18,5 +19,5 @@ export const openDeleteFamilyModal = ({ name, onDeleteFamily }: Props) =>
     cancelLable: t.cancel,
     confirmLabel: t.confirm,
     size: 'sm',
-    onConfirm: () => onDeleteFamily(),
+    onConfirm: () => void onDeleteFamily(),
   });
