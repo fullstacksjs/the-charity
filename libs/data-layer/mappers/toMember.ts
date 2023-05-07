@@ -7,7 +7,7 @@ import { toMemberStatus } from './toMemberStatus';
 export const toMember = (
   member: Omit<
     ApiMember,
-    '__typename' | 'created_at' | 'family_id' | 'ssn' | 'updated_at'
+    '__typename' | 'created_at' | 'family_id' | 'updated_at'
   >,
 ): Member => {
   const status = toMemberStatus(member.status);
