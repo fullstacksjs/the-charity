@@ -42,7 +42,7 @@ export const toHouseholder = (
     fatherName: householder.father_name!,
     surname: householder.surname!,
     nationalId: householder.national_id!,
-    nationality: householder.nationality!,
+    nationality: toNationality(householder.nationality!),
     cityOfBirth: toCity(householder.city!),
     gender: toGender(householder.gender!),
     religion: toReligion(householder.religion!),
