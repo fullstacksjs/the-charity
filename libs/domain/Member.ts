@@ -1,4 +1,3 @@
-import type { City } from './City';
 import type { Gender } from './Gender';
 import type { Nationality } from './Nationality';
 import type { Religion } from './Religions';
@@ -16,16 +15,30 @@ export const memberSchema = {
 
 export type MemberStatus = 'completed' | 'draft';
 
-export interface Member {
+interface CompletedMember {
   name: string;
+  status: 'completed';
   id: string;
-  status: MemberStatus;
+  surname: string;
+  fatherName: string;
+  nationalId: string;
+  dob: Date;
+  nationality: Nationality;
+  religion: Religion;
+  gender: Gender;
+}
+
+interface DraftMember {
+  name: string;
+  status: 'draft';
+  id: string;
   surname?: string;
-  gender?: Gender;
   fatherName?: string;
   nationalId?: string;
+  dob?: Date;
   nationality?: Nationality;
   religion?: Religion;
-  cityOfBirth?: City;
-  issuedAt?: City;
+  gender?: Gender;
 }
+
+export type Member = CompletedMember | DraftMember;
