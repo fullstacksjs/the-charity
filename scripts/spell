@@ -1,3 +1,7 @@
 #!/usr/bin/env sh
 
-git ls-files | grep -v ".svg" | grep -v ".*ignore" | xargs npx cspell "$@"
+npx cspell lint . \
+  --exclude "*.svg" \
+  --exclude "*.tsbuildinfo" \
+  --exclude "*.mp4" \
+  --no-progress "$@"

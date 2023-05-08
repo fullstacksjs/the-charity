@@ -80,7 +80,7 @@ export const messages = {
             title: 'حذف خانواده',
             success: (name: string) => `خانوار “${name}” با موفقیت حذف شد.`,
             failed: (name: string) =>
-              `مشکلی در مرحله حذف خانوار "${name}" بوجود آمده است. لطفا دوباره تلاش کنید.`,
+              `مشکلی در مرحله حذف خانوار "${name}" به وجود آمده است. لطفا دوباره تلاش کنید.`,
           },
           title: 'حذف',
           children: (name: string) =>
