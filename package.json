@@ -12,6 +12,7 @@
     "lint": "npm run lint:ci -- --fix",
     "spell": "./scripts/spell",
     "test:unit": "dotenv -e .env.dev -- vitest",
+    "test:unit:ci": "dotenv -e .env.dev -- vitest run",
     "test:component": "dotenv -e .env.dev -- cypress run --component",
     "test:e2e": "dotenv -e .env.dev -- cypress run",
     "test:e2ep": "./scripts/e2e-pick",
@@ -19,10 +20,11 @@
     "coverage": "vitest run --coverage",
     "storybook": "dotenv -e .env.dev -- storybook dev -p 6006",
     "build-storybook": "storybook build",
+    "build-storybook:ci": "storybook build --quiet --disable-telemetry",
     "pr": "./scripts/pr",
     "codegen": "dotenv -e .env.dev -- graphql-codegen",
     "codegen:watch": "npm run codegen -- --watch",
-    "verify": "run-p compile lint:ci test:unit spell"
+    "verify": "run-p compile lint:ci test:unit:ci spell"
   },
   "dependencies": {
     "@anatine/zod-mock": "3.11.0",
