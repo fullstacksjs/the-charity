@@ -4002,6 +4002,13 @@ export type ApiCreateFamilyMutationVariables = Exact<{
 
 export type ApiCreateFamilyMutation = { __typename?: 'mutation_root', insert_family_one?: { __typename?: 'family', id: string, code?: string | null, name: string } | null };
 
+export type ApiMemberMutationVariables = Exact<{
+  input: ApiMemberInsertInput;
+}>;
+
+
+export type ApiMemberMutation = { __typename?: 'mutation_root', insert_member_one?: { __typename?: 'member', id: string, gender?: ApiGenderEnum | null, father_name?: string | null, name: string, nationality?: string | null, religion?: string | null, national_id?: string | null, status: ApiMemberStatusEnum, surname?: string | null, dob?: string | null } | null };
+
 export type ApiCreateProjectMutationVariables = Exact<{
   input: ApiProjectInsertInput;
 }>;
@@ -4016,13 +4023,6 @@ export type ApiDeleteFamilyMutationMutationVariables = Exact<{
 
 export type ApiDeleteFamilyMutationMutation = { __typename?: 'mutation_root', delete_family_by_pk?: { __typename?: 'family', id: string, name: string } | null };
 
-export type ApiMemberMutationVariables = Exact<{
-  input: ApiMemberInsertInput;
-}>;
-
-
-export type ApiMemberMutation = { __typename?: 'mutation_root', insert_member_one?: { __typename?: 'member', id: string, gender?: ApiGenderEnum | null, father_name?: string | null, name: string, nationality?: string | null, religion?: string | null, national_id?: string | null, status: ApiMemberStatusEnum, surname?: string | null, dob?: string | null } | null };
-
 export type ApiUpsertHouseholderMutationVariables = Exact<{
   input: ApiHouseholderInsertInput;
 }>;
@@ -4035,7 +4035,7 @@ export type ApiMemberListQueryVariables = Exact<{
 }>;
 
 
-export type ApiMemberListQuery = { __typename?: 'query_root', member: Array<{ __typename?: 'member', id: string, status: ApiMemberStatusEnum, name: string, surname?: string | null, father_name?: string | null, nationality?: string | null, gender?: ApiGenderEnum | null, religion?: string | null }> };
+export type ApiMemberListQuery = { __typename?: 'query_root', member: Array<{ __typename?: 'member', dob?: string | null, father_name?: string | null, gender?: ApiGenderEnum | null, name: string, national_id?: string | null, nationality?: string | null, religion?: string | null, surname?: string | null, id: string, status: ApiMemberStatusEnum }> };
 
 export type ApiFamilyListQueryVariables = Exact<{ [key: string]: never; }>;
 
@@ -4077,6 +4077,29 @@ export const ApiCreateFamilyDocument = gql`
 export type ApiCreateFamilyMutationFn = Apollo.MutationFunction<ApiCreateFamilyMutation, ApiCreateFamilyMutationVariables>;
 export type ApiCreateFamilyMutationResult = Apollo.MutationResult<ApiCreateFamilyMutation>;
 export type ApiCreateFamilyMutationOptions = Apollo.BaseMutationOptions<ApiCreateFamilyMutation, ApiCreateFamilyMutationVariables>;
+export const ApiMemberDocument = gql`
+    mutation Member($input: member_insert_input!) {
+  insert_member_one(
+    object: $input
+    on_conflict: {constraint: member_pkey, update_columns: [id, gender, father_name, name, nationality, national_id, religion, status, surname, dob]}
+  ) {
+    id
+    gender
+    father_name
+    name
+    nationality
+    religion
+    national_id
+    status
+    surname
+    dob
+    status
+  }
+}
+    `;
+export type ApiMemberMutationFn = Apollo.MutationFunction<ApiMemberMutation, ApiMemberMutationVariables>;
+export type ApiMemberMutationResult = Apollo.MutationResult<ApiMemberMutation>;
+export type ApiMemberMutationOptions = Apollo.BaseMutationOptions<ApiMemberMutation, ApiMemberMutationVariables>;
 export const ApiCreateProjectDocument = gql`
     mutation CreateProject($input: project_insert_input!) {
   insert_project_one(object: $input) {
@@ -4101,29 +4124,6 @@ export const ApiDeleteFamilyMutationDocument = gql`
 export type ApiDeleteFamilyMutationMutationFn = Apollo.MutationFunction<ApiDeleteFamilyMutationMutation, ApiDeleteFamilyMutationMutationVariables>;
 export type ApiDeleteFamilyMutationMutationResult = Apollo.MutationResult<ApiDeleteFamilyMutationMutation>;
 export type ApiDeleteFamilyMutationMutationOptions = Apollo.BaseMutationOptions<ApiDeleteFamilyMutationMutation, ApiDeleteFamilyMutationMutationVariables>;
-export const ApiMemberDocument = gql`
-    mutation Member($input: member_insert_input!) {
-  insert_member_one(
-    object: $input
-    on_conflict: {constraint: member_pkey, update_columns: [id, gender, father_name, name, nationality, national_id, religion, status, surname, dob]}
-  ) {
-    id
-    gender
-    father_name
-    name
-    nationality
-    religion
-    national_id
-    status
-    surname
-    dob
-    status
-  }
-}
-    `;
-export type ApiMemberMutationFn = Apollo.MutationFunction<ApiMemberMutation, ApiMemberMutationVariables>;
-export type ApiMemberMutationResult = Apollo.MutationResult<ApiMemberMutation>;
-export type ApiMemberMutationOptions = Apollo.BaseMutationOptions<ApiMemberMutation, ApiMemberMutationVariables>;
 export const ApiUpsertHouseholderDocument = gql`
     mutation UpsertHouseholder($input: householder_insert_input!) {
   insert_householder_one(
@@ -4149,14 +4149,16 @@ export type ApiUpsertHouseholderMutationOptions = Apollo.BaseMutationOptions<Api
 export const ApiMemberListDocument = gql`
     query memberList($family_id: uuid!) {
   member(where: {family_id: {_eq: $family_id}}) {
+    dob
+    father_name
+    gender
+    name
+    national_id
+    nationality
+    religion
+    surname
     id
     status
-    name
-    surname
-    father_name
-    nationality
-    gender
-    religion
   }
 }
     `;
