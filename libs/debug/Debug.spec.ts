@@ -197,7 +197,7 @@ describe('Debug', () => {
     });
 
     it('it should NOT call internal log function when log level is warn', () => {
-      const debug = createDebug('error');
+      const debug = createDebug('warn');
       debug.error(1, 2);
 
       expect(stubLogger.error).toBeCalledWith(1, 2);
