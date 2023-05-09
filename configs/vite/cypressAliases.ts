@@ -38,7 +38,6 @@ export function cypressAliases(): Plugin {
 
     transform(src: string, id: string) {
       if (/.*cypress\/e2e\//.test(id)) {
-        console.log(id);
         const code = transformAliases(aliases, src);
         return { code, map: null };
       }

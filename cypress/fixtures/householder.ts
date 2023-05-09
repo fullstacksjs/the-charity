@@ -28,4 +28,3 @@ export const householderFixture = () =>
       },
     },
   );
-console.log(householderFixture());

@@ -1,3 +1,4 @@
+import { debug, DebugScopes } from '@camp/debug';
 import { useMatches } from '@camp/router';
 import { createTestAttr } from '@camp/test';
 import { Group } from '@mantine/core';
@@ -12,6 +13,7 @@ export interface HeaderProps {
 
 export const useBreadcrumbsItems = (): BreadcrumbItem[] => {
   const matches = useMatches();
+  debug.log(DebugScopes.Breadcrumbs, matches);
 
   return matches
     .filter(match => Boolean(match.route.meta?.breadcrumb))

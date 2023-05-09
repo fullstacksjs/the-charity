@@ -1,4 +1,5 @@
 import { useCreateProjectMutation } from '@camp/data-layer';
+import { debug } from '@camp/debug';
 import { showNotification } from '@camp/design';
 import { createResolver, projectSchema } from '@camp/domain';
 import { messages } from '@camp/messages';
@@ -50,7 +51,7 @@ export const CreateProjectForm = ({ dismiss }: Props) => {
       });
       dismiss();
     } catch (err) {
-      console.error('error occurred', err);
+      debug.error(err);
 
       showNotification({
         title: messages.projects.create,

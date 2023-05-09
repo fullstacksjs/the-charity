@@ -46,3 +46,5 @@ upsert
 anatine
 iname
 graphiql
+tsbuildinfo
+huskyrc

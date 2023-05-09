@@ -1,4 +1,5 @@
 import { useHouseholderQuery } from '@camp/data-layer';
+import { debug, DebugScopes } from '@camp/debug';
 import { FullPageLoader } from '@camp/design';
 
 import { HouseholderForm } from '../HouseholderForm';
@@ -13,6 +14,7 @@ export const HouseholderDetail = ({ familyId }: Props) => {
   });
 
   const householder = data?.householder;
+  debug.log(DebugScopes.Householder, householder);
 
   if (loading) return <FullPageLoader />;
 

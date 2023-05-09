@@ -1,3 +1,4 @@
+import { debug } from '@camp/debug';
 import { errorMessages } from '@camp/messages';
 
 export type ServerError =
@@ -14,7 +15,7 @@ const isKnownError = (e: unknown): e is KnownError =>
 
 export const toClientErrorMessage = (error: unknown): string => {
   if (!isKnownError(error)) {
-    console.error(error);
+    debug.error(error);
     return errorMessages.UNKNOWN_ERROR;
   }
 

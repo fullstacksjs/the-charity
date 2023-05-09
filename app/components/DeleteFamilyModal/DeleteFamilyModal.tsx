@@ -7,7 +7,7 @@ const t = messages.families.list.delete.modal;
 
 interface Props {
   name: string;
-  onDeleteFamily: VoidFunction;
+  onDeleteFamily: () => Promise<void>;
 }
 
 export const openDeleteFamilyModal = ({ name, onDeleteFamily }: Props) =>
@@ -18,5 +18,5 @@ export const openDeleteFamilyModal = ({ name, onDeleteFamily }: Props) =>
     cancelLable: t.cancel,
     confirmLabel: t.confirm,
     size: 'sm',
-    onConfirm: () => onDeleteFamily(),
+    onConfirm: () => void onDeleteFamily(),
   });
