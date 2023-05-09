@@ -3,6 +3,7 @@ import { gql } from '@apollo/client';
 import type { Gender, Member, Nationality, Religion } from '@camp/domain';
 
 import type { ApiMemberMutation, ApiMemberMutationVariables } from '../../api';
+import { ApiMemberDocument } from '../../api';
 import { useMutation } from '../../apiClient';
 import {
   toApiDate,
@@ -19,14 +20,12 @@ const Document = gql`
       on_conflict: {
         constraint: member_pkey
         update_columns: [
-          id
           gender
           father_name
           name
           nationality
-          national_id
           religion
-          status
+          national_id
           surname
           dob
         ]
@@ -39,7 +38,6 @@ const Document = gql`
       nationality
       religion
       national_id
-      status
       surname
       dob
       status
@@ -99,5 +97,21 @@ export const useMemberMutation = (
     ...options,
     mapData: toClient,
     mapVariables: toApiVariables,
+    update(cache, { data: member }, { variables }) {
+      const newMember = member?.insert_member_one;
+      const memberId = variables?.input.id;
+
+      if (newMember) {
+        cache.writeQuery({
+          query: ApiMemberDocument,
+          variables: { id: memberId },
+          data: {
+            member_by_pk: {
+              ...newMember,
+            },
+          },
+        });
+      }
+    },
   });
 };
