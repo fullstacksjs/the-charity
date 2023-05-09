@@ -26,6 +26,13 @@ export type ApiCreateHouseholdMutationVariables = SchemaTypes.Exact<{
 
 export type ApiCreateHouseholdMutation = { __typename?: 'mutation_root', insert_household_one?: { __typename?: 'household', id: string, name: string, severity: SchemaTypes.HouseholdSeverityEnum, status: SchemaTypes.HouseholdStatusEnum } | null };
 
+export type ApiMemberMutationVariables = SchemaTypes.Exact<{
+  input: SchemaTypes.ApiMemberInsertInput;
+}>;
+
+
+export type ApiMemberMutation = { __typename?: 'mutation_root', insert_member_one?: { __typename?: 'member', id: string, gender?: SchemaTypes.GenderEnum | null, father_name?: string | null, name: string, nationality?: SchemaTypes.NationalityEnum | null, religion?: SchemaTypes.ReligionEnum | null, national_id?: string | null, status: SchemaTypes.MemberStatusEnum, surname?: string | null, dob?: string | null } | null };
+
 export type ApiCreateProjectMutationVariables = SchemaTypes.Exact<{
   input: SchemaTypes.ApiProjectInsertInput;
 }>;
@@ -40,13 +47,6 @@ export type ApiDeleteHouseholdMutationMutationVariables = SchemaTypes.Exact<{
 
 export type ApiDeleteHouseholdMutationMutation = { __typename?: 'mutation_root', delete_household_by_pk?: { __typename?: 'household', name: string, id: string } | null };
 
-export type ApiMemberMutationVariables = SchemaTypes.Exact<{
-  input: SchemaTypes.ApiMemberInsertInput;
-}>;
-
-
-export type ApiMemberMutation = { __typename?: 'mutation_root', insert_member_one?: { __typename?: 'member', id: string, name: string, surname?: string | null, father_name?: string | null, nationality?: SchemaTypes.NationalityEnum | null, gender?: SchemaTypes.GenderEnum | null, religion?: SchemaTypes.ReligionEnum | null, status: SchemaTypes.MemberStatusEnum } | null };
-
 export type ApiUpsertHouseholderMutationVariables = SchemaTypes.Exact<{
   input: SchemaTypes.ApiHouseholderInsertInput;
 }>;
@@ -59,7 +59,7 @@ export type ApiMemberListQueryVariables = SchemaTypes.Exact<{
 }>;
 
 
-export type ApiMemberListQuery = { __typename?: 'query_root', member: Array<{ __typename?: 'member', id: string, household_id: string, father_name?: string | null, gender?: SchemaTypes.GenderEnum | null, status: SchemaTypes.MemberStatusEnum, name: string, surname?: string | null, nationality?: SchemaTypes.NationalityEnum | null, religion?: SchemaTypes.ReligionEnum | null }> };
+export type ApiMemberListQuery = { __typename?: 'query_root', member: Array<{ __typename?: 'member', dob?: string | null, father_name?: string | null, gender?: SchemaTypes.GenderEnum | null, name: string, national_id?: string | null, nationality?: SchemaTypes.NationalityEnum | null, religion?: SchemaTypes.ReligionEnum | null, surname?: string | null, id: string, household_id: string, status: SchemaTypes.MemberStatusEnum }> };
 
 export type ApiHouseholdListQueryVariables = SchemaTypes.Exact<{ [key: string]: never; }>;
 

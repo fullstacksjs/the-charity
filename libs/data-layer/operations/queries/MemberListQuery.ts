@@ -1,28 +1,30 @@
 import type * as Apollo from '@apollo/client';
 import { gql } from '@apollo/client';
-import type { Gender, Member, MemberStatus } from '@camp/domain';
+import type { Member } from '@camp/domain';
 
 import type {
   ApiMemberListQuery,
   ApiMemberListQueryVariables,
 } from '../../api';
-import { ApiGenderEnum, ApiMemberStatusEnum } from '../../api';
 import { useQuery } from '../../apiClient';
+import { toGender } from '../../mappers';
 
 const Document = gql`
   query memberList($household_id: uuid!) {
     member(where: { household_id: { _eq: $household_id } }) {
+      dob
+      father_name
+      gender
+      name
+      national_id
+      nationality
+      religion
+      surname
       id
       household_id
       father_name
       gender
       status
-      name
-      surname
-      father_name
-      nationality
-      gender
-      religion
     }
   }
 `;
@@ -31,29 +33,26 @@ export interface MemberList {
   members: Member[];
 }
 
-const toMemberStatus = (status: ApiMemberStatusEnum): MemberStatus =>
-  status === ApiMemberStatusEnum.Completed ? 'completed' : 'draft';
-
-const toMemberGender = (gender: ApiGenderEnum): Gender =>
-  gender === ApiGenderEnum.Male ? 'male' : 'female';
-
 const toClient = (
   data: ApiMemberListQuery | null | undefined,
-): MemberList | null => ({
-  members:
-    data?.member == null
-      ? []
-      : data.member.map(m => ({
-          id: m.id,
-          name: m.name,
-          surname: m.surname ?? undefined,
-          gender: toMemberGender(m.gender!),
-          fatherName: m.father_name ?? undefined,
-          nationality: (m.nationality as 'ir' | null) ?? undefined,
-          religion: (m.religion as 'islam' | null) ?? undefined,
-          status: toMemberStatus(m.status),
-        })),
-});
+): MemberList | null => {
+  const members = data?.member;
+  if (members == null) return null;
+  return {
+    members: members.map(member => ({
+      name: member.name,
+      id: member.id,
+      fatherName: member.father_name ?? undefined,
+      surname: member.surname ?? undefined,
+      nationalId: member.national_id ?? undefined,
+      nationality: (member.nationality as 'ir' | null) ?? undefined,
+      religion: (member.religion as 'islam' | null) ?? undefined,
+      gender: member.gender == null ? undefined : toGender(member.gender),
+      dob: member.dob == null ? undefined : new Date(member.dob),
+      status: 'draft',
+    })),
+  };
+};
 
 export const useMemberQuery = (
   options: Apollo.QueryHookOptions<
