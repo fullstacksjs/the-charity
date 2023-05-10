@@ -1,11 +1,13 @@
 /* eslint-disable max-lines-per-function */
 import { useMemberMutation } from '@camp/data-layer';
-import type { Gender, Member, Nationality, Religion } from '@camp/domain';
 import {
+  ControlledDateInput,
+  ControlledSelect,
   DashboardCard,
-  DetailCardTextField,
   showNotification,
+  TextInput,
 } from '@camp/design';
+import type { Gender, Member, Nationality, Religion } from '@camp/domain';
 import {
   createResolver,
   genders,
@@ -13,7 +15,7 @@ import {
   nationalities,
   religions,
 } from '@camp/domain';
-import { ArrowDownIcon, CalendarIcon, CheckIcon, EditIcon } from '@camp/icons';
+import { ArrowDownIcon, CheckIcon, EditIcon } from '@camp/icons';
 import { messages } from '@camp/messages';
 import { createTestAttr } from '@camp/test';
 import {
@@ -22,16 +24,13 @@ import {
   Collapse,
   createStyles,
   Group,
-  Select,
   SimpleGrid,
   Stack,
-  TextInput,
   Title,
 } from '@mantine/core';
 import { useDisclosure, useToggle } from '@mantine/hooks';
-import { DateInput } from 'mantine-datepicker-jalali';
 import { useEffect } from 'react';
-import { Controller, useForm } from 'react-hook-form';
+import { useForm } from 'react-hook-form';
 
 import { InformationBadge } from '../InformationBadge';
 import { memberFormIds as ids } from './MemberForm.ids';
@@ -51,12 +50,13 @@ const useStyles = createStyles(theme => ({
 
 interface FormSchema {
   name: string;
-  surname: string;
-  fatherName: string;
-  nationalId: string;
-  gender: Gender;
-  nationality: Nationality;
-  religion: Religion;
+  surname: string | undefined;
+  fatherName: string | undefined;
+  nationalId: string | undefined;
+  dob: Date | null;
+  gender: Gender | undefined;
+  nationality: Nationality | undefined;
+  religion: Religion | undefined;
 }
 
 const resolver = createResolver<FormSchema>({
@@ -67,45 +67,53 @@ const resolver = createResolver<FormSchema>({
   gender: memberSchema.gender(),
   nationality: memberSchema.nationality(),
   religion: memberSchema.religion(),
+  dob: memberSchema.dob(),
 });
 
 const t = messages.member;
 const tt = t.createForm;
 
 interface Props {
-  member?: Member | null;
+  initialMember?: Member;
   familyId: string;
 }
 
-export const MemberForm = ({ member, familyId }: Props) => {
+export const MemberForm = ({ initialMember, familyId }: Props) => {
   const [memberMutation] = useMemberMutation();
   const [opened, { toggle }] = useDisclosure(true);
-  const [isEditable, toggleMode] = useToggle();
+  const [isEditable, toggleEditableMode] = useToggle([
+    'editable',
+    'readOnly',
+  ] as const);
   const { classes } = useStyles();
+  const isReadOnly = isEditable === 'readOnly';
 
+  // FIXME: not sure
   useEffect(() => {
-    if (!member) {
-      toggleMode(false);
+    if (!initialMember) {
+      toggleEditableMode('editable');
     } else {
-      toggleMode(true);
+      toggleEditableMode('readOnly');
     }
-  }, [member, toggleMode]);
+  }, [initialMember, toggleEditableMode]);
 
   const {
     handleSubmit,
     watch,
+    register,
     formState: { errors, isValid },
     control,
   } = useForm<FormSchema>({
     resolver,
+    defaultValues: initialMember,
     mode: 'onChange',
   });
   const watchAllFields = watch();
 
   const onSubmit = handleSubmit(FormData => {
-    toggleMode();
+    toggleEditableMode();
 
-    if (!isEditable) {
+    if (!isReadOnly) {
       memberMutation({
         variables: {
           ...FormData,
@@ -141,9 +149,9 @@ export const MemberForm = ({ member, familyId }: Props) => {
       right={
         <Group spacing={10}>
           <Title order={4} color="fgDefault" weight="bold">
-            {!isEditable ? (
+            {isReadOnly ? (
               <>
-                {member?.name} {member?.surname}
+                {initialMember?.name} {initialMember?.surname}
               </>
             ) : (
               <>
@@ -159,187 +167,113 @@ export const MemberForm = ({ member, familyId }: Props) => {
         <form {...createTestAttr(ids.form)} onSubmit={onSubmit}>
           <Stack spacing={25} align="end">
             <SimpleGrid w="100%" cols={3} spacing="lg" verticalSpacing={20}>
-              {isEditable ? (
-                <DetailCardTextField title={tt.nameInput.label}>
-                  {watchAllFields.name}
-                </DetailCardTextField>
-              ) : (
-                <Controller
-                  name="name"
-                  control={control}
-                  defaultValue={member?.name}
-                  render={({ field }) => (
-                    <TextInput
-                      wrapperProps={createTestAttr(ids.firstNameInput)}
-                      className={classes.textInput}
-                      label={`${tt.nameInput.label}:`}
-                      placeholder={tt.nameInput.placeholder}
-                      error={errors.name?.message}
-                      {...field}
-                    />
-                  )}
-                />
-              )}
-              {isEditable ? (
-                <DetailCardTextField title={tt.lastNameInput.label}>
-                  {watchAllFields.surname}
-                </DetailCardTextField>
-              ) : (
-                <Controller
-                  name="surname"
-                  control={control}
-                  defaultValue={member?.surname}
-                  render={({ field }) => (
-                    <TextInput
-                      wrapperProps={createTestAttr(ids.lastNameInput)}
-                      className={classes.textInput}
-                      label={`${tt.lastNameInput.label}:`}
-                      error={errors.surname?.message}
-                      placeholder={tt.lastNameInput.placeholder}
-                      {...field}
-                    />
-                  )}
-                />
-              )}
-              {isEditable ? (
-                <DetailCardTextField title={tt.fatherNameInput.label}>
-                  {watchAllFields.fatherName}
-                </DetailCardTextField>
-              ) : (
-                <Controller
-                  name="fatherName"
-                  control={control}
-                  defaultValue={member?.fatherName}
-                  render={({ field }) => (
-                    <TextInput
-                      wrapperProps={createTestAttr(ids.fatherNameInput)}
-                      className={classes.textInput}
-                      label={`${tt.fatherNameInput.label}:`}
-                      error={errors.fatherName?.message}
-                      placeholder={tt.fatherNameInput.placeholder}
-                      {...field}
-                    />
-                  )}
-                />
-              )}
-              {isEditable ? (
-                <DetailCardTextField title={tt.nationalityInput.label}>
-                  {watchAllFields.nationality}
-                </DetailCardTextField>
-              ) : (
-                <Controller
-                  name="nationality"
-                  control={control}
-                  defaultValue={member?.nationality}
-                  render={({ field }) => (
-                    <Select
-                      wrapperProps={createTestAttr(ids.nationalityInput)}
-                      data={nationalities.map(v => ({
-                        value: v,
-                        label: tt.nationalityInput.options[v],
-                      }))}
-                      placeholder={tt.selectInputs.placeholder}
-                      label={`${tt.nationalityInput.label}:`}
-                      error={errors.nationality?.message}
-                      {...field}
-                    />
-                  )}
-                />
-              )}
-              {isEditable ? (
-                <DetailCardTextField title={tt.nationalIdInput.label}>
-                  {watchAllFields.nationalId}
-                </DetailCardTextField>
-              ) : (
-                <Controller
-                  name="nationalId"
-                  control={control}
-                  defaultValue={member?.nationalId}
-                  render={({ field }) => (
-                    <TextInput
-                      wrapperProps={createTestAttr(ids.nationalIdInput)}
-                      className={classes.textInput}
-                      label={`${tt.nationalIdInput.label}:`}
-                      error={errors.nationalId?.message}
-                      placeholder={tt.nationalIdInput.placeholder}
-                      {...field}
-                    />
-                  )}
-                />
-              )}
-              {isEditable ? (
-                <DetailCardTextField title={tt.genderInput.label}>
-                  {watchAllFields.gender}
-                </DetailCardTextField>
-              ) : (
-                <Controller
-                  name="gender"
-                  control={control}
-                  defaultValue={member?.gender}
-                  render={({ field }) => (
-                    <Select
-                      wrapperProps={createTestAttr(ids.genderInput)}
-                      data={genders.map(v => ({
-                        value: v,
-                        label: tt.genderInput.options[v],
-                      }))}
-                      label={`${tt.genderInput.label}:`}
-                      placeholder={tt.selectInputs.placeholder}
-                      error={errors.gender?.message}
-                      {...field}
-                    />
-                  )}
-                />
-              )}
-              <DateInput
-                wrapperProps={createTestAttr(ids.dobInput)}
-                className={classes.dateInput}
-                rightSection={<CalendarIcon stroke="currentColor" size={16} />}
-                label={`${tt.dobInput.label}:`}
-                sx={theme => ({
-                  direction: 'ltr',
-                  color: theme.colors.secondaryDefault[6],
-                })}
-                locale="fa"
+              <TextInput
+                readOnly={isReadOnly}
+                className={classes.textInput}
+                wrapperProps={createTestAttr(ids.firstNameInput)}
+                {...register('name')}
+                label={`${tt.nameInput.label}:`}
+                placeholder={tt.nameInput.placeholder}
+                error={errors.name?.message}
+              />
+              <TextInput
+                readOnly={isReadOnly}
+                className={classes.textInput}
+                wrapperProps={createTestAttr(ids.lastNameInput)}
+                {...register('surname')}
+                label={`${tt.lastNameInput.label}:`}
+                placeholder={tt.lastNameInput.placeholder}
+                error={errors.surname?.message}
+              />
+              <TextInput
+                readOnly={isReadOnly}
+                className={classes.textInput}
+                wrapperProps={createTestAttr(ids.fatherNameInput)}
+                {...register('fatherName')}
+                label={`${tt.fatherNameInput.label}:`}
+                placeholder={tt.fatherNameInput.placeholder}
+                error={errors.fatherName?.message}
+              />
+              <ControlledSelect
+                readOnly={isReadOnly}
+                name="nationality"
+                control={control}
+                wrapperProps={createTestAttr(ids.nationalityInput)}
+                data={nationalities.map(v => ({
+                  value: v,
+                  label: messages.nationalities[v],
+                }))}
+                placeholder={tt.selectInputs.placeholder}
+                label={`${tt.nationalityInput.label}:`}
+              />
+              <TextInput
+                readOnly={isReadOnly}
+                className={classes.textInput}
+                wrapperProps={createTestAttr(ids.nationalIdInput)}
+                {...register('nationalId')}
+                label={`${tt.nationalIdInput.label}:`}
+                placeholder={tt.nationalIdInput.placeholder}
+                error={errors.nationalId?.message}
+              />
+              <ControlledSelect
+                readOnly={isReadOnly}
+                name="gender"
+                control={control}
+                wrapperProps={createTestAttr(ids.genderInput)}
+                data={genders.map(v => ({
+                  value: v,
+                  label: messages.genders[v],
+                }))}
+                label={`${tt.genderInput.label}:`}
                 placeholder={tt.selectInputs.placeholder}
               />
-              {isEditable ? (
-                <DetailCardTextField title={tt.religionInput.label}>
-                  {watchAllFields.religion}
-                </DetailCardTextField>
-              ) : (
-                <Controller
-                  name="religion"
-                  control={control}
-                  defaultValue={member?.religion}
-                  render={({ field }) => (
-                    <Select
-                      wrapperProps={createTestAttr(ids.religionInput)}
-                      data={religions.map(v => ({
-                        value: v,
-                        label: tt.religionInput.options[v],
-                      }))}
-                      placeholder={tt.selectInputs.placeholder}
-                      label={`${tt.religionInput.label}:`}
-                      error={errors.religion?.message}
-                      {...field}
-                    />
-                  )}
-                />
-              )}
+              <ControlledDateInput
+                name="dob"
+                control={control}
+                readOnly={isReadOnly}
+                wrapperProps={createTestAttr(ids.dobInput)}
+                className={classes.textInput}
+                label={`${tt.dobInput.label}:`}
+                placeholder={tt.selectInputs.placeholder}
+              />
+              <ControlledSelect
+                readOnly={isReadOnly}
+                name="religion"
+                control={control}
+                wrapperProps={createTestAttr(ids.religionInput)}
+                data={religions.map(v => ({
+                  value: v,
+                  label: messages.religions[v],
+                }))}
+                placeholder={tt.selectInputs.placeholder}
+                label={`${tt.religionInput.label}:`}
+              />
             </SimpleGrid>
-            <Button
-              {...createTestAttr(ids.submitBtn)}
-              type="submit"
-              size="sm"
-              variant={isEditable ? 'outline' : 'filled'}
-              leftIcon={
-                isEditable ? <EditIcon size={16} /> : <CheckIcon size={16} />
-              }
-              disabled={!isValid && !isEditable}
-            >
-              {isEditable ? tt.editBtn : tt.submitBtn}
-            </Button>
+            {isReadOnly ? (
+              <Button
+                key={1}
+                {...createTestAttr(ids.editBtn)}
+                type="button"
+                size="sm"
+                variant="outline"
+                onClick={() => toggleEditableMode()}
+                leftIcon={<EditIcon size={16} />}
+              >
+                {tt.editBtn}
+              </Button>
+            ) : (
+              <Button
+                key={2}
+                {...createTestAttr(ids.submitBtn)}
+                type="submit"
+                size="sm"
+                variant="filled"
+                leftIcon={<CheckIcon size={16} />}
+                disabled={!isValid && !isReadOnly}
+              >
+                {tt.submitBtn}
+              </Button>
+            )}
           </Stack>
         </form>
       </Collapse>

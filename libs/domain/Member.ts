@@ -10,6 +10,7 @@ export const memberSchema = {
   nationalId: () => Schema.nationalId().optionalString(),
   gender: () => Schema.gender().optionalString(),
   nationality: () => Schema.nationality().optionalString(),
+  dob: () => Schema.dob().optionalString(),
   religion: () => Schema.religion().optionalString(),
 };
 
