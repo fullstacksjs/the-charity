@@ -19,6 +19,11 @@ export const DateInput = forwardRef<HTMLInputElement, DateInputProps>(
         })}
         locale="fa"
         readOnly={readOnly}
+        rightSectionProps={{
+          style: {
+            display: readOnly ? 'none' : 'flex',
+          },
+        }}
         rightSection={!readOnly ? rest.rightSection : null}
         className={cx(classes.readonlyInput, className)}
         {...rest}
