@@ -54,7 +54,7 @@ export const MemberList = ({ familyId }: Props) => {
         <>
           {' '}
           {member?.map(m => (
-            <MemberForm member={m} key={m.id} familyId={familyId} />
+            <MemberForm initialMember={m} key={m.id} familyId={familyId} />
           ))}
         </>
       )}

@@ -11,6 +11,7 @@ export const memberFormIds = {
   dobInput: 'member-date-of-birth',
   cityOfBirthInput: 'project-city-of-birth',
   submitBtn: 'submit-button',
+  editBtn: 'edit-button',
   notification: {
     success: 'member-successful',
     failure: 'member-failed',
