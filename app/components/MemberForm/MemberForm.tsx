@@ -110,32 +110,29 @@ export const MemberForm = ({ initialMember, familyId }: Props) => {
   const watchAllFields = watch();
 
   const onSubmit = handleSubmit(FormData => {
-    toggleEditableMode();
-
-    if (!isReadOnly) {
-      memberMutation({
-        variables: {
-          ...FormData,
-          familyId,
-        },
+    memberMutation({
+      variables: {
+        ...FormData,
+        familyId,
+      },
+    })
+      .then(({ data }) => {
+        toggleEditableMode();
+        showNotification({
+          title: t.title,
+          message: t.notification.successful(data?.member.name ?? ''),
+          type: 'success',
+          ...createTestAttr(ids.notification.success),
+        });
       })
-        .then(({ data }) => {
-          showNotification({
-            title: t.title,
-            message: t.notification.successful(data?.member.name ?? ''),
-            type: 'success',
-            ...createTestAttr(ids.notification.success),
-          });
-        })
-        .catch(() =>
-          showNotification({
-            title: t.title,
-            message: t.notification.failed(FormData.name),
-            type: 'failure',
-            ...createTestAttr(ids.notification.failure),
-          }),
-        );
-    }
+      .catch(() =>
+        showNotification({
+          title: t.title,
+          message: t.notification.failed(FormData.name),
+          type: 'failure',
+          ...createTestAttr(ids.notification.failure),
+        }),
+      );
   });
 
   return (
