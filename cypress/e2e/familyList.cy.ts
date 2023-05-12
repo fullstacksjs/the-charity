@@ -1,7 +1,7 @@
 import { navLinkIds } from '../../libs/design/Sidebar/Sidebar.ids';
 import { AppRoute } from '../../libs/router/AppRoutes';
 import { admin } from '../fixtures/admin';
-import { familyFixture } from '../fixtures/project';
+import { familyFixture } from '../fixtures/family';
 import * as api from './api';
 
 describe('Family List', () => {
