@@ -81,21 +81,21 @@ interface Props {
 export const MemberForm = ({ initialMember, familyId }: Props) => {
   const [createMemberMutation] = useCreateMemberMutation();
   const [opened, { toggle }] = useDisclosure(true);
-  const [isEditable, toggleEditableMode] = useToggle([
+  const [editableMode, toggleEditableMode] = useToggle([
     'editable',
     'readOnly',
   ] as const);
   const { classes } = useStyles();
-  const isReadOnly = isEditable === 'readOnly';
+  const isReadOnly = editableMode === 'readOnly';
 
   // FIXME: not sure
-  // useEffect(() => {
-  if (!initialMember) {
-    toggleEditableMode('editable');
-  } else {
-    toggleEditableMode('readOnly');
-  }
-  // }, [initialMember, toggleEditableMode]);
+  useEffect(() => {
+    if (!initialMember) {
+      toggleEditableMode('editable');
+    } else {
+      toggleEditableMode('readOnly');
+    }
+  }, [initialMember, toggleEditableMode]);
 
   const {
     handleSubmit,
