@@ -1,10 +1,11 @@
 import { messages } from '@camp/messages';
 import { z } from 'zod';
 
-import { City } from './City';
-import { Gender } from './Gender';
-import { Nationality } from './Nationality';
-import { Religion } from './Religions';
+import { toZodLiteralList } from '../zod-addons';
+import { cities } from './City';
+import { genders } from './Gender';
+import { nationalities } from './Nationality';
+import { religions } from './Religions';
 
 export const digitsRegex = /^[0-9]*[\u0660-\u0669\u06F0-\u06F90-9]*$/;
 
@@ -34,8 +35,8 @@ export const Schema = {
       .regex(digitsRegex, messages.validation.nationalId.invalid)
       .length(10, messages.validation.nationalId.length)
       .trim(),
-  gender: () => z.union([z.literal(Gender.Female), z.literal(Gender.Male)]),
-  nationality: () => z.literal(Nationality.Ir),
-  religion: () => z.literal(Religion.Islam),
-  cityOfBirth: () => z.literal(City.Tehran),
+  gender: () => z.union(toZodLiteralList(genders)),
+  nationality: () => z.union(toZodLiteralList(nationalities)),
+  religion: () => z.union(toZodLiteralList(religions)),
+  cityOfBirth: () => z.union(toZodLiteralList(cities)),
 };

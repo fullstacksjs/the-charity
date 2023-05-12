@@ -1,9 +1,17 @@
-import type { Gender } from '@camp/domain';
+import { Gender } from '@camp/domain';
 
 import { ApiGenderEnum } from '../api';
 
 export const toGender = (gender: ApiGenderEnum): Gender =>
-  gender === ApiGenderEnum.Male ? 'male' : 'female';
+  gender === ApiGenderEnum.Male
+    ? Gender.Male
+    : gender === ApiGenderEnum.Female
+    ? Gender.Female
+    : Gender.Unknown;
 
 export const toApiGender = (gender: Gender): ApiGenderEnum =>
-  gender === 'male' ? ApiGenderEnum.Male : ApiGenderEnum.Female;
+  gender === Gender.Male
+    ? ApiGenderEnum.Male
+    : gender === Gender.Female
+    ? ApiGenderEnum.Female
+    : ApiGenderEnum.Unknown;
