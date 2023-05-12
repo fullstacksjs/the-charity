@@ -1,5 +1,5 @@
 /* eslint-disable max-lines-per-function */
-import { useMemberMutation } from '@camp/data-layer';
+import { useCreateMemberMutation } from '@camp/data-layer';
 import {
   ControlledDateInput,
   ControlledSelect,
@@ -79,7 +79,7 @@ interface Props {
 }
 
 export const MemberForm = ({ initialMember, familyId }: Props) => {
-  const [memberMutation] = useMemberMutation();
+  const [createMemberMutation] = useCreateMemberMutation();
   const [opened, { toggle }] = useDisclosure(true);
   const [isEditable, toggleEditableMode] = useToggle([
     'editable',
@@ -89,13 +89,13 @@ export const MemberForm = ({ initialMember, familyId }: Props) => {
   const isReadOnly = isEditable === 'readOnly';
 
   // FIXME: not sure
-  useEffect(() => {
-    if (!initialMember) {
-      toggleEditableMode('editable');
-    } else {
-      toggleEditableMode('readOnly');
-    }
-  }, [initialMember, toggleEditableMode]);
+  // useEffect(() => {
+  if (!initialMember) {
+    toggleEditableMode('editable');
+  } else {
+    toggleEditableMode('readOnly');
+  }
+  // }, [initialMember, toggleEditableMode]);
 
   const {
     handleSubmit,
@@ -111,7 +111,7 @@ export const MemberForm = ({ initialMember, familyId }: Props) => {
   const watchAllFields = watch();
 
   const onSubmit = handleSubmit(FormData => {
-    memberMutation({
+    createMemberMutation({
       variables: {
         ...FormData,
         familyId,

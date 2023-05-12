@@ -4002,12 +4002,12 @@ export type ApiCreateFamilyMutationVariables = Exact<{
 
 export type ApiCreateFamilyMutation = { __typename?: 'mutation_root', insert_family_one?: { __typename?: 'family', id: string, code?: string | null, name: string } | null };
 
-export type ApiMemberMutationVariables = Exact<{
+export type ApiCreateMemberMutationVariables = Exact<{
   input: ApiMemberInsertInput;
 }>;
 
 
-export type ApiMemberMutation = { __typename?: 'mutation_root', insert_member_one?: { __typename?: 'member', id: string, gender?: ApiGenderEnum | null, father_name?: string | null, name: string, nationality?: string | null, religion?: string | null, national_id?: string | null, status: ApiMemberStatusEnum, surname?: string | null, dob?: string | null } | null };
+export type ApiCreateMemberMutation = { __typename?: 'mutation_root', insert_member_one?: { __typename?: 'member', id: string, gender?: ApiGenderEnum | null, father_name?: string | null, name: string, nationality?: string | null, religion?: string | null, national_id?: string | null, surname?: string | null, dob?: string | null, status: ApiMemberStatusEnum } | null };
 
 export type ApiCreateProjectMutationVariables = Exact<{
   input: ApiProjectInsertInput;
@@ -4077,11 +4077,11 @@ export const ApiCreateFamilyDocument = gql`
 export type ApiCreateFamilyMutationFn = Apollo.MutationFunction<ApiCreateFamilyMutation, ApiCreateFamilyMutationVariables>;
 export type ApiCreateFamilyMutationResult = Apollo.MutationResult<ApiCreateFamilyMutation>;
 export type ApiCreateFamilyMutationOptions = Apollo.BaseMutationOptions<ApiCreateFamilyMutation, ApiCreateFamilyMutationVariables>;
-export const ApiMemberDocument = gql`
-    mutation Member($input: member_insert_input!) {
+export const ApiCreateMemberDocument = gql`
+    mutation CreateMember($input: member_insert_input!) {
   insert_member_one(
     object: $input
-    on_conflict: {constraint: member_pkey, update_columns: [id, gender, father_name, name, nationality, national_id, religion, status, surname, dob]}
+    on_conflict: {constraint: member_pkey, update_columns: [gender, father_name, name, nationality, religion, national_id, surname, dob]}
   ) {
     id
     gender
@@ -4090,16 +4090,15 @@ export const ApiMemberDocument = gql`
     nationality
     religion
     national_id
-    status
     surname
     dob
     status
   }
 }
     `;
-export type ApiMemberMutationFn = Apollo.MutationFunction<ApiMemberMutation, ApiMemberMutationVariables>;
-export type ApiMemberMutationResult = Apollo.MutationResult<ApiMemberMutation>;
-export type ApiMemberMutationOptions = Apollo.BaseMutationOptions<ApiMemberMutation, ApiMemberMutationVariables>;
+export type ApiCreateMemberMutationFn = Apollo.MutationFunction<ApiCreateMemberMutation, ApiCreateMemberMutationVariables>;
+export type ApiCreateMemberMutationResult = Apollo.MutationResult<ApiCreateMemberMutation>;
+export type ApiCreateMemberMutationOptions = Apollo.BaseMutationOptions<ApiCreateMemberMutation, ApiCreateMemberMutationVariables>;
 export const ApiCreateProjectDocument = gql`
     mutation CreateProject($input: project_insert_input!) {
   insert_project_one(object: $input) {
