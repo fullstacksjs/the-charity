@@ -26,12 +26,12 @@ export type ApiCreateHouseholdMutationVariables = SchemaTypes.Exact<{
 
 export type ApiCreateHouseholdMutation = { __typename?: 'mutation_root', insert_household_one?: { __typename?: 'household', id: string, name: string, severity: SchemaTypes.HouseholdSeverityEnum, status: SchemaTypes.HouseholdStatusEnum } | null };
 
-export type ApiMemberMutationVariables = SchemaTypes.Exact<{
+export type ApiCreateMemberMutationVariables = SchemaTypes.Exact<{
   input: SchemaTypes.ApiMemberInsertInput;
 }>;
 
 
-export type ApiMemberMutation = { __typename?: 'mutation_root', insert_member_one?: { __typename?: 'member', id: string, gender?: SchemaTypes.GenderEnum | null, father_name?: string | null, name: string, nationality?: SchemaTypes.NationalityEnum | null, religion?: SchemaTypes.ReligionEnum | null, national_id?: string | null, status: SchemaTypes.MemberStatusEnum, surname?: string | null, dob?: string | null } | null };
+export type ApiCreateMemberMutation = { __typename?: 'mutation_root', insert_member_one?: { __typename?: 'member', id: string, gender?: SchemaTypes.GenderEnum | null, father_name?: string | null, name: string, nationality?: SchemaTypes.NationalityEnum | null, religion?: SchemaTypes.ReligionEnum | null, national_id?: string | null, surname?: string | null, dob?: string | null, status: SchemaTypes.MemberStatusEnum } | null };
 
 export type ApiCreateProjectMutationVariables = SchemaTypes.Exact<{
   input: SchemaTypes.ApiProjectInsertInput;

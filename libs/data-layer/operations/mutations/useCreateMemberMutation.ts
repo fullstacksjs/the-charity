@@ -2,8 +2,11 @@ import type { MutationHookOptions } from '@apollo/client';
 import { gql } from '@apollo/client';
 import type { Gender, Member, Nationality, Religion } from '@camp/domain';
 
-import type { ApiMemberMutation, ApiMemberMutationVariables } from '../../api';
-import { ApiMemberDocument } from '../../api';
+import type {
+  ApiCreateMemberMutation,
+  ApiCreateMemberMutationVariables,
+} from '../../api';
+import { ApiCreateMemberDocument } from '../../api';
 import { useMutation } from '../../apiClient';
 import {
   toApiDate,
@@ -14,7 +17,7 @@ import {
 } from '../../mappers';
 
 const Document = gql`
-  mutation Member($input: member_insert_input!) {
+  mutation CreateMember($input: member_insert_input!) {
     insert_member_one(
       object: $input
       on_conflict: {
@@ -50,7 +53,7 @@ export interface InsertMember {
 }
 
 const toClient = (
-  data: ApiMemberMutation | null | undefined,
+  data: ApiCreateMemberMutation | null | undefined,
 ): InsertMember | null => {
   const member = data?.insert_member_one;
   if (member == null) return null;
@@ -69,7 +72,9 @@ interface Variables {
   gender?: Gender;
 }
 
-const toApiVariables = (variables: Variables): ApiMemberMutationVariables => ({
+const toApiVariables = (
+  variables: Variables,
+): ApiCreateMemberMutationVariables => ({
   input: {
     name: variables.name,
     surname: variables.surname,
@@ -90,8 +95,11 @@ const toApiVariables = (variables: Variables): ApiMemberMutationVariables => ({
   },
 });
 
-export const useMemberMutation = (
-  options?: MutationHookOptions<ApiMemberMutation, ApiMemberMutationVariables>,
+export const useCreateMemberMutation = (
+  options?: MutationHookOptions<
+    ApiCreateMemberMutation,
+    ApiCreateMemberMutationVariables
+  >,
 ) => {
   return useMutation(Document, {
     ...options,
@@ -103,7 +111,7 @@ export const useMemberMutation = (
 
       if (newMember) {
         cache.writeQuery({
-          query: ApiMemberDocument,
+          query: ApiCreateMemberDocument,
           variables: { id: memberId },
           data: {
             member_by_pk: {
