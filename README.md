@@ -4,7 +4,7 @@
 
 <h1 align="center">The Charity</h1>
 
-<p align="center">TheCharity is an open-source, non-profit web application created by the [FullstacksJS][fullstacksjs] community.</p>
+<p align="center">TheCharity is an open-source, non-profit web application created by the  <a href="https://fullstacksjs.com/">FullstacksJS</a> community.</p>
 
 <br />
 <br />
