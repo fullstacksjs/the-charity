@@ -5,6 +5,7 @@ import { messages } from '@camp/messages';
 import type { AppRoute } from '@camp/router';
 import { createTestAttr } from '@camp/test';
 import { Button, Group, Stack, TextInput } from '@mantine/core';
+import { useNavigate } from '@tanstack/react-location';
 import { useForm } from 'react-hook-form';
 
 import { createFamilyFormIds as ids } from './CreateFamilyForm.ids';
@@ -23,6 +24,7 @@ const resolver = createResolver<FormSchema>({
 
 export const CreateFamilyForm = ({ dismiss }: Props) => {
   const [createDraftFamily, mutationResult] = useCreateFamilyMutation();
+  const navigate = useNavigate();
 
   const { handleSubmit, register, formState } = useForm<FormSchema>({
     resolver,
@@ -40,13 +42,10 @@ export const CreateFamilyForm = ({ dismiss }: Props) => {
           message: notification.success(result?.name ?? ''),
           type: 'success',
           ...createTestAttr(ids.notification.success),
-          onClose: () =>
-            window.location.replace(
-              `/dashboard/families/${result.id}` as AppRoute,
-            ),
         });
 
         dismiss();
+        navigate({ to: `/dashboard/families/${result.id}` as AppRoute });
       })
       .catch(() =>
         showNotification({
