@@ -3,7 +3,7 @@ import { createFamilyFormIds } from '../../app/components/CreateFamily/CreateFam
 import { dashboardHeaderId } from '../../libs/design/Header/DashboardHeader.ids';
 import { AppRoute } from '../../libs/router/AppRoutes';
 import { admin } from '../fixtures/admin';
-import { familyFixture } from '../fixtures/project';
+import { familyFixture } from '../fixtures/family';
 
 describe('Create Family', () => {
   beforeEach(() => {
