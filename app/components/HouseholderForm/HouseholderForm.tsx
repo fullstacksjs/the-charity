@@ -34,6 +34,7 @@ import {
 } from '@mantine/core';
 import { useForm } from 'react-hook-form';
 
+import { UndoButton } from '../UndoButton';
 import { householderFormIds as ids } from './HouseholderForm.ids';
 
 interface Props {
@@ -118,10 +119,6 @@ export const HouseholderForm = ({ initialHouseholder, familyId }: Props) => {
     }
   });
 
-  const handleReset = () => {
-    reset();
-  };
-
   return (
     <form onSubmit={onSubmit} {...createTestAttr(ids.form)}>
       <Stack spacing={25}>
@@ -130,16 +127,7 @@ export const HouseholderForm = ({ initialHouseholder, familyId }: Props) => {
             {t.title}
           </Title>
           <Group spacing={20}>
-            <Button
-              {...createTestAttr(ids.undoBtn)}
-              size="sm"
-              variant="outline"
-              color="red"
-              disabled={!isDirty}
-              onClick={handleReset}
-            >
-              {t.undoBtn}
-            </Button>
+            <UndoButton disabled={!isDirty} handleReset={() => reset()} />
             <Button
               {...createTestAttr(ids.submitBtn)}
               type="submit"
