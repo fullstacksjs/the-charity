@@ -28,8 +28,8 @@ import {
   Stack,
   Title,
 } from '@mantine/core';
-import { useDisclosure, useToggle } from '@mantine/hooks';
-import { useEffect } from 'react';
+import { useDisclosure } from '@mantine/hooks';
+import { useToggle } from 'ahooks';
 import { useForm } from 'react-hook-form';
 
 import { InformationBadge } from '../InformationBadge';
@@ -81,21 +81,10 @@ interface Props {
 export const MemberForm = ({ initialMember, familyId }: Props) => {
   const [createMemberMutation] = useCreateMemberMutation();
   const [opened, { toggle }] = useDisclosure(true);
-  const [editableMode, toggleEditableMode] = useToggle([
-    'editable',
-    'readOnly',
-  ] as const);
+  const [isEditableMode, { toggle: toggleEditableMode }] = useToggle(
+    !initialMember,
+  );
   const { classes } = useStyles();
-  const isReadOnly = editableMode === 'readOnly';
-
-  // FIXME: not sure
-  useEffect(() => {
-    if (!initialMember) {
-      toggleEditableMode('editable');
-    } else {
-      toggleEditableMode('readOnly');
-    }
-  }, [initialMember, toggleEditableMode]);
 
   const {
     handleSubmit,
@@ -146,7 +135,7 @@ export const MemberForm = ({ initialMember, familyId }: Props) => {
       right={
         <Group spacing={10}>
           <Title order={4} color="fgDefault" weight="bold">
-            {isReadOnly ? (
+            {!isEditableMode ? (
               <>
                 {initialMember?.name} {initialMember?.surname}
               </>
@@ -165,7 +154,7 @@ export const MemberForm = ({ initialMember, familyId }: Props) => {
           <Stack spacing={25} align="end">
             <SimpleGrid w="100%" cols={3} spacing="lg" verticalSpacing={20}>
               <TextInput
-                readOnly={isReadOnly}
+                readOnly={!isEditableMode}
                 className={classes.textInput}
                 wrapperProps={createTestAttr(ids.firstNameInput)}
                 {...register('name')}
@@ -174,7 +163,7 @@ export const MemberForm = ({ initialMember, familyId }: Props) => {
                 error={errors.name?.message}
               />
               <TextInput
-                readOnly={isReadOnly}
+                readOnly={!isEditableMode}
                 className={classes.textInput}
                 wrapperProps={createTestAttr(ids.lastNameInput)}
                 {...register('surname')}
@@ -183,7 +172,7 @@ export const MemberForm = ({ initialMember, familyId }: Props) => {
                 error={errors.surname?.message}
               />
               <TextInput
-                readOnly={isReadOnly}
+                readOnly={!isEditableMode}
                 className={classes.textInput}
                 wrapperProps={createTestAttr(ids.fatherNameInput)}
                 {...register('fatherName')}
@@ -192,7 +181,7 @@ export const MemberForm = ({ initialMember, familyId }: Props) => {
                 error={errors.fatherName?.message}
               />
               <ControlledSelect
-                readOnly={isReadOnly}
+                readOnly={!isEditableMode}
                 name="nationality"
                 control={control}
                 wrapperProps={createTestAttr(ids.nationalityInput)}
@@ -204,7 +193,7 @@ export const MemberForm = ({ initialMember, familyId }: Props) => {
                 label={`${tt.nationalityInput.label}:`}
               />
               <TextInput
-                readOnly={isReadOnly}
+                readOnly={!isEditableMode}
                 className={classes.textInput}
                 wrapperProps={createTestAttr(ids.nationalIdInput)}
                 {...register('nationalId')}
@@ -213,7 +202,7 @@ export const MemberForm = ({ initialMember, familyId }: Props) => {
                 error={errors.nationalId?.message}
               />
               <ControlledSelect
-                readOnly={isReadOnly}
+                readOnly={!isEditableMode}
                 name="gender"
                 control={control}
                 wrapperProps={createTestAttr(ids.genderInput)}
@@ -227,14 +216,14 @@ export const MemberForm = ({ initialMember, familyId }: Props) => {
               <ControlledDateInput
                 name="dob"
                 control={control}
-                readOnly={isReadOnly}
+                readOnly={!isEditableMode}
                 wrapperProps={createTestAttr(ids.dobInput)}
                 className={classes.textInput}
                 label={`${tt.dobInput.label}:`}
                 placeholder={tt.selectInputs.placeholder}
               />
               <ControlledSelect
-                readOnly={isReadOnly}
+                readOnly={!isEditableMode}
                 name="religion"
                 control={control}
                 wrapperProps={createTestAttr(ids.religionInput)}
@@ -246,7 +235,7 @@ export const MemberForm = ({ initialMember, familyId }: Props) => {
                 label={`${tt.religionInput.label}:`}
               />
             </SimpleGrid>
-            {isReadOnly ? (
+            {!isEditableMode ? (
               <Button
                 key={1}
                 {...createTestAttr(ids.editBtn)}
@@ -266,7 +255,7 @@ export const MemberForm = ({ initialMember, familyId }: Props) => {
                 size="sm"
                 variant="filled"
                 leftIcon={<CheckIcon size={16} />}
-                disabled={!isValid && !isReadOnly}
+                disabled={!isValid && isEditableMode}
               >
                 {tt.submitBtn}
               </Button>
