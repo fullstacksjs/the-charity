@@ -114,7 +114,7 @@ export const useCreateMemberMutation = (
           query: ApiCreateMemberDocument,
           variables: { id: memberId },
           data: {
-            member_by_pk: {
+            insert_member_one: {
               ...newMember,
             },
           },
