@@ -33,6 +33,7 @@ import { useToggle } from 'ahooks';
 import { useForm } from 'react-hook-form';
 
 import { InformationBadge } from '../InformationBadge';
+import { UndoButton } from '../UndoButton';
 import { memberFormIds as ids } from './MemberForm.ids';
 
 const useStyles = createStyles(theme => ({
@@ -89,8 +90,9 @@ export const MemberForm = ({ initialMember, familyId }: Props) => {
     handleSubmit,
     watch,
     register,
-    formState: { errors, isValid },
+    formState: { errors, isValid, isDirty },
     control,
+    reset,
   } = useForm<FormSchema>({
     resolver,
     defaultValues: initialMember,
@@ -247,17 +249,23 @@ export const MemberForm = ({ initialMember, familyId }: Props) => {
                 {tt.editBtn}
               </Button>
             ) : (
-              <Button
-                key={2}
-                {...createTestAttr(ids.submitBtn)}
-                type="submit"
-                size="sm"
-                variant="filled"
-                leftIcon={<CheckIcon size={16} />}
-                disabled={!isValid && isEditableMode}
-              >
-                {tt.submitBtn}
-              </Button>
+              <Group>
+                <UndoButton
+                  disabled={!isDirty && isEditableMode}
+                  handleReset={() => reset()}
+                />
+                <Button
+                  key={2}
+                  {...createTestAttr(ids.submitBtn)}
+                  type="submit"
+                  size="sm"
+                  variant="filled"
+                  leftIcon={<CheckIcon size={16} />}
+                  disabled={!isValid || (!isDirty && isEditableMode)}
+                >
+                  {tt.submitBtn}
+                </Button>
+              </Group>
             )}
           </Stack>
         </form>

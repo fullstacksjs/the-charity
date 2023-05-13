@@ -29,6 +29,7 @@ import { Button, createStyles, Group, SimpleGrid, Stack } from '@mantine/core';
 import { useBoolean } from 'ahooks';
 import { useForm } from 'react-hook-form';
 
+import { UndoButton } from '../UndoButton';
 import { householderFormIds as ids } from './HouseholderForm.ids';
 
 interface Props {
@@ -120,52 +121,22 @@ export const HouseholderForm = ({ initialHouseholder, householdId, householdName
     }
   });
 
-  const handleUndo = () => {
-    reset();
-    if (isCompleted) setIsEditing(false);
-  };
-
   return (
     <form onSubmit={onSubmit} {...createTestAttr(ids.form)}>
       <Stack spacing={25}>
         <Group position="apart" mih="100%">
           <DashboardTitle>{t.title}</DashboardTitle>
           <Group spacing={20}>
-            {isEditing ? (
-              <>
-                <Button
-                  {...createTestAttr(ids.undoBtn)}
-                  size="sm"
-                  variant="outline"
-                  color="red"
-                  disabled={!isDirty && !isCompleted}
-                  onClick={handleUndo}
-                >
-                  {t.undoBtn}
-                </Button>
-                <Button
-                  {...createTestAttr(ids.submitBtn)}
-                  type="submit"
-                  size="sm"
-                  leftIcon={<CheckIcon size={16} />}
-                  disabled={!isValid || !isDirty}
-                >
-                  {t.submitBtn}
-                </Button>
-              </>
-            ) : (
-              <Button
-                key={1}
-                {...createTestAttr(ids.editBtn)}
-                type="button"
-                size="sm"
-                variant="outline"
-                onClick={() => setIsEditing(true)}
-                leftIcon={<EditIcon size={16} />}
-              >
-                {t.editBtn}
-              </Button>
-            )}
+            <UndoButton disabled={!isDirty} handleReset={() => reset()} />
+            <Button
+              {...createTestAttr(ids.submitBtn)}
+              type="submit"
+              size="sm"
+              leftIcon={<CheckIcon size={16} />}
+              disabled={!isValid || !isDirty}
+            >
+              {t.submitBtn}
+            </Button>
           </Group>
         </Group>
 

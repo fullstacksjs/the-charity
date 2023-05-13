@@ -35,7 +35,13 @@ export const messages = {
     required: 'این فیلد ضروری است',
   },
   companyName: 'نامی مناسب برای خیریه',
-  actions: { dismiss: 'انصراف', open: 'باز کردن', delete: 'حذف کردن' },
+  actions: {
+    dismiss: 'انصراف',
+    open: 'باز کردن',
+    delete: 'حذف کردن',
+    undoBtn: 'لغو',
+  },
+
   households: {
     title: 'خانوارها',
     create: 'ایجاد خانواده جدید',
@@ -154,7 +160,7 @@ export const messages = {
     form: {
       editBtn: 'ویرایش',
       title: 'اطلاعات هویت',
-      undoBtn: 'لغو',
+
       notification: {
         successfulUpdate: (name: string) =>
           `خانوار "${name}" با موفقیت بروز رسانی شد `,
