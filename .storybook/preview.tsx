@@ -1,5 +1,5 @@
 import 'dayjs/locale/fa';
-import '../libs/monkeyPatchZod';
+import '../libs/zod-addons/monkeyPatchZod';
 import { Notifications } from '@mantine/notifications';
 import { Decorator, Parameters, Preview } from '@storybook/react';
 import {
@@ -26,7 +26,7 @@ const parameters: Parameters = {
 const decorators: Decorator[] = [
   (Story, { args }) => {
     const router = args.router as any;
-    const { layout, ...routes } = args.router ?? {} as any;
+    const { layout, ...routes } = args.router ?? ({} as any);
     const Layout = layout ?? React.Fragment;
     const location = new ReactLocation({
       history: createMemoryHistory({ initialEntries: [router?.route ?? '/'] }),

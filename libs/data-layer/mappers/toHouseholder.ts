@@ -4,6 +4,7 @@ import type { ApiHouseholder } from '../api';
 import { toCity } from './toCity';
 import { toGender } from './toGender';
 import { toHouseholderStatus } from './toHouseholderStatus';
+import { toNationality } from './toNationality';
 import { toReligion } from './toReligion';
 
 export const toHouseholder = (
@@ -20,7 +21,10 @@ export const toHouseholder = (
       name: householder.name,
       fatherName: householder.father_name ?? undefined,
       surname: householder.surname ?? undefined,
-      nationality: householder.nationality ?? undefined,
+      nationality:
+        householder.nationality == null
+          ? undefined
+          : toNationality(householder.nationality),
       religion:
         householder.religion == null
           ? undefined

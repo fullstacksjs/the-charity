@@ -1,5 +1,5 @@
 import 'dayjs/locale/fa';
-import '../libs/monkeyPatchZod';
+import '@camp/zod-addons';
 
 import { AuthProvider } from '@camp/auth';
 import { config } from '@camp/config';

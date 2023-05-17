@@ -18,7 +18,8 @@
       "@camp/messages": ["./app/messages.ts"],
       "@camp/router": ["./libs/router/index.ts"],
       "@camp/test": ["./libs/test/index.ts"],
-      "@camp/debug": ["./libs/debug/index.ts"]
+      "@camp/debug": ["./libs/debug/index.ts"],
+      "@camp/zod-addons": ["./libs/zod-addons/index.ts"]
     }
   },
   "include": ["app", "libs", "@types/index.d.ts"],
