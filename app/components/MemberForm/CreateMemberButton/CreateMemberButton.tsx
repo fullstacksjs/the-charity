@@ -21,7 +21,7 @@ export const CreateMemberButton = ({
       size="sm"
       onClick={onAddNewMember}
       {...createTestAttr(ids)}
-      leftIcon={<PlusIcon width="16" height="16" />}
+      leftIcon={<PlusIcon size={16} />}
     >
       {t.addNewMember}
     </Button>
