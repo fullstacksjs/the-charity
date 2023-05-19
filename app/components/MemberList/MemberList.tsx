@@ -51,12 +51,9 @@ export const MemberList = ({ familyId }: Props) => {
           <MemberEmptyState addNewMember={addNewMemberHandler} />
         </Center>
       ) : (
-        <>
-          {' '}
-          {member?.map(m => (
-            <MemberForm initialMember={m} key={m.id} familyId={familyId} />
-          ))}
-        </>
+        member?.map(m => (
+          <MemberForm initialMember={m} key={m.id} familyId={familyId} />
+        ))
       )}
       {memberForm}
     </Stack>
