@@ -91,9 +91,9 @@ export const HouseholderForm = ({ initialHouseholder, householdId }: Props) => {
     mode: 'onChange',
   });
 
-  const [isEditable, { setLeft: setToUnEditable, setRight: setToEditable }] =
+  const [isEditing, { setLeft: setToIsNotEditing, setRight: setToIsEditing }] =
     useToggle(initialHouseholder?.status === 'completed');
-  const isReadOnly = isEditable;
+  const isReadOnly = !isEditing;
 
   const [upsertHouseholder] = useUpsertHouseholderMutation();
 
@@ -105,7 +105,7 @@ export const HouseholderForm = ({ initialHouseholder, householdId }: Props) => {
 
       if (!isNull(data))
         reset({ ...data.householder, dob: data.householder.dob ?? null });
-      setToUnEditable();
+      setToIsNotEditing();
       showNotification({
         title: t.title,
         message: t.notification.successfulUpdate(data?.householder.name ?? ''),
@@ -124,7 +124,7 @@ export const HouseholderForm = ({ initialHouseholder, householdId }: Props) => {
 
   const handleUndo = () => {
     reset();
-    setToUnEditable();
+    setToIsNotEditing();
   };
 
   return (
@@ -135,26 +135,14 @@ export const HouseholderForm = ({ initialHouseholder, householdId }: Props) => {
             {t.title}
           </Title>
           <Group spacing={20}>
-            {isEditable ? (
-              <Button
-                key={1}
-                {...createTestAttr(ids.editBtn)}
-                type="button"
-                size="sm"
-                variant="outline"
-                onClick={() => setToEditable()}
-                leftIcon={<EditIcon size={16} />}
-              >
-                {t.editBtn}
-              </Button>
-            ) : (
+            {isEditing ? (
               <>
                 <Button
                   {...createTestAttr(ids.undoBtn)}
                   size="sm"
                   variant="outline"
                   color="red"
-                  disabled={!isDirty && isEditable}
+                  disabled={!isDirty && !isEditing}
                   onClick={handleUndo}
                 >
                   {t.undoBtn}
@@ -169,6 +157,18 @@ export const HouseholderForm = ({ initialHouseholder, householdId }: Props) => {
                   {t.submitBtn}
                 </Button>
               </>
+            ) : (
+              <Button
+                key={1}
+                {...createTestAttr(ids.editBtn)}
+                type="button"
+                size="sm"
+                variant="outline"
+                onClick={() => setToIsEditing()}
+                leftIcon={<EditIcon size={16} />}
+              >
+                {t.editBtn}
+              </Button>
             )}
           </Group>
         </Group>
