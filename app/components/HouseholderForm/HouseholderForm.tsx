@@ -32,7 +32,7 @@ import {
   Stack,
   Title,
 } from '@mantine/core';
-import { useToggle } from 'ahooks';
+import { useBoolean } from 'ahooks';
 import { useForm } from 'react-hook-form';
 
 import { householderFormIds as ids } from './HouseholderForm.ids';
@@ -91,8 +91,11 @@ export const HouseholderForm = ({ initialHouseholder, householdId }: Props) => {
     mode: 'onChange',
   });
 
-  const [isEditing, { setLeft: setToIsNotEditing, setRight: setToIsEditing }] =
-    useToggle(initialHouseholder?.status === 'completed');
+  const [
+    isEditing,
+    { setFalse: setToIsNotEditing, setTrue: setToIsEditing, set: setIsEditing },
+  ] = useBoolean(initialHouseholder?.status !== 'completed');
+
   const isReadOnly = !isEditing;
 
   const [upsertHouseholder] = useUpsertHouseholderMutation();
@@ -103,9 +106,10 @@ export const HouseholderForm = ({ initialHouseholder, householdId }: Props) => {
         variables: { ...formData, householdId },
       });
 
-      if (!isNull(data))
+      if (!isNull(data)) {
         reset({ ...data.householder, dob: data.householder.dob ?? null });
-      setToIsNotEditing();
+        setIsEditing(data.householder.status !== 'completed');
+      }
       showNotification({
         title: t.title,
         message: t.notification.successfulUpdate(data?.householder.name ?? ''),
