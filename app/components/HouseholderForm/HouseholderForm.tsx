@@ -122,8 +122,9 @@ export const HouseholderForm = ({ initialHouseholder, householdId }: Props) => {
     }
   });
 
-  const handleReset = () => {
+  const handleUndo = () => {
     reset();
+    setToUnEditable();
   };
 
   return (
@@ -153,8 +154,8 @@ export const HouseholderForm = ({ initialHouseholder, householdId }: Props) => {
                   size="sm"
                   variant="outline"
                   color="red"
-                  disabled={!isDirty}
-                  onClick={handleReset}
+                  disabled={!isDirty && isEditable}
+                  onClick={handleUndo}
                 >
                   {t.undoBtn}
                 </Button>
