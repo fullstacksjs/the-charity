@@ -13,6 +13,7 @@ export const Select = forwardRef<HTMLInputElement, SelectProps>(
     return (
       <MantineSelect
         ref={ref}
+        readOnly={readOnly}
         {...rest}
         className={cx({ [classes.readonlyInput]: readOnly }, className)}
       />
