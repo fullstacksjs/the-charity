@@ -20,7 +20,7 @@ import {
   nationalities,
   religions,
 } from '@camp/domain';
-import { CheckIcon } from '@camp/icons';
+import { CheckIcon, EditIcon } from '@camp/icons';
 import { messages } from '@camp/messages';
 import { createTestAttr } from '@camp/test';
 import { isNull } from '@fullstacksjs/toolbox';
@@ -32,6 +32,7 @@ import {
   Stack,
   Title,
 } from '@mantine/core';
+import { useToggle } from 'ahooks';
 import { useForm } from 'react-hook-form';
 
 import { householderFormIds as ids } from './HouseholderForm.ids';
@@ -90,7 +91,9 @@ export const HouseholderForm = ({ initialHouseholder, householdId }: Props) => {
     mode: 'onChange',
   });
 
-  const isReadOnly = initialHouseholder?.status === 'completed';
+  const [isEditable, { setLeft: setToUnEditable, setRight: setToEditable }] =
+    useToggle(initialHouseholder?.status === 'completed');
+  const isReadOnly = isEditable;
 
   const [upsertHouseholder] = useUpsertHouseholderMutation();
 
@@ -102,7 +105,7 @@ export const HouseholderForm = ({ initialHouseholder, householdId }: Props) => {
 
       if (!isNull(data))
         reset({ ...data.householder, dob: data.householder.dob ?? null });
-
+      setToUnEditable();
       showNotification({
         title: t.title,
         message: t.notification.successfulUpdate(data?.householder.name ?? ''),
@@ -131,25 +134,41 @@ export const HouseholderForm = ({ initialHouseholder, householdId }: Props) => {
             {t.title}
           </Title>
           <Group spacing={20}>
-            <Button
-              {...createTestAttr(ids.undoBtn)}
-              size="sm"
-              variant="outline"
-              color="red"
-              disabled={!isDirty}
-              onClick={handleReset}
-            >
-              {t.undoBtn}
-            </Button>
-            <Button
-              {...createTestAttr(ids.submitBtn)}
-              type="submit"
-              size="sm"
-              leftIcon={<CheckIcon size={16} />}
-              disabled={!isValid || !isDirty}
-            >
-              {t.submitBtn}
-            </Button>
+            {isEditable ? (
+              <Button
+                key={1}
+                {...createTestAttr(ids.editBtn)}
+                type="button"
+                size="sm"
+                variant="outline"
+                onClick={() => setToEditable()}
+                leftIcon={<EditIcon size={16} />}
+              >
+                {t.editBtn}
+              </Button>
+            ) : (
+              <>
+                <Button
+                  {...createTestAttr(ids.undoBtn)}
+                  size="sm"
+                  variant="outline"
+                  color="red"
+                  disabled={!isDirty}
+                  onClick={handleReset}
+                >
+                  {t.undoBtn}
+                </Button>
+                <Button
+                  {...createTestAttr(ids.submitBtn)}
+                  type="submit"
+                  size="sm"
+                  leftIcon={<CheckIcon size={16} />}
+                  disabled={!isValid || !isDirty}
+                >
+                  {t.submitBtn}
+                </Button>
+              </>
+            )}
           </Group>
         </Group>
 
