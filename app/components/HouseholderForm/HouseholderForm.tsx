@@ -91,10 +91,12 @@ export const HouseholderForm = ({ initialHouseholder, householdId }: Props) => {
     mode: 'onChange',
   });
 
+  const isCompleted = initialHouseholder?.status === 'completed';
+
   const [
     isEditing,
     { setFalse: setToIsNotEditing, setTrue: setToIsEditing, set: setIsEditing },
-  ] = useBoolean(initialHouseholder?.status !== 'completed');
+  ] = useBoolean(!isCompleted);
 
   const isReadOnly = !isEditing;
 
@@ -128,7 +130,7 @@ export const HouseholderForm = ({ initialHouseholder, householdId }: Props) => {
 
   const handleUndo = () => {
     reset();
-    setToIsNotEditing();
+    if (isCompleted) setToIsNotEditing();
   };
 
   return (
@@ -146,7 +148,7 @@ export const HouseholderForm = ({ initialHouseholder, householdId }: Props) => {
                   size="sm"
                   variant="outline"
                   color="red"
-                  disabled={!isDirty && !isEditing}
+                  disabled={!isDirty && !isCompleted}
                   onClick={handleUndo}
                 >
                   {t.undoBtn}
