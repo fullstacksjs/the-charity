@@ -7,7 +7,7 @@ import type {
   ApiMemberListQueryVariables,
 } from '../../api';
 import { useQuery } from '../../apiClient';
-import { toGender } from '../../mappers';
+import { toMember } from '../../mappers';
 
 const Document = gql`
   query memberList($household_id: uuid!) {
@@ -38,23 +38,10 @@ const toClient = (
 ): MemberList | null => {
   const members = data?.member;
   if (members == null) return null;
-  return {
-    members: members.map(member => ({
-      name: member.name,
-      id: member.id,
-      fatherName: member.father_name ?? undefined,
-      surname: member.surname ?? undefined,
-      nationalId: member.national_id ?? undefined,
-      nationality: (member.nationality as 'ir' | null) ?? undefined,
-      religion: (member.religion as 'islam' | null) ?? undefined,
-      gender: member.gender == null ? undefined : toGender(member.gender),
-      dob: member.dob == null ? undefined : new Date(member.dob),
-      status: 'draft',
-    })),
-  };
+  return { members: members.map(m => toMember(m)) };
 };
 
-export const useMemberQuery = (
+export const useMemberListQuery = (
   options: Apollo.QueryHookOptions<
     ApiMemberListQuery,
     ApiMemberListQueryVariables
