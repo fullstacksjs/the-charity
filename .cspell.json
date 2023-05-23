@@ -15,6 +15,6 @@
     }
   ],
   "dictionaries": ["charity-en", "charity-fa"],
-  "ignorePaths": ["node_modules/", "dist/"],
+  "ignorePaths": ["node_modules/", "dist/", "libs/domain/name.spec.ts"],
   "import": ["@cspell/dict-fa-ir/cspell-ext.json"]
 }

@@ -33,7 +33,7 @@ export const DashboardLayout = () => {
           </MediaQuery>
         }
       >
-        <Stack sx={{ gap: '40px' }}>
+        <Stack sx={{ gap: '40px' }} h="100%">
           <Outlet />
         </Stack>
         <Notifications limit={3} />

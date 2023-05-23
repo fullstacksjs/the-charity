@@ -149,7 +149,7 @@ export const MemberForm = () => {
                       wrapperProps={createTestAttr(ids.nationalityInput)}
                       data={nationalities.map(v => ({
                         value: v,
-                        label: t.nationalityInput.options[v],
+                        label: messages.nationalities[v],
                       }))}
                       placeholder={t.selectInputs.placeholder}
                       label={`${t.nationalityInput.label}:`}
@@ -175,7 +175,7 @@ export const MemberForm = () => {
                       wrapperProps={createTestAttr(ids.genderInput)}
                       data={genders.map(v => ({
                         value: v,
-                        label: t.genderInput.options[v],
+                        label: messages.genders[v],
                       }))}
                       label={`${t.genderInput.label}:`}
                       placeholder={t.selectInputs.placeholder}
@@ -207,7 +207,7 @@ export const MemberForm = () => {
                       wrapperProps={createTestAttr(ids.religionInput)}
                       data={religions.map(v => ({
                         value: v,
-                        label: t.religionInput.options[v],
+                        label: messages.religions[v],
                       }))}
                       placeholder={t.selectInputs.placeholder}
                       label={`${t.religionInput.label}:`}

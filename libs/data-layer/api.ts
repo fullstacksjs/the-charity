@@ -109,7 +109,8 @@ export enum ApiCityConstraint {
 }
 
 export enum ApiCityEnum {
-  Tehran = 'tehran'
+  Tehran = 'tehran',
+  Unknown = 'unknown'
 }
 
 /** Boolean expression to compare columns of type "city_enum". All fields are combined with logical 'AND'. */
@@ -1034,7 +1035,8 @@ export enum ApiGenderConstraint {
 
 export enum ApiGenderEnum {
   Female = 'Female',
-  Male = 'Male'
+  Male = 'Male',
+  Unknown = 'unknown'
 }
 
 /** Boolean expression to compare columns of type "gender_enum". All fields are combined with logical 'AND'. */
@@ -2577,7 +2579,8 @@ export enum ApiNationalityConstraint {
 }
 
 export enum ApiNationalityEnum {
-  Ir = 'ir'
+  Ir = 'ir',
+  Unknown = 'unknown'
 }
 
 /** Boolean expression to compare columns of type "nationality_enum". All fields are combined with logical 'AND'. */
@@ -2901,6 +2904,7 @@ export enum ApiProjectStatusConstraint {
 }
 
 export enum ApiProjectStatusEnum {
+  Closed = 'Closed',
   Done = 'Done',
   InProgress = 'InProgress',
   Planning = 'Planning',
@@ -3459,7 +3463,8 @@ export enum ApiReligionConstraint {
 }
 
 export enum ApiReligionEnum {
-  Islam = 'islam'
+  Islam = 'islam',
+  Unknown = 'unknown'
 }
 
 /** Boolean expression to compare columns of type "religion_enum". All fields are combined with logical 'AND'. */

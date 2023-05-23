@@ -1,4 +1,4 @@
-import '../../libs/monkeyPatchZod';
+import '../../libs/zod-addons/monkeyPatchZod';
 
 import { generateMock } from '@anatine/zod-mock';
 import { faker as faFaker } from '@faker-js/faker/locale/fa';

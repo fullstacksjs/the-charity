@@ -2,6 +2,8 @@ import { City } from '@camp/domain';
 
 import { ApiCityEnum } from '../api';
 
-export const toCity = (_: ApiCityEnum): City => City.Tehran;
+export const toCity = (city: ApiCityEnum): City =>
+  city === ApiCityEnum.Tehran ? City.Tehran : City.Unknown;
 
-export const toApiCity = (_: City): ApiCityEnum => ApiCityEnum.Tehran;
+export const toApiCity = (city: City): ApiCityEnum =>
+  city === City.Tehran ? ApiCityEnum.Tehran : ApiCityEnum.Unknown;
