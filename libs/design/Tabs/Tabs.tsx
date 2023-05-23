@@ -28,6 +28,11 @@ export const Tabs = ({ tabs }: Props) => {
       variant="outline"
       mx="-40px"
       radius="xs"
+      sx={{
+        display: 'flex',
+        flexDirection: 'column',
+        flexGrow: 1,
+      }}
       value={activeTab}
       onTabChange={value => {
         setActiveTab(value!);
@@ -49,6 +54,9 @@ export const Tabs = ({ tabs }: Props) => {
 
       {tabs.map(({ panel, id }) => (
         <MantineTabs.Panel
+          sx={{
+            flexGrow: 1,
+          }}
           bg="bgSurface"
           pt="34px"
           pb="30px"
