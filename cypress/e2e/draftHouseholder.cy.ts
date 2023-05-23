@@ -5,8 +5,8 @@ import { messages } from '../../app/messages';
 import { familyDetailIds as tabIds } from '../../app/pages/Dashboard/Families/FamilyDetail/FamilyDetail.ids';
 import { AppRoute } from '../../libs/router/AppRoutes';
 import { admin } from '../fixtures/admin';
+import { familyFixture } from '../fixtures/family';
 import { householderFixture } from '../fixtures/householder';
-import { familyFixture } from '../fixtures/project';
 import * as api from './api';
 
 interface TextInput {

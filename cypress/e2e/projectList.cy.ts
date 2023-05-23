@@ -1,6 +1,6 @@
 import { AppRoute } from '../../libs/router/AppRoutes';
 import { admin } from '../fixtures/admin';
-import { projectFixture } from '../fixtures/family';
+import { projectFixture } from '../fixtures/project';
 import * as api from './api';
 
 describe('Project List', () => {

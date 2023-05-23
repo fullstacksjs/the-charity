@@ -11,11 +11,9 @@ Cypress.Commands.add(
     mount(
       <ApolloProvider client={new ApolloClient({ cache: new InMemoryCache() })}>
         <ThemeProvider>
-          <ModalsProvider>
-            <Router location={new ReactLocation()} routes={[]}>
-              {element}
-            </Router>
-          </ModalsProvider>
+          <Router location={new ReactLocation()} routes={[]}>
+            <ModalsProvider>{element}</ModalsProvider>
+          </Router>
         </ThemeProvider>
       </ApolloProvider>,
       ...rest,

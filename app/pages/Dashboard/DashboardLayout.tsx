@@ -6,6 +6,8 @@ import {
   MediaQuery,
   Stack,
 } from '@mantine/core';
+import { ModalsProvider } from '@mantine/modals';
+import { Notifications } from '@mantine/notifications';
 
 const useStyles = createStyles(theme => ({
   main: {
@@ -20,19 +22,22 @@ export const DashboardLayout = () => {
   const { classes } = useStyles();
 
   return (
-    <MantineAppShell
-      classNames={{ main: classes.main }}
-      navbarOffsetBreakpoint="sm"
-      asideOffsetBreakpoint="sm"
-      navbar={
-        <MediaQuery smallerThan="sm" styles={{ display: 'none' }}>
-          <SideBar />
-        </MediaQuery>
-      }
-    >
-      <Stack sx={{ gap: '40px' }} h="100%">
-        <Outlet />
-      </Stack>
-    </MantineAppShell>
+    <ModalsProvider>
+      <MantineAppShell
+        classNames={{ main: classes.main }}
+        navbarOffsetBreakpoint="sm"
+        asideOffsetBreakpoint="sm"
+        navbar={
+          <MediaQuery smallerThan="sm" styles={{ display: 'none' }}>
+            <SideBar />
+          </MediaQuery>
+        }
+      >
+        <Stack sx={{ gap: '40px' }} h="100%">
+          <Outlet />
+        </Stack>
+        <Notifications limit={3} />
+      </MantineAppShell>
+    </ModalsProvider>
   );
 };

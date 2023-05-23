@@ -4,7 +4,7 @@ import { dashboardHeaderId } from '../../libs/design/Header/DashboardHeader.ids'
 import { navLinkIds } from '../../libs/design/Sidebar/Sidebar.ids';
 import { AppRoute } from '../../libs/router/AppRoutes';
 import { admin } from '../fixtures/admin';
-import { projectFixture } from '../fixtures/family';
+import { projectFixture } from '../fixtures/project';
 
 describe('Create Project', () => {
   beforeEach(() => {
