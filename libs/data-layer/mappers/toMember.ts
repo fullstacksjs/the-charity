@@ -3,6 +3,8 @@ import type { Member } from '@camp/domain';
 import type { ApiMember } from '../api';
 import { toGender } from './toGender';
 import { toMemberStatus } from './toMemberStatus';
+import { toNationality } from './toNationality';
+import { toReligion } from './toReligion';
 
 export const toMember = (
   member: Omit<
@@ -19,10 +21,15 @@ export const toMember = (
       id: member.id,
       fatherName: member.father_name ?? undefined,
       surname: member.surname ?? undefined,
-      nationalId: member.national_id ?? undefined,
-      nationality: (member.nationality as 'ir' | null) ?? undefined,
-      religion: (member.religion as 'islam' | null) ?? undefined,
+      nationality:
+        member.nationality == null
+          ? undefined
+          : toNationality(member.nationality),
+      religion:
+        member.religion == null ? undefined : toReligion(member.religion),
       gender: member.gender == null ? undefined : toGender(member.gender),
+
+      nationalId: member.national_id ?? undefined,
       dob: member.dob == null ? undefined : new Date(member.dob),
     };
   return {
@@ -32,9 +39,9 @@ export const toMember = (
     fatherName: member.father_name!,
     surname: member.surname!,
     nationalId: member.national_id!,
-    nationality: member.nationality as 'ir',
+    nationality: toNationality(member.nationality!),
     gender: toGender(member.gender!),
-    religion: member.religion as 'islam',
+    religion: toReligion(member.religion!),
     dob: new Date(member.dob!),
   };
 };

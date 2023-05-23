@@ -104,7 +104,7 @@ export type ApiCityBoolExp = {
 
 /** unique or primary key constraints on table "city" */
 export enum ApiCityConstraint {
-  /** unique or primary key constraint */
+  /** unique or primary key constraint on columns "value" */
   CityPkey = 'city_pkey'
 }
 
@@ -176,10 +176,38 @@ export type ApiCitySetInput = {
   value?: InputMaybe<Scalars['String']>;
 };
 
+/** Streaming cursor of the table "city" */
+export type ApiCityStreamCursorInput = {
+  /** Stream column input with initial value */
+  initial_value: ApiCityStreamCursorValueInput;
+  /** cursor ordering */
+  ordering?: InputMaybe<ApiCursorOrdering>;
+};
+
+/** Initial value of the column from where the streaming should start */
+export type ApiCityStreamCursorValueInput = {
+  value?: InputMaybe<Scalars['String']>;
+};
+
 /** update columns of table "city" */
 export enum ApiCityUpdateColumn {
   /** column name */
   Value = 'value'
+}
+
+export type ApiCityUpdates = {
+  /** sets the columns of the filtered rows to the given values */
+  _set?: InputMaybe<ApiCitySetInput>;
+  /** filter the rows which have to be updated */
+  where: ApiCityBoolExp;
+};
+
+/** ordering argument of a cursor */
+export enum ApiCursorOrdering {
+  /** ascending ordering of the cursor */
+  Asc = 'ASC',
+  /** descending ordering of the cursor */
+  Desc = 'DESC'
 }
 
 /** Boolean expression to compare columns of type "date". All fields are combined with logical 'AND'. */
@@ -198,7 +226,6 @@ export type ApiDateComparisonExp = {
 /** columns and relationships of "family" */
 export type ApiFamily = {
   __typename?: 'family';
-  /** A computed field, executes function "format_code" */
   code?: Maybe<Scalars['String']>;
   created_at: Scalars['timestamptz'];
   db_code: Scalars['Int'];
@@ -262,9 +289,9 @@ export type ApiFamilyBoolExp = {
 
 /** unique or primary key constraints on table "family" */
 export enum ApiFamilyConstraint {
-  /** unique or primary key constraint */
+  /** unique or primary key constraint on columns "db_code" */
   FamilyCodeKey = 'family_code_key',
-  /** unique or primary key constraint */
+  /** unique or primary key constraint on columns "id" */
   FamilyPkey = 'family_pkey'
 }
 
@@ -344,13 +371,7 @@ export type ApiFamilyPkColumnsInput = {
   id: Scalars['uuid'];
 };
 
-/**
- * Relation between projects and families
- *
- *
- * columns and relationships of "family_project"
- *
- */
+/** Relation between projects and families */
 export type ApiFamilyProject = {
   __typename?: 'family_project';
   count: Scalars['Int'];
@@ -369,6 +390,17 @@ export type ApiFamilyProjectAggregate = {
   __typename?: 'family_project_aggregate';
   aggregate?: Maybe<ApiFamilyProjectAggregateFields>;
   nodes: Array<ApiFamilyProject>;
+};
+
+export type ApiFamilyProjectAggregateBoolExp = {
+  count?: InputMaybe<ApiFamilyProjectAggregateBoolExpCount>;
+};
+
+export type ApiFamilyProjectAggregateBoolExpCount = {
+  arguments?: InputMaybe<Array<ApiFamilyProjectSelectColumn>>;
+  distinct?: InputMaybe<Scalars['Boolean']>;
+  filter?: InputMaybe<ApiFamilyProjectBoolExp>;
+  predicate: ApiIntComparisonExp;
 };
 
 /** aggregate fields of "family_project" */
@@ -443,7 +475,7 @@ export type ApiFamilyProjectBoolExp = {
 
 /** unique or primary key constraints on table "family_project" */
 export enum ApiFamilyProjectConstraint {
-  /** unique or primary key constraint */
+  /** unique or primary key constraint on columns "project_id", "family_id" */
   FamilyProjectPkey = 'family_project_pkey'
 }
 
@@ -590,6 +622,23 @@ export type ApiFamilyProjectStddevSampOrderBy = {
   count?: InputMaybe<ApiOrderBy>;
 };
 
+/** Streaming cursor of the table "family_project" */
+export type ApiFamilyProjectStreamCursorInput = {
+  /** Stream column input with initial value */
+  initial_value: ApiFamilyProjectStreamCursorValueInput;
+  /** cursor ordering */
+  ordering?: InputMaybe<ApiCursorOrdering>;
+};
+
+/** Initial value of the column from where the streaming should start */
+export type ApiFamilyProjectStreamCursorValueInput = {
+  count?: InputMaybe<Scalars['Int']>;
+  created_at?: InputMaybe<Scalars['timestamptz']>;
+  family_id?: InputMaybe<Scalars['uuid']>;
+  project_id?: InputMaybe<Scalars['uuid']>;
+  updated_at?: InputMaybe<Scalars['timestamptz']>;
+};
+
 /** aggregate sum on columns */
 export type ApiFamilyProjectSumFields = {
   __typename?: 'family_project_sum_fields';
@@ -614,6 +663,15 @@ export enum ApiFamilyProjectUpdateColumn {
   /** column name */
   UpdatedAt = 'updated_at'
 }
+
+export type ApiFamilyProjectUpdates = {
+  /** increments the numeric columns with given value of the filtered values */
+  _inc?: InputMaybe<ApiFamilyProjectIncInput>;
+  /** sets the columns of the filtered rows to the given values */
+  _set?: InputMaybe<ApiFamilyProjectSetInput>;
+  /** filter the rows which have to be updated */
+  where: ApiFamilyProjectBoolExp;
+};
 
 /** aggregate var_pop on columns */
 export type ApiFamilyProjectVarPopFields = {
@@ -717,7 +775,7 @@ export type ApiFamilySeverityBoolExp = {
 
 /** unique or primary key constraints on table "family_severity" */
 export enum ApiFamilySeverityConstraint {
-  /** unique or primary key constraint */
+  /** unique or primary key constraint on columns "value" */
   FamilySeverityPkey = 'family_severity_pkey'
 }
 
@@ -796,6 +854,20 @@ export type ApiFamilySeveritySetInput = {
   value?: InputMaybe<Scalars['String']>;
 };
 
+/** Streaming cursor of the table "family_severity" */
+export type ApiFamilySeverityStreamCursorInput = {
+  /** Stream column input with initial value */
+  initial_value: ApiFamilySeverityStreamCursorValueInput;
+  /** cursor ordering */
+  ordering?: InputMaybe<ApiCursorOrdering>;
+};
+
+/** Initial value of the column from where the streaming should start */
+export type ApiFamilySeverityStreamCursorValueInput = {
+  description?: InputMaybe<Scalars['String']>;
+  value?: InputMaybe<Scalars['String']>;
+};
+
 /** update columns of table "family_severity" */
 export enum ApiFamilySeverityUpdateColumn {
   /** column name */
@@ -803,6 +875,13 @@ export enum ApiFamilySeverityUpdateColumn {
   /** column name */
   Value = 'value'
 }
+
+export type ApiFamilySeverityUpdates = {
+  /** sets the columns of the filtered rows to the given values */
+  _set?: InputMaybe<ApiFamilySeveritySetInput>;
+  /** filter the rows which have to be updated */
+  where: ApiFamilySeverityBoolExp;
+};
 
 /** columns and relationships of "family_status" */
 export type ApiFamilyStatus = {
@@ -844,7 +923,7 @@ export type ApiFamilyStatusBoolExp = {
 
 /** unique or primary key constraints on table "family_status" */
 export enum ApiFamilyStatusConstraint {
-  /** unique or primary key constraint */
+  /** unique or primary key constraint on columns "value" */
   FamilyStatusPkey = 'family_status_pkey'
 }
 
@@ -923,6 +1002,20 @@ export type ApiFamilyStatusSetInput = {
   value?: InputMaybe<Scalars['String']>;
 };
 
+/** Streaming cursor of the table "family_status" */
+export type ApiFamilyStatusStreamCursorInput = {
+  /** Stream column input with initial value */
+  initial_value: ApiFamilyStatusStreamCursorValueInput;
+  /** cursor ordering */
+  ordering?: InputMaybe<ApiCursorOrdering>;
+};
+
+/** Initial value of the column from where the streaming should start */
+export type ApiFamilyStatusStreamCursorValueInput = {
+  description?: InputMaybe<Scalars['String']>;
+  value?: InputMaybe<Scalars['String']>;
+};
+
 /** update columns of table "family_status" */
 export enum ApiFamilyStatusUpdateColumn {
   /** column name */
@@ -930,6 +1023,13 @@ export enum ApiFamilyStatusUpdateColumn {
   /** column name */
   Value = 'value'
 }
+
+export type ApiFamilyStatusUpdates = {
+  /** sets the columns of the filtered rows to the given values */
+  _set?: InputMaybe<ApiFamilyStatusSetInput>;
+  /** filter the rows which have to be updated */
+  where: ApiFamilyStatusBoolExp;
+};
 
 /** aggregate stddev on columns */
 export type ApiFamilyStddevFields = {
@@ -947,6 +1047,25 @@ export type ApiFamilyStddevPopFields = {
 export type ApiFamilyStddevSampFields = {
   __typename?: 'family_stddev_samp_fields';
   db_code?: Maybe<Scalars['Float']>;
+};
+
+/** Streaming cursor of the table "family" */
+export type ApiFamilyStreamCursorInput = {
+  /** Stream column input with initial value */
+  initial_value: ApiFamilyStreamCursorValueInput;
+  /** cursor ordering */
+  ordering?: InputMaybe<ApiCursorOrdering>;
+};
+
+/** Initial value of the column from where the streaming should start */
+export type ApiFamilyStreamCursorValueInput = {
+  created_at?: InputMaybe<Scalars['timestamptz']>;
+  db_code?: InputMaybe<Scalars['Int']>;
+  id?: InputMaybe<Scalars['uuid']>;
+  name?: InputMaybe<Scalars['String']>;
+  severity?: InputMaybe<ApiFamilySeverityEnum>;
+  status?: InputMaybe<ApiFamilyStatusEnum>;
+  updated_at?: InputMaybe<Scalars['timestamptz']>;
 };
 
 /** aggregate sum on columns */
@@ -972,6 +1091,15 @@ export enum ApiFamilyUpdateColumn {
   /** column name */
   UpdatedAt = 'updated_at'
 }
+
+export type ApiFamilyUpdates = {
+  /** increments the numeric columns with given value of the filtered values */
+  _inc?: InputMaybe<ApiFamilyIncInput>;
+  /** sets the columns of the filtered rows to the given values */
+  _set?: InputMaybe<ApiFamilySetInput>;
+  /** filter the rows which have to be updated */
+  where: ApiFamilyBoolExp;
+};
 
 /** aggregate var_pop on columns */
 export type ApiFamilyVarPopFields = {
@@ -1029,7 +1157,7 @@ export type ApiGenderBoolExp = {
 
 /** unique or primary key constraints on table "gender" */
 export enum ApiGenderConstraint {
-  /** unique or primary key constraint */
+  /** unique or primary key constraint on columns "value" */
   GenderPkey = 'gender_pkey'
 }
 
@@ -1102,11 +1230,31 @@ export type ApiGenderSetInput = {
   value?: InputMaybe<Scalars['String']>;
 };
 
+/** Streaming cursor of the table "gender" */
+export type ApiGenderStreamCursorInput = {
+  /** Stream column input with initial value */
+  initial_value: ApiGenderStreamCursorValueInput;
+  /** cursor ordering */
+  ordering?: InputMaybe<ApiCursorOrdering>;
+};
+
+/** Initial value of the column from where the streaming should start */
+export type ApiGenderStreamCursorValueInput = {
+  value?: InputMaybe<Scalars['String']>;
+};
+
 /** update columns of table "gender" */
 export enum ApiGenderUpdateColumn {
   /** column name */
   Value = 'value'
 }
+
+export type ApiGenderUpdates = {
+  /** sets the columns of the filtered rows to the given values */
+  _set?: InputMaybe<ApiGenderSetInput>;
+  /** filter the rows which have to be updated */
+  where: ApiGenderBoolExp;
+};
 
 /** columns and relationships of "householder" */
 export type ApiHouseholder = {
@@ -1122,7 +1270,8 @@ export type ApiHouseholder = {
   national_id?: Maybe<Scalars['String']>;
   nationality?: Maybe<ApiNationalityEnum>;
   religion?: Maybe<ApiReligionEnum>;
-  status: ApiHouseholderStatusEnum;
+  /** A computed field, executes function "get_householder_status" */
+  status?: Maybe<Scalars['String']>;
   surname?: Maybe<Scalars['String']>;
   updated_at: Scalars['timestamptz'];
 };
@@ -1165,18 +1314,18 @@ export type ApiHouseholderBoolExp = {
   national_id?: InputMaybe<ApiStringComparisonExp>;
   nationality?: InputMaybe<ApiNationalityEnumComparisonExp>;
   religion?: InputMaybe<ApiReligionEnumComparisonExp>;
-  status?: InputMaybe<ApiHouseholderStatusEnumComparisonExp>;
+  status?: InputMaybe<ApiStringComparisonExp>;
   surname?: InputMaybe<ApiStringComparisonExp>;
   updated_at?: InputMaybe<ApiTimestamptzComparisonExp>;
 };
 
 /** unique or primary key constraints on table "householder" */
 export enum ApiHouseholderConstraint {
-  /** unique or primary key constraint */
+  /** unique or primary key constraint on columns "family_id" */
   HouseholderFamilyIdKey = 'householder_family_id_key',
-  /** unique or primary key constraint */
+  /** unique or primary key constraint on columns "id" */
   HouseholderIdKey = 'householder_id_key',
-  /** unique or primary key constraint */
+  /** unique or primary key constraint on columns "family_id" */
   HouseholderPkey = 'householder_pkey'
 }
 
@@ -1193,7 +1342,6 @@ export type ApiHouseholderInsertInput = {
   national_id?: InputMaybe<Scalars['String']>;
   nationality?: InputMaybe<ApiNationalityEnum>;
   religion?: InputMaybe<ApiReligionEnum>;
-  status?: InputMaybe<ApiHouseholderStatusEnum>;
   surname?: InputMaybe<Scalars['String']>;
   updated_at?: InputMaybe<Scalars['timestamptz']>;
 };
@@ -1290,8 +1438,6 @@ export enum ApiHouseholderSelectColumn {
   /** column name */
   Religion = 'religion',
   /** column name */
-  Status = 'status',
-  /** column name */
   Surname = 'surname',
   /** column name */
   UpdatedAt = 'updated_at'
@@ -1310,7 +1456,6 @@ export type ApiHouseholderSetInput = {
   national_id?: InputMaybe<Scalars['String']>;
   nationality?: InputMaybe<ApiNationalityEnum>;
   religion?: InputMaybe<ApiReligionEnum>;
-  status?: InputMaybe<ApiHouseholderStatusEnum>;
   surname?: InputMaybe<Scalars['String']>;
   updated_at?: InputMaybe<Scalars['timestamptz']>;
 };
@@ -1355,23 +1500,9 @@ export type ApiHouseholderStatusBoolExp = {
 
 /** unique or primary key constraints on table "householder_status" */
 export enum ApiHouseholderStatusConstraint {
-  /** unique or primary key constraint */
+  /** unique or primary key constraint on columns "value" */
   HouseholderStatusPkey = 'householder_status_pkey'
 }
-
-export enum ApiHouseholderStatusEnum {
-  Completed = 'Completed',
-  Draft = 'Draft'
-}
-
-/** Boolean expression to compare columns of type "householder_status_enum". All fields are combined with logical 'AND'. */
-export type ApiHouseholderStatusEnumComparisonExp = {
-  _eq?: InputMaybe<ApiHouseholderStatusEnum>;
-  _in?: InputMaybe<Array<ApiHouseholderStatusEnum>>;
-  _is_null?: InputMaybe<Scalars['Boolean']>;
-  _neq?: InputMaybe<ApiHouseholderStatusEnum>;
-  _nin?: InputMaybe<Array<ApiHouseholderStatusEnum>>;
-};
 
 /** input type for inserting data into table "householder_status" */
 export type ApiHouseholderStatusInsertInput = {
@@ -1434,6 +1565,20 @@ export type ApiHouseholderStatusSetInput = {
   value?: InputMaybe<Scalars['String']>;
 };
 
+/** Streaming cursor of the table "householder_status" */
+export type ApiHouseholderStatusStreamCursorInput = {
+  /** Stream column input with initial value */
+  initial_value: ApiHouseholderStatusStreamCursorValueInput;
+  /** cursor ordering */
+  ordering?: InputMaybe<ApiCursorOrdering>;
+};
+
+/** Initial value of the column from where the streaming should start */
+export type ApiHouseholderStatusStreamCursorValueInput = {
+  description?: InputMaybe<Scalars['String']>;
+  value?: InputMaybe<Scalars['String']>;
+};
+
 /** update columns of table "householder_status" */
 export enum ApiHouseholderStatusUpdateColumn {
   /** column name */
@@ -1441,6 +1586,38 @@ export enum ApiHouseholderStatusUpdateColumn {
   /** column name */
   Value = 'value'
 }
+
+export type ApiHouseholderStatusUpdates = {
+  /** sets the columns of the filtered rows to the given values */
+  _set?: InputMaybe<ApiHouseholderStatusSetInput>;
+  /** filter the rows which have to be updated */
+  where: ApiHouseholderStatusBoolExp;
+};
+
+/** Streaming cursor of the table "householder" */
+export type ApiHouseholderStreamCursorInput = {
+  /** Stream column input with initial value */
+  initial_value: ApiHouseholderStreamCursorValueInput;
+  /** cursor ordering */
+  ordering?: InputMaybe<ApiCursorOrdering>;
+};
+
+/** Initial value of the column from where the streaming should start */
+export type ApiHouseholderStreamCursorValueInput = {
+  city?: InputMaybe<ApiCityEnum>;
+  created_at?: InputMaybe<Scalars['timestamptz']>;
+  dob?: InputMaybe<Scalars['date']>;
+  family_id?: InputMaybe<Scalars['uuid']>;
+  father_name?: InputMaybe<Scalars['String']>;
+  gender?: InputMaybe<ApiGenderEnum>;
+  id?: InputMaybe<Scalars['uuid']>;
+  name?: InputMaybe<Scalars['String']>;
+  national_id?: InputMaybe<Scalars['String']>;
+  nationality?: InputMaybe<ApiNationalityEnum>;
+  religion?: InputMaybe<ApiReligionEnum>;
+  surname?: InputMaybe<Scalars['String']>;
+  updated_at?: InputMaybe<Scalars['timestamptz']>;
+};
 
 /** update columns of table "householder" */
 export enum ApiHouseholderUpdateColumn {
@@ -1467,12 +1644,17 @@ export enum ApiHouseholderUpdateColumn {
   /** column name */
   Religion = 'religion',
   /** column name */
-  Status = 'status',
-  /** column name */
   Surname = 'surname',
   /** column name */
   UpdatedAt = 'updated_at'
 }
+
+export type ApiHouseholderUpdates = {
+  /** sets the columns of the filtered rows to the given values */
+  _set?: InputMaybe<ApiHouseholderSetInput>;
+  /** filter the rows which have to be updated */
+  where: ApiHouseholderBoolExp;
+};
 
 /** columns and relationships of "member" */
 export type ApiMember = {
@@ -1485,8 +1667,8 @@ export type ApiMember = {
   id: Scalars['uuid'];
   name: Scalars['String'];
   national_id?: Maybe<Scalars['String']>;
-  nationality?: Maybe<Scalars['String']>;
-  religion?: Maybe<Scalars['String']>;
+  nationality?: Maybe<ApiNationalityEnum>;
+  religion?: Maybe<ApiReligionEnum>;
   status: ApiMemberStatusEnum;
   surname?: Maybe<Scalars['String']>;
   updated_at: Scalars['timestamptz'];
@@ -1527,8 +1709,8 @@ export type ApiMemberBoolExp = {
   id?: InputMaybe<ApiUuidComparisonExp>;
   name?: InputMaybe<ApiStringComparisonExp>;
   national_id?: InputMaybe<ApiStringComparisonExp>;
-  nationality?: InputMaybe<ApiStringComparisonExp>;
-  religion?: InputMaybe<ApiStringComparisonExp>;
+  nationality?: InputMaybe<ApiNationalityEnumComparisonExp>;
+  religion?: InputMaybe<ApiReligionEnumComparisonExp>;
   status?: InputMaybe<ApiMemberStatusEnumComparisonExp>;
   surname?: InputMaybe<ApiStringComparisonExp>;
   updated_at?: InputMaybe<ApiTimestamptzComparisonExp>;
@@ -1536,7 +1718,7 @@ export type ApiMemberBoolExp = {
 
 /** unique or primary key constraints on table "member" */
 export enum ApiMemberConstraint {
-  /** unique or primary key constraint */
+  /** unique or primary key constraint on columns "id" */
   MemberPkey = 'member_pkey'
 }
 
@@ -1550,8 +1732,8 @@ export type ApiMemberInsertInput = {
   id?: InputMaybe<Scalars['uuid']>;
   name?: InputMaybe<Scalars['String']>;
   national_id?: InputMaybe<Scalars['String']>;
-  nationality?: InputMaybe<Scalars['String']>;
-  religion?: InputMaybe<Scalars['String']>;
+  nationality?: InputMaybe<ApiNationalityEnum>;
+  religion?: InputMaybe<ApiReligionEnum>;
   status?: InputMaybe<ApiMemberStatusEnum>;
   surname?: InputMaybe<Scalars['String']>;
   updated_at?: InputMaybe<Scalars['timestamptz']>;
@@ -1567,8 +1749,6 @@ export type ApiMemberMaxFields = {
   id?: Maybe<Scalars['uuid']>;
   name?: Maybe<Scalars['String']>;
   national_id?: Maybe<Scalars['String']>;
-  nationality?: Maybe<Scalars['String']>;
-  religion?: Maybe<Scalars['String']>;
   surname?: Maybe<Scalars['String']>;
   updated_at?: Maybe<Scalars['timestamptz']>;
 };
@@ -1583,8 +1763,6 @@ export type ApiMemberMinFields = {
   id?: Maybe<Scalars['uuid']>;
   name?: Maybe<Scalars['String']>;
   national_id?: Maybe<Scalars['String']>;
-  nationality?: Maybe<Scalars['String']>;
-  religion?: Maybe<Scalars['String']>;
   surname?: Maybe<Scalars['String']>;
   updated_at?: Maybe<Scalars['timestamptz']>;
 };
@@ -1667,8 +1845,8 @@ export type ApiMemberSetInput = {
   id?: InputMaybe<Scalars['uuid']>;
   name?: InputMaybe<Scalars['String']>;
   national_id?: InputMaybe<Scalars['String']>;
-  nationality?: InputMaybe<Scalars['String']>;
-  religion?: InputMaybe<Scalars['String']>;
+  nationality?: InputMaybe<ApiNationalityEnum>;
+  religion?: InputMaybe<ApiReligionEnum>;
   status?: InputMaybe<ApiMemberStatusEnum>;
   surname?: InputMaybe<Scalars['String']>;
   updated_at?: InputMaybe<Scalars['timestamptz']>;
@@ -1712,7 +1890,7 @@ export type ApiMemberStatusBoolExp = {
 
 /** unique or primary key constraints on table "member_status" */
 export enum ApiMemberStatusConstraint {
-  /** unique or primary key constraint */
+  /** unique or primary key constraint on columns "value" */
   MemberStatusPkey = 'member_status_pkey'
 }
 
@@ -1784,11 +1962,56 @@ export type ApiMemberStatusSetInput = {
   value?: InputMaybe<Scalars['String']>;
 };
 
+/** Streaming cursor of the table "member_status" */
+export type ApiMemberStatusStreamCursorInput = {
+  /** Stream column input with initial value */
+  initial_value: ApiMemberStatusStreamCursorValueInput;
+  /** cursor ordering */
+  ordering?: InputMaybe<ApiCursorOrdering>;
+};
+
+/** Initial value of the column from where the streaming should start */
+export type ApiMemberStatusStreamCursorValueInput = {
+  value?: InputMaybe<Scalars['String']>;
+};
+
 /** update columns of table "member_status" */
 export enum ApiMemberStatusUpdateColumn {
   /** column name */
   Value = 'value'
 }
+
+export type ApiMemberStatusUpdates = {
+  /** sets the columns of the filtered rows to the given values */
+  _set?: InputMaybe<ApiMemberStatusSetInput>;
+  /** filter the rows which have to be updated */
+  where: ApiMemberStatusBoolExp;
+};
+
+/** Streaming cursor of the table "member" */
+export type ApiMemberStreamCursorInput = {
+  /** Stream column input with initial value */
+  initial_value: ApiMemberStreamCursorValueInput;
+  /** cursor ordering */
+  ordering?: InputMaybe<ApiCursorOrdering>;
+};
+
+/** Initial value of the column from where the streaming should start */
+export type ApiMemberStreamCursorValueInput = {
+  created_at?: InputMaybe<Scalars['timestamptz']>;
+  dob?: InputMaybe<Scalars['date']>;
+  family_id?: InputMaybe<Scalars['uuid']>;
+  father_name?: InputMaybe<Scalars['String']>;
+  gender?: InputMaybe<ApiGenderEnum>;
+  id?: InputMaybe<Scalars['uuid']>;
+  name?: InputMaybe<Scalars['String']>;
+  national_id?: InputMaybe<Scalars['String']>;
+  nationality?: InputMaybe<ApiNationalityEnum>;
+  religion?: InputMaybe<ApiReligionEnum>;
+  status?: InputMaybe<ApiMemberStatusEnum>;
+  surname?: InputMaybe<Scalars['String']>;
+  updated_at?: InputMaybe<Scalars['timestamptz']>;
+};
 
 /** update columns of table "member" */
 export enum ApiMemberUpdateColumn {
@@ -1819,6 +2042,13 @@ export enum ApiMemberUpdateColumn {
   /** column name */
   UpdatedAt = 'updated_at'
 }
+
+export type ApiMemberUpdates = {
+  /** sets the columns of the filtered rows to the given values */
+  _set?: InputMaybe<ApiMemberSetInput>;
+  /** filter the rows which have to be updated */
+  where: ApiMemberBoolExp;
+};
 
 /** mutation root */
 export type ApiMutationRoot = {
@@ -1939,58 +2169,86 @@ export type ApiMutationRoot = {
   update_city?: Maybe<ApiCityMutationResponse>;
   /** update single row of the table: "city" */
   update_city_by_pk?: Maybe<ApiCity>;
+  /** update multiples rows of table: "city" */
+  update_city_many?: Maybe<Array<Maybe<ApiCityMutationResponse>>>;
   /** update data of the table: "family" */
   update_family?: Maybe<ApiFamilyMutationResponse>;
   /** update single row of the table: "family" */
   update_family_by_pk?: Maybe<ApiFamily>;
+  /** update multiples rows of table: "family" */
+  update_family_many?: Maybe<Array<Maybe<ApiFamilyMutationResponse>>>;
   /** update data of the table: "family_project" */
   update_family_project?: Maybe<ApiFamilyProjectMutationResponse>;
   /** update single row of the table: "family_project" */
   update_family_project_by_pk?: Maybe<ApiFamilyProject>;
+  /** update multiples rows of table: "family_project" */
+  update_family_project_many?: Maybe<Array<Maybe<ApiFamilyProjectMutationResponse>>>;
   /** update data of the table: "family_severity" */
   update_family_severity?: Maybe<ApiFamilySeverityMutationResponse>;
   /** update single row of the table: "family_severity" */
   update_family_severity_by_pk?: Maybe<ApiFamilySeverity>;
+  /** update multiples rows of table: "family_severity" */
+  update_family_severity_many?: Maybe<Array<Maybe<ApiFamilySeverityMutationResponse>>>;
   /** update data of the table: "family_status" */
   update_family_status?: Maybe<ApiFamilyStatusMutationResponse>;
   /** update single row of the table: "family_status" */
   update_family_status_by_pk?: Maybe<ApiFamilyStatus>;
+  /** update multiples rows of table: "family_status" */
+  update_family_status_many?: Maybe<Array<Maybe<ApiFamilyStatusMutationResponse>>>;
   /** update data of the table: "gender" */
   update_gender?: Maybe<ApiGenderMutationResponse>;
   /** update single row of the table: "gender" */
   update_gender_by_pk?: Maybe<ApiGender>;
+  /** update multiples rows of table: "gender" */
+  update_gender_many?: Maybe<Array<Maybe<ApiGenderMutationResponse>>>;
   /** update data of the table: "householder" */
   update_householder?: Maybe<ApiHouseholderMutationResponse>;
   /** update single row of the table: "householder" */
   update_householder_by_pk?: Maybe<ApiHouseholder>;
+  /** update multiples rows of table: "householder" */
+  update_householder_many?: Maybe<Array<Maybe<ApiHouseholderMutationResponse>>>;
   /** update data of the table: "householder_status" */
   update_householder_status?: Maybe<ApiHouseholderStatusMutationResponse>;
   /** update single row of the table: "householder_status" */
   update_householder_status_by_pk?: Maybe<ApiHouseholderStatus>;
+  /** update multiples rows of table: "householder_status" */
+  update_householder_status_many?: Maybe<Array<Maybe<ApiHouseholderStatusMutationResponse>>>;
   /** update data of the table: "member" */
   update_member?: Maybe<ApiMemberMutationResponse>;
   /** update single row of the table: "member" */
   update_member_by_pk?: Maybe<ApiMember>;
+  /** update multiples rows of table: "member" */
+  update_member_many?: Maybe<Array<Maybe<ApiMemberMutationResponse>>>;
   /** update data of the table: "member_status" */
   update_member_status?: Maybe<ApiMemberStatusMutationResponse>;
   /** update single row of the table: "member_status" */
   update_member_status_by_pk?: Maybe<ApiMemberStatus>;
+  /** update multiples rows of table: "member_status" */
+  update_member_status_many?: Maybe<Array<Maybe<ApiMemberStatusMutationResponse>>>;
   /** update data of the table: "nationality" */
   update_nationality?: Maybe<ApiNationalityMutationResponse>;
   /** update single row of the table: "nationality" */
   update_nationality_by_pk?: Maybe<ApiNationality>;
+  /** update multiples rows of table: "nationality" */
+  update_nationality_many?: Maybe<Array<Maybe<ApiNationalityMutationResponse>>>;
   /** update data of the table: "project" */
   update_project?: Maybe<ApiProjectMutationResponse>;
   /** update single row of the table: "project" */
   update_project_by_pk?: Maybe<ApiProject>;
+  /** update multiples rows of table: "project" */
+  update_project_many?: Maybe<Array<Maybe<ApiProjectMutationResponse>>>;
   /** update data of the table: "project_status" */
   update_project_status?: Maybe<ApiProjectStatusMutationResponse>;
   /** update single row of the table: "project_status" */
   update_project_status_by_pk?: Maybe<ApiProjectStatus>;
+  /** update multiples rows of table: "project_status" */
+  update_project_status_many?: Maybe<Array<Maybe<ApiProjectStatusMutationResponse>>>;
   /** update data of the table: "religion" */
   update_religion?: Maybe<ApiReligionMutationResponse>;
   /** update single row of the table: "religion" */
   update_religion_by_pk?: Maybe<ApiReligion>;
+  /** update multiples rows of table: "religion" */
+  update_religion_many?: Maybe<Array<Maybe<ApiReligionMutationResponse>>>;
 };
 
 
@@ -2374,6 +2632,12 @@ export type ApiMutationRootApiUpdateCityByPkArgs = {
 
 
 /** mutation root */
+export type ApiMutationRootApiUpdateCityManyArgs = {
+  updates: Array<ApiCityUpdates>;
+};
+
+
+/** mutation root */
 export type ApiMutationRootApiUpdateFamilyArgs = {
   _inc?: InputMaybe<ApiFamilyIncInput>;
   _set?: InputMaybe<ApiFamilySetInput>;
@@ -2386,6 +2650,12 @@ export type ApiMutationRootApiUpdateFamilyByPkArgs = {
   _inc?: InputMaybe<ApiFamilyIncInput>;
   _set?: InputMaybe<ApiFamilySetInput>;
   pk_columns: ApiFamilyPkColumnsInput;
+};
+
+
+/** mutation root */
+export type ApiMutationRootApiUpdateFamilyManyArgs = {
+  updates: Array<ApiFamilyUpdates>;
 };
 
 
@@ -2406,6 +2676,12 @@ export type ApiMutationRootApiUpdateFamilyProjectByPkArgs = {
 
 
 /** mutation root */
+export type ApiMutationRootApiUpdateFamilyProjectManyArgs = {
+  updates: Array<ApiFamilyProjectUpdates>;
+};
+
+
+/** mutation root */
 export type ApiMutationRootApiUpdateFamilySeverityArgs = {
   _set?: InputMaybe<ApiFamilySeveritySetInput>;
   where: ApiFamilySeverityBoolExp;
@@ -2416,6 +2692,12 @@ export type ApiMutationRootApiUpdateFamilySeverityArgs = {
 export type ApiMutationRootApiUpdateFamilySeverityByPkArgs = {
   _set?: InputMaybe<ApiFamilySeveritySetInput>;
   pk_columns: ApiFamilySeverityPkColumnsInput;
+};
+
+
+/** mutation root */
+export type ApiMutationRootApiUpdateFamilySeverityManyArgs = {
+  updates: Array<ApiFamilySeverityUpdates>;
 };
 
 
@@ -2434,6 +2716,12 @@ export type ApiMutationRootApiUpdateFamilyStatusByPkArgs = {
 
 
 /** mutation root */
+export type ApiMutationRootApiUpdateFamilyStatusManyArgs = {
+  updates: Array<ApiFamilyStatusUpdates>;
+};
+
+
+/** mutation root */
 export type ApiMutationRootApiUpdateGenderArgs = {
   _set?: InputMaybe<ApiGenderSetInput>;
   where: ApiGenderBoolExp;
@@ -2444,6 +2732,12 @@ export type ApiMutationRootApiUpdateGenderArgs = {
 export type ApiMutationRootApiUpdateGenderByPkArgs = {
   _set?: InputMaybe<ApiGenderSetInput>;
   pk_columns: ApiGenderPkColumnsInput;
+};
+
+
+/** mutation root */
+export type ApiMutationRootApiUpdateGenderManyArgs = {
+  updates: Array<ApiGenderUpdates>;
 };
 
 
@@ -2462,6 +2756,12 @@ export type ApiMutationRootApiUpdateHouseholderByPkArgs = {
 
 
 /** mutation root */
+export type ApiMutationRootApiUpdateHouseholderManyArgs = {
+  updates: Array<ApiHouseholderUpdates>;
+};
+
+
+/** mutation root */
 export type ApiMutationRootApiUpdateHouseholderStatusArgs = {
   _set?: InputMaybe<ApiHouseholderStatusSetInput>;
   where: ApiHouseholderStatusBoolExp;
@@ -2472,6 +2772,12 @@ export type ApiMutationRootApiUpdateHouseholderStatusArgs = {
 export type ApiMutationRootApiUpdateHouseholderStatusByPkArgs = {
   _set?: InputMaybe<ApiHouseholderStatusSetInput>;
   pk_columns: ApiHouseholderStatusPkColumnsInput;
+};
+
+
+/** mutation root */
+export type ApiMutationRootApiUpdateHouseholderStatusManyArgs = {
+  updates: Array<ApiHouseholderStatusUpdates>;
 };
 
 
@@ -2490,6 +2796,12 @@ export type ApiMutationRootApiUpdateMemberByPkArgs = {
 
 
 /** mutation root */
+export type ApiMutationRootApiUpdateMemberManyArgs = {
+  updates: Array<ApiMemberUpdates>;
+};
+
+
+/** mutation root */
 export type ApiMutationRootApiUpdateMemberStatusArgs = {
   _set?: InputMaybe<ApiMemberStatusSetInput>;
   where: ApiMemberStatusBoolExp;
@@ -2500,6 +2812,12 @@ export type ApiMutationRootApiUpdateMemberStatusArgs = {
 export type ApiMutationRootApiUpdateMemberStatusByPkArgs = {
   _set?: InputMaybe<ApiMemberStatusSetInput>;
   pk_columns: ApiMemberStatusPkColumnsInput;
+};
+
+
+/** mutation root */
+export type ApiMutationRootApiUpdateMemberStatusManyArgs = {
+  updates: Array<ApiMemberStatusUpdates>;
 };
 
 
@@ -2518,6 +2836,12 @@ export type ApiMutationRootApiUpdateNationalityByPkArgs = {
 
 
 /** mutation root */
+export type ApiMutationRootApiUpdateNationalityManyArgs = {
+  updates: Array<ApiNationalityUpdates>;
+};
+
+
+/** mutation root */
 export type ApiMutationRootApiUpdateProjectArgs = {
   _set?: InputMaybe<ApiProjectSetInput>;
   where: ApiProjectBoolExp;
@@ -2528,6 +2852,12 @@ export type ApiMutationRootApiUpdateProjectArgs = {
 export type ApiMutationRootApiUpdateProjectByPkArgs = {
   _set?: InputMaybe<ApiProjectSetInput>;
   pk_columns: ApiProjectPkColumnsInput;
+};
+
+
+/** mutation root */
+export type ApiMutationRootApiUpdateProjectManyArgs = {
+  updates: Array<ApiProjectUpdates>;
 };
 
 
@@ -2546,6 +2876,12 @@ export type ApiMutationRootApiUpdateProjectStatusByPkArgs = {
 
 
 /** mutation root */
+export type ApiMutationRootApiUpdateProjectStatusManyArgs = {
+  updates: Array<ApiProjectStatusUpdates>;
+};
+
+
+/** mutation root */
 export type ApiMutationRootApiUpdateReligionArgs = {
   _set?: InputMaybe<ApiReligionSetInput>;
   where: ApiReligionBoolExp;
@@ -2556,6 +2892,12 @@ export type ApiMutationRootApiUpdateReligionArgs = {
 export type ApiMutationRootApiUpdateReligionByPkArgs = {
   _set?: InputMaybe<ApiReligionSetInput>;
   pk_columns: ApiReligionPkColumnsInput;
+};
+
+
+/** mutation root */
+export type ApiMutationRootApiUpdateReligionManyArgs = {
+  updates: Array<ApiReligionUpdates>;
 };
 
 /** columns and relationships of "nationality" */
@@ -2596,7 +2938,7 @@ export type ApiNationalityBoolExp = {
 
 /** unique or primary key constraints on table "nationality" */
 export enum ApiNationalityConstraint {
-  /** unique or primary key constraint */
+  /** unique or primary key constraint on columns "value" */
   NationalityPkey = 'nationality_pkey'
 }
 
@@ -2668,11 +3010,31 @@ export type ApiNationalitySetInput = {
   value?: InputMaybe<Scalars['String']>;
 };
 
+/** Streaming cursor of the table "nationality" */
+export type ApiNationalityStreamCursorInput = {
+  /** Stream column input with initial value */
+  initial_value: ApiNationalityStreamCursorValueInput;
+  /** cursor ordering */
+  ordering?: InputMaybe<ApiCursorOrdering>;
+};
+
+/** Initial value of the column from where the streaming should start */
+export type ApiNationalityStreamCursorValueInput = {
+  value?: InputMaybe<Scalars['String']>;
+};
+
 /** update columns of table "nationality" */
 export enum ApiNationalityUpdateColumn {
   /** column name */
   Value = 'value'
 }
+
+export type ApiNationalityUpdates = {
+  /** sets the columns of the filtered rows to the given values */
+  _set?: InputMaybe<ApiNationalitySetInput>;
+  /** filter the rows which have to be updated */
+  where: ApiNationalityBoolExp;
+};
 
 /** column ordering options */
 export enum ApiOrderBy {
@@ -2758,6 +3120,7 @@ export type ApiProjectBoolExp = {
   description?: InputMaybe<ApiStringComparisonExp>;
   due_date?: InputMaybe<ApiDateComparisonExp>;
   families?: InputMaybe<ApiFamilyProjectBoolExp>;
+  families_aggregate?: InputMaybe<ApiFamilyProjectAggregateBoolExp>;
   id?: InputMaybe<ApiUuidComparisonExp>;
   name?: InputMaybe<ApiStringComparisonExp>;
   start_date?: InputMaybe<ApiDateComparisonExp>;
@@ -2767,7 +3130,7 @@ export type ApiProjectBoolExp = {
 
 /** unique or primary key constraints on table "project" */
 export enum ApiProjectConstraint {
-  /** unique or primary key constraint */
+  /** unique or primary key constraint on columns "id" */
   ProjectPkey = 'project_pkey'
 }
 
@@ -2921,7 +3284,7 @@ export type ApiProjectStatusBoolExp = {
 
 /** unique or primary key constraints on table "project_status" */
 export enum ApiProjectStatusConstraint {
-  /** unique or primary key constraint */
+  /** unique or primary key constraint on columns "value" */
   ProjectStatusPkey = 'project_status_pkey'
 }
 
@@ -3003,6 +3366,20 @@ export type ApiProjectStatusSetInput = {
   value?: InputMaybe<Scalars['String']>;
 };
 
+/** Streaming cursor of the table "project_status" */
+export type ApiProjectStatusStreamCursorInput = {
+  /** Stream column input with initial value */
+  initial_value: ApiProjectStatusStreamCursorValueInput;
+  /** cursor ordering */
+  ordering?: InputMaybe<ApiCursorOrdering>;
+};
+
+/** Initial value of the column from where the streaming should start */
+export type ApiProjectStatusStreamCursorValueInput = {
+  comment?: InputMaybe<Scalars['String']>;
+  value?: InputMaybe<Scalars['String']>;
+};
+
 /** update columns of table "project_status" */
 export enum ApiProjectStatusUpdateColumn {
   /** column name */
@@ -3010,6 +3387,33 @@ export enum ApiProjectStatusUpdateColumn {
   /** column name */
   Value = 'value'
 }
+
+export type ApiProjectStatusUpdates = {
+  /** sets the columns of the filtered rows to the given values */
+  _set?: InputMaybe<ApiProjectStatusSetInput>;
+  /** filter the rows which have to be updated */
+  where: ApiProjectStatusBoolExp;
+};
+
+/** Streaming cursor of the table "project" */
+export type ApiProjectStreamCursorInput = {
+  /** Stream column input with initial value */
+  initial_value: ApiProjectStreamCursorValueInput;
+  /** cursor ordering */
+  ordering?: InputMaybe<ApiCursorOrdering>;
+};
+
+/** Initial value of the column from where the streaming should start */
+export type ApiProjectStreamCursorValueInput = {
+  created_at?: InputMaybe<Scalars['timestamptz']>;
+  description?: InputMaybe<Scalars['String']>;
+  due_date?: InputMaybe<Scalars['date']>;
+  id?: InputMaybe<Scalars['uuid']>;
+  name?: InputMaybe<Scalars['String']>;
+  start_date?: InputMaybe<Scalars['date']>;
+  status?: InputMaybe<ApiProjectStatusEnum>;
+  updated_at?: InputMaybe<Scalars['timestamptz']>;
+};
 
 /** update columns of table "project" */
 export enum ApiProjectUpdateColumn {
@@ -3030,6 +3434,13 @@ export enum ApiProjectUpdateColumn {
   /** column name */
   UpdatedAt = 'updated_at'
 }
+
+export type ApiProjectUpdates = {
+  /** sets the columns of the filtered rows to the given values */
+  _set?: InputMaybe<ApiProjectSetInput>;
+  /** filter the rows which have to be updated */
+  where: ApiProjectBoolExp;
+};
 
 export type ApiQueryRoot = {
   __typename?: 'query_root';
@@ -3480,7 +3891,7 @@ export type ApiReligionBoolExp = {
 
 /** unique or primary key constraints on table "religion" */
 export enum ApiReligionConstraint {
-  /** unique or primary key constraint */
+  /** unique or primary key constraint on columns "value" */
   ReligionPkey = 'religion_pkey'
 }
 
@@ -3552,11 +3963,31 @@ export type ApiReligionSetInput = {
   value?: InputMaybe<Scalars['String']>;
 };
 
+/** Streaming cursor of the table "religion" */
+export type ApiReligionStreamCursorInput = {
+  /** Stream column input with initial value */
+  initial_value: ApiReligionStreamCursorValueInput;
+  /** cursor ordering */
+  ordering?: InputMaybe<ApiCursorOrdering>;
+};
+
+/** Initial value of the column from where the streaming should start */
+export type ApiReligionStreamCursorValueInput = {
+  value?: InputMaybe<Scalars['String']>;
+};
+
 /** update columns of table "religion" */
 export enum ApiReligionUpdateColumn {
   /** column name */
   Value = 'value'
 }
+
+export type ApiReligionUpdates = {
+  /** sets the columns of the filtered rows to the given values */
+  _set?: InputMaybe<ApiReligionSetInput>;
+  /** filter the rows which have to be updated */
+  where: ApiReligionBoolExp;
+};
 
 export type ApiSubscriptionRoot = {
   __typename?: 'subscription_root';
@@ -3566,6 +3997,8 @@ export type ApiSubscriptionRoot = {
   city_aggregate: ApiCityAggregate;
   /** fetch data from the table: "city" using primary key columns */
   city_by_pk?: Maybe<ApiCity>;
+  /** fetch data from the table in a streaming manner: "city" */
+  city_stream: Array<ApiCity>;
   /** fetch data from the table: "family" */
   family: Array<ApiFamily>;
   /** fetch aggregated fields from the table: "family" */
@@ -3578,24 +4011,34 @@ export type ApiSubscriptionRoot = {
   family_project_aggregate: ApiFamilyProjectAggregate;
   /** fetch data from the table: "family_project" using primary key columns */
   family_project_by_pk?: Maybe<ApiFamilyProject>;
+  /** fetch data from the table in a streaming manner: "family_project" */
+  family_project_stream: Array<ApiFamilyProject>;
   /** fetch data from the table: "family_severity" */
   family_severity: Array<ApiFamilySeverity>;
   /** fetch aggregated fields from the table: "family_severity" */
   family_severity_aggregate: ApiFamilySeverityAggregate;
   /** fetch data from the table: "family_severity" using primary key columns */
   family_severity_by_pk?: Maybe<ApiFamilySeverity>;
+  /** fetch data from the table in a streaming manner: "family_severity" */
+  family_severity_stream: Array<ApiFamilySeverity>;
   /** fetch data from the table: "family_status" */
   family_status: Array<ApiFamilyStatus>;
   /** fetch aggregated fields from the table: "family_status" */
   family_status_aggregate: ApiFamilyStatusAggregate;
   /** fetch data from the table: "family_status" using primary key columns */
   family_status_by_pk?: Maybe<ApiFamilyStatus>;
+  /** fetch data from the table in a streaming manner: "family_status" */
+  family_status_stream: Array<ApiFamilyStatus>;
+  /** fetch data from the table in a streaming manner: "family" */
+  family_stream: Array<ApiFamily>;
   /** fetch data from the table: "gender" */
   gender: Array<ApiGender>;
   /** fetch aggregated fields from the table: "gender" */
   gender_aggregate: ApiGenderAggregate;
   /** fetch data from the table: "gender" using primary key columns */
   gender_by_pk?: Maybe<ApiGender>;
+  /** fetch data from the table in a streaming manner: "gender" */
+  gender_stream: Array<ApiGender>;
   /** fetch data from the table: "householder" */
   householder: Array<ApiHouseholder>;
   /** fetch aggregated fields from the table: "householder" */
@@ -3608,6 +4051,10 @@ export type ApiSubscriptionRoot = {
   householder_status_aggregate: ApiHouseholderStatusAggregate;
   /** fetch data from the table: "householder_status" using primary key columns */
   householder_status_by_pk?: Maybe<ApiHouseholderStatus>;
+  /** fetch data from the table in a streaming manner: "householder_status" */
+  householder_status_stream: Array<ApiHouseholderStatus>;
+  /** fetch data from the table in a streaming manner: "householder" */
+  householder_stream: Array<ApiHouseholder>;
   /** fetch data from the table: "member" */
   member: Array<ApiMember>;
   /** fetch aggregated fields from the table: "member" */
@@ -3620,12 +4067,18 @@ export type ApiSubscriptionRoot = {
   member_status_aggregate: ApiMemberStatusAggregate;
   /** fetch data from the table: "member_status" using primary key columns */
   member_status_by_pk?: Maybe<ApiMemberStatus>;
+  /** fetch data from the table in a streaming manner: "member_status" */
+  member_status_stream: Array<ApiMemberStatus>;
+  /** fetch data from the table in a streaming manner: "member" */
+  member_stream: Array<ApiMember>;
   /** fetch data from the table: "nationality" */
   nationality: Array<ApiNationality>;
   /** fetch aggregated fields from the table: "nationality" */
   nationality_aggregate: ApiNationalityAggregate;
   /** fetch data from the table: "nationality" using primary key columns */
   nationality_by_pk?: Maybe<ApiNationality>;
+  /** fetch data from the table in a streaming manner: "nationality" */
+  nationality_stream: Array<ApiNationality>;
   /** fetch data from the table: "project" */
   project: Array<ApiProject>;
   /** fetch aggregated fields from the table: "project" */
@@ -3638,12 +4091,18 @@ export type ApiSubscriptionRoot = {
   project_status_aggregate: ApiProjectStatusAggregate;
   /** fetch data from the table: "project_status" using primary key columns */
   project_status_by_pk?: Maybe<ApiProjectStatus>;
+  /** fetch data from the table in a streaming manner: "project_status" */
+  project_status_stream: Array<ApiProjectStatus>;
+  /** fetch data from the table in a streaming manner: "project" */
+  project_stream: Array<ApiProject>;
   /** fetch data from the table: "religion" */
   religion: Array<ApiReligion>;
   /** fetch aggregated fields from the table: "religion" */
   religion_aggregate: ApiReligionAggregate;
   /** fetch data from the table: "religion" using primary key columns */
   religion_by_pk?: Maybe<ApiReligion>;
+  /** fetch data from the table in a streaming manner: "religion" */
+  religion_stream: Array<ApiReligion>;
 };
 
 
@@ -3667,6 +4126,13 @@ export type ApiSubscriptionRootApiCityAggregateArgs = {
 
 export type ApiSubscriptionRootApiCityByPkArgs = {
   value: Scalars['String'];
+};
+
+
+export type ApiSubscriptionRootApiCityStreamArgs = {
+  batch_size: Scalars['Int'];
+  cursor: Array<InputMaybe<ApiCityStreamCursorInput>>;
+  where?: InputMaybe<ApiCityBoolExp>;
 };
 
 
@@ -3717,6 +4183,13 @@ export type ApiSubscriptionRootApiFamilyProjectByPkArgs = {
 };
 
 
+export type ApiSubscriptionRootApiFamilyProjectStreamArgs = {
+  batch_size: Scalars['Int'];
+  cursor: Array<InputMaybe<ApiFamilyProjectStreamCursorInput>>;
+  where?: InputMaybe<ApiFamilyProjectBoolExp>;
+};
+
+
 export type ApiSubscriptionRootApiFamilySeverityArgs = {
   distinct_on?: InputMaybe<Array<ApiFamilySeveritySelectColumn>>;
   limit?: InputMaybe<Scalars['Int']>;
@@ -3737,6 +4210,13 @@ export type ApiSubscriptionRootApiFamilySeverityAggregateArgs = {
 
 export type ApiSubscriptionRootApiFamilySeverityByPkArgs = {
   value: Scalars['String'];
+};
+
+
+export type ApiSubscriptionRootApiFamilySeverityStreamArgs = {
+  batch_size: Scalars['Int'];
+  cursor: Array<InputMaybe<ApiFamilySeverityStreamCursorInput>>;
+  where?: InputMaybe<ApiFamilySeverityBoolExp>;
 };
 
 
@@ -3763,6 +4243,20 @@ export type ApiSubscriptionRootApiFamilyStatusByPkArgs = {
 };
 
 
+export type ApiSubscriptionRootApiFamilyStatusStreamArgs = {
+  batch_size: Scalars['Int'];
+  cursor: Array<InputMaybe<ApiFamilyStatusStreamCursorInput>>;
+  where?: InputMaybe<ApiFamilyStatusBoolExp>;
+};
+
+
+export type ApiSubscriptionRootApiFamilyStreamArgs = {
+  batch_size: Scalars['Int'];
+  cursor: Array<InputMaybe<ApiFamilyStreamCursorInput>>;
+  where?: InputMaybe<ApiFamilyBoolExp>;
+};
+
+
 export type ApiSubscriptionRootApiGenderArgs = {
   distinct_on?: InputMaybe<Array<ApiGenderSelectColumn>>;
   limit?: InputMaybe<Scalars['Int']>;
@@ -3783,6 +4277,13 @@ export type ApiSubscriptionRootApiGenderAggregateArgs = {
 
 export type ApiSubscriptionRootApiGenderByPkArgs = {
   value: Scalars['String'];
+};
+
+
+export type ApiSubscriptionRootApiGenderStreamArgs = {
+  batch_size: Scalars['Int'];
+  cursor: Array<InputMaybe<ApiGenderStreamCursorInput>>;
+  where?: InputMaybe<ApiGenderBoolExp>;
 };
 
 
@@ -3832,6 +4333,20 @@ export type ApiSubscriptionRootApiHouseholderStatusByPkArgs = {
 };
 
 
+export type ApiSubscriptionRootApiHouseholderStatusStreamArgs = {
+  batch_size: Scalars['Int'];
+  cursor: Array<InputMaybe<ApiHouseholderStatusStreamCursorInput>>;
+  where?: InputMaybe<ApiHouseholderStatusBoolExp>;
+};
+
+
+export type ApiSubscriptionRootApiHouseholderStreamArgs = {
+  batch_size: Scalars['Int'];
+  cursor: Array<InputMaybe<ApiHouseholderStreamCursorInput>>;
+  where?: InputMaybe<ApiHouseholderBoolExp>;
+};
+
+
 export type ApiSubscriptionRootApiMemberArgs = {
   distinct_on?: InputMaybe<Array<ApiMemberSelectColumn>>;
   limit?: InputMaybe<Scalars['Int']>;
@@ -3878,6 +4393,20 @@ export type ApiSubscriptionRootApiMemberStatusByPkArgs = {
 };
 
 
+export type ApiSubscriptionRootApiMemberStatusStreamArgs = {
+  batch_size: Scalars['Int'];
+  cursor: Array<InputMaybe<ApiMemberStatusStreamCursorInput>>;
+  where?: InputMaybe<ApiMemberStatusBoolExp>;
+};
+
+
+export type ApiSubscriptionRootApiMemberStreamArgs = {
+  batch_size: Scalars['Int'];
+  cursor: Array<InputMaybe<ApiMemberStreamCursorInput>>;
+  where?: InputMaybe<ApiMemberBoolExp>;
+};
+
+
 export type ApiSubscriptionRootApiNationalityArgs = {
   distinct_on?: InputMaybe<Array<ApiNationalitySelectColumn>>;
   limit?: InputMaybe<Scalars['Int']>;
@@ -3898,6 +4427,13 @@ export type ApiSubscriptionRootApiNationalityAggregateArgs = {
 
 export type ApiSubscriptionRootApiNationalityByPkArgs = {
   value: Scalars['String'];
+};
+
+
+export type ApiSubscriptionRootApiNationalityStreamArgs = {
+  batch_size: Scalars['Int'];
+  cursor: Array<InputMaybe<ApiNationalityStreamCursorInput>>;
+  where?: InputMaybe<ApiNationalityBoolExp>;
 };
 
 
@@ -3947,6 +4483,20 @@ export type ApiSubscriptionRootApiProjectStatusByPkArgs = {
 };
 
 
+export type ApiSubscriptionRootApiProjectStatusStreamArgs = {
+  batch_size: Scalars['Int'];
+  cursor: Array<InputMaybe<ApiProjectStatusStreamCursorInput>>;
+  where?: InputMaybe<ApiProjectStatusBoolExp>;
+};
+
+
+export type ApiSubscriptionRootApiProjectStreamArgs = {
+  batch_size: Scalars['Int'];
+  cursor: Array<InputMaybe<ApiProjectStreamCursorInput>>;
+  where?: InputMaybe<ApiProjectBoolExp>;
+};
+
+
 export type ApiSubscriptionRootApiReligionArgs = {
   distinct_on?: InputMaybe<Array<ApiReligionSelectColumn>>;
   limit?: InputMaybe<Scalars['Int']>;
@@ -3967,6 +4517,13 @@ export type ApiSubscriptionRootApiReligionAggregateArgs = {
 
 export type ApiSubscriptionRootApiReligionByPkArgs = {
   value: Scalars['String'];
+};
+
+
+export type ApiSubscriptionRootApiReligionStreamArgs = {
+  batch_size: Scalars['Int'];
+  cursor: Array<InputMaybe<ApiReligionStreamCursorInput>>;
+  where?: InputMaybe<ApiReligionBoolExp>;
 };
 
 /** Boolean expression to compare columns of type "timestamptz". All fields are combined with logical 'AND'. */
@@ -4007,7 +4564,7 @@ export type ApiCreateMemberMutationVariables = Exact<{
 }>;
 
 
-export type ApiCreateMemberMutation = { __typename?: 'mutation_root', insert_member_one?: { __typename?: 'member', id: string, gender?: ApiGenderEnum | null, father_name?: string | null, name: string, nationality?: string | null, religion?: string | null, national_id?: string | null, surname?: string | null, dob?: string | null, status: ApiMemberStatusEnum } | null };
+export type ApiCreateMemberMutation = { __typename?: 'mutation_root', insert_member_one?: { __typename?: 'member', id: string, gender?: ApiGenderEnum | null, father_name?: string | null, name: string, nationality?: ApiNationalityEnum | null, religion?: ApiReligionEnum | null, national_id?: string | null, surname?: string | null, dob?: string | null, status: ApiMemberStatusEnum } | null };
 
 export type ApiCreateProjectMutationVariables = Exact<{
   input: ApiProjectInsertInput;
@@ -4028,14 +4585,14 @@ export type ApiUpsertHouseholderMutationVariables = Exact<{
 }>;
 
 
-export type ApiUpsertHouseholderMutation = { __typename?: 'mutation_root', insert_householder_one?: { __typename?: 'householder', city?: ApiCityEnum | null, gender?: ApiGenderEnum | null, dob?: string | null, national_id?: string | null, father_name?: string | null, name: string, nationality?: ApiNationalityEnum | null, religion?: ApiReligionEnum | null, surname?: string | null, status: ApiHouseholderStatusEnum } | null };
+export type ApiUpsertHouseholderMutation = { __typename?: 'mutation_root', insert_householder_one?: { __typename?: 'householder', city?: ApiCityEnum | null, gender?: ApiGenderEnum | null, dob?: string | null, national_id?: string | null, father_name?: string | null, name: string, nationality?: ApiNationalityEnum | null, religion?: ApiReligionEnum | null, surname?: string | null, status?: string | null } | null };
 
 export type ApiMemberListQueryVariables = Exact<{
   family_id: Scalars['uuid'];
 }>;
 
 
-export type ApiMemberListQuery = { __typename?: 'query_root', member: Array<{ __typename?: 'member', dob?: string | null, father_name?: string | null, gender?: ApiGenderEnum | null, name: string, national_id?: string | null, nationality?: string | null, religion?: string | null, surname?: string | null, id: string, status: ApiMemberStatusEnum }> };
+export type ApiMemberListQuery = { __typename?: 'query_root', member: Array<{ __typename?: 'member', dob?: string | null, father_name?: string | null, gender?: ApiGenderEnum | null, name: string, national_id?: string | null, nationality?: ApiNationalityEnum | null, religion?: ApiReligionEnum | null, surname?: string | null, id: string, status: ApiMemberStatusEnum }> };
 
 export type ApiFamilyListQueryVariables = Exact<{ [key: string]: never; }>;
 
@@ -4054,7 +4611,7 @@ export type ApiHouseholderQueryVariables = Exact<{
 }>;
 
 
-export type ApiHouseholderQuery = { __typename?: 'query_root', householder_by_pk?: { __typename?: 'householder', name: string, father_name?: string | null, surname?: string | null, nationality?: ApiNationalityEnum | null, religion?: ApiReligionEnum | null, city?: ApiCityEnum | null, gender?: ApiGenderEnum | null, status: ApiHouseholderStatusEnum, national_id?: string | null, dob?: string | null } | null };
+export type ApiHouseholderQuery = { __typename?: 'query_root', householder_by_pk?: { __typename?: 'householder', name: string, father_name?: string | null, surname?: string | null, nationality?: ApiNationalityEnum | null, religion?: ApiReligionEnum | null, city?: ApiCityEnum | null, gender?: ApiGenderEnum | null, status?: string | null, national_id?: string | null, dob?: string | null } | null };
 
 export type ApiProjectListQueryVariables = Exact<{
   offset?: InputMaybe<Scalars['Int']>;

@@ -1,4 +1,4 @@
-import { useMemberQuery } from '@camp/data-layer';
+import { useMemberListQuery } from '@camp/data-layer';
 import { FullPageLoader, showNotification } from '@camp/design';
 import { errorMessages, messages } from '@camp/messages';
 import { Center, Group, Stack, Title } from '@mantine/core';
@@ -17,7 +17,7 @@ export const MemberList = ({ familyId }: Props) => {
   const [memberForm, setMemberForm] = useState<React.ReactNode[]>([]);
   const [isMemberEmpty, setIsMemberEmpty] = useState<boolean>();
 
-  const { data, error, loading } = useMemberQuery({
+  const { data, error, loading } = useMemberListQuery({
     variables: { family_id: familyId },
   });
   const member = data?.members;
