@@ -14,18 +14,21 @@ interface Props {
 const t = messages.member;
 
 export const MemberList = ({ familyId }: Props) => {
-  const [memberForm, setMemberForm] = useState<React.ReactNode[]>([]);
+  const [FormArray, setFormArray] = useState<number>(0);
   const [isMemberEmpty, setIsMemberEmpty] = useState<boolean>();
-
   const { data, error, loading } = useMemberListQuery({
     variables: { family_id: familyId },
   });
   const member = data?.members;
 
   const addNewMemberHandler = () => {
-    setMemberForm(memberForm.concat(<MemberForm familyId={familyId} />));
+    setFormArray(prev => prev + 1);
     setIsMemberEmpty(true);
   };
+
+  const memberForm = Array.from(Array(FormArray).keys()).map(i => (
+    <MemberForm familyId={familyId} key={i} />
+  ));
 
   if (loading) return <FullPageLoader />;
 
@@ -44,7 +47,7 @@ export const MemberList = ({ familyId }: Props) => {
         <Title order={4} color="fgMuted" weight="bold">
           {t.title}
         </Title>
-        <CreateMemberButton onAddNewMember={addNewMemberHandler} />
+        <CreateMemberButton onClick={addNewMemberHandler} />
       </Group>
       {member?.length === 0 && !isMemberEmpty ? (
         <Center h={400}>
