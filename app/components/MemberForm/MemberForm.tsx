@@ -99,7 +99,7 @@ export const MemberForm = ({ initialMember, familyId }: Props) => {
     defaultValues: initialMember,
     mode: 'onChange',
   });
-  const watchAllFields = watch();
+  const [name, surname] = watch(['name', 'surname']);
 
   const onSubmit = handleSubmit(FormData => {
     createMemberMutation({
@@ -137,15 +137,7 @@ export const MemberForm = ({ initialMember, familyId }: Props) => {
       right={
         <Group spacing={10}>
           <Title order={4} color="fgDefault" weight="bold">
-            {!isEditableMode ? (
-              <>
-                {initialMember?.name} {initialMember?.surname}
-              </>
-            ) : (
-              <>
-                {watchAllFields.name} {watchAllFields.surname}
-              </>
-            )}
+            {name} {surname}
           </Title>
           <InformationBadge information="draft" />
         </Group>
