@@ -29,7 +29,7 @@ import {
   Title,
 } from '@mantine/core';
 import { useDisclosure } from '@mantine/hooks';
-import { useToggle } from 'ahooks';
+import { useBoolean } from 'ahooks';
 import { useForm } from 'react-hook-form';
 
 import { InformationBadge } from '../InformationBadge';
@@ -81,7 +81,7 @@ interface Props {
 export const MemberForm = ({ initialMember, familyId }: Props) => {
   const [createMemberMutation] = useCreateMemberMutation();
   const [opened, { toggle }] = useDisclosure(true);
-  const [isEditableMode, { toggle: toggleEditableMode }] = useToggle(
+  const [isEditableMode, { toggle: toggleEditableMode }] = useBoolean(
     !initialMember,
   );
   const { classes } = useStyles();
