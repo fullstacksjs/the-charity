@@ -7,19 +7,16 @@ import { createMemberButtonId as ids } from './CreateMemberButton.ids';
 
 interface Props {
   variant?: 'filled' | 'outline';
-  onAddNewMember?: React.MouseEventHandler<HTMLButtonElement>;
+  onClick?: React.MouseEventHandler<HTMLButtonElement>;
 }
 
-export const CreateMemberButton = ({
-  variant = 'outline',
-  onAddNewMember,
-}: Props) => {
+export const CreateMemberButton = ({ variant = 'outline', onClick }: Props) => {
   const t = messages.member;
   return (
     <Button
       variant={variant}
       size="sm"
-      onClick={onAddNewMember}
+      onClick={onClick}
       {...createTestAttr(ids)}
       leftIcon={<PlusIcon size={16} />}
     >

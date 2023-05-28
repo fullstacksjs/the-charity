@@ -7,10 +7,10 @@ import React from 'react';
 import { UndoButtonIds as id } from './UndoButton.ids';
 
 interface Props extends ButtonProps {
-  handleReset: React.MouseEventHandler<HTMLButtonElement>;
+  onClick: React.MouseEventHandler<HTMLButtonElement>;
 }
 
-export const UndoButton = ({ handleReset, ...rest }: Props) => {
+export const UndoButton = ({ onClick, ...rest }: Props) => {
   const t = messages.actions;
   return (
     <Button
@@ -18,7 +18,7 @@ export const UndoButton = ({ handleReset, ...rest }: Props) => {
       size="sm"
       variant="outline"
       color="red"
-      onClick={handleReset}
+      onClick={onClick}
       {...rest}
     >
       {t.undoBtn}

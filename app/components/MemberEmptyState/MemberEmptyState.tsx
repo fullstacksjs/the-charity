@@ -25,7 +25,7 @@ export const MemberEmptyState = ({ addNewMember }: Props) => {
       title={t.title}
       message={t.description}
     >
-      <CreateMemberButton variant="filled" onAddNewMember={addNewMember} />
+      <CreateMemberButton variant="filled" onClick={addNewMember} />
     </EmptyState>
   );
 };

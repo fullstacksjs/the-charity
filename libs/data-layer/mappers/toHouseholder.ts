@@ -13,7 +13,7 @@ export const toHouseholder = (
     '__typename' | 'created_at' | 'family_id' | 'id' | 'ssn' | 'updated_at'
   >,
 ): Householder => {
-  const status = toHouseholderStatus(householder.status);
+  const status = toHouseholderStatus(householder.status!);
 
   if (status === 'draft')
     return {

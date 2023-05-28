@@ -127,7 +127,7 @@ export const HouseholderForm = ({ initialHouseholder, familyId }: Props) => {
             {t.title}
           </Title>
           <Group spacing={20}>
-            <UndoButton disabled={!isDirty} handleReset={() => reset()} />
+            <UndoButton disabled={!isDirty} onClick={() => reset()} />
             <Button
               {...createTestAttr(ids.submitBtn)}
               type="submit"
