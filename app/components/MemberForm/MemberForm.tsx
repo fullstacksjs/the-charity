@@ -244,7 +244,7 @@ export const MemberForm = ({ initialMember, familyId }: Props) => {
               <Group>
                 <UndoButton
                   disabled={!isDirty && isEditableMode}
-                  handleReset={() => reset()}
+                  onClick={() => reset()}
                 />
                 <Button
                   key={2}
