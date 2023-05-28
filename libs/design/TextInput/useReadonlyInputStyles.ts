@@ -12,7 +12,6 @@ export const useReadonlyInputStyles = createStyles(theme => ({
         'cursor': 'text',
         'WebkitBoxShadow': '0 0 0px 1000px white inset !important',
         '&::placeholder': {
-          // FIXME: it should be removed when the default selectInput option is added.
           opacity: 0,
         },
       },
