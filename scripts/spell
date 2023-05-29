@@ -1,9 +1,3 @@
 #!/usr/bin/env sh
 
-git ls-files | xargs npx cspell \
-  --exclude "*.svg" \
-  --exclude "*.tsbuildinfo" \
-  --exclude "*.mp4" \
-  --exclude ".*" \
-  --no-progress "$@" \
-  lint
+git ls-files | xargs npx cspell --no-progress "$@" lint
