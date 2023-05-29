@@ -5,6 +5,7 @@ import { messages } from '@camp/messages';
 import type { AppRoute } from '@camp/router';
 import { useNavigate } from '@camp/router';
 import { createTestAttr } from '@camp/test';
+import { isNull } from '@fullstacksjs/toolbox';
 import { Button, Group, Stack, TextInput } from '@mantine/core';
 import { useForm } from 'react-hook-form';
 
@@ -36,16 +37,18 @@ export const CreateFamilyForm = ({ dismiss }: Props) => {
   const onSubmit = handleSubmit(({ name }) => {
     createDraftFamily({ variables: { name } })
       .then(({ data }) => {
-        const result = data?.family;
+        const family = data?.family;
+        if (isNull(family)) throw Error('Assert: family should not be null');
+
         showNotification({
           title: messages.families.create,
-          message: notification.success(result?.name ?? ''),
+          message: notification.success(family.name),
           type: 'success',
           ...createTestAttr(ids.notification.success),
         });
 
         dismiss();
-        navigate({ to: `/dashboard/families/${result.id}` as AppRoute });
+        navigate({ to: `/dashboard/families/${family.id}` as AppRoute });
       })
       .catch(() =>
         showNotification({

@@ -7,26 +7,24 @@ import type {
 import * as Apollo from '@apollo/client';
 import { useCallback } from 'react';
 
-import type { MapperFn, MutationFn, MutationFnOptions } from './types';
+import type {
+  MapperFn,
+  MutationFn,
+  MutationFnOptions,
+  MutationOptions,
+} from './types';
 
-type InternalMutationOption<
-  TClientMapper extends <X, Y>(v: X) => Y,
-  TVariableMapper extends <X, Y>(v: X) => Y,
+interface InternalMutationOption<
+  TClientMapper extends MapperFn,
+  TVariableMapper extends MapperFn,
   Ctx,
   Cache extends ApolloCache<any>,
-> = Apollo.MutationHookOptions<
-  TClientMapper extends (api: infer A) => any ? A : never,
-  TVariableMapper extends (c: any) => infer V ? V : never,
-  Ctx,
-  Cache
-> & {
-  mapData: (
-    d: Parameters<TClientMapper>[0] | null | undefined,
-  ) => ReturnType<TClientMapper>;
+> extends MutationOptions<TClientMapper, TVariableMapper, Ctx, Cache> {
+  mapData: (d: Parameters<TClientMapper>[0]) => ReturnType<TClientMapper>;
   mapVariables: (
-    v: Parameters<TVariableMapper>[0] | null | undefined,
-  ) => ReturnType<TVariableMapper> | undefined;
-};
+    v: Parameters<TVariableMapper>[0],
+  ) => ReturnType<TVariableMapper>;
+}
 
 export const useMutation = <
   TClientMapper extends MapperFn,

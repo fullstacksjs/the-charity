@@ -23,13 +23,13 @@ import { familyDetailIds as ids } from './FamilyDetail.ids';
 
 export const FamilyDetail = () => {
   const t = messages.familyDetail;
-  const deleteFamily = messages.families.list.delete.modal;
+  const tModal = messages.families.list.delete.modal;
   const familyId = useParams();
   const navigate = useNavigate();
   const { data, loading, error } = useFamilyQuery({
     variables: { id: familyId },
   });
-  const [DeleteFamilyMutation] = useDeleteFamilyMutation();
+  const [deleteFamily] = useDeleteFamilyMutation();
 
   const family = data?.family;
   if (loading) return <FullPageLoader />;
@@ -46,22 +46,23 @@ export const FamilyDetail = () => {
 
   const onDeleteFamily = async () => {
     try {
-      const { data: familyData } = await DeleteFamilyMutation({
+      const { data: familyData } = await deleteFamily({
         variables: { id: family.id },
       });
 
-      if (isNull(familyData)) throw new Error('data is null');
+      if (isNull(familyData)) throw Error('Assert: Family is null');
+
       showNotification({
-        title: deleteFamily.notification.title,
-        message: deleteFamily.notification.success(family.name),
+        title: tModal.notification.title,
+        message: tModal.notification.success(family.name),
         type: 'success',
       });
       navigate({ to: '/' });
     } catch (err) {
       debug.error(err);
       showNotification({
-        title: deleteFamily.notification.title,
-        message: deleteFamily.notification.failed(family.name),
+        title: tModal.notification.title,
+        message: tModal.notification.failed(family.name),
         type: 'failure',
       });
     }

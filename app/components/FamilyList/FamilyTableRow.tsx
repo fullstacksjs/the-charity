@@ -23,7 +23,7 @@ const t = messages.families.list.delete.modal;
 export const FamilyTableRow = ({ order, family }: Props) => {
   const navigate = useNavigate();
   const { id, informationStatus, name, severityStatus } = family;
-  const [DeleteFamilyMutation] = useDeleteFamilyMutation();
+  const [deleteFamily] = useDeleteFamilyMutation();
 
   const gotoDetail = () => {
     navigate({ to: `/dashboard/families/${id}` as AppRoute });
@@ -31,11 +31,9 @@ export const FamilyTableRow = ({ order, family }: Props) => {
 
   const onDeleteFamily = async () => {
     try {
-      const { data } = await DeleteFamilyMutation({
-        variables: { id },
-      });
+      const { data } = await deleteFamily({ variables: { id } });
 
-      if (isNull(data)) throw new Error('data is null');
+      if (isNull(data)) throw Error('Assert: data is null');
       showNotification({
         title: t.notification.title,
         message: t.notification.success(data.family.name),

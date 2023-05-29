@@ -61,10 +61,11 @@ export interface UpsertHouseholder {
 }
 
 const toClient = (
-  data: ApiUpsertHouseholderMutation | null | undefined,
+  data: ApiUpsertHouseholderMutation | null,
 ): UpsertHouseholder | null => {
   const householder = data?.insert_householder_one;
   if (householder == null) return null;
+
   return { householder: toHouseholder(householder) };
 };
 
@@ -112,7 +113,7 @@ const toApiVariables = (
 export function useUpsertHouseholderMutation(
   options?: MutationOptions<typeof toClient, typeof toApiVariables>,
 ) {
-  return useMutation(Document, {
+  return useMutation<typeof toClient, typeof toApiVariables>(Document, {
     ...options,
     mapData: toClient,
     mapVariables: toApiVariables,

@@ -23,16 +23,17 @@ export interface DeleteFamily {
 }
 
 const toClient = (
-  data: ApiDeleteFamilyMutationMutation | null | undefined,
-): DeleteFamily | null =>
-  data?.delete_family_by_pk == null
-    ? null
-    : {
-        family: {
-          id: data.delete_family_by_pk.id,
-          name: data.delete_family_by_pk.name,
-        },
-      };
+  data: ApiDeleteFamilyMutationMutation | null,
+): DeleteFamily | null => {
+  if (data?.delete_family_by_pk == null) return null;
+
+  return {
+    family: {
+      id: data.delete_family_by_pk.id,
+      name: data.delete_family_by_pk.name,
+    },
+  };
+};
 
 interface Variables {
   id: string;
@@ -46,8 +47,8 @@ const toApiVariables = (
 
 export const useDeleteFamilyMutation = (
   options?: MutationOptions<typeof toClient, typeof toApiVariables>,
-): any => {
-  return useMutation(Document, {
+) => {
+  return useMutation<typeof toClient, typeof toApiVariables>(Document, {
     ...options,
     mapData: toClient,
     mapVariables: toApiVariables,

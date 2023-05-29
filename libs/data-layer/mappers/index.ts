@@ -4,4 +4,5 @@ export * from './toGender';
 export * from './toHouseholder';
 export * from './toHouseholderStatus';
 export * from './toNationality';
+export * from './toProjectStatus';
 export * from './toReligion';

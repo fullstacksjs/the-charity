@@ -102,6 +102,7 @@ export const HouseholderForm = ({ initialHouseholder, familyId }: Props) => {
 
       if (!isNull(data))
         reset({ ...data.householder, dob: data.householder.dob ?? null });
+
       showNotification({
         title: t.title,
         message: t.notification.successfulUpdate(data?.householder.name ?? ''),

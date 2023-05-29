@@ -25,18 +25,18 @@ export interface CreateFamilyDto {
 }
 
 const toClient = (
-  data: ApiCreateFamilyMutation | null | undefined,
-): CreateFamilyDto | null =>
-  // @ts-ignore the api has some issues
-  data?.insert_family_one == null
-    ? null
-    : {
-        family: {
-          id: data.insert_family_one.id,
-          name: data.insert_family_one.name,
-          code: data.insert_family_one.code,
-        },
-      };
+  data: ApiCreateFamilyMutation | null,
+): CreateFamilyDto | null => {
+  if (data?.insert_family_one?.code == null) return null;
+
+  return {
+    family: {
+      id: data.insert_family_one.id,
+      name: data.insert_family_one.name,
+      code: data.insert_family_one.code,
+    },
+  };
+};
 
 interface Variables {
   name: string;
@@ -51,7 +51,7 @@ const toApiVariables = (
 export function useCreateFamilyMutation(
   options?: MutationOptions<typeof toClient, typeof toApiVariables>,
 ) {
-  return useMutation(Document, {
+  return useMutation<typeof toClient, typeof toApiVariables>(Document, {
     ...options,
     mapData: toClient,
     mapVariables: toApiVariables,
