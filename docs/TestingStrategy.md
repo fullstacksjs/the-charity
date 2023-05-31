@@ -55,14 +55,13 @@ Regression testing is performed when the previously tested software or its envir
 
 ### Static Analysis
 
-| Purpose                   | Automatically detect code defects and security vulnerabilities—coding guidelines violations. |
-| ------------------------- | -------------------------------------------------------------------------------------------- |
-| Development Phase         | Development                                                                                  |
-| Test Scope                | Code Validation                                                                              |
-| Test Environment          | • Build Verification                                                                         |
-| • Development Environment |
-| Test Data                 | Source code                                                                                  |
-| Role                      | Developer                                                                                    |
+| Purpose           | Automatically detect code defects and security vulnerabilities—coding guidelines violations. |
+| ----------------- | -------------------------------------------------------------------------------------------- |
+| Development Phase | Development                                                                                  |
+| Test Scope        | Code Validation                                                                              |
+| Test Environment  | Build, Development Environment                                                               |
+| Test Data         | Source code                                                                                  |
+| Role              | Developer                                                                                    |
 
 ### Unit Test
 

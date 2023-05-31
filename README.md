@@ -98,6 +98,10 @@ to generate the latest type from the API you need to have (a proper environment)
 npm run codegen
 ```
 
+### Verify
+
+The verify command runs all tests to make sure that your changes are working.
+
 ### Build
 
 To build the app just run:
