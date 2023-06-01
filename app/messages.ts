@@ -126,6 +126,7 @@ export const messages = {
     list: {
       title: 'لیست پروژه‌ها',
       table: {
+        description: 'خرید مک بوک و RTX برای تیم فول استکس از آقای هاشمی',
         columns: ['ردیف', 'نام'],
       },
     },

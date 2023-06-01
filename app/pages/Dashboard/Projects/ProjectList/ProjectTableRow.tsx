@@ -1,4 +1,6 @@
+import { SmallText } from '@camp/design';
 import type { ProjectKeys, ProjectListItem } from '@camp/domain';
+import { messages } from '@camp/messages';
 import { AppRoute, useNavigate } from '@camp/router';
 import { Group } from '@mantine/core';
 
@@ -13,6 +15,7 @@ interface Props {
 export const ProjectTableRow = ({ project, order }: Props) => {
   const navigate = useNavigate();
   const { id, name } = project;
+  const t = messages.projects.list.table;
 
   const gotoDetail = () => {
     navigate({ to: `/dashboard/projects/${id}` as AppRoute });
@@ -21,9 +24,10 @@ export const ProjectTableRow = ({ project, order }: Props) => {
   return (
     <tr style={{ cursor: 'pointer' }} onClick={gotoDetail}>
       <td>{order}</td>
-      <td>{name}</td>
       <td>
-        <Group position="right">
+        <Group position="apart" spacing={90}>
+          {name}
+          <SmallText>{t.description}</SmallText>
           <ProjectActionButton
             menuButtonId={ids.projectTableMenuButtonId}
             menuId={ids.projectTableMenuId}
