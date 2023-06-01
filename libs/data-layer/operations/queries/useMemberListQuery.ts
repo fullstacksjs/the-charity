@@ -10,8 +10,11 @@ import { useQuery } from '../../apiClient';
 import { toMember } from '../../mappers';
 
 const Document = gql`
-  query memberList($household_id: uuid!) {
-    member(where: { household_id: { _eq: $household_id } }) {
+  query MemberList($household_id: uuid!) {
+    member(
+      where: { household_id: { _eq: $household_id } }
+      order_by: { created_at: asc }
+    ) {
       dob
       father_name
       gender
@@ -21,6 +24,16 @@ const Document = gql`
       religion
       surname
       id
+      household {
+        id
+        code
+        created_at
+        db_code
+        name
+        severity
+        updated_at
+        status
+      }
       household_id
       father_name
       gender

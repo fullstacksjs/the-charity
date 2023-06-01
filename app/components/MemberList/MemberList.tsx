@@ -14,21 +14,16 @@ interface Props {
 const t = messages.member;
 
 export const MemberList = ({ familyId }: Props) => {
-  const [FormArray, setFormArray] = useState<number>(0);
-  const [isMemberEmpty, setIsMemberEmpty] = useState<boolean>();
+  const [newMembers, setNewMembers] = useState<{ id: number }[]>([]);
   const { data, error, loading } = useMemberListQuery({
     variables: { family_id: familyId },
   });
   const member = data?.members;
+  const isMemberEmpty = member?.length === 0 && newMembers.length === 0;
 
   const addNewMemberHandler = () => {
-    setFormArray(prev => prev + 1);
-    setIsMemberEmpty(true);
+    setNewMembers(arr => [...arr, { id: Math.random() }]);
   };
-
-  const memberForm = Array.from(Array(FormArray).keys()).map(i => (
-    <MemberForm familyId={familyId} key={i} />
-  ));
 
   if (loading) return <FullPageLoader />;
 
@@ -49,16 +44,29 @@ export const MemberList = ({ familyId }: Props) => {
         </Title>
         <CreateMemberButton onClick={addNewMemberHandler} />
       </Group>
-      {member?.length === 0 && !isMemberEmpty ? (
+      {isMemberEmpty ? (
         <Center h={400}>
           <MemberEmptyState addNewMember={addNewMemberHandler} />
         </Center>
       ) : (
         member?.map(m => (
-          <MemberForm initialMember={m} key={m.id} familyId={familyId} />
+          <MemberForm
+            initialMember={m}
+            key={m.id}
+            familyId={familyId}
+            memberId={m.id}
+          />
         ))
       )}
-      {memberForm}
+      {newMembers.map(({ id }) => (
+        <MemberForm
+          onSuccess={() => {
+            // REMOVE THAT ITEM
+          }}
+          familyId={familyId}
+          key={id}
+        />
+      ))}
     </Stack>
   );
 };

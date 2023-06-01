@@ -9,7 +9,11 @@ import { toReligion } from './toReligion';
 export const toMember = (
   member: Omit<
     ApiMember,
-    '__typename' | 'created_at' | 'family_id' | 'updated_at'
+    | '__typename'
+    | 'created_at'
+    | 'household_id'
+    | 'member_household'
+    | 'updated_at'
   >,
 ): Member => {
   const status = toMemberStatus(member.status);

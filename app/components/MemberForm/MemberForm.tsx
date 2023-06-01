@@ -1,5 +1,5 @@
 /* eslint-disable max-lines-per-function */
-import { useCreateMemberMutation } from '@camp/data-layer';
+import { useUpsertMemberMutation } from '@camp/data-layer';
 import {
   ControlledDateInput,
   ControlledSelect,
@@ -18,6 +18,7 @@ import {
 import { ArrowDownIcon, CheckIcon, EditIcon } from '@camp/icons';
 import { messages } from '@camp/messages';
 import { createTestAttr } from '@camp/test';
+import { isNull } from '@fullstacksjs/toolbox';
 import {
   ActionIcon,
   Button,
@@ -76,10 +77,17 @@ const tt = t.createForm;
 interface Props {
   initialMember?: Member;
   familyId: string;
+  memberId?: string;
+  onSuccess?: VoidFunction;
 }
 
-export const MemberForm = ({ initialMember, familyId }: Props) => {
-  const [createMemberMutation] = useCreateMemberMutation();
+export const MemberForm = ({
+  initialMember,
+  onSuccess,
+  familyId,
+  memberId,
+}: Props) => {
+  const [createMemberMutation] = useUpsertMemberMutation();
   const [opened, { toggle }] = useDisclosure(true);
   const [isEditableMode, { toggle: toggleEditableMode }] = useBoolean(
     !initialMember,
@@ -99,31 +107,33 @@ export const MemberForm = ({ initialMember, familyId }: Props) => {
     mode: 'onChange',
   });
   const [name, surname] = watch(['name', 'surname']);
+  const isNewMember = isNull(memberId);
 
-  const onSubmit = handleSubmit(FormData => {
-    createMemberMutation({
-      variables: {
-        ...FormData,
-        familyId,
-      },
-    })
-      .then(({ data }) => {
-        toggleEditableMode();
-        showNotification({
-          title: t.title,
-          message: t.notification.successful(data?.member.name ?? ''),
-          type: 'success',
-          ...createTestAttr(ids.notification.success),
-        });
-      })
-      .catch(() =>
-        showNotification({
-          title: t.title,
-          message: t.notification.failed(FormData.name),
-          type: 'failure',
-          ...createTestAttr(ids.notification.failure),
-        }),
-      );
+  const onSubmit = handleSubmit(async values => {
+    try {
+      const { data } = await createMemberMutation({
+        variables: {
+          id: memberId,
+          ...values,
+          familyId,
+        },
+      });
+      toggleEditableMode();
+      showNotification({
+        title: t.title,
+        message: t.notification.successful(data?.member.name ?? ''),
+        type: 'success',
+        ...createTestAttr(ids.notification.success),
+      });
+      onSuccess?.();
+    } catch {
+      return showNotification({
+        title: t.title,
+        message: t.notification.failed(values.name),
+        type: 'failure',
+        ...createTestAttr(ids.notification.failure),
+      });
+    }
   });
 
   return (
@@ -257,6 +267,7 @@ export const MemberForm = ({ initialMember, familyId }: Props) => {
                 >
                   {tt.submitBtn}
                 </Button>
+                {/* <Button onClick={onRemove}>{tt.submitBtn}</Button> */}
               </Group>
             )}
           </Stack>

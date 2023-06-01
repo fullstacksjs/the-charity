@@ -26,13 +26,6 @@ export type ApiCreateHouseholdMutationVariables = SchemaTypes.Exact<{
 
 export type ApiCreateHouseholdMutation = { __typename?: 'mutation_root', insert_household_one?: { __typename?: 'household', id: string, name: string, severity: SchemaTypes.HouseholdSeverityEnum, status: SchemaTypes.HouseholdStatusEnum } | null };
 
-export type ApiCreateMemberMutationVariables = SchemaTypes.Exact<{
-  input: SchemaTypes.ApiMemberInsertInput;
-}>;
-
-
-export type ApiCreateMemberMutation = { __typename?: 'mutation_root', insert_member_one?: { __typename?: 'member', id: string, gender?: SchemaTypes.GenderEnum | null, father_name?: string | null, name: string, nationality?: SchemaTypes.NationalityEnum | null, religion?: SchemaTypes.ReligionEnum | null, national_id?: string | null, surname?: string | null, dob?: string | null, status: SchemaTypes.MemberStatusEnum } | null };
-
 export type ApiCreateProjectMutationVariables = SchemaTypes.Exact<{
   input: SchemaTypes.ApiProjectInsertInput;
 }>;
@@ -54,12 +47,12 @@ export type ApiUpsertHouseholderMutationVariables = SchemaTypes.Exact<{
 
 export type ApiUpsertHouseholderMutation = { __typename?: 'mutation_root', insert_householder_one?: { __typename?: 'householder', id: string, name: string, father_name?: string | null, surname?: string | null, nationality?: SchemaTypes.NationalityEnum | null, religion?: SchemaTypes.ReligionEnum | null, city?: SchemaTypes.CityEnum | null, gender?: SchemaTypes.GenderEnum | null, status?: string | null, national_id?: string | null, dob?: string | null } | null };
 
-export type ApiMemberListQueryVariables = SchemaTypes.Exact<{
-  household_id: SchemaTypes.Scalars['uuid']['input'];
+export type ApiUpsertMemberMutationVariables = SchemaTypes.Exact<{
+  input: SchemaTypes.ApiMemberInsertInput;
 }>;
 
 
-export type ApiMemberListQuery = { __typename?: 'query_root', member: Array<{ __typename?: 'member', dob?: string | null, father_name?: string | null, gender?: SchemaTypes.GenderEnum | null, name: string, national_id?: string | null, nationality?: SchemaTypes.NationalityEnum | null, religion?: SchemaTypes.ReligionEnum | null, surname?: string | null, id: string, household_id: string, status: SchemaTypes.MemberStatusEnum }> };
+export type ApiUpsertMemberMutation = { __typename?: 'mutation_root', insert_member_one?: { __typename?: 'member', id: string, gender?: SchemaTypes.GenderEnum | null, father_name?: string | null, name: string, nationality?: SchemaTypes.NationalityEnum | null, religion?: SchemaTypes.ReligionEnum | null, national_id?: string | null, surname?: string | null, dob?: string | null, status: SchemaTypes.MemberStatusEnum } | null };
 
 export type ApiHouseholdListQueryVariables = SchemaTypes.Exact<{ [key: string]: never; }>;
 
@@ -79,6 +72,13 @@ export type ApiHouseholderQueryVariables = SchemaTypes.Exact<{
 
 
 export type ApiHouseholderQuery = { __typename?: 'query_root', householder_by_pk?: { __typename?: 'householder', id: string, name: string, father_name?: string | null, surname?: string | null, nationality?: SchemaTypes.NationalityEnum | null, religion?: SchemaTypes.ReligionEnum | null, city?: SchemaTypes.CityEnum | null, gender?: SchemaTypes.GenderEnum | null, status?: string | null, national_id?: string | null, dob?: string | null } | null };
+
+export type ApiMemberListQueryVariables = SchemaTypes.Exact<{
+  household_id: SchemaTypes.Scalars['uuid']['input'];
+}>;
+
+
+export type ApiMemberListQuery = { __typename?: 'query_root', member: Array<{ __typename?: 'member', dob?: string | null, father_name?: string | null, gender?: SchemaTypes.GenderEnum | null, name: string, national_id?: string | null, nationality?: SchemaTypes.NationalityEnum | null, religion?: SchemaTypes.ReligionEnum | null, surname?: string | null, id: string, household_id: string, status: SchemaTypes.MemberStatusEnum, household: { __typename?: 'household', id: string, code?: string | null, created_at: string, db_code: number, name: string, severity: SchemaTypes.HouseholdSeverityEnum, updated_at: string, status: SchemaTypes.HouseholdStatusEnum } }> };
 
 export type ApiProjectListQueryVariables = SchemaTypes.Exact<{
   offset?: SchemaTypes.InputMaybe<SchemaTypes.Scalars['Int']['input']>;

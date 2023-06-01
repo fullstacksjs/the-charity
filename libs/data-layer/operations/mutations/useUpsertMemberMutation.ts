@@ -1,12 +1,13 @@
-import type { MutationHookOptions } from '@apollo/client';
 import { gql } from '@apollo/client';
 import type { Gender, Member, Nationality, Religion } from '@camp/domain';
 
 import type {
-  ApiCreateMemberMutation,
-  ApiCreateMemberMutationVariables,
+  ApiMemberListQuery,
+  ApiUpsertMemberMutation,
+  ApiUpsertMemberMutationVariables,
 } from '../../api';
-import { ApiCreateMemberDocument } from '../../api';
+import { ApiMemberListDocument } from '../../api';
+import type { MutationOptions } from '../../apiClient';
 import { useMutation } from '../../apiClient';
 import {
   toApiDate,
@@ -17,7 +18,7 @@ import {
 } from '../../mappers';
 
 const Document = gql`
-  mutation CreateMember($input: member_insert_input!) {
+  mutation UpsertMember($input: member_insert_input!) {
     insert_member_one(
       object: $input
       on_conflict: {
@@ -53,7 +54,7 @@ export interface InsertMember {
 }
 
 const toClient = (
-  data: ApiCreateMemberMutation | null | undefined,
+  data: ApiUpsertMemberMutation | null | undefined,
 ): InsertMember | null => {
   const member = data?.insert_member_one;
   if (member == null) return null;
@@ -61,6 +62,7 @@ const toClient = (
 };
 
 interface Variables {
+  id?: string;
   name: string;
   familyId: string;
   surname?: string;
@@ -74,8 +76,9 @@ interface Variables {
 
 const toApiVariables = (
   variables: Variables,
-): ApiCreateMemberMutationVariables => ({
+): ApiUpsertMemberMutationVariables => ({
   input: {
+    id: variables.id,
     name: variables.name,
     surname: variables.surname,
     family_id: variables.familyId,
@@ -95,28 +98,30 @@ const toApiVariables = (
   },
 });
 
-export const useCreateMemberMutation = (
-  options?: MutationHookOptions<
-    ApiCreateMemberMutation,
-    ApiCreateMemberMutationVariables
-  >,
+export const useUpsertMemberMutation = (
+  options?: MutationOptions<typeof toClient, typeof toApiVariables>,
 ) => {
-  return useMutation(Document, {
+  return useMutation<typeof toClient, typeof toApiVariables>(Document, {
     ...options,
     mapData: toClient,
     mapVariables: toApiVariables,
     update(cache, { data: member }, { variables }) {
       const newMember = member?.insert_member_one;
-      const memberId = variables?.input.id;
 
       if (newMember) {
-        cache.writeQuery({
-          query: ApiCreateMemberDocument,
-          variables: { id: memberId },
+        const familyId = variables?.input.family_id;
+        const memberListData = cache.readQuery<ApiMemberListQuery>({
+          query: ApiMemberListDocument,
+          variables: { family_id: familyId },
+        });
+
+        const newMembers = [...(memberListData?.member ?? []), newMember];
+
+        cache.writeQuery<ApiMemberListQuery>({
+          query: ApiMemberListDocument,
+          variables: { family_id: familyId },
           data: {
-            insert_member_one: {
-              ...newMember,
-            },
+            member: newMembers,
           },
         });
       }
