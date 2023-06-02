@@ -23,7 +23,12 @@ export const DetailCard = ({ title, id, children, ...cardProps }: Props) => {
             {title}
           </Title>
           {id == null ? null : (
-            <Title order={6} color="fgSubtle" weight={500}>
+            <Title
+              order={6}
+              color="fgSubtle"
+              weight={500}
+              sx={{ fontFamily: 'IRANSans' }}
+            >
               ({id})
             </Title>
           )}
