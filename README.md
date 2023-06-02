@@ -138,10 +138,10 @@ If you want only to run a specific e2e test based on a pattern you can run the `
 npm run test:e2ep [PATTERN]
 ```
 
-if the pattern matches more than one file it will still run all of them, for example, the following command will run the `createFamily.cy.ts` and `familyList.cy.ts` test
+if the pattern matches more than one file it will still run all of them, for example, the following command will run the `createHousehold.cy.ts` and `householdList.cy.ts` test
 
 ```bash
-npm run test:e2ep family
+npm run test:e2ep household
 ```
 
 To run component tests run:

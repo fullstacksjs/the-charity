@@ -1,8 +1,8 @@
 import { messages } from '@camp/messages';
 import type { Meta, StoryObj } from '@storybook/react';
 
-import { ApiFamilyList } from '../../../.storybook/fixtures/ApiFamilyList';
-import { FamilyTableRow } from '../../../app/components/FamilyList/FamilyTableRow';
+import { ApiHouseholdList } from '../../../.storybook/fixtures/ApiHouseholdList';
+import { HouseholdTableRow } from '../../../app/components/HouseholdList/HouseholdTableRow';
 import { toInformationStatus, toSeverityStatus } from '../../data-layer';
 import { Table } from './Table';
 
@@ -16,10 +16,10 @@ export const Default: Story = {
   render: ({ ...args }) => <Table {...args} id="table" />,
   args: {
     columns: messages.families.list.table.columns as unknown as string[],
-    rows: ApiFamilyList.map((info, i) => (
-      <FamilyTableRow
+    rows: ApiHouseholdList.map((info, i) => (
+      <HouseholdTableRow
         key={Object.values(info).join('-')}
-        family={{
+        household={{
           id: info.id,
           informationStatus: toInformationStatus(info.status),
           severityStatus: toSeverityStatus(info.severity),

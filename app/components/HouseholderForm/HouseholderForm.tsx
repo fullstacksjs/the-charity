@@ -38,7 +38,7 @@ import { householderFormIds as ids } from './HouseholderForm.ids';
 
 interface Props {
   initialHouseholder?: Householder;
-  familyId: string;
+  householdId: string;
 }
 
 interface FormSchema {
@@ -74,7 +74,7 @@ const useStyles = createStyles(theme => ({
 }));
 
 // eslint-disable-next-line max-lines-per-function
-export const HouseholderForm = ({ initialHouseholder, familyId }: Props) => {
+export const HouseholderForm = ({ initialHouseholder, householdId }: Props) => {
   const t = messages.householder.form;
   const { classes } = useStyles();
 
@@ -97,7 +97,7 @@ export const HouseholderForm = ({ initialHouseholder, familyId }: Props) => {
   const onSubmit = handleSubmit(async formData => {
     try {
       const { data } = await upsertHouseholder({
-        variables: { ...formData, familyId },
+        variables: { ...formData, householdId },
       });
 
       if (!isNull(data))

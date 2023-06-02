@@ -10,10 +10,10 @@ import { toReligion } from './toReligion';
 export const toHouseholder = (
   householder: Omit<
     ApiHouseholder,
-    '__typename' | 'created_at' | 'family_id' | 'id' | 'ssn' | 'updated_at'
+    '__typename' | 'created_at' | 'household_id' | 'id' | 'ssn' | 'updated_at'
   >,
 ): Householder => {
-  const status = toHouseholderStatus(householder.status);
+  const status = toHouseholderStatus(householder.status!);
 
   if (status === 'draft')
     return {

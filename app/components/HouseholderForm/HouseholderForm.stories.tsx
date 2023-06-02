@@ -9,5 +9,5 @@ export default {
 type Story = StoryObj<typeof HouseholderForm>;
 
 export const Default: Story = {
-  args: { familyId: 'null' },
+  args: { householdId: 'null' },
 };

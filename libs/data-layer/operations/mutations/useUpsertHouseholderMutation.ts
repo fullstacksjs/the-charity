@@ -28,7 +28,7 @@ const Document = gql`
     insert_householder_one(
       object: $input
       on_conflict: {
-        constraint: householder_family_id_key
+        constraint: householder_household_id_key
         update_columns: [
           city
           gender
@@ -71,7 +71,7 @@ const toClient = (
 
 interface Variables {
   name: string;
-  familyId: string;
+  householdId: string;
   surname?: string;
   fatherName?: string;
   nationalId?: string;
@@ -88,7 +88,7 @@ const toApiVariables = (
 ): ApiUpsertHouseholderMutationVariables => ({
   input: {
     name: variables.name,
-    family_id: variables.familyId,
+    household_id: variables.householdId,
     national_id: variables.nationalId,
     father_name: variables.fatherName,
     surname: variables.surname,
@@ -119,12 +119,12 @@ export function useUpsertHouseholderMutation(
     mapVariables: toApiVariables,
     update(cache, { data: householder }, { variables }) {
       const newHouseholder = householder?.insert_householder_one;
-      const familyId = variables?.input.family_id;
+      const householdId = variables?.input.household_id;
 
       if (newHouseholder) {
         cache.writeQuery({
           query: ApiHouseholderDocument,
-          variables: { family_id: familyId },
+          variables: { household_id: householdId },
           data: {
             householder_by_pk: {
               ...newHouseholder,

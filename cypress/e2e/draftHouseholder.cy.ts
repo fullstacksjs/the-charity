@@ -2,10 +2,10 @@ import { pruneUndefinedOrEmpty } from '@fullstacksjs/toolbox';
 
 import { householderFormIds as ids } from '../../app/components/HouseholderForm/HouseholderForm.ids';
 import { messages } from '../../app/messages';
-import { familyDetailIds as tabIds } from '../../app/pages/Dashboard/Families/FamilyDetail/FamilyDetail.ids';
+import { householdDetailIds as tabIds } from '../../app/pages/Dashboard/Households/HouseholdDetail/HouseholdDetail.ids';
 import { AppRoute } from '../../libs/router/AppRoutes';
 import { admin } from '../fixtures/admin';
-import { familyFixture } from '../fixtures/family';
+import { householdFixture } from '../fixtures/household';
 import { householderFixture } from '../fixtures/householder';
 import * as api from './api';
 
@@ -59,8 +59,8 @@ describe('Householder', () => {
   beforeEach(() => {
     cy.login(admin);
     cy.visit(AppRoute.families);
-    const name = familyFixture.name();
-    cy.wrap(api.createFamily(name));
+    const name = householdFixture.name();
+    cy.wrap(api.createHousehold(name));
     cy.findByText(name).click();
     cy.findByTestId(tabIds.householderTab).click();
   });

@@ -4,17 +4,17 @@ const client = new GraphQLClient(Cypress.env('APP_API_ENDPOINT'), {
   headers: { 'x-hasura-admin-secret': Cypress.env('APP_HASURA_ADMIN_SECRET') },
 });
 
-export function createFamily(name: string) {
+export function createHousehold(name: string) {
   return client
     .request(
       gql`
-        mutation CreateFamilyTest {
-          insert_family_one(object: { name: "${name}" }) {
+        mutation CreateHouseholdTest {
+          insert_household_one(object: { name: "${name}" }) {
             id
           }
        }`,
     )
-    .then(c => c.insert_family_one);
+    .then(c => c.insert_household_one);
 }
 
 export function createProject(name: string) {
