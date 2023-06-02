@@ -5,12 +5,12 @@ import { FullPageLoader } from '@camp/design';
 import { HouseholderForm } from '../HouseholderForm';
 
 interface Props {
-  familyId: string;
+  householdId: string;
 }
 
-export const HouseholderDetail = ({ familyId }: Props) => {
+export const HouseholderDetail = ({ householdId }: Props) => {
   const { data, loading } = useHouseholderQuery({
-    variables: { family_id: familyId },
+    variables: { household_id: householdId },
   });
 
   const householder = data?.householder;
@@ -19,6 +19,9 @@ export const HouseholderDetail = ({ familyId }: Props) => {
   if (loading) return <FullPageLoader />;
 
   return (
-    <HouseholderForm familyId={familyId} initialHouseholder={householder} />
+    <HouseholderForm
+      householdId={householdId}
+      initialHouseholder={householder}
+    />
   );
 };

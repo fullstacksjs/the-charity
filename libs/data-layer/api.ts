@@ -104,7 +104,7 @@ export type ApiCityBoolExp = {
 
 /** unique or primary key constraints on table "city" */
 export enum ApiCityConstraint {
-  /** unique or primary key constraint */
+  /** unique or primary key constraint on columns "value" */
   CityPkey = 'city_pkey'
 }
 
@@ -176,10 +176,38 @@ export type ApiCitySetInput = {
   value?: InputMaybe<Scalars['String']>;
 };
 
+/** Streaming cursor of the table "city" */
+export type ApiCityStreamCursorInput = {
+  /** Stream column input with initial value */
+  initial_value: ApiCityStreamCursorValueInput;
+  /** cursor ordering */
+  ordering?: InputMaybe<ApiCursorOrdering>;
+};
+
+/** Initial value of the column from where the streaming should start */
+export type ApiCityStreamCursorValueInput = {
+  value?: InputMaybe<Scalars['String']>;
+};
+
 /** update columns of table "city" */
 export enum ApiCityUpdateColumn {
   /** column name */
   Value = 'value'
+}
+
+export type ApiCityUpdates = {
+  /** sets the columns of the filtered rows to the given values */
+  _set?: InputMaybe<ApiCitySetInput>;
+  /** filter the rows which have to be updated */
+  where: ApiCityBoolExp;
+};
+
+/** ordering argument of a cursor */
+export enum ApiCursorOrdering {
+  /** ascending ordering of the cursor */
+  Asc = 'ASC',
+  /** descending ordering of the cursor */
+  Desc = 'DESC'
 }
 
 /** Boolean expression to compare columns of type "date". All fields are combined with logical 'AND'. */
@@ -193,802 +221,6 @@ export type ApiDateComparisonExp = {
   _lte?: InputMaybe<Scalars['date']>;
   _neq?: InputMaybe<Scalars['date']>;
   _nin?: InputMaybe<Array<Scalars['date']>>;
-};
-
-/** columns and relationships of "family" */
-export type ApiFamily = {
-  __typename?: 'family';
-  /** A computed field, executes function "format_code" */
-  code?: Maybe<Scalars['String']>;
-  created_at: Scalars['timestamptz'];
-  db_code: Scalars['Int'];
-  id: Scalars['uuid'];
-  name: Scalars['String'];
-  severity: ApiFamilySeverityEnum;
-  status: ApiFamilyStatusEnum;
-  updated_at: Scalars['timestamptz'];
-};
-
-/** aggregated selection of "family" */
-export type ApiFamilyAggregate = {
-  __typename?: 'family_aggregate';
-  aggregate?: Maybe<ApiFamilyAggregateFields>;
-  nodes: Array<ApiFamily>;
-};
-
-/** aggregate fields of "family" */
-export type ApiFamilyAggregateFields = {
-  __typename?: 'family_aggregate_fields';
-  avg?: Maybe<ApiFamilyAvgFields>;
-  count: Scalars['Int'];
-  max?: Maybe<ApiFamilyMaxFields>;
-  min?: Maybe<ApiFamilyMinFields>;
-  stddev?: Maybe<ApiFamilyStddevFields>;
-  stddev_pop?: Maybe<ApiFamilyStddevPopFields>;
-  stddev_samp?: Maybe<ApiFamilyStddevSampFields>;
-  sum?: Maybe<ApiFamilySumFields>;
-  var_pop?: Maybe<ApiFamilyVarPopFields>;
-  var_samp?: Maybe<ApiFamilyVarSampFields>;
-  variance?: Maybe<ApiFamilyVarianceFields>;
-};
-
-
-/** aggregate fields of "family" */
-export type ApiFamilyAggregateFieldsApiCountArgs = {
-  columns?: InputMaybe<Array<ApiFamilySelectColumn>>;
-  distinct?: InputMaybe<Scalars['Boolean']>;
-};
-
-/** aggregate avg on columns */
-export type ApiFamilyAvgFields = {
-  __typename?: 'family_avg_fields';
-  db_code?: Maybe<Scalars['Float']>;
-};
-
-/** Boolean expression to filter rows from the table "family". All fields are combined with a logical 'AND'. */
-export type ApiFamilyBoolExp = {
-  _and?: InputMaybe<Array<ApiFamilyBoolExp>>;
-  _not?: InputMaybe<ApiFamilyBoolExp>;
-  _or?: InputMaybe<Array<ApiFamilyBoolExp>>;
-  code?: InputMaybe<ApiStringComparisonExp>;
-  created_at?: InputMaybe<ApiTimestamptzComparisonExp>;
-  db_code?: InputMaybe<ApiIntComparisonExp>;
-  id?: InputMaybe<ApiUuidComparisonExp>;
-  name?: InputMaybe<ApiStringComparisonExp>;
-  severity?: InputMaybe<ApiFamilySeverityEnumComparisonExp>;
-  status?: InputMaybe<ApiFamilyStatusEnumComparisonExp>;
-  updated_at?: InputMaybe<ApiTimestamptzComparisonExp>;
-};
-
-/** unique or primary key constraints on table "family" */
-export enum ApiFamilyConstraint {
-  /** unique or primary key constraint */
-  FamilyCodeKey = 'family_code_key',
-  /** unique or primary key constraint */
-  FamilyPkey = 'family_pkey'
-}
-
-/** input type for incrementing numeric columns in table "family" */
-export type ApiFamilyIncInput = {
-  db_code?: InputMaybe<Scalars['Int']>;
-};
-
-/** input type for inserting data into table "family" */
-export type ApiFamilyInsertInput = {
-  created_at?: InputMaybe<Scalars['timestamptz']>;
-  db_code?: InputMaybe<Scalars['Int']>;
-  id?: InputMaybe<Scalars['uuid']>;
-  name?: InputMaybe<Scalars['String']>;
-  severity?: InputMaybe<ApiFamilySeverityEnum>;
-  status?: InputMaybe<ApiFamilyStatusEnum>;
-  updated_at?: InputMaybe<Scalars['timestamptz']>;
-};
-
-/** aggregate max on columns */
-export type ApiFamilyMaxFields = {
-  __typename?: 'family_max_fields';
-  created_at?: Maybe<Scalars['timestamptz']>;
-  db_code?: Maybe<Scalars['Int']>;
-  id?: Maybe<Scalars['uuid']>;
-  name?: Maybe<Scalars['String']>;
-  updated_at?: Maybe<Scalars['timestamptz']>;
-};
-
-/** aggregate min on columns */
-export type ApiFamilyMinFields = {
-  __typename?: 'family_min_fields';
-  created_at?: Maybe<Scalars['timestamptz']>;
-  db_code?: Maybe<Scalars['Int']>;
-  id?: Maybe<Scalars['uuid']>;
-  name?: Maybe<Scalars['String']>;
-  updated_at?: Maybe<Scalars['timestamptz']>;
-};
-
-/** response of any mutation on the table "family" */
-export type ApiFamilyMutationResponse = {
-  __typename?: 'family_mutation_response';
-  /** number of rows affected by the mutation */
-  affected_rows: Scalars['Int'];
-  /** data from the rows affected by the mutation */
-  returning: Array<ApiFamily>;
-};
-
-/** input type for inserting object relation for remote table "family" */
-export type ApiFamilyObjRelInsertInput = {
-  data: ApiFamilyInsertInput;
-  /** upsert condition */
-  on_conflict?: InputMaybe<ApiFamilyOnConflict>;
-};
-
-/** on_conflict condition type for table "family" */
-export type ApiFamilyOnConflict = {
-  constraint: ApiFamilyConstraint;
-  update_columns?: Array<ApiFamilyUpdateColumn>;
-  where?: InputMaybe<ApiFamilyBoolExp>;
-};
-
-/** Ordering options when selecting data from "family". */
-export type ApiFamilyOrderBy = {
-  code?: InputMaybe<ApiOrderBy>;
-  created_at?: InputMaybe<ApiOrderBy>;
-  db_code?: InputMaybe<ApiOrderBy>;
-  id?: InputMaybe<ApiOrderBy>;
-  name?: InputMaybe<ApiOrderBy>;
-  severity?: InputMaybe<ApiOrderBy>;
-  status?: InputMaybe<ApiOrderBy>;
-  updated_at?: InputMaybe<ApiOrderBy>;
-};
-
-/** primary key columns input for table: family */
-export type ApiFamilyPkColumnsInput = {
-  id: Scalars['uuid'];
-};
-
-/**
- * Relation between projects and families
- *
- *
- * columns and relationships of "family_project"
- *
- */
-export type ApiFamilyProject = {
-  __typename?: 'family_project';
-  count: Scalars['Int'];
-  created_at: Scalars['timestamptz'];
-  /** An object relationship */
-  family: ApiFamily;
-  family_id: Scalars['uuid'];
-  /** An object relationship */
-  project: ApiProject;
-  project_id: Scalars['uuid'];
-  updated_at: Scalars['timestamptz'];
-};
-
-/** aggregated selection of "family_project" */
-export type ApiFamilyProjectAggregate = {
-  __typename?: 'family_project_aggregate';
-  aggregate?: Maybe<ApiFamilyProjectAggregateFields>;
-  nodes: Array<ApiFamilyProject>;
-};
-
-/** aggregate fields of "family_project" */
-export type ApiFamilyProjectAggregateFields = {
-  __typename?: 'family_project_aggregate_fields';
-  avg?: Maybe<ApiFamilyProjectAvgFields>;
-  count: Scalars['Int'];
-  max?: Maybe<ApiFamilyProjectMaxFields>;
-  min?: Maybe<ApiFamilyProjectMinFields>;
-  stddev?: Maybe<ApiFamilyProjectStddevFields>;
-  stddev_pop?: Maybe<ApiFamilyProjectStddevPopFields>;
-  stddev_samp?: Maybe<ApiFamilyProjectStddevSampFields>;
-  sum?: Maybe<ApiFamilyProjectSumFields>;
-  var_pop?: Maybe<ApiFamilyProjectVarPopFields>;
-  var_samp?: Maybe<ApiFamilyProjectVarSampFields>;
-  variance?: Maybe<ApiFamilyProjectVarianceFields>;
-};
-
-
-/** aggregate fields of "family_project" */
-export type ApiFamilyProjectAggregateFieldsApiCountArgs = {
-  columns?: InputMaybe<Array<ApiFamilyProjectSelectColumn>>;
-  distinct?: InputMaybe<Scalars['Boolean']>;
-};
-
-/** order by aggregate values of table "family_project" */
-export type ApiFamilyProjectAggregateOrderBy = {
-  avg?: InputMaybe<ApiFamilyProjectAvgOrderBy>;
-  count?: InputMaybe<ApiOrderBy>;
-  max?: InputMaybe<ApiFamilyProjectMaxOrderBy>;
-  min?: InputMaybe<ApiFamilyProjectMinOrderBy>;
-  stddev?: InputMaybe<ApiFamilyProjectStddevOrderBy>;
-  stddev_pop?: InputMaybe<ApiFamilyProjectStddevPopOrderBy>;
-  stddev_samp?: InputMaybe<ApiFamilyProjectStddevSampOrderBy>;
-  sum?: InputMaybe<ApiFamilyProjectSumOrderBy>;
-  var_pop?: InputMaybe<ApiFamilyProjectVarPopOrderBy>;
-  var_samp?: InputMaybe<ApiFamilyProjectVarSampOrderBy>;
-  variance?: InputMaybe<ApiFamilyProjectVarianceOrderBy>;
-};
-
-/** input type for inserting array relation for remote table "family_project" */
-export type ApiFamilyProjectArrRelInsertInput = {
-  data: Array<ApiFamilyProjectInsertInput>;
-  /** upsert condition */
-  on_conflict?: InputMaybe<ApiFamilyProjectOnConflict>;
-};
-
-/** aggregate avg on columns */
-export type ApiFamilyProjectAvgFields = {
-  __typename?: 'family_project_avg_fields';
-  count?: Maybe<Scalars['Float']>;
-};
-
-/** order by avg() on columns of table "family_project" */
-export type ApiFamilyProjectAvgOrderBy = {
-  count?: InputMaybe<ApiOrderBy>;
-};
-
-/** Boolean expression to filter rows from the table "family_project". All fields are combined with a logical 'AND'. */
-export type ApiFamilyProjectBoolExp = {
-  _and?: InputMaybe<Array<ApiFamilyProjectBoolExp>>;
-  _not?: InputMaybe<ApiFamilyProjectBoolExp>;
-  _or?: InputMaybe<Array<ApiFamilyProjectBoolExp>>;
-  count?: InputMaybe<ApiIntComparisonExp>;
-  created_at?: InputMaybe<ApiTimestamptzComparisonExp>;
-  family?: InputMaybe<ApiFamilyBoolExp>;
-  family_id?: InputMaybe<ApiUuidComparisonExp>;
-  project?: InputMaybe<ApiProjectBoolExp>;
-  project_id?: InputMaybe<ApiUuidComparisonExp>;
-  updated_at?: InputMaybe<ApiTimestamptzComparisonExp>;
-};
-
-/** unique or primary key constraints on table "family_project" */
-export enum ApiFamilyProjectConstraint {
-  /** unique or primary key constraint */
-  FamilyProjectPkey = 'family_project_pkey'
-}
-
-/** input type for incrementing numeric columns in table "family_project" */
-export type ApiFamilyProjectIncInput = {
-  count?: InputMaybe<Scalars['Int']>;
-};
-
-/** input type for inserting data into table "family_project" */
-export type ApiFamilyProjectInsertInput = {
-  count?: InputMaybe<Scalars['Int']>;
-  created_at?: InputMaybe<Scalars['timestamptz']>;
-  family?: InputMaybe<ApiFamilyObjRelInsertInput>;
-  family_id?: InputMaybe<Scalars['uuid']>;
-  project?: InputMaybe<ApiProjectObjRelInsertInput>;
-  project_id?: InputMaybe<Scalars['uuid']>;
-  updated_at?: InputMaybe<Scalars['timestamptz']>;
-};
-
-/** aggregate max on columns */
-export type ApiFamilyProjectMaxFields = {
-  __typename?: 'family_project_max_fields';
-  count?: Maybe<Scalars['Int']>;
-  created_at?: Maybe<Scalars['timestamptz']>;
-  family_id?: Maybe<Scalars['uuid']>;
-  project_id?: Maybe<Scalars['uuid']>;
-  updated_at?: Maybe<Scalars['timestamptz']>;
-};
-
-/** order by max() on columns of table "family_project" */
-export type ApiFamilyProjectMaxOrderBy = {
-  count?: InputMaybe<ApiOrderBy>;
-  created_at?: InputMaybe<ApiOrderBy>;
-  family_id?: InputMaybe<ApiOrderBy>;
-  project_id?: InputMaybe<ApiOrderBy>;
-  updated_at?: InputMaybe<ApiOrderBy>;
-};
-
-/** aggregate min on columns */
-export type ApiFamilyProjectMinFields = {
-  __typename?: 'family_project_min_fields';
-  count?: Maybe<Scalars['Int']>;
-  created_at?: Maybe<Scalars['timestamptz']>;
-  family_id?: Maybe<Scalars['uuid']>;
-  project_id?: Maybe<Scalars['uuid']>;
-  updated_at?: Maybe<Scalars['timestamptz']>;
-};
-
-/** order by min() on columns of table "family_project" */
-export type ApiFamilyProjectMinOrderBy = {
-  count?: InputMaybe<ApiOrderBy>;
-  created_at?: InputMaybe<ApiOrderBy>;
-  family_id?: InputMaybe<ApiOrderBy>;
-  project_id?: InputMaybe<ApiOrderBy>;
-  updated_at?: InputMaybe<ApiOrderBy>;
-};
-
-/** response of any mutation on the table "family_project" */
-export type ApiFamilyProjectMutationResponse = {
-  __typename?: 'family_project_mutation_response';
-  /** number of rows affected by the mutation */
-  affected_rows: Scalars['Int'];
-  /** data from the rows affected by the mutation */
-  returning: Array<ApiFamilyProject>;
-};
-
-/** on_conflict condition type for table "family_project" */
-export type ApiFamilyProjectOnConflict = {
-  constraint: ApiFamilyProjectConstraint;
-  update_columns?: Array<ApiFamilyProjectUpdateColumn>;
-  where?: InputMaybe<ApiFamilyProjectBoolExp>;
-};
-
-/** Ordering options when selecting data from "family_project". */
-export type ApiFamilyProjectOrderBy = {
-  count?: InputMaybe<ApiOrderBy>;
-  created_at?: InputMaybe<ApiOrderBy>;
-  family?: InputMaybe<ApiFamilyOrderBy>;
-  family_id?: InputMaybe<ApiOrderBy>;
-  project?: InputMaybe<ApiProjectOrderBy>;
-  project_id?: InputMaybe<ApiOrderBy>;
-  updated_at?: InputMaybe<ApiOrderBy>;
-};
-
-/** primary key columns input for table: family_project */
-export type ApiFamilyProjectPkColumnsInput = {
-  family_id: Scalars['uuid'];
-  project_id: Scalars['uuid'];
-};
-
-/** select columns of table "family_project" */
-export enum ApiFamilyProjectSelectColumn {
-  /** column name */
-  Count = 'count',
-  /** column name */
-  CreatedAt = 'created_at',
-  /** column name */
-  FamilyId = 'family_id',
-  /** column name */
-  ProjectId = 'project_id',
-  /** column name */
-  UpdatedAt = 'updated_at'
-}
-
-/** input type for updating data in table "family_project" */
-export type ApiFamilyProjectSetInput = {
-  count?: InputMaybe<Scalars['Int']>;
-  created_at?: InputMaybe<Scalars['timestamptz']>;
-  family_id?: InputMaybe<Scalars['uuid']>;
-  project_id?: InputMaybe<Scalars['uuid']>;
-  updated_at?: InputMaybe<Scalars['timestamptz']>;
-};
-
-/** aggregate stddev on columns */
-export type ApiFamilyProjectStddevFields = {
-  __typename?: 'family_project_stddev_fields';
-  count?: Maybe<Scalars['Float']>;
-};
-
-/** order by stddev() on columns of table "family_project" */
-export type ApiFamilyProjectStddevOrderBy = {
-  count?: InputMaybe<ApiOrderBy>;
-};
-
-/** aggregate stddev_pop on columns */
-export type ApiFamilyProjectStddevPopFields = {
-  __typename?: 'family_project_stddev_pop_fields';
-  count?: Maybe<Scalars['Float']>;
-};
-
-/** order by stddev_pop() on columns of table "family_project" */
-export type ApiFamilyProjectStddevPopOrderBy = {
-  count?: InputMaybe<ApiOrderBy>;
-};
-
-/** aggregate stddev_samp on columns */
-export type ApiFamilyProjectStddevSampFields = {
-  __typename?: 'family_project_stddev_samp_fields';
-  count?: Maybe<Scalars['Float']>;
-};
-
-/** order by stddev_samp() on columns of table "family_project" */
-export type ApiFamilyProjectStddevSampOrderBy = {
-  count?: InputMaybe<ApiOrderBy>;
-};
-
-/** aggregate sum on columns */
-export type ApiFamilyProjectSumFields = {
-  __typename?: 'family_project_sum_fields';
-  count?: Maybe<Scalars['Int']>;
-};
-
-/** order by sum() on columns of table "family_project" */
-export type ApiFamilyProjectSumOrderBy = {
-  count?: InputMaybe<ApiOrderBy>;
-};
-
-/** update columns of table "family_project" */
-export enum ApiFamilyProjectUpdateColumn {
-  /** column name */
-  Count = 'count',
-  /** column name */
-  CreatedAt = 'created_at',
-  /** column name */
-  FamilyId = 'family_id',
-  /** column name */
-  ProjectId = 'project_id',
-  /** column name */
-  UpdatedAt = 'updated_at'
-}
-
-/** aggregate var_pop on columns */
-export type ApiFamilyProjectVarPopFields = {
-  __typename?: 'family_project_var_pop_fields';
-  count?: Maybe<Scalars['Float']>;
-};
-
-/** order by var_pop() on columns of table "family_project" */
-export type ApiFamilyProjectVarPopOrderBy = {
-  count?: InputMaybe<ApiOrderBy>;
-};
-
-/** aggregate var_samp on columns */
-export type ApiFamilyProjectVarSampFields = {
-  __typename?: 'family_project_var_samp_fields';
-  count?: Maybe<Scalars['Float']>;
-};
-
-/** order by var_samp() on columns of table "family_project" */
-export type ApiFamilyProjectVarSampOrderBy = {
-  count?: InputMaybe<ApiOrderBy>;
-};
-
-/** aggregate variance on columns */
-export type ApiFamilyProjectVarianceFields = {
-  __typename?: 'family_project_variance_fields';
-  count?: Maybe<Scalars['Float']>;
-};
-
-/** order by variance() on columns of table "family_project" */
-export type ApiFamilyProjectVarianceOrderBy = {
-  count?: InputMaybe<ApiOrderBy>;
-};
-
-/** select columns of table "family" */
-export enum ApiFamilySelectColumn {
-  /** column name */
-  CreatedAt = 'created_at',
-  /** column name */
-  DbCode = 'db_code',
-  /** column name */
-  Id = 'id',
-  /** column name */
-  Name = 'name',
-  /** column name */
-  Severity = 'severity',
-  /** column name */
-  Status = 'status',
-  /** column name */
-  UpdatedAt = 'updated_at'
-}
-
-/** input type for updating data in table "family" */
-export type ApiFamilySetInput = {
-  created_at?: InputMaybe<Scalars['timestamptz']>;
-  db_code?: InputMaybe<Scalars['Int']>;
-  id?: InputMaybe<Scalars['uuid']>;
-  name?: InputMaybe<Scalars['String']>;
-  severity?: InputMaybe<ApiFamilySeverityEnum>;
-  status?: InputMaybe<ApiFamilyStatusEnum>;
-  updated_at?: InputMaybe<Scalars['timestamptz']>;
-};
-
-/** columns and relationships of "family_severity" */
-export type ApiFamilySeverity = {
-  __typename?: 'family_severity';
-  description?: Maybe<Scalars['String']>;
-  value: Scalars['String'];
-};
-
-/** aggregated selection of "family_severity" */
-export type ApiFamilySeverityAggregate = {
-  __typename?: 'family_severity_aggregate';
-  aggregate?: Maybe<ApiFamilySeverityAggregateFields>;
-  nodes: Array<ApiFamilySeverity>;
-};
-
-/** aggregate fields of "family_severity" */
-export type ApiFamilySeverityAggregateFields = {
-  __typename?: 'family_severity_aggregate_fields';
-  count: Scalars['Int'];
-  max?: Maybe<ApiFamilySeverityMaxFields>;
-  min?: Maybe<ApiFamilySeverityMinFields>;
-};
-
-
-/** aggregate fields of "family_severity" */
-export type ApiFamilySeverityAggregateFieldsApiCountArgs = {
-  columns?: InputMaybe<Array<ApiFamilySeveritySelectColumn>>;
-  distinct?: InputMaybe<Scalars['Boolean']>;
-};
-
-/** Boolean expression to filter rows from the table "family_severity". All fields are combined with a logical 'AND'. */
-export type ApiFamilySeverityBoolExp = {
-  _and?: InputMaybe<Array<ApiFamilySeverityBoolExp>>;
-  _not?: InputMaybe<ApiFamilySeverityBoolExp>;
-  _or?: InputMaybe<Array<ApiFamilySeverityBoolExp>>;
-  description?: InputMaybe<ApiStringComparisonExp>;
-  value?: InputMaybe<ApiStringComparisonExp>;
-};
-
-/** unique or primary key constraints on table "family_severity" */
-export enum ApiFamilySeverityConstraint {
-  /** unique or primary key constraint */
-  FamilySeverityPkey = 'family_severity_pkey'
-}
-
-export enum ApiFamilySeverityEnum {
-  Critical = 'Critical',
-  Normal = 'Normal'
-}
-
-/** Boolean expression to compare columns of type "family_severity_enum". All fields are combined with logical 'AND'. */
-export type ApiFamilySeverityEnumComparisonExp = {
-  _eq?: InputMaybe<ApiFamilySeverityEnum>;
-  _in?: InputMaybe<Array<ApiFamilySeverityEnum>>;
-  _is_null?: InputMaybe<Scalars['Boolean']>;
-  _neq?: InputMaybe<ApiFamilySeverityEnum>;
-  _nin?: InputMaybe<Array<ApiFamilySeverityEnum>>;
-};
-
-/** input type for inserting data into table "family_severity" */
-export type ApiFamilySeverityInsertInput = {
-  description?: InputMaybe<Scalars['String']>;
-  value?: InputMaybe<Scalars['String']>;
-};
-
-/** aggregate max on columns */
-export type ApiFamilySeverityMaxFields = {
-  __typename?: 'family_severity_max_fields';
-  description?: Maybe<Scalars['String']>;
-  value?: Maybe<Scalars['String']>;
-};
-
-/** aggregate min on columns */
-export type ApiFamilySeverityMinFields = {
-  __typename?: 'family_severity_min_fields';
-  description?: Maybe<Scalars['String']>;
-  value?: Maybe<Scalars['String']>;
-};
-
-/** response of any mutation on the table "family_severity" */
-export type ApiFamilySeverityMutationResponse = {
-  __typename?: 'family_severity_mutation_response';
-  /** number of rows affected by the mutation */
-  affected_rows: Scalars['Int'];
-  /** data from the rows affected by the mutation */
-  returning: Array<ApiFamilySeverity>;
-};
-
-/** on_conflict condition type for table "family_severity" */
-export type ApiFamilySeverityOnConflict = {
-  constraint: ApiFamilySeverityConstraint;
-  update_columns?: Array<ApiFamilySeverityUpdateColumn>;
-  where?: InputMaybe<ApiFamilySeverityBoolExp>;
-};
-
-/** Ordering options when selecting data from "family_severity". */
-export type ApiFamilySeverityOrderBy = {
-  description?: InputMaybe<ApiOrderBy>;
-  value?: InputMaybe<ApiOrderBy>;
-};
-
-/** primary key columns input for table: family_severity */
-export type ApiFamilySeverityPkColumnsInput = {
-  value: Scalars['String'];
-};
-
-/** select columns of table "family_severity" */
-export enum ApiFamilySeveritySelectColumn {
-  /** column name */
-  Description = 'description',
-  /** column name */
-  Value = 'value'
-}
-
-/** input type for updating data in table "family_severity" */
-export type ApiFamilySeveritySetInput = {
-  description?: InputMaybe<Scalars['String']>;
-  value?: InputMaybe<Scalars['String']>;
-};
-
-/** update columns of table "family_severity" */
-export enum ApiFamilySeverityUpdateColumn {
-  /** column name */
-  Description = 'description',
-  /** column name */
-  Value = 'value'
-}
-
-/** columns and relationships of "family_status" */
-export type ApiFamilyStatus = {
-  __typename?: 'family_status';
-  description?: Maybe<Scalars['String']>;
-  value: Scalars['String'];
-};
-
-/** aggregated selection of "family_status" */
-export type ApiFamilyStatusAggregate = {
-  __typename?: 'family_status_aggregate';
-  aggregate?: Maybe<ApiFamilyStatusAggregateFields>;
-  nodes: Array<ApiFamilyStatus>;
-};
-
-/** aggregate fields of "family_status" */
-export type ApiFamilyStatusAggregateFields = {
-  __typename?: 'family_status_aggregate_fields';
-  count: Scalars['Int'];
-  max?: Maybe<ApiFamilyStatusMaxFields>;
-  min?: Maybe<ApiFamilyStatusMinFields>;
-};
-
-
-/** aggregate fields of "family_status" */
-export type ApiFamilyStatusAggregateFieldsApiCountArgs = {
-  columns?: InputMaybe<Array<ApiFamilyStatusSelectColumn>>;
-  distinct?: InputMaybe<Scalars['Boolean']>;
-};
-
-/** Boolean expression to filter rows from the table "family_status". All fields are combined with a logical 'AND'. */
-export type ApiFamilyStatusBoolExp = {
-  _and?: InputMaybe<Array<ApiFamilyStatusBoolExp>>;
-  _not?: InputMaybe<ApiFamilyStatusBoolExp>;
-  _or?: InputMaybe<Array<ApiFamilyStatusBoolExp>>;
-  description?: InputMaybe<ApiStringComparisonExp>;
-  value?: InputMaybe<ApiStringComparisonExp>;
-};
-
-/** unique or primary key constraints on table "family_status" */
-export enum ApiFamilyStatusConstraint {
-  /** unique or primary key constraint */
-  FamilyStatusPkey = 'family_status_pkey'
-}
-
-export enum ApiFamilyStatusEnum {
-  Completed = 'Completed',
-  Draft = 'Draft'
-}
-
-/** Boolean expression to compare columns of type "family_status_enum". All fields are combined with logical 'AND'. */
-export type ApiFamilyStatusEnumComparisonExp = {
-  _eq?: InputMaybe<ApiFamilyStatusEnum>;
-  _in?: InputMaybe<Array<ApiFamilyStatusEnum>>;
-  _is_null?: InputMaybe<Scalars['Boolean']>;
-  _neq?: InputMaybe<ApiFamilyStatusEnum>;
-  _nin?: InputMaybe<Array<ApiFamilyStatusEnum>>;
-};
-
-/** input type for inserting data into table "family_status" */
-export type ApiFamilyStatusInsertInput = {
-  description?: InputMaybe<Scalars['String']>;
-  value?: InputMaybe<Scalars['String']>;
-};
-
-/** aggregate max on columns */
-export type ApiFamilyStatusMaxFields = {
-  __typename?: 'family_status_max_fields';
-  description?: Maybe<Scalars['String']>;
-  value?: Maybe<Scalars['String']>;
-};
-
-/** aggregate min on columns */
-export type ApiFamilyStatusMinFields = {
-  __typename?: 'family_status_min_fields';
-  description?: Maybe<Scalars['String']>;
-  value?: Maybe<Scalars['String']>;
-};
-
-/** response of any mutation on the table "family_status" */
-export type ApiFamilyStatusMutationResponse = {
-  __typename?: 'family_status_mutation_response';
-  /** number of rows affected by the mutation */
-  affected_rows: Scalars['Int'];
-  /** data from the rows affected by the mutation */
-  returning: Array<ApiFamilyStatus>;
-};
-
-/** on_conflict condition type for table "family_status" */
-export type ApiFamilyStatusOnConflict = {
-  constraint: ApiFamilyStatusConstraint;
-  update_columns?: Array<ApiFamilyStatusUpdateColumn>;
-  where?: InputMaybe<ApiFamilyStatusBoolExp>;
-};
-
-/** Ordering options when selecting data from "family_status". */
-export type ApiFamilyStatusOrderBy = {
-  description?: InputMaybe<ApiOrderBy>;
-  value?: InputMaybe<ApiOrderBy>;
-};
-
-/** primary key columns input for table: family_status */
-export type ApiFamilyStatusPkColumnsInput = {
-  value: Scalars['String'];
-};
-
-/** select columns of table "family_status" */
-export enum ApiFamilyStatusSelectColumn {
-  /** column name */
-  Description = 'description',
-  /** column name */
-  Value = 'value'
-}
-
-/** input type for updating data in table "family_status" */
-export type ApiFamilyStatusSetInput = {
-  description?: InputMaybe<Scalars['String']>;
-  value?: InputMaybe<Scalars['String']>;
-};
-
-/** update columns of table "family_status" */
-export enum ApiFamilyStatusUpdateColumn {
-  /** column name */
-  Description = 'description',
-  /** column name */
-  Value = 'value'
-}
-
-/** aggregate stddev on columns */
-export type ApiFamilyStddevFields = {
-  __typename?: 'family_stddev_fields';
-  db_code?: Maybe<Scalars['Float']>;
-};
-
-/** aggregate stddev_pop on columns */
-export type ApiFamilyStddevPopFields = {
-  __typename?: 'family_stddev_pop_fields';
-  db_code?: Maybe<Scalars['Float']>;
-};
-
-/** aggregate stddev_samp on columns */
-export type ApiFamilyStddevSampFields = {
-  __typename?: 'family_stddev_samp_fields';
-  db_code?: Maybe<Scalars['Float']>;
-};
-
-/** aggregate sum on columns */
-export type ApiFamilySumFields = {
-  __typename?: 'family_sum_fields';
-  db_code?: Maybe<Scalars['Int']>;
-};
-
-/** update columns of table "family" */
-export enum ApiFamilyUpdateColumn {
-  /** column name */
-  CreatedAt = 'created_at',
-  /** column name */
-  DbCode = 'db_code',
-  /** column name */
-  Id = 'id',
-  /** column name */
-  Name = 'name',
-  /** column name */
-  Severity = 'severity',
-  /** column name */
-  Status = 'status',
-  /** column name */
-  UpdatedAt = 'updated_at'
-}
-
-/** aggregate var_pop on columns */
-export type ApiFamilyVarPopFields = {
-  __typename?: 'family_var_pop_fields';
-  db_code?: Maybe<Scalars['Float']>;
-};
-
-/** aggregate var_samp on columns */
-export type ApiFamilyVarSampFields = {
-  __typename?: 'family_var_samp_fields';
-  db_code?: Maybe<Scalars['Float']>;
-};
-
-/** aggregate variance on columns */
-export type ApiFamilyVarianceFields = {
-  __typename?: 'family_variance_fields';
-  db_code?: Maybe<Scalars['Float']>;
 };
 
 /** columns and relationships of "gender" */
@@ -1029,7 +261,7 @@ export type ApiGenderBoolExp = {
 
 /** unique or primary key constraints on table "gender" */
 export enum ApiGenderConstraint {
-  /** unique or primary key constraint */
+  /** unique or primary key constraint on columns "value" */
   GenderPkey = 'gender_pkey'
 }
 
@@ -1102,11 +334,928 @@ export type ApiGenderSetInput = {
   value?: InputMaybe<Scalars['String']>;
 };
 
+/** Streaming cursor of the table "gender" */
+export type ApiGenderStreamCursorInput = {
+  /** Stream column input with initial value */
+  initial_value: ApiGenderStreamCursorValueInput;
+  /** cursor ordering */
+  ordering?: InputMaybe<ApiCursorOrdering>;
+};
+
+/** Initial value of the column from where the streaming should start */
+export type ApiGenderStreamCursorValueInput = {
+  value?: InputMaybe<Scalars['String']>;
+};
+
 /** update columns of table "gender" */
 export enum ApiGenderUpdateColumn {
   /** column name */
   Value = 'value'
 }
+
+export type ApiGenderUpdates = {
+  /** sets the columns of the filtered rows to the given values */
+  _set?: InputMaybe<ApiGenderSetInput>;
+  /** filter the rows which have to be updated */
+  where: ApiGenderBoolExp;
+};
+
+/** columns and relationships of "household" */
+export type ApiHousehold = {
+  __typename?: 'household';
+  /** A computed field, executes function "format_code" */
+  code?: Maybe<Scalars['String']>;
+  created_at: Scalars['timestamptz'];
+  db_code: Scalars['Int'];
+  id: Scalars['uuid'];
+  name: Scalars['String'];
+  severity: ApiHouseholdSeverityEnum;
+  status: ApiHouseholdStatusEnum;
+  updated_at: Scalars['timestamptz'];
+};
+
+/** aggregated selection of "household" */
+export type ApiHouseholdAggregate = {
+  __typename?: 'household_aggregate';
+  aggregate?: Maybe<ApiHouseholdAggregateFields>;
+  nodes: Array<ApiHousehold>;
+};
+
+/** aggregate fields of "household" */
+export type ApiHouseholdAggregateFields = {
+  __typename?: 'household_aggregate_fields';
+  avg?: Maybe<ApiHouseholdAvgFields>;
+  count: Scalars['Int'];
+  max?: Maybe<ApiHouseholdMaxFields>;
+  min?: Maybe<ApiHouseholdMinFields>;
+  stddev?: Maybe<ApiHouseholdStddevFields>;
+  stddev_pop?: Maybe<ApiHouseholdStddevPopFields>;
+  stddev_samp?: Maybe<ApiHouseholdStddevSampFields>;
+  sum?: Maybe<ApiHouseholdSumFields>;
+  var_pop?: Maybe<ApiHouseholdVarPopFields>;
+  var_samp?: Maybe<ApiHouseholdVarSampFields>;
+  variance?: Maybe<ApiHouseholdVarianceFields>;
+};
+
+
+/** aggregate fields of "household" */
+export type ApiHouseholdAggregateFieldsApiCountArgs = {
+  columns?: InputMaybe<Array<ApiHouseholdSelectColumn>>;
+  distinct?: InputMaybe<Scalars['Boolean']>;
+};
+
+/** aggregate avg on columns */
+export type ApiHouseholdAvgFields = {
+  __typename?: 'household_avg_fields';
+  db_code?: Maybe<Scalars['Float']>;
+};
+
+/** Boolean expression to filter rows from the table "household". All fields are combined with a logical 'AND'. */
+export type ApiHouseholdBoolExp = {
+  _and?: InputMaybe<Array<ApiHouseholdBoolExp>>;
+  _not?: InputMaybe<ApiHouseholdBoolExp>;
+  _or?: InputMaybe<Array<ApiHouseholdBoolExp>>;
+  code?: InputMaybe<ApiStringComparisonExp>;
+  created_at?: InputMaybe<ApiTimestamptzComparisonExp>;
+  db_code?: InputMaybe<ApiIntComparisonExp>;
+  id?: InputMaybe<ApiUuidComparisonExp>;
+  name?: InputMaybe<ApiStringComparisonExp>;
+  severity?: InputMaybe<ApiHouseholdSeverityEnumComparisonExp>;
+  status?: InputMaybe<ApiHouseholdStatusEnumComparisonExp>;
+  updated_at?: InputMaybe<ApiTimestamptzComparisonExp>;
+};
+
+/** unique or primary key constraints on table "household" */
+export enum ApiHouseholdConstraint {
+  /** unique or primary key constraint on columns "db_code" */
+  HouseholdCodeKey = 'household_code_key',
+  /** unique or primary key constraint on columns "id" */
+  HouseholdPkey = 'household_pkey'
+}
+
+/** input type for incrementing numeric columns in table "household" */
+export type ApiHouseholdIncInput = {
+  db_code?: InputMaybe<Scalars['Int']>;
+};
+
+/** input type for inserting data into table "household" */
+export type ApiHouseholdInsertInput = {
+  created_at?: InputMaybe<Scalars['timestamptz']>;
+  db_code?: InputMaybe<Scalars['Int']>;
+  id?: InputMaybe<Scalars['uuid']>;
+  name?: InputMaybe<Scalars['String']>;
+  severity?: InputMaybe<ApiHouseholdSeverityEnum>;
+  status?: InputMaybe<ApiHouseholdStatusEnum>;
+  updated_at?: InputMaybe<Scalars['timestamptz']>;
+};
+
+/** aggregate max on columns */
+export type ApiHouseholdMaxFields = {
+  __typename?: 'household_max_fields';
+  created_at?: Maybe<Scalars['timestamptz']>;
+  db_code?: Maybe<Scalars['Int']>;
+  id?: Maybe<Scalars['uuid']>;
+  name?: Maybe<Scalars['String']>;
+  updated_at?: Maybe<Scalars['timestamptz']>;
+};
+
+/** aggregate min on columns */
+export type ApiHouseholdMinFields = {
+  __typename?: 'household_min_fields';
+  created_at?: Maybe<Scalars['timestamptz']>;
+  db_code?: Maybe<Scalars['Int']>;
+  id?: Maybe<Scalars['uuid']>;
+  name?: Maybe<Scalars['String']>;
+  updated_at?: Maybe<Scalars['timestamptz']>;
+};
+
+/** response of any mutation on the table "household" */
+export type ApiHouseholdMutationResponse = {
+  __typename?: 'household_mutation_response';
+  /** number of rows affected by the mutation */
+  affected_rows: Scalars['Int'];
+  /** data from the rows affected by the mutation */
+  returning: Array<ApiHousehold>;
+};
+
+/** input type for inserting object relation for remote table "household" */
+export type ApiHouseholdObjRelInsertInput = {
+  data: ApiHouseholdInsertInput;
+  /** upsert condition */
+  on_conflict?: InputMaybe<ApiHouseholdOnConflict>;
+};
+
+/** on_conflict condition type for table "household" */
+export type ApiHouseholdOnConflict = {
+  constraint: ApiHouseholdConstraint;
+  update_columns?: Array<ApiHouseholdUpdateColumn>;
+  where?: InputMaybe<ApiHouseholdBoolExp>;
+};
+
+/** Ordering options when selecting data from "household". */
+export type ApiHouseholdOrderBy = {
+  code?: InputMaybe<ApiOrderBy>;
+  created_at?: InputMaybe<ApiOrderBy>;
+  db_code?: InputMaybe<ApiOrderBy>;
+  id?: InputMaybe<ApiOrderBy>;
+  name?: InputMaybe<ApiOrderBy>;
+  severity?: InputMaybe<ApiOrderBy>;
+  status?: InputMaybe<ApiOrderBy>;
+  updated_at?: InputMaybe<ApiOrderBy>;
+};
+
+/** primary key columns input for table: household */
+export type ApiHouseholdPkColumnsInput = {
+  id: Scalars['uuid'];
+};
+
+/** Relation between projects and households */
+export type ApiHouseholdProject = {
+  __typename?: 'household_project';
+  count: Scalars['Int'];
+  created_at: Scalars['timestamptz'];
+  /** An object relationship */
+  household: ApiHousehold;
+  household_id: Scalars['uuid'];
+  /** An object relationship */
+  project: ApiProject;
+  project_id: Scalars['uuid'];
+  updated_at: Scalars['timestamptz'];
+};
+
+/** aggregated selection of "household_project" */
+export type ApiHouseholdProjectAggregate = {
+  __typename?: 'household_project_aggregate';
+  aggregate?: Maybe<ApiHouseholdProjectAggregateFields>;
+  nodes: Array<ApiHouseholdProject>;
+};
+
+export type ApiHouseholdProjectAggregateBoolExp = {
+  count?: InputMaybe<ApiHouseholdProjectAggregateBoolExpCount>;
+};
+
+export type ApiHouseholdProjectAggregateBoolExpCount = {
+  arguments?: InputMaybe<Array<ApiHouseholdProjectSelectColumn>>;
+  distinct?: InputMaybe<Scalars['Boolean']>;
+  filter?: InputMaybe<ApiHouseholdProjectBoolExp>;
+  predicate: ApiIntComparisonExp;
+};
+
+/** aggregate fields of "household_project" */
+export type ApiHouseholdProjectAggregateFields = {
+  __typename?: 'household_project_aggregate_fields';
+  avg?: Maybe<ApiHouseholdProjectAvgFields>;
+  count: Scalars['Int'];
+  max?: Maybe<ApiHouseholdProjectMaxFields>;
+  min?: Maybe<ApiHouseholdProjectMinFields>;
+  stddev?: Maybe<ApiHouseholdProjectStddevFields>;
+  stddev_pop?: Maybe<ApiHouseholdProjectStddevPopFields>;
+  stddev_samp?: Maybe<ApiHouseholdProjectStddevSampFields>;
+  sum?: Maybe<ApiHouseholdProjectSumFields>;
+  var_pop?: Maybe<ApiHouseholdProjectVarPopFields>;
+  var_samp?: Maybe<ApiHouseholdProjectVarSampFields>;
+  variance?: Maybe<ApiHouseholdProjectVarianceFields>;
+};
+
+
+/** aggregate fields of "household_project" */
+export type ApiHouseholdProjectAggregateFieldsApiCountArgs = {
+  columns?: InputMaybe<Array<ApiHouseholdProjectSelectColumn>>;
+  distinct?: InputMaybe<Scalars['Boolean']>;
+};
+
+/** order by aggregate values of table "household_project" */
+export type ApiHouseholdProjectAggregateOrderBy = {
+  avg?: InputMaybe<ApiHouseholdProjectAvgOrderBy>;
+  count?: InputMaybe<ApiOrderBy>;
+  max?: InputMaybe<ApiHouseholdProjectMaxOrderBy>;
+  min?: InputMaybe<ApiHouseholdProjectMinOrderBy>;
+  stddev?: InputMaybe<ApiHouseholdProjectStddevOrderBy>;
+  stddev_pop?: InputMaybe<ApiHouseholdProjectStddevPopOrderBy>;
+  stddev_samp?: InputMaybe<ApiHouseholdProjectStddevSampOrderBy>;
+  sum?: InputMaybe<ApiHouseholdProjectSumOrderBy>;
+  var_pop?: InputMaybe<ApiHouseholdProjectVarPopOrderBy>;
+  var_samp?: InputMaybe<ApiHouseholdProjectVarSampOrderBy>;
+  variance?: InputMaybe<ApiHouseholdProjectVarianceOrderBy>;
+};
+
+/** input type for inserting array relation for remote table "household_project" */
+export type ApiHouseholdProjectArrRelInsertInput = {
+  data: Array<ApiHouseholdProjectInsertInput>;
+  /** upsert condition */
+  on_conflict?: InputMaybe<ApiHouseholdProjectOnConflict>;
+};
+
+/** aggregate avg on columns */
+export type ApiHouseholdProjectAvgFields = {
+  __typename?: 'household_project_avg_fields';
+  count?: Maybe<Scalars['Float']>;
+};
+
+/** order by avg() on columns of table "household_project" */
+export type ApiHouseholdProjectAvgOrderBy = {
+  count?: InputMaybe<ApiOrderBy>;
+};
+
+/** Boolean expression to filter rows from the table "household_project". All fields are combined with a logical 'AND'. */
+export type ApiHouseholdProjectBoolExp = {
+  _and?: InputMaybe<Array<ApiHouseholdProjectBoolExp>>;
+  _not?: InputMaybe<ApiHouseholdProjectBoolExp>;
+  _or?: InputMaybe<Array<ApiHouseholdProjectBoolExp>>;
+  count?: InputMaybe<ApiIntComparisonExp>;
+  created_at?: InputMaybe<ApiTimestamptzComparisonExp>;
+  household?: InputMaybe<ApiHouseholdBoolExp>;
+  household_id?: InputMaybe<ApiUuidComparisonExp>;
+  project?: InputMaybe<ApiProjectBoolExp>;
+  project_id?: InputMaybe<ApiUuidComparisonExp>;
+  updated_at?: InputMaybe<ApiTimestamptzComparisonExp>;
+};
+
+/** unique or primary key constraints on table "household_project" */
+export enum ApiHouseholdProjectConstraint {
+  /** unique or primary key constraint on columns "project_id", "household_id" */
+  HouseholdProjectPkey = 'household_project_pkey'
+}
+
+/** input type for incrementing numeric columns in table "household_project" */
+export type ApiHouseholdProjectIncInput = {
+  count?: InputMaybe<Scalars['Int']>;
+};
+
+/** input type for inserting data into table "household_project" */
+export type ApiHouseholdProjectInsertInput = {
+  count?: InputMaybe<Scalars['Int']>;
+  created_at?: InputMaybe<Scalars['timestamptz']>;
+  household?: InputMaybe<ApiHouseholdObjRelInsertInput>;
+  household_id?: InputMaybe<Scalars['uuid']>;
+  project?: InputMaybe<ApiProjectObjRelInsertInput>;
+  project_id?: InputMaybe<Scalars['uuid']>;
+  updated_at?: InputMaybe<Scalars['timestamptz']>;
+};
+
+/** aggregate max on columns */
+export type ApiHouseholdProjectMaxFields = {
+  __typename?: 'household_project_max_fields';
+  count?: Maybe<Scalars['Int']>;
+  created_at?: Maybe<Scalars['timestamptz']>;
+  household_id?: Maybe<Scalars['uuid']>;
+  project_id?: Maybe<Scalars['uuid']>;
+  updated_at?: Maybe<Scalars['timestamptz']>;
+};
+
+/** order by max() on columns of table "household_project" */
+export type ApiHouseholdProjectMaxOrderBy = {
+  count?: InputMaybe<ApiOrderBy>;
+  created_at?: InputMaybe<ApiOrderBy>;
+  household_id?: InputMaybe<ApiOrderBy>;
+  project_id?: InputMaybe<ApiOrderBy>;
+  updated_at?: InputMaybe<ApiOrderBy>;
+};
+
+/** aggregate min on columns */
+export type ApiHouseholdProjectMinFields = {
+  __typename?: 'household_project_min_fields';
+  count?: Maybe<Scalars['Int']>;
+  created_at?: Maybe<Scalars['timestamptz']>;
+  household_id?: Maybe<Scalars['uuid']>;
+  project_id?: Maybe<Scalars['uuid']>;
+  updated_at?: Maybe<Scalars['timestamptz']>;
+};
+
+/** order by min() on columns of table "household_project" */
+export type ApiHouseholdProjectMinOrderBy = {
+  count?: InputMaybe<ApiOrderBy>;
+  created_at?: InputMaybe<ApiOrderBy>;
+  household_id?: InputMaybe<ApiOrderBy>;
+  project_id?: InputMaybe<ApiOrderBy>;
+  updated_at?: InputMaybe<ApiOrderBy>;
+};
+
+/** response of any mutation on the table "household_project" */
+export type ApiHouseholdProjectMutationResponse = {
+  __typename?: 'household_project_mutation_response';
+  /** number of rows affected by the mutation */
+  affected_rows: Scalars['Int'];
+  /** data from the rows affected by the mutation */
+  returning: Array<ApiHouseholdProject>;
+};
+
+/** on_conflict condition type for table "household_project" */
+export type ApiHouseholdProjectOnConflict = {
+  constraint: ApiHouseholdProjectConstraint;
+  update_columns?: Array<ApiHouseholdProjectUpdateColumn>;
+  where?: InputMaybe<ApiHouseholdProjectBoolExp>;
+};
+
+/** Ordering options when selecting data from "household_project". */
+export type ApiHouseholdProjectOrderBy = {
+  count?: InputMaybe<ApiOrderBy>;
+  created_at?: InputMaybe<ApiOrderBy>;
+  household?: InputMaybe<ApiHouseholdOrderBy>;
+  household_id?: InputMaybe<ApiOrderBy>;
+  project?: InputMaybe<ApiProjectOrderBy>;
+  project_id?: InputMaybe<ApiOrderBy>;
+  updated_at?: InputMaybe<ApiOrderBy>;
+};
+
+/** primary key columns input for table: household_project */
+export type ApiHouseholdProjectPkColumnsInput = {
+  household_id: Scalars['uuid'];
+  project_id: Scalars['uuid'];
+};
+
+/** select columns of table "household_project" */
+export enum ApiHouseholdProjectSelectColumn {
+  /** column name */
+  Count = 'count',
+  /** column name */
+  CreatedAt = 'created_at',
+  /** column name */
+  HouseholdId = 'household_id',
+  /** column name */
+  ProjectId = 'project_id',
+  /** column name */
+  UpdatedAt = 'updated_at'
+}
+
+/** input type for updating data in table "household_project" */
+export type ApiHouseholdProjectSetInput = {
+  count?: InputMaybe<Scalars['Int']>;
+  created_at?: InputMaybe<Scalars['timestamptz']>;
+  household_id?: InputMaybe<Scalars['uuid']>;
+  project_id?: InputMaybe<Scalars['uuid']>;
+  updated_at?: InputMaybe<Scalars['timestamptz']>;
+};
+
+/** aggregate stddev on columns */
+export type ApiHouseholdProjectStddevFields = {
+  __typename?: 'household_project_stddev_fields';
+  count?: Maybe<Scalars['Float']>;
+};
+
+/** order by stddev() on columns of table "household_project" */
+export type ApiHouseholdProjectStddevOrderBy = {
+  count?: InputMaybe<ApiOrderBy>;
+};
+
+/** aggregate stddev_pop on columns */
+export type ApiHouseholdProjectStddevPopFields = {
+  __typename?: 'household_project_stddev_pop_fields';
+  count?: Maybe<Scalars['Float']>;
+};
+
+/** order by stddev_pop() on columns of table "household_project" */
+export type ApiHouseholdProjectStddevPopOrderBy = {
+  count?: InputMaybe<ApiOrderBy>;
+};
+
+/** aggregate stddev_samp on columns */
+export type ApiHouseholdProjectStddevSampFields = {
+  __typename?: 'household_project_stddev_samp_fields';
+  count?: Maybe<Scalars['Float']>;
+};
+
+/** order by stddev_samp() on columns of table "household_project" */
+export type ApiHouseholdProjectStddevSampOrderBy = {
+  count?: InputMaybe<ApiOrderBy>;
+};
+
+/** Streaming cursor of the table "household_project" */
+export type ApiHouseholdProjectStreamCursorInput = {
+  /** Stream column input with initial value */
+  initial_value: ApiHouseholdProjectStreamCursorValueInput;
+  /** cursor ordering */
+  ordering?: InputMaybe<ApiCursorOrdering>;
+};
+
+/** Initial value of the column from where the streaming should start */
+export type ApiHouseholdProjectStreamCursorValueInput = {
+  count?: InputMaybe<Scalars['Int']>;
+  created_at?: InputMaybe<Scalars['timestamptz']>;
+  household_id?: InputMaybe<Scalars['uuid']>;
+  project_id?: InputMaybe<Scalars['uuid']>;
+  updated_at?: InputMaybe<Scalars['timestamptz']>;
+};
+
+/** aggregate sum on columns */
+export type ApiHouseholdProjectSumFields = {
+  __typename?: 'household_project_sum_fields';
+  count?: Maybe<Scalars['Int']>;
+};
+
+/** order by sum() on columns of table "household_project" */
+export type ApiHouseholdProjectSumOrderBy = {
+  count?: InputMaybe<ApiOrderBy>;
+};
+
+/** update columns of table "household_project" */
+export enum ApiHouseholdProjectUpdateColumn {
+  /** column name */
+  Count = 'count',
+  /** column name */
+  CreatedAt = 'created_at',
+  /** column name */
+  HouseholdId = 'household_id',
+  /** column name */
+  ProjectId = 'project_id',
+  /** column name */
+  UpdatedAt = 'updated_at'
+}
+
+export type ApiHouseholdProjectUpdates = {
+  /** increments the numeric columns with given value of the filtered values */
+  _inc?: InputMaybe<ApiHouseholdProjectIncInput>;
+  /** sets the columns of the filtered rows to the given values */
+  _set?: InputMaybe<ApiHouseholdProjectSetInput>;
+  /** filter the rows which have to be updated */
+  where: ApiHouseholdProjectBoolExp;
+};
+
+/** aggregate var_pop on columns */
+export type ApiHouseholdProjectVarPopFields = {
+  __typename?: 'household_project_var_pop_fields';
+  count?: Maybe<Scalars['Float']>;
+};
+
+/** order by var_pop() on columns of table "household_project" */
+export type ApiHouseholdProjectVarPopOrderBy = {
+  count?: InputMaybe<ApiOrderBy>;
+};
+
+/** aggregate var_samp on columns */
+export type ApiHouseholdProjectVarSampFields = {
+  __typename?: 'household_project_var_samp_fields';
+  count?: Maybe<Scalars['Float']>;
+};
+
+/** order by var_samp() on columns of table "household_project" */
+export type ApiHouseholdProjectVarSampOrderBy = {
+  count?: InputMaybe<ApiOrderBy>;
+};
+
+/** aggregate variance on columns */
+export type ApiHouseholdProjectVarianceFields = {
+  __typename?: 'household_project_variance_fields';
+  count?: Maybe<Scalars['Float']>;
+};
+
+/** order by variance() on columns of table "household_project" */
+export type ApiHouseholdProjectVarianceOrderBy = {
+  count?: InputMaybe<ApiOrderBy>;
+};
+
+/** select columns of table "household" */
+export enum ApiHouseholdSelectColumn {
+  /** column name */
+  CreatedAt = 'created_at',
+  /** column name */
+  DbCode = 'db_code',
+  /** column name */
+  Id = 'id',
+  /** column name */
+  Name = 'name',
+  /** column name */
+  Severity = 'severity',
+  /** column name */
+  Status = 'status',
+  /** column name */
+  UpdatedAt = 'updated_at'
+}
+
+/** input type for updating data in table "household" */
+export type ApiHouseholdSetInput = {
+  created_at?: InputMaybe<Scalars['timestamptz']>;
+  db_code?: InputMaybe<Scalars['Int']>;
+  id?: InputMaybe<Scalars['uuid']>;
+  name?: InputMaybe<Scalars['String']>;
+  severity?: InputMaybe<ApiHouseholdSeverityEnum>;
+  status?: InputMaybe<ApiHouseholdStatusEnum>;
+  updated_at?: InputMaybe<Scalars['timestamptz']>;
+};
+
+/** columns and relationships of "household_severity" */
+export type ApiHouseholdSeverity = {
+  __typename?: 'household_severity';
+  description?: Maybe<Scalars['String']>;
+  value: Scalars['String'];
+};
+
+/** aggregated selection of "household_severity" */
+export type ApiHouseholdSeverityAggregate = {
+  __typename?: 'household_severity_aggregate';
+  aggregate?: Maybe<ApiHouseholdSeverityAggregateFields>;
+  nodes: Array<ApiHouseholdSeverity>;
+};
+
+/** aggregate fields of "household_severity" */
+export type ApiHouseholdSeverityAggregateFields = {
+  __typename?: 'household_severity_aggregate_fields';
+  count: Scalars['Int'];
+  max?: Maybe<ApiHouseholdSeverityMaxFields>;
+  min?: Maybe<ApiHouseholdSeverityMinFields>;
+};
+
+
+/** aggregate fields of "household_severity" */
+export type ApiHouseholdSeverityAggregateFieldsApiCountArgs = {
+  columns?: InputMaybe<Array<ApiHouseholdSeveritySelectColumn>>;
+  distinct?: InputMaybe<Scalars['Boolean']>;
+};
+
+/** Boolean expression to filter rows from the table "household_severity". All fields are combined with a logical 'AND'. */
+export type ApiHouseholdSeverityBoolExp = {
+  _and?: InputMaybe<Array<ApiHouseholdSeverityBoolExp>>;
+  _not?: InputMaybe<ApiHouseholdSeverityBoolExp>;
+  _or?: InputMaybe<Array<ApiHouseholdSeverityBoolExp>>;
+  description?: InputMaybe<ApiStringComparisonExp>;
+  value?: InputMaybe<ApiStringComparisonExp>;
+};
+
+/** unique or primary key constraints on table "household_severity" */
+export enum ApiHouseholdSeverityConstraint {
+  /** unique or primary key constraint on columns "value" */
+  HouseholdSeverityPkey = 'household_severity_pkey'
+}
+
+export enum ApiHouseholdSeverityEnum {
+  Critical = 'Critical',
+  Normal = 'Normal'
+}
+
+/** Boolean expression to compare columns of type "household_severity_enum". All fields are combined with logical 'AND'. */
+export type ApiHouseholdSeverityEnumComparisonExp = {
+  _eq?: InputMaybe<ApiHouseholdSeverityEnum>;
+  _in?: InputMaybe<Array<ApiHouseholdSeverityEnum>>;
+  _is_null?: InputMaybe<Scalars['Boolean']>;
+  _neq?: InputMaybe<ApiHouseholdSeverityEnum>;
+  _nin?: InputMaybe<Array<ApiHouseholdSeverityEnum>>;
+};
+
+/** input type for inserting data into table "household_severity" */
+export type ApiHouseholdSeverityInsertInput = {
+  description?: InputMaybe<Scalars['String']>;
+  value?: InputMaybe<Scalars['String']>;
+};
+
+/** aggregate max on columns */
+export type ApiHouseholdSeverityMaxFields = {
+  __typename?: 'household_severity_max_fields';
+  description?: Maybe<Scalars['String']>;
+  value?: Maybe<Scalars['String']>;
+};
+
+/** aggregate min on columns */
+export type ApiHouseholdSeverityMinFields = {
+  __typename?: 'household_severity_min_fields';
+  description?: Maybe<Scalars['String']>;
+  value?: Maybe<Scalars['String']>;
+};
+
+/** response of any mutation on the table "household_severity" */
+export type ApiHouseholdSeverityMutationResponse = {
+  __typename?: 'household_severity_mutation_response';
+  /** number of rows affected by the mutation */
+  affected_rows: Scalars['Int'];
+  /** data from the rows affected by the mutation */
+  returning: Array<ApiHouseholdSeverity>;
+};
+
+/** on_conflict condition type for table "household_severity" */
+export type ApiHouseholdSeverityOnConflict = {
+  constraint: ApiHouseholdSeverityConstraint;
+  update_columns?: Array<ApiHouseholdSeverityUpdateColumn>;
+  where?: InputMaybe<ApiHouseholdSeverityBoolExp>;
+};
+
+/** Ordering options when selecting data from "household_severity". */
+export type ApiHouseholdSeverityOrderBy = {
+  description?: InputMaybe<ApiOrderBy>;
+  value?: InputMaybe<ApiOrderBy>;
+};
+
+/** primary key columns input for table: household_severity */
+export type ApiHouseholdSeverityPkColumnsInput = {
+  value: Scalars['String'];
+};
+
+/** select columns of table "household_severity" */
+export enum ApiHouseholdSeveritySelectColumn {
+  /** column name */
+  Description = 'description',
+  /** column name */
+  Value = 'value'
+}
+
+/** input type for updating data in table "household_severity" */
+export type ApiHouseholdSeveritySetInput = {
+  description?: InputMaybe<Scalars['String']>;
+  value?: InputMaybe<Scalars['String']>;
+};
+
+/** Streaming cursor of the table "household_severity" */
+export type ApiHouseholdSeverityStreamCursorInput = {
+  /** Stream column input with initial value */
+  initial_value: ApiHouseholdSeverityStreamCursorValueInput;
+  /** cursor ordering */
+  ordering?: InputMaybe<ApiCursorOrdering>;
+};
+
+/** Initial value of the column from where the streaming should start */
+export type ApiHouseholdSeverityStreamCursorValueInput = {
+  description?: InputMaybe<Scalars['String']>;
+  value?: InputMaybe<Scalars['String']>;
+};
+
+/** update columns of table "household_severity" */
+export enum ApiHouseholdSeverityUpdateColumn {
+  /** column name */
+  Description = 'description',
+  /** column name */
+  Value = 'value'
+}
+
+export type ApiHouseholdSeverityUpdates = {
+  /** sets the columns of the filtered rows to the given values */
+  _set?: InputMaybe<ApiHouseholdSeveritySetInput>;
+  /** filter the rows which have to be updated */
+  where: ApiHouseholdSeverityBoolExp;
+};
+
+/** columns and relationships of "household_status" */
+export type ApiHouseholdStatus = {
+  __typename?: 'household_status';
+  description?: Maybe<Scalars['String']>;
+  value: Scalars['String'];
+};
+
+/** aggregated selection of "household_status" */
+export type ApiHouseholdStatusAggregate = {
+  __typename?: 'household_status_aggregate';
+  aggregate?: Maybe<ApiHouseholdStatusAggregateFields>;
+  nodes: Array<ApiHouseholdStatus>;
+};
+
+/** aggregate fields of "household_status" */
+export type ApiHouseholdStatusAggregateFields = {
+  __typename?: 'household_status_aggregate_fields';
+  count: Scalars['Int'];
+  max?: Maybe<ApiHouseholdStatusMaxFields>;
+  min?: Maybe<ApiHouseholdStatusMinFields>;
+};
+
+
+/** aggregate fields of "household_status" */
+export type ApiHouseholdStatusAggregateFieldsApiCountArgs = {
+  columns?: InputMaybe<Array<ApiHouseholdStatusSelectColumn>>;
+  distinct?: InputMaybe<Scalars['Boolean']>;
+};
+
+/** Boolean expression to filter rows from the table "household_status". All fields are combined with a logical 'AND'. */
+export type ApiHouseholdStatusBoolExp = {
+  _and?: InputMaybe<Array<ApiHouseholdStatusBoolExp>>;
+  _not?: InputMaybe<ApiHouseholdStatusBoolExp>;
+  _or?: InputMaybe<Array<ApiHouseholdStatusBoolExp>>;
+  description?: InputMaybe<ApiStringComparisonExp>;
+  value?: InputMaybe<ApiStringComparisonExp>;
+};
+
+/** unique or primary key constraints on table "household_status" */
+export enum ApiHouseholdStatusConstraint {
+  /** unique or primary key constraint on columns "value" */
+  HouseholdStatusPkey = 'household_status_pkey'
+}
+
+export enum ApiHouseholdStatusEnum {
+  Completed = 'Completed',
+  Draft = 'Draft'
+}
+
+/** Boolean expression to compare columns of type "household_status_enum". All fields are combined with logical 'AND'. */
+export type ApiHouseholdStatusEnumComparisonExp = {
+  _eq?: InputMaybe<ApiHouseholdStatusEnum>;
+  _in?: InputMaybe<Array<ApiHouseholdStatusEnum>>;
+  _is_null?: InputMaybe<Scalars['Boolean']>;
+  _neq?: InputMaybe<ApiHouseholdStatusEnum>;
+  _nin?: InputMaybe<Array<ApiHouseholdStatusEnum>>;
+};
+
+/** input type for inserting data into table "household_status" */
+export type ApiHouseholdStatusInsertInput = {
+  description?: InputMaybe<Scalars['String']>;
+  value?: InputMaybe<Scalars['String']>;
+};
+
+/** aggregate max on columns */
+export type ApiHouseholdStatusMaxFields = {
+  __typename?: 'household_status_max_fields';
+  description?: Maybe<Scalars['String']>;
+  value?: Maybe<Scalars['String']>;
+};
+
+/** aggregate min on columns */
+export type ApiHouseholdStatusMinFields = {
+  __typename?: 'household_status_min_fields';
+  description?: Maybe<Scalars['String']>;
+  value?: Maybe<Scalars['String']>;
+};
+
+/** response of any mutation on the table "household_status" */
+export type ApiHouseholdStatusMutationResponse = {
+  __typename?: 'household_status_mutation_response';
+  /** number of rows affected by the mutation */
+  affected_rows: Scalars['Int'];
+  /** data from the rows affected by the mutation */
+  returning: Array<ApiHouseholdStatus>;
+};
+
+/** on_conflict condition type for table "household_status" */
+export type ApiHouseholdStatusOnConflict = {
+  constraint: ApiHouseholdStatusConstraint;
+  update_columns?: Array<ApiHouseholdStatusUpdateColumn>;
+  where?: InputMaybe<ApiHouseholdStatusBoolExp>;
+};
+
+/** Ordering options when selecting data from "household_status". */
+export type ApiHouseholdStatusOrderBy = {
+  description?: InputMaybe<ApiOrderBy>;
+  value?: InputMaybe<ApiOrderBy>;
+};
+
+/** primary key columns input for table: household_status */
+export type ApiHouseholdStatusPkColumnsInput = {
+  value: Scalars['String'];
+};
+
+/** select columns of table "household_status" */
+export enum ApiHouseholdStatusSelectColumn {
+  /** column name */
+  Description = 'description',
+  /** column name */
+  Value = 'value'
+}
+
+/** input type for updating data in table "household_status" */
+export type ApiHouseholdStatusSetInput = {
+  description?: InputMaybe<Scalars['String']>;
+  value?: InputMaybe<Scalars['String']>;
+};
+
+/** Streaming cursor of the table "household_status" */
+export type ApiHouseholdStatusStreamCursorInput = {
+  /** Stream column input with initial value */
+  initial_value: ApiHouseholdStatusStreamCursorValueInput;
+  /** cursor ordering */
+  ordering?: InputMaybe<ApiCursorOrdering>;
+};
+
+/** Initial value of the column from where the streaming should start */
+export type ApiHouseholdStatusStreamCursorValueInput = {
+  description?: InputMaybe<Scalars['String']>;
+  value?: InputMaybe<Scalars['String']>;
+};
+
+/** update columns of table "household_status" */
+export enum ApiHouseholdStatusUpdateColumn {
+  /** column name */
+  Description = 'description',
+  /** column name */
+  Value = 'value'
+}
+
+export type ApiHouseholdStatusUpdates = {
+  /** sets the columns of the filtered rows to the given values */
+  _set?: InputMaybe<ApiHouseholdStatusSetInput>;
+  /** filter the rows which have to be updated */
+  where: ApiHouseholdStatusBoolExp;
+};
+
+/** aggregate stddev on columns */
+export type ApiHouseholdStddevFields = {
+  __typename?: 'household_stddev_fields';
+  db_code?: Maybe<Scalars['Float']>;
+};
+
+/** aggregate stddev_pop on columns */
+export type ApiHouseholdStddevPopFields = {
+  __typename?: 'household_stddev_pop_fields';
+  db_code?: Maybe<Scalars['Float']>;
+};
+
+/** aggregate stddev_samp on columns */
+export type ApiHouseholdStddevSampFields = {
+  __typename?: 'household_stddev_samp_fields';
+  db_code?: Maybe<Scalars['Float']>;
+};
+
+/** Streaming cursor of the table "household" */
+export type ApiHouseholdStreamCursorInput = {
+  /** Stream column input with initial value */
+  initial_value: ApiHouseholdStreamCursorValueInput;
+  /** cursor ordering */
+  ordering?: InputMaybe<ApiCursorOrdering>;
+};
+
+/** Initial value of the column from where the streaming should start */
+export type ApiHouseholdStreamCursorValueInput = {
+  created_at?: InputMaybe<Scalars['timestamptz']>;
+  db_code?: InputMaybe<Scalars['Int']>;
+  id?: InputMaybe<Scalars['uuid']>;
+  name?: InputMaybe<Scalars['String']>;
+  severity?: InputMaybe<ApiHouseholdSeverityEnum>;
+  status?: InputMaybe<ApiHouseholdStatusEnum>;
+  updated_at?: InputMaybe<Scalars['timestamptz']>;
+};
+
+/** aggregate sum on columns */
+export type ApiHouseholdSumFields = {
+  __typename?: 'household_sum_fields';
+  db_code?: Maybe<Scalars['Int']>;
+};
+
+/** update columns of table "household" */
+export enum ApiHouseholdUpdateColumn {
+  /** column name */
+  CreatedAt = 'created_at',
+  /** column name */
+  DbCode = 'db_code',
+  /** column name */
+  Id = 'id',
+  /** column name */
+  Name = 'name',
+  /** column name */
+  Severity = 'severity',
+  /** column name */
+  Status = 'status',
+  /** column name */
+  UpdatedAt = 'updated_at'
+}
+
+export type ApiHouseholdUpdates = {
+  /** increments the numeric columns with given value of the filtered values */
+  _inc?: InputMaybe<ApiHouseholdIncInput>;
+  /** sets the columns of the filtered rows to the given values */
+  _set?: InputMaybe<ApiHouseholdSetInput>;
+  /** filter the rows which have to be updated */
+  where: ApiHouseholdBoolExp;
+};
+
+/** aggregate var_pop on columns */
+export type ApiHouseholdVarPopFields = {
+  __typename?: 'household_var_pop_fields';
+  db_code?: Maybe<Scalars['Float']>;
+};
+
+/** aggregate var_samp on columns */
+export type ApiHouseholdVarSampFields = {
+  __typename?: 'household_var_samp_fields';
+  db_code?: Maybe<Scalars['Float']>;
+};
+
+/** aggregate variance on columns */
+export type ApiHouseholdVarianceFields = {
+  __typename?: 'household_variance_fields';
+  db_code?: Maybe<Scalars['Float']>;
+};
 
 /** columns and relationships of "householder" */
 export type ApiHouseholder = {
@@ -1114,15 +1263,16 @@ export type ApiHouseholder = {
   city?: Maybe<ApiCityEnum>;
   created_at: Scalars['timestamptz'];
   dob?: Maybe<Scalars['date']>;
-  family_id: Scalars['uuid'];
   father_name?: Maybe<Scalars['String']>;
   gender?: Maybe<ApiGenderEnum>;
+  household_id: Scalars['uuid'];
   id: Scalars['uuid'];
   name: Scalars['String'];
   national_id?: Maybe<Scalars['String']>;
   nationality?: Maybe<ApiNationalityEnum>;
   religion?: Maybe<ApiReligionEnum>;
-  status: ApiHouseholderStatusEnum;
+  /** A computed field, executes function "get_householder_status" */
+  status?: Maybe<Scalars['String']>;
   surname?: Maybe<Scalars['String']>;
   updated_at: Scalars['timestamptz'];
 };
@@ -1157,26 +1307,26 @@ export type ApiHouseholderBoolExp = {
   city?: InputMaybe<ApiCityEnumComparisonExp>;
   created_at?: InputMaybe<ApiTimestamptzComparisonExp>;
   dob?: InputMaybe<ApiDateComparisonExp>;
-  family_id?: InputMaybe<ApiUuidComparisonExp>;
   father_name?: InputMaybe<ApiStringComparisonExp>;
   gender?: InputMaybe<ApiGenderEnumComparisonExp>;
+  household_id?: InputMaybe<ApiUuidComparisonExp>;
   id?: InputMaybe<ApiUuidComparisonExp>;
   name?: InputMaybe<ApiStringComparisonExp>;
   national_id?: InputMaybe<ApiStringComparisonExp>;
   nationality?: InputMaybe<ApiNationalityEnumComparisonExp>;
   religion?: InputMaybe<ApiReligionEnumComparisonExp>;
-  status?: InputMaybe<ApiHouseholderStatusEnumComparisonExp>;
+  status?: InputMaybe<ApiStringComparisonExp>;
   surname?: InputMaybe<ApiStringComparisonExp>;
   updated_at?: InputMaybe<ApiTimestamptzComparisonExp>;
 };
 
 /** unique or primary key constraints on table "householder" */
 export enum ApiHouseholderConstraint {
-  /** unique or primary key constraint */
-  HouseholderFamilyIdKey = 'householder_family_id_key',
-  /** unique or primary key constraint */
+  /** unique or primary key constraint on columns "household_id" */
+  HouseholderHouseholdIdKey = 'householder_household_id_key',
+  /** unique or primary key constraint on columns "id" */
   HouseholderIdKey = 'householder_id_key',
-  /** unique or primary key constraint */
+  /** unique or primary key constraint on columns "household_id" */
   HouseholderPkey = 'householder_pkey'
 }
 
@@ -1185,15 +1335,14 @@ export type ApiHouseholderInsertInput = {
   city?: InputMaybe<ApiCityEnum>;
   created_at?: InputMaybe<Scalars['timestamptz']>;
   dob?: InputMaybe<Scalars['date']>;
-  family_id?: InputMaybe<Scalars['uuid']>;
   father_name?: InputMaybe<Scalars['String']>;
   gender?: InputMaybe<ApiGenderEnum>;
+  household_id?: InputMaybe<Scalars['uuid']>;
   id?: InputMaybe<Scalars['uuid']>;
   name?: InputMaybe<Scalars['String']>;
   national_id?: InputMaybe<Scalars['String']>;
   nationality?: InputMaybe<ApiNationalityEnum>;
   religion?: InputMaybe<ApiReligionEnum>;
-  status?: InputMaybe<ApiHouseholderStatusEnum>;
   surname?: InputMaybe<Scalars['String']>;
   updated_at?: InputMaybe<Scalars['timestamptz']>;
 };
@@ -1203,8 +1352,8 @@ export type ApiHouseholderMaxFields = {
   __typename?: 'householder_max_fields';
   created_at?: Maybe<Scalars['timestamptz']>;
   dob?: Maybe<Scalars['date']>;
-  family_id?: Maybe<Scalars['uuid']>;
   father_name?: Maybe<Scalars['String']>;
+  household_id?: Maybe<Scalars['uuid']>;
   id?: Maybe<Scalars['uuid']>;
   name?: Maybe<Scalars['String']>;
   national_id?: Maybe<Scalars['String']>;
@@ -1217,8 +1366,8 @@ export type ApiHouseholderMinFields = {
   __typename?: 'householder_min_fields';
   created_at?: Maybe<Scalars['timestamptz']>;
   dob?: Maybe<Scalars['date']>;
-  family_id?: Maybe<Scalars['uuid']>;
   father_name?: Maybe<Scalars['String']>;
+  household_id?: Maybe<Scalars['uuid']>;
   id?: Maybe<Scalars['uuid']>;
   name?: Maybe<Scalars['String']>;
   national_id?: Maybe<Scalars['String']>;
@@ -1247,9 +1396,9 @@ export type ApiHouseholderOrderBy = {
   city?: InputMaybe<ApiOrderBy>;
   created_at?: InputMaybe<ApiOrderBy>;
   dob?: InputMaybe<ApiOrderBy>;
-  family_id?: InputMaybe<ApiOrderBy>;
   father_name?: InputMaybe<ApiOrderBy>;
   gender?: InputMaybe<ApiOrderBy>;
+  household_id?: InputMaybe<ApiOrderBy>;
   id?: InputMaybe<ApiOrderBy>;
   name?: InputMaybe<ApiOrderBy>;
   national_id?: InputMaybe<ApiOrderBy>;
@@ -1262,7 +1411,7 @@ export type ApiHouseholderOrderBy = {
 
 /** primary key columns input for table: householder */
 export type ApiHouseholderPkColumnsInput = {
-  family_id: Scalars['uuid'];
+  household_id: Scalars['uuid'];
 };
 
 /** select columns of table "householder" */
@@ -1274,11 +1423,11 @@ export enum ApiHouseholderSelectColumn {
   /** column name */
   Dob = 'dob',
   /** column name */
-  FamilyId = 'family_id',
-  /** column name */
   FatherName = 'father_name',
   /** column name */
   Gender = 'gender',
+  /** column name */
+  HouseholdId = 'household_id',
   /** column name */
   Id = 'id',
   /** column name */
@@ -1290,8 +1439,6 @@ export enum ApiHouseholderSelectColumn {
   /** column name */
   Religion = 'religion',
   /** column name */
-  Status = 'status',
-  /** column name */
   Surname = 'surname',
   /** column name */
   UpdatedAt = 'updated_at'
@@ -1302,15 +1449,14 @@ export type ApiHouseholderSetInput = {
   city?: InputMaybe<ApiCityEnum>;
   created_at?: InputMaybe<Scalars['timestamptz']>;
   dob?: InputMaybe<Scalars['date']>;
-  family_id?: InputMaybe<Scalars['uuid']>;
   father_name?: InputMaybe<Scalars['String']>;
   gender?: InputMaybe<ApiGenderEnum>;
+  household_id?: InputMaybe<Scalars['uuid']>;
   id?: InputMaybe<Scalars['uuid']>;
   name?: InputMaybe<Scalars['String']>;
   national_id?: InputMaybe<Scalars['String']>;
   nationality?: InputMaybe<ApiNationalityEnum>;
   religion?: InputMaybe<ApiReligionEnum>;
-  status?: InputMaybe<ApiHouseholderStatusEnum>;
   surname?: InputMaybe<Scalars['String']>;
   updated_at?: InputMaybe<Scalars['timestamptz']>;
 };
@@ -1355,23 +1501,9 @@ export type ApiHouseholderStatusBoolExp = {
 
 /** unique or primary key constraints on table "householder_status" */
 export enum ApiHouseholderStatusConstraint {
-  /** unique or primary key constraint */
+  /** unique or primary key constraint on columns "value" */
   HouseholderStatusPkey = 'householder_status_pkey'
 }
-
-export enum ApiHouseholderStatusEnum {
-  Completed = 'Completed',
-  Draft = 'Draft'
-}
-
-/** Boolean expression to compare columns of type "householder_status_enum". All fields are combined with logical 'AND'. */
-export type ApiHouseholderStatusEnumComparisonExp = {
-  _eq?: InputMaybe<ApiHouseholderStatusEnum>;
-  _in?: InputMaybe<Array<ApiHouseholderStatusEnum>>;
-  _is_null?: InputMaybe<Scalars['Boolean']>;
-  _neq?: InputMaybe<ApiHouseholderStatusEnum>;
-  _nin?: InputMaybe<Array<ApiHouseholderStatusEnum>>;
-};
 
 /** input type for inserting data into table "householder_status" */
 export type ApiHouseholderStatusInsertInput = {
@@ -1434,6 +1566,20 @@ export type ApiHouseholderStatusSetInput = {
   value?: InputMaybe<Scalars['String']>;
 };
 
+/** Streaming cursor of the table "householder_status" */
+export type ApiHouseholderStatusStreamCursorInput = {
+  /** Stream column input with initial value */
+  initial_value: ApiHouseholderStatusStreamCursorValueInput;
+  /** cursor ordering */
+  ordering?: InputMaybe<ApiCursorOrdering>;
+};
+
+/** Initial value of the column from where the streaming should start */
+export type ApiHouseholderStatusStreamCursorValueInput = {
+  description?: InputMaybe<Scalars['String']>;
+  value?: InputMaybe<Scalars['String']>;
+};
+
 /** update columns of table "householder_status" */
 export enum ApiHouseholderStatusUpdateColumn {
   /** column name */
@@ -1441,6 +1587,38 @@ export enum ApiHouseholderStatusUpdateColumn {
   /** column name */
   Value = 'value'
 }
+
+export type ApiHouseholderStatusUpdates = {
+  /** sets the columns of the filtered rows to the given values */
+  _set?: InputMaybe<ApiHouseholderStatusSetInput>;
+  /** filter the rows which have to be updated */
+  where: ApiHouseholderStatusBoolExp;
+};
+
+/** Streaming cursor of the table "householder" */
+export type ApiHouseholderStreamCursorInput = {
+  /** Stream column input with initial value */
+  initial_value: ApiHouseholderStreamCursorValueInput;
+  /** cursor ordering */
+  ordering?: InputMaybe<ApiCursorOrdering>;
+};
+
+/** Initial value of the column from where the streaming should start */
+export type ApiHouseholderStreamCursorValueInput = {
+  city?: InputMaybe<ApiCityEnum>;
+  created_at?: InputMaybe<Scalars['timestamptz']>;
+  dob?: InputMaybe<Scalars['date']>;
+  father_name?: InputMaybe<Scalars['String']>;
+  gender?: InputMaybe<ApiGenderEnum>;
+  household_id?: InputMaybe<Scalars['uuid']>;
+  id?: InputMaybe<Scalars['uuid']>;
+  name?: InputMaybe<Scalars['String']>;
+  national_id?: InputMaybe<Scalars['String']>;
+  nationality?: InputMaybe<ApiNationalityEnum>;
+  religion?: InputMaybe<ApiReligionEnum>;
+  surname?: InputMaybe<Scalars['String']>;
+  updated_at?: InputMaybe<Scalars['timestamptz']>;
+};
 
 /** update columns of table "householder" */
 export enum ApiHouseholderUpdateColumn {
@@ -1451,11 +1629,11 @@ export enum ApiHouseholderUpdateColumn {
   /** column name */
   Dob = 'dob',
   /** column name */
-  FamilyId = 'family_id',
-  /** column name */
   FatherName = 'father_name',
   /** column name */
   Gender = 'gender',
+  /** column name */
+  HouseholdId = 'household_id',
   /** column name */
   Id = 'id',
   /** column name */
@@ -1467,24 +1645,33 @@ export enum ApiHouseholderUpdateColumn {
   /** column name */
   Religion = 'religion',
   /** column name */
-  Status = 'status',
-  /** column name */
   Surname = 'surname',
   /** column name */
   UpdatedAt = 'updated_at'
 }
 
+export type ApiHouseholderUpdates = {
+  /** sets the columns of the filtered rows to the given values */
+  _set?: InputMaybe<ApiHouseholderSetInput>;
+  /** filter the rows which have to be updated */
+  where: ApiHouseholderBoolExp;
+};
+
 /** columns and relationships of "member" */
 export type ApiMember = {
   __typename?: 'member';
   created_at: Scalars['timestamptz'];
-  family_id: Scalars['uuid'];
+  dob?: Maybe<Scalars['date']>;
   father_name?: Maybe<Scalars['String']>;
   gender?: Maybe<ApiGenderEnum>;
+  /** An object relationship */
+  household: ApiHousehold;
+  household_id: Scalars['uuid'];
   id: Scalars['uuid'];
   name: Scalars['String'];
-  nationality?: Maybe<Scalars['String']>;
-  religion?: Maybe<Scalars['String']>;
+  national_id?: Maybe<Scalars['String']>;
+  nationality?: Maybe<ApiNationalityEnum>;
+  religion?: Maybe<ApiReligionEnum>;
   status: ApiMemberStatusEnum;
   surname?: Maybe<Scalars['String']>;
   updated_at: Scalars['timestamptz'];
@@ -1518,13 +1705,16 @@ export type ApiMemberBoolExp = {
   _not?: InputMaybe<ApiMemberBoolExp>;
   _or?: InputMaybe<Array<ApiMemberBoolExp>>;
   created_at?: InputMaybe<ApiTimestamptzComparisonExp>;
-  family_id?: InputMaybe<ApiUuidComparisonExp>;
+  dob?: InputMaybe<ApiDateComparisonExp>;
   father_name?: InputMaybe<ApiStringComparisonExp>;
   gender?: InputMaybe<ApiGenderEnumComparisonExp>;
+  household?: InputMaybe<ApiHouseholdBoolExp>;
+  household_id?: InputMaybe<ApiUuidComparisonExp>;
   id?: InputMaybe<ApiUuidComparisonExp>;
   name?: InputMaybe<ApiStringComparisonExp>;
-  nationality?: InputMaybe<ApiStringComparisonExp>;
-  religion?: InputMaybe<ApiStringComparisonExp>;
+  national_id?: InputMaybe<ApiStringComparisonExp>;
+  nationality?: InputMaybe<ApiNationalityEnumComparisonExp>;
+  religion?: InputMaybe<ApiReligionEnumComparisonExp>;
   status?: InputMaybe<ApiMemberStatusEnumComparisonExp>;
   surname?: InputMaybe<ApiStringComparisonExp>;
   updated_at?: InputMaybe<ApiTimestamptzComparisonExp>;
@@ -1532,20 +1722,23 @@ export type ApiMemberBoolExp = {
 
 /** unique or primary key constraints on table "member" */
 export enum ApiMemberConstraint {
-  /** unique or primary key constraint */
+  /** unique or primary key constraint on columns "id" */
   MemberPkey = 'member_pkey'
 }
 
 /** input type for inserting data into table "member" */
 export type ApiMemberInsertInput = {
   created_at?: InputMaybe<Scalars['timestamptz']>;
-  family_id?: InputMaybe<Scalars['uuid']>;
+  dob?: InputMaybe<Scalars['date']>;
   father_name?: InputMaybe<Scalars['String']>;
   gender?: InputMaybe<ApiGenderEnum>;
+  household?: InputMaybe<ApiHouseholdObjRelInsertInput>;
+  household_id?: InputMaybe<Scalars['uuid']>;
   id?: InputMaybe<Scalars['uuid']>;
   name?: InputMaybe<Scalars['String']>;
-  nationality?: InputMaybe<Scalars['String']>;
-  religion?: InputMaybe<Scalars['String']>;
+  national_id?: InputMaybe<Scalars['String']>;
+  nationality?: InputMaybe<ApiNationalityEnum>;
+  religion?: InputMaybe<ApiReligionEnum>;
   status?: InputMaybe<ApiMemberStatusEnum>;
   surname?: InputMaybe<Scalars['String']>;
   updated_at?: InputMaybe<Scalars['timestamptz']>;
@@ -1555,12 +1748,12 @@ export type ApiMemberInsertInput = {
 export type ApiMemberMaxFields = {
   __typename?: 'member_max_fields';
   created_at?: Maybe<Scalars['timestamptz']>;
-  family_id?: Maybe<Scalars['uuid']>;
+  dob?: Maybe<Scalars['date']>;
   father_name?: Maybe<Scalars['String']>;
+  household_id?: Maybe<Scalars['uuid']>;
   id?: Maybe<Scalars['uuid']>;
   name?: Maybe<Scalars['String']>;
-  nationality?: Maybe<Scalars['String']>;
-  religion?: Maybe<Scalars['String']>;
+  national_id?: Maybe<Scalars['String']>;
   surname?: Maybe<Scalars['String']>;
   updated_at?: Maybe<Scalars['timestamptz']>;
 };
@@ -1569,12 +1762,12 @@ export type ApiMemberMaxFields = {
 export type ApiMemberMinFields = {
   __typename?: 'member_min_fields';
   created_at?: Maybe<Scalars['timestamptz']>;
-  family_id?: Maybe<Scalars['uuid']>;
+  dob?: Maybe<Scalars['date']>;
   father_name?: Maybe<Scalars['String']>;
+  household_id?: Maybe<Scalars['uuid']>;
   id?: Maybe<Scalars['uuid']>;
   name?: Maybe<Scalars['String']>;
-  nationality?: Maybe<Scalars['String']>;
-  religion?: Maybe<Scalars['String']>;
+  national_id?: Maybe<Scalars['String']>;
   surname?: Maybe<Scalars['String']>;
   updated_at?: Maybe<Scalars['timestamptz']>;
 };
@@ -1598,11 +1791,14 @@ export type ApiMemberOnConflict = {
 /** Ordering options when selecting data from "member". */
 export type ApiMemberOrderBy = {
   created_at?: InputMaybe<ApiOrderBy>;
-  family_id?: InputMaybe<ApiOrderBy>;
+  dob?: InputMaybe<ApiOrderBy>;
   father_name?: InputMaybe<ApiOrderBy>;
   gender?: InputMaybe<ApiOrderBy>;
+  household?: InputMaybe<ApiHouseholdOrderBy>;
+  household_id?: InputMaybe<ApiOrderBy>;
   id?: InputMaybe<ApiOrderBy>;
   name?: InputMaybe<ApiOrderBy>;
+  national_id?: InputMaybe<ApiOrderBy>;
   nationality?: InputMaybe<ApiOrderBy>;
   religion?: InputMaybe<ApiOrderBy>;
   status?: InputMaybe<ApiOrderBy>;
@@ -1620,15 +1816,19 @@ export enum ApiMemberSelectColumn {
   /** column name */
   CreatedAt = 'created_at',
   /** column name */
-  FamilyId = 'family_id',
+  Dob = 'dob',
   /** column name */
   FatherName = 'father_name',
   /** column name */
   Gender = 'gender',
   /** column name */
+  HouseholdId = 'household_id',
+  /** column name */
   Id = 'id',
   /** column name */
   Name = 'name',
+  /** column name */
+  NationalId = 'national_id',
   /** column name */
   Nationality = 'nationality',
   /** column name */
@@ -1644,13 +1844,15 @@ export enum ApiMemberSelectColumn {
 /** input type for updating data in table "member" */
 export type ApiMemberSetInput = {
   created_at?: InputMaybe<Scalars['timestamptz']>;
-  family_id?: InputMaybe<Scalars['uuid']>;
+  dob?: InputMaybe<Scalars['date']>;
   father_name?: InputMaybe<Scalars['String']>;
   gender?: InputMaybe<ApiGenderEnum>;
+  household_id?: InputMaybe<Scalars['uuid']>;
   id?: InputMaybe<Scalars['uuid']>;
   name?: InputMaybe<Scalars['String']>;
-  nationality?: InputMaybe<Scalars['String']>;
-  religion?: InputMaybe<Scalars['String']>;
+  national_id?: InputMaybe<Scalars['String']>;
+  nationality?: InputMaybe<ApiNationalityEnum>;
+  religion?: InputMaybe<ApiReligionEnum>;
   status?: InputMaybe<ApiMemberStatusEnum>;
   surname?: InputMaybe<Scalars['String']>;
   updated_at?: InputMaybe<Scalars['timestamptz']>;
@@ -1694,7 +1896,7 @@ export type ApiMemberStatusBoolExp = {
 
 /** unique or primary key constraints on table "member_status" */
 export enum ApiMemberStatusConstraint {
-  /** unique or primary key constraint */
+  /** unique or primary key constraint on columns "value" */
   MemberStatusPkey = 'member_status_pkey'
 }
 
@@ -1766,26 +1968,75 @@ export type ApiMemberStatusSetInput = {
   value?: InputMaybe<Scalars['String']>;
 };
 
+/** Streaming cursor of the table "member_status" */
+export type ApiMemberStatusStreamCursorInput = {
+  /** Stream column input with initial value */
+  initial_value: ApiMemberStatusStreamCursorValueInput;
+  /** cursor ordering */
+  ordering?: InputMaybe<ApiCursorOrdering>;
+};
+
+/** Initial value of the column from where the streaming should start */
+export type ApiMemberStatusStreamCursorValueInput = {
+  value?: InputMaybe<Scalars['String']>;
+};
+
 /** update columns of table "member_status" */
 export enum ApiMemberStatusUpdateColumn {
   /** column name */
   Value = 'value'
 }
 
+export type ApiMemberStatusUpdates = {
+  /** sets the columns of the filtered rows to the given values */
+  _set?: InputMaybe<ApiMemberStatusSetInput>;
+  /** filter the rows which have to be updated */
+  where: ApiMemberStatusBoolExp;
+};
+
+/** Streaming cursor of the table "member" */
+export type ApiMemberStreamCursorInput = {
+  /** Stream column input with initial value */
+  initial_value: ApiMemberStreamCursorValueInput;
+  /** cursor ordering */
+  ordering?: InputMaybe<ApiCursorOrdering>;
+};
+
+/** Initial value of the column from where the streaming should start */
+export type ApiMemberStreamCursorValueInput = {
+  created_at?: InputMaybe<Scalars['timestamptz']>;
+  dob?: InputMaybe<Scalars['date']>;
+  father_name?: InputMaybe<Scalars['String']>;
+  gender?: InputMaybe<ApiGenderEnum>;
+  household_id?: InputMaybe<Scalars['uuid']>;
+  id?: InputMaybe<Scalars['uuid']>;
+  name?: InputMaybe<Scalars['String']>;
+  national_id?: InputMaybe<Scalars['String']>;
+  nationality?: InputMaybe<ApiNationalityEnum>;
+  religion?: InputMaybe<ApiReligionEnum>;
+  status?: InputMaybe<ApiMemberStatusEnum>;
+  surname?: InputMaybe<Scalars['String']>;
+  updated_at?: InputMaybe<Scalars['timestamptz']>;
+};
+
 /** update columns of table "member" */
 export enum ApiMemberUpdateColumn {
   /** column name */
   CreatedAt = 'created_at',
   /** column name */
-  FamilyId = 'family_id',
+  Dob = 'dob',
   /** column name */
   FatherName = 'father_name',
   /** column name */
   Gender = 'gender',
   /** column name */
+  HouseholdId = 'household_id',
+  /** column name */
   Id = 'id',
   /** column name */
   Name = 'name',
+  /** column name */
+  NationalId = 'national_id',
   /** column name */
   Nationality = 'nationality',
   /** column name */
@@ -1798,6 +2049,13 @@ export enum ApiMemberUpdateColumn {
   UpdatedAt = 'updated_at'
 }
 
+export type ApiMemberUpdates = {
+  /** sets the columns of the filtered rows to the given values */
+  _set?: InputMaybe<ApiMemberSetInput>;
+  /** filter the rows which have to be updated */
+  where: ApiMemberBoolExp;
+};
+
 /** mutation root */
 export type ApiMutationRoot = {
   __typename?: 'mutation_root';
@@ -1805,26 +2063,26 @@ export type ApiMutationRoot = {
   delete_city?: Maybe<ApiCityMutationResponse>;
   /** delete single row from the table: "city" */
   delete_city_by_pk?: Maybe<ApiCity>;
-  /** delete data from the table: "family" */
-  delete_family?: Maybe<ApiFamilyMutationResponse>;
-  /** delete single row from the table: "family" */
-  delete_family_by_pk?: Maybe<ApiFamily>;
-  /** delete data from the table: "family_project" */
-  delete_family_project?: Maybe<ApiFamilyProjectMutationResponse>;
-  /** delete single row from the table: "family_project" */
-  delete_family_project_by_pk?: Maybe<ApiFamilyProject>;
-  /** delete data from the table: "family_severity" */
-  delete_family_severity?: Maybe<ApiFamilySeverityMutationResponse>;
-  /** delete single row from the table: "family_severity" */
-  delete_family_severity_by_pk?: Maybe<ApiFamilySeverity>;
-  /** delete data from the table: "family_status" */
-  delete_family_status?: Maybe<ApiFamilyStatusMutationResponse>;
-  /** delete single row from the table: "family_status" */
-  delete_family_status_by_pk?: Maybe<ApiFamilyStatus>;
   /** delete data from the table: "gender" */
   delete_gender?: Maybe<ApiGenderMutationResponse>;
   /** delete single row from the table: "gender" */
   delete_gender_by_pk?: Maybe<ApiGender>;
+  /** delete data from the table: "household" */
+  delete_household?: Maybe<ApiHouseholdMutationResponse>;
+  /** delete single row from the table: "household" */
+  delete_household_by_pk?: Maybe<ApiHousehold>;
+  /** delete data from the table: "household_project" */
+  delete_household_project?: Maybe<ApiHouseholdProjectMutationResponse>;
+  /** delete single row from the table: "household_project" */
+  delete_household_project_by_pk?: Maybe<ApiHouseholdProject>;
+  /** delete data from the table: "household_severity" */
+  delete_household_severity?: Maybe<ApiHouseholdSeverityMutationResponse>;
+  /** delete single row from the table: "household_severity" */
+  delete_household_severity_by_pk?: Maybe<ApiHouseholdSeverity>;
+  /** delete data from the table: "household_status" */
+  delete_household_status?: Maybe<ApiHouseholdStatusMutationResponse>;
+  /** delete single row from the table: "household_status" */
+  delete_household_status_by_pk?: Maybe<ApiHouseholdStatus>;
   /** delete data from the table: "householder" */
   delete_householder?: Maybe<ApiHouseholderMutationResponse>;
   /** delete single row from the table: "householder" */
@@ -1861,26 +2119,26 @@ export type ApiMutationRoot = {
   insert_city?: Maybe<ApiCityMutationResponse>;
   /** insert a single row into the table: "city" */
   insert_city_one?: Maybe<ApiCity>;
-  /** insert data into the table: "family" */
-  insert_family?: Maybe<ApiFamilyMutationResponse>;
-  /** insert a single row into the table: "family" */
-  insert_family_one?: Maybe<ApiFamily>;
-  /** insert data into the table: "family_project" */
-  insert_family_project?: Maybe<ApiFamilyProjectMutationResponse>;
-  /** insert a single row into the table: "family_project" */
-  insert_family_project_one?: Maybe<ApiFamilyProject>;
-  /** insert data into the table: "family_severity" */
-  insert_family_severity?: Maybe<ApiFamilySeverityMutationResponse>;
-  /** insert a single row into the table: "family_severity" */
-  insert_family_severity_one?: Maybe<ApiFamilySeverity>;
-  /** insert data into the table: "family_status" */
-  insert_family_status?: Maybe<ApiFamilyStatusMutationResponse>;
-  /** insert a single row into the table: "family_status" */
-  insert_family_status_one?: Maybe<ApiFamilyStatus>;
   /** insert data into the table: "gender" */
   insert_gender?: Maybe<ApiGenderMutationResponse>;
   /** insert a single row into the table: "gender" */
   insert_gender_one?: Maybe<ApiGender>;
+  /** insert data into the table: "household" */
+  insert_household?: Maybe<ApiHouseholdMutationResponse>;
+  /** insert a single row into the table: "household" */
+  insert_household_one?: Maybe<ApiHousehold>;
+  /** insert data into the table: "household_project" */
+  insert_household_project?: Maybe<ApiHouseholdProjectMutationResponse>;
+  /** insert a single row into the table: "household_project" */
+  insert_household_project_one?: Maybe<ApiHouseholdProject>;
+  /** insert data into the table: "household_severity" */
+  insert_household_severity?: Maybe<ApiHouseholdSeverityMutationResponse>;
+  /** insert a single row into the table: "household_severity" */
+  insert_household_severity_one?: Maybe<ApiHouseholdSeverity>;
+  /** insert data into the table: "household_status" */
+  insert_household_status?: Maybe<ApiHouseholdStatusMutationResponse>;
+  /** insert a single row into the table: "household_status" */
+  insert_household_status_one?: Maybe<ApiHouseholdStatus>;
   /** insert data into the table: "householder" */
   insert_householder?: Maybe<ApiHouseholderMutationResponse>;
   /** insert a single row into the table: "householder" */
@@ -1917,58 +2175,86 @@ export type ApiMutationRoot = {
   update_city?: Maybe<ApiCityMutationResponse>;
   /** update single row of the table: "city" */
   update_city_by_pk?: Maybe<ApiCity>;
-  /** update data of the table: "family" */
-  update_family?: Maybe<ApiFamilyMutationResponse>;
-  /** update single row of the table: "family" */
-  update_family_by_pk?: Maybe<ApiFamily>;
-  /** update data of the table: "family_project" */
-  update_family_project?: Maybe<ApiFamilyProjectMutationResponse>;
-  /** update single row of the table: "family_project" */
-  update_family_project_by_pk?: Maybe<ApiFamilyProject>;
-  /** update data of the table: "family_severity" */
-  update_family_severity?: Maybe<ApiFamilySeverityMutationResponse>;
-  /** update single row of the table: "family_severity" */
-  update_family_severity_by_pk?: Maybe<ApiFamilySeverity>;
-  /** update data of the table: "family_status" */
-  update_family_status?: Maybe<ApiFamilyStatusMutationResponse>;
-  /** update single row of the table: "family_status" */
-  update_family_status_by_pk?: Maybe<ApiFamilyStatus>;
+  /** update multiples rows of table: "city" */
+  update_city_many?: Maybe<Array<Maybe<ApiCityMutationResponse>>>;
   /** update data of the table: "gender" */
   update_gender?: Maybe<ApiGenderMutationResponse>;
   /** update single row of the table: "gender" */
   update_gender_by_pk?: Maybe<ApiGender>;
+  /** update multiples rows of table: "gender" */
+  update_gender_many?: Maybe<Array<Maybe<ApiGenderMutationResponse>>>;
+  /** update data of the table: "household" */
+  update_household?: Maybe<ApiHouseholdMutationResponse>;
+  /** update single row of the table: "household" */
+  update_household_by_pk?: Maybe<ApiHousehold>;
+  /** update multiples rows of table: "household" */
+  update_household_many?: Maybe<Array<Maybe<ApiHouseholdMutationResponse>>>;
+  /** update data of the table: "household_project" */
+  update_household_project?: Maybe<ApiHouseholdProjectMutationResponse>;
+  /** update single row of the table: "household_project" */
+  update_household_project_by_pk?: Maybe<ApiHouseholdProject>;
+  /** update multiples rows of table: "household_project" */
+  update_household_project_many?: Maybe<Array<Maybe<ApiHouseholdProjectMutationResponse>>>;
+  /** update data of the table: "household_severity" */
+  update_household_severity?: Maybe<ApiHouseholdSeverityMutationResponse>;
+  /** update single row of the table: "household_severity" */
+  update_household_severity_by_pk?: Maybe<ApiHouseholdSeverity>;
+  /** update multiples rows of table: "household_severity" */
+  update_household_severity_many?: Maybe<Array<Maybe<ApiHouseholdSeverityMutationResponse>>>;
+  /** update data of the table: "household_status" */
+  update_household_status?: Maybe<ApiHouseholdStatusMutationResponse>;
+  /** update single row of the table: "household_status" */
+  update_household_status_by_pk?: Maybe<ApiHouseholdStatus>;
+  /** update multiples rows of table: "household_status" */
+  update_household_status_many?: Maybe<Array<Maybe<ApiHouseholdStatusMutationResponse>>>;
   /** update data of the table: "householder" */
   update_householder?: Maybe<ApiHouseholderMutationResponse>;
   /** update single row of the table: "householder" */
   update_householder_by_pk?: Maybe<ApiHouseholder>;
+  /** update multiples rows of table: "householder" */
+  update_householder_many?: Maybe<Array<Maybe<ApiHouseholderMutationResponse>>>;
   /** update data of the table: "householder_status" */
   update_householder_status?: Maybe<ApiHouseholderStatusMutationResponse>;
   /** update single row of the table: "householder_status" */
   update_householder_status_by_pk?: Maybe<ApiHouseholderStatus>;
+  /** update multiples rows of table: "householder_status" */
+  update_householder_status_many?: Maybe<Array<Maybe<ApiHouseholderStatusMutationResponse>>>;
   /** update data of the table: "member" */
   update_member?: Maybe<ApiMemberMutationResponse>;
   /** update single row of the table: "member" */
   update_member_by_pk?: Maybe<ApiMember>;
+  /** update multiples rows of table: "member" */
+  update_member_many?: Maybe<Array<Maybe<ApiMemberMutationResponse>>>;
   /** update data of the table: "member_status" */
   update_member_status?: Maybe<ApiMemberStatusMutationResponse>;
   /** update single row of the table: "member_status" */
   update_member_status_by_pk?: Maybe<ApiMemberStatus>;
+  /** update multiples rows of table: "member_status" */
+  update_member_status_many?: Maybe<Array<Maybe<ApiMemberStatusMutationResponse>>>;
   /** update data of the table: "nationality" */
   update_nationality?: Maybe<ApiNationalityMutationResponse>;
   /** update single row of the table: "nationality" */
   update_nationality_by_pk?: Maybe<ApiNationality>;
+  /** update multiples rows of table: "nationality" */
+  update_nationality_many?: Maybe<Array<Maybe<ApiNationalityMutationResponse>>>;
   /** update data of the table: "project" */
   update_project?: Maybe<ApiProjectMutationResponse>;
   /** update single row of the table: "project" */
   update_project_by_pk?: Maybe<ApiProject>;
+  /** update multiples rows of table: "project" */
+  update_project_many?: Maybe<Array<Maybe<ApiProjectMutationResponse>>>;
   /** update data of the table: "project_status" */
   update_project_status?: Maybe<ApiProjectStatusMutationResponse>;
   /** update single row of the table: "project_status" */
   update_project_status_by_pk?: Maybe<ApiProjectStatus>;
+  /** update multiples rows of table: "project_status" */
+  update_project_status_many?: Maybe<Array<Maybe<ApiProjectStatusMutationResponse>>>;
   /** update data of the table: "religion" */
   update_religion?: Maybe<ApiReligionMutationResponse>;
   /** update single row of the table: "religion" */
   update_religion_by_pk?: Maybe<ApiReligion>;
+  /** update multiples rows of table: "religion" */
+  update_religion_many?: Maybe<Array<Maybe<ApiReligionMutationResponse>>>;
 };
 
 
@@ -1980,55 +2266,6 @@ export type ApiMutationRootApiDeleteCityArgs = {
 
 /** mutation root */
 export type ApiMutationRootApiDeleteCityByPkArgs = {
-  value: Scalars['String'];
-};
-
-
-/** mutation root */
-export type ApiMutationRootApiDeleteFamilyArgs = {
-  where: ApiFamilyBoolExp;
-};
-
-
-/** mutation root */
-export type ApiMutationRootApiDeleteFamilyByPkArgs = {
-  id: Scalars['uuid'];
-};
-
-
-/** mutation root */
-export type ApiMutationRootApiDeleteFamilyProjectArgs = {
-  where: ApiFamilyProjectBoolExp;
-};
-
-
-/** mutation root */
-export type ApiMutationRootApiDeleteFamilyProjectByPkArgs = {
-  family_id: Scalars['uuid'];
-  project_id: Scalars['uuid'];
-};
-
-
-/** mutation root */
-export type ApiMutationRootApiDeleteFamilySeverityArgs = {
-  where: ApiFamilySeverityBoolExp;
-};
-
-
-/** mutation root */
-export type ApiMutationRootApiDeleteFamilySeverityByPkArgs = {
-  value: Scalars['String'];
-};
-
-
-/** mutation root */
-export type ApiMutationRootApiDeleteFamilyStatusArgs = {
-  where: ApiFamilyStatusBoolExp;
-};
-
-
-/** mutation root */
-export type ApiMutationRootApiDeleteFamilyStatusByPkArgs = {
   value: Scalars['String'];
 };
 
@@ -2046,6 +2283,55 @@ export type ApiMutationRootApiDeleteGenderByPkArgs = {
 
 
 /** mutation root */
+export type ApiMutationRootApiDeleteHouseholdArgs = {
+  where: ApiHouseholdBoolExp;
+};
+
+
+/** mutation root */
+export type ApiMutationRootApiDeleteHouseholdByPkArgs = {
+  id: Scalars['uuid'];
+};
+
+
+/** mutation root */
+export type ApiMutationRootApiDeleteHouseholdProjectArgs = {
+  where: ApiHouseholdProjectBoolExp;
+};
+
+
+/** mutation root */
+export type ApiMutationRootApiDeleteHouseholdProjectByPkArgs = {
+  household_id: Scalars['uuid'];
+  project_id: Scalars['uuid'];
+};
+
+
+/** mutation root */
+export type ApiMutationRootApiDeleteHouseholdSeverityArgs = {
+  where: ApiHouseholdSeverityBoolExp;
+};
+
+
+/** mutation root */
+export type ApiMutationRootApiDeleteHouseholdSeverityByPkArgs = {
+  value: Scalars['String'];
+};
+
+
+/** mutation root */
+export type ApiMutationRootApiDeleteHouseholdStatusArgs = {
+  where: ApiHouseholdStatusBoolExp;
+};
+
+
+/** mutation root */
+export type ApiMutationRootApiDeleteHouseholdStatusByPkArgs = {
+  value: Scalars['String'];
+};
+
+
+/** mutation root */
 export type ApiMutationRootApiDeleteHouseholderArgs = {
   where: ApiHouseholderBoolExp;
 };
@@ -2053,7 +2339,7 @@ export type ApiMutationRootApiDeleteHouseholderArgs = {
 
 /** mutation root */
 export type ApiMutationRootApiDeleteHouseholderByPkArgs = {
-  family_id: Scalars['uuid'];
+  household_id: Scalars['uuid'];
 };
 
 
@@ -2156,62 +2442,6 @@ export type ApiMutationRootApiInsertCityOneArgs = {
 
 
 /** mutation root */
-export type ApiMutationRootApiInsertFamilyArgs = {
-  objects: Array<ApiFamilyInsertInput>;
-  on_conflict?: InputMaybe<ApiFamilyOnConflict>;
-};
-
-
-/** mutation root */
-export type ApiMutationRootApiInsertFamilyOneArgs = {
-  object: ApiFamilyInsertInput;
-  on_conflict?: InputMaybe<ApiFamilyOnConflict>;
-};
-
-
-/** mutation root */
-export type ApiMutationRootApiInsertFamilyProjectArgs = {
-  objects: Array<ApiFamilyProjectInsertInput>;
-  on_conflict?: InputMaybe<ApiFamilyProjectOnConflict>;
-};
-
-
-/** mutation root */
-export type ApiMutationRootApiInsertFamilyProjectOneArgs = {
-  object: ApiFamilyProjectInsertInput;
-  on_conflict?: InputMaybe<ApiFamilyProjectOnConflict>;
-};
-
-
-/** mutation root */
-export type ApiMutationRootApiInsertFamilySeverityArgs = {
-  objects: Array<ApiFamilySeverityInsertInput>;
-  on_conflict?: InputMaybe<ApiFamilySeverityOnConflict>;
-};
-
-
-/** mutation root */
-export type ApiMutationRootApiInsertFamilySeverityOneArgs = {
-  object: ApiFamilySeverityInsertInput;
-  on_conflict?: InputMaybe<ApiFamilySeverityOnConflict>;
-};
-
-
-/** mutation root */
-export type ApiMutationRootApiInsertFamilyStatusArgs = {
-  objects: Array<ApiFamilyStatusInsertInput>;
-  on_conflict?: InputMaybe<ApiFamilyStatusOnConflict>;
-};
-
-
-/** mutation root */
-export type ApiMutationRootApiInsertFamilyStatusOneArgs = {
-  object: ApiFamilyStatusInsertInput;
-  on_conflict?: InputMaybe<ApiFamilyStatusOnConflict>;
-};
-
-
-/** mutation root */
 export type ApiMutationRootApiInsertGenderArgs = {
   objects: Array<ApiGenderInsertInput>;
   on_conflict?: InputMaybe<ApiGenderOnConflict>;
@@ -2222,6 +2452,62 @@ export type ApiMutationRootApiInsertGenderArgs = {
 export type ApiMutationRootApiInsertGenderOneArgs = {
   object: ApiGenderInsertInput;
   on_conflict?: InputMaybe<ApiGenderOnConflict>;
+};
+
+
+/** mutation root */
+export type ApiMutationRootApiInsertHouseholdArgs = {
+  objects: Array<ApiHouseholdInsertInput>;
+  on_conflict?: InputMaybe<ApiHouseholdOnConflict>;
+};
+
+
+/** mutation root */
+export type ApiMutationRootApiInsertHouseholdOneArgs = {
+  object: ApiHouseholdInsertInput;
+  on_conflict?: InputMaybe<ApiHouseholdOnConflict>;
+};
+
+
+/** mutation root */
+export type ApiMutationRootApiInsertHouseholdProjectArgs = {
+  objects: Array<ApiHouseholdProjectInsertInput>;
+  on_conflict?: InputMaybe<ApiHouseholdProjectOnConflict>;
+};
+
+
+/** mutation root */
+export type ApiMutationRootApiInsertHouseholdProjectOneArgs = {
+  object: ApiHouseholdProjectInsertInput;
+  on_conflict?: InputMaybe<ApiHouseholdProjectOnConflict>;
+};
+
+
+/** mutation root */
+export type ApiMutationRootApiInsertHouseholdSeverityArgs = {
+  objects: Array<ApiHouseholdSeverityInsertInput>;
+  on_conflict?: InputMaybe<ApiHouseholdSeverityOnConflict>;
+};
+
+
+/** mutation root */
+export type ApiMutationRootApiInsertHouseholdSeverityOneArgs = {
+  object: ApiHouseholdSeverityInsertInput;
+  on_conflict?: InputMaybe<ApiHouseholdSeverityOnConflict>;
+};
+
+
+/** mutation root */
+export type ApiMutationRootApiInsertHouseholdStatusArgs = {
+  objects: Array<ApiHouseholdStatusInsertInput>;
+  on_conflict?: InputMaybe<ApiHouseholdStatusOnConflict>;
+};
+
+
+/** mutation root */
+export type ApiMutationRootApiInsertHouseholdStatusOneArgs = {
+  object: ApiHouseholdStatusInsertInput;
+  on_conflict?: InputMaybe<ApiHouseholdStatusOnConflict>;
 };
 
 
@@ -2352,62 +2638,8 @@ export type ApiMutationRootApiUpdateCityByPkArgs = {
 
 
 /** mutation root */
-export type ApiMutationRootApiUpdateFamilyArgs = {
-  _inc?: InputMaybe<ApiFamilyIncInput>;
-  _set?: InputMaybe<ApiFamilySetInput>;
-  where: ApiFamilyBoolExp;
-};
-
-
-/** mutation root */
-export type ApiMutationRootApiUpdateFamilyByPkArgs = {
-  _inc?: InputMaybe<ApiFamilyIncInput>;
-  _set?: InputMaybe<ApiFamilySetInput>;
-  pk_columns: ApiFamilyPkColumnsInput;
-};
-
-
-/** mutation root */
-export type ApiMutationRootApiUpdateFamilyProjectArgs = {
-  _inc?: InputMaybe<ApiFamilyProjectIncInput>;
-  _set?: InputMaybe<ApiFamilyProjectSetInput>;
-  where: ApiFamilyProjectBoolExp;
-};
-
-
-/** mutation root */
-export type ApiMutationRootApiUpdateFamilyProjectByPkArgs = {
-  _inc?: InputMaybe<ApiFamilyProjectIncInput>;
-  _set?: InputMaybe<ApiFamilyProjectSetInput>;
-  pk_columns: ApiFamilyProjectPkColumnsInput;
-};
-
-
-/** mutation root */
-export type ApiMutationRootApiUpdateFamilySeverityArgs = {
-  _set?: InputMaybe<ApiFamilySeveritySetInput>;
-  where: ApiFamilySeverityBoolExp;
-};
-
-
-/** mutation root */
-export type ApiMutationRootApiUpdateFamilySeverityByPkArgs = {
-  _set?: InputMaybe<ApiFamilySeveritySetInput>;
-  pk_columns: ApiFamilySeverityPkColumnsInput;
-};
-
-
-/** mutation root */
-export type ApiMutationRootApiUpdateFamilyStatusArgs = {
-  _set?: InputMaybe<ApiFamilyStatusSetInput>;
-  where: ApiFamilyStatusBoolExp;
-};
-
-
-/** mutation root */
-export type ApiMutationRootApiUpdateFamilyStatusByPkArgs = {
-  _set?: InputMaybe<ApiFamilyStatusSetInput>;
-  pk_columns: ApiFamilyStatusPkColumnsInput;
+export type ApiMutationRootApiUpdateCityManyArgs = {
+  updates: Array<ApiCityUpdates>;
 };
 
 
@@ -2426,6 +2658,96 @@ export type ApiMutationRootApiUpdateGenderByPkArgs = {
 
 
 /** mutation root */
+export type ApiMutationRootApiUpdateGenderManyArgs = {
+  updates: Array<ApiGenderUpdates>;
+};
+
+
+/** mutation root */
+export type ApiMutationRootApiUpdateHouseholdArgs = {
+  _inc?: InputMaybe<ApiHouseholdIncInput>;
+  _set?: InputMaybe<ApiHouseholdSetInput>;
+  where: ApiHouseholdBoolExp;
+};
+
+
+/** mutation root */
+export type ApiMutationRootApiUpdateHouseholdByPkArgs = {
+  _inc?: InputMaybe<ApiHouseholdIncInput>;
+  _set?: InputMaybe<ApiHouseholdSetInput>;
+  pk_columns: ApiHouseholdPkColumnsInput;
+};
+
+
+/** mutation root */
+export type ApiMutationRootApiUpdateHouseholdManyArgs = {
+  updates: Array<ApiHouseholdUpdates>;
+};
+
+
+/** mutation root */
+export type ApiMutationRootApiUpdateHouseholdProjectArgs = {
+  _inc?: InputMaybe<ApiHouseholdProjectIncInput>;
+  _set?: InputMaybe<ApiHouseholdProjectSetInput>;
+  where: ApiHouseholdProjectBoolExp;
+};
+
+
+/** mutation root */
+export type ApiMutationRootApiUpdateHouseholdProjectByPkArgs = {
+  _inc?: InputMaybe<ApiHouseholdProjectIncInput>;
+  _set?: InputMaybe<ApiHouseholdProjectSetInput>;
+  pk_columns: ApiHouseholdProjectPkColumnsInput;
+};
+
+
+/** mutation root */
+export type ApiMutationRootApiUpdateHouseholdProjectManyArgs = {
+  updates: Array<ApiHouseholdProjectUpdates>;
+};
+
+
+/** mutation root */
+export type ApiMutationRootApiUpdateHouseholdSeverityArgs = {
+  _set?: InputMaybe<ApiHouseholdSeveritySetInput>;
+  where: ApiHouseholdSeverityBoolExp;
+};
+
+
+/** mutation root */
+export type ApiMutationRootApiUpdateHouseholdSeverityByPkArgs = {
+  _set?: InputMaybe<ApiHouseholdSeveritySetInput>;
+  pk_columns: ApiHouseholdSeverityPkColumnsInput;
+};
+
+
+/** mutation root */
+export type ApiMutationRootApiUpdateHouseholdSeverityManyArgs = {
+  updates: Array<ApiHouseholdSeverityUpdates>;
+};
+
+
+/** mutation root */
+export type ApiMutationRootApiUpdateHouseholdStatusArgs = {
+  _set?: InputMaybe<ApiHouseholdStatusSetInput>;
+  where: ApiHouseholdStatusBoolExp;
+};
+
+
+/** mutation root */
+export type ApiMutationRootApiUpdateHouseholdStatusByPkArgs = {
+  _set?: InputMaybe<ApiHouseholdStatusSetInput>;
+  pk_columns: ApiHouseholdStatusPkColumnsInput;
+};
+
+
+/** mutation root */
+export type ApiMutationRootApiUpdateHouseholdStatusManyArgs = {
+  updates: Array<ApiHouseholdStatusUpdates>;
+};
+
+
+/** mutation root */
 export type ApiMutationRootApiUpdateHouseholderArgs = {
   _set?: InputMaybe<ApiHouseholderSetInput>;
   where: ApiHouseholderBoolExp;
@@ -2436,6 +2758,12 @@ export type ApiMutationRootApiUpdateHouseholderArgs = {
 export type ApiMutationRootApiUpdateHouseholderByPkArgs = {
   _set?: InputMaybe<ApiHouseholderSetInput>;
   pk_columns: ApiHouseholderPkColumnsInput;
+};
+
+
+/** mutation root */
+export type ApiMutationRootApiUpdateHouseholderManyArgs = {
+  updates: Array<ApiHouseholderUpdates>;
 };
 
 
@@ -2454,6 +2782,12 @@ export type ApiMutationRootApiUpdateHouseholderStatusByPkArgs = {
 
 
 /** mutation root */
+export type ApiMutationRootApiUpdateHouseholderStatusManyArgs = {
+  updates: Array<ApiHouseholderStatusUpdates>;
+};
+
+
+/** mutation root */
 export type ApiMutationRootApiUpdateMemberArgs = {
   _set?: InputMaybe<ApiMemberSetInput>;
   where: ApiMemberBoolExp;
@@ -2464,6 +2798,12 @@ export type ApiMutationRootApiUpdateMemberArgs = {
 export type ApiMutationRootApiUpdateMemberByPkArgs = {
   _set?: InputMaybe<ApiMemberSetInput>;
   pk_columns: ApiMemberPkColumnsInput;
+};
+
+
+/** mutation root */
+export type ApiMutationRootApiUpdateMemberManyArgs = {
+  updates: Array<ApiMemberUpdates>;
 };
 
 
@@ -2482,6 +2822,12 @@ export type ApiMutationRootApiUpdateMemberStatusByPkArgs = {
 
 
 /** mutation root */
+export type ApiMutationRootApiUpdateMemberStatusManyArgs = {
+  updates: Array<ApiMemberStatusUpdates>;
+};
+
+
+/** mutation root */
 export type ApiMutationRootApiUpdateNationalityArgs = {
   _set?: InputMaybe<ApiNationalitySetInput>;
   where: ApiNationalityBoolExp;
@@ -2492,6 +2838,12 @@ export type ApiMutationRootApiUpdateNationalityArgs = {
 export type ApiMutationRootApiUpdateNationalityByPkArgs = {
   _set?: InputMaybe<ApiNationalitySetInput>;
   pk_columns: ApiNationalityPkColumnsInput;
+};
+
+
+/** mutation root */
+export type ApiMutationRootApiUpdateNationalityManyArgs = {
+  updates: Array<ApiNationalityUpdates>;
 };
 
 
@@ -2510,6 +2862,12 @@ export type ApiMutationRootApiUpdateProjectByPkArgs = {
 
 
 /** mutation root */
+export type ApiMutationRootApiUpdateProjectManyArgs = {
+  updates: Array<ApiProjectUpdates>;
+};
+
+
+/** mutation root */
 export type ApiMutationRootApiUpdateProjectStatusArgs = {
   _set?: InputMaybe<ApiProjectStatusSetInput>;
   where: ApiProjectStatusBoolExp;
@@ -2524,6 +2882,12 @@ export type ApiMutationRootApiUpdateProjectStatusByPkArgs = {
 
 
 /** mutation root */
+export type ApiMutationRootApiUpdateProjectStatusManyArgs = {
+  updates: Array<ApiProjectStatusUpdates>;
+};
+
+
+/** mutation root */
 export type ApiMutationRootApiUpdateReligionArgs = {
   _set?: InputMaybe<ApiReligionSetInput>;
   where: ApiReligionBoolExp;
@@ -2534,6 +2898,12 @@ export type ApiMutationRootApiUpdateReligionArgs = {
 export type ApiMutationRootApiUpdateReligionByPkArgs = {
   _set?: InputMaybe<ApiReligionSetInput>;
   pk_columns: ApiReligionPkColumnsInput;
+};
+
+
+/** mutation root */
+export type ApiMutationRootApiUpdateReligionManyArgs = {
+  updates: Array<ApiReligionUpdates>;
 };
 
 /** columns and relationships of "nationality" */
@@ -2574,7 +2944,7 @@ export type ApiNationalityBoolExp = {
 
 /** unique or primary key constraints on table "nationality" */
 export enum ApiNationalityConstraint {
-  /** unique or primary key constraint */
+  /** unique or primary key constraint on columns "value" */
   NationalityPkey = 'nationality_pkey'
 }
 
@@ -2646,11 +3016,31 @@ export type ApiNationalitySetInput = {
   value?: InputMaybe<Scalars['String']>;
 };
 
+/** Streaming cursor of the table "nationality" */
+export type ApiNationalityStreamCursorInput = {
+  /** Stream column input with initial value */
+  initial_value: ApiNationalityStreamCursorValueInput;
+  /** cursor ordering */
+  ordering?: InputMaybe<ApiCursorOrdering>;
+};
+
+/** Initial value of the column from where the streaming should start */
+export type ApiNationalityStreamCursorValueInput = {
+  value?: InputMaybe<Scalars['String']>;
+};
+
 /** update columns of table "nationality" */
 export enum ApiNationalityUpdateColumn {
   /** column name */
   Value = 'value'
 }
+
+export type ApiNationalityUpdates = {
+  /** sets the columns of the filtered rows to the given values */
+  _set?: InputMaybe<ApiNationalitySetInput>;
+  /** filter the rows which have to be updated */
+  where: ApiNationalityBoolExp;
+};
 
 /** column ordering options */
 export enum ApiOrderBy {
@@ -2675,9 +3065,9 @@ export type ApiProject = {
   description?: Maybe<Scalars['String']>;
   due_date?: Maybe<Scalars['date']>;
   /** An array relationship */
-  families: Array<ApiFamilyProject>;
+  households: Array<ApiHouseholdProject>;
   /** An aggregate relationship */
-  families_aggregate: ApiFamilyProjectAggregate;
+  households_aggregate: ApiHouseholdProjectAggregate;
   id: Scalars['uuid'];
   name: Scalars['String'];
   start_date?: Maybe<Scalars['date']>;
@@ -2687,22 +3077,22 @@ export type ApiProject = {
 
 
 /** columns and relationships of "project" */
-export type ApiProjectApiFamiliesArgs = {
-  distinct_on?: InputMaybe<Array<ApiFamilyProjectSelectColumn>>;
+export type ApiProjectApiHouseholdsArgs = {
+  distinct_on?: InputMaybe<Array<ApiHouseholdProjectSelectColumn>>;
   limit?: InputMaybe<Scalars['Int']>;
   offset?: InputMaybe<Scalars['Int']>;
-  order_by?: InputMaybe<Array<ApiFamilyProjectOrderBy>>;
-  where?: InputMaybe<ApiFamilyProjectBoolExp>;
+  order_by?: InputMaybe<Array<ApiHouseholdProjectOrderBy>>;
+  where?: InputMaybe<ApiHouseholdProjectBoolExp>;
 };
 
 
 /** columns and relationships of "project" */
-export type ApiProjectApiFamiliesAggregateArgs = {
-  distinct_on?: InputMaybe<Array<ApiFamilyProjectSelectColumn>>;
+export type ApiProjectApiHouseholdsAggregateArgs = {
+  distinct_on?: InputMaybe<Array<ApiHouseholdProjectSelectColumn>>;
   limit?: InputMaybe<Scalars['Int']>;
   offset?: InputMaybe<Scalars['Int']>;
-  order_by?: InputMaybe<Array<ApiFamilyProjectOrderBy>>;
-  where?: InputMaybe<ApiFamilyProjectBoolExp>;
+  order_by?: InputMaybe<Array<ApiHouseholdProjectOrderBy>>;
+  where?: InputMaybe<ApiHouseholdProjectBoolExp>;
 };
 
 /** aggregated selection of "project" */
@@ -2735,7 +3125,8 @@ export type ApiProjectBoolExp = {
   created_at?: InputMaybe<ApiTimestamptzComparisonExp>;
   description?: InputMaybe<ApiStringComparisonExp>;
   due_date?: InputMaybe<ApiDateComparisonExp>;
-  families?: InputMaybe<ApiFamilyProjectBoolExp>;
+  households?: InputMaybe<ApiHouseholdProjectBoolExp>;
+  households_aggregate?: InputMaybe<ApiHouseholdProjectAggregateBoolExp>;
   id?: InputMaybe<ApiUuidComparisonExp>;
   name?: InputMaybe<ApiStringComparisonExp>;
   start_date?: InputMaybe<ApiDateComparisonExp>;
@@ -2745,7 +3136,7 @@ export type ApiProjectBoolExp = {
 
 /** unique or primary key constraints on table "project" */
 export enum ApiProjectConstraint {
-  /** unique or primary key constraint */
+  /** unique or primary key constraint on columns "id" */
   ProjectPkey = 'project_pkey'
 }
 
@@ -2754,7 +3145,7 @@ export type ApiProjectInsertInput = {
   created_at?: InputMaybe<Scalars['timestamptz']>;
   description?: InputMaybe<Scalars['String']>;
   due_date?: InputMaybe<Scalars['date']>;
-  families?: InputMaybe<ApiFamilyProjectArrRelInsertInput>;
+  households?: InputMaybe<ApiHouseholdProjectArrRelInsertInput>;
   id?: InputMaybe<Scalars['uuid']>;
   name?: InputMaybe<Scalars['String']>;
   start_date?: InputMaybe<Scalars['date']>;
@@ -2814,7 +3205,7 @@ export type ApiProjectOrderBy = {
   created_at?: InputMaybe<ApiOrderBy>;
   description?: InputMaybe<ApiOrderBy>;
   due_date?: InputMaybe<ApiOrderBy>;
-  families_aggregate?: InputMaybe<ApiFamilyProjectAggregateOrderBy>;
+  households_aggregate?: InputMaybe<ApiHouseholdProjectAggregateOrderBy>;
   id?: InputMaybe<ApiOrderBy>;
   name?: InputMaybe<ApiOrderBy>;
   start_date?: InputMaybe<ApiOrderBy>;
@@ -2899,7 +3290,7 @@ export type ApiProjectStatusBoolExp = {
 
 /** unique or primary key constraints on table "project_status" */
 export enum ApiProjectStatusConstraint {
-  /** unique or primary key constraint */
+  /** unique or primary key constraint on columns "value" */
   ProjectStatusPkey = 'project_status_pkey'
 }
 
@@ -2981,6 +3372,20 @@ export type ApiProjectStatusSetInput = {
   value?: InputMaybe<Scalars['String']>;
 };
 
+/** Streaming cursor of the table "project_status" */
+export type ApiProjectStatusStreamCursorInput = {
+  /** Stream column input with initial value */
+  initial_value: ApiProjectStatusStreamCursorValueInput;
+  /** cursor ordering */
+  ordering?: InputMaybe<ApiCursorOrdering>;
+};
+
+/** Initial value of the column from where the streaming should start */
+export type ApiProjectStatusStreamCursorValueInput = {
+  comment?: InputMaybe<Scalars['String']>;
+  value?: InputMaybe<Scalars['String']>;
+};
+
 /** update columns of table "project_status" */
 export enum ApiProjectStatusUpdateColumn {
   /** column name */
@@ -2988,6 +3393,33 @@ export enum ApiProjectStatusUpdateColumn {
   /** column name */
   Value = 'value'
 }
+
+export type ApiProjectStatusUpdates = {
+  /** sets the columns of the filtered rows to the given values */
+  _set?: InputMaybe<ApiProjectStatusSetInput>;
+  /** filter the rows which have to be updated */
+  where: ApiProjectStatusBoolExp;
+};
+
+/** Streaming cursor of the table "project" */
+export type ApiProjectStreamCursorInput = {
+  /** Stream column input with initial value */
+  initial_value: ApiProjectStreamCursorValueInput;
+  /** cursor ordering */
+  ordering?: InputMaybe<ApiCursorOrdering>;
+};
+
+/** Initial value of the column from where the streaming should start */
+export type ApiProjectStreamCursorValueInput = {
+  created_at?: InputMaybe<Scalars['timestamptz']>;
+  description?: InputMaybe<Scalars['String']>;
+  due_date?: InputMaybe<Scalars['date']>;
+  id?: InputMaybe<Scalars['uuid']>;
+  name?: InputMaybe<Scalars['String']>;
+  start_date?: InputMaybe<Scalars['date']>;
+  status?: InputMaybe<ApiProjectStatusEnum>;
+  updated_at?: InputMaybe<Scalars['timestamptz']>;
+};
 
 /** update columns of table "project" */
 export enum ApiProjectUpdateColumn {
@@ -3009,6 +3441,13 @@ export enum ApiProjectUpdateColumn {
   UpdatedAt = 'updated_at'
 }
 
+export type ApiProjectUpdates = {
+  /** sets the columns of the filtered rows to the given values */
+  _set?: InputMaybe<ApiProjectSetInput>;
+  /** filter the rows which have to be updated */
+  where: ApiProjectBoolExp;
+};
+
 export type ApiQueryRoot = {
   __typename?: 'query_root';
   /** fetch data from the table: "city" */
@@ -3017,36 +3456,36 @@ export type ApiQueryRoot = {
   city_aggregate: ApiCityAggregate;
   /** fetch data from the table: "city" using primary key columns */
   city_by_pk?: Maybe<ApiCity>;
-  /** fetch data from the table: "family" */
-  family: Array<ApiFamily>;
-  /** fetch aggregated fields from the table: "family" */
-  family_aggregate: ApiFamilyAggregate;
-  /** fetch data from the table: "family" using primary key columns */
-  family_by_pk?: Maybe<ApiFamily>;
-  /** fetch data from the table: "family_project" */
-  family_project: Array<ApiFamilyProject>;
-  /** fetch aggregated fields from the table: "family_project" */
-  family_project_aggregate: ApiFamilyProjectAggregate;
-  /** fetch data from the table: "family_project" using primary key columns */
-  family_project_by_pk?: Maybe<ApiFamilyProject>;
-  /** fetch data from the table: "family_severity" */
-  family_severity: Array<ApiFamilySeverity>;
-  /** fetch aggregated fields from the table: "family_severity" */
-  family_severity_aggregate: ApiFamilySeverityAggregate;
-  /** fetch data from the table: "family_severity" using primary key columns */
-  family_severity_by_pk?: Maybe<ApiFamilySeverity>;
-  /** fetch data from the table: "family_status" */
-  family_status: Array<ApiFamilyStatus>;
-  /** fetch aggregated fields from the table: "family_status" */
-  family_status_aggregate: ApiFamilyStatusAggregate;
-  /** fetch data from the table: "family_status" using primary key columns */
-  family_status_by_pk?: Maybe<ApiFamilyStatus>;
   /** fetch data from the table: "gender" */
   gender: Array<ApiGender>;
   /** fetch aggregated fields from the table: "gender" */
   gender_aggregate: ApiGenderAggregate;
   /** fetch data from the table: "gender" using primary key columns */
   gender_by_pk?: Maybe<ApiGender>;
+  /** fetch data from the table: "household" */
+  household: Array<ApiHousehold>;
+  /** fetch aggregated fields from the table: "household" */
+  household_aggregate: ApiHouseholdAggregate;
+  /** fetch data from the table: "household" using primary key columns */
+  household_by_pk?: Maybe<ApiHousehold>;
+  /** fetch data from the table: "household_project" */
+  household_project: Array<ApiHouseholdProject>;
+  /** fetch aggregated fields from the table: "household_project" */
+  household_project_aggregate: ApiHouseholdProjectAggregate;
+  /** fetch data from the table: "household_project" using primary key columns */
+  household_project_by_pk?: Maybe<ApiHouseholdProject>;
+  /** fetch data from the table: "household_severity" */
+  household_severity: Array<ApiHouseholdSeverity>;
+  /** fetch aggregated fields from the table: "household_severity" */
+  household_severity_aggregate: ApiHouseholdSeverityAggregate;
+  /** fetch data from the table: "household_severity" using primary key columns */
+  household_severity_by_pk?: Maybe<ApiHouseholdSeverity>;
+  /** fetch data from the table: "household_status" */
+  household_status: Array<ApiHouseholdStatus>;
+  /** fetch aggregated fields from the table: "household_status" */
+  household_status_aggregate: ApiHouseholdStatusAggregate;
+  /** fetch data from the table: "household_status" using primary key columns */
+  household_status_by_pk?: Maybe<ApiHouseholdStatus>;
   /** fetch data from the table: "householder" */
   householder: Array<ApiHouseholder>;
   /** fetch aggregated fields from the table: "householder" */
@@ -3121,99 +3560,6 @@ export type ApiQueryRootApiCityByPkArgs = {
 };
 
 
-export type ApiQueryRootApiFamilyArgs = {
-  distinct_on?: InputMaybe<Array<ApiFamilySelectColumn>>;
-  limit?: InputMaybe<Scalars['Int']>;
-  offset?: InputMaybe<Scalars['Int']>;
-  order_by?: InputMaybe<Array<ApiFamilyOrderBy>>;
-  where?: InputMaybe<ApiFamilyBoolExp>;
-};
-
-
-export type ApiQueryRootApiFamilyAggregateArgs = {
-  distinct_on?: InputMaybe<Array<ApiFamilySelectColumn>>;
-  limit?: InputMaybe<Scalars['Int']>;
-  offset?: InputMaybe<Scalars['Int']>;
-  order_by?: InputMaybe<Array<ApiFamilyOrderBy>>;
-  where?: InputMaybe<ApiFamilyBoolExp>;
-};
-
-
-export type ApiQueryRootApiFamilyByPkArgs = {
-  id: Scalars['uuid'];
-};
-
-
-export type ApiQueryRootApiFamilyProjectArgs = {
-  distinct_on?: InputMaybe<Array<ApiFamilyProjectSelectColumn>>;
-  limit?: InputMaybe<Scalars['Int']>;
-  offset?: InputMaybe<Scalars['Int']>;
-  order_by?: InputMaybe<Array<ApiFamilyProjectOrderBy>>;
-  where?: InputMaybe<ApiFamilyProjectBoolExp>;
-};
-
-
-export type ApiQueryRootApiFamilyProjectAggregateArgs = {
-  distinct_on?: InputMaybe<Array<ApiFamilyProjectSelectColumn>>;
-  limit?: InputMaybe<Scalars['Int']>;
-  offset?: InputMaybe<Scalars['Int']>;
-  order_by?: InputMaybe<Array<ApiFamilyProjectOrderBy>>;
-  where?: InputMaybe<ApiFamilyProjectBoolExp>;
-};
-
-
-export type ApiQueryRootApiFamilyProjectByPkArgs = {
-  family_id: Scalars['uuid'];
-  project_id: Scalars['uuid'];
-};
-
-
-export type ApiQueryRootApiFamilySeverityArgs = {
-  distinct_on?: InputMaybe<Array<ApiFamilySeveritySelectColumn>>;
-  limit?: InputMaybe<Scalars['Int']>;
-  offset?: InputMaybe<Scalars['Int']>;
-  order_by?: InputMaybe<Array<ApiFamilySeverityOrderBy>>;
-  where?: InputMaybe<ApiFamilySeverityBoolExp>;
-};
-
-
-export type ApiQueryRootApiFamilySeverityAggregateArgs = {
-  distinct_on?: InputMaybe<Array<ApiFamilySeveritySelectColumn>>;
-  limit?: InputMaybe<Scalars['Int']>;
-  offset?: InputMaybe<Scalars['Int']>;
-  order_by?: InputMaybe<Array<ApiFamilySeverityOrderBy>>;
-  where?: InputMaybe<ApiFamilySeverityBoolExp>;
-};
-
-
-export type ApiQueryRootApiFamilySeverityByPkArgs = {
-  value: Scalars['String'];
-};
-
-
-export type ApiQueryRootApiFamilyStatusArgs = {
-  distinct_on?: InputMaybe<Array<ApiFamilyStatusSelectColumn>>;
-  limit?: InputMaybe<Scalars['Int']>;
-  offset?: InputMaybe<Scalars['Int']>;
-  order_by?: InputMaybe<Array<ApiFamilyStatusOrderBy>>;
-  where?: InputMaybe<ApiFamilyStatusBoolExp>;
-};
-
-
-export type ApiQueryRootApiFamilyStatusAggregateArgs = {
-  distinct_on?: InputMaybe<Array<ApiFamilyStatusSelectColumn>>;
-  limit?: InputMaybe<Scalars['Int']>;
-  offset?: InputMaybe<Scalars['Int']>;
-  order_by?: InputMaybe<Array<ApiFamilyStatusOrderBy>>;
-  where?: InputMaybe<ApiFamilyStatusBoolExp>;
-};
-
-
-export type ApiQueryRootApiFamilyStatusByPkArgs = {
-  value: Scalars['String'];
-};
-
-
 export type ApiQueryRootApiGenderArgs = {
   distinct_on?: InputMaybe<Array<ApiGenderSelectColumn>>;
   limit?: InputMaybe<Scalars['Int']>;
@@ -3237,6 +3583,99 @@ export type ApiQueryRootApiGenderByPkArgs = {
 };
 
 
+export type ApiQueryRootApiHouseholdArgs = {
+  distinct_on?: InputMaybe<Array<ApiHouseholdSelectColumn>>;
+  limit?: InputMaybe<Scalars['Int']>;
+  offset?: InputMaybe<Scalars['Int']>;
+  order_by?: InputMaybe<Array<ApiHouseholdOrderBy>>;
+  where?: InputMaybe<ApiHouseholdBoolExp>;
+};
+
+
+export type ApiQueryRootApiHouseholdAggregateArgs = {
+  distinct_on?: InputMaybe<Array<ApiHouseholdSelectColumn>>;
+  limit?: InputMaybe<Scalars['Int']>;
+  offset?: InputMaybe<Scalars['Int']>;
+  order_by?: InputMaybe<Array<ApiHouseholdOrderBy>>;
+  where?: InputMaybe<ApiHouseholdBoolExp>;
+};
+
+
+export type ApiQueryRootApiHouseholdByPkArgs = {
+  id: Scalars['uuid'];
+};
+
+
+export type ApiQueryRootApiHouseholdProjectArgs = {
+  distinct_on?: InputMaybe<Array<ApiHouseholdProjectSelectColumn>>;
+  limit?: InputMaybe<Scalars['Int']>;
+  offset?: InputMaybe<Scalars['Int']>;
+  order_by?: InputMaybe<Array<ApiHouseholdProjectOrderBy>>;
+  where?: InputMaybe<ApiHouseholdProjectBoolExp>;
+};
+
+
+export type ApiQueryRootApiHouseholdProjectAggregateArgs = {
+  distinct_on?: InputMaybe<Array<ApiHouseholdProjectSelectColumn>>;
+  limit?: InputMaybe<Scalars['Int']>;
+  offset?: InputMaybe<Scalars['Int']>;
+  order_by?: InputMaybe<Array<ApiHouseholdProjectOrderBy>>;
+  where?: InputMaybe<ApiHouseholdProjectBoolExp>;
+};
+
+
+export type ApiQueryRootApiHouseholdProjectByPkArgs = {
+  household_id: Scalars['uuid'];
+  project_id: Scalars['uuid'];
+};
+
+
+export type ApiQueryRootApiHouseholdSeverityArgs = {
+  distinct_on?: InputMaybe<Array<ApiHouseholdSeveritySelectColumn>>;
+  limit?: InputMaybe<Scalars['Int']>;
+  offset?: InputMaybe<Scalars['Int']>;
+  order_by?: InputMaybe<Array<ApiHouseholdSeverityOrderBy>>;
+  where?: InputMaybe<ApiHouseholdSeverityBoolExp>;
+};
+
+
+export type ApiQueryRootApiHouseholdSeverityAggregateArgs = {
+  distinct_on?: InputMaybe<Array<ApiHouseholdSeveritySelectColumn>>;
+  limit?: InputMaybe<Scalars['Int']>;
+  offset?: InputMaybe<Scalars['Int']>;
+  order_by?: InputMaybe<Array<ApiHouseholdSeverityOrderBy>>;
+  where?: InputMaybe<ApiHouseholdSeverityBoolExp>;
+};
+
+
+export type ApiQueryRootApiHouseholdSeverityByPkArgs = {
+  value: Scalars['String'];
+};
+
+
+export type ApiQueryRootApiHouseholdStatusArgs = {
+  distinct_on?: InputMaybe<Array<ApiHouseholdStatusSelectColumn>>;
+  limit?: InputMaybe<Scalars['Int']>;
+  offset?: InputMaybe<Scalars['Int']>;
+  order_by?: InputMaybe<Array<ApiHouseholdStatusOrderBy>>;
+  where?: InputMaybe<ApiHouseholdStatusBoolExp>;
+};
+
+
+export type ApiQueryRootApiHouseholdStatusAggregateArgs = {
+  distinct_on?: InputMaybe<Array<ApiHouseholdStatusSelectColumn>>;
+  limit?: InputMaybe<Scalars['Int']>;
+  offset?: InputMaybe<Scalars['Int']>;
+  order_by?: InputMaybe<Array<ApiHouseholdStatusOrderBy>>;
+  where?: InputMaybe<ApiHouseholdStatusBoolExp>;
+};
+
+
+export type ApiQueryRootApiHouseholdStatusByPkArgs = {
+  value: Scalars['String'];
+};
+
+
 export type ApiQueryRootApiHouseholderArgs = {
   distinct_on?: InputMaybe<Array<ApiHouseholderSelectColumn>>;
   limit?: InputMaybe<Scalars['Int']>;
@@ -3256,7 +3695,7 @@ export type ApiQueryRootApiHouseholderAggregateArgs = {
 
 
 export type ApiQueryRootApiHouseholderByPkArgs = {
-  family_id: Scalars['uuid'];
+  household_id: Scalars['uuid'];
 };
 
 
@@ -3458,7 +3897,7 @@ export type ApiReligionBoolExp = {
 
 /** unique or primary key constraints on table "religion" */
 export enum ApiReligionConstraint {
-  /** unique or primary key constraint */
+  /** unique or primary key constraint on columns "value" */
   ReligionPkey = 'religion_pkey'
 }
 
@@ -3530,11 +3969,31 @@ export type ApiReligionSetInput = {
   value?: InputMaybe<Scalars['String']>;
 };
 
+/** Streaming cursor of the table "religion" */
+export type ApiReligionStreamCursorInput = {
+  /** Stream column input with initial value */
+  initial_value: ApiReligionStreamCursorValueInput;
+  /** cursor ordering */
+  ordering?: InputMaybe<ApiCursorOrdering>;
+};
+
+/** Initial value of the column from where the streaming should start */
+export type ApiReligionStreamCursorValueInput = {
+  value?: InputMaybe<Scalars['String']>;
+};
+
 /** update columns of table "religion" */
 export enum ApiReligionUpdateColumn {
   /** column name */
   Value = 'value'
 }
+
+export type ApiReligionUpdates = {
+  /** sets the columns of the filtered rows to the given values */
+  _set?: InputMaybe<ApiReligionSetInput>;
+  /** filter the rows which have to be updated */
+  where: ApiReligionBoolExp;
+};
 
 export type ApiSubscriptionRoot = {
   __typename?: 'subscription_root';
@@ -3544,36 +4003,48 @@ export type ApiSubscriptionRoot = {
   city_aggregate: ApiCityAggregate;
   /** fetch data from the table: "city" using primary key columns */
   city_by_pk?: Maybe<ApiCity>;
-  /** fetch data from the table: "family" */
-  family: Array<ApiFamily>;
-  /** fetch aggregated fields from the table: "family" */
-  family_aggregate: ApiFamilyAggregate;
-  /** fetch data from the table: "family" using primary key columns */
-  family_by_pk?: Maybe<ApiFamily>;
-  /** fetch data from the table: "family_project" */
-  family_project: Array<ApiFamilyProject>;
-  /** fetch aggregated fields from the table: "family_project" */
-  family_project_aggregate: ApiFamilyProjectAggregate;
-  /** fetch data from the table: "family_project" using primary key columns */
-  family_project_by_pk?: Maybe<ApiFamilyProject>;
-  /** fetch data from the table: "family_severity" */
-  family_severity: Array<ApiFamilySeverity>;
-  /** fetch aggregated fields from the table: "family_severity" */
-  family_severity_aggregate: ApiFamilySeverityAggregate;
-  /** fetch data from the table: "family_severity" using primary key columns */
-  family_severity_by_pk?: Maybe<ApiFamilySeverity>;
-  /** fetch data from the table: "family_status" */
-  family_status: Array<ApiFamilyStatus>;
-  /** fetch aggregated fields from the table: "family_status" */
-  family_status_aggregate: ApiFamilyStatusAggregate;
-  /** fetch data from the table: "family_status" using primary key columns */
-  family_status_by_pk?: Maybe<ApiFamilyStatus>;
+  /** fetch data from the table in a streaming manner: "city" */
+  city_stream: Array<ApiCity>;
   /** fetch data from the table: "gender" */
   gender: Array<ApiGender>;
   /** fetch aggregated fields from the table: "gender" */
   gender_aggregate: ApiGenderAggregate;
   /** fetch data from the table: "gender" using primary key columns */
   gender_by_pk?: Maybe<ApiGender>;
+  /** fetch data from the table in a streaming manner: "gender" */
+  gender_stream: Array<ApiGender>;
+  /** fetch data from the table: "household" */
+  household: Array<ApiHousehold>;
+  /** fetch aggregated fields from the table: "household" */
+  household_aggregate: ApiHouseholdAggregate;
+  /** fetch data from the table: "household" using primary key columns */
+  household_by_pk?: Maybe<ApiHousehold>;
+  /** fetch data from the table: "household_project" */
+  household_project: Array<ApiHouseholdProject>;
+  /** fetch aggregated fields from the table: "household_project" */
+  household_project_aggregate: ApiHouseholdProjectAggregate;
+  /** fetch data from the table: "household_project" using primary key columns */
+  household_project_by_pk?: Maybe<ApiHouseholdProject>;
+  /** fetch data from the table in a streaming manner: "household_project" */
+  household_project_stream: Array<ApiHouseholdProject>;
+  /** fetch data from the table: "household_severity" */
+  household_severity: Array<ApiHouseholdSeverity>;
+  /** fetch aggregated fields from the table: "household_severity" */
+  household_severity_aggregate: ApiHouseholdSeverityAggregate;
+  /** fetch data from the table: "household_severity" using primary key columns */
+  household_severity_by_pk?: Maybe<ApiHouseholdSeverity>;
+  /** fetch data from the table in a streaming manner: "household_severity" */
+  household_severity_stream: Array<ApiHouseholdSeverity>;
+  /** fetch data from the table: "household_status" */
+  household_status: Array<ApiHouseholdStatus>;
+  /** fetch aggregated fields from the table: "household_status" */
+  household_status_aggregate: ApiHouseholdStatusAggregate;
+  /** fetch data from the table: "household_status" using primary key columns */
+  household_status_by_pk?: Maybe<ApiHouseholdStatus>;
+  /** fetch data from the table in a streaming manner: "household_status" */
+  household_status_stream: Array<ApiHouseholdStatus>;
+  /** fetch data from the table in a streaming manner: "household" */
+  household_stream: Array<ApiHousehold>;
   /** fetch data from the table: "householder" */
   householder: Array<ApiHouseholder>;
   /** fetch aggregated fields from the table: "householder" */
@@ -3586,6 +4057,10 @@ export type ApiSubscriptionRoot = {
   householder_status_aggregate: ApiHouseholderStatusAggregate;
   /** fetch data from the table: "householder_status" using primary key columns */
   householder_status_by_pk?: Maybe<ApiHouseholderStatus>;
+  /** fetch data from the table in a streaming manner: "householder_status" */
+  householder_status_stream: Array<ApiHouseholderStatus>;
+  /** fetch data from the table in a streaming manner: "householder" */
+  householder_stream: Array<ApiHouseholder>;
   /** fetch data from the table: "member" */
   member: Array<ApiMember>;
   /** fetch aggregated fields from the table: "member" */
@@ -3598,12 +4073,18 @@ export type ApiSubscriptionRoot = {
   member_status_aggregate: ApiMemberStatusAggregate;
   /** fetch data from the table: "member_status" using primary key columns */
   member_status_by_pk?: Maybe<ApiMemberStatus>;
+  /** fetch data from the table in a streaming manner: "member_status" */
+  member_status_stream: Array<ApiMemberStatus>;
+  /** fetch data from the table in a streaming manner: "member" */
+  member_stream: Array<ApiMember>;
   /** fetch data from the table: "nationality" */
   nationality: Array<ApiNationality>;
   /** fetch aggregated fields from the table: "nationality" */
   nationality_aggregate: ApiNationalityAggregate;
   /** fetch data from the table: "nationality" using primary key columns */
   nationality_by_pk?: Maybe<ApiNationality>;
+  /** fetch data from the table in a streaming manner: "nationality" */
+  nationality_stream: Array<ApiNationality>;
   /** fetch data from the table: "project" */
   project: Array<ApiProject>;
   /** fetch aggregated fields from the table: "project" */
@@ -3616,12 +4097,18 @@ export type ApiSubscriptionRoot = {
   project_status_aggregate: ApiProjectStatusAggregate;
   /** fetch data from the table: "project_status" using primary key columns */
   project_status_by_pk?: Maybe<ApiProjectStatus>;
+  /** fetch data from the table in a streaming manner: "project_status" */
+  project_status_stream: Array<ApiProjectStatus>;
+  /** fetch data from the table in a streaming manner: "project" */
+  project_stream: Array<ApiProject>;
   /** fetch data from the table: "religion" */
   religion: Array<ApiReligion>;
   /** fetch aggregated fields from the table: "religion" */
   religion_aggregate: ApiReligionAggregate;
   /** fetch data from the table: "religion" using primary key columns */
   religion_by_pk?: Maybe<ApiReligion>;
+  /** fetch data from the table in a streaming manner: "religion" */
+  religion_stream: Array<ApiReligion>;
 };
 
 
@@ -3648,96 +4135,10 @@ export type ApiSubscriptionRootApiCityByPkArgs = {
 };
 
 
-export type ApiSubscriptionRootApiFamilyArgs = {
-  distinct_on?: InputMaybe<Array<ApiFamilySelectColumn>>;
-  limit?: InputMaybe<Scalars['Int']>;
-  offset?: InputMaybe<Scalars['Int']>;
-  order_by?: InputMaybe<Array<ApiFamilyOrderBy>>;
-  where?: InputMaybe<ApiFamilyBoolExp>;
-};
-
-
-export type ApiSubscriptionRootApiFamilyAggregateArgs = {
-  distinct_on?: InputMaybe<Array<ApiFamilySelectColumn>>;
-  limit?: InputMaybe<Scalars['Int']>;
-  offset?: InputMaybe<Scalars['Int']>;
-  order_by?: InputMaybe<Array<ApiFamilyOrderBy>>;
-  where?: InputMaybe<ApiFamilyBoolExp>;
-};
-
-
-export type ApiSubscriptionRootApiFamilyByPkArgs = {
-  id: Scalars['uuid'];
-};
-
-
-export type ApiSubscriptionRootApiFamilyProjectArgs = {
-  distinct_on?: InputMaybe<Array<ApiFamilyProjectSelectColumn>>;
-  limit?: InputMaybe<Scalars['Int']>;
-  offset?: InputMaybe<Scalars['Int']>;
-  order_by?: InputMaybe<Array<ApiFamilyProjectOrderBy>>;
-  where?: InputMaybe<ApiFamilyProjectBoolExp>;
-};
-
-
-export type ApiSubscriptionRootApiFamilyProjectAggregateArgs = {
-  distinct_on?: InputMaybe<Array<ApiFamilyProjectSelectColumn>>;
-  limit?: InputMaybe<Scalars['Int']>;
-  offset?: InputMaybe<Scalars['Int']>;
-  order_by?: InputMaybe<Array<ApiFamilyProjectOrderBy>>;
-  where?: InputMaybe<ApiFamilyProjectBoolExp>;
-};
-
-
-export type ApiSubscriptionRootApiFamilyProjectByPkArgs = {
-  family_id: Scalars['uuid'];
-  project_id: Scalars['uuid'];
-};
-
-
-export type ApiSubscriptionRootApiFamilySeverityArgs = {
-  distinct_on?: InputMaybe<Array<ApiFamilySeveritySelectColumn>>;
-  limit?: InputMaybe<Scalars['Int']>;
-  offset?: InputMaybe<Scalars['Int']>;
-  order_by?: InputMaybe<Array<ApiFamilySeverityOrderBy>>;
-  where?: InputMaybe<ApiFamilySeverityBoolExp>;
-};
-
-
-export type ApiSubscriptionRootApiFamilySeverityAggregateArgs = {
-  distinct_on?: InputMaybe<Array<ApiFamilySeveritySelectColumn>>;
-  limit?: InputMaybe<Scalars['Int']>;
-  offset?: InputMaybe<Scalars['Int']>;
-  order_by?: InputMaybe<Array<ApiFamilySeverityOrderBy>>;
-  where?: InputMaybe<ApiFamilySeverityBoolExp>;
-};
-
-
-export type ApiSubscriptionRootApiFamilySeverityByPkArgs = {
-  value: Scalars['String'];
-};
-
-
-export type ApiSubscriptionRootApiFamilyStatusArgs = {
-  distinct_on?: InputMaybe<Array<ApiFamilyStatusSelectColumn>>;
-  limit?: InputMaybe<Scalars['Int']>;
-  offset?: InputMaybe<Scalars['Int']>;
-  order_by?: InputMaybe<Array<ApiFamilyStatusOrderBy>>;
-  where?: InputMaybe<ApiFamilyStatusBoolExp>;
-};
-
-
-export type ApiSubscriptionRootApiFamilyStatusAggregateArgs = {
-  distinct_on?: InputMaybe<Array<ApiFamilyStatusSelectColumn>>;
-  limit?: InputMaybe<Scalars['Int']>;
-  offset?: InputMaybe<Scalars['Int']>;
-  order_by?: InputMaybe<Array<ApiFamilyStatusOrderBy>>;
-  where?: InputMaybe<ApiFamilyStatusBoolExp>;
-};
-
-
-export type ApiSubscriptionRootApiFamilyStatusByPkArgs = {
-  value: Scalars['String'];
+export type ApiSubscriptionRootApiCityStreamArgs = {
+  batch_size: Scalars['Int'];
+  cursor: Array<InputMaybe<ApiCityStreamCursorInput>>;
+  where?: InputMaybe<ApiCityBoolExp>;
 };
 
 
@@ -3764,6 +4165,134 @@ export type ApiSubscriptionRootApiGenderByPkArgs = {
 };
 
 
+export type ApiSubscriptionRootApiGenderStreamArgs = {
+  batch_size: Scalars['Int'];
+  cursor: Array<InputMaybe<ApiGenderStreamCursorInput>>;
+  where?: InputMaybe<ApiGenderBoolExp>;
+};
+
+
+export type ApiSubscriptionRootApiHouseholdArgs = {
+  distinct_on?: InputMaybe<Array<ApiHouseholdSelectColumn>>;
+  limit?: InputMaybe<Scalars['Int']>;
+  offset?: InputMaybe<Scalars['Int']>;
+  order_by?: InputMaybe<Array<ApiHouseholdOrderBy>>;
+  where?: InputMaybe<ApiHouseholdBoolExp>;
+};
+
+
+export type ApiSubscriptionRootApiHouseholdAggregateArgs = {
+  distinct_on?: InputMaybe<Array<ApiHouseholdSelectColumn>>;
+  limit?: InputMaybe<Scalars['Int']>;
+  offset?: InputMaybe<Scalars['Int']>;
+  order_by?: InputMaybe<Array<ApiHouseholdOrderBy>>;
+  where?: InputMaybe<ApiHouseholdBoolExp>;
+};
+
+
+export type ApiSubscriptionRootApiHouseholdByPkArgs = {
+  id: Scalars['uuid'];
+};
+
+
+export type ApiSubscriptionRootApiHouseholdProjectArgs = {
+  distinct_on?: InputMaybe<Array<ApiHouseholdProjectSelectColumn>>;
+  limit?: InputMaybe<Scalars['Int']>;
+  offset?: InputMaybe<Scalars['Int']>;
+  order_by?: InputMaybe<Array<ApiHouseholdProjectOrderBy>>;
+  where?: InputMaybe<ApiHouseholdProjectBoolExp>;
+};
+
+
+export type ApiSubscriptionRootApiHouseholdProjectAggregateArgs = {
+  distinct_on?: InputMaybe<Array<ApiHouseholdProjectSelectColumn>>;
+  limit?: InputMaybe<Scalars['Int']>;
+  offset?: InputMaybe<Scalars['Int']>;
+  order_by?: InputMaybe<Array<ApiHouseholdProjectOrderBy>>;
+  where?: InputMaybe<ApiHouseholdProjectBoolExp>;
+};
+
+
+export type ApiSubscriptionRootApiHouseholdProjectByPkArgs = {
+  household_id: Scalars['uuid'];
+  project_id: Scalars['uuid'];
+};
+
+
+export type ApiSubscriptionRootApiHouseholdProjectStreamArgs = {
+  batch_size: Scalars['Int'];
+  cursor: Array<InputMaybe<ApiHouseholdProjectStreamCursorInput>>;
+  where?: InputMaybe<ApiHouseholdProjectBoolExp>;
+};
+
+
+export type ApiSubscriptionRootApiHouseholdSeverityArgs = {
+  distinct_on?: InputMaybe<Array<ApiHouseholdSeveritySelectColumn>>;
+  limit?: InputMaybe<Scalars['Int']>;
+  offset?: InputMaybe<Scalars['Int']>;
+  order_by?: InputMaybe<Array<ApiHouseholdSeverityOrderBy>>;
+  where?: InputMaybe<ApiHouseholdSeverityBoolExp>;
+};
+
+
+export type ApiSubscriptionRootApiHouseholdSeverityAggregateArgs = {
+  distinct_on?: InputMaybe<Array<ApiHouseholdSeveritySelectColumn>>;
+  limit?: InputMaybe<Scalars['Int']>;
+  offset?: InputMaybe<Scalars['Int']>;
+  order_by?: InputMaybe<Array<ApiHouseholdSeverityOrderBy>>;
+  where?: InputMaybe<ApiHouseholdSeverityBoolExp>;
+};
+
+
+export type ApiSubscriptionRootApiHouseholdSeverityByPkArgs = {
+  value: Scalars['String'];
+};
+
+
+export type ApiSubscriptionRootApiHouseholdSeverityStreamArgs = {
+  batch_size: Scalars['Int'];
+  cursor: Array<InputMaybe<ApiHouseholdSeverityStreamCursorInput>>;
+  where?: InputMaybe<ApiHouseholdSeverityBoolExp>;
+};
+
+
+export type ApiSubscriptionRootApiHouseholdStatusArgs = {
+  distinct_on?: InputMaybe<Array<ApiHouseholdStatusSelectColumn>>;
+  limit?: InputMaybe<Scalars['Int']>;
+  offset?: InputMaybe<Scalars['Int']>;
+  order_by?: InputMaybe<Array<ApiHouseholdStatusOrderBy>>;
+  where?: InputMaybe<ApiHouseholdStatusBoolExp>;
+};
+
+
+export type ApiSubscriptionRootApiHouseholdStatusAggregateArgs = {
+  distinct_on?: InputMaybe<Array<ApiHouseholdStatusSelectColumn>>;
+  limit?: InputMaybe<Scalars['Int']>;
+  offset?: InputMaybe<Scalars['Int']>;
+  order_by?: InputMaybe<Array<ApiHouseholdStatusOrderBy>>;
+  where?: InputMaybe<ApiHouseholdStatusBoolExp>;
+};
+
+
+export type ApiSubscriptionRootApiHouseholdStatusByPkArgs = {
+  value: Scalars['String'];
+};
+
+
+export type ApiSubscriptionRootApiHouseholdStatusStreamArgs = {
+  batch_size: Scalars['Int'];
+  cursor: Array<InputMaybe<ApiHouseholdStatusStreamCursorInput>>;
+  where?: InputMaybe<ApiHouseholdStatusBoolExp>;
+};
+
+
+export type ApiSubscriptionRootApiHouseholdStreamArgs = {
+  batch_size: Scalars['Int'];
+  cursor: Array<InputMaybe<ApiHouseholdStreamCursorInput>>;
+  where?: InputMaybe<ApiHouseholdBoolExp>;
+};
+
+
 export type ApiSubscriptionRootApiHouseholderArgs = {
   distinct_on?: InputMaybe<Array<ApiHouseholderSelectColumn>>;
   limit?: InputMaybe<Scalars['Int']>;
@@ -3783,7 +4312,7 @@ export type ApiSubscriptionRootApiHouseholderAggregateArgs = {
 
 
 export type ApiSubscriptionRootApiHouseholderByPkArgs = {
-  family_id: Scalars['uuid'];
+  household_id: Scalars['uuid'];
 };
 
 
@@ -3807,6 +4336,20 @@ export type ApiSubscriptionRootApiHouseholderStatusAggregateArgs = {
 
 export type ApiSubscriptionRootApiHouseholderStatusByPkArgs = {
   value: Scalars['String'];
+};
+
+
+export type ApiSubscriptionRootApiHouseholderStatusStreamArgs = {
+  batch_size: Scalars['Int'];
+  cursor: Array<InputMaybe<ApiHouseholderStatusStreamCursorInput>>;
+  where?: InputMaybe<ApiHouseholderStatusBoolExp>;
+};
+
+
+export type ApiSubscriptionRootApiHouseholderStreamArgs = {
+  batch_size: Scalars['Int'];
+  cursor: Array<InputMaybe<ApiHouseholderStreamCursorInput>>;
+  where?: InputMaybe<ApiHouseholderBoolExp>;
 };
 
 
@@ -3856,6 +4399,20 @@ export type ApiSubscriptionRootApiMemberStatusByPkArgs = {
 };
 
 
+export type ApiSubscriptionRootApiMemberStatusStreamArgs = {
+  batch_size: Scalars['Int'];
+  cursor: Array<InputMaybe<ApiMemberStatusStreamCursorInput>>;
+  where?: InputMaybe<ApiMemberStatusBoolExp>;
+};
+
+
+export type ApiSubscriptionRootApiMemberStreamArgs = {
+  batch_size: Scalars['Int'];
+  cursor: Array<InputMaybe<ApiMemberStreamCursorInput>>;
+  where?: InputMaybe<ApiMemberBoolExp>;
+};
+
+
 export type ApiSubscriptionRootApiNationalityArgs = {
   distinct_on?: InputMaybe<Array<ApiNationalitySelectColumn>>;
   limit?: InputMaybe<Scalars['Int']>;
@@ -3876,6 +4433,13 @@ export type ApiSubscriptionRootApiNationalityAggregateArgs = {
 
 export type ApiSubscriptionRootApiNationalityByPkArgs = {
   value: Scalars['String'];
+};
+
+
+export type ApiSubscriptionRootApiNationalityStreamArgs = {
+  batch_size: Scalars['Int'];
+  cursor: Array<InputMaybe<ApiNationalityStreamCursorInput>>;
+  where?: InputMaybe<ApiNationalityBoolExp>;
 };
 
 
@@ -3925,6 +4489,20 @@ export type ApiSubscriptionRootApiProjectStatusByPkArgs = {
 };
 
 
+export type ApiSubscriptionRootApiProjectStatusStreamArgs = {
+  batch_size: Scalars['Int'];
+  cursor: Array<InputMaybe<ApiProjectStatusStreamCursorInput>>;
+  where?: InputMaybe<ApiProjectStatusBoolExp>;
+};
+
+
+export type ApiSubscriptionRootApiProjectStreamArgs = {
+  batch_size: Scalars['Int'];
+  cursor: Array<InputMaybe<ApiProjectStreamCursorInput>>;
+  where?: InputMaybe<ApiProjectBoolExp>;
+};
+
+
 export type ApiSubscriptionRootApiReligionArgs = {
   distinct_on?: InputMaybe<Array<ApiReligionSelectColumn>>;
   limit?: InputMaybe<Scalars['Int']>;
@@ -3945,6 +4523,13 @@ export type ApiSubscriptionRootApiReligionAggregateArgs = {
 
 export type ApiSubscriptionRootApiReligionByPkArgs = {
   value: Scalars['String'];
+};
+
+
+export type ApiSubscriptionRootApiReligionStreamArgs = {
+  batch_size: Scalars['Int'];
+  cursor: Array<InputMaybe<ApiReligionStreamCursorInput>>;
+  where?: InputMaybe<ApiReligionBoolExp>;
 };
 
 /** Boolean expression to compare columns of type "timestamptz". All fields are combined with logical 'AND'. */
@@ -3973,12 +4558,12 @@ export type ApiUuidComparisonExp = {
   _nin?: InputMaybe<Array<Scalars['uuid']>>;
 };
 
-export type ApiCreateFamilyMutationVariables = Exact<{
+export type ApiCreateHouseholdMutationVariables = Exact<{
   name: Scalars['String'];
 }>;
 
 
-export type ApiCreateFamilyMutation = { __typename?: 'mutation_root', insert_family_one?: { __typename?: 'family', id: string, code?: string | null, name: string } | null };
+export type ApiCreateHouseholdMutation = { __typename?: 'mutation_root', insert_household_one?: { __typename?: 'household', id: string, code?: string | null, name: string } | null };
 
 export type ApiCreateProjectMutationVariables = Exact<{
   input: ApiProjectInsertInput;
@@ -3987,38 +4572,38 @@ export type ApiCreateProjectMutationVariables = Exact<{
 
 export type ApiCreateProjectMutation = { __typename?: 'mutation_root', insert_project_one?: { __typename?: 'project', id: string, name: string, description?: string | null, status: ApiProjectStatusEnum } | null };
 
-export type ApiDeleteFamilyMutationMutationVariables = Exact<{
+export type ApiDeleteHouseholdMutationMutationVariables = Exact<{
   id: Scalars['uuid'];
 }>;
 
 
-export type ApiDeleteFamilyMutationMutation = { __typename?: 'mutation_root', delete_family_by_pk?: { __typename?: 'family', id: string, name: string } | null };
+export type ApiDeleteHouseholdMutationMutation = { __typename?: 'mutation_root', delete_household_by_pk?: { __typename?: 'household', id: string, name: string } | null };
 
 export type ApiUpsertHouseholderMutationVariables = Exact<{
   input: ApiHouseholderInsertInput;
 }>;
 
 
-export type ApiUpsertHouseholderMutation = { __typename?: 'mutation_root', insert_householder_one?: { __typename?: 'householder', city?: ApiCityEnum | null, gender?: ApiGenderEnum | null, dob?: string | null, national_id?: string | null, father_name?: string | null, name: string, nationality?: ApiNationalityEnum | null, religion?: ApiReligionEnum | null, surname?: string | null, status: ApiHouseholderStatusEnum } | null };
+export type ApiUpsertHouseholderMutation = { __typename?: 'mutation_root', insert_householder_one?: { __typename?: 'householder', city?: ApiCityEnum | null, gender?: ApiGenderEnum | null, dob?: string | null, national_id?: string | null, father_name?: string | null, name: string, nationality?: ApiNationalityEnum | null, religion?: ApiReligionEnum | null, surname?: string | null, status?: string | null } | null };
 
-export type ApiFamilyListQueryVariables = Exact<{ [key: string]: never; }>;
+export type ApiHouseholdListQueryVariables = Exact<{ [key: string]: never; }>;
 
 
-export type ApiFamilyListQuery = { __typename?: 'query_root', family: Array<{ __typename?: 'family', id: string, name: string, severity: ApiFamilySeverityEnum, status: ApiFamilyStatusEnum }> };
+export type ApiHouseholdListQuery = { __typename?: 'query_root', household: Array<{ __typename?: 'household', id: string, name: string, severity: ApiHouseholdSeverityEnum, status: ApiHouseholdStatusEnum }> };
 
-export type ApiFamilyQueryVariables = Exact<{
+export type ApiHouseholdQueryVariables = Exact<{
   id: Scalars['uuid'];
 }>;
 
 
-export type ApiFamilyQuery = { __typename?: 'query_root', family_by_pk?: { __typename?: 'family', id: string, name: string, status: ApiFamilyStatusEnum, severity: ApiFamilySeverityEnum, code?: string | null } | null };
+export type ApiHouseholdQuery = { __typename?: 'query_root', household_by_pk?: { __typename?: 'household', id: string, name: string, status: ApiHouseholdStatusEnum, severity: ApiHouseholdSeverityEnum, code?: string | null } | null };
 
 export type ApiHouseholderQueryVariables = Exact<{
-  family_id: Scalars['uuid'];
+  household_id: Scalars['uuid'];
 }>;
 
 
-export type ApiHouseholderQuery = { __typename?: 'query_root', householder_by_pk?: { __typename?: 'householder', name: string, father_name?: string | null, surname?: string | null, nationality?: ApiNationalityEnum | null, religion?: ApiReligionEnum | null, city?: ApiCityEnum | null, gender?: ApiGenderEnum | null, status: ApiHouseholderStatusEnum, national_id?: string | null, dob?: string | null } | null };
+export type ApiHouseholderQuery = { __typename?: 'query_root', householder_by_pk?: { __typename?: 'householder', name: string, father_name?: string | null, surname?: string | null, nationality?: ApiNationalityEnum | null, religion?: ApiReligionEnum | null, city?: ApiCityEnum | null, gender?: ApiGenderEnum | null, status?: string | null, national_id?: string | null, dob?: string | null } | null };
 
 export type ApiProjectListQueryVariables = Exact<{
   offset?: InputMaybe<Scalars['Int']>;
@@ -4029,18 +4614,18 @@ export type ApiProjectListQueryVariables = Exact<{
 export type ApiProjectListQuery = { __typename?: 'query_root', project_aggregate: { __typename?: 'project_aggregate', nodes: Array<{ __typename?: 'project', name: string, id: string }> } };
 
 
-export const ApiCreateFamilyDocument = gql`
-    mutation CreateFamily($name: String!) {
-  insert_family_one(object: {name: $name}) {
+export const ApiCreateHouseholdDocument = gql`
+    mutation CreateHousehold($name: String!) {
+  insert_household_one(object: {name: $name}) {
     id
     code
     name
   }
 }
     `;
-export type ApiCreateFamilyMutationFn = Apollo.MutationFunction<ApiCreateFamilyMutation, ApiCreateFamilyMutationVariables>;
-export type ApiCreateFamilyMutationResult = Apollo.MutationResult<ApiCreateFamilyMutation>;
-export type ApiCreateFamilyMutationOptions = Apollo.BaseMutationOptions<ApiCreateFamilyMutation, ApiCreateFamilyMutationVariables>;
+export type ApiCreateHouseholdMutationFn = Apollo.MutationFunction<ApiCreateHouseholdMutation, ApiCreateHouseholdMutationVariables>;
+export type ApiCreateHouseholdMutationResult = Apollo.MutationResult<ApiCreateHouseholdMutation>;
+export type ApiCreateHouseholdMutationOptions = Apollo.BaseMutationOptions<ApiCreateHouseholdMutation, ApiCreateHouseholdMutationVariables>;
 export const ApiCreateProjectDocument = gql`
     mutation CreateProject($input: project_insert_input!) {
   insert_project_one(object: $input) {
@@ -4054,22 +4639,22 @@ export const ApiCreateProjectDocument = gql`
 export type ApiCreateProjectMutationFn = Apollo.MutationFunction<ApiCreateProjectMutation, ApiCreateProjectMutationVariables>;
 export type ApiCreateProjectMutationResult = Apollo.MutationResult<ApiCreateProjectMutation>;
 export type ApiCreateProjectMutationOptions = Apollo.BaseMutationOptions<ApiCreateProjectMutation, ApiCreateProjectMutationVariables>;
-export const ApiDeleteFamilyMutationDocument = gql`
-    mutation DeleteFamilyMutation($id: uuid!) {
-  delete_family_by_pk(id: $id) {
+export const ApiDeleteHouseholdMutationDocument = gql`
+    mutation DeleteHouseholdMutation($id: uuid!) {
+  delete_household_by_pk(id: $id) {
     id
     name
   }
 }
     `;
-export type ApiDeleteFamilyMutationMutationFn = Apollo.MutationFunction<ApiDeleteFamilyMutationMutation, ApiDeleteFamilyMutationMutationVariables>;
-export type ApiDeleteFamilyMutationMutationResult = Apollo.MutationResult<ApiDeleteFamilyMutationMutation>;
-export type ApiDeleteFamilyMutationMutationOptions = Apollo.BaseMutationOptions<ApiDeleteFamilyMutationMutation, ApiDeleteFamilyMutationMutationVariables>;
+export type ApiDeleteHouseholdMutationMutationFn = Apollo.MutationFunction<ApiDeleteHouseholdMutationMutation, ApiDeleteHouseholdMutationMutationVariables>;
+export type ApiDeleteHouseholdMutationMutationResult = Apollo.MutationResult<ApiDeleteHouseholdMutationMutation>;
+export type ApiDeleteHouseholdMutationMutationOptions = Apollo.BaseMutationOptions<ApiDeleteHouseholdMutationMutation, ApiDeleteHouseholdMutationMutationVariables>;
 export const ApiUpsertHouseholderDocument = gql`
     mutation UpsertHouseholder($input: householder_insert_input!) {
   insert_householder_one(
     object: $input
-    on_conflict: {constraint: householder_family_id_key, update_columns: [city, gender, dob, father_name, name, nationality, religion, surname, national_id]}
+    on_conflict: {constraint: householder_household_id_key, update_columns: [city, gender, dob, father_name, name, nationality, religion, surname, national_id]}
   ) {
     city
     gender
@@ -4087,9 +4672,9 @@ export const ApiUpsertHouseholderDocument = gql`
 export type ApiUpsertHouseholderMutationFn = Apollo.MutationFunction<ApiUpsertHouseholderMutation, ApiUpsertHouseholderMutationVariables>;
 export type ApiUpsertHouseholderMutationResult = Apollo.MutationResult<ApiUpsertHouseholderMutation>;
 export type ApiUpsertHouseholderMutationOptions = Apollo.BaseMutationOptions<ApiUpsertHouseholderMutation, ApiUpsertHouseholderMutationVariables>;
-export const ApiFamilyListDocument = gql`
-    query FamilyList {
-  family {
+export const ApiHouseholdListDocument = gql`
+    query HouseholdList {
+  household {
     id
     name
     severity
@@ -4097,10 +4682,10 @@ export const ApiFamilyListDocument = gql`
   }
 }
     `;
-export type ApiFamilyListQueryResult = Apollo.QueryResult<ApiFamilyListQuery, ApiFamilyListQueryVariables>;
-export const ApiFamilyDocument = gql`
-    query Family($id: uuid!) {
-  family_by_pk(id: $id) {
+export type ApiHouseholdListQueryResult = Apollo.QueryResult<ApiHouseholdListQuery, ApiHouseholdListQueryVariables>;
+export const ApiHouseholdDocument = gql`
+    query Household($id: uuid!) {
+  household_by_pk(id: $id) {
     id
     name
     status
@@ -4109,10 +4694,10 @@ export const ApiFamilyDocument = gql`
   }
 }
     `;
-export type ApiFamilyQueryResult = Apollo.QueryResult<ApiFamilyQuery, ApiFamilyQueryVariables>;
+export type ApiHouseholdQueryResult = Apollo.QueryResult<ApiHouseholdQuery, ApiHouseholdQueryVariables>;
 export const ApiHouseholderDocument = gql`
-    query Householder($family_id: uuid!) {
-  householder_by_pk(family_id: $family_id) {
+    query Householder($household_id: uuid!) {
+  householder_by_pk(household_id: $household_id) {
     name
     father_name
     surname

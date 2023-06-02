@@ -4,7 +4,7 @@ export const AppRoute = {
   login: '/auth/login',
   dashboard: '/dashboard',
   families: '/dashboard/families',
-  familyDetail: '/dashboard/families/:id',
+  householdDetail: '/dashboard/families/:id',
   projects: '/dashboard/projects',
   graphql: '/graphiql',
 } as const;

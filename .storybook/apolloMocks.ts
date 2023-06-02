@@ -1,11 +1,11 @@
 import { MockedProvider } from '@apollo/client/testing';
-import { ApiFamilyList } from './fixtures/ApiFamilyList';
+import { ApiHouseholdList } from './fixtures/ApiHouseholdList';
 import {
   ApiCreateProjectDocument,
-  ApiFamilyDocument,
-  ApiFamilyListDocument,
-  ApiFamilySeverityEnum,
-  ApiFamilyStatusEnum,
+  ApiHouseholdDocument,
+  ApiHouseholdListDocument,
+  ApiHouseholdSeverityEnum,
+  ApiHouseholdStatusEnum,
   ApiProjectListDocument,
 } from '../libs/data-layer/api';
 
@@ -31,24 +31,24 @@ export const apolloMocks = {
     },
     {
       request: {
-        query: ApiFamilyDocument,
+        query: ApiHouseholdDocument,
         variables: { id: undefined },
       },
       result: {
         data: {
-          family_by_pk: {
+          household_by_pk: {
             code: 'F00001',
             name: 'فول استک زاده',
-            severity: ApiFamilySeverityEnum.Critical,
-            status: ApiFamilyStatusEnum.Completed,
+            severity: ApiHouseholdSeverityEnum.Critical,
+            status: ApiHouseholdStatusEnum.Completed,
           },
         },
       },
     },
     {
-      request: { query: ApiFamilyListDocument },
+      request: { query: ApiHouseholdListDocument },
       result: {
-        data: { family: ApiFamilyList },
+        data: { household: ApiHouseholdList },
       },
     },
     {

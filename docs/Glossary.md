@@ -13,14 +13,14 @@ The project glossary is a collection of terms captured from models and shapes th
 
 | Term             | Definition                                                                                                 |
 | ---------------- | ---------------------------------------------------------------------------------------------------------- |
-| Family           | a term used for a group of Members under support. a Family must have a Householder.                        |
+| Household           | a term used for a group of Members under support. a Household must have a Householder.                        |
 | Dependent        | a Member who falls under the support of a Householder.                                                     |
-| Householder      | a Member who provides emotional and financial support to a Family.                                         |
-| Need             | Cash or non-cash support that a Family or Group of Families needs.                                         |
+| Householder      | a Member who provides emotional and financial support to a Household.                                         |
+| Need             | Cash or non-cash support that a Household or Group of Families needs.                                         |
 | Caseworker       | a person involved in directly considering the individual case's problems, needs, and adjustments.          |
-| Project          | the predefined program of aiding a Family or group of Families with money, properties, or material goods.  |
-| Loan             | a loan is money given to a Family in exchange for future repayment of the loan value amount with interest. |
+| Project          | the predefined program of aiding a Household or group of Families with money, properties, or material goods.  |
+| Loan             | a loan is money given to a Household in exchange for future repayment of the loan value amount with interest. |
 | Member           | a Householder or a Dependent                                                                               |
 | Project Gallery  | a gallery of the pictures of a Project                                                                     |
-| Draft Family     | A saved Family which is not completed yet.                                                                 |
-| Completed Family | A Family in which all information is provided and submitted.                                               |
+| Draft Household     | A saved Household which is not completed yet.                                                                 |
+| Completed Household | A Household in which all information is provided and submitted.                                               |

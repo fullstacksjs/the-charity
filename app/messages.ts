@@ -277,7 +277,7 @@ export const messages = {
       },
     },
   },
-  familyDetail: {
+  householdDetail: {
     title: 'اطلاعات کلی خانواده',
     notFound: 'خانواده مورد نظر یافت نشد',
     delete: 'حذف کردن',
@@ -288,7 +288,7 @@ export const messages = {
     panels: {
       title: 'second panel',
     },
-    familyFields: {
+    householdFields: {
       name: {
         title: 'نام',
         value: 'فول استک زاده',

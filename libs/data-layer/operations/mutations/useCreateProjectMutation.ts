@@ -1,14 +1,15 @@
-import type { MutationHookOptions } from '@apollo/client';
 import { gql } from '@apollo/client';
-import type { Project, ProjectStatus } from '@camp/domain';
+import type { Project } from '@camp/domain';
 
 import type {
   ApiCreateProjectMutation,
   ApiCreateProjectMutationVariables,
   ApiProjectListQuery,
 } from '../../api';
-import { ApiProjectListDocument, ApiProjectStatusEnum } from '../../api';
-import { useMutation } from '../../apiClient/useMutation';
+import { ApiProjectListDocument } from '../../api';
+import type { MutationOptions } from '../../apiClient';
+import { useMutation } from '../../apiClient';
+import { toProjectStatus } from '../../mappers';
 
 const Document = gql`
   mutation CreateProject($input: project_insert_input!) {
@@ -21,32 +22,24 @@ const Document = gql`
   }
 `;
 
-export const toProjectStatus = (status: ApiProjectStatusEnum): ProjectStatus =>
-  status === ApiProjectStatusEnum.Done
-    ? 'done'
-    : status === ApiProjectStatusEnum.InProgress
-    ? 'inProgress'
-    : status === ApiProjectStatusEnum.Planning
-    ? 'planning'
-    : 'suspended';
-
 export interface CreateProjectDto {
   project: Project;
 }
 
 const toClient = (
-  data: ApiCreateProjectMutation | null | undefined,
-): CreateProjectDto | null =>
-  data?.insert_project_one == null
-    ? null
-    : {
-        project: {
-          id: data.insert_project_one.id,
-          name: data.insert_project_one.name,
-          description: data.insert_project_one.description,
-          status: toProjectStatus(data.insert_project_one.status),
-        },
-      };
+  data: ApiCreateProjectMutation | null,
+): CreateProjectDto | null => {
+  if (data?.insert_project_one == null) return null;
+
+  return {
+    project: {
+      id: data.insert_project_one.id,
+      name: data.insert_project_one.name,
+      description: data.insert_project_one.description,
+      status: toProjectStatus(data.insert_project_one.status),
+    },
+  };
+};
 
 interface Variables {
   description?: string;
@@ -63,9 +56,9 @@ const toApiVariables = (
 });
 
 export function useCreateProjectMutation(
-  options?: MutationHookOptions<typeof toClient, typeof toApiVariables>,
+  options?: MutationOptions<typeof toClient, typeof toApiVariables>,
 ) {
-  return useMutation(Document, {
+  return useMutation<typeof toClient, typeof toApiVariables>(Document, {
     ...options,
     mapData: toClient,
     mapVariables: toApiVariables,

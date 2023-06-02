@@ -10,8 +10,8 @@ import { useQuery } from '../../apiClient';
 import { toHouseholder } from '../../mappers';
 
 const Document = gql`
-  query Householder($family_id: uuid!) {
-    householder_by_pk(family_id: $family_id) {
+  query Householder($household_id: uuid!) {
+    householder_by_pk(household_id: $household_id) {
       name
       father_name
       surname

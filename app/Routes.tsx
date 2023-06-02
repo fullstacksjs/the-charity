@@ -4,11 +4,11 @@ import { messages } from '@camp/messages';
 import type { Route } from '@camp/router';
 import { lazy, Navigate, ReactLocation, Router } from '@camp/router';
 
-import { FamilyEmptyState, FamilyList, ProjectList } from './components';
+import { HouseholdEmptyState, HouseholdList, ProjectList } from './components';
 import {
   DashboardLayout,
   Families,
-  FamilyDetail,
+  HouseholdDetail,
   Login,
   Projects,
 } from './pages';
@@ -46,14 +46,14 @@ const routes: Route[] = [
         children: [
           {
             path: '/',
-            element: <FamilyList />,
+            element: <HouseholdList />,
           },
           {
             path: '/:id',
-            element: <FamilyDetail />,
-            meta: { breadcrumb: messages.familyDetail.title },
+            element: <HouseholdDetail />,
+            meta: { breadcrumb: messages.householdDetail.title },
           },
-          { element: <FamilyEmptyState /> },
+          { element: <HouseholdEmptyState /> },
         ],
       },
       {

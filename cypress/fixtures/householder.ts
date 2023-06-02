@@ -14,10 +14,10 @@ export const householderFixture = () =>
       surname: z.string().min(3),
       fatherName: z.string().min(3),
       nationalId: Schema.nationalId().transform(x => x.slice(0, 10)),
-      gender: householderSchema.gender(),
+      gender: Schema.gender(),
       nationality: householderSchema.nationality(),
-      religion: householderSchema.religion(),
-      city: householderSchema.cityOfBirth(),
+      religion: Schema.religion(),
+      city: Schema.cityOfBirth(),
       dob: Schema.dob().transform(d => d.toISOString()),
     }),
     {
