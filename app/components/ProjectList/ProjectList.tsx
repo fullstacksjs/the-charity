@@ -34,8 +34,8 @@ export const ProjectList = () => {
   if (isNull(projects)) return null;
   if (isEmpty(projects)) return <ProjectEmptyState />;
 
-  const rows = projects.map(({ id, name }, index) => (
-    <ProjectTableRow key={id} name={name} order={index + 1} />
+  const rows = projects.map((project, index) => (
+    <ProjectTableRow key={project.id} project={project} order={index + 1} />
   ));
 
   return (
