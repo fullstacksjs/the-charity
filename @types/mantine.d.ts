@@ -3,6 +3,7 @@ import type { Tuple } from '@mantine/core';
 import type { colors } from '../libs/design/theme/theme';
 
 // NOTE: MANTINE SUCKS
+// FIXME: fix typing to allow doing eg: blue.4
 type MantineColors =
   | 'blue'
   | 'cyan'

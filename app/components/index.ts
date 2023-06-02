@@ -6,6 +6,7 @@ export * from './HouseholderDetail';
 export * from './HouseholdList';
 export * from './InformationBadge';
 export * from './MemberForm';
+export * from './ProjectBadge';
 export * from './ProjectEmptyState';
 export * from './ProjectList';
 export * from './SeverityBadge';
