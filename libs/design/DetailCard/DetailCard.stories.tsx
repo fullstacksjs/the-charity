@@ -11,11 +11,13 @@ type Story = StoryObj<typeof DetailCard>;
 export const Default: Story = {
   render: args => (
     <DetailCard {...args}>
-      <DetailCard.BadgeField
-        title="برچسب"
-        badge={<Badge status="error">برچسب</Badge>}
-      />
-      <DetailCard.TextField title="متن">متن</DetailCard.TextField>
+      <DetailCard.Section>
+        <DetailCard.BadgeField
+          title="برچسب"
+          badge={<Badge status="error">برچسب</Badge>}
+        />
+        <DetailCard.TextField title="متن">متن</DetailCard.TextField>
+      </DetailCard.Section>
     </DetailCard>
   ),
   args: {
