@@ -12,6 +12,7 @@ export const householderFormIds = {
   cityOfBirthInput: 'householder-city-of-birth',
   submitBtn: 'householder-submit-button',
   undoBtn: 'householder-undo-button',
+  editBtn: 'householder-edit-button',
   notification: {
     success: 'householder-successful-update',
     failure: 'householder-failed-update',

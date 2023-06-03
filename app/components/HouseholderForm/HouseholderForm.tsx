@@ -20,7 +20,7 @@ import {
   nationalities,
   religions,
 } from '@camp/domain';
-import { CheckIcon } from '@camp/icons';
+import { CheckIcon, EditIcon } from '@camp/icons';
 import { messages } from '@camp/messages';
 import { createTestAttr } from '@camp/test';
 import { isNull } from '@fullstacksjs/toolbox';
@@ -32,6 +32,7 @@ import {
   Stack,
   Title,
 } from '@mantine/core';
+import { useBoolean } from 'ahooks';
 import { useForm } from 'react-hook-form';
 
 import { householderFormIds as ids } from './HouseholderForm.ids';
@@ -90,7 +91,11 @@ export const HouseholderForm = ({ initialHouseholder, householdId }: Props) => {
     mode: 'onChange',
   });
 
-  const isReadOnly = initialHouseholder?.status === 'completed';
+  const isCompleted = initialHouseholder?.status === 'completed';
+
+  const [isEditing, { set: setIsEditing }] = useBoolean(!isCompleted);
+
+  const isReadOnly = !isEditing;
 
   const [upsertHouseholder] = useUpsertHouseholderMutation();
 
@@ -100,9 +105,10 @@ export const HouseholderForm = ({ initialHouseholder, householdId }: Props) => {
         variables: { ...formData, householdId },
       });
 
-      if (!isNull(data))
+      if (!isNull(data)) {
         reset({ ...data.householder, dob: data.householder.dob ?? null });
-
+        setIsEditing(data.householder.status !== 'completed');
+      }
       showNotification({
         title: t.title,
         message: t.notification.successfulUpdate(data?.householder.name ?? ''),
@@ -119,8 +125,9 @@ export const HouseholderForm = ({ initialHouseholder, householdId }: Props) => {
     }
   });
 
-  const handleReset = () => {
+  const handleUndo = () => {
     reset();
+    if (isCompleted) setIsEditing(false);
   };
 
   return (
@@ -131,25 +138,41 @@ export const HouseholderForm = ({ initialHouseholder, householdId }: Props) => {
             {t.title}
           </Title>
           <Group spacing={20}>
-            <Button
-              {...createTestAttr(ids.undoBtn)}
-              size="sm"
-              variant="outline"
-              color="red"
-              disabled={!isDirty}
-              onClick={handleReset}
-            >
-              {t.undoBtn}
-            </Button>
-            <Button
-              {...createTestAttr(ids.submitBtn)}
-              type="submit"
-              size="sm"
-              leftIcon={<CheckIcon size={16} />}
-              disabled={!isValid || !isDirty}
-            >
-              {t.submitBtn}
-            </Button>
+            {isEditing ? (
+              <>
+                <Button
+                  {...createTestAttr(ids.undoBtn)}
+                  size="sm"
+                  variant="outline"
+                  color="red"
+                  disabled={!isDirty && !isCompleted}
+                  onClick={handleUndo}
+                >
+                  {t.undoBtn}
+                </Button>
+                <Button
+                  {...createTestAttr(ids.submitBtn)}
+                  type="submit"
+                  size="sm"
+                  leftIcon={<CheckIcon size={16} />}
+                  disabled={!isValid || !isDirty}
+                >
+                  {t.submitBtn}
+                </Button>
+              </>
+            ) : (
+              <Button
+                key={1}
+                {...createTestAttr(ids.editBtn)}
+                type="button"
+                size="sm"
+                variant="outline"
+                onClick={() => setIsEditing(true)}
+                leftIcon={<EditIcon size={16} />}
+              >
+                {t.editBtn}
+              </Button>
+            )}
           </Group>
         </Group>
 

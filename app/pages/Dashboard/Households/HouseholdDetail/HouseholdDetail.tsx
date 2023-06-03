@@ -1,5 +1,6 @@
 import {
   useDeleteHouseholdMutation,
+  useHouseholderQuery,
   useHouseholdQuery,
 } from '@camp/data-layer';
 import { debug } from '@camp/debug';
@@ -35,6 +36,12 @@ export const HouseholdDetail = () => {
   const [deleteHousehold] = useDeleteHouseholdMutation();
 
   const household = data?.household;
+  const { data: maybeHouseholderData } = useHouseholderQuery({
+    variables: { household_id: householdId },
+  });
+
+  const householder = maybeHouseholderData?.householder;
+
   if (loading) return <FullPageLoader />;
 
   if (error) {
@@ -112,7 +119,7 @@ export const HouseholdDetail = () => {
             tab: <Title order={5}>{t.tabs.householderTitle}</Title>,
             panel: <HouseholderDetail householdId={household.id} />,
             id: ids.householderTab,
-            isBusy: true,
+            isBusy: householder?.status !== 'completed',
             isDefault: true,
           },
           {

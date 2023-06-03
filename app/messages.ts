@@ -150,9 +150,9 @@ export const messages = {
   householder: {
     detail: {
       title: 'اطلاعات هویت',
-      editBtn: 'ویرایش',
     },
     form: {
+      editBtn: 'ویرایش',
       title: 'اطلاعات هویت',
       undoBtn: 'لغو',
       notification: {
