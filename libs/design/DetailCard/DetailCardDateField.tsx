@@ -7,14 +7,13 @@ interface Props {
   date?: Date;
 }
 
+const formatToPersian = (d: Date) =>
+  new Intl.DateTimeFormat('fa-IR', { dateStyle: 'short' }).format(d);
+
 export const DetailCardDateField = ({ date, title }: Props) => {
   return (
     <DetailCardTextField title={title}>
-      {date ? (
-        new Intl.DateTimeFormat('fa-IR', { dateStyle: 'long' }).format(date)
-      ) : (
-        <Text color="fgSubtle">تعیین نشده</Text>
-      )}
+      {date ? formatToPersian(date) : <Text color="fgSubtle">تعیین نشده</Text>}
     </DetailCardTextField>
   );
 };
