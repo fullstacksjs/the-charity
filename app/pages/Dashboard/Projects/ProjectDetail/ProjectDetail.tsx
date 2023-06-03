@@ -3,7 +3,7 @@ import type { Project } from '@camp/domain';
 import { messages } from '@camp/messages';
 import { Text, Title } from '@mantine/core';
 
-import { ProjectBadge } from '../../../../components';
+import { ProjectStatusBadge } from '../../../../components';
 import { ProjectDetailIds as ids } from './ProjectDetail.ids';
 
 export const ProjectDetail = () => {
@@ -27,7 +27,7 @@ export const ProjectDetail = () => {
           </DetailCard.TextField>
           <DetailCard.BadgeField
             title={t.projectFields.projectStatus.title}
-            badge={<ProjectBadge />}
+            badge={<ProjectStatusBadge />}
           />
           <DetailCard.TextField title={t.projectFields.membersCount.title}>
             <Text color="fgSubtle">{t.projectFields.membersCount.empty}</Text>
