@@ -6,7 +6,7 @@ interface Props {
 
 export const DetailCardSection = ({ children }: Props) => {
   return (
-    <SimpleGrid cols={3} spacing={50} verticalSpacing={20}>
+    <SimpleGrid cols={3} spacing={50} verticalSpacing={27}>
       {children}
     </SimpleGrid>
   );

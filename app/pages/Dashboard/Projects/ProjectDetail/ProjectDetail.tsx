@@ -19,7 +19,6 @@ export const ProjectDetail = () => {
 
   return (
     <>
-      {/* FIXME: fix space between detail items */}
       <DetailCard title={t.title} px={0}>
         <DetailCard.Section>
           <DetailCard.TextField title={t.projectFields.name.title}>
