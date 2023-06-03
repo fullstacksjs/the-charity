@@ -1,4 +1,4 @@
-export const householdDetailIds = {
-  memberFormTab: 'member-form-tab',
-  householderTab: 'householder-tab',
+export const ProjectDetailIds = {
+  membersTab: 'members-tab',
+  albumTab: 'album-tab',
 };

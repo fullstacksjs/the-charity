@@ -306,7 +306,7 @@ export const messages = {
   projectDetail: {
     title: 'اطلاعات پروژه',
     tabs: {
-      householderTitle: 'سرپرست',
+      albumTitle: 'آلبوم',
       membersTitle: 'اعضا',
     },
     panels: {
