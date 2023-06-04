@@ -1,6 +1,6 @@
 import { Text } from '@mantine/core';
 
-import { DetailCardTextField } from './DetailCardTextField';
+import { DetailCardField } from './DetailCardTextField';
 
 interface Props {
   title: string;
@@ -12,8 +12,8 @@ const formatToPersian = (d: Date) =>
 
 export const DetailCardDateField = ({ date, title }: Props) => {
   return (
-    <DetailCardTextField title={title}>
+    <DetailCardField title={title}>
       {date ? formatToPersian(date) : <Text color="fgSubtle">تعیین نشده</Text>}
-    </DetailCardTextField>
+    </DetailCardField>
   );
 };

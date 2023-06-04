@@ -4,7 +4,7 @@ import type { DashboardCardProps } from '../DashboardCard';
 import { DashboardCard } from '../DashboardCard';
 import { DetailCardDateField } from './DetailCardDateField';
 import { DetailCardSection } from './DetailCardSection';
-import { DetailCardTextField } from './DetailCardTextField';
+import { DetailCardField } from './DetailCardTextField';
 
 interface Props extends DashboardCardProps {
   title: string;
@@ -42,6 +42,6 @@ export const DetailCard = ({ title, id, children, ...cardProps }: Props) => {
   );
 };
 
-DetailCard.TextField = DetailCardTextField;
+DetailCard.Field = DetailCardField;
 DetailCard.DateField = DetailCardDateField;
 DetailCard.Section = DetailCardSection;

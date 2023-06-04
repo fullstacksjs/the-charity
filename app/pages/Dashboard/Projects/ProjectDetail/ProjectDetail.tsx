@@ -21,15 +21,15 @@ export const ProjectDetail = () => {
     <>
       <DetailCard title={t.title} px={0}>
         <DetailCard.Section>
-          <DetailCard.TextField title={t.projectFields.name.title}>
+          <DetailCard.Field title={t.projectFields.name.title}>
             {project.name}
-          </DetailCard.TextField>
-          <DetailCard.TextField title={t.projectFields.projectStatus.title}>
+          </DetailCard.Field>
+          <DetailCard.Field title={t.projectFields.projectStatus.title}>
             <ProjectStatusBadge />
-          </DetailCard.TextField>
-          <DetailCard.TextField title={t.projectFields.membersCount.title}>
+          </DetailCard.Field>
+          <DetailCard.Field title={t.projectFields.membersCount.title}>
             <Text color="fgSubtle">{t.projectFields.membersCount.empty}</Text>
-          </DetailCard.TextField>
+          </DetailCard.Field>
           <DetailCard.DateField
             title={t.projectFields.startDate.title}
             date={project.startDate}
@@ -41,9 +41,9 @@ export const ProjectDetail = () => {
         </DetailCard.Section>
 
         <DetailCard.Section>
-          <DetailCard.TextField title={t.projectFields.description.title}>
+          <DetailCard.Field title={t.projectFields.description.title}>
             <Text sx={{ whiteSpace: 'pre-wrap' }}>{project.description}</Text>
-          </DetailCard.TextField>
+          </DetailCard.Field>
         </DetailCard.Section>
       </DetailCard>
 

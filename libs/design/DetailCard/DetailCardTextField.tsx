@@ -5,7 +5,7 @@ interface Props {
   children: React.ReactNode;
 }
 
-export const DetailCardTextField = ({ title, children }: Props) => {
+export const DetailCardField = ({ title, children }: Props) => {
   return (
     <Box sx={{ textAlign: 'left' }}>
       <Title order={6} color="fgSubtle" weight={500}>

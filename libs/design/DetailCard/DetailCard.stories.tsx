@@ -12,10 +12,10 @@ export const Default: Story = {
   render: args => (
     <DetailCard {...args}>
       <DetailCard.Section>
-        <DetailCard.TextField title="برچسب">
+        <DetailCard.Field title="برچسب">
           <Badge status="error">برچسب</Badge>
-        </DetailCard.TextField>
-        <DetailCard.TextField title="متن">متن</DetailCard.TextField>
+        </DetailCard.Field>
+        <DetailCard.Field title="متن">متن</DetailCard.Field>
       </DetailCard.Section>
     </DetailCard>
   ),
