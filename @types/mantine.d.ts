@@ -2,9 +2,7 @@ import type { Tuple } from '@mantine/core';
 
 import type { colors } from '../libs/design/theme/theme';
 
-// NOTE: MANTINE SUCKS
-// FIXME: fix typing to allow doing eg: blue.4
-type MantineColors =
+type DefaultMantineColors =
   | 'blue'
   | 'cyan'
   | 'dark'
@@ -20,7 +18,12 @@ type MantineColors =
   | 'transparent'
   | 'violet'
   | 'yellow';
-type Colors = MantineColors | keyof typeof colors;
+
+type IndexifyColor<T> = T extends DefaultMantineColors
+  ? T | `${T}.${0 | 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9}`
+  : T;
+
+type Colors = IndexifyColor<DefaultMantineColors | keyof typeof colors>;
 
 declare module '@mantine/core' {
   export interface MantineThemeColorsOverride {
