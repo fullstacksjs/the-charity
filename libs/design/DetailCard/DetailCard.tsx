@@ -2,7 +2,6 @@ import { Group, Title } from '@mantine/core';
 
 import type { DashboardCardProps } from '../DashboardCard';
 import { DashboardCard } from '../DashboardCard';
-import { DetailCardBadgeField } from './DetailCardBadgeField';
 import { DetailCardDateField } from './DetailCardDateField';
 import { DetailCardSection } from './DetailCardSection';
 import { DetailCardTextField } from './DetailCardTextField';
@@ -44,6 +43,5 @@ export const DetailCard = ({ title, id, children, ...cardProps }: Props) => {
 };
 
 DetailCard.TextField = DetailCardTextField;
-DetailCard.BadgeField = DetailCardBadgeField;
 DetailCard.DateField = DetailCardDateField;
 DetailCard.Section = DetailCardSection;

@@ -24,10 +24,9 @@ export const ProjectDetail = () => {
           <DetailCard.TextField title={t.projectFields.name.title}>
             {project.name}
           </DetailCard.TextField>
-          <DetailCard.BadgeField
-            title={t.projectFields.projectStatus.title}
-            badge={<ProjectStatusBadge />}
-          />
+          <DetailCard.TextField title={t.projectFields.projectStatus.title}>
+            <ProjectStatusBadge />
+          </DetailCard.TextField>
           <DetailCard.TextField title={t.projectFields.membersCount.title}>
             <Text color="fgSubtle">{t.projectFields.membersCount.empty}</Text>
           </DetailCard.TextField>

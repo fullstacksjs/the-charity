@@ -98,16 +98,15 @@ export const HouseholdDetail = () => {
           <DetailCard.TextField title={t.householdFields.name.title}>
             {household.name}
           </DetailCard.TextField>
-          <DetailCard.BadgeField
-            title={t.householdFields.severityStatus.title}
-            badge={<SeverityBadge severity={household.severityStatus} />}
-          />
-          <DetailCard.BadgeField
-            badge={
-              <InformationBadge information={household.informationStatus} />
-            }
+          <DetailCard.TextField title={t.householdFields.severityStatus.title}>
+            <SeverityBadge severity={household.severityStatus} />
+          </DetailCard.TextField>
+
+          <DetailCard.TextField
             title={t.householdFields.informationStatus.title}
-          />
+          >
+            <InformationBadge information={household.informationStatus} />
+          </DetailCard.TextField>
         </DetailCard.Section>
       </DetailCard>
       <Tabs
