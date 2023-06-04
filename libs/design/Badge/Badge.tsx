@@ -8,11 +8,14 @@ export interface BadgeProps {
   status: BadgeStatus;
 }
 
-const statusMap: Record<BadgeStatus, MantineColor> = {
-  error: 'red',
-  warning: 'orange',
-  success: 'teal',
-  disabled: 'gray',
+const statusMap: Record<
+  BadgeStatus,
+  { color: MantineColor; bg?: MantineColor }
+> = {
+  error: { color: 'red' },
+  warning: { color: 'orange' },
+  success: { color: 'teal' },
+  disabled: { color: 'gray', bg: 'gray.1' },
 };
 
 export const Badge = ({ children, status }: BadgeProps) => {
@@ -21,7 +24,7 @@ export const Badge = ({ children, status }: BadgeProps) => {
       size="lg"
       radius="lg"
       variant="light"
-      color={statusMap[status]}
+      {...statusMap[status]}
       sx={{ fontWeight: 500 }}
     >
       {children}
