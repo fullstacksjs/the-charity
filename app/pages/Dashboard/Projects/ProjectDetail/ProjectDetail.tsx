@@ -7,7 +7,7 @@ import {
 } from '@camp/design';
 import { errorMessages, messages } from '@camp/messages';
 import { useParams } from '@camp/router';
-import { isNull } from '@fullstacksjs/toolbox';
+import { isEmpty, isNull } from '@fullstacksjs/toolbox';
 import { Text, Title } from '@mantine/core';
 
 import { ProjectStatusBadge } from '../../../../components';
@@ -21,7 +21,7 @@ export const ProjectDetail = () => {
     variables: { id: projectId },
   });
   const project = data?.project;
-  const households = data?.households;
+  const households = data?.households ?? [];
 
   if (loading) return <FullPageLoader />;
 
@@ -46,10 +46,10 @@ export const ProjectDetail = () => {
             <ProjectStatusBadge />
           </DetailCard.Field>
           <DetailCard.Field title={t.projectFields.membersCount.title}>
-            {households?.length === 0 ? (
+            {isEmpty(households) ? (
               <Text color="fgSubtle">{t.projectFields.membersCount.empty}</Text>
             ) : (
-              households?.length
+              households.length
             )}
           </DetailCard.Field>
           <DetailCard.DateField
