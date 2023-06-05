@@ -303,6 +303,35 @@ export const messages = {
       },
     },
   },
+  projectDetail: {
+    title: 'اطلاعات پروژه',
+    tabs: {
+      albumTitle: 'آلبوم',
+      membersTitle: 'اعضا',
+    },
+    panels: {
+      title: 'second panel',
+    },
+    projectFields: {
+      name: {
+        title: 'نام پروژه',
+      },
+      projectStatus: { title: 'وضعیت پروژه' },
+      membersCount: {
+        title: 'تعداد اعضا',
+        empty: 'ندارد',
+      },
+      startDate: {
+        title: 'تاریخ شروع',
+      },
+      endDate: {
+        title: 'تاریخ پایان',
+      },
+      description: {
+        title: 'توضیحات',
+      },
+    },
+  },
   logout: {
     link: 'خروج',
     modal: {

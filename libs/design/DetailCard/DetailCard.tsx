@@ -1,9 +1,10 @@
-import { Group, SimpleGrid, Title } from '@mantine/core';
+import { Group, Title } from '@mantine/core';
 
 import type { DashboardCardProps } from '../DashboardCard';
 import { DashboardCard } from '../DashboardCard';
-import { DetailCardBadgeField } from './DetailCardBadgeField';
-import { DetailCardTextField } from './DetailCardTextField';
+import { DetailCardDateField } from './DetailCardDateField';
+import { DetailCardSection } from './DetailCardSection';
+import { DetailCardField } from './DetailCardTextField';
 
 interface Props extends DashboardCardProps {
   title: string;
@@ -36,12 +37,11 @@ export const DetailCard = ({ title, id, children, ...cardProps }: Props) => {
       }
       {...cardProps}
     >
-      <SimpleGrid cols={3} spacing={50} verticalSpacing={20}>
-        {children}
-      </SimpleGrid>
+      {children}
     </DashboardCard>
   );
 };
 
-DetailCard.TextField = DetailCardTextField;
-DetailCard.BadgeField = DetailCardBadgeField;
+DetailCard.Field = DetailCardField;
+DetailCard.DateField = DetailCardDateField;
+DetailCard.Section = DetailCardSection;

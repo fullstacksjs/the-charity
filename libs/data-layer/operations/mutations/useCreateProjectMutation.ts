@@ -35,7 +35,7 @@ const toClient = (
     project: {
       id: data.insert_project_one.id,
       name: data.insert_project_one.name,
-      description: data.insert_project_one.description,
+      description: data.insert_project_one.description ?? undefined,
       status: toProjectStatus(data.insert_project_one.status),
     },
   };

@@ -12,6 +12,7 @@ import {
   Login,
   Projects,
 } from './pages';
+import { ProjectDetail } from './pages/Dashboard/Projects/ProjectDetail';
 
 export const location = new ReactLocation();
 
@@ -60,7 +61,14 @@ const routes: Route[] = [
         path: '/projects',
         element: <Projects />,
         meta: { breadcrumb: messages.projects.title },
-        children: [{ path: '/', element: <ProjectList /> }],
+        children: [
+          { path: '/', element: <ProjectList /> },
+          {
+            path: '/:id',
+            element: <ProjectDetail />,
+            meta: { breadcrumb: messages.projectDetail.title },
+          },
+        ],
       },
       { element: <Navigate to="/dashboard/families" /> },
     ],
