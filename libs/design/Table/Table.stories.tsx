@@ -3,7 +3,10 @@ import type { Meta, StoryObj } from '@storybook/react';
 
 import { ApiHouseholdList } from '../../../.storybook/fixtures/ApiHouseholdList';
 import { HouseholdTableRow } from '../../../app/components/HouseholdList/HouseholdTableRow';
-import { toInformationStatus, toSeverityStatus } from '../../data-layer';
+import {
+  toInformationStatus,
+  toSeverityStatus,
+} from '../../data-layer/mappers';
 import { Table } from './Table';
 
 export default {

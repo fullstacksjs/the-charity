@@ -7,7 +7,7 @@ import type {
   ApiHouseholdListQueryVariables,
 } from '../../api';
 import { useQuery } from '../../apiClient';
-import { toInformationStatus, toSeverityStatus } from './useHouseholdQuery';
+import { toHousehold } from '../../mappers';
 
 const Document = gql`
   query HouseholdList {
@@ -32,14 +32,7 @@ const toClient = (
   data: ApiHouseholdListQuery | null | undefined,
 ): HouseholdListDto => ({
   households:
-    data?.household == null
-      ? []
-      : data.household.map(f => ({
-          id: f.id,
-          name: f.name,
-          severityStatus: toSeverityStatus(f.severity),
-          informationStatus: toInformationStatus(f.status),
-        })),
+    data?.household == null ? [] : data.household.map(h => toHousehold(h)),
 });
 
 export const useHouseholdListQuery = (

@@ -1,6 +1,13 @@
-import { DetailCard, Tabs } from '@camp/design';
-import type { Project } from '@camp/domain';
-import { messages } from '@camp/messages';
+import { useProjectQuery } from '@camp/data-layer';
+import {
+  DetailCard,
+  FullPageLoader,
+  showNotification,
+  Tabs,
+} from '@camp/design';
+import { errorMessages, messages } from '@camp/messages';
+import { useParams } from '@camp/router';
+import { isNull } from '@fullstacksjs/toolbox';
 import { Text, Title } from '@mantine/core';
 
 import { ProjectStatusBadge } from '../../../../components';
@@ -8,14 +15,25 @@ import { ProjectDetailIds as ids } from './ProjectDetail.ids';
 
 export const ProjectDetail = () => {
   const t = messages.projectDetail;
+  const projectId = useParams();
 
-  const project: Project = {
-    description: 'بار چندمه زنگ میزنی امشب؟\nهاشمی نداریم.',
-    id: 'null',
-    name: 'خرید لوازم',
-    startDate: new Date('2022-12-23T13:59:33Z'),
-    status: 'inProgress',
-  };
+  const { data, loading, error } = useProjectQuery({
+    variables: { id: projectId },
+  });
+  const project = data?.project;
+  const households = data?.households;
+
+  if (loading) return <FullPageLoader />;
+
+  if (error) {
+    showNotification({
+      type: 'failure',
+      title: t.title,
+      message: errorMessages.UNKNOWN_ERROR,
+    });
+    return null;
+  }
+  if (isNull(project)) return <p>{t.notFound}</p>;
 
   return (
     <>
@@ -28,7 +46,11 @@ export const ProjectDetail = () => {
             <ProjectStatusBadge />
           </DetailCard.Field>
           <DetailCard.Field title={t.projectFields.membersCount.title}>
-            <Text color="fgSubtle">{t.projectFields.membersCount.empty}</Text>
+            {households?.length === 0 ? (
+              <Text color="fgSubtle">{t.projectFields.membersCount.empty}</Text>
+            ) : (
+              households?.length
+            )}
           </DetailCard.Field>
           <DetailCard.DateField
             title={t.projectFields.startDate.title}
