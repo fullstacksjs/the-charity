@@ -39,6 +39,7 @@ export class Debug {
   }
 
   private isInScope(scope: DebugScope) {
+    // eslint-disable-next-line @typescript-eslint/no-unsafe-enum-comparison
     return this.scopes.includes(scope) || scope === DebugScopes.All;
   }
 
