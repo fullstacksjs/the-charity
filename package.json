@@ -29,7 +29,7 @@
   "dependencies": {
     "@anatine/zod-mock": "3.12.0",
     "@apollo/client": "3.7.15",
-    "@auth0/auth0-react": "2.0.2",
+    "@auth0/auth0-react": "2.1.0",
     "@cspell/dict-fa-ir": "2.0.0",
     "@emotion/react": "11.11.0",
     "@fullstacksjs/toolbox": "3.0.2",
@@ -49,7 +49,7 @@
     "react": "18.2.0",
     "react-dom": "18.2.0",
     "react-feather": "2.0.10",
-    "react-hook-form": "7.43.9",
+    "react-hook-form": "7.44.3",
     "stylis": "4.2.0",
     "stylis-plugin-rtl": "2.1.1",
     "zod": "3.21.4"
