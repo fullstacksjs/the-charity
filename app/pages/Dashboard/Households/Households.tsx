@@ -3,7 +3,7 @@ import { Outlet } from '@camp/router';
 
 import { CreateHouseholdButton } from '../../../components';
 
-export const Families = () => {
+export const Households = () => {
   return (
     <>
       <DashboardHeader button={<CreateHouseholdButton />} />

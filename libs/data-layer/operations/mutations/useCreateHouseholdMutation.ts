@@ -56,17 +56,17 @@ export function useCreateHouseholdMutation(
     mapData: toClient,
     mapVariables: toApiVariables,
     update(cache, result, opts) {
-      const { data: families } = result;
-      const newFamilies = families?.insert_household_one;
-      const prevFamiliesQuery = cache.readQuery<ApiHouseholdListQuery>({
+      const { data: households } = result;
+      const newHouseholds = households?.insert_household_one;
+      const prevHouseholdsQuery = cache.readQuery<ApiHouseholdListQuery>({
         query: ApiHouseholdListDocument,
       });
 
-      if (prevFamiliesQuery && newFamilies) {
+      if (prevHouseholdsQuery && newHouseholds) {
         cache.writeQuery({
           query: ApiHouseholdListDocument,
           data: {
-            household: [...prevFamiliesQuery.household, newFamilies],
+            household: [...prevHouseholdsQuery.household, newHouseholds],
           },
         });
       }

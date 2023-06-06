@@ -8,7 +8,7 @@ import { householdFixture } from '../fixtures/household';
 describe('Create Household', () => {
   beforeEach(() => {
     cy.login(admin);
-    cy.visit(AppRoute.families);
+    cy.visit(AppRoute.households);
   });
 
   it('[OK]: Create a household', () => {

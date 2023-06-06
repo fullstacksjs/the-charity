@@ -36,7 +36,7 @@ export const messages = {
   },
   companyName: 'نامی مناسب برای خیریه',
   actions: { dismiss: 'انصراف', open: 'باز کردن', delete: 'حذف کردن' },
-  families: {
+  households: {
     title: 'خانواده ها',
     create: 'ایجاد خانواده جدید',
     empty: {

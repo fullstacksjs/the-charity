@@ -2,21 +2,21 @@ import { messages } from '@camp/messages';
 import type { Meta, StoryObj } from '@storybook/react';
 
 import { DashboardLayout } from '../DashboardLayout';
-import { Families } from './Households';
+import { Households } from './Households';
 
 export default {
-  component: Families,
+  component: Households,
   args: {
     router: {
-      route: '/dashboard/families',
+      route: '/dashboard/households',
       layout: DashboardLayout,
       meta: {
-        breadcrumb: messages.families.title,
+        breadcrumb: messages.households.title,
       },
     },
   },
-} as Meta<typeof Families>;
+} as Meta<typeof Households>;
 
-type Story = StoryObj<typeof Families>;
+type Story = StoryObj<typeof Households>;
 
 export const Default: Story = {};

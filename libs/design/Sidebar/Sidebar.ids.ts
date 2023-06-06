@@ -1,4 +1,4 @@
 export const navLinkIds = {
-  families: 'nav-link-families',
+  households: 'nav-link-households',
   projects: 'nav-link-projects',
 };

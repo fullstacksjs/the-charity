@@ -25,13 +25,13 @@ export type HouseholdListItemDto = Pick<
   'id' | 'informationStatus' | 'name' | 'severityStatus'
 >;
 export interface HouseholdListDto {
-  families: HouseholdListItemDto[];
+  households: HouseholdListItemDto[];
 }
 
 const toClient = (
   data: ApiHouseholdListQuery | null | undefined,
 ): HouseholdListDto => ({
-  families:
+  households:
     data?.household == null
       ? []
       : data.household.map(f => ({

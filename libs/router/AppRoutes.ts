@@ -3,8 +3,8 @@ export const AppRoute = {
   auth: '/auth',
   login: '/auth/login',
   dashboard: '/dashboard',
-  families: '/dashboard/families',
-  householdDetail: '/dashboard/families/:id',
+  households: '/dashboard/households',
+  householdDetail: '/dashboard/households/:id',
   projects: '/dashboard/projects',
   graphql: '/graphiql',
 } as const;

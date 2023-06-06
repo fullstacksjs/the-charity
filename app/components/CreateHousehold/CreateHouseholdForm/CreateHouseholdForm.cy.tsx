@@ -5,7 +5,7 @@ import { CreateHouseholdForm } from './CreateHouseholdForm';
 import { createHouseholdFormIds } from './CreateHouseholdForm.ids';
 
 const requiredFieldMsg = messages.validation.required;
-const minLengthMsg = messages.families.validation.minLength;
+const minLengthMsg = messages.households.validation.minLength;
 
 describe('Create Household Form', () => {
   beforeEach(() => {

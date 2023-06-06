@@ -58,7 +58,7 @@ const idMapping = {
 describe('Householder', () => {
   beforeEach(() => {
     cy.login(admin);
-    cy.visit(AppRoute.families);
+    cy.visit(AppRoute.households);
     const name = householdFixture.name();
     cy.wrap(api.createHousehold(name));
     cy.findByText(name).click();

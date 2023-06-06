@@ -16,8 +16,8 @@ type Story = StoryObj<typeof NavLink>;
 
 export const Default: Story = {
   args: {
-    label: messages.families.title,
-    to: '/dashboard/families',
+    label: messages.households.title,
+    to: '/dashboard/households',
     icon: <PeopleIcon width="24" height="24" />,
   },
 };
