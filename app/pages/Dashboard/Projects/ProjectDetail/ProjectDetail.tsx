@@ -13,7 +13,7 @@ export const ProjectDetail = () => {
     description: 'بار چندمه زنگ میزنی امشب؟\nهاشمی نداریم.',
     id: 'null',
     name: 'خرید لوازم',
-    startDate: new Date(),
+    startDate: new Date('2022-12-23T13:59:33Z'),
     status: 'inProgress',
   };
 

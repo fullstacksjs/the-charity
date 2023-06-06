@@ -80,6 +80,7 @@ describe('Householder', () => {
     const mock = pruneUndefinedOrEmpty(householderFixture());
 
     addHouseholder(mock);
+    cy.findByText(/ویرایش/).click();
     emptyHouseholderForm(mock);
     cy.findByTestId(ids.undoBtn).click();
     compareHouseholderForm(mock);
@@ -106,9 +107,13 @@ function emptyHouseholderForm(mock: Mock) {
     if (inputValue == null) return;
 
     // NOTE: clicking on the same selected element unselects it
-    if (type === 'select')
-      cy.findByTestId(id).click().findByText(inputValue).click();
-    else cy.findByTestId(id).find('input').clear().blur();
+    if (type === 'select') {
+      cy.findByTestId(id).click();
+      cy.findByTestId(id).findByText(inputValue).click();
+    } else {
+      cy.findByTestId(id).find('input').clear();
+      cy.findByTestId(id).find('input').blur();
+    }
   });
 }
 
@@ -124,9 +129,13 @@ function addHouseholder(mock: Mock) {
 
       if (inputValue == null) return;
 
-      if (type === 'select')
-        cy.findByTestId(id).click().findByText(inputValue).click();
-      else cy.findByTestId(id).find('input').type(inputValue).blur();
+      if (type === 'select') {
+        cy.findByTestId(id).click();
+        cy.findByTestId(id).findByText(inputValue).click();
+      } else {
+        cy.findByTestId(id).find('input').type(inputValue);
+        cy.findByTestId(id).find('input').blur();
+      }
     });
 
     cy.root().submit();

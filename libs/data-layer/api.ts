@@ -8,68 +8,70 @@ export type InputMaybe<T> = Maybe<T>;
 export type Exact<T extends { [key: string]: unknown }> = { [K in keyof T]: T[K] };
 export type MakeOptional<T, K extends keyof T> = Omit<T, K> & { [SubKey in K]?: Maybe<T[SubKey]> };
 export type MakeMaybe<T, K extends keyof T> = Omit<T, K> & { [SubKey in K]: Maybe<T[SubKey]> };
+export type MakeEmpty<T extends { [key: string]: unknown }, K extends keyof T> = { [_ in K]?: never };
+export type Incremental<T> = T | { [P in keyof T]?: P extends ' $fragmentName' | '__typename' ? T[P] : never };
 /** All built-in and custom scalars, mapped to their actual values */
 export type Scalars = {
-  ID: string;
-  String: string;
-  Boolean: boolean;
-  Int: number;
-  Float: number;
-  date: string;
-  timestamptz: any;
-  uuid: string;
+  ID: { input: string | number; output: string; }
+  String: { input: string; output: string; }
+  Boolean: { input: boolean; output: boolean; }
+  Int: { input: number; output: number; }
+  Float: { input: number; output: number; }
+  date: { input: string; output: string; }
+  timestamptz: { input: any; output: any; }
+  uuid: { input: string; output: string; }
 };
 
 /** Boolean expression to compare columns of type "Int". All fields are combined with logical 'AND'. */
 export type ApiIntComparisonExp = {
-  _eq?: InputMaybe<Scalars['Int']>;
-  _gt?: InputMaybe<Scalars['Int']>;
-  _gte?: InputMaybe<Scalars['Int']>;
-  _in?: InputMaybe<Array<Scalars['Int']>>;
-  _is_null?: InputMaybe<Scalars['Boolean']>;
-  _lt?: InputMaybe<Scalars['Int']>;
-  _lte?: InputMaybe<Scalars['Int']>;
-  _neq?: InputMaybe<Scalars['Int']>;
-  _nin?: InputMaybe<Array<Scalars['Int']>>;
+  _eq?: InputMaybe<Scalars['Int']['input']>;
+  _gt?: InputMaybe<Scalars['Int']['input']>;
+  _gte?: InputMaybe<Scalars['Int']['input']>;
+  _in?: InputMaybe<Array<Scalars['Int']['input']>>;
+  _is_null?: InputMaybe<Scalars['Boolean']['input']>;
+  _lt?: InputMaybe<Scalars['Int']['input']>;
+  _lte?: InputMaybe<Scalars['Int']['input']>;
+  _neq?: InputMaybe<Scalars['Int']['input']>;
+  _nin?: InputMaybe<Array<Scalars['Int']['input']>>;
 };
 
 /** Boolean expression to compare columns of type "String". All fields are combined with logical 'AND'. */
 export type ApiStringComparisonExp = {
-  _eq?: InputMaybe<Scalars['String']>;
-  _gt?: InputMaybe<Scalars['String']>;
-  _gte?: InputMaybe<Scalars['String']>;
+  _eq?: InputMaybe<Scalars['String']['input']>;
+  _gt?: InputMaybe<Scalars['String']['input']>;
+  _gte?: InputMaybe<Scalars['String']['input']>;
   /** does the column match the given case-insensitive pattern */
-  _ilike?: InputMaybe<Scalars['String']>;
-  _in?: InputMaybe<Array<Scalars['String']>>;
+  _ilike?: InputMaybe<Scalars['String']['input']>;
+  _in?: InputMaybe<Array<Scalars['String']['input']>>;
   /** does the column match the given POSIX regular expression, case insensitive */
-  _iregex?: InputMaybe<Scalars['String']>;
-  _is_null?: InputMaybe<Scalars['Boolean']>;
+  _iregex?: InputMaybe<Scalars['String']['input']>;
+  _is_null?: InputMaybe<Scalars['Boolean']['input']>;
   /** does the column match the given pattern */
-  _like?: InputMaybe<Scalars['String']>;
-  _lt?: InputMaybe<Scalars['String']>;
-  _lte?: InputMaybe<Scalars['String']>;
-  _neq?: InputMaybe<Scalars['String']>;
+  _like?: InputMaybe<Scalars['String']['input']>;
+  _lt?: InputMaybe<Scalars['String']['input']>;
+  _lte?: InputMaybe<Scalars['String']['input']>;
+  _neq?: InputMaybe<Scalars['String']['input']>;
   /** does the column NOT match the given case-insensitive pattern */
-  _nilike?: InputMaybe<Scalars['String']>;
-  _nin?: InputMaybe<Array<Scalars['String']>>;
+  _nilike?: InputMaybe<Scalars['String']['input']>;
+  _nin?: InputMaybe<Array<Scalars['String']['input']>>;
   /** does the column NOT match the given POSIX regular expression, case insensitive */
-  _niregex?: InputMaybe<Scalars['String']>;
+  _niregex?: InputMaybe<Scalars['String']['input']>;
   /** does the column NOT match the given pattern */
-  _nlike?: InputMaybe<Scalars['String']>;
+  _nlike?: InputMaybe<Scalars['String']['input']>;
   /** does the column NOT match the given POSIX regular expression, case sensitive */
-  _nregex?: InputMaybe<Scalars['String']>;
+  _nregex?: InputMaybe<Scalars['String']['input']>;
   /** does the column NOT match the given SQL regular expression */
-  _nsimilar?: InputMaybe<Scalars['String']>;
+  _nsimilar?: InputMaybe<Scalars['String']['input']>;
   /** does the column match the given POSIX regular expression, case sensitive */
-  _regex?: InputMaybe<Scalars['String']>;
+  _regex?: InputMaybe<Scalars['String']['input']>;
   /** does the column match the given SQL regular expression */
-  _similar?: InputMaybe<Scalars['String']>;
+  _similar?: InputMaybe<Scalars['String']['input']>;
 };
 
 /** columns and relationships of "city" */
 export type ApiCity = {
   __typename?: 'city';
-  value: Scalars['String'];
+  value: Scalars['String']['output'];
 };
 
 /** aggregated selection of "city" */
@@ -82,7 +84,7 @@ export type ApiCityAggregate = {
 /** aggregate fields of "city" */
 export type ApiCityAggregateFields = {
   __typename?: 'city_aggregate_fields';
-  count: Scalars['Int'];
+  count: Scalars['Int']['output'];
   max?: Maybe<ApiCityMaxFields>;
   min?: Maybe<ApiCityMinFields>;
 };
@@ -91,7 +93,7 @@ export type ApiCityAggregateFields = {
 /** aggregate fields of "city" */
 export type ApiCityAggregateFieldsApiCountArgs = {
   columns?: InputMaybe<Array<ApiCitySelectColumn>>;
-  distinct?: InputMaybe<Scalars['Boolean']>;
+  distinct?: InputMaybe<Scalars['Boolean']['input']>;
 };
 
 /** Boolean expression to filter rows from the table "city". All fields are combined with a logical 'AND'. */
@@ -117,33 +119,33 @@ export enum ApiCityEnum {
 export type ApiCityEnumComparisonExp = {
   _eq?: InputMaybe<ApiCityEnum>;
   _in?: InputMaybe<Array<ApiCityEnum>>;
-  _is_null?: InputMaybe<Scalars['Boolean']>;
+  _is_null?: InputMaybe<Scalars['Boolean']['input']>;
   _neq?: InputMaybe<ApiCityEnum>;
   _nin?: InputMaybe<Array<ApiCityEnum>>;
 };
 
 /** input type for inserting data into table "city" */
 export type ApiCityInsertInput = {
-  value?: InputMaybe<Scalars['String']>;
+  value?: InputMaybe<Scalars['String']['input']>;
 };
 
 /** aggregate max on columns */
 export type ApiCityMaxFields = {
   __typename?: 'city_max_fields';
-  value?: Maybe<Scalars['String']>;
+  value?: Maybe<Scalars['String']['output']>;
 };
 
 /** aggregate min on columns */
 export type ApiCityMinFields = {
   __typename?: 'city_min_fields';
-  value?: Maybe<Scalars['String']>;
+  value?: Maybe<Scalars['String']['output']>;
 };
 
 /** response of any mutation on the table "city" */
 export type ApiCityMutationResponse = {
   __typename?: 'city_mutation_response';
   /** number of rows affected by the mutation */
-  affected_rows: Scalars['Int'];
+  affected_rows: Scalars['Int']['output'];
   /** data from the rows affected by the mutation */
   returning: Array<ApiCity>;
 };
@@ -162,7 +164,7 @@ export type ApiCityOrderBy = {
 
 /** primary key columns input for table: city */
 export type ApiCityPkColumnsInput = {
-  value: Scalars['String'];
+  value: Scalars['String']['input'];
 };
 
 /** select columns of table "city" */
@@ -173,7 +175,7 @@ export enum ApiCitySelectColumn {
 
 /** input type for updating data in table "city" */
 export type ApiCitySetInput = {
-  value?: InputMaybe<Scalars['String']>;
+  value?: InputMaybe<Scalars['String']['input']>;
 };
 
 /** Streaming cursor of the table "city" */
@@ -186,7 +188,7 @@ export type ApiCityStreamCursorInput = {
 
 /** Initial value of the column from where the streaming should start */
 export type ApiCityStreamCursorValueInput = {
-  value?: InputMaybe<Scalars['String']>;
+  value?: InputMaybe<Scalars['String']['input']>;
 };
 
 /** update columns of table "city" */
@@ -212,21 +214,21 @@ export enum ApiCursorOrdering {
 
 /** Boolean expression to compare columns of type "date". All fields are combined with logical 'AND'. */
 export type ApiDateComparisonExp = {
-  _eq?: InputMaybe<Scalars['date']>;
-  _gt?: InputMaybe<Scalars['date']>;
-  _gte?: InputMaybe<Scalars['date']>;
-  _in?: InputMaybe<Array<Scalars['date']>>;
-  _is_null?: InputMaybe<Scalars['Boolean']>;
-  _lt?: InputMaybe<Scalars['date']>;
-  _lte?: InputMaybe<Scalars['date']>;
-  _neq?: InputMaybe<Scalars['date']>;
-  _nin?: InputMaybe<Array<Scalars['date']>>;
+  _eq?: InputMaybe<Scalars['date']['input']>;
+  _gt?: InputMaybe<Scalars['date']['input']>;
+  _gte?: InputMaybe<Scalars['date']['input']>;
+  _in?: InputMaybe<Array<Scalars['date']['input']>>;
+  _is_null?: InputMaybe<Scalars['Boolean']['input']>;
+  _lt?: InputMaybe<Scalars['date']['input']>;
+  _lte?: InputMaybe<Scalars['date']['input']>;
+  _neq?: InputMaybe<Scalars['date']['input']>;
+  _nin?: InputMaybe<Array<Scalars['date']['input']>>;
 };
 
 /** columns and relationships of "gender" */
 export type ApiGender = {
   __typename?: 'gender';
-  value: Scalars['String'];
+  value: Scalars['String']['output'];
 };
 
 /** aggregated selection of "gender" */
@@ -239,7 +241,7 @@ export type ApiGenderAggregate = {
 /** aggregate fields of "gender" */
 export type ApiGenderAggregateFields = {
   __typename?: 'gender_aggregate_fields';
-  count: Scalars['Int'];
+  count: Scalars['Int']['output'];
   max?: Maybe<ApiGenderMaxFields>;
   min?: Maybe<ApiGenderMinFields>;
 };
@@ -248,7 +250,7 @@ export type ApiGenderAggregateFields = {
 /** aggregate fields of "gender" */
 export type ApiGenderAggregateFieldsApiCountArgs = {
   columns?: InputMaybe<Array<ApiGenderSelectColumn>>;
-  distinct?: InputMaybe<Scalars['Boolean']>;
+  distinct?: InputMaybe<Scalars['Boolean']['input']>;
 };
 
 /** Boolean expression to filter rows from the table "gender". All fields are combined with a logical 'AND'. */
@@ -275,33 +277,33 @@ export enum ApiGenderEnum {
 export type ApiGenderEnumComparisonExp = {
   _eq?: InputMaybe<ApiGenderEnum>;
   _in?: InputMaybe<Array<ApiGenderEnum>>;
-  _is_null?: InputMaybe<Scalars['Boolean']>;
+  _is_null?: InputMaybe<Scalars['Boolean']['input']>;
   _neq?: InputMaybe<ApiGenderEnum>;
   _nin?: InputMaybe<Array<ApiGenderEnum>>;
 };
 
 /** input type for inserting data into table "gender" */
 export type ApiGenderInsertInput = {
-  value?: InputMaybe<Scalars['String']>;
+  value?: InputMaybe<Scalars['String']['input']>;
 };
 
 /** aggregate max on columns */
 export type ApiGenderMaxFields = {
   __typename?: 'gender_max_fields';
-  value?: Maybe<Scalars['String']>;
+  value?: Maybe<Scalars['String']['output']>;
 };
 
 /** aggregate min on columns */
 export type ApiGenderMinFields = {
   __typename?: 'gender_min_fields';
-  value?: Maybe<Scalars['String']>;
+  value?: Maybe<Scalars['String']['output']>;
 };
 
 /** response of any mutation on the table "gender" */
 export type ApiGenderMutationResponse = {
   __typename?: 'gender_mutation_response';
   /** number of rows affected by the mutation */
-  affected_rows: Scalars['Int'];
+  affected_rows: Scalars['Int']['output'];
   /** data from the rows affected by the mutation */
   returning: Array<ApiGender>;
 };
@@ -320,7 +322,7 @@ export type ApiGenderOrderBy = {
 
 /** primary key columns input for table: gender */
 export type ApiGenderPkColumnsInput = {
-  value: Scalars['String'];
+  value: Scalars['String']['input'];
 };
 
 /** select columns of table "gender" */
@@ -331,7 +333,7 @@ export enum ApiGenderSelectColumn {
 
 /** input type for updating data in table "gender" */
 export type ApiGenderSetInput = {
-  value?: InputMaybe<Scalars['String']>;
+  value?: InputMaybe<Scalars['String']['input']>;
 };
 
 /** Streaming cursor of the table "gender" */
@@ -344,7 +346,7 @@ export type ApiGenderStreamCursorInput = {
 
 /** Initial value of the column from where the streaming should start */
 export type ApiGenderStreamCursorValueInput = {
-  value?: InputMaybe<Scalars['String']>;
+  value?: InputMaybe<Scalars['String']['input']>;
 };
 
 /** update columns of table "gender" */
@@ -364,14 +366,14 @@ export type ApiGenderUpdates = {
 export type ApiHousehold = {
   __typename?: 'household';
   /** A computed field, executes function "format_code" */
-  code?: Maybe<Scalars['String']>;
-  created_at: Scalars['timestamptz'];
-  db_code: Scalars['Int'];
-  id: Scalars['uuid'];
-  name: Scalars['String'];
+  code?: Maybe<Scalars['String']['output']>;
+  created_at: Scalars['timestamptz']['output'];
+  db_code: Scalars['Int']['output'];
+  id: Scalars['uuid']['output'];
+  name: Scalars['String']['output'];
   severity: ApiHouseholdSeverityEnum;
   status: ApiHouseholdStatusEnum;
-  updated_at: Scalars['timestamptz'];
+  updated_at: Scalars['timestamptz']['output'];
 };
 
 /** aggregated selection of "household" */
@@ -385,7 +387,7 @@ export type ApiHouseholdAggregate = {
 export type ApiHouseholdAggregateFields = {
   __typename?: 'household_aggregate_fields';
   avg?: Maybe<ApiHouseholdAvgFields>;
-  count: Scalars['Int'];
+  count: Scalars['Int']['output'];
   max?: Maybe<ApiHouseholdMaxFields>;
   min?: Maybe<ApiHouseholdMinFields>;
   stddev?: Maybe<ApiHouseholdStddevFields>;
@@ -401,13 +403,13 @@ export type ApiHouseholdAggregateFields = {
 /** aggregate fields of "household" */
 export type ApiHouseholdAggregateFieldsApiCountArgs = {
   columns?: InputMaybe<Array<ApiHouseholdSelectColumn>>;
-  distinct?: InputMaybe<Scalars['Boolean']>;
+  distinct?: InputMaybe<Scalars['Boolean']['input']>;
 };
 
 /** aggregate avg on columns */
 export type ApiHouseholdAvgFields = {
   __typename?: 'household_avg_fields';
-  db_code?: Maybe<Scalars['Float']>;
+  db_code?: Maybe<Scalars['Float']['output']>;
 };
 
 /** Boolean expression to filter rows from the table "household". All fields are combined with a logical 'AND'. */
@@ -435,45 +437,45 @@ export enum ApiHouseholdConstraint {
 
 /** input type for incrementing numeric columns in table "household" */
 export type ApiHouseholdIncInput = {
-  db_code?: InputMaybe<Scalars['Int']>;
+  db_code?: InputMaybe<Scalars['Int']['input']>;
 };
 
 /** input type for inserting data into table "household" */
 export type ApiHouseholdInsertInput = {
-  created_at?: InputMaybe<Scalars['timestamptz']>;
-  db_code?: InputMaybe<Scalars['Int']>;
-  id?: InputMaybe<Scalars['uuid']>;
-  name?: InputMaybe<Scalars['String']>;
+  created_at?: InputMaybe<Scalars['timestamptz']['input']>;
+  db_code?: InputMaybe<Scalars['Int']['input']>;
+  id?: InputMaybe<Scalars['uuid']['input']>;
+  name?: InputMaybe<Scalars['String']['input']>;
   severity?: InputMaybe<ApiHouseholdSeverityEnum>;
   status?: InputMaybe<ApiHouseholdStatusEnum>;
-  updated_at?: InputMaybe<Scalars['timestamptz']>;
+  updated_at?: InputMaybe<Scalars['timestamptz']['input']>;
 };
 
 /** aggregate max on columns */
 export type ApiHouseholdMaxFields = {
   __typename?: 'household_max_fields';
-  created_at?: Maybe<Scalars['timestamptz']>;
-  db_code?: Maybe<Scalars['Int']>;
-  id?: Maybe<Scalars['uuid']>;
-  name?: Maybe<Scalars['String']>;
-  updated_at?: Maybe<Scalars['timestamptz']>;
+  created_at?: Maybe<Scalars['timestamptz']['output']>;
+  db_code?: Maybe<Scalars['Int']['output']>;
+  id?: Maybe<Scalars['uuid']['output']>;
+  name?: Maybe<Scalars['String']['output']>;
+  updated_at?: Maybe<Scalars['timestamptz']['output']>;
 };
 
 /** aggregate min on columns */
 export type ApiHouseholdMinFields = {
   __typename?: 'household_min_fields';
-  created_at?: Maybe<Scalars['timestamptz']>;
-  db_code?: Maybe<Scalars['Int']>;
-  id?: Maybe<Scalars['uuid']>;
-  name?: Maybe<Scalars['String']>;
-  updated_at?: Maybe<Scalars['timestamptz']>;
+  created_at?: Maybe<Scalars['timestamptz']['output']>;
+  db_code?: Maybe<Scalars['Int']['output']>;
+  id?: Maybe<Scalars['uuid']['output']>;
+  name?: Maybe<Scalars['String']['output']>;
+  updated_at?: Maybe<Scalars['timestamptz']['output']>;
 };
 
 /** response of any mutation on the table "household" */
 export type ApiHouseholdMutationResponse = {
   __typename?: 'household_mutation_response';
   /** number of rows affected by the mutation */
-  affected_rows: Scalars['Int'];
+  affected_rows: Scalars['Int']['output'];
   /** data from the rows affected by the mutation */
   returning: Array<ApiHousehold>;
 };
@@ -506,21 +508,21 @@ export type ApiHouseholdOrderBy = {
 
 /** primary key columns input for table: household */
 export type ApiHouseholdPkColumnsInput = {
-  id: Scalars['uuid'];
+  id: Scalars['uuid']['input'];
 };
 
 /** Relation between projects and households */
 export type ApiHouseholdProject = {
   __typename?: 'household_project';
-  count: Scalars['Int'];
-  created_at: Scalars['timestamptz'];
+  count: Scalars['Int']['output'];
+  created_at: Scalars['timestamptz']['output'];
   /** An object relationship */
   household: ApiHousehold;
-  household_id: Scalars['uuid'];
+  household_id: Scalars['uuid']['output'];
   /** An object relationship */
   project: ApiProject;
-  project_id: Scalars['uuid'];
-  updated_at: Scalars['timestamptz'];
+  project_id: Scalars['uuid']['output'];
+  updated_at: Scalars['timestamptz']['output'];
 };
 
 /** aggregated selection of "household_project" */
@@ -536,7 +538,7 @@ export type ApiHouseholdProjectAggregateBoolExp = {
 
 export type ApiHouseholdProjectAggregateBoolExpCount = {
   arguments?: InputMaybe<Array<ApiHouseholdProjectSelectColumn>>;
-  distinct?: InputMaybe<Scalars['Boolean']>;
+  distinct?: InputMaybe<Scalars['Boolean']['input']>;
   filter?: InputMaybe<ApiHouseholdProjectBoolExp>;
   predicate: ApiIntComparisonExp;
 };
@@ -545,7 +547,7 @@ export type ApiHouseholdProjectAggregateBoolExpCount = {
 export type ApiHouseholdProjectAggregateFields = {
   __typename?: 'household_project_aggregate_fields';
   avg?: Maybe<ApiHouseholdProjectAvgFields>;
-  count: Scalars['Int'];
+  count: Scalars['Int']['output'];
   max?: Maybe<ApiHouseholdProjectMaxFields>;
   min?: Maybe<ApiHouseholdProjectMinFields>;
   stddev?: Maybe<ApiHouseholdProjectStddevFields>;
@@ -561,7 +563,7 @@ export type ApiHouseholdProjectAggregateFields = {
 /** aggregate fields of "household_project" */
 export type ApiHouseholdProjectAggregateFieldsApiCountArgs = {
   columns?: InputMaybe<Array<ApiHouseholdProjectSelectColumn>>;
-  distinct?: InputMaybe<Scalars['Boolean']>;
+  distinct?: InputMaybe<Scalars['Boolean']['input']>;
 };
 
 /** order by aggregate values of table "household_project" */
@@ -589,7 +591,7 @@ export type ApiHouseholdProjectArrRelInsertInput = {
 /** aggregate avg on columns */
 export type ApiHouseholdProjectAvgFields = {
   __typename?: 'household_project_avg_fields';
-  count?: Maybe<Scalars['Float']>;
+  count?: Maybe<Scalars['Float']['output']>;
 };
 
 /** order by avg() on columns of table "household_project" */
@@ -619,28 +621,28 @@ export enum ApiHouseholdProjectConstraint {
 
 /** input type for incrementing numeric columns in table "household_project" */
 export type ApiHouseholdProjectIncInput = {
-  count?: InputMaybe<Scalars['Int']>;
+  count?: InputMaybe<Scalars['Int']['input']>;
 };
 
 /** input type for inserting data into table "household_project" */
 export type ApiHouseholdProjectInsertInput = {
-  count?: InputMaybe<Scalars['Int']>;
-  created_at?: InputMaybe<Scalars['timestamptz']>;
+  count?: InputMaybe<Scalars['Int']['input']>;
+  created_at?: InputMaybe<Scalars['timestamptz']['input']>;
   household?: InputMaybe<ApiHouseholdObjRelInsertInput>;
-  household_id?: InputMaybe<Scalars['uuid']>;
+  household_id?: InputMaybe<Scalars['uuid']['input']>;
   project?: InputMaybe<ApiProjectObjRelInsertInput>;
-  project_id?: InputMaybe<Scalars['uuid']>;
-  updated_at?: InputMaybe<Scalars['timestamptz']>;
+  project_id?: InputMaybe<Scalars['uuid']['input']>;
+  updated_at?: InputMaybe<Scalars['timestamptz']['input']>;
 };
 
 /** aggregate max on columns */
 export type ApiHouseholdProjectMaxFields = {
   __typename?: 'household_project_max_fields';
-  count?: Maybe<Scalars['Int']>;
-  created_at?: Maybe<Scalars['timestamptz']>;
-  household_id?: Maybe<Scalars['uuid']>;
-  project_id?: Maybe<Scalars['uuid']>;
-  updated_at?: Maybe<Scalars['timestamptz']>;
+  count?: Maybe<Scalars['Int']['output']>;
+  created_at?: Maybe<Scalars['timestamptz']['output']>;
+  household_id?: Maybe<Scalars['uuid']['output']>;
+  project_id?: Maybe<Scalars['uuid']['output']>;
+  updated_at?: Maybe<Scalars['timestamptz']['output']>;
 };
 
 /** order by max() on columns of table "household_project" */
@@ -655,11 +657,11 @@ export type ApiHouseholdProjectMaxOrderBy = {
 /** aggregate min on columns */
 export type ApiHouseholdProjectMinFields = {
   __typename?: 'household_project_min_fields';
-  count?: Maybe<Scalars['Int']>;
-  created_at?: Maybe<Scalars['timestamptz']>;
-  household_id?: Maybe<Scalars['uuid']>;
-  project_id?: Maybe<Scalars['uuid']>;
-  updated_at?: Maybe<Scalars['timestamptz']>;
+  count?: Maybe<Scalars['Int']['output']>;
+  created_at?: Maybe<Scalars['timestamptz']['output']>;
+  household_id?: Maybe<Scalars['uuid']['output']>;
+  project_id?: Maybe<Scalars['uuid']['output']>;
+  updated_at?: Maybe<Scalars['timestamptz']['output']>;
 };
 
 /** order by min() on columns of table "household_project" */
@@ -675,7 +677,7 @@ export type ApiHouseholdProjectMinOrderBy = {
 export type ApiHouseholdProjectMutationResponse = {
   __typename?: 'household_project_mutation_response';
   /** number of rows affected by the mutation */
-  affected_rows: Scalars['Int'];
+  affected_rows: Scalars['Int']['output'];
   /** data from the rows affected by the mutation */
   returning: Array<ApiHouseholdProject>;
 };
@@ -700,8 +702,8 @@ export type ApiHouseholdProjectOrderBy = {
 
 /** primary key columns input for table: household_project */
 export type ApiHouseholdProjectPkColumnsInput = {
-  household_id: Scalars['uuid'];
-  project_id: Scalars['uuid'];
+  household_id: Scalars['uuid']['input'];
+  project_id: Scalars['uuid']['input'];
 };
 
 /** select columns of table "household_project" */
@@ -720,17 +722,17 @@ export enum ApiHouseholdProjectSelectColumn {
 
 /** input type for updating data in table "household_project" */
 export type ApiHouseholdProjectSetInput = {
-  count?: InputMaybe<Scalars['Int']>;
-  created_at?: InputMaybe<Scalars['timestamptz']>;
-  household_id?: InputMaybe<Scalars['uuid']>;
-  project_id?: InputMaybe<Scalars['uuid']>;
-  updated_at?: InputMaybe<Scalars['timestamptz']>;
+  count?: InputMaybe<Scalars['Int']['input']>;
+  created_at?: InputMaybe<Scalars['timestamptz']['input']>;
+  household_id?: InputMaybe<Scalars['uuid']['input']>;
+  project_id?: InputMaybe<Scalars['uuid']['input']>;
+  updated_at?: InputMaybe<Scalars['timestamptz']['input']>;
 };
 
 /** aggregate stddev on columns */
 export type ApiHouseholdProjectStddevFields = {
   __typename?: 'household_project_stddev_fields';
-  count?: Maybe<Scalars['Float']>;
+  count?: Maybe<Scalars['Float']['output']>;
 };
 
 /** order by stddev() on columns of table "household_project" */
@@ -741,7 +743,7 @@ export type ApiHouseholdProjectStddevOrderBy = {
 /** aggregate stddev_pop on columns */
 export type ApiHouseholdProjectStddevPopFields = {
   __typename?: 'household_project_stddev_pop_fields';
-  count?: Maybe<Scalars['Float']>;
+  count?: Maybe<Scalars['Float']['output']>;
 };
 
 /** order by stddev_pop() on columns of table "household_project" */
@@ -752,7 +754,7 @@ export type ApiHouseholdProjectStddevPopOrderBy = {
 /** aggregate stddev_samp on columns */
 export type ApiHouseholdProjectStddevSampFields = {
   __typename?: 'household_project_stddev_samp_fields';
-  count?: Maybe<Scalars['Float']>;
+  count?: Maybe<Scalars['Float']['output']>;
 };
 
 /** order by stddev_samp() on columns of table "household_project" */
@@ -770,17 +772,17 @@ export type ApiHouseholdProjectStreamCursorInput = {
 
 /** Initial value of the column from where the streaming should start */
 export type ApiHouseholdProjectStreamCursorValueInput = {
-  count?: InputMaybe<Scalars['Int']>;
-  created_at?: InputMaybe<Scalars['timestamptz']>;
-  household_id?: InputMaybe<Scalars['uuid']>;
-  project_id?: InputMaybe<Scalars['uuid']>;
-  updated_at?: InputMaybe<Scalars['timestamptz']>;
+  count?: InputMaybe<Scalars['Int']['input']>;
+  created_at?: InputMaybe<Scalars['timestamptz']['input']>;
+  household_id?: InputMaybe<Scalars['uuid']['input']>;
+  project_id?: InputMaybe<Scalars['uuid']['input']>;
+  updated_at?: InputMaybe<Scalars['timestamptz']['input']>;
 };
 
 /** aggregate sum on columns */
 export type ApiHouseholdProjectSumFields = {
   __typename?: 'household_project_sum_fields';
-  count?: Maybe<Scalars['Int']>;
+  count?: Maybe<Scalars['Int']['output']>;
 };
 
 /** order by sum() on columns of table "household_project" */
@@ -814,7 +816,7 @@ export type ApiHouseholdProjectUpdates = {
 /** aggregate var_pop on columns */
 export type ApiHouseholdProjectVarPopFields = {
   __typename?: 'household_project_var_pop_fields';
-  count?: Maybe<Scalars['Float']>;
+  count?: Maybe<Scalars['Float']['output']>;
 };
 
 /** order by var_pop() on columns of table "household_project" */
@@ -825,7 +827,7 @@ export type ApiHouseholdProjectVarPopOrderBy = {
 /** aggregate var_samp on columns */
 export type ApiHouseholdProjectVarSampFields = {
   __typename?: 'household_project_var_samp_fields';
-  count?: Maybe<Scalars['Float']>;
+  count?: Maybe<Scalars['Float']['output']>;
 };
 
 /** order by var_samp() on columns of table "household_project" */
@@ -836,7 +838,7 @@ export type ApiHouseholdProjectVarSampOrderBy = {
 /** aggregate variance on columns */
 export type ApiHouseholdProjectVarianceFields = {
   __typename?: 'household_project_variance_fields';
-  count?: Maybe<Scalars['Float']>;
+  count?: Maybe<Scalars['Float']['output']>;
 };
 
 /** order by variance() on columns of table "household_project" */
@@ -864,20 +866,20 @@ export enum ApiHouseholdSelectColumn {
 
 /** input type for updating data in table "household" */
 export type ApiHouseholdSetInput = {
-  created_at?: InputMaybe<Scalars['timestamptz']>;
-  db_code?: InputMaybe<Scalars['Int']>;
-  id?: InputMaybe<Scalars['uuid']>;
-  name?: InputMaybe<Scalars['String']>;
+  created_at?: InputMaybe<Scalars['timestamptz']['input']>;
+  db_code?: InputMaybe<Scalars['Int']['input']>;
+  id?: InputMaybe<Scalars['uuid']['input']>;
+  name?: InputMaybe<Scalars['String']['input']>;
   severity?: InputMaybe<ApiHouseholdSeverityEnum>;
   status?: InputMaybe<ApiHouseholdStatusEnum>;
-  updated_at?: InputMaybe<Scalars['timestamptz']>;
+  updated_at?: InputMaybe<Scalars['timestamptz']['input']>;
 };
 
 /** columns and relationships of "household_severity" */
 export type ApiHouseholdSeverity = {
   __typename?: 'household_severity';
-  description?: Maybe<Scalars['String']>;
-  value: Scalars['String'];
+  description?: Maybe<Scalars['String']['output']>;
+  value: Scalars['String']['output'];
 };
 
 /** aggregated selection of "household_severity" */
@@ -890,7 +892,7 @@ export type ApiHouseholdSeverityAggregate = {
 /** aggregate fields of "household_severity" */
 export type ApiHouseholdSeverityAggregateFields = {
   __typename?: 'household_severity_aggregate_fields';
-  count: Scalars['Int'];
+  count: Scalars['Int']['output'];
   max?: Maybe<ApiHouseholdSeverityMaxFields>;
   min?: Maybe<ApiHouseholdSeverityMinFields>;
 };
@@ -899,7 +901,7 @@ export type ApiHouseholdSeverityAggregateFields = {
 /** aggregate fields of "household_severity" */
 export type ApiHouseholdSeverityAggregateFieldsApiCountArgs = {
   columns?: InputMaybe<Array<ApiHouseholdSeveritySelectColumn>>;
-  distinct?: InputMaybe<Scalars['Boolean']>;
+  distinct?: InputMaybe<Scalars['Boolean']['input']>;
 };
 
 /** Boolean expression to filter rows from the table "household_severity". All fields are combined with a logical 'AND'. */
@@ -926,36 +928,36 @@ export enum ApiHouseholdSeverityEnum {
 export type ApiHouseholdSeverityEnumComparisonExp = {
   _eq?: InputMaybe<ApiHouseholdSeverityEnum>;
   _in?: InputMaybe<Array<ApiHouseholdSeverityEnum>>;
-  _is_null?: InputMaybe<Scalars['Boolean']>;
+  _is_null?: InputMaybe<Scalars['Boolean']['input']>;
   _neq?: InputMaybe<ApiHouseholdSeverityEnum>;
   _nin?: InputMaybe<Array<ApiHouseholdSeverityEnum>>;
 };
 
 /** input type for inserting data into table "household_severity" */
 export type ApiHouseholdSeverityInsertInput = {
-  description?: InputMaybe<Scalars['String']>;
-  value?: InputMaybe<Scalars['String']>;
+  description?: InputMaybe<Scalars['String']['input']>;
+  value?: InputMaybe<Scalars['String']['input']>;
 };
 
 /** aggregate max on columns */
 export type ApiHouseholdSeverityMaxFields = {
   __typename?: 'household_severity_max_fields';
-  description?: Maybe<Scalars['String']>;
-  value?: Maybe<Scalars['String']>;
+  description?: Maybe<Scalars['String']['output']>;
+  value?: Maybe<Scalars['String']['output']>;
 };
 
 /** aggregate min on columns */
 export type ApiHouseholdSeverityMinFields = {
   __typename?: 'household_severity_min_fields';
-  description?: Maybe<Scalars['String']>;
-  value?: Maybe<Scalars['String']>;
+  description?: Maybe<Scalars['String']['output']>;
+  value?: Maybe<Scalars['String']['output']>;
 };
 
 /** response of any mutation on the table "household_severity" */
 export type ApiHouseholdSeverityMutationResponse = {
   __typename?: 'household_severity_mutation_response';
   /** number of rows affected by the mutation */
-  affected_rows: Scalars['Int'];
+  affected_rows: Scalars['Int']['output'];
   /** data from the rows affected by the mutation */
   returning: Array<ApiHouseholdSeverity>;
 };
@@ -975,7 +977,7 @@ export type ApiHouseholdSeverityOrderBy = {
 
 /** primary key columns input for table: household_severity */
 export type ApiHouseholdSeverityPkColumnsInput = {
-  value: Scalars['String'];
+  value: Scalars['String']['input'];
 };
 
 /** select columns of table "household_severity" */
@@ -988,8 +990,8 @@ export enum ApiHouseholdSeveritySelectColumn {
 
 /** input type for updating data in table "household_severity" */
 export type ApiHouseholdSeveritySetInput = {
-  description?: InputMaybe<Scalars['String']>;
-  value?: InputMaybe<Scalars['String']>;
+  description?: InputMaybe<Scalars['String']['input']>;
+  value?: InputMaybe<Scalars['String']['input']>;
 };
 
 /** Streaming cursor of the table "household_severity" */
@@ -1002,8 +1004,8 @@ export type ApiHouseholdSeverityStreamCursorInput = {
 
 /** Initial value of the column from where the streaming should start */
 export type ApiHouseholdSeverityStreamCursorValueInput = {
-  description?: InputMaybe<Scalars['String']>;
-  value?: InputMaybe<Scalars['String']>;
+  description?: InputMaybe<Scalars['String']['input']>;
+  value?: InputMaybe<Scalars['String']['input']>;
 };
 
 /** update columns of table "household_severity" */
@@ -1024,8 +1026,8 @@ export type ApiHouseholdSeverityUpdates = {
 /** columns and relationships of "household_status" */
 export type ApiHouseholdStatus = {
   __typename?: 'household_status';
-  description?: Maybe<Scalars['String']>;
-  value: Scalars['String'];
+  description?: Maybe<Scalars['String']['output']>;
+  value: Scalars['String']['output'];
 };
 
 /** aggregated selection of "household_status" */
@@ -1038,7 +1040,7 @@ export type ApiHouseholdStatusAggregate = {
 /** aggregate fields of "household_status" */
 export type ApiHouseholdStatusAggregateFields = {
   __typename?: 'household_status_aggregate_fields';
-  count: Scalars['Int'];
+  count: Scalars['Int']['output'];
   max?: Maybe<ApiHouseholdStatusMaxFields>;
   min?: Maybe<ApiHouseholdStatusMinFields>;
 };
@@ -1047,7 +1049,7 @@ export type ApiHouseholdStatusAggregateFields = {
 /** aggregate fields of "household_status" */
 export type ApiHouseholdStatusAggregateFieldsApiCountArgs = {
   columns?: InputMaybe<Array<ApiHouseholdStatusSelectColumn>>;
-  distinct?: InputMaybe<Scalars['Boolean']>;
+  distinct?: InputMaybe<Scalars['Boolean']['input']>;
 };
 
 /** Boolean expression to filter rows from the table "household_status". All fields are combined with a logical 'AND'. */
@@ -1074,36 +1076,36 @@ export enum ApiHouseholdStatusEnum {
 export type ApiHouseholdStatusEnumComparisonExp = {
   _eq?: InputMaybe<ApiHouseholdStatusEnum>;
   _in?: InputMaybe<Array<ApiHouseholdStatusEnum>>;
-  _is_null?: InputMaybe<Scalars['Boolean']>;
+  _is_null?: InputMaybe<Scalars['Boolean']['input']>;
   _neq?: InputMaybe<ApiHouseholdStatusEnum>;
   _nin?: InputMaybe<Array<ApiHouseholdStatusEnum>>;
 };
 
 /** input type for inserting data into table "household_status" */
 export type ApiHouseholdStatusInsertInput = {
-  description?: InputMaybe<Scalars['String']>;
-  value?: InputMaybe<Scalars['String']>;
+  description?: InputMaybe<Scalars['String']['input']>;
+  value?: InputMaybe<Scalars['String']['input']>;
 };
 
 /** aggregate max on columns */
 export type ApiHouseholdStatusMaxFields = {
   __typename?: 'household_status_max_fields';
-  description?: Maybe<Scalars['String']>;
-  value?: Maybe<Scalars['String']>;
+  description?: Maybe<Scalars['String']['output']>;
+  value?: Maybe<Scalars['String']['output']>;
 };
 
 /** aggregate min on columns */
 export type ApiHouseholdStatusMinFields = {
   __typename?: 'household_status_min_fields';
-  description?: Maybe<Scalars['String']>;
-  value?: Maybe<Scalars['String']>;
+  description?: Maybe<Scalars['String']['output']>;
+  value?: Maybe<Scalars['String']['output']>;
 };
 
 /** response of any mutation on the table "household_status" */
 export type ApiHouseholdStatusMutationResponse = {
   __typename?: 'household_status_mutation_response';
   /** number of rows affected by the mutation */
-  affected_rows: Scalars['Int'];
+  affected_rows: Scalars['Int']['output'];
   /** data from the rows affected by the mutation */
   returning: Array<ApiHouseholdStatus>;
 };
@@ -1123,7 +1125,7 @@ export type ApiHouseholdStatusOrderBy = {
 
 /** primary key columns input for table: household_status */
 export type ApiHouseholdStatusPkColumnsInput = {
-  value: Scalars['String'];
+  value: Scalars['String']['input'];
 };
 
 /** select columns of table "household_status" */
@@ -1136,8 +1138,8 @@ export enum ApiHouseholdStatusSelectColumn {
 
 /** input type for updating data in table "household_status" */
 export type ApiHouseholdStatusSetInput = {
-  description?: InputMaybe<Scalars['String']>;
-  value?: InputMaybe<Scalars['String']>;
+  description?: InputMaybe<Scalars['String']['input']>;
+  value?: InputMaybe<Scalars['String']['input']>;
 };
 
 /** Streaming cursor of the table "household_status" */
@@ -1150,8 +1152,8 @@ export type ApiHouseholdStatusStreamCursorInput = {
 
 /** Initial value of the column from where the streaming should start */
 export type ApiHouseholdStatusStreamCursorValueInput = {
-  description?: InputMaybe<Scalars['String']>;
-  value?: InputMaybe<Scalars['String']>;
+  description?: InputMaybe<Scalars['String']['input']>;
+  value?: InputMaybe<Scalars['String']['input']>;
 };
 
 /** update columns of table "household_status" */
@@ -1172,19 +1174,19 @@ export type ApiHouseholdStatusUpdates = {
 /** aggregate stddev on columns */
 export type ApiHouseholdStddevFields = {
   __typename?: 'household_stddev_fields';
-  db_code?: Maybe<Scalars['Float']>;
+  db_code?: Maybe<Scalars['Float']['output']>;
 };
 
 /** aggregate stddev_pop on columns */
 export type ApiHouseholdStddevPopFields = {
   __typename?: 'household_stddev_pop_fields';
-  db_code?: Maybe<Scalars['Float']>;
+  db_code?: Maybe<Scalars['Float']['output']>;
 };
 
 /** aggregate stddev_samp on columns */
 export type ApiHouseholdStddevSampFields = {
   __typename?: 'household_stddev_samp_fields';
-  db_code?: Maybe<Scalars['Float']>;
+  db_code?: Maybe<Scalars['Float']['output']>;
 };
 
 /** Streaming cursor of the table "household" */
@@ -1197,19 +1199,19 @@ export type ApiHouseholdStreamCursorInput = {
 
 /** Initial value of the column from where the streaming should start */
 export type ApiHouseholdStreamCursorValueInput = {
-  created_at?: InputMaybe<Scalars['timestamptz']>;
-  db_code?: InputMaybe<Scalars['Int']>;
-  id?: InputMaybe<Scalars['uuid']>;
-  name?: InputMaybe<Scalars['String']>;
+  created_at?: InputMaybe<Scalars['timestamptz']['input']>;
+  db_code?: InputMaybe<Scalars['Int']['input']>;
+  id?: InputMaybe<Scalars['uuid']['input']>;
+  name?: InputMaybe<Scalars['String']['input']>;
   severity?: InputMaybe<ApiHouseholdSeverityEnum>;
   status?: InputMaybe<ApiHouseholdStatusEnum>;
-  updated_at?: InputMaybe<Scalars['timestamptz']>;
+  updated_at?: InputMaybe<Scalars['timestamptz']['input']>;
 };
 
 /** aggregate sum on columns */
 export type ApiHouseholdSumFields = {
   __typename?: 'household_sum_fields';
-  db_code?: Maybe<Scalars['Int']>;
+  db_code?: Maybe<Scalars['Int']['output']>;
 };
 
 /** update columns of table "household" */
@@ -1242,39 +1244,39 @@ export type ApiHouseholdUpdates = {
 /** aggregate var_pop on columns */
 export type ApiHouseholdVarPopFields = {
   __typename?: 'household_var_pop_fields';
-  db_code?: Maybe<Scalars['Float']>;
+  db_code?: Maybe<Scalars['Float']['output']>;
 };
 
 /** aggregate var_samp on columns */
 export type ApiHouseholdVarSampFields = {
   __typename?: 'household_var_samp_fields';
-  db_code?: Maybe<Scalars['Float']>;
+  db_code?: Maybe<Scalars['Float']['output']>;
 };
 
 /** aggregate variance on columns */
 export type ApiHouseholdVarianceFields = {
   __typename?: 'household_variance_fields';
-  db_code?: Maybe<Scalars['Float']>;
+  db_code?: Maybe<Scalars['Float']['output']>;
 };
 
 /** columns and relationships of "householder" */
 export type ApiHouseholder = {
   __typename?: 'householder';
   city?: Maybe<ApiCityEnum>;
-  created_at: Scalars['timestamptz'];
-  dob?: Maybe<Scalars['date']>;
-  father_name?: Maybe<Scalars['String']>;
+  created_at: Scalars['timestamptz']['output'];
+  dob?: Maybe<Scalars['date']['output']>;
+  father_name?: Maybe<Scalars['String']['output']>;
   gender?: Maybe<ApiGenderEnum>;
-  household_id: Scalars['uuid'];
-  id: Scalars['uuid'];
-  name: Scalars['String'];
-  national_id?: Maybe<Scalars['String']>;
+  household_id: Scalars['uuid']['output'];
+  id: Scalars['uuid']['output'];
+  name: Scalars['String']['output'];
+  national_id?: Maybe<Scalars['String']['output']>;
   nationality?: Maybe<ApiNationalityEnum>;
   religion?: Maybe<ApiReligionEnum>;
   /** A computed field, executes function "get_householder_status" */
-  status?: Maybe<Scalars['String']>;
-  surname?: Maybe<Scalars['String']>;
-  updated_at: Scalars['timestamptz'];
+  status?: Maybe<Scalars['String']['output']>;
+  surname?: Maybe<Scalars['String']['output']>;
+  updated_at: Scalars['timestamptz']['output'];
 };
 
 /** aggregated selection of "householder" */
@@ -1287,7 +1289,7 @@ export type ApiHouseholderAggregate = {
 /** aggregate fields of "householder" */
 export type ApiHouseholderAggregateFields = {
   __typename?: 'householder_aggregate_fields';
-  count: Scalars['Int'];
+  count: Scalars['Int']['output'];
   max?: Maybe<ApiHouseholderMaxFields>;
   min?: Maybe<ApiHouseholderMinFields>;
 };
@@ -1296,7 +1298,7 @@ export type ApiHouseholderAggregateFields = {
 /** aggregate fields of "householder" */
 export type ApiHouseholderAggregateFieldsApiCountArgs = {
   columns?: InputMaybe<Array<ApiHouseholderSelectColumn>>;
-  distinct?: InputMaybe<Scalars['Boolean']>;
+  distinct?: InputMaybe<Scalars['Boolean']['input']>;
 };
 
 /** Boolean expression to filter rows from the table "householder". All fields are combined with a logical 'AND'. */
@@ -1333,53 +1335,53 @@ export enum ApiHouseholderConstraint {
 /** input type for inserting data into table "householder" */
 export type ApiHouseholderInsertInput = {
   city?: InputMaybe<ApiCityEnum>;
-  created_at?: InputMaybe<Scalars['timestamptz']>;
-  dob?: InputMaybe<Scalars['date']>;
-  father_name?: InputMaybe<Scalars['String']>;
+  created_at?: InputMaybe<Scalars['timestamptz']['input']>;
+  dob?: InputMaybe<Scalars['date']['input']>;
+  father_name?: InputMaybe<Scalars['String']['input']>;
   gender?: InputMaybe<ApiGenderEnum>;
-  household_id?: InputMaybe<Scalars['uuid']>;
-  id?: InputMaybe<Scalars['uuid']>;
-  name?: InputMaybe<Scalars['String']>;
-  national_id?: InputMaybe<Scalars['String']>;
+  household_id?: InputMaybe<Scalars['uuid']['input']>;
+  id?: InputMaybe<Scalars['uuid']['input']>;
+  name?: InputMaybe<Scalars['String']['input']>;
+  national_id?: InputMaybe<Scalars['String']['input']>;
   nationality?: InputMaybe<ApiNationalityEnum>;
   religion?: InputMaybe<ApiReligionEnum>;
-  surname?: InputMaybe<Scalars['String']>;
-  updated_at?: InputMaybe<Scalars['timestamptz']>;
+  surname?: InputMaybe<Scalars['String']['input']>;
+  updated_at?: InputMaybe<Scalars['timestamptz']['input']>;
 };
 
 /** aggregate max on columns */
 export type ApiHouseholderMaxFields = {
   __typename?: 'householder_max_fields';
-  created_at?: Maybe<Scalars['timestamptz']>;
-  dob?: Maybe<Scalars['date']>;
-  father_name?: Maybe<Scalars['String']>;
-  household_id?: Maybe<Scalars['uuid']>;
-  id?: Maybe<Scalars['uuid']>;
-  name?: Maybe<Scalars['String']>;
-  national_id?: Maybe<Scalars['String']>;
-  surname?: Maybe<Scalars['String']>;
-  updated_at?: Maybe<Scalars['timestamptz']>;
+  created_at?: Maybe<Scalars['timestamptz']['output']>;
+  dob?: Maybe<Scalars['date']['output']>;
+  father_name?: Maybe<Scalars['String']['output']>;
+  household_id?: Maybe<Scalars['uuid']['output']>;
+  id?: Maybe<Scalars['uuid']['output']>;
+  name?: Maybe<Scalars['String']['output']>;
+  national_id?: Maybe<Scalars['String']['output']>;
+  surname?: Maybe<Scalars['String']['output']>;
+  updated_at?: Maybe<Scalars['timestamptz']['output']>;
 };
 
 /** aggregate min on columns */
 export type ApiHouseholderMinFields = {
   __typename?: 'householder_min_fields';
-  created_at?: Maybe<Scalars['timestamptz']>;
-  dob?: Maybe<Scalars['date']>;
-  father_name?: Maybe<Scalars['String']>;
-  household_id?: Maybe<Scalars['uuid']>;
-  id?: Maybe<Scalars['uuid']>;
-  name?: Maybe<Scalars['String']>;
-  national_id?: Maybe<Scalars['String']>;
-  surname?: Maybe<Scalars['String']>;
-  updated_at?: Maybe<Scalars['timestamptz']>;
+  created_at?: Maybe<Scalars['timestamptz']['output']>;
+  dob?: Maybe<Scalars['date']['output']>;
+  father_name?: Maybe<Scalars['String']['output']>;
+  household_id?: Maybe<Scalars['uuid']['output']>;
+  id?: Maybe<Scalars['uuid']['output']>;
+  name?: Maybe<Scalars['String']['output']>;
+  national_id?: Maybe<Scalars['String']['output']>;
+  surname?: Maybe<Scalars['String']['output']>;
+  updated_at?: Maybe<Scalars['timestamptz']['output']>;
 };
 
 /** response of any mutation on the table "householder" */
 export type ApiHouseholderMutationResponse = {
   __typename?: 'householder_mutation_response';
   /** number of rows affected by the mutation */
-  affected_rows: Scalars['Int'];
+  affected_rows: Scalars['Int']['output'];
   /** data from the rows affected by the mutation */
   returning: Array<ApiHouseholder>;
 };
@@ -1411,7 +1413,7 @@ export type ApiHouseholderOrderBy = {
 
 /** primary key columns input for table: householder */
 export type ApiHouseholderPkColumnsInput = {
-  household_id: Scalars['uuid'];
+  household_id: Scalars['uuid']['input'];
 };
 
 /** select columns of table "householder" */
@@ -1447,25 +1449,25 @@ export enum ApiHouseholderSelectColumn {
 /** input type for updating data in table "householder" */
 export type ApiHouseholderSetInput = {
   city?: InputMaybe<ApiCityEnum>;
-  created_at?: InputMaybe<Scalars['timestamptz']>;
-  dob?: InputMaybe<Scalars['date']>;
-  father_name?: InputMaybe<Scalars['String']>;
+  created_at?: InputMaybe<Scalars['timestamptz']['input']>;
+  dob?: InputMaybe<Scalars['date']['input']>;
+  father_name?: InputMaybe<Scalars['String']['input']>;
   gender?: InputMaybe<ApiGenderEnum>;
-  household_id?: InputMaybe<Scalars['uuid']>;
-  id?: InputMaybe<Scalars['uuid']>;
-  name?: InputMaybe<Scalars['String']>;
-  national_id?: InputMaybe<Scalars['String']>;
+  household_id?: InputMaybe<Scalars['uuid']['input']>;
+  id?: InputMaybe<Scalars['uuid']['input']>;
+  name?: InputMaybe<Scalars['String']['input']>;
+  national_id?: InputMaybe<Scalars['String']['input']>;
   nationality?: InputMaybe<ApiNationalityEnum>;
   religion?: InputMaybe<ApiReligionEnum>;
-  surname?: InputMaybe<Scalars['String']>;
-  updated_at?: InputMaybe<Scalars['timestamptz']>;
+  surname?: InputMaybe<Scalars['String']['input']>;
+  updated_at?: InputMaybe<Scalars['timestamptz']['input']>;
 };
 
 /** columns and relationships of "householder_status" */
 export type ApiHouseholderStatus = {
   __typename?: 'householder_status';
-  description?: Maybe<Scalars['String']>;
-  value: Scalars['String'];
+  description?: Maybe<Scalars['String']['output']>;
+  value: Scalars['String']['output'];
 };
 
 /** aggregated selection of "householder_status" */
@@ -1478,7 +1480,7 @@ export type ApiHouseholderStatusAggregate = {
 /** aggregate fields of "householder_status" */
 export type ApiHouseholderStatusAggregateFields = {
   __typename?: 'householder_status_aggregate_fields';
-  count: Scalars['Int'];
+  count: Scalars['Int']['output'];
   max?: Maybe<ApiHouseholderStatusMaxFields>;
   min?: Maybe<ApiHouseholderStatusMinFields>;
 };
@@ -1487,7 +1489,7 @@ export type ApiHouseholderStatusAggregateFields = {
 /** aggregate fields of "householder_status" */
 export type ApiHouseholderStatusAggregateFieldsApiCountArgs = {
   columns?: InputMaybe<Array<ApiHouseholderStatusSelectColumn>>;
-  distinct?: InputMaybe<Scalars['Boolean']>;
+  distinct?: InputMaybe<Scalars['Boolean']['input']>;
 };
 
 /** Boolean expression to filter rows from the table "householder_status". All fields are combined with a logical 'AND'. */
@@ -1507,29 +1509,29 @@ export enum ApiHouseholderStatusConstraint {
 
 /** input type for inserting data into table "householder_status" */
 export type ApiHouseholderStatusInsertInput = {
-  description?: InputMaybe<Scalars['String']>;
-  value?: InputMaybe<Scalars['String']>;
+  description?: InputMaybe<Scalars['String']['input']>;
+  value?: InputMaybe<Scalars['String']['input']>;
 };
 
 /** aggregate max on columns */
 export type ApiHouseholderStatusMaxFields = {
   __typename?: 'householder_status_max_fields';
-  description?: Maybe<Scalars['String']>;
-  value?: Maybe<Scalars['String']>;
+  description?: Maybe<Scalars['String']['output']>;
+  value?: Maybe<Scalars['String']['output']>;
 };
 
 /** aggregate min on columns */
 export type ApiHouseholderStatusMinFields = {
   __typename?: 'householder_status_min_fields';
-  description?: Maybe<Scalars['String']>;
-  value?: Maybe<Scalars['String']>;
+  description?: Maybe<Scalars['String']['output']>;
+  value?: Maybe<Scalars['String']['output']>;
 };
 
 /** response of any mutation on the table "householder_status" */
 export type ApiHouseholderStatusMutationResponse = {
   __typename?: 'householder_status_mutation_response';
   /** number of rows affected by the mutation */
-  affected_rows: Scalars['Int'];
+  affected_rows: Scalars['Int']['output'];
   /** data from the rows affected by the mutation */
   returning: Array<ApiHouseholderStatus>;
 };
@@ -1549,7 +1551,7 @@ export type ApiHouseholderStatusOrderBy = {
 
 /** primary key columns input for table: householder_status */
 export type ApiHouseholderStatusPkColumnsInput = {
-  value: Scalars['String'];
+  value: Scalars['String']['input'];
 };
 
 /** select columns of table "householder_status" */
@@ -1562,8 +1564,8 @@ export enum ApiHouseholderStatusSelectColumn {
 
 /** input type for updating data in table "householder_status" */
 export type ApiHouseholderStatusSetInput = {
-  description?: InputMaybe<Scalars['String']>;
-  value?: InputMaybe<Scalars['String']>;
+  description?: InputMaybe<Scalars['String']['input']>;
+  value?: InputMaybe<Scalars['String']['input']>;
 };
 
 /** Streaming cursor of the table "householder_status" */
@@ -1576,8 +1578,8 @@ export type ApiHouseholderStatusStreamCursorInput = {
 
 /** Initial value of the column from where the streaming should start */
 export type ApiHouseholderStatusStreamCursorValueInput = {
-  description?: InputMaybe<Scalars['String']>;
-  value?: InputMaybe<Scalars['String']>;
+  description?: InputMaybe<Scalars['String']['input']>;
+  value?: InputMaybe<Scalars['String']['input']>;
 };
 
 /** update columns of table "householder_status" */
@@ -1606,18 +1608,18 @@ export type ApiHouseholderStreamCursorInput = {
 /** Initial value of the column from where the streaming should start */
 export type ApiHouseholderStreamCursorValueInput = {
   city?: InputMaybe<ApiCityEnum>;
-  created_at?: InputMaybe<Scalars['timestamptz']>;
-  dob?: InputMaybe<Scalars['date']>;
-  father_name?: InputMaybe<Scalars['String']>;
+  created_at?: InputMaybe<Scalars['timestamptz']['input']>;
+  dob?: InputMaybe<Scalars['date']['input']>;
+  father_name?: InputMaybe<Scalars['String']['input']>;
   gender?: InputMaybe<ApiGenderEnum>;
-  household_id?: InputMaybe<Scalars['uuid']>;
-  id?: InputMaybe<Scalars['uuid']>;
-  name?: InputMaybe<Scalars['String']>;
-  national_id?: InputMaybe<Scalars['String']>;
+  household_id?: InputMaybe<Scalars['uuid']['input']>;
+  id?: InputMaybe<Scalars['uuid']['input']>;
+  name?: InputMaybe<Scalars['String']['input']>;
+  national_id?: InputMaybe<Scalars['String']['input']>;
   nationality?: InputMaybe<ApiNationalityEnum>;
   religion?: InputMaybe<ApiReligionEnum>;
-  surname?: InputMaybe<Scalars['String']>;
-  updated_at?: InputMaybe<Scalars['timestamptz']>;
+  surname?: InputMaybe<Scalars['String']['input']>;
+  updated_at?: InputMaybe<Scalars['timestamptz']['input']>;
 };
 
 /** update columns of table "householder" */
@@ -1660,21 +1662,21 @@ export type ApiHouseholderUpdates = {
 /** columns and relationships of "member" */
 export type ApiMember = {
   __typename?: 'member';
-  created_at: Scalars['timestamptz'];
-  dob?: Maybe<Scalars['date']>;
-  father_name?: Maybe<Scalars['String']>;
+  created_at: Scalars['timestamptz']['output'];
+  dob?: Maybe<Scalars['date']['output']>;
+  father_name?: Maybe<Scalars['String']['output']>;
   gender?: Maybe<ApiGenderEnum>;
   /** An object relationship */
   household: ApiHousehold;
-  household_id: Scalars['uuid'];
-  id: Scalars['uuid'];
-  name: Scalars['String'];
-  national_id?: Maybe<Scalars['String']>;
+  household_id: Scalars['uuid']['output'];
+  id: Scalars['uuid']['output'];
+  name: Scalars['String']['output'];
+  national_id?: Maybe<Scalars['String']['output']>;
   nationality?: Maybe<ApiNationalityEnum>;
   religion?: Maybe<ApiReligionEnum>;
   status: ApiMemberStatusEnum;
-  surname?: Maybe<Scalars['String']>;
-  updated_at: Scalars['timestamptz'];
+  surname?: Maybe<Scalars['String']['output']>;
+  updated_at: Scalars['timestamptz']['output'];
 };
 
 /** aggregated selection of "member" */
@@ -1687,7 +1689,7 @@ export type ApiMemberAggregate = {
 /** aggregate fields of "member" */
 export type ApiMemberAggregateFields = {
   __typename?: 'member_aggregate_fields';
-  count: Scalars['Int'];
+  count: Scalars['Int']['output'];
   max?: Maybe<ApiMemberMaxFields>;
   min?: Maybe<ApiMemberMinFields>;
 };
@@ -1696,7 +1698,7 @@ export type ApiMemberAggregateFields = {
 /** aggregate fields of "member" */
 export type ApiMemberAggregateFieldsApiCountArgs = {
   columns?: InputMaybe<Array<ApiMemberSelectColumn>>;
-  distinct?: InputMaybe<Scalars['Boolean']>;
+  distinct?: InputMaybe<Scalars['Boolean']['input']>;
 };
 
 /** Boolean expression to filter rows from the table "member". All fields are combined with a logical 'AND'. */
@@ -1728,55 +1730,55 @@ export enum ApiMemberConstraint {
 
 /** input type for inserting data into table "member" */
 export type ApiMemberInsertInput = {
-  created_at?: InputMaybe<Scalars['timestamptz']>;
-  dob?: InputMaybe<Scalars['date']>;
-  father_name?: InputMaybe<Scalars['String']>;
+  created_at?: InputMaybe<Scalars['timestamptz']['input']>;
+  dob?: InputMaybe<Scalars['date']['input']>;
+  father_name?: InputMaybe<Scalars['String']['input']>;
   gender?: InputMaybe<ApiGenderEnum>;
   household?: InputMaybe<ApiHouseholdObjRelInsertInput>;
-  household_id?: InputMaybe<Scalars['uuid']>;
-  id?: InputMaybe<Scalars['uuid']>;
-  name?: InputMaybe<Scalars['String']>;
-  national_id?: InputMaybe<Scalars['String']>;
+  household_id?: InputMaybe<Scalars['uuid']['input']>;
+  id?: InputMaybe<Scalars['uuid']['input']>;
+  name?: InputMaybe<Scalars['String']['input']>;
+  national_id?: InputMaybe<Scalars['String']['input']>;
   nationality?: InputMaybe<ApiNationalityEnum>;
   religion?: InputMaybe<ApiReligionEnum>;
   status?: InputMaybe<ApiMemberStatusEnum>;
-  surname?: InputMaybe<Scalars['String']>;
-  updated_at?: InputMaybe<Scalars['timestamptz']>;
+  surname?: InputMaybe<Scalars['String']['input']>;
+  updated_at?: InputMaybe<Scalars['timestamptz']['input']>;
 };
 
 /** aggregate max on columns */
 export type ApiMemberMaxFields = {
   __typename?: 'member_max_fields';
-  created_at?: Maybe<Scalars['timestamptz']>;
-  dob?: Maybe<Scalars['date']>;
-  father_name?: Maybe<Scalars['String']>;
-  household_id?: Maybe<Scalars['uuid']>;
-  id?: Maybe<Scalars['uuid']>;
-  name?: Maybe<Scalars['String']>;
-  national_id?: Maybe<Scalars['String']>;
-  surname?: Maybe<Scalars['String']>;
-  updated_at?: Maybe<Scalars['timestamptz']>;
+  created_at?: Maybe<Scalars['timestamptz']['output']>;
+  dob?: Maybe<Scalars['date']['output']>;
+  father_name?: Maybe<Scalars['String']['output']>;
+  household_id?: Maybe<Scalars['uuid']['output']>;
+  id?: Maybe<Scalars['uuid']['output']>;
+  name?: Maybe<Scalars['String']['output']>;
+  national_id?: Maybe<Scalars['String']['output']>;
+  surname?: Maybe<Scalars['String']['output']>;
+  updated_at?: Maybe<Scalars['timestamptz']['output']>;
 };
 
 /** aggregate min on columns */
 export type ApiMemberMinFields = {
   __typename?: 'member_min_fields';
-  created_at?: Maybe<Scalars['timestamptz']>;
-  dob?: Maybe<Scalars['date']>;
-  father_name?: Maybe<Scalars['String']>;
-  household_id?: Maybe<Scalars['uuid']>;
-  id?: Maybe<Scalars['uuid']>;
-  name?: Maybe<Scalars['String']>;
-  national_id?: Maybe<Scalars['String']>;
-  surname?: Maybe<Scalars['String']>;
-  updated_at?: Maybe<Scalars['timestamptz']>;
+  created_at?: Maybe<Scalars['timestamptz']['output']>;
+  dob?: Maybe<Scalars['date']['output']>;
+  father_name?: Maybe<Scalars['String']['output']>;
+  household_id?: Maybe<Scalars['uuid']['output']>;
+  id?: Maybe<Scalars['uuid']['output']>;
+  name?: Maybe<Scalars['String']['output']>;
+  national_id?: Maybe<Scalars['String']['output']>;
+  surname?: Maybe<Scalars['String']['output']>;
+  updated_at?: Maybe<Scalars['timestamptz']['output']>;
 };
 
 /** response of any mutation on the table "member" */
 export type ApiMemberMutationResponse = {
   __typename?: 'member_mutation_response';
   /** number of rows affected by the mutation */
-  affected_rows: Scalars['Int'];
+  affected_rows: Scalars['Int']['output'];
   /** data from the rows affected by the mutation */
   returning: Array<ApiMember>;
 };
@@ -1808,7 +1810,7 @@ export type ApiMemberOrderBy = {
 
 /** primary key columns input for table: member */
 export type ApiMemberPkColumnsInput = {
-  id: Scalars['uuid'];
+  id: Scalars['uuid']['input'];
 };
 
 /** select columns of table "member" */
@@ -1843,25 +1845,25 @@ export enum ApiMemberSelectColumn {
 
 /** input type for updating data in table "member" */
 export type ApiMemberSetInput = {
-  created_at?: InputMaybe<Scalars['timestamptz']>;
-  dob?: InputMaybe<Scalars['date']>;
-  father_name?: InputMaybe<Scalars['String']>;
+  created_at?: InputMaybe<Scalars['timestamptz']['input']>;
+  dob?: InputMaybe<Scalars['date']['input']>;
+  father_name?: InputMaybe<Scalars['String']['input']>;
   gender?: InputMaybe<ApiGenderEnum>;
-  household_id?: InputMaybe<Scalars['uuid']>;
-  id?: InputMaybe<Scalars['uuid']>;
-  name?: InputMaybe<Scalars['String']>;
-  national_id?: InputMaybe<Scalars['String']>;
+  household_id?: InputMaybe<Scalars['uuid']['input']>;
+  id?: InputMaybe<Scalars['uuid']['input']>;
+  name?: InputMaybe<Scalars['String']['input']>;
+  national_id?: InputMaybe<Scalars['String']['input']>;
   nationality?: InputMaybe<ApiNationalityEnum>;
   religion?: InputMaybe<ApiReligionEnum>;
   status?: InputMaybe<ApiMemberStatusEnum>;
-  surname?: InputMaybe<Scalars['String']>;
-  updated_at?: InputMaybe<Scalars['timestamptz']>;
+  surname?: InputMaybe<Scalars['String']['input']>;
+  updated_at?: InputMaybe<Scalars['timestamptz']['input']>;
 };
 
 /** columns and relationships of "member_status" */
 export type ApiMemberStatus = {
   __typename?: 'member_status';
-  value: Scalars['String'];
+  value: Scalars['String']['output'];
 };
 
 /** aggregated selection of "member_status" */
@@ -1874,7 +1876,7 @@ export type ApiMemberStatusAggregate = {
 /** aggregate fields of "member_status" */
 export type ApiMemberStatusAggregateFields = {
   __typename?: 'member_status_aggregate_fields';
-  count: Scalars['Int'];
+  count: Scalars['Int']['output'];
   max?: Maybe<ApiMemberStatusMaxFields>;
   min?: Maybe<ApiMemberStatusMinFields>;
 };
@@ -1883,7 +1885,7 @@ export type ApiMemberStatusAggregateFields = {
 /** aggregate fields of "member_status" */
 export type ApiMemberStatusAggregateFieldsApiCountArgs = {
   columns?: InputMaybe<Array<ApiMemberStatusSelectColumn>>;
-  distinct?: InputMaybe<Scalars['Boolean']>;
+  distinct?: InputMaybe<Scalars['Boolean']['input']>;
 };
 
 /** Boolean expression to filter rows from the table "member_status". All fields are combined with a logical 'AND'. */
@@ -1909,33 +1911,33 @@ export enum ApiMemberStatusEnum {
 export type ApiMemberStatusEnumComparisonExp = {
   _eq?: InputMaybe<ApiMemberStatusEnum>;
   _in?: InputMaybe<Array<ApiMemberStatusEnum>>;
-  _is_null?: InputMaybe<Scalars['Boolean']>;
+  _is_null?: InputMaybe<Scalars['Boolean']['input']>;
   _neq?: InputMaybe<ApiMemberStatusEnum>;
   _nin?: InputMaybe<Array<ApiMemberStatusEnum>>;
 };
 
 /** input type for inserting data into table "member_status" */
 export type ApiMemberStatusInsertInput = {
-  value?: InputMaybe<Scalars['String']>;
+  value?: InputMaybe<Scalars['String']['input']>;
 };
 
 /** aggregate max on columns */
 export type ApiMemberStatusMaxFields = {
   __typename?: 'member_status_max_fields';
-  value?: Maybe<Scalars['String']>;
+  value?: Maybe<Scalars['String']['output']>;
 };
 
 /** aggregate min on columns */
 export type ApiMemberStatusMinFields = {
   __typename?: 'member_status_min_fields';
-  value?: Maybe<Scalars['String']>;
+  value?: Maybe<Scalars['String']['output']>;
 };
 
 /** response of any mutation on the table "member_status" */
 export type ApiMemberStatusMutationResponse = {
   __typename?: 'member_status_mutation_response';
   /** number of rows affected by the mutation */
-  affected_rows: Scalars['Int'];
+  affected_rows: Scalars['Int']['output'];
   /** data from the rows affected by the mutation */
   returning: Array<ApiMemberStatus>;
 };
@@ -1954,7 +1956,7 @@ export type ApiMemberStatusOrderBy = {
 
 /** primary key columns input for table: member_status */
 export type ApiMemberStatusPkColumnsInput = {
-  value: Scalars['String'];
+  value: Scalars['String']['input'];
 };
 
 /** select columns of table "member_status" */
@@ -1965,7 +1967,7 @@ export enum ApiMemberStatusSelectColumn {
 
 /** input type for updating data in table "member_status" */
 export type ApiMemberStatusSetInput = {
-  value?: InputMaybe<Scalars['String']>;
+  value?: InputMaybe<Scalars['String']['input']>;
 };
 
 /** Streaming cursor of the table "member_status" */
@@ -1978,7 +1980,7 @@ export type ApiMemberStatusStreamCursorInput = {
 
 /** Initial value of the column from where the streaming should start */
 export type ApiMemberStatusStreamCursorValueInput = {
-  value?: InputMaybe<Scalars['String']>;
+  value?: InputMaybe<Scalars['String']['input']>;
 };
 
 /** update columns of table "member_status" */
@@ -2004,19 +2006,19 @@ export type ApiMemberStreamCursorInput = {
 
 /** Initial value of the column from where the streaming should start */
 export type ApiMemberStreamCursorValueInput = {
-  created_at?: InputMaybe<Scalars['timestamptz']>;
-  dob?: InputMaybe<Scalars['date']>;
-  father_name?: InputMaybe<Scalars['String']>;
+  created_at?: InputMaybe<Scalars['timestamptz']['input']>;
+  dob?: InputMaybe<Scalars['date']['input']>;
+  father_name?: InputMaybe<Scalars['String']['input']>;
   gender?: InputMaybe<ApiGenderEnum>;
-  household_id?: InputMaybe<Scalars['uuid']>;
-  id?: InputMaybe<Scalars['uuid']>;
-  name?: InputMaybe<Scalars['String']>;
-  national_id?: InputMaybe<Scalars['String']>;
+  household_id?: InputMaybe<Scalars['uuid']['input']>;
+  id?: InputMaybe<Scalars['uuid']['input']>;
+  name?: InputMaybe<Scalars['String']['input']>;
+  national_id?: InputMaybe<Scalars['String']['input']>;
   nationality?: InputMaybe<ApiNationalityEnum>;
   religion?: InputMaybe<ApiReligionEnum>;
   status?: InputMaybe<ApiMemberStatusEnum>;
-  surname?: InputMaybe<Scalars['String']>;
-  updated_at?: InputMaybe<Scalars['timestamptz']>;
+  surname?: InputMaybe<Scalars['String']['input']>;
+  updated_at?: InputMaybe<Scalars['timestamptz']['input']>;
 };
 
 /** update columns of table "member" */
@@ -2266,7 +2268,7 @@ export type ApiMutationRootApiDeleteCityArgs = {
 
 /** mutation root */
 export type ApiMutationRootApiDeleteCityByPkArgs = {
-  value: Scalars['String'];
+  value: Scalars['String']['input'];
 };
 
 
@@ -2278,7 +2280,7 @@ export type ApiMutationRootApiDeleteGenderArgs = {
 
 /** mutation root */
 export type ApiMutationRootApiDeleteGenderByPkArgs = {
-  value: Scalars['String'];
+  value: Scalars['String']['input'];
 };
 
 
@@ -2290,7 +2292,7 @@ export type ApiMutationRootApiDeleteHouseholdArgs = {
 
 /** mutation root */
 export type ApiMutationRootApiDeleteHouseholdByPkArgs = {
-  id: Scalars['uuid'];
+  id: Scalars['uuid']['input'];
 };
 
 
@@ -2302,8 +2304,8 @@ export type ApiMutationRootApiDeleteHouseholdProjectArgs = {
 
 /** mutation root */
 export type ApiMutationRootApiDeleteHouseholdProjectByPkArgs = {
-  household_id: Scalars['uuid'];
-  project_id: Scalars['uuid'];
+  household_id: Scalars['uuid']['input'];
+  project_id: Scalars['uuid']['input'];
 };
 
 
@@ -2315,7 +2317,7 @@ export type ApiMutationRootApiDeleteHouseholdSeverityArgs = {
 
 /** mutation root */
 export type ApiMutationRootApiDeleteHouseholdSeverityByPkArgs = {
-  value: Scalars['String'];
+  value: Scalars['String']['input'];
 };
 
 
@@ -2327,7 +2329,7 @@ export type ApiMutationRootApiDeleteHouseholdStatusArgs = {
 
 /** mutation root */
 export type ApiMutationRootApiDeleteHouseholdStatusByPkArgs = {
-  value: Scalars['String'];
+  value: Scalars['String']['input'];
 };
 
 
@@ -2339,7 +2341,7 @@ export type ApiMutationRootApiDeleteHouseholderArgs = {
 
 /** mutation root */
 export type ApiMutationRootApiDeleteHouseholderByPkArgs = {
-  household_id: Scalars['uuid'];
+  household_id: Scalars['uuid']['input'];
 };
 
 
@@ -2351,7 +2353,7 @@ export type ApiMutationRootApiDeleteHouseholderStatusArgs = {
 
 /** mutation root */
 export type ApiMutationRootApiDeleteHouseholderStatusByPkArgs = {
-  value: Scalars['String'];
+  value: Scalars['String']['input'];
 };
 
 
@@ -2363,7 +2365,7 @@ export type ApiMutationRootApiDeleteMemberArgs = {
 
 /** mutation root */
 export type ApiMutationRootApiDeleteMemberByPkArgs = {
-  id: Scalars['uuid'];
+  id: Scalars['uuid']['input'];
 };
 
 
@@ -2375,7 +2377,7 @@ export type ApiMutationRootApiDeleteMemberStatusArgs = {
 
 /** mutation root */
 export type ApiMutationRootApiDeleteMemberStatusByPkArgs = {
-  value: Scalars['String'];
+  value: Scalars['String']['input'];
 };
 
 
@@ -2387,7 +2389,7 @@ export type ApiMutationRootApiDeleteNationalityArgs = {
 
 /** mutation root */
 export type ApiMutationRootApiDeleteNationalityByPkArgs = {
-  value: Scalars['String'];
+  value: Scalars['String']['input'];
 };
 
 
@@ -2399,7 +2401,7 @@ export type ApiMutationRootApiDeleteProjectArgs = {
 
 /** mutation root */
 export type ApiMutationRootApiDeleteProjectByPkArgs = {
-  id: Scalars['uuid'];
+  id: Scalars['uuid']['input'];
 };
 
 
@@ -2411,7 +2413,7 @@ export type ApiMutationRootApiDeleteProjectStatusArgs = {
 
 /** mutation root */
 export type ApiMutationRootApiDeleteProjectStatusByPkArgs = {
-  value: Scalars['String'];
+  value: Scalars['String']['input'];
 };
 
 
@@ -2423,7 +2425,7 @@ export type ApiMutationRootApiDeleteReligionArgs = {
 
 /** mutation root */
 export type ApiMutationRootApiDeleteReligionByPkArgs = {
-  value: Scalars['String'];
+  value: Scalars['String']['input'];
 };
 
 
@@ -2909,7 +2911,7 @@ export type ApiMutationRootApiUpdateReligionManyArgs = {
 /** columns and relationships of "nationality" */
 export type ApiNationality = {
   __typename?: 'nationality';
-  value: Scalars['String'];
+  value: Scalars['String']['output'];
 };
 
 /** aggregated selection of "nationality" */
@@ -2922,7 +2924,7 @@ export type ApiNationalityAggregate = {
 /** aggregate fields of "nationality" */
 export type ApiNationalityAggregateFields = {
   __typename?: 'nationality_aggregate_fields';
-  count: Scalars['Int'];
+  count: Scalars['Int']['output'];
   max?: Maybe<ApiNationalityMaxFields>;
   min?: Maybe<ApiNationalityMinFields>;
 };
@@ -2931,7 +2933,7 @@ export type ApiNationalityAggregateFields = {
 /** aggregate fields of "nationality" */
 export type ApiNationalityAggregateFieldsApiCountArgs = {
   columns?: InputMaybe<Array<ApiNationalitySelectColumn>>;
-  distinct?: InputMaybe<Scalars['Boolean']>;
+  distinct?: InputMaybe<Scalars['Boolean']['input']>;
 };
 
 /** Boolean expression to filter rows from the table "nationality". All fields are combined with a logical 'AND'. */
@@ -2957,33 +2959,33 @@ export enum ApiNationalityEnum {
 export type ApiNationalityEnumComparisonExp = {
   _eq?: InputMaybe<ApiNationalityEnum>;
   _in?: InputMaybe<Array<ApiNationalityEnum>>;
-  _is_null?: InputMaybe<Scalars['Boolean']>;
+  _is_null?: InputMaybe<Scalars['Boolean']['input']>;
   _neq?: InputMaybe<ApiNationalityEnum>;
   _nin?: InputMaybe<Array<ApiNationalityEnum>>;
 };
 
 /** input type for inserting data into table "nationality" */
 export type ApiNationalityInsertInput = {
-  value?: InputMaybe<Scalars['String']>;
+  value?: InputMaybe<Scalars['String']['input']>;
 };
 
 /** aggregate max on columns */
 export type ApiNationalityMaxFields = {
   __typename?: 'nationality_max_fields';
-  value?: Maybe<Scalars['String']>;
+  value?: Maybe<Scalars['String']['output']>;
 };
 
 /** aggregate min on columns */
 export type ApiNationalityMinFields = {
   __typename?: 'nationality_min_fields';
-  value?: Maybe<Scalars['String']>;
+  value?: Maybe<Scalars['String']['output']>;
 };
 
 /** response of any mutation on the table "nationality" */
 export type ApiNationalityMutationResponse = {
   __typename?: 'nationality_mutation_response';
   /** number of rows affected by the mutation */
-  affected_rows: Scalars['Int'];
+  affected_rows: Scalars['Int']['output'];
   /** data from the rows affected by the mutation */
   returning: Array<ApiNationality>;
 };
@@ -3002,7 +3004,7 @@ export type ApiNationalityOrderBy = {
 
 /** primary key columns input for table: nationality */
 export type ApiNationalityPkColumnsInput = {
-  value: Scalars['String'];
+  value: Scalars['String']['input'];
 };
 
 /** select columns of table "nationality" */
@@ -3013,7 +3015,7 @@ export enum ApiNationalitySelectColumn {
 
 /** input type for updating data in table "nationality" */
 export type ApiNationalitySetInput = {
-  value?: InputMaybe<Scalars['String']>;
+  value?: InputMaybe<Scalars['String']['input']>;
 };
 
 /** Streaming cursor of the table "nationality" */
@@ -3026,7 +3028,7 @@ export type ApiNationalityStreamCursorInput = {
 
 /** Initial value of the column from where the streaming should start */
 export type ApiNationalityStreamCursorValueInput = {
-  value?: InputMaybe<Scalars['String']>;
+  value?: InputMaybe<Scalars['String']['input']>;
 };
 
 /** update columns of table "nationality" */
@@ -3061,26 +3063,26 @@ export enum ApiOrderBy {
 /** columns and relationships of "project" */
 export type ApiProject = {
   __typename?: 'project';
-  created_at: Scalars['timestamptz'];
-  description?: Maybe<Scalars['String']>;
-  due_date?: Maybe<Scalars['date']>;
+  created_at: Scalars['timestamptz']['output'];
+  description?: Maybe<Scalars['String']['output']>;
+  due_date?: Maybe<Scalars['date']['output']>;
   /** An array relationship */
   households: Array<ApiHouseholdProject>;
   /** An aggregate relationship */
   households_aggregate: ApiHouseholdProjectAggregate;
-  id: Scalars['uuid'];
-  name: Scalars['String'];
-  start_date?: Maybe<Scalars['date']>;
+  id: Scalars['uuid']['output'];
+  name: Scalars['String']['output'];
+  start_date?: Maybe<Scalars['date']['output']>;
   status: ApiProjectStatusEnum;
-  updated_at: Scalars['timestamptz'];
+  updated_at: Scalars['timestamptz']['output'];
 };
 
 
 /** columns and relationships of "project" */
 export type ApiProjectApiHouseholdsArgs = {
   distinct_on?: InputMaybe<Array<ApiHouseholdProjectSelectColumn>>;
-  limit?: InputMaybe<Scalars['Int']>;
-  offset?: InputMaybe<Scalars['Int']>;
+  limit?: InputMaybe<Scalars['Int']['input']>;
+  offset?: InputMaybe<Scalars['Int']['input']>;
   order_by?: InputMaybe<Array<ApiHouseholdProjectOrderBy>>;
   where?: InputMaybe<ApiHouseholdProjectBoolExp>;
 };
@@ -3089,8 +3091,8 @@ export type ApiProjectApiHouseholdsArgs = {
 /** columns and relationships of "project" */
 export type ApiProjectApiHouseholdsAggregateArgs = {
   distinct_on?: InputMaybe<Array<ApiHouseholdProjectSelectColumn>>;
-  limit?: InputMaybe<Scalars['Int']>;
-  offset?: InputMaybe<Scalars['Int']>;
+  limit?: InputMaybe<Scalars['Int']['input']>;
+  offset?: InputMaybe<Scalars['Int']['input']>;
   order_by?: InputMaybe<Array<ApiHouseholdProjectOrderBy>>;
   where?: InputMaybe<ApiHouseholdProjectBoolExp>;
 };
@@ -3105,7 +3107,7 @@ export type ApiProjectAggregate = {
 /** aggregate fields of "project" */
 export type ApiProjectAggregateFields = {
   __typename?: 'project_aggregate_fields';
-  count: Scalars['Int'];
+  count: Scalars['Int']['output'];
   max?: Maybe<ApiProjectMaxFields>;
   min?: Maybe<ApiProjectMinFields>;
 };
@@ -3114,7 +3116,7 @@ export type ApiProjectAggregateFields = {
 /** aggregate fields of "project" */
 export type ApiProjectAggregateFieldsApiCountArgs = {
   columns?: InputMaybe<Array<ApiProjectSelectColumn>>;
-  distinct?: InputMaybe<Scalars['Boolean']>;
+  distinct?: InputMaybe<Scalars['Boolean']['input']>;
 };
 
 /** Boolean expression to filter rows from the table "project". All fields are combined with a logical 'AND'. */
@@ -3142,46 +3144,46 @@ export enum ApiProjectConstraint {
 
 /** input type for inserting data into table "project" */
 export type ApiProjectInsertInput = {
-  created_at?: InputMaybe<Scalars['timestamptz']>;
-  description?: InputMaybe<Scalars['String']>;
-  due_date?: InputMaybe<Scalars['date']>;
+  created_at?: InputMaybe<Scalars['timestamptz']['input']>;
+  description?: InputMaybe<Scalars['String']['input']>;
+  due_date?: InputMaybe<Scalars['date']['input']>;
   households?: InputMaybe<ApiHouseholdProjectArrRelInsertInput>;
-  id?: InputMaybe<Scalars['uuid']>;
-  name?: InputMaybe<Scalars['String']>;
-  start_date?: InputMaybe<Scalars['date']>;
+  id?: InputMaybe<Scalars['uuid']['input']>;
+  name?: InputMaybe<Scalars['String']['input']>;
+  start_date?: InputMaybe<Scalars['date']['input']>;
   status?: InputMaybe<ApiProjectStatusEnum>;
-  updated_at?: InputMaybe<Scalars['timestamptz']>;
+  updated_at?: InputMaybe<Scalars['timestamptz']['input']>;
 };
 
 /** aggregate max on columns */
 export type ApiProjectMaxFields = {
   __typename?: 'project_max_fields';
-  created_at?: Maybe<Scalars['timestamptz']>;
-  description?: Maybe<Scalars['String']>;
-  due_date?: Maybe<Scalars['date']>;
-  id?: Maybe<Scalars['uuid']>;
-  name?: Maybe<Scalars['String']>;
-  start_date?: Maybe<Scalars['date']>;
-  updated_at?: Maybe<Scalars['timestamptz']>;
+  created_at?: Maybe<Scalars['timestamptz']['output']>;
+  description?: Maybe<Scalars['String']['output']>;
+  due_date?: Maybe<Scalars['date']['output']>;
+  id?: Maybe<Scalars['uuid']['output']>;
+  name?: Maybe<Scalars['String']['output']>;
+  start_date?: Maybe<Scalars['date']['output']>;
+  updated_at?: Maybe<Scalars['timestamptz']['output']>;
 };
 
 /** aggregate min on columns */
 export type ApiProjectMinFields = {
   __typename?: 'project_min_fields';
-  created_at?: Maybe<Scalars['timestamptz']>;
-  description?: Maybe<Scalars['String']>;
-  due_date?: Maybe<Scalars['date']>;
-  id?: Maybe<Scalars['uuid']>;
-  name?: Maybe<Scalars['String']>;
-  start_date?: Maybe<Scalars['date']>;
-  updated_at?: Maybe<Scalars['timestamptz']>;
+  created_at?: Maybe<Scalars['timestamptz']['output']>;
+  description?: Maybe<Scalars['String']['output']>;
+  due_date?: Maybe<Scalars['date']['output']>;
+  id?: Maybe<Scalars['uuid']['output']>;
+  name?: Maybe<Scalars['String']['output']>;
+  start_date?: Maybe<Scalars['date']['output']>;
+  updated_at?: Maybe<Scalars['timestamptz']['output']>;
 };
 
 /** response of any mutation on the table "project" */
 export type ApiProjectMutationResponse = {
   __typename?: 'project_mutation_response';
   /** number of rows affected by the mutation */
-  affected_rows: Scalars['Int'];
+  affected_rows: Scalars['Int']['output'];
   /** data from the rows affected by the mutation */
   returning: Array<ApiProject>;
 };
@@ -3215,7 +3217,7 @@ export type ApiProjectOrderBy = {
 
 /** primary key columns input for table: project */
 export type ApiProjectPkColumnsInput = {
-  id: Scalars['uuid'];
+  id: Scalars['uuid']['input'];
 };
 
 /** select columns of table "project" */
@@ -3240,21 +3242,21 @@ export enum ApiProjectSelectColumn {
 
 /** input type for updating data in table "project" */
 export type ApiProjectSetInput = {
-  created_at?: InputMaybe<Scalars['timestamptz']>;
-  description?: InputMaybe<Scalars['String']>;
-  due_date?: InputMaybe<Scalars['date']>;
-  id?: InputMaybe<Scalars['uuid']>;
-  name?: InputMaybe<Scalars['String']>;
-  start_date?: InputMaybe<Scalars['date']>;
+  created_at?: InputMaybe<Scalars['timestamptz']['input']>;
+  description?: InputMaybe<Scalars['String']['input']>;
+  due_date?: InputMaybe<Scalars['date']['input']>;
+  id?: InputMaybe<Scalars['uuid']['input']>;
+  name?: InputMaybe<Scalars['String']['input']>;
+  start_date?: InputMaybe<Scalars['date']['input']>;
   status?: InputMaybe<ApiProjectStatusEnum>;
-  updated_at?: InputMaybe<Scalars['timestamptz']>;
+  updated_at?: InputMaybe<Scalars['timestamptz']['input']>;
 };
 
 /** columns and relationships of "project_status" */
 export type ApiProjectStatus = {
   __typename?: 'project_status';
-  comment?: Maybe<Scalars['String']>;
-  value: Scalars['String'];
+  comment?: Maybe<Scalars['String']['output']>;
+  value: Scalars['String']['output'];
 };
 
 /** aggregated selection of "project_status" */
@@ -3267,7 +3269,7 @@ export type ApiProjectStatusAggregate = {
 /** aggregate fields of "project_status" */
 export type ApiProjectStatusAggregateFields = {
   __typename?: 'project_status_aggregate_fields';
-  count: Scalars['Int'];
+  count: Scalars['Int']['output'];
   max?: Maybe<ApiProjectStatusMaxFields>;
   min?: Maybe<ApiProjectStatusMinFields>;
 };
@@ -3276,7 +3278,7 @@ export type ApiProjectStatusAggregateFields = {
 /** aggregate fields of "project_status" */
 export type ApiProjectStatusAggregateFieldsApiCountArgs = {
   columns?: InputMaybe<Array<ApiProjectStatusSelectColumn>>;
-  distinct?: InputMaybe<Scalars['Boolean']>;
+  distinct?: InputMaybe<Scalars['Boolean']['input']>;
 };
 
 /** Boolean expression to filter rows from the table "project_status". All fields are combined with a logical 'AND'. */
@@ -3306,36 +3308,36 @@ export enum ApiProjectStatusEnum {
 export type ApiProjectStatusEnumComparisonExp = {
   _eq?: InputMaybe<ApiProjectStatusEnum>;
   _in?: InputMaybe<Array<ApiProjectStatusEnum>>;
-  _is_null?: InputMaybe<Scalars['Boolean']>;
+  _is_null?: InputMaybe<Scalars['Boolean']['input']>;
   _neq?: InputMaybe<ApiProjectStatusEnum>;
   _nin?: InputMaybe<Array<ApiProjectStatusEnum>>;
 };
 
 /** input type for inserting data into table "project_status" */
 export type ApiProjectStatusInsertInput = {
-  comment?: InputMaybe<Scalars['String']>;
-  value?: InputMaybe<Scalars['String']>;
+  comment?: InputMaybe<Scalars['String']['input']>;
+  value?: InputMaybe<Scalars['String']['input']>;
 };
 
 /** aggregate max on columns */
 export type ApiProjectStatusMaxFields = {
   __typename?: 'project_status_max_fields';
-  comment?: Maybe<Scalars['String']>;
-  value?: Maybe<Scalars['String']>;
+  comment?: Maybe<Scalars['String']['output']>;
+  value?: Maybe<Scalars['String']['output']>;
 };
 
 /** aggregate min on columns */
 export type ApiProjectStatusMinFields = {
   __typename?: 'project_status_min_fields';
-  comment?: Maybe<Scalars['String']>;
-  value?: Maybe<Scalars['String']>;
+  comment?: Maybe<Scalars['String']['output']>;
+  value?: Maybe<Scalars['String']['output']>;
 };
 
 /** response of any mutation on the table "project_status" */
 export type ApiProjectStatusMutationResponse = {
   __typename?: 'project_status_mutation_response';
   /** number of rows affected by the mutation */
-  affected_rows: Scalars['Int'];
+  affected_rows: Scalars['Int']['output'];
   /** data from the rows affected by the mutation */
   returning: Array<ApiProjectStatus>;
 };
@@ -3355,7 +3357,7 @@ export type ApiProjectStatusOrderBy = {
 
 /** primary key columns input for table: project_status */
 export type ApiProjectStatusPkColumnsInput = {
-  value: Scalars['String'];
+  value: Scalars['String']['input'];
 };
 
 /** select columns of table "project_status" */
@@ -3368,8 +3370,8 @@ export enum ApiProjectStatusSelectColumn {
 
 /** input type for updating data in table "project_status" */
 export type ApiProjectStatusSetInput = {
-  comment?: InputMaybe<Scalars['String']>;
-  value?: InputMaybe<Scalars['String']>;
+  comment?: InputMaybe<Scalars['String']['input']>;
+  value?: InputMaybe<Scalars['String']['input']>;
 };
 
 /** Streaming cursor of the table "project_status" */
@@ -3382,8 +3384,8 @@ export type ApiProjectStatusStreamCursorInput = {
 
 /** Initial value of the column from where the streaming should start */
 export type ApiProjectStatusStreamCursorValueInput = {
-  comment?: InputMaybe<Scalars['String']>;
-  value?: InputMaybe<Scalars['String']>;
+  comment?: InputMaybe<Scalars['String']['input']>;
+  value?: InputMaybe<Scalars['String']['input']>;
 };
 
 /** update columns of table "project_status" */
@@ -3411,14 +3413,14 @@ export type ApiProjectStreamCursorInput = {
 
 /** Initial value of the column from where the streaming should start */
 export type ApiProjectStreamCursorValueInput = {
-  created_at?: InputMaybe<Scalars['timestamptz']>;
-  description?: InputMaybe<Scalars['String']>;
-  due_date?: InputMaybe<Scalars['date']>;
-  id?: InputMaybe<Scalars['uuid']>;
-  name?: InputMaybe<Scalars['String']>;
-  start_date?: InputMaybe<Scalars['date']>;
+  created_at?: InputMaybe<Scalars['timestamptz']['input']>;
+  description?: InputMaybe<Scalars['String']['input']>;
+  due_date?: InputMaybe<Scalars['date']['input']>;
+  id?: InputMaybe<Scalars['uuid']['input']>;
+  name?: InputMaybe<Scalars['String']['input']>;
+  start_date?: InputMaybe<Scalars['date']['input']>;
   status?: InputMaybe<ApiProjectStatusEnum>;
-  updated_at?: InputMaybe<Scalars['timestamptz']>;
+  updated_at?: InputMaybe<Scalars['timestamptz']['input']>;
 };
 
 /** update columns of table "project" */
@@ -3539,8 +3541,8 @@ export type ApiQueryRoot = {
 
 export type ApiQueryRootApiCityArgs = {
   distinct_on?: InputMaybe<Array<ApiCitySelectColumn>>;
-  limit?: InputMaybe<Scalars['Int']>;
-  offset?: InputMaybe<Scalars['Int']>;
+  limit?: InputMaybe<Scalars['Int']['input']>;
+  offset?: InputMaybe<Scalars['Int']['input']>;
   order_by?: InputMaybe<Array<ApiCityOrderBy>>;
   where?: InputMaybe<ApiCityBoolExp>;
 };
@@ -3548,22 +3550,22 @@ export type ApiQueryRootApiCityArgs = {
 
 export type ApiQueryRootApiCityAggregateArgs = {
   distinct_on?: InputMaybe<Array<ApiCitySelectColumn>>;
-  limit?: InputMaybe<Scalars['Int']>;
-  offset?: InputMaybe<Scalars['Int']>;
+  limit?: InputMaybe<Scalars['Int']['input']>;
+  offset?: InputMaybe<Scalars['Int']['input']>;
   order_by?: InputMaybe<Array<ApiCityOrderBy>>;
   where?: InputMaybe<ApiCityBoolExp>;
 };
 
 
 export type ApiQueryRootApiCityByPkArgs = {
-  value: Scalars['String'];
+  value: Scalars['String']['input'];
 };
 
 
 export type ApiQueryRootApiGenderArgs = {
   distinct_on?: InputMaybe<Array<ApiGenderSelectColumn>>;
-  limit?: InputMaybe<Scalars['Int']>;
-  offset?: InputMaybe<Scalars['Int']>;
+  limit?: InputMaybe<Scalars['Int']['input']>;
+  offset?: InputMaybe<Scalars['Int']['input']>;
   order_by?: InputMaybe<Array<ApiGenderOrderBy>>;
   where?: InputMaybe<ApiGenderBoolExp>;
 };
@@ -3571,22 +3573,22 @@ export type ApiQueryRootApiGenderArgs = {
 
 export type ApiQueryRootApiGenderAggregateArgs = {
   distinct_on?: InputMaybe<Array<ApiGenderSelectColumn>>;
-  limit?: InputMaybe<Scalars['Int']>;
-  offset?: InputMaybe<Scalars['Int']>;
+  limit?: InputMaybe<Scalars['Int']['input']>;
+  offset?: InputMaybe<Scalars['Int']['input']>;
   order_by?: InputMaybe<Array<ApiGenderOrderBy>>;
   where?: InputMaybe<ApiGenderBoolExp>;
 };
 
 
 export type ApiQueryRootApiGenderByPkArgs = {
-  value: Scalars['String'];
+  value: Scalars['String']['input'];
 };
 
 
 export type ApiQueryRootApiHouseholdArgs = {
   distinct_on?: InputMaybe<Array<ApiHouseholdSelectColumn>>;
-  limit?: InputMaybe<Scalars['Int']>;
-  offset?: InputMaybe<Scalars['Int']>;
+  limit?: InputMaybe<Scalars['Int']['input']>;
+  offset?: InputMaybe<Scalars['Int']['input']>;
   order_by?: InputMaybe<Array<ApiHouseholdOrderBy>>;
   where?: InputMaybe<ApiHouseholdBoolExp>;
 };
@@ -3594,22 +3596,22 @@ export type ApiQueryRootApiHouseholdArgs = {
 
 export type ApiQueryRootApiHouseholdAggregateArgs = {
   distinct_on?: InputMaybe<Array<ApiHouseholdSelectColumn>>;
-  limit?: InputMaybe<Scalars['Int']>;
-  offset?: InputMaybe<Scalars['Int']>;
+  limit?: InputMaybe<Scalars['Int']['input']>;
+  offset?: InputMaybe<Scalars['Int']['input']>;
   order_by?: InputMaybe<Array<ApiHouseholdOrderBy>>;
   where?: InputMaybe<ApiHouseholdBoolExp>;
 };
 
 
 export type ApiQueryRootApiHouseholdByPkArgs = {
-  id: Scalars['uuid'];
+  id: Scalars['uuid']['input'];
 };
 
 
 export type ApiQueryRootApiHouseholdProjectArgs = {
   distinct_on?: InputMaybe<Array<ApiHouseholdProjectSelectColumn>>;
-  limit?: InputMaybe<Scalars['Int']>;
-  offset?: InputMaybe<Scalars['Int']>;
+  limit?: InputMaybe<Scalars['Int']['input']>;
+  offset?: InputMaybe<Scalars['Int']['input']>;
   order_by?: InputMaybe<Array<ApiHouseholdProjectOrderBy>>;
   where?: InputMaybe<ApiHouseholdProjectBoolExp>;
 };
@@ -3617,23 +3619,23 @@ export type ApiQueryRootApiHouseholdProjectArgs = {
 
 export type ApiQueryRootApiHouseholdProjectAggregateArgs = {
   distinct_on?: InputMaybe<Array<ApiHouseholdProjectSelectColumn>>;
-  limit?: InputMaybe<Scalars['Int']>;
-  offset?: InputMaybe<Scalars['Int']>;
+  limit?: InputMaybe<Scalars['Int']['input']>;
+  offset?: InputMaybe<Scalars['Int']['input']>;
   order_by?: InputMaybe<Array<ApiHouseholdProjectOrderBy>>;
   where?: InputMaybe<ApiHouseholdProjectBoolExp>;
 };
 
 
 export type ApiQueryRootApiHouseholdProjectByPkArgs = {
-  household_id: Scalars['uuid'];
-  project_id: Scalars['uuid'];
+  household_id: Scalars['uuid']['input'];
+  project_id: Scalars['uuid']['input'];
 };
 
 
 export type ApiQueryRootApiHouseholdSeverityArgs = {
   distinct_on?: InputMaybe<Array<ApiHouseholdSeveritySelectColumn>>;
-  limit?: InputMaybe<Scalars['Int']>;
-  offset?: InputMaybe<Scalars['Int']>;
+  limit?: InputMaybe<Scalars['Int']['input']>;
+  offset?: InputMaybe<Scalars['Int']['input']>;
   order_by?: InputMaybe<Array<ApiHouseholdSeverityOrderBy>>;
   where?: InputMaybe<ApiHouseholdSeverityBoolExp>;
 };
@@ -3641,22 +3643,22 @@ export type ApiQueryRootApiHouseholdSeverityArgs = {
 
 export type ApiQueryRootApiHouseholdSeverityAggregateArgs = {
   distinct_on?: InputMaybe<Array<ApiHouseholdSeveritySelectColumn>>;
-  limit?: InputMaybe<Scalars['Int']>;
-  offset?: InputMaybe<Scalars['Int']>;
+  limit?: InputMaybe<Scalars['Int']['input']>;
+  offset?: InputMaybe<Scalars['Int']['input']>;
   order_by?: InputMaybe<Array<ApiHouseholdSeverityOrderBy>>;
   where?: InputMaybe<ApiHouseholdSeverityBoolExp>;
 };
 
 
 export type ApiQueryRootApiHouseholdSeverityByPkArgs = {
-  value: Scalars['String'];
+  value: Scalars['String']['input'];
 };
 
 
 export type ApiQueryRootApiHouseholdStatusArgs = {
   distinct_on?: InputMaybe<Array<ApiHouseholdStatusSelectColumn>>;
-  limit?: InputMaybe<Scalars['Int']>;
-  offset?: InputMaybe<Scalars['Int']>;
+  limit?: InputMaybe<Scalars['Int']['input']>;
+  offset?: InputMaybe<Scalars['Int']['input']>;
   order_by?: InputMaybe<Array<ApiHouseholdStatusOrderBy>>;
   where?: InputMaybe<ApiHouseholdStatusBoolExp>;
 };
@@ -3664,22 +3666,22 @@ export type ApiQueryRootApiHouseholdStatusArgs = {
 
 export type ApiQueryRootApiHouseholdStatusAggregateArgs = {
   distinct_on?: InputMaybe<Array<ApiHouseholdStatusSelectColumn>>;
-  limit?: InputMaybe<Scalars['Int']>;
-  offset?: InputMaybe<Scalars['Int']>;
+  limit?: InputMaybe<Scalars['Int']['input']>;
+  offset?: InputMaybe<Scalars['Int']['input']>;
   order_by?: InputMaybe<Array<ApiHouseholdStatusOrderBy>>;
   where?: InputMaybe<ApiHouseholdStatusBoolExp>;
 };
 
 
 export type ApiQueryRootApiHouseholdStatusByPkArgs = {
-  value: Scalars['String'];
+  value: Scalars['String']['input'];
 };
 
 
 export type ApiQueryRootApiHouseholderArgs = {
   distinct_on?: InputMaybe<Array<ApiHouseholderSelectColumn>>;
-  limit?: InputMaybe<Scalars['Int']>;
-  offset?: InputMaybe<Scalars['Int']>;
+  limit?: InputMaybe<Scalars['Int']['input']>;
+  offset?: InputMaybe<Scalars['Int']['input']>;
   order_by?: InputMaybe<Array<ApiHouseholderOrderBy>>;
   where?: InputMaybe<ApiHouseholderBoolExp>;
 };
@@ -3687,22 +3689,22 @@ export type ApiQueryRootApiHouseholderArgs = {
 
 export type ApiQueryRootApiHouseholderAggregateArgs = {
   distinct_on?: InputMaybe<Array<ApiHouseholderSelectColumn>>;
-  limit?: InputMaybe<Scalars['Int']>;
-  offset?: InputMaybe<Scalars['Int']>;
+  limit?: InputMaybe<Scalars['Int']['input']>;
+  offset?: InputMaybe<Scalars['Int']['input']>;
   order_by?: InputMaybe<Array<ApiHouseholderOrderBy>>;
   where?: InputMaybe<ApiHouseholderBoolExp>;
 };
 
 
 export type ApiQueryRootApiHouseholderByPkArgs = {
-  household_id: Scalars['uuid'];
+  household_id: Scalars['uuid']['input'];
 };
 
 
 export type ApiQueryRootApiHouseholderStatusArgs = {
   distinct_on?: InputMaybe<Array<ApiHouseholderStatusSelectColumn>>;
-  limit?: InputMaybe<Scalars['Int']>;
-  offset?: InputMaybe<Scalars['Int']>;
+  limit?: InputMaybe<Scalars['Int']['input']>;
+  offset?: InputMaybe<Scalars['Int']['input']>;
   order_by?: InputMaybe<Array<ApiHouseholderStatusOrderBy>>;
   where?: InputMaybe<ApiHouseholderStatusBoolExp>;
 };
@@ -3710,22 +3712,22 @@ export type ApiQueryRootApiHouseholderStatusArgs = {
 
 export type ApiQueryRootApiHouseholderStatusAggregateArgs = {
   distinct_on?: InputMaybe<Array<ApiHouseholderStatusSelectColumn>>;
-  limit?: InputMaybe<Scalars['Int']>;
-  offset?: InputMaybe<Scalars['Int']>;
+  limit?: InputMaybe<Scalars['Int']['input']>;
+  offset?: InputMaybe<Scalars['Int']['input']>;
   order_by?: InputMaybe<Array<ApiHouseholderStatusOrderBy>>;
   where?: InputMaybe<ApiHouseholderStatusBoolExp>;
 };
 
 
 export type ApiQueryRootApiHouseholderStatusByPkArgs = {
-  value: Scalars['String'];
+  value: Scalars['String']['input'];
 };
 
 
 export type ApiQueryRootApiMemberArgs = {
   distinct_on?: InputMaybe<Array<ApiMemberSelectColumn>>;
-  limit?: InputMaybe<Scalars['Int']>;
-  offset?: InputMaybe<Scalars['Int']>;
+  limit?: InputMaybe<Scalars['Int']['input']>;
+  offset?: InputMaybe<Scalars['Int']['input']>;
   order_by?: InputMaybe<Array<ApiMemberOrderBy>>;
   where?: InputMaybe<ApiMemberBoolExp>;
 };
@@ -3733,22 +3735,22 @@ export type ApiQueryRootApiMemberArgs = {
 
 export type ApiQueryRootApiMemberAggregateArgs = {
   distinct_on?: InputMaybe<Array<ApiMemberSelectColumn>>;
-  limit?: InputMaybe<Scalars['Int']>;
-  offset?: InputMaybe<Scalars['Int']>;
+  limit?: InputMaybe<Scalars['Int']['input']>;
+  offset?: InputMaybe<Scalars['Int']['input']>;
   order_by?: InputMaybe<Array<ApiMemberOrderBy>>;
   where?: InputMaybe<ApiMemberBoolExp>;
 };
 
 
 export type ApiQueryRootApiMemberByPkArgs = {
-  id: Scalars['uuid'];
+  id: Scalars['uuid']['input'];
 };
 
 
 export type ApiQueryRootApiMemberStatusArgs = {
   distinct_on?: InputMaybe<Array<ApiMemberStatusSelectColumn>>;
-  limit?: InputMaybe<Scalars['Int']>;
-  offset?: InputMaybe<Scalars['Int']>;
+  limit?: InputMaybe<Scalars['Int']['input']>;
+  offset?: InputMaybe<Scalars['Int']['input']>;
   order_by?: InputMaybe<Array<ApiMemberStatusOrderBy>>;
   where?: InputMaybe<ApiMemberStatusBoolExp>;
 };
@@ -3756,22 +3758,22 @@ export type ApiQueryRootApiMemberStatusArgs = {
 
 export type ApiQueryRootApiMemberStatusAggregateArgs = {
   distinct_on?: InputMaybe<Array<ApiMemberStatusSelectColumn>>;
-  limit?: InputMaybe<Scalars['Int']>;
-  offset?: InputMaybe<Scalars['Int']>;
+  limit?: InputMaybe<Scalars['Int']['input']>;
+  offset?: InputMaybe<Scalars['Int']['input']>;
   order_by?: InputMaybe<Array<ApiMemberStatusOrderBy>>;
   where?: InputMaybe<ApiMemberStatusBoolExp>;
 };
 
 
 export type ApiQueryRootApiMemberStatusByPkArgs = {
-  value: Scalars['String'];
+  value: Scalars['String']['input'];
 };
 
 
 export type ApiQueryRootApiNationalityArgs = {
   distinct_on?: InputMaybe<Array<ApiNationalitySelectColumn>>;
-  limit?: InputMaybe<Scalars['Int']>;
-  offset?: InputMaybe<Scalars['Int']>;
+  limit?: InputMaybe<Scalars['Int']['input']>;
+  offset?: InputMaybe<Scalars['Int']['input']>;
   order_by?: InputMaybe<Array<ApiNationalityOrderBy>>;
   where?: InputMaybe<ApiNationalityBoolExp>;
 };
@@ -3779,22 +3781,22 @@ export type ApiQueryRootApiNationalityArgs = {
 
 export type ApiQueryRootApiNationalityAggregateArgs = {
   distinct_on?: InputMaybe<Array<ApiNationalitySelectColumn>>;
-  limit?: InputMaybe<Scalars['Int']>;
-  offset?: InputMaybe<Scalars['Int']>;
+  limit?: InputMaybe<Scalars['Int']['input']>;
+  offset?: InputMaybe<Scalars['Int']['input']>;
   order_by?: InputMaybe<Array<ApiNationalityOrderBy>>;
   where?: InputMaybe<ApiNationalityBoolExp>;
 };
 
 
 export type ApiQueryRootApiNationalityByPkArgs = {
-  value: Scalars['String'];
+  value: Scalars['String']['input'];
 };
 
 
 export type ApiQueryRootApiProjectArgs = {
   distinct_on?: InputMaybe<Array<ApiProjectSelectColumn>>;
-  limit?: InputMaybe<Scalars['Int']>;
-  offset?: InputMaybe<Scalars['Int']>;
+  limit?: InputMaybe<Scalars['Int']['input']>;
+  offset?: InputMaybe<Scalars['Int']['input']>;
   order_by?: InputMaybe<Array<ApiProjectOrderBy>>;
   where?: InputMaybe<ApiProjectBoolExp>;
 };
@@ -3802,22 +3804,22 @@ export type ApiQueryRootApiProjectArgs = {
 
 export type ApiQueryRootApiProjectAggregateArgs = {
   distinct_on?: InputMaybe<Array<ApiProjectSelectColumn>>;
-  limit?: InputMaybe<Scalars['Int']>;
-  offset?: InputMaybe<Scalars['Int']>;
+  limit?: InputMaybe<Scalars['Int']['input']>;
+  offset?: InputMaybe<Scalars['Int']['input']>;
   order_by?: InputMaybe<Array<ApiProjectOrderBy>>;
   where?: InputMaybe<ApiProjectBoolExp>;
 };
 
 
 export type ApiQueryRootApiProjectByPkArgs = {
-  id: Scalars['uuid'];
+  id: Scalars['uuid']['input'];
 };
 
 
 export type ApiQueryRootApiProjectStatusArgs = {
   distinct_on?: InputMaybe<Array<ApiProjectStatusSelectColumn>>;
-  limit?: InputMaybe<Scalars['Int']>;
-  offset?: InputMaybe<Scalars['Int']>;
+  limit?: InputMaybe<Scalars['Int']['input']>;
+  offset?: InputMaybe<Scalars['Int']['input']>;
   order_by?: InputMaybe<Array<ApiProjectStatusOrderBy>>;
   where?: InputMaybe<ApiProjectStatusBoolExp>;
 };
@@ -3825,22 +3827,22 @@ export type ApiQueryRootApiProjectStatusArgs = {
 
 export type ApiQueryRootApiProjectStatusAggregateArgs = {
   distinct_on?: InputMaybe<Array<ApiProjectStatusSelectColumn>>;
-  limit?: InputMaybe<Scalars['Int']>;
-  offset?: InputMaybe<Scalars['Int']>;
+  limit?: InputMaybe<Scalars['Int']['input']>;
+  offset?: InputMaybe<Scalars['Int']['input']>;
   order_by?: InputMaybe<Array<ApiProjectStatusOrderBy>>;
   where?: InputMaybe<ApiProjectStatusBoolExp>;
 };
 
 
 export type ApiQueryRootApiProjectStatusByPkArgs = {
-  value: Scalars['String'];
+  value: Scalars['String']['input'];
 };
 
 
 export type ApiQueryRootApiReligionArgs = {
   distinct_on?: InputMaybe<Array<ApiReligionSelectColumn>>;
-  limit?: InputMaybe<Scalars['Int']>;
-  offset?: InputMaybe<Scalars['Int']>;
+  limit?: InputMaybe<Scalars['Int']['input']>;
+  offset?: InputMaybe<Scalars['Int']['input']>;
   order_by?: InputMaybe<Array<ApiReligionOrderBy>>;
   where?: InputMaybe<ApiReligionBoolExp>;
 };
@@ -3848,21 +3850,21 @@ export type ApiQueryRootApiReligionArgs = {
 
 export type ApiQueryRootApiReligionAggregateArgs = {
   distinct_on?: InputMaybe<Array<ApiReligionSelectColumn>>;
-  limit?: InputMaybe<Scalars['Int']>;
-  offset?: InputMaybe<Scalars['Int']>;
+  limit?: InputMaybe<Scalars['Int']['input']>;
+  offset?: InputMaybe<Scalars['Int']['input']>;
   order_by?: InputMaybe<Array<ApiReligionOrderBy>>;
   where?: InputMaybe<ApiReligionBoolExp>;
 };
 
 
 export type ApiQueryRootApiReligionByPkArgs = {
-  value: Scalars['String'];
+  value: Scalars['String']['input'];
 };
 
 /** columns and relationships of "religion" */
 export type ApiReligion = {
   __typename?: 'religion';
-  value: Scalars['String'];
+  value: Scalars['String']['output'];
 };
 
 /** aggregated selection of "religion" */
@@ -3875,7 +3877,7 @@ export type ApiReligionAggregate = {
 /** aggregate fields of "religion" */
 export type ApiReligionAggregateFields = {
   __typename?: 'religion_aggregate_fields';
-  count: Scalars['Int'];
+  count: Scalars['Int']['output'];
   max?: Maybe<ApiReligionMaxFields>;
   min?: Maybe<ApiReligionMinFields>;
 };
@@ -3884,7 +3886,7 @@ export type ApiReligionAggregateFields = {
 /** aggregate fields of "religion" */
 export type ApiReligionAggregateFieldsApiCountArgs = {
   columns?: InputMaybe<Array<ApiReligionSelectColumn>>;
-  distinct?: InputMaybe<Scalars['Boolean']>;
+  distinct?: InputMaybe<Scalars['Boolean']['input']>;
 };
 
 /** Boolean expression to filter rows from the table "religion". All fields are combined with a logical 'AND'. */
@@ -3910,33 +3912,33 @@ export enum ApiReligionEnum {
 export type ApiReligionEnumComparisonExp = {
   _eq?: InputMaybe<ApiReligionEnum>;
   _in?: InputMaybe<Array<ApiReligionEnum>>;
-  _is_null?: InputMaybe<Scalars['Boolean']>;
+  _is_null?: InputMaybe<Scalars['Boolean']['input']>;
   _neq?: InputMaybe<ApiReligionEnum>;
   _nin?: InputMaybe<Array<ApiReligionEnum>>;
 };
 
 /** input type for inserting data into table "religion" */
 export type ApiReligionInsertInput = {
-  value?: InputMaybe<Scalars['String']>;
+  value?: InputMaybe<Scalars['String']['input']>;
 };
 
 /** aggregate max on columns */
 export type ApiReligionMaxFields = {
   __typename?: 'religion_max_fields';
-  value?: Maybe<Scalars['String']>;
+  value?: Maybe<Scalars['String']['output']>;
 };
 
 /** aggregate min on columns */
 export type ApiReligionMinFields = {
   __typename?: 'religion_min_fields';
-  value?: Maybe<Scalars['String']>;
+  value?: Maybe<Scalars['String']['output']>;
 };
 
 /** response of any mutation on the table "religion" */
 export type ApiReligionMutationResponse = {
   __typename?: 'religion_mutation_response';
   /** number of rows affected by the mutation */
-  affected_rows: Scalars['Int'];
+  affected_rows: Scalars['Int']['output'];
   /** data from the rows affected by the mutation */
   returning: Array<ApiReligion>;
 };
@@ -3955,7 +3957,7 @@ export type ApiReligionOrderBy = {
 
 /** primary key columns input for table: religion */
 export type ApiReligionPkColumnsInput = {
-  value: Scalars['String'];
+  value: Scalars['String']['input'];
 };
 
 /** select columns of table "religion" */
@@ -3966,7 +3968,7 @@ export enum ApiReligionSelectColumn {
 
 /** input type for updating data in table "religion" */
 export type ApiReligionSetInput = {
-  value?: InputMaybe<Scalars['String']>;
+  value?: InputMaybe<Scalars['String']['input']>;
 };
 
 /** Streaming cursor of the table "religion" */
@@ -3979,7 +3981,7 @@ export type ApiReligionStreamCursorInput = {
 
 /** Initial value of the column from where the streaming should start */
 export type ApiReligionStreamCursorValueInput = {
-  value?: InputMaybe<Scalars['String']>;
+  value?: InputMaybe<Scalars['String']['input']>;
 };
 
 /** update columns of table "religion" */
@@ -4114,8 +4116,8 @@ export type ApiSubscriptionRoot = {
 
 export type ApiSubscriptionRootApiCityArgs = {
   distinct_on?: InputMaybe<Array<ApiCitySelectColumn>>;
-  limit?: InputMaybe<Scalars['Int']>;
-  offset?: InputMaybe<Scalars['Int']>;
+  limit?: InputMaybe<Scalars['Int']['input']>;
+  offset?: InputMaybe<Scalars['Int']['input']>;
   order_by?: InputMaybe<Array<ApiCityOrderBy>>;
   where?: InputMaybe<ApiCityBoolExp>;
 };
@@ -4123,20 +4125,20 @@ export type ApiSubscriptionRootApiCityArgs = {
 
 export type ApiSubscriptionRootApiCityAggregateArgs = {
   distinct_on?: InputMaybe<Array<ApiCitySelectColumn>>;
-  limit?: InputMaybe<Scalars['Int']>;
-  offset?: InputMaybe<Scalars['Int']>;
+  limit?: InputMaybe<Scalars['Int']['input']>;
+  offset?: InputMaybe<Scalars['Int']['input']>;
   order_by?: InputMaybe<Array<ApiCityOrderBy>>;
   where?: InputMaybe<ApiCityBoolExp>;
 };
 
 
 export type ApiSubscriptionRootApiCityByPkArgs = {
-  value: Scalars['String'];
+  value: Scalars['String']['input'];
 };
 
 
 export type ApiSubscriptionRootApiCityStreamArgs = {
-  batch_size: Scalars['Int'];
+  batch_size: Scalars['Int']['input'];
   cursor: Array<InputMaybe<ApiCityStreamCursorInput>>;
   where?: InputMaybe<ApiCityBoolExp>;
 };
@@ -4144,8 +4146,8 @@ export type ApiSubscriptionRootApiCityStreamArgs = {
 
 export type ApiSubscriptionRootApiGenderArgs = {
   distinct_on?: InputMaybe<Array<ApiGenderSelectColumn>>;
-  limit?: InputMaybe<Scalars['Int']>;
-  offset?: InputMaybe<Scalars['Int']>;
+  limit?: InputMaybe<Scalars['Int']['input']>;
+  offset?: InputMaybe<Scalars['Int']['input']>;
   order_by?: InputMaybe<Array<ApiGenderOrderBy>>;
   where?: InputMaybe<ApiGenderBoolExp>;
 };
@@ -4153,20 +4155,20 @@ export type ApiSubscriptionRootApiGenderArgs = {
 
 export type ApiSubscriptionRootApiGenderAggregateArgs = {
   distinct_on?: InputMaybe<Array<ApiGenderSelectColumn>>;
-  limit?: InputMaybe<Scalars['Int']>;
-  offset?: InputMaybe<Scalars['Int']>;
+  limit?: InputMaybe<Scalars['Int']['input']>;
+  offset?: InputMaybe<Scalars['Int']['input']>;
   order_by?: InputMaybe<Array<ApiGenderOrderBy>>;
   where?: InputMaybe<ApiGenderBoolExp>;
 };
 
 
 export type ApiSubscriptionRootApiGenderByPkArgs = {
-  value: Scalars['String'];
+  value: Scalars['String']['input'];
 };
 
 
 export type ApiSubscriptionRootApiGenderStreamArgs = {
-  batch_size: Scalars['Int'];
+  batch_size: Scalars['Int']['input'];
   cursor: Array<InputMaybe<ApiGenderStreamCursorInput>>;
   where?: InputMaybe<ApiGenderBoolExp>;
 };
@@ -4174,8 +4176,8 @@ export type ApiSubscriptionRootApiGenderStreamArgs = {
 
 export type ApiSubscriptionRootApiHouseholdArgs = {
   distinct_on?: InputMaybe<Array<ApiHouseholdSelectColumn>>;
-  limit?: InputMaybe<Scalars['Int']>;
-  offset?: InputMaybe<Scalars['Int']>;
+  limit?: InputMaybe<Scalars['Int']['input']>;
+  offset?: InputMaybe<Scalars['Int']['input']>;
   order_by?: InputMaybe<Array<ApiHouseholdOrderBy>>;
   where?: InputMaybe<ApiHouseholdBoolExp>;
 };
@@ -4183,22 +4185,22 @@ export type ApiSubscriptionRootApiHouseholdArgs = {
 
 export type ApiSubscriptionRootApiHouseholdAggregateArgs = {
   distinct_on?: InputMaybe<Array<ApiHouseholdSelectColumn>>;
-  limit?: InputMaybe<Scalars['Int']>;
-  offset?: InputMaybe<Scalars['Int']>;
+  limit?: InputMaybe<Scalars['Int']['input']>;
+  offset?: InputMaybe<Scalars['Int']['input']>;
   order_by?: InputMaybe<Array<ApiHouseholdOrderBy>>;
   where?: InputMaybe<ApiHouseholdBoolExp>;
 };
 
 
 export type ApiSubscriptionRootApiHouseholdByPkArgs = {
-  id: Scalars['uuid'];
+  id: Scalars['uuid']['input'];
 };
 
 
 export type ApiSubscriptionRootApiHouseholdProjectArgs = {
   distinct_on?: InputMaybe<Array<ApiHouseholdProjectSelectColumn>>;
-  limit?: InputMaybe<Scalars['Int']>;
-  offset?: InputMaybe<Scalars['Int']>;
+  limit?: InputMaybe<Scalars['Int']['input']>;
+  offset?: InputMaybe<Scalars['Int']['input']>;
   order_by?: InputMaybe<Array<ApiHouseholdProjectOrderBy>>;
   where?: InputMaybe<ApiHouseholdProjectBoolExp>;
 };
@@ -4206,21 +4208,21 @@ export type ApiSubscriptionRootApiHouseholdProjectArgs = {
 
 export type ApiSubscriptionRootApiHouseholdProjectAggregateArgs = {
   distinct_on?: InputMaybe<Array<ApiHouseholdProjectSelectColumn>>;
-  limit?: InputMaybe<Scalars['Int']>;
-  offset?: InputMaybe<Scalars['Int']>;
+  limit?: InputMaybe<Scalars['Int']['input']>;
+  offset?: InputMaybe<Scalars['Int']['input']>;
   order_by?: InputMaybe<Array<ApiHouseholdProjectOrderBy>>;
   where?: InputMaybe<ApiHouseholdProjectBoolExp>;
 };
 
 
 export type ApiSubscriptionRootApiHouseholdProjectByPkArgs = {
-  household_id: Scalars['uuid'];
-  project_id: Scalars['uuid'];
+  household_id: Scalars['uuid']['input'];
+  project_id: Scalars['uuid']['input'];
 };
 
 
 export type ApiSubscriptionRootApiHouseholdProjectStreamArgs = {
-  batch_size: Scalars['Int'];
+  batch_size: Scalars['Int']['input'];
   cursor: Array<InputMaybe<ApiHouseholdProjectStreamCursorInput>>;
   where?: InputMaybe<ApiHouseholdProjectBoolExp>;
 };
@@ -4228,8 +4230,8 @@ export type ApiSubscriptionRootApiHouseholdProjectStreamArgs = {
 
 export type ApiSubscriptionRootApiHouseholdSeverityArgs = {
   distinct_on?: InputMaybe<Array<ApiHouseholdSeveritySelectColumn>>;
-  limit?: InputMaybe<Scalars['Int']>;
-  offset?: InputMaybe<Scalars['Int']>;
+  limit?: InputMaybe<Scalars['Int']['input']>;
+  offset?: InputMaybe<Scalars['Int']['input']>;
   order_by?: InputMaybe<Array<ApiHouseholdSeverityOrderBy>>;
   where?: InputMaybe<ApiHouseholdSeverityBoolExp>;
 };
@@ -4237,20 +4239,20 @@ export type ApiSubscriptionRootApiHouseholdSeverityArgs = {
 
 export type ApiSubscriptionRootApiHouseholdSeverityAggregateArgs = {
   distinct_on?: InputMaybe<Array<ApiHouseholdSeveritySelectColumn>>;
-  limit?: InputMaybe<Scalars['Int']>;
-  offset?: InputMaybe<Scalars['Int']>;
+  limit?: InputMaybe<Scalars['Int']['input']>;
+  offset?: InputMaybe<Scalars['Int']['input']>;
   order_by?: InputMaybe<Array<ApiHouseholdSeverityOrderBy>>;
   where?: InputMaybe<ApiHouseholdSeverityBoolExp>;
 };
 
 
 export type ApiSubscriptionRootApiHouseholdSeverityByPkArgs = {
-  value: Scalars['String'];
+  value: Scalars['String']['input'];
 };
 
 
 export type ApiSubscriptionRootApiHouseholdSeverityStreamArgs = {
-  batch_size: Scalars['Int'];
+  batch_size: Scalars['Int']['input'];
   cursor: Array<InputMaybe<ApiHouseholdSeverityStreamCursorInput>>;
   where?: InputMaybe<ApiHouseholdSeverityBoolExp>;
 };
@@ -4258,8 +4260,8 @@ export type ApiSubscriptionRootApiHouseholdSeverityStreamArgs = {
 
 export type ApiSubscriptionRootApiHouseholdStatusArgs = {
   distinct_on?: InputMaybe<Array<ApiHouseholdStatusSelectColumn>>;
-  limit?: InputMaybe<Scalars['Int']>;
-  offset?: InputMaybe<Scalars['Int']>;
+  limit?: InputMaybe<Scalars['Int']['input']>;
+  offset?: InputMaybe<Scalars['Int']['input']>;
   order_by?: InputMaybe<Array<ApiHouseholdStatusOrderBy>>;
   where?: InputMaybe<ApiHouseholdStatusBoolExp>;
 };
@@ -4267,27 +4269,27 @@ export type ApiSubscriptionRootApiHouseholdStatusArgs = {
 
 export type ApiSubscriptionRootApiHouseholdStatusAggregateArgs = {
   distinct_on?: InputMaybe<Array<ApiHouseholdStatusSelectColumn>>;
-  limit?: InputMaybe<Scalars['Int']>;
-  offset?: InputMaybe<Scalars['Int']>;
+  limit?: InputMaybe<Scalars['Int']['input']>;
+  offset?: InputMaybe<Scalars['Int']['input']>;
   order_by?: InputMaybe<Array<ApiHouseholdStatusOrderBy>>;
   where?: InputMaybe<ApiHouseholdStatusBoolExp>;
 };
 
 
 export type ApiSubscriptionRootApiHouseholdStatusByPkArgs = {
-  value: Scalars['String'];
+  value: Scalars['String']['input'];
 };
 
 
 export type ApiSubscriptionRootApiHouseholdStatusStreamArgs = {
-  batch_size: Scalars['Int'];
+  batch_size: Scalars['Int']['input'];
   cursor: Array<InputMaybe<ApiHouseholdStatusStreamCursorInput>>;
   where?: InputMaybe<ApiHouseholdStatusBoolExp>;
 };
 
 
 export type ApiSubscriptionRootApiHouseholdStreamArgs = {
-  batch_size: Scalars['Int'];
+  batch_size: Scalars['Int']['input'];
   cursor: Array<InputMaybe<ApiHouseholdStreamCursorInput>>;
   where?: InputMaybe<ApiHouseholdBoolExp>;
 };
@@ -4295,8 +4297,8 @@ export type ApiSubscriptionRootApiHouseholdStreamArgs = {
 
 export type ApiSubscriptionRootApiHouseholderArgs = {
   distinct_on?: InputMaybe<Array<ApiHouseholderSelectColumn>>;
-  limit?: InputMaybe<Scalars['Int']>;
-  offset?: InputMaybe<Scalars['Int']>;
+  limit?: InputMaybe<Scalars['Int']['input']>;
+  offset?: InputMaybe<Scalars['Int']['input']>;
   order_by?: InputMaybe<Array<ApiHouseholderOrderBy>>;
   where?: InputMaybe<ApiHouseholderBoolExp>;
 };
@@ -4304,22 +4306,22 @@ export type ApiSubscriptionRootApiHouseholderArgs = {
 
 export type ApiSubscriptionRootApiHouseholderAggregateArgs = {
   distinct_on?: InputMaybe<Array<ApiHouseholderSelectColumn>>;
-  limit?: InputMaybe<Scalars['Int']>;
-  offset?: InputMaybe<Scalars['Int']>;
+  limit?: InputMaybe<Scalars['Int']['input']>;
+  offset?: InputMaybe<Scalars['Int']['input']>;
   order_by?: InputMaybe<Array<ApiHouseholderOrderBy>>;
   where?: InputMaybe<ApiHouseholderBoolExp>;
 };
 
 
 export type ApiSubscriptionRootApiHouseholderByPkArgs = {
-  household_id: Scalars['uuid'];
+  household_id: Scalars['uuid']['input'];
 };
 
 
 export type ApiSubscriptionRootApiHouseholderStatusArgs = {
   distinct_on?: InputMaybe<Array<ApiHouseholderStatusSelectColumn>>;
-  limit?: InputMaybe<Scalars['Int']>;
-  offset?: InputMaybe<Scalars['Int']>;
+  limit?: InputMaybe<Scalars['Int']['input']>;
+  offset?: InputMaybe<Scalars['Int']['input']>;
   order_by?: InputMaybe<Array<ApiHouseholderStatusOrderBy>>;
   where?: InputMaybe<ApiHouseholderStatusBoolExp>;
 };
@@ -4327,27 +4329,27 @@ export type ApiSubscriptionRootApiHouseholderStatusArgs = {
 
 export type ApiSubscriptionRootApiHouseholderStatusAggregateArgs = {
   distinct_on?: InputMaybe<Array<ApiHouseholderStatusSelectColumn>>;
-  limit?: InputMaybe<Scalars['Int']>;
-  offset?: InputMaybe<Scalars['Int']>;
+  limit?: InputMaybe<Scalars['Int']['input']>;
+  offset?: InputMaybe<Scalars['Int']['input']>;
   order_by?: InputMaybe<Array<ApiHouseholderStatusOrderBy>>;
   where?: InputMaybe<ApiHouseholderStatusBoolExp>;
 };
 
 
 export type ApiSubscriptionRootApiHouseholderStatusByPkArgs = {
-  value: Scalars['String'];
+  value: Scalars['String']['input'];
 };
 
 
 export type ApiSubscriptionRootApiHouseholderStatusStreamArgs = {
-  batch_size: Scalars['Int'];
+  batch_size: Scalars['Int']['input'];
   cursor: Array<InputMaybe<ApiHouseholderStatusStreamCursorInput>>;
   where?: InputMaybe<ApiHouseholderStatusBoolExp>;
 };
 
 
 export type ApiSubscriptionRootApiHouseholderStreamArgs = {
-  batch_size: Scalars['Int'];
+  batch_size: Scalars['Int']['input'];
   cursor: Array<InputMaybe<ApiHouseholderStreamCursorInput>>;
   where?: InputMaybe<ApiHouseholderBoolExp>;
 };
@@ -4355,8 +4357,8 @@ export type ApiSubscriptionRootApiHouseholderStreamArgs = {
 
 export type ApiSubscriptionRootApiMemberArgs = {
   distinct_on?: InputMaybe<Array<ApiMemberSelectColumn>>;
-  limit?: InputMaybe<Scalars['Int']>;
-  offset?: InputMaybe<Scalars['Int']>;
+  limit?: InputMaybe<Scalars['Int']['input']>;
+  offset?: InputMaybe<Scalars['Int']['input']>;
   order_by?: InputMaybe<Array<ApiMemberOrderBy>>;
   where?: InputMaybe<ApiMemberBoolExp>;
 };
@@ -4364,22 +4366,22 @@ export type ApiSubscriptionRootApiMemberArgs = {
 
 export type ApiSubscriptionRootApiMemberAggregateArgs = {
   distinct_on?: InputMaybe<Array<ApiMemberSelectColumn>>;
-  limit?: InputMaybe<Scalars['Int']>;
-  offset?: InputMaybe<Scalars['Int']>;
+  limit?: InputMaybe<Scalars['Int']['input']>;
+  offset?: InputMaybe<Scalars['Int']['input']>;
   order_by?: InputMaybe<Array<ApiMemberOrderBy>>;
   where?: InputMaybe<ApiMemberBoolExp>;
 };
 
 
 export type ApiSubscriptionRootApiMemberByPkArgs = {
-  id: Scalars['uuid'];
+  id: Scalars['uuid']['input'];
 };
 
 
 export type ApiSubscriptionRootApiMemberStatusArgs = {
   distinct_on?: InputMaybe<Array<ApiMemberStatusSelectColumn>>;
-  limit?: InputMaybe<Scalars['Int']>;
-  offset?: InputMaybe<Scalars['Int']>;
+  limit?: InputMaybe<Scalars['Int']['input']>;
+  offset?: InputMaybe<Scalars['Int']['input']>;
   order_by?: InputMaybe<Array<ApiMemberStatusOrderBy>>;
   where?: InputMaybe<ApiMemberStatusBoolExp>;
 };
@@ -4387,27 +4389,27 @@ export type ApiSubscriptionRootApiMemberStatusArgs = {
 
 export type ApiSubscriptionRootApiMemberStatusAggregateArgs = {
   distinct_on?: InputMaybe<Array<ApiMemberStatusSelectColumn>>;
-  limit?: InputMaybe<Scalars['Int']>;
-  offset?: InputMaybe<Scalars['Int']>;
+  limit?: InputMaybe<Scalars['Int']['input']>;
+  offset?: InputMaybe<Scalars['Int']['input']>;
   order_by?: InputMaybe<Array<ApiMemberStatusOrderBy>>;
   where?: InputMaybe<ApiMemberStatusBoolExp>;
 };
 
 
 export type ApiSubscriptionRootApiMemberStatusByPkArgs = {
-  value: Scalars['String'];
+  value: Scalars['String']['input'];
 };
 
 
 export type ApiSubscriptionRootApiMemberStatusStreamArgs = {
-  batch_size: Scalars['Int'];
+  batch_size: Scalars['Int']['input'];
   cursor: Array<InputMaybe<ApiMemberStatusStreamCursorInput>>;
   where?: InputMaybe<ApiMemberStatusBoolExp>;
 };
 
 
 export type ApiSubscriptionRootApiMemberStreamArgs = {
-  batch_size: Scalars['Int'];
+  batch_size: Scalars['Int']['input'];
   cursor: Array<InputMaybe<ApiMemberStreamCursorInput>>;
   where?: InputMaybe<ApiMemberBoolExp>;
 };
@@ -4415,8 +4417,8 @@ export type ApiSubscriptionRootApiMemberStreamArgs = {
 
 export type ApiSubscriptionRootApiNationalityArgs = {
   distinct_on?: InputMaybe<Array<ApiNationalitySelectColumn>>;
-  limit?: InputMaybe<Scalars['Int']>;
-  offset?: InputMaybe<Scalars['Int']>;
+  limit?: InputMaybe<Scalars['Int']['input']>;
+  offset?: InputMaybe<Scalars['Int']['input']>;
   order_by?: InputMaybe<Array<ApiNationalityOrderBy>>;
   where?: InputMaybe<ApiNationalityBoolExp>;
 };
@@ -4424,20 +4426,20 @@ export type ApiSubscriptionRootApiNationalityArgs = {
 
 export type ApiSubscriptionRootApiNationalityAggregateArgs = {
   distinct_on?: InputMaybe<Array<ApiNationalitySelectColumn>>;
-  limit?: InputMaybe<Scalars['Int']>;
-  offset?: InputMaybe<Scalars['Int']>;
+  limit?: InputMaybe<Scalars['Int']['input']>;
+  offset?: InputMaybe<Scalars['Int']['input']>;
   order_by?: InputMaybe<Array<ApiNationalityOrderBy>>;
   where?: InputMaybe<ApiNationalityBoolExp>;
 };
 
 
 export type ApiSubscriptionRootApiNationalityByPkArgs = {
-  value: Scalars['String'];
+  value: Scalars['String']['input'];
 };
 
 
 export type ApiSubscriptionRootApiNationalityStreamArgs = {
-  batch_size: Scalars['Int'];
+  batch_size: Scalars['Int']['input'];
   cursor: Array<InputMaybe<ApiNationalityStreamCursorInput>>;
   where?: InputMaybe<ApiNationalityBoolExp>;
 };
@@ -4445,8 +4447,8 @@ export type ApiSubscriptionRootApiNationalityStreamArgs = {
 
 export type ApiSubscriptionRootApiProjectArgs = {
   distinct_on?: InputMaybe<Array<ApiProjectSelectColumn>>;
-  limit?: InputMaybe<Scalars['Int']>;
-  offset?: InputMaybe<Scalars['Int']>;
+  limit?: InputMaybe<Scalars['Int']['input']>;
+  offset?: InputMaybe<Scalars['Int']['input']>;
   order_by?: InputMaybe<Array<ApiProjectOrderBy>>;
   where?: InputMaybe<ApiProjectBoolExp>;
 };
@@ -4454,22 +4456,22 @@ export type ApiSubscriptionRootApiProjectArgs = {
 
 export type ApiSubscriptionRootApiProjectAggregateArgs = {
   distinct_on?: InputMaybe<Array<ApiProjectSelectColumn>>;
-  limit?: InputMaybe<Scalars['Int']>;
-  offset?: InputMaybe<Scalars['Int']>;
+  limit?: InputMaybe<Scalars['Int']['input']>;
+  offset?: InputMaybe<Scalars['Int']['input']>;
   order_by?: InputMaybe<Array<ApiProjectOrderBy>>;
   where?: InputMaybe<ApiProjectBoolExp>;
 };
 
 
 export type ApiSubscriptionRootApiProjectByPkArgs = {
-  id: Scalars['uuid'];
+  id: Scalars['uuid']['input'];
 };
 
 
 export type ApiSubscriptionRootApiProjectStatusArgs = {
   distinct_on?: InputMaybe<Array<ApiProjectStatusSelectColumn>>;
-  limit?: InputMaybe<Scalars['Int']>;
-  offset?: InputMaybe<Scalars['Int']>;
+  limit?: InputMaybe<Scalars['Int']['input']>;
+  offset?: InputMaybe<Scalars['Int']['input']>;
   order_by?: InputMaybe<Array<ApiProjectStatusOrderBy>>;
   where?: InputMaybe<ApiProjectStatusBoolExp>;
 };
@@ -4477,27 +4479,27 @@ export type ApiSubscriptionRootApiProjectStatusArgs = {
 
 export type ApiSubscriptionRootApiProjectStatusAggregateArgs = {
   distinct_on?: InputMaybe<Array<ApiProjectStatusSelectColumn>>;
-  limit?: InputMaybe<Scalars['Int']>;
-  offset?: InputMaybe<Scalars['Int']>;
+  limit?: InputMaybe<Scalars['Int']['input']>;
+  offset?: InputMaybe<Scalars['Int']['input']>;
   order_by?: InputMaybe<Array<ApiProjectStatusOrderBy>>;
   where?: InputMaybe<ApiProjectStatusBoolExp>;
 };
 
 
 export type ApiSubscriptionRootApiProjectStatusByPkArgs = {
-  value: Scalars['String'];
+  value: Scalars['String']['input'];
 };
 
 
 export type ApiSubscriptionRootApiProjectStatusStreamArgs = {
-  batch_size: Scalars['Int'];
+  batch_size: Scalars['Int']['input'];
   cursor: Array<InputMaybe<ApiProjectStatusStreamCursorInput>>;
   where?: InputMaybe<ApiProjectStatusBoolExp>;
 };
 
 
 export type ApiSubscriptionRootApiProjectStreamArgs = {
-  batch_size: Scalars['Int'];
+  batch_size: Scalars['Int']['input'];
   cursor: Array<InputMaybe<ApiProjectStreamCursorInput>>;
   where?: InputMaybe<ApiProjectBoolExp>;
 };
@@ -4505,8 +4507,8 @@ export type ApiSubscriptionRootApiProjectStreamArgs = {
 
 export type ApiSubscriptionRootApiReligionArgs = {
   distinct_on?: InputMaybe<Array<ApiReligionSelectColumn>>;
-  limit?: InputMaybe<Scalars['Int']>;
-  offset?: InputMaybe<Scalars['Int']>;
+  limit?: InputMaybe<Scalars['Int']['input']>;
+  offset?: InputMaybe<Scalars['Int']['input']>;
   order_by?: InputMaybe<Array<ApiReligionOrderBy>>;
   where?: InputMaybe<ApiReligionBoolExp>;
 };
@@ -4514,52 +4516,52 @@ export type ApiSubscriptionRootApiReligionArgs = {
 
 export type ApiSubscriptionRootApiReligionAggregateArgs = {
   distinct_on?: InputMaybe<Array<ApiReligionSelectColumn>>;
-  limit?: InputMaybe<Scalars['Int']>;
-  offset?: InputMaybe<Scalars['Int']>;
+  limit?: InputMaybe<Scalars['Int']['input']>;
+  offset?: InputMaybe<Scalars['Int']['input']>;
   order_by?: InputMaybe<Array<ApiReligionOrderBy>>;
   where?: InputMaybe<ApiReligionBoolExp>;
 };
 
 
 export type ApiSubscriptionRootApiReligionByPkArgs = {
-  value: Scalars['String'];
+  value: Scalars['String']['input'];
 };
 
 
 export type ApiSubscriptionRootApiReligionStreamArgs = {
-  batch_size: Scalars['Int'];
+  batch_size: Scalars['Int']['input'];
   cursor: Array<InputMaybe<ApiReligionStreamCursorInput>>;
   where?: InputMaybe<ApiReligionBoolExp>;
 };
 
 /** Boolean expression to compare columns of type "timestamptz". All fields are combined with logical 'AND'. */
 export type ApiTimestamptzComparisonExp = {
-  _eq?: InputMaybe<Scalars['timestamptz']>;
-  _gt?: InputMaybe<Scalars['timestamptz']>;
-  _gte?: InputMaybe<Scalars['timestamptz']>;
-  _in?: InputMaybe<Array<Scalars['timestamptz']>>;
-  _is_null?: InputMaybe<Scalars['Boolean']>;
-  _lt?: InputMaybe<Scalars['timestamptz']>;
-  _lte?: InputMaybe<Scalars['timestamptz']>;
-  _neq?: InputMaybe<Scalars['timestamptz']>;
-  _nin?: InputMaybe<Array<Scalars['timestamptz']>>;
+  _eq?: InputMaybe<Scalars['timestamptz']['input']>;
+  _gt?: InputMaybe<Scalars['timestamptz']['input']>;
+  _gte?: InputMaybe<Scalars['timestamptz']['input']>;
+  _in?: InputMaybe<Array<Scalars['timestamptz']['input']>>;
+  _is_null?: InputMaybe<Scalars['Boolean']['input']>;
+  _lt?: InputMaybe<Scalars['timestamptz']['input']>;
+  _lte?: InputMaybe<Scalars['timestamptz']['input']>;
+  _neq?: InputMaybe<Scalars['timestamptz']['input']>;
+  _nin?: InputMaybe<Array<Scalars['timestamptz']['input']>>;
 };
 
 /** Boolean expression to compare columns of type "uuid". All fields are combined with logical 'AND'. */
 export type ApiUuidComparisonExp = {
-  _eq?: InputMaybe<Scalars['uuid']>;
-  _gt?: InputMaybe<Scalars['uuid']>;
-  _gte?: InputMaybe<Scalars['uuid']>;
-  _in?: InputMaybe<Array<Scalars['uuid']>>;
-  _is_null?: InputMaybe<Scalars['Boolean']>;
-  _lt?: InputMaybe<Scalars['uuid']>;
-  _lte?: InputMaybe<Scalars['uuid']>;
-  _neq?: InputMaybe<Scalars['uuid']>;
-  _nin?: InputMaybe<Array<Scalars['uuid']>>;
+  _eq?: InputMaybe<Scalars['uuid']['input']>;
+  _gt?: InputMaybe<Scalars['uuid']['input']>;
+  _gte?: InputMaybe<Scalars['uuid']['input']>;
+  _in?: InputMaybe<Array<Scalars['uuid']['input']>>;
+  _is_null?: InputMaybe<Scalars['Boolean']['input']>;
+  _lt?: InputMaybe<Scalars['uuid']['input']>;
+  _lte?: InputMaybe<Scalars['uuid']['input']>;
+  _neq?: InputMaybe<Scalars['uuid']['input']>;
+  _nin?: InputMaybe<Array<Scalars['uuid']['input']>>;
 };
 
 export type ApiCreateHouseholdMutationVariables = Exact<{
-  name: Scalars['String'];
+  name: Scalars['String']['input'];
 }>;
 
 
@@ -4573,7 +4575,7 @@ export type ApiCreateProjectMutationVariables = Exact<{
 export type ApiCreateProjectMutation = { __typename?: 'mutation_root', insert_project_one?: { __typename?: 'project', id: string, name: string, description?: string | null, status: ApiProjectStatusEnum } | null };
 
 export type ApiDeleteHouseholdMutationMutationVariables = Exact<{
-  id: Scalars['uuid'];
+  id: Scalars['uuid']['input'];
 }>;
 
 
@@ -4592,22 +4594,22 @@ export type ApiHouseholdListQueryVariables = Exact<{ [key: string]: never; }>;
 export type ApiHouseholdListQuery = { __typename?: 'query_root', household: Array<{ __typename?: 'household', id: string, name: string, severity: ApiHouseholdSeverityEnum, status: ApiHouseholdStatusEnum }> };
 
 export type ApiHouseholdQueryVariables = Exact<{
-  id: Scalars['uuid'];
+  id: Scalars['uuid']['input'];
 }>;
 
 
 export type ApiHouseholdQuery = { __typename?: 'query_root', household_by_pk?: { __typename?: 'household', id: string, name: string, status: ApiHouseholdStatusEnum, severity: ApiHouseholdSeverityEnum, code?: string | null } | null };
 
 export type ApiHouseholderQueryVariables = Exact<{
-  household_id: Scalars['uuid'];
+  household_id: Scalars['uuid']['input'];
 }>;
 
 
 export type ApiHouseholderQuery = { __typename?: 'query_root', householder_by_pk?: { __typename?: 'householder', name: string, father_name?: string | null, surname?: string | null, nationality?: ApiNationalityEnum | null, religion?: ApiReligionEnum | null, city?: ApiCityEnum | null, gender?: ApiGenderEnum | null, status?: string | null, national_id?: string | null, dob?: string | null } | null };
 
 export type ApiProjectListQueryVariables = Exact<{
-  offset?: InputMaybe<Scalars['Int']>;
-  limit?: InputMaybe<Scalars['Int']>;
+  offset?: InputMaybe<Scalars['Int']['input']>;
+  limit?: InputMaybe<Scalars['Int']['input']>;
 }>;
 
 

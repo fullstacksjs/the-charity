@@ -21,7 +21,8 @@ describe('HouseholdActionButton', () => {
     });
 
     it('should close their menu on second click', () => {
-      cy.findAllByTestId(menuButtonId).click().click();
+      cy.findAllByTestId(menuButtonId).click();
+      cy.findAllByTestId(menuButtonId).click();
       cy.findByTestId(menuId).should('be.hidden');
     });
   });

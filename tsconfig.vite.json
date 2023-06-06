@@ -5,7 +5,8 @@
     "moduleResolution": "Node",
     "allowSyntheticDefaultImports": true,
     "strict": true,
+    "lib": ["ES2022", "DOM"],
     "types": ["cypress", "@testing-library/cypress"]
   },
-  "include": ["vite.config.ts", "configs/vite"]
+  "include": ["vite.config.ts", "configs/vite", "configs"]
 }
