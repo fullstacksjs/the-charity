@@ -23,10 +23,10 @@ const useStyles = createStyles(theme => ({
 
 export const links: NavLinkProps[] = [
   {
-    label: messages.families.title,
+    label: messages.households.title,
     icon: <PeopleIcon width="24" height="24" />,
-    to: '/dashboard/families',
-    id: ids.families,
+    to: '/dashboard/households',
+    id: ids.households,
   },
   {
     label: messages.projects.title,

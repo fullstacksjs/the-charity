@@ -16,8 +16,8 @@ export const HouseholdEmptyState = () => {
           color={theme.colors.primaryEmphasized[6]}
         />
       }
-      title={messages.families.empty.title}
-      message={messages.families.empty.description}
+      title={messages.households.empty.title}
+      message={messages.households.empty.description}
     >
       <CreateHouseholdButton variant="filled" />
     </EmptyState>

@@ -4,7 +4,7 @@ import { dashboardHeaderId } from '../../../libs/design/Header/DashboardHeader.i
 import { AppRoute } from '../../../libs/router/index';
 
 Cypress.Commands.add('createHousehold', name => {
-  cy.visit(AppRoute.families);
+  cy.visit(AppRoute.households);
   cy.findByTestId(dashboardHeaderId)
     .findByTestId(createHouseholdButtonId)
     .click();

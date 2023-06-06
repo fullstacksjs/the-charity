@@ -18,7 +18,7 @@ interface Props {
   household: HouseholdListItemDto;
 }
 
-const t = messages.families.list.delete.modal;
+const t = messages.households.list.delete.modal;
 
 export const HouseholdTableRow = ({ order, household }: Props) => {
   const navigate = useNavigate();
@@ -26,7 +26,7 @@ export const HouseholdTableRow = ({ order, household }: Props) => {
   const [deleteHousehold] = useDeleteHouseholdMutation();
 
   const gotoDetail = () => {
-    navigate({ to: `/dashboard/families/${id}` as AppRoute });
+    navigate({ to: `/dashboard/households/${id}` as AppRoute });
   };
 
   const onDeleteHousehold = async () => {

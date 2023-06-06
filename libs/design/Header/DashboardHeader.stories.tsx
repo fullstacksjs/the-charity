@@ -11,7 +11,7 @@ export default {
     router: {
       path: '/',
       meta: {
-        breadcrumb: messages.families.title,
+        breadcrumb: messages.households.title,
       },
     },
   },

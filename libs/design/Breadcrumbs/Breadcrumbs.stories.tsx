@@ -13,13 +13,13 @@ export const Empty: Story = {
 };
 
 export const Level1: Story = {
-  args: { items: [{ name: 'Level 1', path: '/families' }] },
+  args: { items: [{ name: 'Level 1', path: '/households' }] },
 };
 
 export const Level2: Story = {
   args: {
     items: [
-      { name: 'Level 1', path: '/families' },
+      { name: 'Level 1', path: '/households' },
       { name: 'Level 2', path: '/projects' },
     ],
   },
@@ -28,7 +28,7 @@ export const Level2: Story = {
 export const Level3: Story = {
   args: {
     items: [
-      { name: 'Level 1', path: '/families' },
+      { name: 'Level 1', path: '/households' },
       { name: 'Level 2', path: '/projects' },
       { name: 'Level 3', path: '/projects2' },
     ],

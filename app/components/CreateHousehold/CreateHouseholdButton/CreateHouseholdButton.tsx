@@ -19,7 +19,7 @@ export const CreateHouseholdButton = ({ variant = 'outline' }: Props) => {
       onClick={() => openCreateHouseholdModal()}
       {...createTestAttr(id)}
     >
-      {messages.families.create}
+      {messages.households.create}
     </Button>
   );
 };

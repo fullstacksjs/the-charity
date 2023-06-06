@@ -7,8 +7,8 @@ import { lazy, Navigate, ReactLocation, Router } from '@camp/router';
 import { HouseholdEmptyState, HouseholdList, ProjectList } from './components';
 import {
   DashboardLayout,
-  Families,
   HouseholdDetail,
+  Households,
   Login,
   Projects,
 } from './pages';
@@ -41,9 +41,9 @@ const routes: Route[] = [
     ),
     children: [
       {
-        path: '/families',
-        element: <Families />,
-        meta: { breadcrumb: messages.families.title },
+        path: '/households',
+        element: <Households />,
+        meta: { breadcrumb: messages.households.title },
         children: [
           {
             path: '/',
@@ -70,7 +70,7 @@ const routes: Route[] = [
           },
         ],
       },
-      { element: <Navigate to="/dashboard/families" /> },
+      { element: <Navigate to="/dashboard/households" /> },
     ],
   },
   { element: <Navigate to="/auth/login" /> },

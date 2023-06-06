@@ -9,9 +9,11 @@ interface Props {
 export const InformationBadge = ({ information }: Props) => {
   return information === 'completed' ? (
     <Badge status="success">
-      {messages.families.informationStatus.completed}
+      {messages.households.informationStatus.completed}
     </Badge>
   ) : (
-    <Badge status="warning">{messages.families.informationStatus.draft}</Badge>
+    <Badge status="warning">
+      {messages.households.informationStatus.draft}
+    </Badge>
   );
 };

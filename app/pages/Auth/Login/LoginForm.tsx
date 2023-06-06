@@ -42,7 +42,7 @@ export const LoginForm = () => {
     try {
       setError(undefined);
       await login({ variables: { input: { username, password } } });
-      navigate({ to: AppRoute.families, replace: true });
+      navigate({ to: AppRoute.households, replace: true });
     } catch (err) {
       const clientError = toClientErrorMessage(err);
       setError(clientError);

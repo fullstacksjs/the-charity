@@ -15,7 +15,7 @@ type Story = StoryObj<typeof Table>;
 export const Default: Story = {
   render: ({ ...args }) => <Table {...args} id="table" />,
   args: {
-    columns: messages.families.list.table.columns as unknown as string[],
+    columns: messages.households.list.table.columns as unknown as string[],
     rows: ApiHouseholdList.map((info, i) => (
       <HouseholdTableRow
         key={Object.values(info).join('-')}

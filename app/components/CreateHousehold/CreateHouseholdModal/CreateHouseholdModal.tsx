@@ -13,7 +13,7 @@ export const openCreateHouseholdModal = () =>
   openModal({
     modalId: id,
     children: <CreateHouseholdModal />,
-    title: messages.families.create,
+    title: messages.households.create,
     size: 'md',
     centered: true,
     ...createTestAttr(id),

@@ -3,7 +3,7 @@ import { messages } from '@camp/messages';
 
 import { deleteHouseholdModalIds as Ids } from './DeleteHouseholdModal.ids';
 
-const t = messages.families.list.delete.modal;
+const t = messages.households.list.delete.modal;
 
 interface Props {
   name: string;

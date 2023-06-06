@@ -27,7 +27,7 @@ import { householdDetailIds as ids } from './HouseholdDetail.ids';
 
 export const HouseholdDetail = () => {
   const t = messages.householdDetail;
-  const tModal = messages.families.list.delete.modal;
+  const tModal = messages.households.list.delete.modal;
   const householdId = useParams();
   const navigate = useNavigate();
   const { data, loading, error } = useHouseholdQuery({

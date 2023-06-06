@@ -32,7 +32,7 @@ export const CreateHouseholdForm = ({ dismiss }: Props) => {
     mode: 'onChange',
   });
 
-  const { nameInput, notification, submitBtn } = messages.families.createForm;
+  const { nameInput, notification, submitBtn } = messages.households.createForm;
 
   const onSubmit = handleSubmit(({ name }) => {
     createDraftHousehold({ variables: { name } })
@@ -42,18 +42,18 @@ export const CreateHouseholdForm = ({ dismiss }: Props) => {
           throw Error('Assert: household should not be null');
 
         showNotification({
-          title: messages.families.create,
+          title: messages.households.create,
           message: notification.success(household.name),
           type: 'success',
           ...createTestAttr(ids.notification.success),
         });
 
         dismiss();
-        navigate({ to: `/dashboard/families/${household.id}` as AppRoute });
+        navigate({ to: `/dashboard/households/${household.id}` as AppRoute });
       })
       .catch(() =>
         showNotification({
-          title: messages.families.create,
+          title: messages.households.create,
           message: notification.failure(name),
           type: 'failure',
           ...createTestAttr(ids.notification.failure),

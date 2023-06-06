@@ -16,9 +16,9 @@ import * as ids from './HouseholdList.ids';
 import { HouseholdTableRow } from './HouseholdTableRow';
 
 export const HouseholdList = () => {
-  const t = messages.families.list;
+  const t = messages.households.list;
   const { data, loading, error } = useHouseholdListQuery();
-  const families = data?.families;
+  const households = data?.households;
 
   if (error) {
     showNotification({
@@ -31,10 +31,10 @@ export const HouseholdList = () => {
   }
 
   if (loading) return <FullPageLoader />;
-  if (isNull(families)) return null;
-  if (isEmpty(families)) return <HouseholdEmptyState />;
+  if (isNull(households)) return null;
+  if (isEmpty(households)) return <HouseholdEmptyState />;
 
-  const rows = families.map((info, i) => (
+  const rows = households.map((info, i) => (
     <HouseholdTableRow
       order={i + 1}
       key={Object.values(info).join('-')}
