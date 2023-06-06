@@ -40,8 +40,9 @@ export const Tabs = ({ tabs }: Props) => {
       }}
       value={activeTab}
       onTabChange={value => {
-        setHash(value!);
-        setActiveTab(value!);
+        if (value == null) throw Error("Assert: tab value shouldn't be null");
+        setHash(value);
+        setActiveTab(value);
       }}
     >
       <MantineTabs.List px="40px" bg="bgCanvas">
