@@ -4,6 +4,7 @@ export * from './Navigate';
 export * from './PathParams';
 export * from './Route';
 export * from './RouteSegment';
+export * from './useHash';
 export * from './useLocation';
 export * from './useMatches';
 export * from './useNavigate';
