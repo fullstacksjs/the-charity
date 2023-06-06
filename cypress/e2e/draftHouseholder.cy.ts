@@ -80,7 +80,7 @@ describe('Householder', () => {
     const mock = pruneUndefinedOrEmpty(householderFixture());
 
     addHouseholder(mock);
-    cy.findByText(/ویرایش/).click();
+    cy.findByTestId(ids.editBtn).click();
     emptyHouseholderForm(mock);
     cy.findByTestId(ids.undoBtn).click();
     compareHouseholderForm(mock);
