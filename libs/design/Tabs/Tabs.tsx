@@ -1,3 +1,4 @@
+import { useHash } from '@camp/router';
 import { createTestAttr } from '@camp/test';
 import { Badge, Tabs as MantineTabs } from '@mantine/core';
 import { useState } from 'react';
@@ -19,8 +20,12 @@ const BusyIcon = () => (
 );
 
 export const Tabs = ({ tabs }: Props) => {
+  const [hash, setHash] = useHash();
+
+  const defaultTab = tabs.find(({ isDefault }) => isDefault)?.id;
+  const tabFromHash = tabs.find(({ id }) => id === hash)?.id;
   const [activeTab, setActiveTab] = useState<string>(
-    tabs.find(({ isDefault }) => isDefault)?.id ?? tabs[0]!.id,
+    tabFromHash ?? defaultTab ?? tabs[0]!.id,
   );
 
   return (
@@ -35,7 +40,9 @@ export const Tabs = ({ tabs }: Props) => {
       }}
       value={activeTab}
       onTabChange={value => {
-        setActiveTab(value!);
+        if (value == null) throw Error("Assert: tab value shouldn't be null");
+        setHash(value);
+        setActiveTab(value);
       }}
     >
       <MantineTabs.List px="40px" bg="bgCanvas">
