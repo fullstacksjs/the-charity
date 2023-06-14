@@ -4615,6 +4615,13 @@ export type ApiProjectListQueryVariables = Exact<{
 
 export type ApiProjectListQuery = { __typename?: 'query_root', project_aggregate: { __typename?: 'project_aggregate', nodes: Array<{ __typename?: 'project', name: string, id: string }> } };
 
+export type ApiProjectQueryVariables = Exact<{
+  id: Scalars['uuid']['input'];
+}>;
+
+
+export type ApiProjectQuery = { __typename?: 'query_root', project_by_pk?: { __typename?: 'project', id: string, name: string, status: ApiProjectStatusEnum, description?: string | null, start_date?: string | null, due_date?: string | null, households: Array<{ __typename?: 'household_project', household: { __typename?: 'household', name: string, code?: string | null, id: string, status: ApiHouseholdStatusEnum, severity: ApiHouseholdSeverityEnum } }> } | null };
+
 
 export const ApiCreateHouseholdDocument = gql`
     mutation CreateHousehold($name: String!) {
@@ -4725,3 +4732,25 @@ export const ApiProjectListDocument = gql`
 }
     `;
 export type ApiProjectListQueryResult = Apollo.QueryResult<ApiProjectListQuery, ApiProjectListQueryVariables>;
+export const ApiProjectDocument = gql`
+    query Project($id: uuid!) {
+  project_by_pk(id: $id) {
+    id
+    name
+    status
+    description
+    start_date
+    due_date
+    households {
+      household {
+        name
+        code
+        id
+        status
+        severity
+      }
+    }
+  }
+}
+    `;
+export type ApiProjectQueryResult = Apollo.QueryResult<ApiProjectQuery, ApiProjectQueryVariables>;

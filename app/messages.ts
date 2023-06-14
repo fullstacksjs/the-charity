@@ -305,6 +305,7 @@ export const messages = {
   },
   projectDetail: {
     title: 'اطلاعات پروژه',
+    notFound: 'اطلاعات پروژه یافت نشد',
     tabs: {
       albumTitle: 'آلبوم',
       membersTitle: 'اعضا',
