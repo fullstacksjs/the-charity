@@ -8,15 +8,15 @@ import { MemberEmptyState } from '../MemberEmptyState';
 import { CreateMemberButton, MemberForm } from '../MemberForm';
 
 interface Props {
-  familyId: string;
+  householdId: string;
 }
 
 const t = messages.member;
 
-export const MemberList = ({ familyId }: Props) => {
+export const MemberList = ({ householdId }: Props) => {
   const [newMembers, setNewMembers] = useState<{ id: number }[]>([]);
   const { data, error, loading } = useMemberListQuery({
-    variables: { family_id: familyId },
+    variables: { household_id: householdId },
   });
   const member = data?.members;
   const isMemberEmpty = member?.length === 0 && newMembers.length === 0;
@@ -53,7 +53,7 @@ export const MemberList = ({ familyId }: Props) => {
           <MemberForm
             initialMember={m}
             key={m.id}
-            familyId={familyId}
+            householdId={householdId}
             memberId={m.id}
           />
         ))
@@ -63,7 +63,7 @@ export const MemberList = ({ familyId }: Props) => {
           onSuccess={() => {
             // REMOVE THAT ITEM
           }}
-          familyId={familyId}
+          householdId={householdId}
           key={id}
         />
       ))}

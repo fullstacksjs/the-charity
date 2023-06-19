@@ -45,6 +45,7 @@ const Document = gql`
       surname
       dob
       status
+      household_id
     }
   }
 `;
@@ -64,7 +65,7 @@ const toClient = (
 interface Variables {
   id?: string;
   name: string;
-  familyId: string;
+  householdId: string;
   surname?: string;
   fatherName?: string;
   nationalId?: string;
@@ -81,7 +82,7 @@ const toApiVariables = (
     id: variables.id,
     name: variables.name,
     surname: variables.surname,
-    family_id: variables.familyId,
+    household_id: variables.householdId,
     father_name: variables.fatherName,
     national_id: variables.nationalId,
     religion:
@@ -109,17 +110,17 @@ export const useUpsertMemberMutation = (
       const newMember = member?.insert_member_one;
 
       if (newMember) {
-        const familyId = variables?.input.family_id;
+        const householdId = variables?.input.household_id;
         const memberListData = cache.readQuery<ApiMemberListQuery>({
           query: ApiMemberListDocument,
-          variables: { family_id: familyId },
+          variables: { household_id: householdId },
         });
 
         const newMembers = [...(memberListData?.member ?? []), newMember];
 
         cache.writeQuery<ApiMemberListQuery>({
           query: ApiMemberListDocument,
-          variables: { family_id: familyId },
+          variables: { household_id: householdId },
           data: {
             member: newMembers,
           },

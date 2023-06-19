@@ -12,6 +12,7 @@ export const toMember = (
     | '__typename'
     | 'created_at'
     | 'household_id'
+    | 'household'
     | 'member_household'
     | 'updated_at'
   >,

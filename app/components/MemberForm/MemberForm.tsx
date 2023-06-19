@@ -76,7 +76,7 @@ const tt = t.createForm;
 
 interface Props {
   initialMember?: Member;
-  familyId: string;
+  householdId: string;
   memberId?: string;
   onSuccess?: VoidFunction;
 }
@@ -84,7 +84,7 @@ interface Props {
 export const MemberForm = ({
   initialMember,
   onSuccess,
-  familyId,
+  householdId,
   memberId,
 }: Props) => {
   const [createMemberMutation] = useUpsertMemberMutation();
@@ -115,7 +115,7 @@ export const MemberForm = ({
         variables: {
           id: memberId,
           ...values,
-          familyId,
+          householdId,
         },
       });
       toggleEditableMode();

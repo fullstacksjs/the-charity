@@ -24,16 +24,6 @@ const Document = gql`
       religion
       surname
       id
-      household {
-        id
-        code
-        created_at
-        db_code
-        name
-        severity
-        updated_at
-        status
-      }
       household_id
       father_name
       gender
