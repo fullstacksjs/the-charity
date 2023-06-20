@@ -123,6 +123,10 @@ export const messages = {
         text: 'ایجاد پروژه',
       },
     },
+    informationStatus: {
+      completed: 'تکمیل شده',
+      disabled: 'شروع نشده',
+    },
     list: {
       title: 'لیست پروژه‌ها',
       table: {

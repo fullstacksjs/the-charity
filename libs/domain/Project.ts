@@ -37,3 +37,7 @@ export type ProjectDetail = Pick<
 >;
 
 export type ProjectListItem = Pick<Project, 'name' | 'status'>;
+export type ProjectSummery = Pick<
+  Project,
+  'description' | 'endDate' | 'startDate' | 'status'
+>;

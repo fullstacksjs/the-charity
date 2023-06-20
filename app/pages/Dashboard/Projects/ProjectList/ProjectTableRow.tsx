@@ -1,16 +1,29 @@
-import { SmallText } from '@camp/design';
-import type { ProjectKeys, ProjectListItem } from '@camp/domain';
+import { DateSummery, SmallText } from '@camp/design';
+import type {
+  ProjectKeys,
+  ProjectListItem,
+  ProjectSummery,
+} from '@camp/domain';
+import { ProjectStatusEnum } from '@camp/domain';
 import { messages } from '@camp/messages';
 import { AppRoute, useNavigate } from '@camp/router';
 import { Group } from '@mantine/core';
 
 import { ProjectActionButton } from '../ProjectActionButton';
+import { ProjectStatusBadge } from '../ProjectBadge';
 import * as ids from './ProjectTableRow.ids';
 
 interface Props {
   order: number;
   project: ProjectKeys & ProjectListItem;
 }
+
+const projectSummery: ProjectSummery = {
+  description: 'hi',
+  startDate: new Date(),
+  endDate: new Date(),
+  status: ProjectStatusEnum.Done,
+};
 
 export const ProjectTableRow = ({ project, order }: Props) => {
   const navigate = useNavigate();
@@ -28,6 +41,11 @@ export const ProjectTableRow = ({ project, order }: Props) => {
         <Group position="apart" spacing={90}>
           {name}
           <SmallText>{t.description}</SmallText>
+          <DateSummery
+            startDate={projectSummery.startDate!}
+            endDate={projectSummery.endDate}
+          />
+          <ProjectStatusBadge status={projectSummery.status} />
           <ProjectActionButton
             menuButtonId={ids.projectTableMenuButtonId}
             menuId={ids.projectTableMenuId}

@@ -43,7 +43,7 @@ export const ProjectDetail = () => {
             {project.name}
           </DetailCard.Field>
           <DetailCard.Field title={t.projectFields.projectStatus.title}>
-            <ProjectStatusBadge />
+            <ProjectStatusBadge status={project.status} />
           </DetailCard.Field>
           <DetailCard.Field title={t.projectFields.membersCount.title}>
             {isEmpty(households) ? (
