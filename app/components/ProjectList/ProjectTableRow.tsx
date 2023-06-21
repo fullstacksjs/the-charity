@@ -1,6 +1,9 @@
 import type { ProjectListItem } from '@camp/data-layer';
-import type { AppRoute } from '@camp/router';
-import { useNavigate } from '@camp/router';
+import { AppRoute, useNavigate } from '@camp/router';
+import { Group } from '@mantine/core';
+
+import { ProjectActionButton } from '../ProjectActionButton';
+import * as ids from './ProjectTableRow.ids';
 
 interface Props {
   order: number;
@@ -19,6 +22,16 @@ export const ProjectTableRow = ({ project, order }: Props) => {
     <tr style={{ cursor: 'pointer' }} onClick={gotoDetail}>
       <td>{order}</td>
       <td>{name}</td>
+      <td>
+        <Group position="right">
+          <ProjectActionButton
+            menuButtonId={ids.projectTableMenuButtonId}
+            menuId={ids.projectTableMenuId}
+            to={AppRoute.projectDetail}
+            params={{ id }}
+          />
+        </Group>
+      </td>
     </tr>
   );
 };
