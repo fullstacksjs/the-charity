@@ -1,2 +1,2 @@
-export * from './apollo/ApolloProvider';
+export * from './ApiOperations';
 export * from './operations';

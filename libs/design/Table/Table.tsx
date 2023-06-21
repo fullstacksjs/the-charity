@@ -3,7 +3,7 @@ import { Table as MantineTable, useMantineTheme } from '@mantine/core';
 
 interface Props {
   id: string;
-  columns: string[];
+  columns: string[] | readonly string[];
   rows: JSX.Element[];
 }
 

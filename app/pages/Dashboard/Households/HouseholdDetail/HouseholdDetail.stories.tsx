@@ -1,3 +1,4 @@
+import { householdMock as completedHouseholdMock } from '@camp/fixtures';
 import { messages } from '@camp/messages';
 import type { Meta, StoryObj } from '@storybook/react';
 
@@ -17,4 +18,10 @@ export default {
 
 type Story = StoryObj<typeof HouseholdDetail>;
 
-export const Default: Story = {};
+export const Default: Story = {
+  parameters: {
+    apolloClient: {
+      mocks: [completedHouseholdMock],
+    },
+  },
+};

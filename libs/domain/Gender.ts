@@ -1,8 +1,3 @@
-export const Gender = {
-  Male: 'male',
-  Female: 'female',
-  Unknown: 'unknown',
-} as const;
-export const genders = Object.values(Gender);
+import { GenderEnum } from './ApiSchema';
 
-export type Gender = (typeof Gender)[keyof typeof Gender];
+export const genders = Object.values(GenderEnum);

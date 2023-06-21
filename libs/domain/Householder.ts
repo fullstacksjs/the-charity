@@ -1,7 +1,9 @@
-import type { City } from './City';
-import type { Gender } from './Gender';
-import type { Nationality } from './Nationality';
-import type { Religion } from './Religions';
+import type {
+  CityEnum,
+  GenderEnum,
+  NationalityEnum,
+  ReligionEnum,
+} from './ApiSchema';
 import { Schema } from './Schema';
 
 export const householderSchema = {
@@ -16,32 +18,46 @@ export const householderSchema = {
   dob: () => Schema.dob().optionalString(),
 };
 
-export type HouseholderStatus = 'completed' | 'draft';
-
-interface CompletedHouseholder {
-  name: string;
-  status: 'completed';
-  surname: string;
-  fatherName: string;
-  nationalId: string;
-  dob: Date;
-  nationality: Nationality;
-  religion: Religion;
-  cityOfBirth: City;
-  gender: Gender;
+export enum HouseholderStatus {
+  Completed = 'Completed',
+  Draft = 'Draft',
 }
 
-interface DraftHouseholder {
+export interface DraftHouseholder {
+  status: HouseholderStatus.Draft;
+  id: string;
   name: string;
-  status: 'draft';
   surname?: string;
   fatherName?: string;
+  nationality?: NationalityEnum;
+  religion?: ReligionEnum;
   nationalId?: string;
   dob?: Date;
-  nationality?: Nationality;
-  religion?: Religion;
-  cityOfBirth?: City;
-  gender?: Gender;
+  cityOfBirth?: CityEnum;
+  gender?: GenderEnum;
+  isCompleted: boolean;
+}
+
+export interface CompletedHouseholder
+  extends Omit<Required<DraftHouseholder>, 'status'> {
+  status: HouseholderStatus.Completed;
 }
 
 export type Householder = CompletedHouseholder | DraftHouseholder;
+
+export type HouseholderKeys = Pick<Householder, 'id'>;
+
+export type HouseholderIdentity = Pick<
+  Householder,
+  | 'cityOfBirth'
+  | 'dob'
+  | 'fatherName'
+  | 'gender'
+  | 'isCompleted'
+  | 'name'
+  | 'nationalId'
+  | 'nationality'
+  | 'religion'
+  | 'status'
+  | 'surname'
+>;

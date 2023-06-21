@@ -1,13 +1,13 @@
 import { Badge } from '@camp/design';
-import type { SeverityStatus } from '@camp/domain';
+import { HouseholdSeverityEnum } from '@camp/domain';
 import { messages } from '@camp/messages';
 
 interface Props {
-  severity: SeverityStatus;
+  severity: HouseholdSeverityEnum;
 }
 
 export const SeverityBadge = ({ severity }: Props) => {
-  return severity === 'normal' ? (
+  return severity === HouseholdSeverityEnum.Normal ? (
     <Badge status="warning">{messages.households.severityStatus.normal}</Badge>
   ) : (
     <Badge status="error">{messages.households.severityStatus.critical}</Badge>

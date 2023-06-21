@@ -1,9 +1,9 @@
-import type { Nationality } from '@camp/domain';
+import type { NationalityEnum } from '@camp/domain';
 
 import { messages } from '../../messages';
 
 interface Props {
-  text: Nationality;
+  text: NationalityEnum;
 }
 
 export const NationalityText = ({ text }: Props) => {

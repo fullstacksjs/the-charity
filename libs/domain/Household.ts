@@ -1,8 +1,7 @@
 import { messages } from '@camp/messages';
 import { z } from 'zod';
 
-export type SeverityStatus = 'critical' | 'normal';
-export type InformationStatus = 'completed' | 'draft';
+import type { HouseholdSeverityEnum, HouseholdStatusEnum } from './ApiSchema';
 
 export const householdSchema = {
   name: () =>
@@ -17,6 +16,27 @@ export interface Household {
   id: string;
   name: string;
   code: string;
-  severityStatus: SeverityStatus;
-  informationStatus: InformationStatus;
+  severity: HouseholdSeverityEnum;
+  status: HouseholdStatusEnum;
+  createdAt: Date;
+  updatedAt: Date;
+  isCompleted: boolean;
 }
+
+export type HouseholdKeys = Pick<Household, 'id'>;
+
+export type HouseholdDetail = Pick<
+  Household,
+  | 'code'
+  | 'createdAt'
+  | 'isCompleted'
+  | 'name'
+  | 'severity'
+  | 'status'
+  | 'updatedAt'
+>;
+
+export type HouseholdListItem = Pick<
+  Household,
+  'isCompleted' | 'name' | 'severity' | 'status'
+>;

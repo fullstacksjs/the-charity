@@ -1,6 +1,7 @@
-import { Button, Title } from '@mantine/core';
+import { Button } from '@mantine/core';
 import type { Meta, StoryObj } from '@storybook/react';
 
+import { DashboardTitle } from '../DashboardTitle';
 import { DashboardCard } from './DashboardCard';
 
 export default {
@@ -14,11 +15,7 @@ export const Default: Story = {
     <DashboardCard
       {...args}
       left={<Button>Button</Button>}
-      right={
-        <Title order={4} color="fgMuted">
-          تیتر
-        </Title>
-      }
+      right={<DashboardTitle>تیتر</DashboardTitle>}
     >
       متن
     </DashboardCard>

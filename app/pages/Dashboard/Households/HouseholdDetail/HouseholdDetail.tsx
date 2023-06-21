@@ -20,9 +20,9 @@ import {
   HouseholderDetail,
   InformationBadge,
   MemberForm,
-  openDeleteHouseholdModal,
   SeverityBadge,
 } from '../../../../components';
+import { openDeleteHouseholdModal } from '../DeleteHouseholdModal';
 import { householdDetailIds as ids } from './HouseholdDetail.ids';
 
 export const HouseholdDetail = () => {
@@ -30,17 +30,21 @@ export const HouseholdDetail = () => {
   const tModal = messages.households.list.delete.modal;
   const householdId = useParams();
   const navigate = useNavigate();
-  const { data, loading, error } = useHouseholdQuery({
+  const {
+    data: householdData,
+    loading,
+    error,
+  } = useHouseholdQuery({
     variables: { id: householdId },
   });
   const [deleteHousehold] = useDeleteHouseholdMutation();
 
-  const household = data?.household;
-  const { data: maybeHouseholderData } = useHouseholderQuery({
-    variables: { household_id: householdId },
+  const household = householdData?.household;
+  const { data: householderData } = useHouseholderQuery({
+    variables: { id: householdId },
   });
 
-  const householder = maybeHouseholderData?.householder;
+  const householder = householderData?.householder;
 
   if (loading) return <FullPageLoader />;
 
@@ -56,11 +60,9 @@ export const HouseholdDetail = () => {
 
   const onDeleteHousehold = async () => {
     try {
-      const { data: householdData } = await deleteHousehold({
+      await deleteHousehold({
         variables: { id: household.id },
       });
-
-      if (isNull(householdData)) throw Error('Assert: Household is null');
 
       showNotification({
         title: tModal.notification.title,
@@ -106,11 +108,13 @@ export const HouseholdDetail = () => {
             {household.name}
           </DetailCard.Field>
           <DetailCard.Field title={t.householdFields.severityStatus.title}>
-            <SeverityBadge severity={household.severityStatus} />
+            <SeverityBadge severity={household.severity} />
           </DetailCard.Field>
 
           <DetailCard.Field title={t.householdFields.informationStatus.title}>
-            <InformationBadge information={household.informationStatus} />
+            <InformationBadge
+              information={household.isCompleted ? 'completed' : 'draft'}
+            />
           </DetailCard.Field>
         </DetailCard.Section>
       </DetailCard>
@@ -120,7 +124,7 @@ export const HouseholdDetail = () => {
             tab: <Title order={5}>{t.tabs.householderTitle}</Title>,
             panel: <HouseholderDetail householdId={household.id} />,
             id: ids.householderTab,
-            isBusy: householder?.status !== 'completed',
+            isBusy: !householder?.isCompleted,
             isDefault: true,
           },
           {

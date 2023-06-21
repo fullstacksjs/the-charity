@@ -22,7 +22,9 @@ const useStyles = createStyles(theme => ({
   },
 }));
 
-export const DashboardLayout = () => {
+const outlet = <Outlet />;
+
+export const DashboardLayout = ({ children = outlet }) => {
   const { classes } = useStyles();
 
   return (
@@ -37,9 +39,7 @@ export const DashboardLayout = () => {
           </MediaQuery>
         }
       >
-        <Stack sx={{ gap: '40px' }}>
-          <Outlet />
-        </Stack>
+        <Stack sx={{ gap: '40px' }}>{children}</Stack>
         <Notifications limit={3} />
       </MantineAppShell>
     </ModalsProvider>

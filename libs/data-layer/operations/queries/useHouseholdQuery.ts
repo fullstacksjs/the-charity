@@ -1,39 +1,59 @@
-import type * as Apollo from '@apollo/client';
 import { gql } from '@apollo/client';
-import type { Household } from '@camp/domain';
+import type { QueryHookOptions } from '@camp/api-client';
+import { useQuery } from '@camp/api-client';
+import type {
+  ApiHouseholdQuery,
+  ApiHouseholdQueryVariables,
+} from '@camp/data-layer';
+import type { HouseholdDetail, HouseholdKeys } from '@camp/domain';
+import type { Nullish } from '@fullstacksjs/toolbox';
 
-import type { ApiHouseholdQuery, ApiHouseholdQueryVariables } from '../../api';
-import { useQuery } from '../../apiClient';
-import { toHousehold } from '../../mappers';
+import {
+  getHouseholdDetail,
+  getHouseholdKeys,
+  HouseholdDetailFragment,
+  HouseholdKeysFragment,
+} from '../fragments';
 
-const Document = gql`
+export const HouseholdDocument = gql`
   query Household($id: uuid!) {
     household_by_pk(id: $id) {
-      id
-      name
-      status
-      severity
-      code
+      ...HouseholdKeys
+      ...HouseholdDetail
     }
   }
+  ${HouseholdKeysFragment}
+  ${HouseholdDetailFragment}
 `;
 
 export interface HouseholdDto {
-  household: Household;
+  household: Nullish | (HouseholdDetail & HouseholdKeys);
 }
 
-const toClient = (
-  data: ApiHouseholdQuery | null | undefined,
-): HouseholdDto | null =>
-  data?.household_by_pk == null
-    ? null
-    : {
-        household: toHousehold(data.household_by_pk),
-      };
+interface Variables {
+  id: string;
+}
+
+const toClient = (data: ApiHouseholdQuery | Nullish): HouseholdDto => {
+  return {
+    household: data?.household_by_pk
+      ? {
+          ...getHouseholdKeys(data.household_by_pk),
+          ...getHouseholdDetail(data.household_by_pk),
+        }
+      : undefined,
+  };
+};
+
+const toApiVariables = (data: Variables): ApiHouseholdQueryVariables => {
+  return { id: data.id };
+};
 
 export const useHouseholdQuery = (
-  options: Apollo.QueryHookOptions<
-    ApiHouseholdQuery,
-    ApiHouseholdQueryVariables
-  >,
-) => useQuery(Document, { ...options, mapper: toClient });
+  options: QueryHookOptions<typeof toClient, typeof toApiVariables>,
+) =>
+  useQuery<typeof toClient, typeof toApiVariables>(HouseholdDocument, {
+    ...options,
+    mapper: toClient,
+    mapVariables: toApiVariables,
+  });

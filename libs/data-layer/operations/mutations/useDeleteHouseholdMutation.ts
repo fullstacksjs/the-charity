@@ -1,13 +1,14 @@
 import { gql } from '@apollo/client';
-import type { Household } from '@camp/domain';
-
+import type { MutationOptions } from '@camp/api-client';
+import { useMutation } from '@camp/api-client';
 import type {
   ApiDeleteHouseholdMutationMutation,
   ApiDeleteHouseholdMutationMutationVariables,
-} from '../../api';
-import { ApiDeleteHouseholdMutationDocument } from '../../api';
-import type { MutationOptions } from '../../apiClient';
-import { useMutation } from '../../apiClient';
+  ApiProjectListQuery,
+} from '@camp/data-layer';
+import type { Household } from '@camp/domain';
+
+import { HouseholdListDocument } from '../queries';
 
 const Document = gql`
   mutation DeleteHouseholdMutation($id: uuid!) {
@@ -50,23 +51,25 @@ export const useDeleteHouseholdMutation = (
 ) => {
   return useMutation<typeof toClient, typeof toApiVariables>(Document, {
     ...options,
-    mapData: toClient,
-    mapVariables: toApiVariables,
-    update(cache, { data: household }, { variables }) {
-      const deleteHousehold = household?.delete_household_by_pk;
-      const id = variables?.id;
+    toClient,
+    toApiVariables,
+    update(cache, { data }) {
+      const id = data?.delete_household_by_pk?.id;
+      if (!id) return;
 
-      if (deleteHousehold) {
-        cache.writeQuery({
-          query: ApiDeleteHouseholdMutationDocument,
-          variables: { id },
-          data: {
-            delete_household_by_pk: {
-              ...deleteHousehold,
-            },
-          },
-        });
-      }
+      const current = cache.readQuery<ApiProjectListQuery>({
+        query: HouseholdListDocument,
+        variables: { id },
+      });
+
+      const newNodes =
+        current?.project_aggregate.nodes.filter(p => p.id !== id) ?? [];
+
+      cache.writeQuery<ApiProjectListQuery>({
+        query: HouseholdListDocument,
+        variables: { id },
+        data: { project_aggregate: { nodes: newNodes } },
+      });
     },
   });
 };

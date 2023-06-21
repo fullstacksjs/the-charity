@@ -1,9 +1,9 @@
 import 'dayjs/locale/fa';
 import '@camp/zod-addons';
 
+import { ApolloProvider } from '@camp/api-client';
 import { AuthProvider } from '@camp/auth';
 import { config } from '@camp/config';
-import { ApolloProvider } from '@camp/data-layer';
 import { debug, DebugScopes } from '@camp/debug';
 import { ThemeProvider } from '@camp/design';
 import { StrictMode } from 'react';

@@ -1,43 +1,46 @@
-import type * as Apollo from '@apollo/client';
 import { gql } from '@apollo/client';
+import type { NeverFn, QueryOptions } from '@camp/api-client';
+import { useQuery } from '@camp/api-client';
+import type { ApiHouseholdListQuery } from '@camp/data-layer';
 import type { Household } from '@camp/domain';
 
-import type {
-  ApiHouseholdListQuery,
-  ApiHouseholdListQueryVariables,
-} from '../../api';
-import { useQuery } from '../../apiClient';
-import { toHousehold } from '../../mappers';
+import {
+  getHouseholdKeys,
+  getHouseholdListItem,
+  HouseholdKeysFragment,
+  HouseholdListItemFragment,
+} from '../fragments';
 
-const Document = gql`
+export const HouseholdListDocument = gql`
   query HouseholdList {
     household {
-      id
-      name
-      severity
-      status
+      ...HouseholdKeys
+      ...HouseholdListItem
     }
   }
+  ${HouseholdKeysFragment}
+  ${HouseholdListItemFragment}
 `;
 
-export type HouseholdListItemDto = Pick<
-  Household,
-  'id' | 'informationStatus' | 'name' | 'severityStatus'
->;
 export interface HouseholdListDto {
-  households: HouseholdListItemDto[];
+  household: Household[];
 }
 
-const toClient = (
-  data: ApiHouseholdListQuery | null | undefined,
-): HouseholdListDto => ({
-  households:
-    data?.household == null ? [] : data.household.map(h => toHousehold(h)),
-});
+const toClient = (data: ApiHouseholdListQuery | null) => {
+  return {
+    household:
+      data?.household.filter(Boolean).map(d => ({
+        ...getHouseholdKeys(d),
+        ...getHouseholdListItem(d),
+      })) ?? [],
+  };
+};
 
 export const useHouseholdListQuery = (
-  options?: Apollo.QueryHookOptions<
-    ApiHouseholdListQuery,
-    ApiHouseholdListQueryVariables
-  >,
-) => useQuery(Document, { ...options, mapper: toClient });
+  options?: QueryOptions<typeof toClient, NeverFn>,
+) =>
+  useQuery<typeof toClient, NeverFn>(HouseholdListDocument, {
+    ...options,
+    mapper: toClient,
+    mapVariables: () => ({}),
+  });

@@ -1,27 +1,25 @@
 import { gql } from '@apollo/client';
-import type {
-  City,
-  Gender,
-  Householder,
-  Nationality,
-  Religion,
-} from '@camp/domain';
-
+import type { MutationOptions } from '@camp/api-client';
+import { useMutation } from '@camp/api-client';
 import type {
   ApiUpsertHouseholderMutation,
   ApiUpsertHouseholderMutationVariables,
-} from '../../api';
-import { ApiHouseholderDocument } from '../../api';
-import type { MutationOptions } from '../../apiClient';
-import { useMutation } from '../../apiClient';
+} from '@camp/data-layer';
+import type {
+  CityEnum,
+  GenderEnum,
+  Householder,
+  NationalityEnum,
+  ReligionEnum,
+} from '@camp/domain';
+
 import {
-  toApiCity,
-  toApiDate,
-  toApiGender,
-  toApiNationality,
-  toApiReligion,
-  toHouseholder,
-} from '../../mappers';
+  getHouseholderIdentity,
+  getHouseholderKeys,
+  HouseholderIdentityFragment,
+  HouseholderKeysFragment,
+} from '../fragments';
+import { HouseholderDocument } from '../queries';
 
 const Document = gql`
   mutation UpsertHouseholder($input: householder_insert_input!) {
@@ -42,31 +40,31 @@ const Document = gql`
         ]
       }
     ) {
-      city
-      gender
-      dob
-      national_id
-      father_name
-      name
-      nationality
-      religion
-      surname
-      status
+      ...HouseholderKeys
+      ...HouseholderIdentity
     }
   }
+  ${HouseholderKeysFragment}
+  ${HouseholderIdentityFragment}
 `;
 
 export interface UpsertHouseholder {
-  householder: Householder;
+  householder: Householder | undefined;
 }
 
 const toClient = (
   data: ApiUpsertHouseholderMutation | null,
-): UpsertHouseholder | null => {
+): UpsertHouseholder => {
   const householder = data?.insert_householder_one;
-  if (householder == null) return null;
 
-  return { householder: toHouseholder(householder) };
+  return {
+    householder: householder
+      ? {
+          ...getHouseholderKeys(householder),
+          ...(getHouseholderIdentity(householder) as Householder),
+        }
+      : undefined,
+  };
 };
 
 interface Variables {
@@ -76,11 +74,11 @@ interface Variables {
   fatherName?: string;
   nationalId?: string;
   dob?: Date | null;
-  nationality?: Nationality;
-  religion?: Religion;
-  gender?: Gender;
-  cityOfBirth?: City;
-  issuedAt?: City;
+  nationality?: NationalityEnum;
+  religion?: ReligionEnum;
+  gender?: GenderEnum;
+  cityOfBirth?: CityEnum;
+  issuedAt?: CityEnum;
 }
 
 const toApiVariables = (
@@ -92,21 +90,11 @@ const toApiVariables = (
     national_id: variables.nationalId,
     father_name: variables.fatherName,
     surname: variables.surname,
-    nationality:
-      variables.nationality == null
-        ? undefined
-        : toApiNationality(variables.nationality),
-    religion:
-      variables.religion == null
-        ? undefined
-        : toApiReligion(variables.religion),
-    city:
-      variables.cityOfBirth == null
-        ? undefined
-        : toApiCity(variables.cityOfBirth),
-    gender:
-      variables.gender == null ? undefined : toApiGender(variables.gender),
-    dob: variables.dob == null ? undefined : toApiDate(variables.dob),
+    nationality: variables.nationality,
+    religion: variables.religion,
+    city: variables.cityOfBirth,
+    gender: variables.gender,
+    dob: variables.dob?.toISOString(),
   },
 });
 
@@ -115,15 +103,15 @@ export function useUpsertHouseholderMutation(
 ) {
   return useMutation<typeof toClient, typeof toApiVariables>(Document, {
     ...options,
-    mapData: toClient,
-    mapVariables: toApiVariables,
-    update(cache, { data: householder }, { variables }) {
-      const newHouseholder = householder?.insert_householder_one;
+    toClient,
+    toApiVariables,
+    update(cache, { data }, { variables }) {
+      const newHouseholder = data?.insert_householder_one;
       const householdId = variables?.input.household_id;
 
       if (newHouseholder) {
         cache.writeQuery({
-          query: ApiHouseholderDocument,
+          query: HouseholderDocument,
           variables: { household_id: householdId },
           data: {
             householder_by_pk: {
