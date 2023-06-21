@@ -1,5 +1,4 @@
-import type { ProjectListItem } from '@camp/data-layer';
-import type { ProjectKeys } from '@camp/domain';
+import type { ProjectKeys, ProjectListItem } from '@camp/domain';
 import { AppRoute, useNavigate } from '@camp/router';
 import { Group } from '@mantine/core';
 
