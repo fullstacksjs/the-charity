@@ -54,6 +54,7 @@ export const theme: MantineThemeOverride = {
     /* 2.Remove default margin */
     '*': {
       margin: 0,
+      scrollbarColor: `${colors.secondaryDefault} transparent`,
     },
     /* 3.Allow percentage-based heights in the application */
     'html, body': {
@@ -67,6 +68,18 @@ export const theme: MantineThemeOverride = {
     '#root': {
       height: '100%',
     },
+
+    '::-webkit-scrollbar': {
+      width: '4px',
+      height: '4px',
+      backgroundColor: 'transparent',
+    },
+
+    '::-webkit-scrollbar-thumb': {
+      backgroundColor: colors.secondaryDefault,
+      borderRadius: '4px',
+    },
+
     /* eslint-enable @typescript-eslint/naming-convention */
   }),
   dir: 'rtl',

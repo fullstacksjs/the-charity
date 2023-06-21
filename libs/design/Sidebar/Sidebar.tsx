@@ -41,7 +41,7 @@ export const SideBar = () => {
 
   return (
     <Stack className={classes.root}>
-      <Stack spacing={100} sx={{ position: 'fixed' }}>
+      <Stack spacing={100} sx={{ flex: 1 }}>
         <Stack
           spacing={10}
           align="center"
@@ -53,11 +53,7 @@ export const SideBar = () => {
             {messages.companyName}
           </Text>
         </Stack>
-        <Stack
-          justify="space-between"
-          spacing={560}
-          sx={{ height: '100%', width: 234 }}
-        >
+        <Stack justify="space-between" sx={{ width: 234, flex: 1 }}>
           <NavLinks links={links} />
           <ExitNavLink />
         </Stack>
