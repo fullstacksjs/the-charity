@@ -9,7 +9,7 @@ import {
 import type {
   CityEnum,
   GenderEnum,
-  Householder,
+  HouseholderIdentity,
   NationalityEnum,
   ReligionEnum,
 } from '@camp/domain';
@@ -32,7 +32,7 @@ import { useForm } from 'react-hook-form';
 import { householderFormIds as ids } from './HouseholderForm.ids';
 
 interface Props {
-  initialHouseholder?: Householder;
+  initialHouseholder?: HouseholderIdentity;
   householdId: string;
 }
 
