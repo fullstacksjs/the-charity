@@ -5,7 +5,6 @@ import type {
   ProjectSummery,
 } from '@camp/domain';
 import { ProjectStatusEnum } from '@camp/domain';
-import { messages } from '@camp/messages';
 import { AppRoute, useNavigate } from '@camp/router';
 import { Group } from '@mantine/core';
 
@@ -19,7 +18,7 @@ interface Props {
 }
 
 const projectSummery: ProjectSummery = {
-  description: 'hi',
+  description: 'خرید مک بوک و RTX برای تیم فول استکس از آقای هاشمی',
   startDate: new Date(),
   endDate: new Date(),
   status: ProjectStatusEnum.Done,
@@ -28,7 +27,6 @@ const projectSummery: ProjectSummery = {
 export const ProjectTableRow = ({ project, order }: Props) => {
   const navigate = useNavigate();
   const { id, name } = project;
-  const t = messages.projects.list.table;
 
   const gotoDetail = () => {
     navigate({ to: `/dashboard/projects/${id}` as AppRoute });
@@ -40,7 +38,7 @@ export const ProjectTableRow = ({ project, order }: Props) => {
       <td>
         <Group position="apart" spacing={90}>
           {name}
-          <SmallText>{t.description}</SmallText>
+          <SmallText>{projectSummery.description}</SmallText>
           <DateSummery
             startDate={projectSummery.startDate!}
             endDate={projectSummery.endDate}
