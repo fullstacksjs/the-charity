@@ -4,9 +4,13 @@ const client = new GraphQLClient(Cypress.env('APP_API_ENDPOINT'), {
   headers: { 'x-hasura-admin-secret': Cypress.env('APP_HASURA_ADMIN_SECRET') },
 });
 
-export function createHousehold(name: string) {
+interface Id {
+  id: string;
+}
+
+export function createHousehold(name: string): Promise<Id> {
   return client
-    .request(
+    .request<{ insert_household_one: Id }>(
       gql`
         mutation CreateHouseholdTest {
           insert_household_one(object: { name: "${name}" }) {
@@ -17,9 +21,9 @@ export function createHousehold(name: string) {
     .then(c => c.insert_household_one);
 }
 
-export function createProject(name: string) {
+export function createProject(name: string): Promise<Id> {
   return client
-    .request(
+    .request<{ insert_project_one: Id }>(
       gql`
         mutation CreateProjectTest {
           insert_project_one (object: { name: "${name}" }) {

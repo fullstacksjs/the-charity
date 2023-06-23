@@ -12,7 +12,7 @@ import {
 } from '@camp/design';
 import { TrashIcon } from '@camp/icons';
 import { errorMessages, messages } from '@camp/messages';
-import { useNavigate, useParams } from '@camp/router';
+import { AppRoute, useNavigate, useParams } from '@camp/router';
 import { isNull } from '@fullstacksjs/toolbox';
 import { Button, Title } from '@mantine/core';
 
@@ -60,16 +60,14 @@ export const HouseholdDetail = () => {
 
   const onDeleteHousehold = async () => {
     try {
-      await deleteHousehold({
-        variables: { id: household.id },
-      });
+      await deleteHousehold({ variables: { id: household.id } });
 
       showNotification({
         title: tModal.notification.title,
         message: tModal.notification.success(household.name),
         type: 'success',
       });
-      navigate({ to: '/' });
+      navigate({ to: AppRoute.dashboard });
     } catch (err) {
       debug.error(err);
       showNotification({

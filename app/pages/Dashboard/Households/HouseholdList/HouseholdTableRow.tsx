@@ -4,6 +4,7 @@ import { showNotification } from '@camp/design';
 import type { HouseholderKeys, HouseholdListItem } from '@camp/domain';
 import { messages } from '@camp/messages';
 import { AppRoute, useNavigate } from '@camp/router';
+import { createTestAttr } from '@camp/test';
 import { isNull } from '@fullstacksjs/toolbox';
 import { Group } from '@mantine/core';
 
@@ -11,7 +12,7 @@ import { InformationBadge } from '../../../../components/InformationBadge';
 import { SeverityBadge } from '../../../../components/SeverityBadge';
 import { openDeleteHouseholdModal } from '../DeleteHouseholdModal';
 import { HouseholdActionButton } from '../HouseholdActionButton';
-import * as ids from './HouseholdTableRow.ids';
+import { householdRowIds as ids } from './HouseholdTableRow.ids';
 
 interface Props {
   order: number;
@@ -38,6 +39,7 @@ export const HouseholdTableRow = ({ order, household }: Props) => {
         title: t.notification.title,
         message: t.notification.success(data.household.name),
         type: 'success',
+        ...createTestAttr(ids.notifications.delete.success),
       });
     } catch (err) {
       debug.error(err);
@@ -45,6 +47,7 @@ export const HouseholdTableRow = ({ order, household }: Props) => {
         title: t.notification.title,
         message: t.notification.failed(name),
         type: 'failure',
+        ...createTestAttr(ids.notifications.delete.failure),
       });
     }
   };
@@ -68,8 +71,8 @@ export const HouseholdTableRow = ({ order, household }: Props) => {
               e.stopPropagation();
               handleDeleteHousehold();
             }}
-            menuButtonId={ids.householdTableMenuButtonId}
-            menuId={ids.householdTableMenuId}
+            menuButtonId={ids.actionButton}
+            menuId={ids.actionMenu}
             to={AppRoute.householdDetail}
             params={{ id }}
           />

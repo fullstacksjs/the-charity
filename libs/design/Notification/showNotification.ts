@@ -8,15 +8,22 @@ interface Props extends NotificationProps {
   type: NotificationType;
 }
 
+const colorMap: Record<NotificationType, keyof MantineThemeColors> = {
+  failure: 'red',
+  success: 'green',
+};
+
 export const showNotification = ({ type, ...rest }: Props) => {
-  const color: keyof MantineThemeColors = type === 'success' ? 'green' : 'red';
+  const color = colorMap[type];
 
   mantineShowNotification({
     ...rest,
     color,
-    styles: theme => ({
+    'styles': theme => ({
       root: { backgroundColor: theme.colors[color][0] },
       closeButton: { '&:hover': { backgroundColor: theme.colors[color][1] } },
     }),
+    // @ts-expect-error data attributes
+    'data-notification-type': type,
   });
 };

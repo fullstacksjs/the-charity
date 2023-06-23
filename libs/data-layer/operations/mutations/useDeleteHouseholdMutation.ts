@@ -4,19 +4,22 @@ import { useMutation } from '@camp/api-client';
 import type {
   ApiDeleteHouseholdMutationMutation,
   ApiDeleteHouseholdMutationMutationVariables,
-  ApiProjectListQuery,
+  ApiHouseholdListQuery,
+  ApiHouseholdListQueryVariables,
 } from '@camp/data-layer';
 import type { Household } from '@camp/domain';
 
+import { HouseholdKeysFragment } from '../fragments';
 import { HouseholdListDocument } from '../queries';
 
 const Document = gql`
   mutation DeleteHouseholdMutation($id: uuid!) {
     delete_household_by_pk(id: $id) {
-      id
+      ...HouseholdKeys
       name
     }
   }
+  ${HouseholdKeysFragment}
 `;
 
 export interface DeleteHousehold {
@@ -57,19 +60,15 @@ export const useDeleteHouseholdMutation = (
       const id = data?.delete_household_by_pk?.id;
       if (!id) return;
 
-      const current = cache.readQuery<ApiProjectListQuery>({
-        query: HouseholdListDocument,
-        variables: { id },
-      });
-
-      const newNodes =
-        current?.project_aggregate.nodes.filter(p => p.id !== id) ?? [];
-
-      cache.writeQuery<ApiProjectListQuery>({
-        query: HouseholdListDocument,
-        variables: { id },
-        data: { project_aggregate: { nodes: newNodes } },
-      });
+      cache.updateQuery<ApiHouseholdListQuery, ApiHouseholdListQueryVariables>(
+        { query: HouseholdListDocument },
+        value => {
+          return {
+            ...value,
+            household: value?.household.filter(h => h.id !== id) ?? [],
+          };
+        },
+      );
     },
   });
 };
