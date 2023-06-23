@@ -26,9 +26,7 @@ describe('Create Project', () => {
       );
       cy.findByTestId(createProjectFormIds.submitBtn).click();
     });
-    cy.findByTestId(createProjectFormIds.notification.success, {
-      timeout: 1e4,
-    }).should('exist');
+    cy.findNotification('success').should('exist');
   });
 
   it('[NOK]: Admin wants to create a project with short name', () => {

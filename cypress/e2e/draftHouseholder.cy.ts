@@ -141,9 +141,7 @@ function addHouseholder(mock: Mock) {
     cy.root().submit();
   });
 
-  cy.findByTestId(ids.notification.success, {
-    timeout: 1e4,
-  }).should('exist');
+  cy.findNotification('success').should('exist');
 
   return mock;
 }

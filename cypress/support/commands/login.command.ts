@@ -53,11 +53,3 @@ Cypress.Commands.add('login', ({ username, password }) => {
       });
   });
 });
-
-declare global {
-  namespace Cypress {
-    interface Chainable {
-      login: (args: { username: string; password: string }) => void;
-    }
-  }
-}

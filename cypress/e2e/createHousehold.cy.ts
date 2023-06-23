@@ -21,8 +21,6 @@ describe('Create Household', () => {
         .type(householdFixture.name());
       cy.findByTestId(createHouseholdFormIds.submitBtn).click();
     });
-    cy.findByTestId(createHouseholdFormIds.notification.success, {
-      timeout: 1e4,
-    }).should('exist');
+    cy.findNotification('success').should('exist');
   });
 });

@@ -13,7 +13,7 @@ import {
 
 export const HouseholdListDocument = gql`
   query HouseholdList {
-    household {
+    household(order_by: { created_at: desc }) {
       ...HouseholdKeys
       ...HouseholdListItem
     }
