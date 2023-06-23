@@ -10,11 +10,15 @@ import { ModalsProvider } from '@mantine/modals';
 import { Notifications } from '@mantine/notifications';
 
 const useStyles = createStyles(theme => ({
+  body: {
+    height: '100vh',
+  },
   main: {
     paddingTop: 30,
     paddingBottom: 0,
     paddingInline: 40,
     backgroundColor: theme.colors.bgCanvas[6],
+    overflow: 'auto',
   },
 }));
 
@@ -24,7 +28,7 @@ export const DashboardLayout = () => {
   return (
     <ModalsProvider>
       <MantineAppShell
-        classNames={{ main: classes.main }}
+        classNames={{ body: classes.body, main: classes.main }}
         navbarOffsetBreakpoint="sm"
         asideOffsetBreakpoint="sm"
         navbar={
@@ -33,7 +37,7 @@ export const DashboardLayout = () => {
           </MediaQuery>
         }
       >
-        <Stack sx={{ gap: '40px' }} h="100%">
+        <Stack sx={{ gap: '40px' }}>
           <Outlet />
         </Stack>
         <Notifications limit={3} />
