@@ -1,5 +1,5 @@
-import { createHouseholdButtonId } from '../../app/components/CreateHousehold/CreateHouseholdButton/CreateHouseholdButton.ids';
-import { createHouseholdFormIds } from '../../app/components/CreateHousehold/CreateHouseholdForm/CreateHouseholdForm.ids';
+import { createHouseholdButtonId } from '../../app/pages/Dashboard/Households/CreateHousehold/CreateHouseholdButton/CreateHouseholdButton.ids';
+import { createHouseholdFormIds } from '../../app/pages/Dashboard/Households/CreateHousehold/CreateHouseholdForm/CreateHouseholdForm.ids';
 import { dashboardHeaderId } from '../../libs/design/Header/DashboardHeader.ids';
 import { AppRoute } from '../../libs/router/AppRoutes';
 import { admin } from '../fixtures/admin';

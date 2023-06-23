@@ -1,5 +1,5 @@
-import { createProjectButtonId } from '../../app/components/CreateProject/CreateProjectButton/CreateProjectButton.ids';
-import { createProjectFormIds } from '../../app/components/CreateProject/CreateProjectForm/CreateProjectForm.ids';
+import { createProjectButtonId } from '../../app/pages/Dashboard/Projects/CreateProject/CreateProjectButton/CreateProjectButton.ids';
+import { createProjectFormIds } from '../../app/pages/Dashboard/Projects/CreateProject/CreateProjectForm/CreateProjectForm.ids';
 import { dashboardHeaderId } from '../../libs/design/Header/DashboardHeader.ids';
 import { navLinkIds } from '../../libs/design/Sidebar/Sidebar.ids';
 import { AppRoute } from '../../libs/router/AppRoutes';

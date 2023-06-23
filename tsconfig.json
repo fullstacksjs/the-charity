@@ -6,10 +6,13 @@
     "esModuleInterop": true,
     "types": ["cypress", "@testing-library/cypress"],
     "paths": {
+      "@camp/api-client": ["./libs/api-client/index.ts"],
       "@camp/auth": ["./libs/auth/index.ts"],
+      "@camp/fixtures": ["./libs/fixtures/index.ts"],
       "@camp/config": ["./libs/config/index.ts"],
       "@camp/cookies": ["./libs/cookies/index.ts"],
       "@camp/data-layer": ["./libs/data-layer/index.ts"],
+      "@camp/debug": ["./libs/debug/index.ts"],
       "@camp/design": ["./libs/design/index.ts"],
       "@camp/domain": ["./libs/domain/index.ts"],
       "@camp/hooks": ["./app/hooks/index.ts"],
@@ -18,7 +21,6 @@
       "@camp/messages": ["./app/messages.ts"],
       "@camp/router": ["./libs/router/index.ts"],
       "@camp/test": ["./libs/test/index.ts"],
-      "@camp/debug": ["./libs/debug/index.ts"],
       "@camp/zod-addons": ["./libs/zod-addons/index.ts"]
     }
   },

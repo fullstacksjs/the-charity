@@ -1,9 +1,8 @@
 import { Badge } from '@camp/design';
-import type { InformationStatus } from '@camp/domain';
 import { messages } from '@camp/messages';
 
 interface Props {
-  information: InformationStatus;
+  information: 'completed' | 'draft';
 }
 
 export const InformationBadge = ({ information }: Props) => {

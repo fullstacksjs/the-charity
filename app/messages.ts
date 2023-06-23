@@ -37,11 +37,11 @@ export const messages = {
   companyName: 'نامی مناسب برای خیریه',
   actions: { dismiss: 'انصراف', open: 'باز کردن', delete: 'حذف کردن' },
   households: {
-    title: 'خانواده ها',
+    title: 'خانوارها',
     create: 'ایجاد خانواده جدید',
     empty: {
       title: 'خانواده ای وجود ندارد!',
-      description: 'متاسفانه لیست خانواده های شما خالی است.',
+      description: 'متاسفانه لیست خانوارهای شما خالی است.',
     },
     validation: {
       minLength: 'نام خانواده باید حداقل ۳ حرف باشد',
@@ -58,10 +58,10 @@ export const messages = {
       },
       notification: {
         failure: (name: string) =>
-          `مشکلی در مرحله ایجاد خانواده ای با نام “${name}” به وجود آمده است. لطفا دوباره تلاش کنید.`,
+          `مشکلی در مرحله ایجاد خانواری با نام “${name}” به وجود آمده است. لطفا دوباره تلاش کنید.`,
 
         success: (name: string) =>
-          `خانواده ای با نام “${name}” با موفقیت ایجاد شده است.`,
+          `خانواری با نام “${name}” با موفقیت ایجاد شده است.`,
       },
     },
     informationStatus: {
@@ -73,7 +73,7 @@ export const messages = {
       normal: 'عادی',
     },
     list: {
-      title: 'لیست خانواده ها',
+      title: 'لیست خانوارها',
       delete: {
         modal: {
           notification: {
@@ -95,7 +95,7 @@ export const messages = {
     },
   },
   projects: {
-    title: 'پروژه ها',
+    title: 'پروژه‌ها',
     create: 'ایجاد پروژه جدید',
     validation: {
       minLength: 'نام پروژه باید حداقل ۳ حرف باشد',
@@ -108,7 +108,7 @@ export const messages = {
     },
     empty: {
       title: 'پروژه ای وجود ندارد!',
-      description: 'متاسفانه لیست پروژه های شما خالی است.',
+      description: 'متاسفانه لیست پروژه‌های شما خالی است.',
     },
     createForm: {
       nameInput: {
@@ -124,7 +124,7 @@ export const messages = {
       },
     },
     list: {
-      title: 'لیست پروژه ها',
+      title: 'لیست پروژه‌ها',
       table: {
         columns: ['ردیف', 'نام'],
       },
@@ -135,8 +135,8 @@ export const messages = {
     unknown: 'نامشخص',
   },
   genders: {
-    male: 'مرد',
-    female: 'زن',
+    Male: 'مرد',
+    Female: 'زن',
     unknown: 'نامشخص',
   },
   religions: {

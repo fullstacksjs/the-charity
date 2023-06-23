@@ -1,7 +1,12 @@
-define: &HEADER
-  - '/* This file is generated, do not edit! */'
-  - '/* eslint-disable */'
-  - '/* cspell:disable */'
+variables:
+  - &HEADER
+    - '/* This file is generated, do not edit! */'
+    - '/* eslint-disable */'
+    - '/* cspell:disable */'
+  - &SCALARS
+    date: 'string'
+    uuid: 'string'
+    timestamptz: 'string'
 
 schema:
   - ${APP_GRAPHQL_SCHEMA_URL}:
@@ -14,18 +19,32 @@ extensions:
     emitLegacyCommonJSImports: false
     overwrite: true
     generates:
-      ./libs/data-layer/api.ts:
+      ./libs/domain/ApiSchema.ts:
         plugins:
           - add:
               content: *HEADER
           - typescript
+        config:
+          scalars: *SCALARS
+          namingConvention:
+            default: 'change-case-all#pascalCase'
+            typeNames: './configs/graphql-codegen/namingConvetion.js'
+            enumValues: 'change-case-all#pascalCase'
+
+      ./libs/data-layer/ApiOperations.ts:
+        preset: 'import-types'
+
+        plugins:
+          - add:
+              content: *HEADER
           - typescript-operations
-          - typescript-react-apollo
+
+        presetConfig:
+          typesPath: '@camp/domain'
+          importTypesNamespace: 'SchemaTypes'
 
         config:
-          scalars:
-            date: 'string'
-            uuid: 'string'
+          scalars: *SCALARS
           useTypeImports: true
           withHooks: false
           namingConvention:

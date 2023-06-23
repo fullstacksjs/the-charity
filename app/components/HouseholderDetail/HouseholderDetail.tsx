@@ -10,7 +10,7 @@ interface Props {
 
 export const HouseholderDetail = ({ householdId }: Props) => {
   const { data, loading } = useHouseholderQuery({
-    variables: { household_id: householdId },
+    variables: { id: householdId },
   });
 
   const householder = data?.householder;

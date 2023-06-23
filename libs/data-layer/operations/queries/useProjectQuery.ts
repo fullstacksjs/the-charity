@@ -1,50 +1,88 @@
-import type * as Apollo from '@apollo/client';
 import { gql } from '@apollo/client';
-import type { Household, Project } from '@camp/domain';
+import type { QueryHookOptions } from '@camp/api-client';
+import { useQuery } from '@camp/api-client';
+import type {
+  ApiProjectQuery,
+  ApiProjectQueryVariables,
+} from '@camp/data-layer';
+import type {
+  HouseholdDetail,
+  HouseholdKeys,
+  ProjectDetail,
+  ProjectKeys,
+} from '@camp/domain';
+import type { Nullish } from '@fullstacksjs/toolbox';
 
-import type { ApiProjectQuery, ApiProjectQueryVariables } from '../../api';
-import { useQuery } from '../../apiClient';
-import { toHousehold, toProject } from '../../mappers';
+import {
+  getHouseholdDetail,
+  getHouseholdKeys,
+  getProjectDetail,
+  getProjectKeys,
+  HouseholdDetailFragment,
+  HouseholdKeysFragment,
+  ProjectDetailFragment,
+  ProjectKeysFragment,
+} from '../fragments';
 
-const Document = gql`
+export const ProjectDocument = gql`
   query Project($id: uuid!) {
     project_by_pk(id: $id) {
-      id
-      name
-      status
-      description
-      start_date
-      due_date
+      ...ProjectKeys
+      ...ProjectDetail
       households {
         household {
-          name
-          code
-          id
-          status
-          severity
+          ...HouseholdKeys
+          ...HouseholdDetail
         }
       }
     }
   }
+  ${ProjectKeysFragment}
+  ${ProjectDetailFragment}
+  ${HouseholdKeysFragment}
+  ${HouseholdDetailFragment}
 `;
 
 export interface ProjectDto {
-  project: Project;
-  households: Household[];
+  project: (ProjectDetail & ProjectKeys) | undefined;
+  households: (HouseholdDetail & HouseholdKeys)[];
 }
 
-const toClient = (
-  data: ApiProjectQuery | null | undefined,
-): ProjectDto | null =>
-  data?.project_by_pk == null
-    ? null
-    : {
-        project: toProject(data.project_by_pk),
-        households: data.project_by_pk.households.map(({ household }) =>
-          toHousehold(household),
-        ),
-      };
+export interface Variables {
+  id: string;
+}
+
+const toClient = (data: ApiProjectQuery | Nullish): ProjectDto => {
+  const project = data?.project_by_pk;
+
+  return {
+    project: project
+      ? {
+          ...getProjectKeys(project),
+          ...getProjectDetail(project),
+        }
+      : undefined,
+    households:
+      project?.households.map(({ household }) => ({
+        ...getHouseholdKeys(household),
+        ...getHouseholdDetail(household),
+      })) ?? [],
+  };
+};
+
+export const mapVariables = (
+  variables: Variables,
+): ApiProjectQueryVariables => {
+  return {
+    id: variables.id,
+  };
+};
 
 export const useProjectQuery = (
-  options: Apollo.QueryHookOptions<ApiProjectQuery, ApiProjectQueryVariables>,
-) => useQuery(Document, { ...options, mapper: toClient });
+  options: QueryHookOptions<typeof toClient, typeof mapVariables>,
+) =>
+  useQuery<typeof toClient, typeof mapVariables>(ProjectDocument, {
+    ...options,
+    mapper: toClient,
+    mapVariables,
+  });

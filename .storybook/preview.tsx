@@ -1,15 +1,15 @@
-import 'dayjs/locale/fa';
-import '../libs/zod-addons/monkeyPatchZod';
+import { MockedProvider } from '@apollo/client/testing';
 import { Notifications } from '@mantine/notifications';
 import { Decorator, Parameters, Preview } from '@storybook/react';
 import {
-  createMemoryHistory,
   ReactLocation,
   Router,
+  createMemoryHistory,
 } from '@tanstack/react-location';
+import 'dayjs/locale/fa';
 import React from 'react';
 import { ThemeProvider } from '../libs/design';
-import { apolloMocks } from './apolloMocks';
+import '../libs/zod-addons/monkeyPatchZod';
 
 const parameters: Parameters = {
   actions: { argTypesRegex: '^on[A-Z].*' },
@@ -20,7 +20,7 @@ const parameters: Parameters = {
       date: /Date$/,
     },
   },
-  apolloClient: apolloMocks,
+  apolloClient: { MockedProvider },
 };
 
 const decorators: Decorator[] = [

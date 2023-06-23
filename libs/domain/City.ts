@@ -1,4 +1,3 @@
-export const City = { Tehran: 'tehran', Unknown: 'unknown' } as const;
-export const cities = Object.values(City);
+import { CityEnum } from './ApiSchema';
 
-export type City = (typeof City)[keyof typeof City];
+export const cities = Object.values(CityEnum);

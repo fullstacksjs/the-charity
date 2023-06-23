@@ -1,3 +1,4 @@
+import { projectMock } from '@camp/fixtures';
 import { messages } from '@camp/messages';
 import type { Meta, StoryObj } from '@storybook/react';
 
@@ -11,6 +12,11 @@ export default {
       meta: {
         breadcrumb: messages.projectDetail.title,
       },
+    },
+  },
+  parameters: {
+    apolloClient: {
+      mocks: [projectMock],
     },
   },
 } as Meta<typeof ProjectDetail>;

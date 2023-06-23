@@ -1,5 +1,4 @@
-import type { City } from './City';
-import type { Religion } from './Religions';
+import type { CityEnum, ReligionEnum } from './ApiSchema';
 import { Schema } from './Schema';
 
 export const memberSchema = {
@@ -21,7 +20,7 @@ export interface Member {
   fatherName?: string;
   nationalId?: string;
   nationality?: string;
-  religion?: Religion;
-  cityOfBirth?: City;
-  issuedAt?: City;
+  religion?: ReligionEnum;
+  cityOfBirth?: CityEnum;
+  issuedAt?: CityEnum;
 }

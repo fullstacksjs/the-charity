@@ -1,43 +1,46 @@
 import { gql } from '@apollo/client';
-import type { Project } from '@camp/domain';
-
+import type { MutationOptions } from '@camp/api-client';
+import { useMutation } from '@camp/api-client';
 import type {
   ApiCreateProjectMutation,
   ApiCreateProjectMutationVariables,
   ApiProjectListQuery,
-} from '../../api';
-import { ApiProjectListDocument } from '../../api';
-import type { MutationOptions } from '../../apiClient';
-import { useMutation } from '../../apiClient';
-import { toProjectStatus } from '../../mappers';
+} from '@camp/data-layer';
+import type { ProjectListItem } from '@camp/domain';
 
-const Document = gql`
+import {
+  getProjectKeys,
+  getProjectListItem,
+  ProjectKeysFragment,
+  ProjectListItemFragment,
+} from '../fragments';
+import { ProjectListDocument } from '../queries';
+
+export const CreateProjectDocument = gql`
   mutation CreateProject($input: project_insert_input!) {
     insert_project_one(object: $input) {
-      id
-      name
-      description
-      status
+      ...ProjectKeys
+      ...ProjectListItem
     }
   }
+  ${ProjectKeysFragment}
+  ${ProjectListItemFragment}
 `;
 
 export interface CreateProjectDto {
-  project: Project;
+  project: ProjectListItem | undefined;
 }
 
-const toClient = (
-  data: ApiCreateProjectMutation | null,
-): CreateProjectDto | null => {
-  if (data?.insert_project_one == null) return null;
+const toClient = (data: ApiCreateProjectMutation | null): CreateProjectDto => {
+  const project = data?.insert_project_one;
 
   return {
-    project: {
-      id: data.insert_project_one.id,
-      name: data.insert_project_one.name,
-      description: data.insert_project_one.description ?? undefined,
-      status: toProjectStatus(data.insert_project_one.status),
-    },
+    project: project
+      ? {
+          ...getProjectKeys(project),
+          ...getProjectListItem(project),
+        }
+      : undefined,
   };
 };
 
@@ -58,26 +61,32 @@ const toApiVariables = (
 export function useCreateProjectMutation(
   options?: MutationOptions<typeof toClient, typeof toApiVariables>,
 ) {
-  return useMutation<typeof toClient, typeof toApiVariables>(Document, {
-    ...options,
-    mapData: toClient,
-    mapVariables: toApiVariables,
-    update(cache, { data: project }) {
-      const newProject = project?.insert_project_one;
-      const prevProjects = cache.readQuery<ApiProjectListQuery>({
-        query: ApiProjectListDocument,
-      });
+  return useMutation<typeof toClient, typeof toApiVariables>(
+    CreateProjectDocument,
+    {
+      ...options,
+      toClient,
+      toApiVariables,
+      update(cache, { data }) {
+        const newProject = data?.insert_project_one;
+        if (!newProject) return;
 
-      if (prevProjects && newProject) {
+        const prevProjects = cache.readQuery<ApiProjectListQuery>({
+          query: ProjectListDocument,
+        });
+
+        const newNodes = [
+          ...(prevProjects?.project_aggregate.nodes ?? []),
+          newProject,
+        ];
+
         cache.writeQuery({
-          query: ApiProjectListDocument,
+          query: ProjectListDocument,
           data: {
-            project_aggregate: {
-              nodes: [...prevProjects.project_aggregate.nodes, newProject],
-            },
+            project_aggregate: { nodes: newNodes },
           },
         });
-      }
+      },
     },
-  });
+  );
 }

@@ -1,5 +1,5 @@
-import { DashboardCard } from '@camp/design';
-import type { Gender } from '@camp/domain';
+import { DashboardCard, DashboardTitle } from '@camp/design';
+import type { GenderEnum } from '@camp/domain';
 import {
   createResolver,
   genders,
@@ -48,7 +48,7 @@ interface FormSchema {
   surname: string;
   fatherName: string;
   nationalId: string;
-  gender: Gender;
+  gender: GenderEnum;
   nationality: string;
   religion: string;
 }
@@ -87,9 +87,7 @@ export const MemberForm = () => {
   return (
     <Stack spacing={25}>
       <Group position="apart">
-        <Title order={4} color="fgMuted" weight="bold">
-          {tt.title}
-        </Title>
+        <DashboardTitle>{tt.title}</DashboardTitle>
         <Button
           variant="outline"
           size="sm"

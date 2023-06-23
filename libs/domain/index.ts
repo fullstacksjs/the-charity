@@ -1,3 +1,4 @@
+export * from './ApiSchema';
 export * from './City';
 export * from './createResolver';
 export * from './Gender';

@@ -1,12 +1,8 @@
+import { HouseholdListFixture } from '@camp/fixtures';
 import { messages } from '@camp/messages';
 import type { Meta, StoryObj } from '@storybook/react';
 
-import { ApiHouseholdList } from '../../../.storybook/fixtures/ApiHouseholdList';
-import { HouseholdTableRow } from '../../../app/components/HouseholdList/HouseholdTableRow';
-import {
-  toInformationStatus,
-  toSeverityStatus,
-} from '../../data-layer/mappers';
+import { HouseholdTableRow } from '../../../app/pages/Dashboard/Households/HouseholdList/HouseholdTableRow';
 import { Table } from './Table';
 
 export default {
@@ -18,15 +14,16 @@ type Story = StoryObj<typeof Table>;
 export const Default: Story = {
   render: ({ ...args }) => <Table {...args} id="table" />,
   args: {
-    columns: messages.households.list.table.columns as unknown as string[],
-    rows: ApiHouseholdList.map((info, i) => (
+    columns: messages.households.list.table.columns,
+    rows: HouseholdListFixture.map((info, i) => (
       <HouseholdTableRow
         key={Object.values(info).join('-')}
         household={{
           id: info.id,
-          informationStatus: toInformationStatus(info.status),
-          severityStatus: toSeverityStatus(info.severity),
+          status: info.status,
+          severity: info.severity,
           name: info.name,
+          isCompleted: info.isCompleted,
         }}
         order={i + 1}
       />

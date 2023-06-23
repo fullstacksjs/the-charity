@@ -4,15 +4,17 @@ import { messages } from '@camp/messages';
 import type { Route } from '@camp/router';
 import { lazy, Navigate, ReactLocation, Router } from '@camp/router';
 
-import { HouseholdEmptyState, HouseholdList, ProjectList } from './components';
 import {
   DashboardLayout,
   HouseholdDetail,
-  Households,
+  HouseholdEmptyState,
+  HouseholdList,
+  HouseholdsLayout,
   Login,
-  Projects,
+  ProjectDetail,
+  ProjectList,
+  ProjectsLayout,
 } from './pages';
-import { ProjectDetail } from './pages/Dashboard/Projects/ProjectDetail';
 
 export const location = new ReactLocation();
 
@@ -42,7 +44,7 @@ const routes: Route[] = [
     children: [
       {
         path: '/households',
-        element: <Households />,
+        element: <HouseholdsLayout />,
         meta: { breadcrumb: messages.households.title },
         children: [
           {
@@ -59,7 +61,7 @@ const routes: Route[] = [
       },
       {
         path: '/projects',
-        element: <Projects />,
+        element: <ProjectsLayout />,
         meta: { breadcrumb: messages.projects.title },
         children: [
           { path: '/', element: <ProjectList /> },

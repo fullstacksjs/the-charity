@@ -1,40 +1,46 @@
 import { gql } from '@apollo/client';
-import type { Household } from '@camp/domain';
-
+import type { MutationOptions } from '@camp/api-client';
+import { useMutation } from '@camp/api-client';
 import type {
   ApiCreateHouseholdMutation,
   ApiCreateHouseholdMutationVariables,
   ApiHouseholdListQuery,
-} from '../../api';
-import { ApiHouseholdListDocument } from '../../api';
-import type { MutationOptions } from '../../apiClient/types';
-import { useMutation } from '../../apiClient/useMutation';
+} from '@camp/data-layer';
+import type { Household } from '@camp/domain';
+
+import {
+  getHouseholdKeys,
+  getHouseholdListItem,
+  HouseholdKeysFragment,
+  HouseholdListItemFragment,
+} from '../fragments';
+import { HouseholdListDocument } from '../queries';
 
 const Document = gql`
   mutation CreateHousehold($name: String!) {
     insert_household_one(object: { name: $name }) {
-      id
-      code
-      name
+      ...HouseholdKeys
+      ...HouseholdListItem
     }
   }
+  ${HouseholdKeysFragment}
+  ${HouseholdListItemFragment}
 `;
 
 export interface CreateHouseholdDto {
-  household: Pick<Household, 'code' | 'id' | 'name'>;
+  household: Pick<Household, 'id' | 'name'> | undefined;
 }
 
 const toClient = (
   data: ApiCreateHouseholdMutation | null,
-): CreateHouseholdDto | null => {
-  if (data?.insert_household_one?.code == null) return null;
-
+): CreateHouseholdDto => {
   return {
-    household: {
-      id: data.insert_household_one.id,
-      name: data.insert_household_one.name,
-      code: data.insert_household_one.code,
-    },
+    household: data?.insert_household_one
+      ? {
+          ...getHouseholdKeys(data.insert_household_one),
+          ...getHouseholdListItem(data.insert_household_one),
+        }
+      : undefined,
   };
 };
 
@@ -53,23 +59,25 @@ export function useCreateHouseholdMutation(
 ) {
   return useMutation<typeof toClient, typeof toApiVariables>(Document, {
     ...options,
-    mapData: toClient,
-    mapVariables: toApiVariables,
+    toClient,
+    toApiVariables,
     update(cache, result, opts) {
-      const { data: households } = result;
-      const newHouseholds = households?.insert_household_one;
+      const newHouseholds = result.data?.insert_household_one;
+      if (!newHouseholds) return;
+
       const prevHouseholdsQuery = cache.readQuery<ApiHouseholdListQuery>({
-        query: ApiHouseholdListDocument,
+        query: HouseholdListDocument,
       });
 
-      if (prevHouseholdsQuery && newHouseholds) {
-        cache.writeQuery({
-          query: ApiHouseholdListDocument,
-          data: {
-            household: [...prevHouseholdsQuery.household, newHouseholds],
-          },
-        });
-      }
+      const newHousehold = [
+        ...(prevHouseholdsQuery?.household ?? []),
+        newHouseholds,
+      ];
+
+      cache.writeQuery<ApiHouseholdListQuery>({
+        query: HouseholdListDocument,
+        data: { household: newHousehold },
+      });
 
       return options?.update?.(cache, result, opts);
     },

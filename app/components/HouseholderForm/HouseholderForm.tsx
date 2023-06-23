@@ -2,15 +2,16 @@ import { useUpsertHouseholderMutation } from '@camp/data-layer';
 import {
   ControlledDateInput,
   ControlledSelect,
+  DashboardTitle,
   showNotification,
   TextInput,
 } from '@camp/design';
 import type {
-  City,
-  Gender,
-  Householder,
-  Nationality,
-  Religion,
+  CityEnum,
+  GenderEnum,
+  HouseholderIdentity,
+  NationalityEnum,
+  ReligionEnum,
 } from '@camp/domain';
 import {
   cities,
@@ -24,21 +25,14 @@ import { CheckIcon, EditIcon } from '@camp/icons';
 import { messages } from '@camp/messages';
 import { createTestAttr } from '@camp/test';
 import { isNull } from '@fullstacksjs/toolbox';
-import {
-  Button,
-  createStyles,
-  Group,
-  SimpleGrid,
-  Stack,
-  Title,
-} from '@mantine/core';
+import { Button, createStyles, Group, SimpleGrid, Stack } from '@mantine/core';
 import { useBoolean } from 'ahooks';
 import { useForm } from 'react-hook-form';
 
 import { householderFormIds as ids } from './HouseholderForm.ids';
 
 interface Props {
-  initialHouseholder?: Householder;
+  initialHouseholder?: HouseholderIdentity;
   householdId: string;
 }
 
@@ -48,10 +42,10 @@ interface FormSchema {
   fatherName: string | undefined;
   nationalId: string | undefined;
   dob: Date | null;
-  gender: Gender | undefined;
-  nationality: Nationality | undefined;
-  religion: Religion | undefined;
-  cityOfBirth: City | undefined;
+  gender: GenderEnum | undefined;
+  nationality: NationalityEnum | undefined;
+  religion: ReligionEnum | undefined;
+  cityOfBirth: CityEnum | undefined;
 }
 
 const resolver = createResolver<FormSchema>({
@@ -91,7 +85,7 @@ export const HouseholderForm = ({ initialHouseholder, householdId }: Props) => {
     mode: 'onChange',
   });
 
-  const isCompleted = initialHouseholder?.status === 'completed';
+  const isCompleted = initialHouseholder?.isCompleted;
 
   const [isEditing, { set: setIsEditing }] = useBoolean(!isCompleted);
 
@@ -106,12 +100,12 @@ export const HouseholderForm = ({ initialHouseholder, householdId }: Props) => {
       });
 
       if (!isNull(data)) {
-        reset({ ...data.householder, dob: data.householder.dob ?? null });
-        setIsEditing(data.householder.status !== 'completed');
+        reset({ ...data.householder, dob: data.householder?.dob ?? null });
+        setIsEditing(!data.householder?.isCompleted);
       }
       showNotification({
         title: t.title,
-        message: t.notification.successfulUpdate(data?.householder.name ?? ''),
+        message: t.notification.successfulUpdate(data?.householder?.name ?? ''),
         type: 'success',
         ...createTestAttr(ids.notification.success),
       });
@@ -134,9 +128,7 @@ export const HouseholderForm = ({ initialHouseholder, householdId }: Props) => {
     <form onSubmit={onSubmit} {...createTestAttr(ids.form)}>
       <Stack spacing={25}>
         <Group position="apart" mih="100%">
-          <Title order={4} color="fgMuted" weight="bold">
-            {t.title}
-          </Title>
+          <DashboardTitle>{t.title}</DashboardTitle>
           <Group spacing={20}>
             {isEditing ? (
               <>
