@@ -8,7 +8,6 @@ import {
 } from '@mantine/core';
 import { ModalsProvider } from '@mantine/modals';
 import { Notifications } from '@mantine/notifications';
-import { useEffect } from 'react';
 
 const useStyles = createStyles(theme => ({
   body: {
