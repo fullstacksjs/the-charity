@@ -9,7 +9,7 @@ import { AppRoute, useNavigate } from '@camp/router';
 import { Group } from '@mantine/core';
 
 import { ProjectActionButton } from '../ProjectActionButton';
-import { ProjectStatusBadge } from '../ProjectBadge';
+import { ProjectStatusBadge } from '../ProjectStatusBadge';
 import * as ids from './ProjectTableRow.ids';
 
 interface Props {
