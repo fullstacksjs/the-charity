@@ -35,14 +35,18 @@ export const ProjectTableRow = ({ project, order }: Props) => {
   return (
     <tr style={{ cursor: 'pointer' }} onClick={gotoDetail}>
       <td>{order}</td>
+      <td>{name}</td>
       <td>
-        <Group position="apart" spacing={90}>
-          {name}
-          <SmallText>{projectSummery.description}</SmallText>
-          <DateSummery
-            startDate={projectSummery.startDate!}
-            endDate={projectSummery.endDate}
-          />
+        <SmallText>{projectSummery.description}</SmallText>
+      </td>
+      <td>
+        <DateSummery
+          startDate={projectSummery.startDate!}
+          endDate={projectSummery.endDate}
+        />
+      </td>
+      <td>
+        <Group position="apart">
           <ProjectStatusBadge status={projectSummery.status} />
           <ProjectActionButton
             menuButtonId={ids.projectTableMenuButtonId}
