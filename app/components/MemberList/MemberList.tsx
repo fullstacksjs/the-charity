@@ -61,7 +61,7 @@ export const MemberList = ({ householdId }: Props) => {
       {newMembers.map(({ id }) => (
         <MemberForm
           onSuccess={() => {
-            // REMOVE THAT ITEM
+            setNewMembers(arr => arr.filter(item => item.id !== id));
           }}
           householdId={householdId}
           key={id}
