@@ -1,52 +1,70 @@
-import type * as Apollo from '@apollo/client';
 import { gql } from '@apollo/client';
+import type { QueryHookOptions } from '@camp/api-client';
+import { useQuery } from '@camp/api-client';
 import type { Member } from '@camp/domain';
+import type { Nullish } from '@fullstacksjs/toolbox';
 
 import type {
   ApiMemberListQuery,
   ApiMemberListQueryVariables,
-} from '../../api';
-import { useQuery } from '../../apiClient';
-import { toMember } from '../../mappers';
+} from '../../ApiOperations';
+import { HouseholdDetailFragment, HouseholdKeysFragment } from '../fragments';
+import {
+  MemberKeysFragment,
+  MemberListItemFragment,
+} from '../fragments/member.fragments';
+import { getMemberKeys, getMemberListItem } from '../fragments/member.mapper';
 
-const Document = gql`
+export const MemberListDocument = gql`
   query MemberList($household_id: uuid!) {
     member(
       where: { household_id: { _eq: $household_id } }
       order_by: { created_at: asc }
     ) {
-      dob
-      father_name
-      gender
-      name
-      national_id
-      nationality
-      religion
-      surname
-      id
-      household_id
-      father_name
-      gender
-      status
+      ...MemberKeys
+      ...MemberListItem
+      household {
+        ...HouseholdKeys
+        ...HouseholdDetail
+      }
     }
   }
+  ${MemberKeysFragment}
+  ${MemberListItemFragment}
+  ${HouseholdKeysFragment}
+  ${HouseholdDetailFragment}
 `;
 
 export interface MemberList {
   members: Member[];
 }
 
-const toClient = (
-  data: ApiMemberListQuery | null | undefined,
-): MemberList | null => {
+const toClient = (data: ApiMemberListQuery | Nullish) => {
   const members = data?.member;
   if (members == null) return null;
-  return { members: members.map(m => toMember(m)) };
+  return {
+    members: members.filter(Boolean).map(d => ({
+      ...getMemberKeys(d),
+      ...getMemberListItem(d),
+    })),
+  };
+};
+
+interface Variables {
+  id: string;
+}
+
+const mapVariables = (variables: Variables): ApiMemberListQueryVariables => {
+  return {
+    household_id: variables.id,
+  };
 };
 
 export const useMemberListQuery = (
-  options: Apollo.QueryHookOptions<
-    ApiMemberListQuery,
-    ApiMemberListQueryVariables
-  >,
-) => useQuery(Document, { ...options, mapper: toClient });
+  options: QueryHookOptions<typeof toClient, typeof mapVariables>,
+) =>
+  useQuery<typeof toClient, typeof mapVariables>(MemberListDocument, {
+    ...options,
+    mapper: toClient,
+    mapVariables,
+  });

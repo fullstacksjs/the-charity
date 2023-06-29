@@ -1,4 +1,9 @@
-import type { CityEnum, GenderEnum, NationalityEnum, ReligionEnum } from './ApiSchema';
+import type {
+  CityEnum,
+  GenderEnum,
+  NationalityEnum,
+  ReligionEnum,
+} from './ApiSchema';
 import { Schema } from './Schema';
 
 export const memberSchema = {
@@ -12,24 +17,18 @@ export const memberSchema = {
   religion: () => Schema.religion().optionalString(),
 };
 
-export type MemberStatus = 'completed' | 'draft';
+export enum MemberStatus {
+  Completed = 'Completed',
+  Draft = 'Draft',
+}
 
-interface CompletedMember {
-  name: string;
-  status: 'completed';
-  id: string;
-  surname: string;
-  fatherName: string;
-  nationalId: string;
-  dob: Date;
-  nationality: NationalityEnum;
-  religion: ReligionEnum;
-  gender: GenderEnum;
+export interface CompletedMember extends Omit<Required<DraftMember>, 'status'> {
+  status: MemberStatus.Completed;
 }
 
 interface DraftMember {
   name: string;
-  status: 'draft';
+  status: MemberStatus.Draft;
   id: string;
   surname?: string;
   gender?: GenderEnum;
@@ -39,6 +38,24 @@ interface DraftMember {
   religion?: ReligionEnum;
   cityOfBirth?: CityEnum;
   issuedAt?: CityEnum;
+  dob?: Date;
+  isCompleted: boolean;
 }
 
 export type Member = CompletedMember | DraftMember;
+
+export type MemberKeys = Pick<Member, 'id'>;
+
+export type MemberListItem = Pick<
+  Member,
+  | 'dob'
+  | 'fatherName'
+  | 'gender'
+  | 'isCompleted'
+  | 'name'
+  | 'nationalId'
+  | 'nationality'
+  | 'religion'
+  | 'status'
+  | 'surname'
+>;

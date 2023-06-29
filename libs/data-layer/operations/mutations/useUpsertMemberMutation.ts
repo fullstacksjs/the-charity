@@ -1,21 +1,25 @@
 import { gql } from '@apollo/client';
-import type { Gender, Member, Nationality, Religion } from '@camp/domain';
+import type { MutationOptions } from '@camp/api-client';
+import { useMutation } from '@camp/api-client';
+import type {
+  GenderEnum,
+  Member,
+  NationalityEnum,
+  ReligionEnum,
+} from '@camp/domain';
 
 import type {
   ApiMemberListQuery,
   ApiUpsertMemberMutation,
   ApiUpsertMemberMutationVariables,
-} from '../../api';
-import { ApiMemberListDocument } from '../../api';
-import type { MutationOptions } from '../../apiClient';
-import { useMutation } from '../../apiClient';
+} from '../../ApiOperations';
+import { HouseholdDetailFragment, HouseholdKeysFragment } from '../fragments';
 import {
-  toApiDate,
-  toApiGender,
-  toApiNationality,
-  toApiReligion,
-  toMember,
-} from '../../mappers';
+  MemberKeysFragment,
+  MemberListItemFragment,
+} from '../fragments/member.fragments';
+import { getMemberKeys, getMemberListItem } from '../fragments/member.mapper';
+import { MemberListDocument } from '../queries';
 
 const Document = gql`
   mutation UpsertMember($input: member_insert_input!) {
@@ -35,31 +39,34 @@ const Document = gql`
         ]
       }
     ) {
-      id
-      gender
-      father_name
-      name
-      nationality
-      religion
-      national_id
-      surname
-      dob
-      status
-      household_id
+      ...MemberKeys
+      ...MemberListItem
+      household {
+        ...HouseholdKeys
+        ...HouseholdDetail
+      }
     }
   }
+  ${MemberKeysFragment}
+  ${MemberListItemFragment}
+  ${HouseholdKeysFragment}
+  ${HouseholdDetailFragment}
 `;
 
 export interface InsertMember {
-  member: Member;
+  member: Member | undefined;
 }
 
-const toClient = (
-  data: ApiUpsertMemberMutation | null | undefined,
-): InsertMember | null => {
+const toClient = (data: ApiUpsertMemberMutation | null): InsertMember => {
   const member = data?.insert_member_one;
-  if (member == null) return null;
-  return { member: toMember(member) };
+  return {
+    member: member
+      ? {
+          ...getMemberKeys(member),
+          ...(getMemberListItem(member) as Member),
+        }
+      : undefined,
+  };
 };
 
 interface Variables {
@@ -70,9 +77,9 @@ interface Variables {
   fatherName?: string;
   nationalId?: string;
   dob?: Date | null;
-  nationality?: Nationality;
-  religion?: Religion;
-  gender?: Gender;
+  nationality?: NationalityEnum;
+  religion?: ReligionEnum;
+  gender?: GenderEnum;
 }
 
 const toApiVariables = (
@@ -85,17 +92,10 @@ const toApiVariables = (
     household_id: variables.householdId,
     father_name: variables.fatherName,
     national_id: variables.nationalId,
-    religion:
-      variables.religion == null
-        ? undefined
-        : toApiReligion(variables.religion),
-    nationality:
-      variables.nationality == null
-        ? undefined
-        : toApiNationality(variables.nationality),
-    gender:
-      variables.gender == null ? undefined : toApiGender(variables.gender),
-    dob: variables.dob == null ? undefined : toApiDate(variables.dob),
+    religion: variables.religion,
+    nationality: variables.nationality,
+    gender: variables.gender,
+    dob: variables.dob?.toISOString(),
   },
 });
 
@@ -104,22 +104,22 @@ export const useUpsertMemberMutation = (
 ) => {
   return useMutation<typeof toClient, typeof toApiVariables>(Document, {
     ...options,
-    mapData: toClient,
-    mapVariables: toApiVariables,
-    update(cache, { data: member }, { variables }) {
-      const newMember = member?.insert_member_one;
+    toClient,
+    toApiVariables,
+    update(cache, { data }, { variables }) {
+      const newMember = data?.insert_member_one;
 
       if (newMember) {
         const householdId = variables?.input.household_id;
         const memberListData = cache.readQuery<ApiMemberListQuery>({
-          query: ApiMemberListDocument,
+          query: MemberListDocument,
           variables: { household_id: householdId },
         });
 
         const newMembers = [...(memberListData?.member ?? []), newMember];
 
         cache.writeQuery<ApiMemberListQuery>({
-          query: ApiMemberListDocument,
+          query: MemberListDocument,
           variables: { household_id: householdId },
           data: {
             member: newMembers,

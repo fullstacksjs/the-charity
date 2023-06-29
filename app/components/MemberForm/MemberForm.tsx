@@ -7,7 +7,12 @@ import {
   showNotification,
   TextInput,
 } from '@camp/design';
-import type { GenderEnum, Member } from '@camp/domain';
+import type {
+  GenderEnum,
+  MemberListItem,
+  NationalityEnum,
+  ReligionEnum,
+} from '@camp/domain';
 import {
   createResolver,
   genders,
@@ -18,7 +23,6 @@ import {
 import { ArrowDownIcon, CheckIcon, EditIcon } from '@camp/icons';
 import { messages } from '@camp/messages';
 import { createTestAttr } from '@camp/test';
-import { isNull } from '@fullstacksjs/toolbox';
 import {
   ActionIcon,
   Button,
@@ -52,12 +56,13 @@ const useStyles = createStyles(theme => ({
 
 interface FormSchema {
   name: string;
-  surname: string;
-  fatherName: string;
-  nationalId: string;
-  gender: GenderEnum;
-  nationality: string;
-  religion: string;
+  surname: string | undefined;
+  fatherName: string | undefined;
+  nationalId: string | undefined;
+  dob: Date | null;
+  gender: GenderEnum | undefined;
+  nationality: NationalityEnum | undefined;
+  religion: ReligionEnum | undefined;
 }
 
 const resolver = createResolver<FormSchema>({
@@ -75,7 +80,7 @@ const t = messages.member;
 const tt = t.createForm;
 
 interface Props {
-  initialMember?: Member;
+  initialMember?: MemberListItem;
   householdId: string;
   memberId?: string;
   onSuccess?: VoidFunction;
@@ -107,7 +112,6 @@ export const MemberForm = ({
     mode: 'onChange',
   });
   const [name, surname] = watch(['name', 'surname']);
-  const isNewMember = isNull(memberId);
 
   const onSubmit = handleSubmit(async values => {
     try {
@@ -121,7 +125,7 @@ export const MemberForm = ({
       toggleEditableMode();
       showNotification({
         title: t.title,
-        message: t.notification.successful(data?.member.name ?? ''),
+        message: t.notification.successful(data?.member?.name ?? ''),
         type: 'success',
         ...createTestAttr(ids.notification.success),
       });

@@ -16,7 +16,7 @@ const t = messages.member;
 export const MemberList = ({ householdId }: Props) => {
   const [newMembers, setNewMembers] = useState<{ id: number }[]>([]);
   const { data, error, loading } = useMemberListQuery({
-    variables: { household_id: householdId },
+    variables: { id: householdId },
   });
   const member = data?.members;
   const isMemberEmpty = member?.length === 0 && newMembers.length === 0;

@@ -21,7 +21,7 @@ import {
   nationalities,
   religions,
 } from '@camp/domain';
-import { CheckIcon, EditIcon } from '@camp/icons';
+import { CheckIcon } from '@camp/icons';
 import { messages } from '@camp/messages';
 import { createTestAttr } from '@camp/test';
 import { isNull } from '@fullstacksjs/toolbox';
