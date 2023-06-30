@@ -116,7 +116,10 @@ export const useUpsertMemberMutation = (
           variables: { household_id: householdId },
         });
 
-        const newMembers = [...(memberListData?.member ?? []), newMember];
+        const newMembers = [
+          ...(memberListData?.member ?? []).filter(m => m.id !== newMember.id),
+          newMember,
+        ];
 
         cache.writeQuery<ApiMemberListQuery>({
           query: MemberListDocument,
