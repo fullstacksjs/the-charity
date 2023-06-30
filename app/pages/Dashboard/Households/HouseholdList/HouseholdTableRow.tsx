@@ -19,7 +19,7 @@ interface Props {
   household: HouseholderKeys & HouseholdListItem;
 }
 
-const t = messages.households.list.delete.modal;
+const t = messages.notification.family;
 
 export const HouseholdTableRow = ({ order, household }: Props) => {
   const navigate = useNavigate();
@@ -34,18 +34,18 @@ export const HouseholdTableRow = ({ order, household }: Props) => {
     try {
       const { data } = await deleteHousehold({ variables: { id } });
 
-      if (isNull(data)) throw Error('Assert: data is null');
+      if (isNull(data.household)) throw Error('Assert: data is null');
       showNotification({
-        title: t.notification.title,
-        message: t.notification.success(data.household.name),
+        title: t.delete.title,
+        message: t.delete.success(data.household.name),
         type: 'success',
         ...createTestAttr(ids.notifications.delete.success),
       });
     } catch (err) {
       debug.error(err);
       showNotification({
-        title: t.notification.title,
-        message: t.notification.failed(name),
+        title: t.delete.title,
+        message: t.delete.failed(name),
         type: 'failure',
         ...createTestAttr(ids.notifications.delete.failure),
       });

@@ -1,3 +1,4 @@
+export * from './useCompleteHousehold';
 export * from './useCreateHouseholdMutation';
 export * from './useCreateProjectMutation';
 export * from './useDeleteHouseholdMutation';

@@ -2,8 +2,8 @@ import { gql } from '@apollo/client';
 import type { MutationOptions } from '@camp/api-client';
 import { useMutation } from '@camp/api-client';
 import type {
-  ApiCreateHouseholdMutation,
-  ApiCreateHouseholdMutationVariables,
+  ApiCompleteHouseholdMutation,
+  ApiCompleteHouseholdMutationVariables,
   ApiHouseholdListQuery,
 } from '@camp/data-layer';
 import type { HouseholdKeys, HouseholdListItem } from '@camp/domain';
@@ -17,8 +17,11 @@ import {
 import { HouseholdListDocument } from '../queries';
 
 const Document = gql`
-  mutation CreateHousehold($name: String!) {
-    insert_household_one(object: { name: $name }) {
+  mutation CompleteHousehold($id: uuid!) {
+    update_household_by_pk(
+      pk_columns: { id: $id }
+      _set: { status: Completed }
+    ) {
       ...HouseholdKeys
       ...HouseholdListItem
     }
@@ -27,34 +30,35 @@ const Document = gql`
   ${HouseholdListItemFragment}
 `;
 
-export interface CreateHouseholdDto {
+export interface CompleteHouseholdDto {
   household: (HouseholdKeys & HouseholdListItem) | undefined;
 }
 
 const toClient = (
-  data: ApiCreateHouseholdMutation | null,
-): CreateHouseholdDto => {
+  data: ApiCompleteHouseholdMutation | null,
+): CompleteHouseholdDto => {
+  const household = data?.update_household_by_pk;
   return {
-    household: data?.insert_household_one
+    household: household
       ? {
-          ...getHouseholdKeys(data.insert_household_one),
-          ...getHouseholdListItem(data.insert_household_one),
+          ...getHouseholdKeys(household),
+          ...getHouseholdListItem(household),
         }
       : undefined,
   };
 };
 
 interface Variables {
-  name: string;
+  id: string;
 }
 
 const toApiVariables = (
   variables: Variables,
-): ApiCreateHouseholdMutationVariables => ({
-  name: variables.name,
+): ApiCompleteHouseholdMutationVariables => ({
+  id: variables.id,
 });
 
-export function useCreateHouseholdMutation(
+export function useCompleteHouseholdMutation(
   options?: MutationOptions<typeof toClient, typeof toApiVariables>,
 ) {
   return useMutation<typeof toClient, typeof toApiVariables>(Document, {
@@ -62,7 +66,7 @@ export function useCreateHouseholdMutation(
     toClient,
     toApiVariables,
     update(cache, result, opts) {
-      const newHouseholds = result.data?.insert_household_one;
+      const newHouseholds = result.data?.update_household_by_pk;
       if (!newHouseholds) return;
 
       const prevHouseholdsQuery = cache.readQuery<ApiHouseholdListQuery>({

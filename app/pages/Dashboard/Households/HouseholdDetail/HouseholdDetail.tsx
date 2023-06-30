@@ -1,4 +1,5 @@
 import {
+  useCompleteHouseholdMutation,
   useDeleteHouseholdMutation,
   useHouseholderQuery,
   useHouseholdQuery,
@@ -10,11 +11,11 @@ import {
   showNotification,
   Tabs,
 } from '@camp/design';
-import { TrashIcon } from '@camp/icons';
+import { ArrowUpIcon, TrashIcon } from '@camp/icons';
 import { errorMessages, messages } from '@camp/messages';
 import { AppRoute, useNavigate, useParams } from '@camp/router';
 import { isNull } from '@fullstacksjs/toolbox';
-import { Button, Title } from '@mantine/core';
+import { Button, Flex, Title } from '@mantine/core';
 
 import {
   HouseholderDetail,
@@ -27,7 +28,7 @@ import { householdDetailIds as ids } from './HouseholdDetail.ids';
 
 export const HouseholdDetail = () => {
   const t = messages.householdDetail;
-  const tModal = messages.households.list.delete.modal;
+  const tNotification = messages.notification.family;
   const householdId = useParams();
   const navigate = useNavigate();
   const {
@@ -38,6 +39,7 @@ export const HouseholdDetail = () => {
     variables: { id: householdId },
   });
   const [deleteHousehold] = useDeleteHouseholdMutation();
+  const [completeHousehold] = useCompleteHouseholdMutation();
 
   const household = householdData?.household;
   const { data: householderData } = useHouseholderQuery({
@@ -60,19 +62,22 @@ export const HouseholdDetail = () => {
 
   const onDeleteHousehold = async () => {
     try {
-      await deleteHousehold({ variables: { id: household.id } });
+      const { data } = await deleteHousehold({
+        variables: { id: household.id },
+      });
 
+      if (isNull(data.household)) throw Error('Assert: data is null');
       showNotification({
-        title: tModal.notification.title,
-        message: tModal.notification.success(household.name),
+        title: tNotification.delete.title,
+        message: tNotification.delete.success(household.name),
         type: 'success',
       });
       navigate({ to: AppRoute.dashboard });
     } catch (err) {
       debug.error(err);
       showNotification({
-        title: tModal.notification.title,
-        message: tModal.notification.failed(household.name),
+        title: tNotification.delete.title,
+        message: tNotification.delete.failed(household.name),
         type: 'failure',
       });
     }
@@ -82,6 +87,24 @@ export const HouseholdDetail = () => {
     openDeleteHouseholdModal({ name: household.name, onDeleteHousehold });
   };
 
+  const handleCompleteHousehold = async () => {
+    try {
+      await completeHousehold({ variables: { id: household.id } });
+      showNotification({
+        title: tNotification.complete.title,
+        message: tNotification.complete.success(household.name),
+        type: 'success',
+      });
+    } catch (err) {
+      debug.error(err);
+      showNotification({
+        title: tNotification.complete.title,
+        message: tNotification.complete.failed(household.name),
+        type: 'failure',
+      });
+    }
+  };
+
   return (
     <>
       <DetailCard
@@ -89,16 +112,25 @@ export const HouseholdDetail = () => {
         id={household.code}
         px={0}
         left={
-          <Button
-            variant="outline"
-            color="red"
-            leftIcon={<TrashIcon width="18" height="18" />}
-            px="lg"
-            py="8px"
-            onClick={handleDeleteHousehold}
-          >
-            {t.delete}
-          </Button>
+          <Flex gap={20}>
+            <Button
+              variant="outline"
+              color="red"
+              leftIcon={<TrashIcon />}
+              onClick={handleDeleteHousehold}
+            >
+              {t.delete}
+            </Button>
+            {!household.isCompleted && (
+              <Button
+                leftIcon={<ArrowUpIcon />}
+                onClick={handleCompleteHousehold}
+                disabled={!householder?.isCompleted}
+              >
+                {t.complete}
+              </Button>
+            )}
+          </Flex>
         }
       >
         <DetailCard.Section>

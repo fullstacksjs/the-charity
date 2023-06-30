@@ -23,6 +23,13 @@ export type ApiProjectDetailFragment = { __typename?: 'project', name: string, d
 
 export type ApiProjectListItemFragment = { __typename?: 'project', name: string, status: SchemaTypes.ProjectStatusEnum, created_at: string, updated_at: string };
 
+export type ApiCompleteHouseholdMutationVariables = SchemaTypes.Exact<{
+  id: SchemaTypes.Scalars['uuid']['input'];
+}>;
+
+
+export type ApiCompleteHouseholdMutation = { __typename?: 'mutation_root', update_household_by_pk?: { __typename?: 'household', id: string, name: string, severity: SchemaTypes.HouseholdSeverityEnum, status: SchemaTypes.HouseholdStatusEnum } | null };
+
 export type ApiCreateHouseholdMutationVariables = SchemaTypes.Exact<{
   name: SchemaTypes.Scalars['String']['input'];
 }>;

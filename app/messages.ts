@@ -7,6 +7,22 @@ export const errorMessages: Record<ServerError, string> = {
 };
 
 export const messages = {
+  notification: {
+    family: {
+      delete: {
+        title: 'حذف خانواده',
+        success: (name: string) => `خانوار “${name}” با موفقیت حذف شد.`,
+        failed: (name: string) =>
+          `مشکلی در مرحله حذف خانوار "${name}" به وجود آمده است. لطفا دوباره تلاش کنید.`,
+      },
+      complete: {
+        title: 'تکمیل خانوار',
+        success: (name: string) => `خانوار “${name}” با موفقیت کامل شد.`,
+        failed: (name: string) =>
+          `مشکلی در تکمیل خانوار "${name}" به وجود آمده است. لطفا دوباره تلاش کنید.`,
+      },
+    },
+  },
   date: {
     format: (date: Date) => new Intl.DateTimeFormat('fa-IR').format(date),
   },
@@ -82,12 +98,6 @@ export const messages = {
       title: 'لیست خانوارها',
       delete: {
         modal: {
-          notification: {
-            title: 'حذف خانواده',
-            success: (name: string) => `خانوار “${name}” با موفقیت حذف شد.`,
-            failed: (name: string) =>
-              `مشکلی در مرحله حذف خانوار "${name}" به وجود آمده است. لطفا دوباره تلاش کنید.`,
-          },
           title: 'حذف',
           children: (name: string) =>
             `آیا از حذف خانواده "${name}" مطمئن هستید؟`,
@@ -294,6 +304,8 @@ export const messages = {
     title: 'اطلاعات کلی خانواده',
     notFound: 'خانواده مورد نظر یافت نشد',
     delete: 'حذف کردن',
+    edit: 'ویرایش',
+    complete: 'تکمیل',
     tabs: {
       householderTitle: 'سرپرست',
       membersTitle: 'اعضا',

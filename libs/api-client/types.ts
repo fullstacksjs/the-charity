@@ -1,4 +1,5 @@
 import type * as Apollo from '@apollo/client';
+import type { ExecutionResult, GraphQLError } from 'graphql';
 
 export type MapperFn<X = any, Y = any> = (x: X) => Y;
 
@@ -23,6 +24,69 @@ export type QueryOptions<
     : TVariableMapper,
   Parameters<TClientMapper>[0]
 >;
+
+export interface SingleExecutionResult<
+  TData = Record<string, any>,
+  TContext = Apollo.DefaultContext,
+  TExtensions = Record<string, any>,
+> extends ExecutionResult<TData, TExtensions> {
+  data: TData;
+  context?: TContext;
+}
+
+export interface ExecutionPatchInitialResult<
+  TData = Record<string, any>,
+  TExtensions = Record<string, any>,
+> {
+  data: TData;
+  incremental?: never;
+  errors?: readonly GraphQLError[];
+  extensions?: TExtensions;
+  hasNext?: boolean;
+}
+
+export interface ExecutionPatchIncrementalResult<
+  TData = Record<string, any>,
+  TExtensions = Record<string, any>,
+> {
+  incremental?: Apollo.IncrementalPayload<TData, TExtensions>[];
+  data: never;
+  errors?: never;
+  extensions?: never;
+  hasNext?: boolean;
+}
+
+export type ExecutionPatchResult<
+  TData = Record<string, any>,
+  TExtensions = Record<string, any>,
+> =
+  | ExecutionPatchIncrementalResult<TData, TExtensions>
+  | ExecutionPatchInitialResult<TData, TExtensions>;
+
+export type FetchResult<
+  TData = Record<string, any>,
+  TContext = Record<string, any>,
+  TExtensions = Record<string, any>,
+> =
+  | ExecutionPatchResult<TData, TExtensions>
+  | SingleExecutionResult<TData, TContext, TExtensions>;
+
+export type MutationTuple<
+  TData,
+  TVariables,
+  TContext = Apollo.DefaultContext,
+  TCache extends Apollo.ApolloCache<any> = Apollo.ApolloCache<any>,
+> = [
+  (
+    options?: Apollo.MutationFunctionOptions<
+      TData,
+      TVariables,
+      TContext,
+      TCache
+    >,
+  ) => Promise<FetchResult<TData>>,
+  Apollo.MutationResult<TData>,
+];
 
 export type MutationFn<
   TClientMapper extends MapperFn,

@@ -39,7 +39,7 @@ export const DashboardLayout = ({ children = outlet }) => {
           </MediaQuery>
         }
       >
-        <Stack sx={{ gap: '40px' }}>{children}</Stack>
+        <Stack sx={{ gap: '40px', minHeight: '100%' }}>{children}</Stack>
         <Notifications limit={3} />
       </MantineAppShell>
     </ModalsProvider>
