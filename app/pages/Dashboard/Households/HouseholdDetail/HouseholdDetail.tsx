@@ -120,7 +120,7 @@ export const HouseholdDetail = () => {
         tabs={[
           {
             tab: <Title order={5}>{t.tabs.householderTitle}</Title>,
-            panel: <HouseholderDetail householdId={household.id} />,
+            panel: <HouseholderDetail household={household} />,
             id: ids.householderTab,
             isBusy: !householder?.isCompleted,
             isDefault: true,

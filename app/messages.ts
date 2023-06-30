@@ -57,11 +57,11 @@ export const messages = {
         text: 'ایجاد خانواده',
       },
       notification: {
-        failure: (name: string) =>
-          `مشکلی در مرحله ایجاد خانواری با نام “${name}” به وجود آمده است. لطفا دوباره تلاش کنید.`,
+        failure: () =>
+          `مشکلی در ایجاد خانوار به وجود آمد.`,
 
         success: (name: string) =>
-          `خانواری با نام “${name}” با موفقیت ایجاد شده است.`,
+          `خانوار "${name}" با موفقیت ایجاد شد.`,
       },
     },
     informationStatus: {
@@ -157,9 +157,9 @@ export const messages = {
       undoBtn: 'لغو',
       notification: {
         successfulUpdate: (name: string) =>
-          `سرپرستی ای با نام "${name}" .با موفقیت آپدیت شد`,
+          `خانوار "${name}" با موفقیت بروز رسانی شد `,
         failedUpdate: (name: string) =>
-          `مشکلی در مرحله آپدیت سرپرستی ای با نام "${name}" .به وجود آمده است. لطفا دوباره تلاش کنید`,
+          `مشکلی در به روزرسانی اطلاعات خانوار "${name}" .به وجود آمده است. لطفا دوباره تلاش کنید`,
       },
       submitBtn: 'ثبت',
       selectInputs: {

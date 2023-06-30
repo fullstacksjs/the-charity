@@ -54,7 +54,7 @@ export const CreateHouseholdForm = ({ dismiss }: Props) => {
       .catch(() =>
         showNotification({
           title: messages.households.create,
-          message: notification.failure(name),
+          message: notification.failure(),
           type: 'failure',
           ...createTestAttr(ids.notification.failure),
         }),

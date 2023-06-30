@@ -2,15 +2,16 @@ import { useHouseholderQuery } from '@camp/data-layer';
 import { debug, DebugScopes } from '@camp/debug';
 import { FullPageLoader } from '@camp/design';
 
+import type { HouseholdDetail, HouseholdKeys } from '../../../libs/domain/Household';
 import { HouseholderForm } from '../HouseholderForm';
 
 interface Props {
-  householdId: string;
+  household: HouseholdDetail & HouseholdKeys
 }
 
-export const HouseholderDetail = ({ householdId }: Props) => {
+export const HouseholderDetail = ({ household }: Props) => {
   const { data, loading } = useHouseholderQuery({
-    variables: { id: householdId },
+    variables: { id: household.id },
   });
 
   const householder = data?.householder;
@@ -20,8 +21,9 @@ export const HouseholderDetail = ({ householdId }: Props) => {
 
   return (
     <HouseholderForm
-      householdId={householdId}
+      householdId={household.id}
       initialHouseholder={householder}
+      householdName={household.name}
     />
   );
 };

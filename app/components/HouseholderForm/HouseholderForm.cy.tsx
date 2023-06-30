@@ -8,7 +8,7 @@ const validation = messages.validation;
 
 describe('HouseHolder Form', () => {
   beforeEach(() => {
-    cy.mount(<HouseholderForm householdId="null" />);
+    cy.mount(<HouseholderForm householdName='Household' householdId="null" />);
   });
 
   it('contains a first name input with correct label', () => {

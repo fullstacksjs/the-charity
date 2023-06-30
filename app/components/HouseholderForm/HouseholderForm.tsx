@@ -34,6 +34,7 @@ import { householderFormIds as ids } from './HouseholderForm.ids';
 interface Props {
   initialHouseholder?: HouseholderIdentity;
   householdId: string;
+  householdName: string;
 }
 
 interface FormSchema {
@@ -69,7 +70,7 @@ const useStyles = createStyles(theme => ({
 }));
 
 // eslint-disable-next-line max-lines-per-function
-export const HouseholderForm = ({ initialHouseholder, householdId }: Props) => {
+export const HouseholderForm = ({ initialHouseholder, householdId, householdName }: Props) => {
   const t = messages.householder.form;
   const { classes } = useStyles();
 
@@ -105,14 +106,14 @@ export const HouseholderForm = ({ initialHouseholder, householdId }: Props) => {
       }
       showNotification({
         title: t.title,
-        message: t.notification.successfulUpdate(data?.householder?.name ?? ''),
+        message: t.notification.successfulUpdate(householdName),
         type: 'success',
         ...createTestAttr(ids.notification.success),
       });
     } catch {
       showNotification({
         title: t.title,
-        message: t.notification.failedUpdate(formData.name),
+        message: t.notification.failedUpdate(householdName),
         type: 'failure',
         ...createTestAttr(ids.notification.failure),
       });
