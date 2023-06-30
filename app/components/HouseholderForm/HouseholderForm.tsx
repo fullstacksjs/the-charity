@@ -174,6 +174,7 @@ export const HouseholderForm = ({ initialHouseholder, householdId, householdName
             readOnly={isReadOnly}
             className={classes.input}
             wrapperProps={createTestAttr(ids.firstNameInput)}
+            required
             {...register('name')}
             label={`${t.nameInput.label}:`}
             placeholder={t.nameInput.placeholder}
@@ -201,7 +202,6 @@ export const HouseholderForm = ({ initialHouseholder, householdId, householdName
             readOnly={isReadOnly}
             name="nationality"
             control={control}
-            clearable
             wrapperProps={createTestAttr(ids.nationalityInput)}
             data={nationalities.map(v => ({
               value: v,
@@ -224,7 +224,6 @@ export const HouseholderForm = ({ initialHouseholder, householdId, householdName
             readOnly={isReadOnly}
             name="gender"
             control={control}
-            clearable
             wrapperProps={createTestAttr(ids.genderInput)}
             data={genders.map(v => ({
               value: v,
@@ -238,7 +237,6 @@ export const HouseholderForm = ({ initialHouseholder, householdId, householdName
             readOnly={isReadOnly}
             name="religion"
             control={control}
-            clearable
             wrapperProps={createTestAttr(ids.religionInput)}
             data={religions.map(v => ({
               value: v,
@@ -252,7 +250,6 @@ export const HouseholderForm = ({ initialHouseholder, householdId, householdName
             readOnly={isReadOnly}
             name="cityOfBirth"
             control={control}
-            clearable
             wrapperProps={createTestAttr(ids.cityOfBirthInput)}
             data={cities.map(v => ({
               value: v,
@@ -265,7 +262,6 @@ export const HouseholderForm = ({ initialHouseholder, householdId, householdName
           <ControlledDateInput
             name="dob"
             control={control}
-            clearable
             readOnly={isReadOnly}
             wrapperProps={createTestAttr(ids.dobInput)}
             className={classes.input}
