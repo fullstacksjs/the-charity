@@ -11,6 +11,7 @@ export const householderFormIds = {
   dobInput: 'householder-date-of-birth',
   cityOfBirthInput: 'householder-city-of-birth',
   submitBtn: 'householder-submit-button',
+  editBtn: 'householder-edit-button',
   notification: {
     success: 'householder-successful-update',
     failure: 'householder-failed-update',

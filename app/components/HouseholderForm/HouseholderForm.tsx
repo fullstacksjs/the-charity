@@ -21,7 +21,7 @@ import {
   nationalities,
   religions,
 } from '@camp/domain';
-import { CheckIcon } from '@camp/icons';
+import { CheckIcon, EditIcon } from '@camp/icons';
 import { messages } from '@camp/messages';
 import { createTestAttr } from '@camp/test';
 import { isNull } from '@fullstacksjs/toolbox';
@@ -71,7 +71,11 @@ const useStyles = createStyles(theme => ({
 }));
 
 // eslint-disable-next-line max-lines-per-function
-export const HouseholderForm = ({ initialHouseholder, householdId, householdName }: Props) => {
+export const HouseholderForm = ({
+  initialHouseholder,
+  householdId,
+  householdName,
+}: Props) => {
   const t = messages.householder.form;
   const { classes } = useStyles();
 
@@ -127,16 +131,32 @@ export const HouseholderForm = ({ initialHouseholder, householdId, householdName
         <Group position="apart" mih="100%">
           <DashboardTitle>{t.title}</DashboardTitle>
           <Group spacing={20}>
-            <UndoButton disabled={!isDirty} onClick={() => reset()} />
-            <Button
-              {...createTestAttr(ids.submitBtn)}
-              type="submit"
-              size="sm"
-              leftIcon={<CheckIcon size={16} />}
-              disabled={!isValid || !isDirty}
-            >
-              {t.submitBtn}
-            </Button>
+            {isEditing ? (
+              <>
+                <UndoButton disabled={!isDirty} onClick={() => reset()} />
+                <Button
+                  {...createTestAttr(ids.submitBtn)}
+                  type="submit"
+                  size="sm"
+                  leftIcon={<CheckIcon size={16} />}
+                  disabled={!isValid || !isDirty}
+                >
+                  {t.submitBtn}
+                </Button>
+              </>
+            ) : (
+              <Button
+                key={1}
+                {...createTestAttr(ids.editBtn)}
+                type="button"
+                size="sm"
+                variant="outline"
+                onClick={() => setIsEditing(true)}
+                leftIcon={<EditIcon size={16} />}
+              >
+                {t.editBtn}
+              </Button>
+            )}
           </Group>
         </Group>
 
