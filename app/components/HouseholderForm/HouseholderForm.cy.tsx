@@ -8,15 +8,15 @@ const validation = messages.validation;
 
 describe('HouseHolder Form', () => {
   beforeEach(() => {
-    cy.mount(<HouseholderForm householdName='Household' householdId="null" />);
+    cy.mount(<HouseholderForm householdName="Household" householdId="null" />);
   });
 
   it('contains a first name input with correct label', () => {
     cy.findByTestId(householderFormIds.form).within(() => {
-      cy.findByLabelText(`${householderForm.nameInput.label}:`).should(
-        'match',
-        'input',
-      );
+      cy.findByRole('textbox', {
+        name: /نام:/i,
+        exact: false,
+      });
     });
   });
 
