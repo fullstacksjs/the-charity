@@ -20,7 +20,7 @@ import {
   nationalities,
   religions,
 } from '@camp/domain';
-import { ArrowDownIcon, CheckIcon, EditIcon } from '@camp/icons';
+import { ArrowDownIcon, CheckIcon, EditIcon, TrashIcon } from '@camp/icons';
 import { messages } from '@camp/messages';
 import { createTestAttr } from '@camp/test';
 import {
@@ -243,22 +243,36 @@ export const MemberForm = ({
               />
             </SimpleGrid>
             {!isEditableMode ? (
-              <Button
-                key={1}
-                {...createTestAttr(ids.editBtn)}
-                type="button"
-                size="sm"
-                variant="outline"
-                onClick={() => toggleEditableMode()}
-                leftIcon={<EditIcon size={16} />}
-              >
-                {tt.editBtn}
-              </Button>
+              <Group>
+                <Button
+                  {...createTestAttr(ids.deleteBtn)}
+                  type="button"
+                  variant="outline"
+                  color="red"
+                  leftIcon={<TrashIcon size={16} />}
+                >
+                  {messages.actions.delete}
+                </Button>
+                <Button
+                  key={1}
+                  {...createTestAttr(ids.editBtn)}
+                  type="button"
+                  size="sm"
+                  variant="outline"
+                  onClick={() => toggleEditableMode()}
+                  leftIcon={<EditIcon size={16} />}
+                >
+                  {messages.actions.editBtn}
+                </Button>
+              </Group>
             ) : (
               <Group>
                 <UndoButton
                   disabled={!isDirty && isEditableMode}
-                  onClick={() => reset()}
+                  onClick={() => {
+                    reset();
+                    toggleEditableMode();
+                  }}
                 />
                 <Button
                   key={2}
@@ -269,9 +283,8 @@ export const MemberForm = ({
                   leftIcon={<CheckIcon size={16} />}
                   disabled={!isValid || (!isDirty && isEditableMode)}
                 >
-                  {tt.submitBtn}
+                  {messages.actions.submitBtn}
                 </Button>
-                {/* <Button onClick={onRemove}>{tt.submitBtn}</Button> */}
               </Group>
             )}
           </Stack>

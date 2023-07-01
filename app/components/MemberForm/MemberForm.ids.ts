@@ -12,6 +12,7 @@ export const memberFormIds = {
   cityOfBirthInput: 'project-city-of-birth',
   submitBtn: 'submit-button',
   editBtn: 'edit-button',
+  deleteBtn: 'delete-button',
   notification: {
     success: 'member-successful',
     failure: 'member-failed',

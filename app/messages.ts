@@ -38,8 +38,10 @@ export const messages = {
   actions: {
     dismiss: 'انصراف',
     open: 'باز کردن',
-    delete: 'حذف کردن',
+    delete: 'حذف',
     undoBtn: 'لغو',
+    editBtn: 'ویرایش',
+    submitBtn: 'ثبت',
   },
 
   households: {
@@ -63,11 +65,9 @@ export const messages = {
         text: 'ایجاد خانواده',
       },
       notification: {
-        failure: () =>
-          `مشکلی در ایجاد خانوار به وجود آمد.`,
+        failure: () => `مشکلی در ایجاد خانوار به وجود آمد.`,
 
-        success: (name: string) =>
-          `خانوار "${name}" با موفقیت ایجاد شد.`,
+        success: (name: string) => `خانوار "${name}" با موفقیت ایجاد شد.`,
       },
     },
     informationStatus: {
@@ -158,7 +158,6 @@ export const messages = {
       title: 'اطلاعات هویت',
     },
     form: {
-      editBtn: 'ویرایش',
       title: 'اطلاعات هویت',
 
       notification: {
@@ -167,7 +166,6 @@ export const messages = {
         failedUpdate: (name: string) =>
           `مشکلی در به روزرسانی اطلاعات خانوار "${name}" .به وجود آمده است. لطفا دوباره تلاش کنید`,
       },
-      submitBtn: 'ثبت',
       selectInputs: {
         placeholder: 'انتخاب کنید',
       },
@@ -226,8 +224,6 @@ export const messages = {
       description: 'عضوی برای این خانواده ثبت نشده است',
     },
     createForm: {
-      submitBtn: 'ثبت',
-      editBtn: 'ویرایش',
       selectInputs: {
         placeholder: 'انتخاب کنید',
       },

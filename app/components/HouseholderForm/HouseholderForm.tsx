@@ -141,7 +141,7 @@ export const HouseholderForm = ({
                   leftIcon={<CheckIcon size={16} />}
                   disabled={!isValid || !isDirty}
                 >
-                  {t.submitBtn}
+                  {messages.actions.submitBtn}
                 </Button>
               </>
             ) : (
@@ -154,7 +154,7 @@ export const HouseholderForm = ({
                 onClick={() => setIsEditing(true)}
                 leftIcon={<EditIcon size={16} />}
               >
-                {t.editBtn}
+                {messages.actions.editBtn}
               </Button>
             )}
           </Group>
