@@ -36,8 +36,13 @@ export type ProjectDetail = Pick<
   | 'updatedAt'
 >;
 
-export type ProjectListItem = Pick<Project, 'name' | 'status'>;
-export type ProjectSummery = Pick<
+export type ProjectListItem = Pick<
   Project,
-  'description' | 'endDate' | 'startDate' | 'status'
+  | 'createdAt'
+  | 'description'
+  | 'endDate'
+  | 'name'
+  | 'startDate'
+  | 'status'
+  | 'updatedAt'
 >;

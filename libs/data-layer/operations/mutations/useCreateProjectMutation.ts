@@ -6,7 +6,7 @@ import type {
   ApiCreateProjectMutationVariables,
   ApiProjectListQuery,
 } from '@camp/data-layer';
-import type { ProjectListItem } from '@camp/domain';
+import type { ProjectKeys, ProjectListItem } from '@camp/domain';
 
 import {
   getProjectKeys,
@@ -28,7 +28,7 @@ export const CreateProjectDocument = gql`
 `;
 
 export interface CreateProjectDto {
-  project: ProjectListItem | undefined;
+  project: (ProjectKeys & ProjectListItem) | undefined;
 }
 
 const toClient = (data: ApiCreateProjectMutation | null): CreateProjectDto => {
