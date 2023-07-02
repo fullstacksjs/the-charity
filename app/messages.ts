@@ -224,6 +224,7 @@ export const messages = {
       description: 'عضوی برای این خانواده ثبت نشده است',
     },
     createForm: {
+      title: 'عضو جدید',
       selectInputs: {
         placeholder: 'انتخاب کنید',
       },

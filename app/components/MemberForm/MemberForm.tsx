@@ -152,7 +152,7 @@ export const MemberForm = ({
       right={
         <Group spacing={10}>
           <Title order={4} color="fgDefault" weight="bold">
-            {name} {surname}
+            {name ? `${name} ${surname!}` : t.createForm.title}
           </Title>
           <InformationBadge information="draft" />
         </Group>
@@ -163,6 +163,7 @@ export const MemberForm = ({
           <Stack spacing={25} align="end">
             <SimpleGrid w="100%" cols={3} spacing="lg" verticalSpacing={20}>
               <TextInput
+                withAsterisk
                 readOnly={!isEditableMode}
                 className={classes.textInput}
                 wrapperProps={createTestAttr(ids.firstNameInput)}
