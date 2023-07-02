@@ -25,6 +25,10 @@ export const MemberList = ({ householdId }: Props) => {
     setNewMembers(arr => [...arr, { id: Math.random() }]);
   };
 
+  const undoMemberHandler = () => {
+    setNewMembers(arr => arr.slice(0, arr.length - 1));
+  };
+
   if (loading) return <FullPageLoader />;
 
   if (error) {
@@ -60,6 +64,7 @@ export const MemberList = ({ householdId }: Props) => {
       )}
       {newMembers.map(({ id }) => (
         <MemberForm
+          onUndo={undoMemberHandler}
           onSuccess={() => {
             setNewMembers(arr => arr.filter(item => item.id !== id));
           }}

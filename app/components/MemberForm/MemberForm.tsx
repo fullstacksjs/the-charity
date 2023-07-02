@@ -84,6 +84,7 @@ interface Props {
   householdId: string;
   memberId?: string;
   onSuccess?: VoidFunction;
+  onUndo?: VoidFunction;
 }
 
 export const MemberForm = ({
@@ -91,6 +92,7 @@ export const MemberForm = ({
   onSuccess,
   householdId,
   memberId,
+  onUndo,
 }: Props) => {
   const [createMemberMutation] = useUpsertMemberMutation();
   const [opened, { toggle }] = useDisclosure(true);
@@ -268,10 +270,9 @@ export const MemberForm = ({
             ) : (
               <Group>
                 <UndoButton
-                  disabled={!isDirty && isEditableMode}
                   onClick={() => {
                     reset();
-                    toggleEditableMode();
+                    onUndo?.();
                   }}
                 />
                 <Button
