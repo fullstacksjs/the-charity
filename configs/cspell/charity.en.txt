@@ -49,3 +49,4 @@ graphiql
 tsbuildinfo
 huskyrc
 indexify
+pkey

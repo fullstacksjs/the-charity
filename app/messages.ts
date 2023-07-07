@@ -35,7 +35,15 @@ export const messages = {
     required: 'این فیلد ضروری است',
   },
   companyName: 'نامی مناسب برای خیریه',
-  actions: { dismiss: 'انصراف', open: 'باز کردن', delete: 'حذف کردن' },
+  actions: {
+    dismiss: 'انصراف',
+    open: 'باز کردن',
+    delete: 'حذف',
+    undoBtn: 'لغو',
+    editBtn: 'ویرایش',
+    submitBtn: 'ثبت',
+  },
+
   households: {
     title: 'خانوارها',
     create: 'ایجاد خانواده جدید',
@@ -57,11 +65,9 @@ export const messages = {
         text: 'ایجاد خانواده',
       },
       notification: {
-        failure: () =>
-          `مشکلی در ایجاد خانوار به وجود آمد.`,
+        failure: () => `مشکلی در ایجاد خانوار به وجود آمد.`,
 
-        success: (name: string) =>
-          `خانوار "${name}" با موفقیت ایجاد شد.`,
+        success: (name: string) => `خانوار "${name}" با موفقیت ایجاد شد.`,
       },
     },
     informationStatus: {
@@ -152,16 +158,14 @@ export const messages = {
       title: 'اطلاعات هویت',
     },
     form: {
-      editBtn: 'ویرایش',
       title: 'اطلاعات هویت',
-      undoBtn: 'لغو',
+
       notification: {
         successfulUpdate: (name: string) =>
           `خانوار "${name}" با موفقیت بروز رسانی شد `,
         failedUpdate: (name: string) =>
           `مشکلی در به روزرسانی اطلاعات خانوار "${name}" .به وجود آمده است. لطفا دوباره تلاش کنید`,
       },
-      submitBtn: 'ثبت',
       selectInputs: {
         placeholder: 'انتخاب کنید',
       },
@@ -209,9 +213,18 @@ export const messages = {
   },
   member: {
     title: 'اعضا',
-    addNewMember: 'افزودن',
+    addNewMember: 'افزودن عضو',
+    notification: {
+      successful: (name: string) => `عضوی با نام "${name}" .با موفقیت ایجاد شد`,
+      failed: (name: string) =>
+        `مشکلی در مرحله ایجاد عضوی با نام "${name}" .بوجود آمده است. لطفا دوباره تلاش کنید`,
+    },
+    empty: {
+      title: 'عضوی وجود ندارد!',
+      description: 'عضوی برای این خانواده ثبت نشده است',
+    },
     createForm: {
-      submitBtn: 'ثبت',
+      title: 'عضو جدید',
       selectInputs: {
         placeholder: 'انتخاب کنید',
       },

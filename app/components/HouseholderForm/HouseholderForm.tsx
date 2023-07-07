@@ -29,6 +29,7 @@ import { Button, createStyles, Group, SimpleGrid, Stack } from '@mantine/core';
 import { useBoolean } from 'ahooks';
 import { useForm } from 'react-hook-form';
 
+import { UndoButton } from '../UndoButton';
 import { householderFormIds as ids } from './HouseholderForm.ids';
 
 interface Props {
@@ -70,7 +71,11 @@ const useStyles = createStyles(theme => ({
 }));
 
 // eslint-disable-next-line max-lines-per-function
-export const HouseholderForm = ({ initialHouseholder, householdId, householdName }: Props) => {
+export const HouseholderForm = ({
+  initialHouseholder,
+  householdId,
+  householdName,
+}: Props) => {
   const t = messages.householder.form;
   const { classes } = useStyles();
 
@@ -120,11 +125,6 @@ export const HouseholderForm = ({ initialHouseholder, householdId, householdName
     }
   });
 
-  const handleUndo = () => {
-    reset();
-    if (isCompleted) setIsEditing(false);
-  };
-
   return (
     <form onSubmit={onSubmit} {...createTestAttr(ids.form)}>
       <Stack spacing={25}>
@@ -133,16 +133,7 @@ export const HouseholderForm = ({ initialHouseholder, householdId, householdName
           <Group spacing={20}>
             {isEditing ? (
               <>
-                <Button
-                  {...createTestAttr(ids.undoBtn)}
-                  size="sm"
-                  variant="outline"
-                  color="red"
-                  disabled={!isDirty && !isCompleted}
-                  onClick={handleUndo}
-                >
-                  {t.undoBtn}
-                </Button>
+                <UndoButton disabled={!isDirty} onClick={() => reset()} />
                 <Button
                   {...createTestAttr(ids.submitBtn)}
                   type="submit"
@@ -150,7 +141,7 @@ export const HouseholderForm = ({ initialHouseholder, householdId, householdName
                   leftIcon={<CheckIcon size={16} />}
                   disabled={!isValid || !isDirty}
                 >
-                  {t.submitBtn}
+                  {messages.actions.submitBtn}
                 </Button>
               </>
             ) : (
@@ -163,7 +154,7 @@ export const HouseholderForm = ({ initialHouseholder, householdId, householdName
                 onClick={() => setIsEditing(true)}
                 leftIcon={<EditIcon size={16} />}
               >
-                {t.editBtn}
+                {messages.actions.editBtn}
               </Button>
             )}
           </Group>

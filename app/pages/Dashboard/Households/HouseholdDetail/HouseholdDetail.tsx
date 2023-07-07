@@ -19,7 +19,7 @@ import { Button, Title } from '@mantine/core';
 import {
   HouseholderDetail,
   InformationBadge,
-  MemberForm,
+  MemberList,
   SeverityBadge,
 } from '../../../../components';
 import { openDeleteHouseholdModal } from '../DeleteHouseholdModal';
@@ -127,7 +127,7 @@ export const HouseholdDetail = () => {
           },
           {
             tab: <Title order={5}>{t.tabs.membersTitle}</Title>,
-            panel: <MemberForm />,
+            panel: <MemberList householdId={household.id} />,
             id: ids.memberFormTab,
           },
         ]}

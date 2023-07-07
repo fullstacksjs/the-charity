@@ -14,7 +14,6 @@ module.exports = init({
     // NOTE: https://github.com/jsx-eslint/eslint-plugin-react/blob/master/docs/rules/no-unused-prop-types.md#known-issueslimitations
     'react/no-unused-prop-types': 'off',
     'no-console': 'error',
-    'prettier/prettier': 'off',
   },
   overrides: [
     {

@@ -4,11 +4,16 @@ export const useReadonlyInputStyles = createStyles(theme => ({
   readonlyInput: {
     input: {
       ':read-only': {
-        border: 'none',
-        padding: 0,
-        fontSize: theme.fontSizes.md,
-        userSelect: 'text',
-        cursor: 'text',
+        'border': 'none',
+        'padding': 0,
+        'pointerEvents': 'none',
+        'fontSize': theme.fontSizes.md,
+        'userSelect': 'text',
+        'cursor': 'text',
+        'WebkitBoxShadow': '0 0 0px 1000px white inset !important',
+        '&::placeholder': {
+          opacity: 0,
+        },
       },
     },
   },

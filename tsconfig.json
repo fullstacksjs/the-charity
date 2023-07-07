@@ -24,6 +24,7 @@
       "@camp/zod-addons": ["./libs/zod-addons/index.ts"]
     }
   },
+  "files": ["cypress/support/commands/index.d.ts"],
   "include": ["app", "libs", "@types/index.d.ts"],
   "exclude": ["node_modules"],
   "references": [{ "path": "./tsconfig.vite.json" }]

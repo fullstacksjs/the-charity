@@ -1,12 +1,12 @@
 import { useHouseholderQuery } from '@camp/data-layer';
 import { debug, DebugScopes } from '@camp/debug';
 import { FullPageLoader } from '@camp/design';
+import type { HouseholdDetail, HouseholdKeys } from '@camp/domain';
 
-import type { HouseholdDetail, HouseholdKeys } from '../../../libs/domain/Household';
 import { HouseholderForm } from '../HouseholderForm';
 
 interface Props {
-  household: HouseholdDetail & HouseholdKeys
+  household: HouseholdDetail & HouseholdKeys;
 }
 
 export const HouseholderDetail = ({ household }: Props) => {

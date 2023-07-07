@@ -8,7 +8,7 @@ const validation = messages.validation;
 
 describe('Create member form Form', () => {
   beforeEach(() => {
-    cy.mount(<MemberForm />);
+    cy.mount(<MemberForm householdId="null" />);
   });
 
   it('contains a first name input with correct label', () => {
@@ -150,6 +150,12 @@ describe('Create member form Form', () => {
         .find('input')
         .type('0123456789');
       cy.findByText(validation.nationalId.invalid).should('not.exist');
+    });
+  });
+
+  it('submit button should be disabled for invalid form', () => {
+    cy.findByTestId(memberFormIds.form).within(() => {
+      cy.findByTestId(memberFormIds.submitBtn).should('be.disabled');
     });
   });
 });

@@ -17,7 +17,7 @@ describe('Delete a Household', () => {
         .parents('tr')
         .findByTestId(householdRowIds.actionButton)
         .click();
-      cy.findByRole('menuitem', { name: 'حذف کردن' }).click();
+      cy.findByRole('menuitem', { name: 'حذف' }).click();
       cy.findByRole('button', { name: 'حذف' }).click();
       cy.findNotification('success').should('exist');
 
