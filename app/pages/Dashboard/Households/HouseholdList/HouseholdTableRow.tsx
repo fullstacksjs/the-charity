@@ -19,7 +19,7 @@ interface Props {
   household: HouseholderKeys & HouseholdListItem;
 }
 
-const t = messages.notification.family;
+const t = messages.notification.household;
 
 export const HouseholdTableRow = ({ order, household }: Props) => {
   const navigate = useNavigate();

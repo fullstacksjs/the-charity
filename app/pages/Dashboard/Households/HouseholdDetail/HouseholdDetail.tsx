@@ -28,7 +28,7 @@ import { householdDetailIds as ids } from './HouseholdDetail.ids';
 
 export const HouseholdDetail = () => {
   const t = messages.householdDetail;
-  const tNotification = messages.notification.family;
+  const tNotification = messages.notification.household;
   const householdId = useParams();
   const navigate = useNavigate();
   const {
