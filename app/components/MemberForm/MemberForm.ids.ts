@@ -11,6 +11,7 @@ export const memberFormIds = {
   dobInput: 'member-date-of-birth',
   cityOfBirthInput: 'project-city-of-birth',
   submitBtn: 'submit-button',
+  undoBtn: 'undo-button',
   editBtn: 'edit-button',
   deleteBtn: 'delete-button',
   notification: {

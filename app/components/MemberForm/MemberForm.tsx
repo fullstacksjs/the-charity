@@ -271,6 +271,7 @@ export const MemberForm = ({
             ) : (
               <Group>
                 <UndoButton
+                  {...createTestAttr(ids.undoBtn)}
                   onClick={() => {
                     reset();
                     onUndo?.();
