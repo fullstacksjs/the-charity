@@ -7,7 +7,8 @@ import type {
   ApiHouseholdListQuery,
   ApiHouseholdListQueryVariables,
 } from '@camp/data-layer';
-import type { Household } from '@camp/domain';
+import type { Household, HouseholdKeys } from '@camp/domain';
+import { isNull } from '@fullstacksjs/toolbox';
 
 import { HouseholdKeysFragment } from '../fragments';
 import { HouseholdListDocument } from '../queries';
@@ -23,19 +24,18 @@ const Document = gql`
 `;
 
 export interface DeleteHousehold {
-  household: Pick<Household, 'id' | 'name'>;
+  household: (HouseholdKeys & Pick<Household, 'name'>) | undefined;
 }
 
 const toClient = (
   data: ApiDeleteHouseholdMutationMutation | null,
-): DeleteHousehold | null => {
-  if (data?.delete_household_by_pk == null) return null;
+): DeleteHousehold => {
+  const deleted = data?.delete_household_by_pk;
 
   return {
-    household: {
-      id: data.delete_household_by_pk.id,
-      name: data.delete_household_by_pk.name,
-    },
+    household: !isNull(deleted)
+      ? { id: deleted.id, name: deleted.name }
+      : undefined,
   };
 };
 

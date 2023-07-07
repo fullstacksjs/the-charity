@@ -41,7 +41,7 @@ export const CreateProjectForm = ({ dismiss }: Props) => {
       const { data } = await createProject({
         variables: { name, description },
       });
-      const project = data?.project;
+      const project = data.project;
       if (isNull(project)) throw Error('Assert: Project is null');
 
       showNotification({

@@ -1,17 +1,14 @@
-import type {
-  ApolloCache,
-  DefaultContext,
-  FetchResult,
-  MutationTuple,
-} from '@apollo/client';
+import type { ApolloCache, DefaultContext } from '@apollo/client';
 import * as Apollo from '@apollo/client';
 import { useCallback } from 'react';
 
 import type {
+  FetchResult,
   MapperFn,
   MutationFn,
   MutationFnOptions,
   MutationOptions,
+  MutationTuple,
 } from './types';
 
 interface InternalMutationOption<

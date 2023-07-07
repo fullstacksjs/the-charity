@@ -118,7 +118,14 @@ export const theme: MantineThemeOverride = {
     },
     Button: {
       styles: {
-        root: { fontWeight: 500 },
+        root: {
+          fontWeight: 500,
+          padding: '6px 12px',
+          svg: {
+            width: '18px',
+            height: '18px',
+          },
+        },
       },
     },
     Notification: {

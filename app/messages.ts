@@ -7,6 +7,22 @@ export const errorMessages: Record<ServerError, string> = {
 };
 
 export const messages = {
+  notification: {
+    household: {
+      delete: {
+        title: 'حذف خانوار',
+        success: (name: string) => `خانوار “${name}” با موفقیت حذف شد.`,
+        failed: (name: string) =>
+          `مشکلی در مرحله حذف خانوار "${name}" به وجود آمده است. لطفا دوباره تلاش کنید.`,
+      },
+      complete: {
+        title: 'تکمیل خانوار',
+        success: (name: string) => `خانوار “${name}” با موفقیت کامل شد.`,
+        failed: (name: string) =>
+          `مشکلی در تکمیل خانوار "${name}" به وجود آمده است. لطفا دوباره تلاش کنید.`,
+      },
+    },
+  },
   date: {
     format: (date: Date) => new Intl.DateTimeFormat('fa-IR').format(date),
   },
@@ -46,23 +62,23 @@ export const messages = {
 
   households: {
     title: 'خانوارها',
-    create: 'ایجاد خانواده جدید',
+    create: 'ایجاد خانوار جدید',
     empty: {
-      title: 'خانواده ای وجود ندارد!',
+      title: 'خانوار ای وجود ندارد!',
       description: 'متاسفانه لیست خانوارهای شما خالی است.',
     },
     validation: {
-      minLength: 'نام خانواده باید حداقل ۳ حرف باشد',
+      minLength: 'نام خانوار باید حداقل ۳ حرف باشد',
     },
     createForm: {
       nameInput: {
         placeholder: 'برای مثال: مرادی',
         label: 'نام',
         description:
-          'نام مناسب برای خانواده می تواند نام خانوادگی سرپرست خانوار باشد',
+          'نام مناسب برای خانوار می تواند نام خانوادگی سرپرست خانوار باشد',
       },
       submitBtn: {
-        text: 'ایجاد خانواده',
+        text: 'ایجاد خانوار',
       },
       notification: {
         failure: () => `مشکلی در ایجاد خانوار به وجود آمد.`,
@@ -82,15 +98,9 @@ export const messages = {
       title: 'لیست خانوارها',
       delete: {
         modal: {
-          notification: {
-            title: 'حذف خانواده',
-            success: (name: string) => `خانوار “${name}” با موفقیت حذف شد.`,
-            failed: (name: string) =>
-              `مشکلی در مرحله حذف خانوار "${name}" به وجود آمده است. لطفا دوباره تلاش کنید.`,
-          },
           title: 'حذف',
           children: (name: string) =>
-            `آیا از حذف خانواده "${name}" مطمئن هستید؟`,
+            `آیا از حذف خانوار "${name}" مطمئن هستید؟`,
           cancel: 'انصراف',
           confirm: 'حذف',
         },
@@ -291,9 +301,11 @@ export const messages = {
     },
   },
   householdDetail: {
-    title: 'اطلاعات کلی خانواده',
-    notFound: 'خانواده مورد نظر یافت نشد',
+    title: 'اطلاعات کلی خانوار',
+    notFound: 'خانوار مورد نظر یافت نشد',
     delete: 'حذف کردن',
+    edit: 'ویرایش',
+    complete: 'تکمیل',
     tabs: {
       householderTitle: 'سرپرست',
       membersTitle: 'اعضا',

@@ -37,7 +37,7 @@ export const CreateHouseholdForm = ({ dismiss }: Props) => {
   const onSubmit = handleSubmit(({ name }) => {
     createDraftHousehold({ variables: { name } })
       .then(({ data }) => {
-        const household = data?.household;
+        const household = data.household;
         if (isNull(household))
           throw Error('Assert: household should not be null');
 
