@@ -7,7 +7,7 @@ export const householderFixture = () => ({
   name: fakerFA.person.firstName(),
   surname: fakerFA.person.lastName(),
   fatherName: fakerFA.person.firstName(),
-  nationalId: fakerFA.string.numeric({length: 10}),
+  nationalId: fakerFA.string.numeric({ length: 10 }),
   gender: getRandom(genders),
   nationality: getRandom(nationalities),
   religion: getRandom(religions),

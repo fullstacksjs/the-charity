@@ -20,5 +20,3 @@ export const MemberListItemFragment = gql`
     status
   }
 `;
-
-
