@@ -10,7 +10,7 @@ import { useParams } from '@camp/router';
 import { isEmpty, isNull } from '@fullstacksjs/toolbox';
 import { Text, Title } from '@mantine/core';
 
-import { ProjectStatusBadge } from '../ProjectBadge';
+import { ProjectStatusBadge } from '../ProjectStatusBadge';
 import { ProjectDetailIds as ids } from './ProjectDetail.ids';
 
 export const ProjectDetail = () => {
@@ -43,7 +43,7 @@ export const ProjectDetail = () => {
             {project.name}
           </DetailCard.Field>
           <DetailCard.Field title={t.projectFields.projectStatus.title}>
-            <ProjectStatusBadge />
+            <ProjectStatusBadge status={project.status} />
           </DetailCard.Field>
           <DetailCard.Field title={t.projectFields.membersCount.title}>
             {isEmpty(households) ? (

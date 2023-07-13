@@ -3,6 +3,7 @@ export * from './Badge';
 export * from './Breadcrumbs';
 export * from './DashboardCard';
 export * from './DashboardTitle';
+export * from './Date';
 export * from './DateInput';
 export * from './DetailCard';
 export * from './EmptyState';

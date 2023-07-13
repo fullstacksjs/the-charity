@@ -21,7 +21,7 @@ export type ApiProjectKeysFragment = { __typename?: 'project', id: string };
 
 export type ApiProjectDetailFragment = { __typename?: 'project', name: string, description?: string | null, status: SchemaTypes.ProjectStatusEnum, start_date?: string | null, due_date?: string | null, created_at: string, updated_at: string };
 
-export type ApiProjectListItemFragment = { __typename?: 'project', name: string, status: SchemaTypes.ProjectStatusEnum, created_at: string, updated_at: string };
+export type ApiProjectListItemFragment = { __typename?: 'project', name: string, description?: string | null, start_date?: string | null, due_date?: string | null, status: SchemaTypes.ProjectStatusEnum, created_at: string, updated_at: string };
 
 export type ApiCompleteHouseholdMutationVariables = SchemaTypes.Exact<{
   id: SchemaTypes.Scalars['uuid']['input'];
@@ -42,7 +42,7 @@ export type ApiCreateProjectMutationVariables = SchemaTypes.Exact<{
 }>;
 
 
-export type ApiCreateProjectMutation = { __typename?: 'mutation_root', insert_project_one?: { __typename?: 'project', id: string, name: string, status: SchemaTypes.ProjectStatusEnum, created_at: string, updated_at: string } | null };
+export type ApiCreateProjectMutation = { __typename?: 'mutation_root', insert_project_one?: { __typename?: 'project', id: string, name: string, description?: string | null, start_date?: string | null, due_date?: string | null, status: SchemaTypes.ProjectStatusEnum, created_at: string, updated_at: string } | null };
 
 export type ApiDeleteHouseholdMutationMutationVariables = SchemaTypes.Exact<{
   id: SchemaTypes.Scalars['uuid']['input'];
@@ -97,7 +97,7 @@ export type ApiProjectListQueryVariables = SchemaTypes.Exact<{
 }>;
 
 
-export type ApiProjectListQuery = { __typename?: 'query_root', project_aggregate: { __typename?: 'project_aggregate', nodes: Array<{ __typename?: 'project', id: string, name: string, status: SchemaTypes.ProjectStatusEnum, created_at: string, updated_at: string }> } };
+export type ApiProjectListQuery = { __typename?: 'query_root', project_aggregate: { __typename?: 'project_aggregate', nodes: Array<{ __typename?: 'project', id: string, name: string, description?: string | null, start_date?: string | null, due_date?: string | null, status: SchemaTypes.ProjectStatusEnum, created_at: string, updated_at: string }> } };
 
 export type ApiProjectQueryVariables = SchemaTypes.Exact<{
   id: SchemaTypes.Scalars['uuid']['input'];

@@ -1,7 +1,7 @@
 import { useDeleteHouseholdMutation } from '@camp/data-layer';
 import { debug } from '@camp/debug';
 import { showNotification } from '@camp/design';
-import type { HouseholderKeys, HouseholdListItem } from '@camp/domain';
+import type { HouseholdKeys, HouseholdListItem } from '@camp/domain';
 import { messages } from '@camp/messages';
 import { AppRoute, useNavigate } from '@camp/router';
 import { createTestAttr } from '@camp/test';
@@ -16,7 +16,7 @@ import { householdRowIds as ids } from './HouseholdTableRow.ids';
 
 interface Props {
   order: number;
-  household: HouseholderKeys & HouseholdListItem;
+  household: HouseholdKeys & HouseholdListItem;
 }
 
 const t = messages.notification.household;

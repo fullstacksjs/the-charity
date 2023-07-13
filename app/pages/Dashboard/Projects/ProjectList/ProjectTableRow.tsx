@@ -1,8 +1,10 @@
+import { DateSummery, SmallText } from '@camp/design';
 import type { ProjectKeys, ProjectListItem } from '@camp/domain';
 import { AppRoute, useNavigate } from '@camp/router';
 import { Group } from '@mantine/core';
 
 import { ProjectActionButton } from '../ProjectActionButton';
+import { ProjectStatusBadge } from '../ProjectStatusBadge';
 import * as ids from './ProjectTableRow.ids';
 
 interface Props {
@@ -12,7 +14,7 @@ interface Props {
 
 export const ProjectTableRow = ({ project, order }: Props) => {
   const navigate = useNavigate();
-  const { id, name } = project;
+  const { id, name, status, endDate, startDate, description } = project;
 
   const gotoDetail = () => {
     navigate({ to: `/dashboard/projects/${id}` as AppRoute });
@@ -23,7 +25,14 @@ export const ProjectTableRow = ({ project, order }: Props) => {
       <td>{order}</td>
       <td>{name}</td>
       <td>
-        <Group position="right">
+        <SmallText>{description}</SmallText>
+      </td>
+      <td>
+        <DateSummery startDate={startDate!} endDate={endDate} />
+      </td>
+      <td>
+        <Group position="apart">
+          <ProjectStatusBadge status={status} />
           <ProjectActionButton
             menuButtonId={ids.projectTableMenuButtonId}
             menuId={ids.projectTableMenuId}
