@@ -21,6 +21,9 @@ export const ProjectDetailFragment = gql`
 export const ProjectListItemFragment = gql`
   fragment ProjectListItem on project {
     name
+    description
+    start_date
+    due_date
     status
     created_at
     updated_at
