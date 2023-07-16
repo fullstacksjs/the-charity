@@ -1,8 +1,9 @@
-import { householdRowIds } from '../../app/Dashboard/Households/HouseholdList/HouseholdTableRow.ids';
 import { AppRoute } from '../../libs/router/AppRoutes';
 import { admin } from '../fixtures/admin';
 import { householdFixture } from '../fixtures/household';
 import * as api from './api';
+
+import { householdActionIds } from '../../app/Dashboard/Households/_components/HouseholdActionButton/HouseholdActionButton.ids';
 
 describe('Delete a Household', () => {
   beforeEach(() => {
@@ -15,7 +16,7 @@ describe('Delete a Household', () => {
       cy.visit(AppRoute.households);
       cy.findByText(name)
         .parents('tr')
-        .findByTestId(householdRowIds.actionButton)
+        .findByTestId(householdActionIds.actionButton)
         .click();
       cy.findByRole('menuitem', { name: 'حذف' }).click();
       cy.findByRole('button', { name: 'حذف' }).click();

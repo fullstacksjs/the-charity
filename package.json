@@ -39,6 +39,7 @@
     "@mantine/modals": "6.0.18",
     "@mantine/notifications": "6.0.18",
     "@tanstack/react-location": "3.7.4",
+    "@tanstack/react-table": "8.9.3",
     "@total-typescript/ts-reset": "0.4.2",
     "ahooks": "3.7.8",
     "dayjs": "1.11.9",

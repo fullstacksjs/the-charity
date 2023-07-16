@@ -1,16 +1,25 @@
+import { useDeleteHouseholdMutation } from '@camp/data-layer';
+import { debug } from '@camp/debug';
+import { showNotification } from '@camp/design';
+import type { HouseholdKeys, HouseholdListItem } from '@camp/domain';
 import { MenuIcon } from '@camp/icons';
 import { messages } from '@camp/messages';
 import type { AppRoute, PathParams } from '@camp/router';
 import { Link } from '@camp/router';
 import { createTestAttr } from '@camp/test';
+import { isNull } from '@fullstacksjs/toolbox';
 import { ActionIcon, Menu } from '@mantine/core';
+
+import { openDeleteHouseholdModal } from '../DeleteHouseholdModal';
+import { householdActionIds as ids } from './HouseholdActionButton.ids';
 
 interface Props {
   to: AppRoute;
+  householdName: string;
+  householdId: string;
   params?: PathParams<AppRoute>;
   menuId?: string;
   menuButtonId?: string;
-  onDelete?: React.MouseEventHandler<HTMLButtonElement>;
 }
 
 export const HouseholdActionButton = ({
@@ -18,8 +27,40 @@ export const HouseholdActionButton = ({
   menuButtonId,
   to,
   params,
-  onDelete,
+  householdId: id,
+  householdName: name,
 }: Props) => {
+  const [deleteHousehold] = useDeleteHouseholdMutation();
+  const t = messages.households.list.delete.modal;
+
+  const onDeleteHousehold = async () => {
+    try {
+      const { data } = await deleteHousehold({
+        variables: { id },
+      });
+
+      if (isNull(data)) throw Error('Assert: data is null');
+      showNotification({
+        title: t.title,
+        message: t.children(data.household!.name),
+        type: 'success',
+        ...createTestAttr(ids.notifications.delete.success),
+      });
+    } catch (err) {
+      debug.error(err);
+      showNotification({
+        title: t.title,
+        message: t.children(name),
+        type: 'failure',
+        ...createTestAttr(ids.notifications.delete.failure),
+      });
+    }
+  };
+
+  const handleDeleteHousehold = () => {
+    openDeleteHouseholdModal({ name, onDeleteHousehold });
+  };
+
   return (
     <Menu width={100} shadow="md" withArrow>
       <Menu.Target {...createTestAttr(menuButtonId)}>
@@ -31,7 +72,13 @@ export const HouseholdActionButton = ({
         <Menu.Item to={to} params={params} component={Link}>
           {messages.actions.open}
         </Menu.Item>
-        <Menu.Item color="red" onClick={onDelete}>
+        <Menu.Item
+          color="red"
+          onClick={e => {
+            e.stopPropagation();
+            handleDeleteHousehold();
+          }}
+        >
           {messages.actions.delete}
         </Menu.Item>
       </Menu.Dropdown>

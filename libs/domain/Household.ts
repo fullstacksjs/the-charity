@@ -1,4 +1,5 @@
 import { messages } from '@camp/messages';
+import { createColumnHelper } from '@tanstack/react-table';
 import { z } from 'zod';
 
 import { toZodLiteralList } from '../zod-addons';
@@ -45,3 +46,7 @@ export type HouseholdListItem = Pick<
   Household,
   'isCompleted' | 'name' | 'severity' | 'status'
 >;
+
+export const householdColumnHelper = createColumnHelper<
+  HouseholdKeys & HouseholdListItem
+>();

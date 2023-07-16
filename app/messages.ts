@@ -114,7 +114,12 @@ export const messages = {
         },
       },
       table: {
-        columns: ['ردیف', 'نام', 'وضعیت اطلاعات', 'وضعیت نیازمندی'],
+        columns: {
+          order: 'ردیف',
+          name: 'نام',
+          status: 'وضعیت اطلاعات',
+          severity: 'وضعیت نیازمندی',
+        },
       },
     },
   },

@@ -43,7 +43,7 @@ export const ProjectList = () => {
       left={<CreateProjectButton />}
       right={<DashboardTitle>{t.title}</DashboardTitle>}
     >
-      <Table columns={t.table.columns} id={ids.projectTableId} rows={rows} />
+      {/* <Table columns={t.table.columns} id={ids.projectTableId} rows={rows} /> */}
     </DashboardCard>
   );
 };

@@ -1,83 +1,31 @@
-import { useDeleteHouseholdMutation } from '@camp/data-layer';
-import { debug } from '@camp/debug';
-import { showNotification } from '@camp/design';
 import type { HouseholdKeys, HouseholdListItem } from '@camp/domain';
-import { messages } from '@camp/messages';
-import { AppRoute, useNavigate } from '@camp/router';
-import { createTestAttr } from '@camp/test';
-import { isNull } from '@fullstacksjs/toolbox';
-import { Group } from '@mantine/core';
-
-import { InformationBadge } from '../../_components/InformationBadge';
-import { SeverityBadge } from '../../_components/SeverityBadge';
-import { openDeleteHouseholdModal } from '../_components/DeleteHouseholdModal';
-import { HouseholdActionButton } from '../_components/HouseholdActionButton';
-import { householdRowIds as ids } from './HouseholdTableRow.ids';
+import type { AppRoute } from '@camp/router';
+import { useNavigate } from '@camp/router';
+import type { Table } from '@tanstack/react-table';
+import { flexRender } from '@tanstack/react-table';
 
 interface Props {
-  order: number;
-  household: HouseholdKeys & HouseholdListItem;
+  rows?: Table<HouseholdKeys & HouseholdListItem>;
 }
 
-const t = messages.notification.household;
-
-export const HouseholdTableRow = ({ order, household }: Props) => {
+export const HouseholdTableRow = ({ rows }: Props) => {
   const navigate = useNavigate();
-  const { id, severity, name, isCompleted } = household;
-  const [deleteHousehold] = useDeleteHouseholdMutation();
 
-  const gotoDetail = () => {
-    navigate({ to: `/dashboard/households/${id}` as AppRoute });
+  const gotoDetail = (householdId: string) => {
+    navigate({ to: `/dashboard/households/${householdId}` as AppRoute });
   };
 
-  const onDeleteHousehold = async () => {
-    try {
-      const { data } = await deleteHousehold({ variables: { id } });
-
-      if (isNull(data.household)) throw Error('Assert: data is null');
-      showNotification({
-        title: t.delete.title,
-        message: t.delete.success(data.household.name),
-        type: 'success',
-        ...createTestAttr(ids.notifications.delete.success),
-      });
-    } catch (err) {
-      debug.error(err);
-      showNotification({
-        title: t.delete.title,
-        message: t.delete.failed(name),
-        type: 'failure',
-        ...createTestAttr(ids.notifications.delete.failure),
-      });
-    }
-  };
-
-  const handleDeleteHousehold = () => {
-    openDeleteHouseholdModal({ name, onDeleteHousehold });
-  };
-
-  return (
-    <tr style={{ cursor: 'pointer' }} onClick={gotoDetail}>
-      <td>{order}</td>
-      <td>{name}</td>
-      <td>
-        <InformationBadge status={isCompleted ? 'completed' : 'draft'} />
-      </td>
-      <td>
-        <Group position="apart">
-          <SeverityBadge severity={severity} />
-          <HouseholdActionButton
-            onDelete={e => {
-              e.stopPropagation();
-              handleDeleteHousehold();
-            }}
-            menuButtonId={ids.actionButton}
-            menuId={ids.actionMenu}
-            to={AppRoute.householdDetail}
-            params={{ id }}
-          />
-        </Group>
-      </td>
+  return rows?.getRowModel().rows.map(row => (
+    <tr
+      style={{ cursor: 'pointer' }}
+      key={row.id}
+      onClick={() => gotoDetail(row.original.id)}
+    >
+      {row.getVisibleCells().map(cell => (
+        <td key={cell.id}>
+          {flexRender(cell.column.columnDef.cell, cell.getContext())}
+        </td>
+      ))}
     </tr>
-  );
+  ));
 };
