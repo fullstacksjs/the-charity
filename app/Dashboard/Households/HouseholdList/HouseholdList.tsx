@@ -37,11 +37,11 @@ export const HouseholdList = () => {
   const columns = [
     householdColumnHelper.display({
       header: t.table.columns.order,
-      cell: info => info.row.index + 1,
+      cell: order => order.row.index + 1,
     }),
     householdColumnHelper.accessor('name', {
       header: t.table.columns.name,
-      cell: info => info.getValue(),
+      cell: name => name.getValue(),
     }),
     householdColumnHelper.accessor('isCompleted', {
       header: t.table.columns.status,

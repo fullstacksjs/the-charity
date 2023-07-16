@@ -1,14 +1,14 @@
-import type { HouseholdKeys, HouseholdListItem } from '@camp/domain';
+import type { ProjectKeys, ProjectListItem } from '@camp/domain';
 import { Title } from '@mantine/core';
 import type { Table } from '@tanstack/react-table';
 import { flexRender } from '@tanstack/react-table';
 import { ArrowDown, ArrowUp } from 'react-feather';
 
 interface Props {
-  col: Table<HouseholdKeys & HouseholdListItem>;
+  col: Table<ProjectKeys & ProjectListItem>;
 }
 
-export const HouseholdTableColumn = ({ col }: Props) => {
+export const ProjectTableColumn = ({ col }: Props) => {
   return col.getHeaderGroups().map(headerGroup => (
     <tr key={headerGroup.id}>
       {headerGroup.headers.map(header => (

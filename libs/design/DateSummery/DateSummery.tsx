@@ -1,7 +1,7 @@
 import { Text } from '@mantine/core';
 
 interface Props {
-  startDate: Date;
+  startDate: Date | null;
   endDate?: Date;
 }
 
@@ -11,7 +11,7 @@ const formatToPersian = (d: Date) =>
 export const DateSummery = ({ startDate, endDate }: Props) => {
   return (
     <Text color="secondaryDefault">
-      {formatToPersian(startDate)}
+      {formatToPersian(startDate!)}
       {endDate ? `- ${formatToPersian(endDate)}` : null}
     </Text>
   );

@@ -1,4 +1,5 @@
 import { messages } from '@camp/messages';
+import { createColumnHelper } from '@tanstack/react-table';
 import { z } from 'zod';
 
 import type { ProjectStatusEnum } from './ApiSchema';
@@ -21,7 +22,10 @@ export interface Project {
   endDate?: Date;
   createdAt: Date;
   updatedAt: Date;
+  fullDate?: FullDate;
 }
+
+type FullDate = Pick<Project, 'endDate' | 'startDate'>;
 
 export type ProjectKeys = Pick<Project, 'id'>;
 
@@ -38,11 +42,9 @@ export type ProjectDetail = Pick<
 
 export type ProjectListItem = Pick<
   Project,
-  | 'createdAt'
-  | 'description'
-  | 'endDate'
-  | 'name'
-  | 'startDate'
-  | 'status'
-  | 'updatedAt'
+  'createdAt' | 'description' | 'fullDate' | 'name' | 'status' | 'updatedAt'
 >;
+
+export const projectColumnHelper = createColumnHelper<
+  ProjectKeys & ProjectListItem
+>();

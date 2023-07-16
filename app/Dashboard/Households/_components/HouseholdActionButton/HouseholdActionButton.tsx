@@ -1,7 +1,6 @@
 import { useDeleteHouseholdMutation } from '@camp/data-layer';
 import { debug } from '@camp/debug';
 import { showNotification } from '@camp/design';
-import type { HouseholdKeys, HouseholdListItem } from '@camp/domain';
 import { MenuIcon } from '@camp/icons';
 import { messages } from '@camp/messages';
 import type { AppRoute, PathParams } from '@camp/router';
@@ -31,7 +30,7 @@ export const HouseholdActionButton = ({
   householdName: name,
 }: Props) => {
   const [deleteHousehold] = useDeleteHouseholdMutation();
-  const t = messages.households.list.delete.modal;
+  const t = messages.notification.household.delete;
 
   const onDeleteHousehold = async () => {
     try {
@@ -42,7 +41,7 @@ export const HouseholdActionButton = ({
       if (isNull(data)) throw Error('Assert: data is null');
       showNotification({
         title: t.title,
-        message: t.children(data.household!.name),
+        message: t.success(data.household!.name),
         type: 'success',
         ...createTestAttr(ids.notifications.delete.success),
       });
@@ -50,7 +49,7 @@ export const HouseholdActionButton = ({
       debug.error(err);
       showNotification({
         title: t.title,
-        message: t.children(name),
+        message: t.failed(name),
         type: 'failure',
         ...createTestAttr(ids.notifications.delete.failure),
       });
