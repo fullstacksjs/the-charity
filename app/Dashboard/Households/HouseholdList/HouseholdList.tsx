@@ -12,11 +12,13 @@ import { AppRoute } from '@camp/router';
 import { createTestAttr } from '@camp/test';
 import { isEmpty, isNull } from '@fullstacksjs/toolbox';
 import { Group } from '@mantine/core';
+import type { SortingState } from '@tanstack/react-table';
 import {
   getCoreRowModel,
   getSortedRowModel,
   useReactTable,
 } from '@tanstack/react-table';
+import { useState } from 'react';
 
 import { InformationBadge } from '../../_components/InformationBadge';
 import { SeverityBadge } from '../../_components/SeverityBadge';
@@ -33,6 +35,7 @@ const t = messages.households.list;
 export const HouseholdList = () => {
   const { data, loading, error } = useHouseholdListQuery();
   const households = data?.household;
+  const [sorting, setSorting] = useState<SortingState>([]);
 
   const columns = [
     householdColumnHelper.display({
@@ -70,6 +73,10 @@ export const HouseholdList = () => {
   const table = useReactTable({
     data: households!,
     columns,
+    state: {
+      sorting,
+    },
+    onSortingChange: setSorting,
     getCoreRowModel: getCoreRowModel(),
     getSortedRowModel: getSortedRowModel(),
   });
