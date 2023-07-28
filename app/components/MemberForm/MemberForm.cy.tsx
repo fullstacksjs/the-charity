@@ -13,10 +13,10 @@ describe('Create member form Form', () => {
 
   it('contains a first name input with correct label', () => {
     cy.findByTestId(memberFormIds.form).within(() => {
-      cy.findByLabelText(`${createMemberForm.nameInput.label}:`).should(
-        'match',
-        'input',
-      );
+      cy.findByRole('textbox', {
+        name: /نام:/i,
+        exact: false,
+      });
     });
   });
 

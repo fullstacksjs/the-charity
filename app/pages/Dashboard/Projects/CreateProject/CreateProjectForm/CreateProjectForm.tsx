@@ -3,6 +3,8 @@ import { debug } from '@camp/debug';
 import { showNotification } from '@camp/design';
 import { createResolver, projectSchema } from '@camp/domain';
 import { messages } from '@camp/messages';
+import type { AppRoute } from '@camp/router';
+import { useNavigate } from '@camp/router';
 import { createTestAttr } from '@camp/test';
 import { isNull } from '@fullstacksjs/toolbox';
 import { Button, Group, Stack, Textarea, TextInput } from '@mantine/core';
@@ -26,6 +28,7 @@ const resolver = createResolver<FormSchema>({
 
 export const CreateProjectForm = ({ dismiss }: Props) => {
   const [createProject, { loading }] = useCreateProjectMutation();
+  const navigate = useNavigate();
 
   const {
     handleSubmit,
@@ -51,6 +54,7 @@ export const CreateProjectForm = ({ dismiss }: Props) => {
         ...createTestAttr(ids.notification.success),
       });
       dismiss();
+      navigate({ to: `/dashboard/projects/${project.id}` as AppRoute });
     } catch (err) {
       debug.error(err);
 
