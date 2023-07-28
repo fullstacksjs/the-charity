@@ -6,6 +6,6 @@ describe('Create Household Button', () => {
   });
 
   it('should be a button with correct label', () => {
-    cy.findByRole('button', { name: /ایجاد خانواده جدید/ }).should('exist');
+    cy.findByRole('button', { name: /ایجاد خانوار جدید/ }).should('exist');
   });
 });
