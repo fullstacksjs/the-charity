@@ -6,7 +6,7 @@ export default {
   component: DateSummery,
   args: {
     endDate: undefined,
-    startDate: new Date,
+    startDate: new Date(1690921800000),
   },
 } as Meta<typeof DateSummery>;
 
@@ -16,6 +16,6 @@ export const Default: Story = {};
 
 export const WithEndDate: Story = {
   args: {
-    endDate: new Date,
+    endDate: new Date(1690921800000),
   },
 };

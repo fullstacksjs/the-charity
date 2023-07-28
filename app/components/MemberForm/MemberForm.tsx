@@ -127,7 +127,7 @@ export const MemberForm = ({
       toggleEditableMode();
       showNotification({
         title: t.title,
-        message: t.notification.successful(data?.member?.name ?? ''),
+        message: t.notification.successful(data.member?.name ?? ''),
         type: 'success',
         ...createTestAttr(ids.notification.success),
       });

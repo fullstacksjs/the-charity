@@ -20,7 +20,7 @@ describe('Create Household Modal', () => {
   it('should contains a modal element with correct title', () => {
     cy.findByRole('dialog')
       .should('have.attr', 'aria-modal', 'true')
-      .and('contain.text', 'ایجاد خانواده جدید');
+      .and('contain.text', 'ایجاد خانوار جدید');
   });
 
   it('should contains createHousehold form', () => {
