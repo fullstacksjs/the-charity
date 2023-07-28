@@ -1,8 +1,9 @@
 import { gql } from '@apollo/client';
 import type { QueryHookOptions } from '@camp/api-client';
 import { useQuery } from '@camp/api-client';
-import type { ApiHouseholdOrderBy, Household, InputMaybe } from '@camp/domain';
-import { SortingState } from '@tanstack/react-table';
+import type { Household } from '@camp/domain';
+import { ApiOrderBy } from '@camp/domain';
+import type { SortingState } from '@tanstack/react-table';
 
 import type {
   ApiHouseholdListQuery,
@@ -41,11 +42,18 @@ const toClient = (data: ApiHouseholdListQuery | null) => {
 };
 
 interface Variables {
-  orderBy: InputMaybe<ApiHouseholdOrderBy | ApiHouseholdOrderBy[]> | undefined;
+  orderBy: SortingState;
 }
 
 const toApiVariables = (data: Variables): ApiHouseholdListQueryVariables => {
-  return { order_by: data.orderBy };
+  return {
+    order_by: data.orderBy.reduce((acc, item) => {
+      return {
+        ...acc,
+        [item.id]: item.desc ? ApiOrderBy.Desc : ApiOrderBy.Asc,
+      };
+    }, {}),
+  };
 };
 
 export const useHouseholdListQuery = (

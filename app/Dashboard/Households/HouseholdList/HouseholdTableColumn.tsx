@@ -1,5 +1,4 @@
 import type { HouseholdKeys, HouseholdListItem } from '@camp/domain';
-import { Title } from '@mantine/core';
 import type { Table } from '@tanstack/react-table';
 import { flexRender } from '@tanstack/react-table';
 

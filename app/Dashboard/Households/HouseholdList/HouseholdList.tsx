@@ -6,11 +6,7 @@ import {
   showNotification,
   Table,
 } from '@camp/design';
-import {
-  ApiHouseholdOrderBy,
-  householdColumnHelper,
-  InputMaybe,
-} from '@camp/domain';
+import { householdColumnHelper } from '@camp/domain';
 import { errorMessages, messages } from '@camp/messages';
 import { AppRoute } from '@camp/router';
 import { createTestAttr } from '@camp/test';
@@ -22,7 +18,7 @@ import {
   getSortedRowModel,
   useReactTable,
 } from '@tanstack/react-table';
-import { memo, useMemo, useState } from 'react';
+import { useState } from 'react';
 
 import { InformationBadge } from '../../_components/InformationBadge';
 import { SeverityBadge } from '../../_components/SeverityBadge';
@@ -38,6 +34,7 @@ const t = messages.households.list;
 
 export const HouseholdList = () => {
   const [sorting, setSorting] = useState<SortingState>([]);
+
   const { data, loading, error } = useHouseholdListQuery({
     variables: { orderBy: sorting },
   });
@@ -53,6 +50,7 @@ export const HouseholdList = () => {
       cell: name => name.getValue(),
     }),
     householdColumnHelper.accessor('isCompleted', {
+      id: 'status',
       header: t.table.columns.status,
       cell: status => (
         <InformationBadge status={status.getValue() ? 'completed' : 'draft'} />
