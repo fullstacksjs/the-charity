@@ -1,7 +1,11 @@
 import { messages } from '@camp/messages';
 import { z } from 'zod';
 
-import type { HouseholdSeverityEnum, HouseholdStatusEnum } from './ApiSchema';
+import { toZodLiteralList } from '../zod-addons';
+import type { HouseholdStatusEnum } from './ApiSchema';
+import { HouseholdSeverityEnum } from './ApiSchema';
+
+export const severities = Object.values(HouseholdSeverityEnum);
 
 export const householdSchema = {
   name: () =>
@@ -10,6 +14,7 @@ export const householdSchema = {
       .trim()
       .min(1, messages.validation.required)
       .min(3, messages.households.validation.minLength),
+  severity: () => z.union(toZodLiteralList(severities)),
 };
 
 export interface Household {

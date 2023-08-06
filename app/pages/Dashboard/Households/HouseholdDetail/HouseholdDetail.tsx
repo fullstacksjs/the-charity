@@ -6,13 +6,15 @@ import {
 } from '@camp/data-layer';
 import { debug } from '@camp/debug';
 import {
+  ControlledSelect,
   DetailCard,
   FullPageLoader,
   showNotification,
   Tabs,
   TextInput,
 } from '@camp/design';
-import { createResolver, householdSchema } from '@camp/domain';
+import type { HouseholdSeverityEnum } from '@camp/domain';
+import { createResolver, householdSchema, severities } from '@camp/domain';
 import { ArrowUpIcon, CheckIcon, EditIcon, TrashIcon } from '@camp/icons';
 import { errorMessages, messages } from '@camp/messages';
 import { AppRoute, useNavigate, useParams } from '@camp/router';
@@ -26,7 +28,6 @@ import {
   HouseholderDetail,
   InformationBadge,
   MemberList,
-  SeverityBadge,
 } from '../../../../components';
 import { UndoButton } from '../../../../components/UndoButton';
 import { openDeleteHouseholdModal } from '../DeleteHouseholdModal';
@@ -34,10 +35,12 @@ import { householdDetailIds as ids } from './HouseholdDetail.ids';
 
 interface FormSchema {
   name: string;
+  severity: HouseholdSeverityEnum;
 }
 
 const resolver = createResolver<FormSchema>({
   name: householdSchema.name(),
+  severity: householdSchema.severity(),
 });
 
 const useStyles = createStyles(theme => ({
@@ -55,7 +58,7 @@ export const HouseholdDetail = () => {
   const householdId = useParams();
   const navigate = useNavigate();
   const {
-    handleSubmit,
+    // handleSubmit,
     register,
     reset,
     formState: { errors, isValid, isDirty },
@@ -210,15 +213,23 @@ export const HouseholdDetail = () => {
           <TextInput
             readOnly={isReadOnly}
             className={classes.input}
-            wrapperProps={createTestAttr(ids.form.name)}
+            wrapperProps={createTestAttr(ids.nameInput)}
             {...register('name')}
             label={`${t.householdFields.name.title}:`}
             error={errors.name?.message}
           />
-          <DetailCard.Field title={t.householdFields.severityStatus.title}>
-            <SeverityBadge severity={household.severity} />
-          </DetailCard.Field>
 
+          <ControlledSelect
+            readOnly={isReadOnly}
+            name="severity"
+            control={control}
+            wrapperProps={createTestAttr(ids.severityInput)}
+            data={severities.map(v => ({
+              value: v,
+              label: messages.households.severityStatus[v],
+            }))}
+            label={`${t.householdFields.severityStatus.title}:`}
+          />
           <DetailCard.Field title={t.householdFields.informationStatus.title}>
             <InformationBadge
               status={household.isCompleted ? 'completed' : 'draft'}
