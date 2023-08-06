@@ -10,12 +10,17 @@ import {
   FullPageLoader,
   showNotification,
   Tabs,
+  TextInput,
 } from '@camp/design';
-import { ArrowUpIcon, TrashIcon } from '@camp/icons';
+import { createResolver, householdSchema } from '@camp/domain';
+import { ArrowUpIcon, CheckIcon, EditIcon, TrashIcon } from '@camp/icons';
 import { errorMessages, messages } from '@camp/messages';
 import { AppRoute, useNavigate, useParams } from '@camp/router';
+import { createTestAttr } from '@camp/test';
 import { isNull } from '@fullstacksjs/toolbox';
-import { Button, Flex, Title } from '@mantine/core';
+import { Button, createStyles, Flex, Title } from '@mantine/core';
+import { useBoolean } from 'ahooks';
+import { useForm } from 'react-hook-form';
 
 import {
   HouseholderDetail,
@@ -23,20 +28,52 @@ import {
   MemberList,
   SeverityBadge,
 } from '../../../../components';
+import { UndoButton } from '../../../../components/UndoButton';
 import { openDeleteHouseholdModal } from '../DeleteHouseholdModal';
 import { householdDetailIds as ids } from './HouseholdDetail.ids';
 
+interface FormSchema {
+  name: string;
+}
+
+const resolver = createResolver<FormSchema>({
+  name: householdSchema.name(),
+});
+
+const useStyles = createStyles(theme => ({
+  input: {
+    label: {
+      color: theme.colors.fgSubtle[6],
+    },
+  },
+}));
+
+// eslint-disable-next-line max-lines-per-function
 export const HouseholdDetail = () => {
   const t = messages.householdDetail;
   const tNotification = messages.notification.household;
   const householdId = useParams();
   const navigate = useNavigate();
   const {
+    handleSubmit,
+    register,
+    reset,
+    formState: { errors, isValid, isDirty },
+    control,
+  } = useForm<FormSchema>({
+    resolver,
+    mode: 'onChange',
+  });
+
+  const {
     data: householdData,
     loading,
     error,
   } = useHouseholdQuery({
     variables: { id: householdId },
+    onCompleted: d => {
+      reset(d.household ?? {});
+    },
   });
   const [deleteHousehold] = useDeleteHouseholdMutation();
   const [completeHousehold] = useCompleteHouseholdMutation();
@@ -47,6 +84,10 @@ export const HouseholdDetail = () => {
   });
 
   const householder = householderData?.householder;
+  const { classes } = useStyles();
+  const [isEditing, { set: setIsEditing }] = useBoolean(false);
+
+  const isReadOnly = !isEditing;
 
   if (loading) return <FullPageLoader />;
 
@@ -130,13 +171,50 @@ export const HouseholdDetail = () => {
                 {t.complete}
               </Button>
             )}
+            {isEditing ? (
+              <>
+                <UndoButton
+                  disabled={!isDirty}
+                  onClick={() => {
+                    reset();
+                    setIsEditing(false);
+                  }}
+                />
+                <Button
+                  {...createTestAttr('ids.submitBtn')}
+                  type="submit"
+                  size="sm"
+                  leftIcon={<CheckIcon size={16} />}
+                  disabled={!isValid || !isDirty}
+                >
+                  {messages.actions.submitBtn}
+                </Button>
+              </>
+            ) : (
+              <Button
+                key={1}
+                {...createTestAttr('ids.editBtn')}
+                type="button"
+                size="sm"
+                variant="outline"
+                onClick={() => setIsEditing(true)}
+                leftIcon={<EditIcon size={16} />}
+              >
+                {messages.actions.editBtn}
+              </Button>
+            )}
           </Flex>
         }
       >
         <DetailCard.Section>
-          <DetailCard.Field title={t.householdFields.name.title}>
-            {household.name}
-          </DetailCard.Field>
+          <TextInput
+            readOnly={isReadOnly}
+            className={classes.input}
+            wrapperProps={createTestAttr(ids.form.name)}
+            {...register('name')}
+            label={`${t.householdFields.name.title}:`}
+            error={errors.name?.message}
+          />
           <DetailCard.Field title={t.householdFields.severityStatus.title}>
             <SeverityBadge severity={household.severity} />
           </DetailCard.Field>
