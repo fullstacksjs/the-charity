@@ -91,8 +91,8 @@ export const messages = {
       draft: 'تکمیل نشده',
     },
     severityStatus: {
-      critical: 'اضطراری',
-      normal: 'عادی',
+      Critical: 'اضطراری',
+      Normal: 'عادی',
     },
     list: {
       title: 'لیست خانوارها',
@@ -323,6 +323,7 @@ export const messages = {
     panels: {
       title: 'second panel',
     },
+    // FIXME
     householdFields: {
       name: {
         title: 'نام',
