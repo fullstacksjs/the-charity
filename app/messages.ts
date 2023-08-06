@@ -323,19 +323,15 @@ export const messages = {
     panels: {
       title: 'second panel',
     },
-    // FIXME
     householdFields: {
       name: {
         title: 'نام',
-        value: 'فول استک زاده',
       },
       severityStatus: {
         title: 'وضعیت نیازمندی',
-        value: 'بحرانی',
       },
       informationStatus: {
         title: 'وضعیت اطلاعات',
-        value: 'تکمیل نشده',
       },
     },
   },
