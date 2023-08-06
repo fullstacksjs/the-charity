@@ -28,8 +28,9 @@ import {
   HouseholderDetail,
   InformationBadge,
   MemberList,
+  SeverityBadge,
+  UndoButton,
 } from '../../../../components';
-import { UndoButton } from '../../../../components/UndoButton';
 import { openDeleteHouseholdModal } from '../DeleteHouseholdModal';
 import { householdDetailIds as ids } from './HouseholdDetail.ids';
 
@@ -221,6 +222,11 @@ export const HouseholdDetail = () => {
 
           <ControlledSelect
             readOnly={isReadOnly}
+            presentation={v => (
+              <DetailCard.Field title={t.householdFields.severityStatus.title}>
+                <SeverityBadge severity={v as HouseholdSeverityEnum} />
+              </DetailCard.Field>
+            )}
             name="severity"
             control={control}
             wrapperProps={createTestAttr(ids.severityInput)}
