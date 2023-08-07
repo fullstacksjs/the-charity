@@ -3,6 +3,7 @@ import {
   useDeleteHouseholdMutation,
   useHouseholderQuery,
   useHouseholdQuery,
+  useUpdateHouseholdMutation,
 } from '@camp/data-layer';
 import { debug } from '@camp/debug';
 import {
@@ -59,7 +60,7 @@ export const HouseholdDetail = () => {
   const householdId = useParams();
   const navigate = useNavigate();
   const {
-    // handleSubmit,
+    handleSubmit,
     register,
     reset,
     formState: { errors, isValid, isDirty },
@@ -81,10 +82,42 @@ export const HouseholdDetail = () => {
   });
   const [deleteHousehold] = useDeleteHouseholdMutation();
   const [completeHousehold] = useCompleteHouseholdMutation();
+  const [updateHousehold] = useUpdateHouseholdMutation();
 
   const household = householdData?.household;
   const { data: householderData } = useHouseholderQuery({
     variables: { id: householdId },
+  });
+
+  const onUpdateHousehold = handleSubmit(async formData => {
+    try {
+      await updateHousehold({
+        variables: {
+          id: householdId,
+          update: { name: formData.name, severity: formData.severity },
+        },
+      });
+
+      showNotification({
+        title: t.title,
+        message: messages.householder.form.notification.successfulUpdate(
+          household!.name,
+        ),
+        type: 'success',
+        ...createTestAttr(ids.notification.success),
+      });
+    } catch (err) {
+      debug.error(err);
+
+      showNotification({
+        title: t.title,
+        message: messages.householder.form.notification.failedUpdate(
+          household!.name,
+        ),
+        type: 'failure',
+        ...createTestAttr(ids.notification.failure),
+      });
+    }
   });
 
   const householder = householderData?.householder;
@@ -151,7 +184,7 @@ export const HouseholdDetail = () => {
   };
 
   return (
-    <>
+    <form onSubmit={onUpdateHousehold} {...createTestAttr(ids.form)}>
       <DetailCard
         title={t.title}
         id={household.code}
@@ -259,6 +292,6 @@ export const HouseholdDetail = () => {
           },
         ]}
       />
-    </>
+    </form>
   );
 };

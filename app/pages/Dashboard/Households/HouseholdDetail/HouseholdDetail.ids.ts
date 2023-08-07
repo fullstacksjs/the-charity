@@ -1,6 +1,11 @@
 export const householdDetailIds = {
   memberFormTab: 'member-form-tab',
   householderTab: 'householder-tab',
-  nameInput: 'name-input',
-  severityInput: 'severity-input',
+  nameInput: 'household-name-input',
+  severityInput: 'household-severity-input',
+  form: 'household-form',
+  notification: {
+    success: 'household-successful-update',
+    failure: 'household-failed-update',
+  },
 };
