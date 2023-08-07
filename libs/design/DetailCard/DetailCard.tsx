@@ -17,6 +17,7 @@ export const DetailCard = ({ title, id, children, ...cardProps }: Props) => {
   return (
     <DashboardCard
       bg="transparent"
+      style={{ overflow: 'visible' }}
       withBorder={false}
       pb={25}
       right={
