@@ -143,7 +143,7 @@ export const HouseholdDetail = () => {
 
           <DetailCard.Field title={t.householdFields.informationStatus.title}>
             <InformationBadge
-              information={household.isCompleted ? 'completed' : 'draft'}
+              status={household.isCompleted ? 'completed' : 'draft'}
             />
           </DetailCard.Field>
         </DetailCard.Section>

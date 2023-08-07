@@ -2,8 +2,8 @@ import type {
   ApiMemberKeysFragment,
   ApiMemberListItemFragment,
 } from '@camp/data-layer';
-import type { MemberKeys, MemberListItem, MemberStatus } from '@camp/domain';
-import { MemberStatusEnum } from '@camp/domain';
+import type { MemberKeys, MemberListItem } from '@camp/domain';
+import { MemberStatus } from '@camp/domain';
 
 import { toDate } from './scalar.mapper';
 
@@ -19,7 +19,7 @@ export const getMemberListItem = (
   return {
     status: data.status as unknown as MemberStatus,
     name: data.name,
-    isCompleted: data.status === MemberStatusEnum.Completed,
+    isCompleted: data.status === MemberStatus.Completed,
     surname: data.surname ?? undefined,
     fatherName: data.father_name ?? undefined,
     nationality: data.nationality ?? undefined,

@@ -61,7 +61,7 @@ export const HouseholdTableRow = ({ order, household }: Props) => {
       <td>{order}</td>
       <td>{name}</td>
       <td>
-        <InformationBadge information={isCompleted ? 'completed' : 'draft'} />
+        <InformationBadge status={isCompleted ? 'completed' : 'draft'} />
       </td>
       <td>
         <Group position="apart">

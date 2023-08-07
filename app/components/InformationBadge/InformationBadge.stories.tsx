@@ -11,11 +11,11 @@ type Story = StoryObj<typeof InformationBadge>;
 export const Default: Story = {};
 export const Completed: Story = {
   args: {
-    information: 'completed',
+    status: 'completed',
   },
 };
 export const Draft: Story = {
   args: {
-    information: 'draft',
+    status: 'draft',
   },
 };

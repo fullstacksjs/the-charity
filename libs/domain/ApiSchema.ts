@@ -1461,140 +1461,6 @@ export type ApiHouseholderSetInput = {
   updated_at?: InputMaybe<Scalars['timestamptz']['input']>;
 };
 
-/** columns and relationships of "householder_status" */
-export type ApiHouseholderStatus = {
-  __typename?: 'householder_status';
-  description?: Maybe<Scalars['String']['output']>;
-  value: Scalars['String']['output'];
-};
-
-/** aggregated selection of "householder_status" */
-export type ApiHouseholderStatusAggregate = {
-  __typename?: 'householder_status_aggregate';
-  aggregate?: Maybe<ApiHouseholderStatusAggregateFields>;
-  nodes: Array<ApiHouseholderStatus>;
-};
-
-/** aggregate fields of "householder_status" */
-export type ApiHouseholderStatusAggregateFields = {
-  __typename?: 'householder_status_aggregate_fields';
-  count: Scalars['Int']['output'];
-  max?: Maybe<ApiHouseholderStatusMaxFields>;
-  min?: Maybe<ApiHouseholderStatusMinFields>;
-};
-
-
-/** aggregate fields of "householder_status" */
-export type ApiHouseholderStatusAggregateFieldsApiCountArgs = {
-  columns?: InputMaybe<Array<ApiHouseholderStatusSelectColumn>>;
-  distinct?: InputMaybe<Scalars['Boolean']['input']>;
-};
-
-/** Boolean expression to filter rows from the table "householder_status". All fields are combined with a logical 'AND'. */
-export type ApiHouseholderStatusBoolExp = {
-  _and?: InputMaybe<Array<ApiHouseholderStatusBoolExp>>;
-  _not?: InputMaybe<ApiHouseholderStatusBoolExp>;
-  _or?: InputMaybe<Array<ApiHouseholderStatusBoolExp>>;
-  description?: InputMaybe<ApiStringComparisonExp>;
-  value?: InputMaybe<ApiStringComparisonExp>;
-};
-
-/** unique or primary key constraints on table "householder_status" */
-export enum ApiHouseholderStatusConstraint {
-  /** unique or primary key constraint on columns "value" */
-  HouseholderStatusPkey = 'householder_status_pkey'
-}
-
-/** input type for inserting data into table "householder_status" */
-export type ApiHouseholderStatusInsertInput = {
-  description?: InputMaybe<Scalars['String']['input']>;
-  value?: InputMaybe<Scalars['String']['input']>;
-};
-
-/** aggregate max on columns */
-export type ApiHouseholderStatusMaxFields = {
-  __typename?: 'householder_status_max_fields';
-  description?: Maybe<Scalars['String']['output']>;
-  value?: Maybe<Scalars['String']['output']>;
-};
-
-/** aggregate min on columns */
-export type ApiHouseholderStatusMinFields = {
-  __typename?: 'householder_status_min_fields';
-  description?: Maybe<Scalars['String']['output']>;
-  value?: Maybe<Scalars['String']['output']>;
-};
-
-/** response of any mutation on the table "householder_status" */
-export type ApiHouseholderStatusMutationResponse = {
-  __typename?: 'householder_status_mutation_response';
-  /** number of rows affected by the mutation */
-  affected_rows: Scalars['Int']['output'];
-  /** data from the rows affected by the mutation */
-  returning: Array<ApiHouseholderStatus>;
-};
-
-/** on_conflict condition type for table "householder_status" */
-export type ApiHouseholderStatusOnConflict = {
-  constraint: ApiHouseholderStatusConstraint;
-  update_columns?: Array<ApiHouseholderStatusUpdateColumn>;
-  where?: InputMaybe<ApiHouseholderStatusBoolExp>;
-};
-
-/** Ordering options when selecting data from "householder_status". */
-export type ApiHouseholderStatusOrderBy = {
-  description?: InputMaybe<ApiOrderBy>;
-  value?: InputMaybe<ApiOrderBy>;
-};
-
-/** primary key columns input for table: householder_status */
-export type ApiHouseholderStatusPkColumnsInput = {
-  value: Scalars['String']['input'];
-};
-
-/** select columns of table "householder_status" */
-export enum ApiHouseholderStatusSelectColumn {
-  /** column name */
-  Description = 'description',
-  /** column name */
-  Value = 'value'
-}
-
-/** input type for updating data in table "householder_status" */
-export type ApiHouseholderStatusSetInput = {
-  description?: InputMaybe<Scalars['String']['input']>;
-  value?: InputMaybe<Scalars['String']['input']>;
-};
-
-/** Streaming cursor of the table "householder_status" */
-export type ApiHouseholderStatusStreamCursorInput = {
-  /** Stream column input with initial value */
-  initial_value: ApiHouseholderStatusStreamCursorValueInput;
-  /** cursor ordering */
-  ordering?: InputMaybe<ApiCursorOrdering>;
-};
-
-/** Initial value of the column from where the streaming should start */
-export type ApiHouseholderStatusStreamCursorValueInput = {
-  description?: InputMaybe<Scalars['String']['input']>;
-  value?: InputMaybe<Scalars['String']['input']>;
-};
-
-/** update columns of table "householder_status" */
-export enum ApiHouseholderStatusUpdateColumn {
-  /** column name */
-  Description = 'description',
-  /** column name */
-  Value = 'value'
-}
-
-export type ApiHouseholderStatusUpdates = {
-  /** sets the columns of the filtered rows to the given values */
-  _set?: InputMaybe<ApiHouseholderStatusSetInput>;
-  /** filter the rows which have to be updated */
-  where: ApiHouseholderStatusBoolExp;
-};
-
 /** Streaming cursor of the table "householder" */
 export type ApiHouseholderStreamCursorInput = {
   /** Stream column input with initial value */
@@ -1672,7 +1538,8 @@ export type ApiMember = {
   national_id?: Maybe<Scalars['String']['output']>;
   nationality?: Maybe<NationalityEnum>;
   religion?: Maybe<ReligionEnum>;
-  status: MemberStatusEnum;
+  /** A computed field, executes function "get_member_status" */
+  status?: Maybe<Scalars['String']['output']>;
   surname?: Maybe<Scalars['String']['output']>;
   updated_at: Scalars['timestamptz']['output'];
 };
@@ -1715,7 +1582,7 @@ export type ApiMemberBoolExp = {
   national_id?: InputMaybe<ApiStringComparisonExp>;
   nationality?: InputMaybe<NationalityEnumComparisonExp>;
   religion?: InputMaybe<ReligionEnumComparisonExp>;
-  status?: InputMaybe<MemberStatusEnumComparisonExp>;
+  status?: InputMaybe<ApiStringComparisonExp>;
   surname?: InputMaybe<ApiStringComparisonExp>;
   updated_at?: InputMaybe<ApiTimestamptzComparisonExp>;
 };
@@ -1739,7 +1606,6 @@ export type ApiMemberInsertInput = {
   national_id?: InputMaybe<Scalars['String']['input']>;
   nationality?: InputMaybe<NationalityEnum>;
   religion?: InputMaybe<ReligionEnum>;
-  status?: InputMaybe<MemberStatusEnum>;
   surname?: InputMaybe<Scalars['String']['input']>;
   updated_at?: InputMaybe<Scalars['timestamptz']['input']>;
 };
@@ -1834,8 +1700,6 @@ export enum ApiMemberSelectColumn {
   /** column name */
   Religion = 'religion',
   /** column name */
-  Status = 'status',
-  /** column name */
   Surname = 'surname',
   /** column name */
   UpdatedAt = 'updated_at'
@@ -1853,145 +1717,8 @@ export type ApiMemberSetInput = {
   national_id?: InputMaybe<Scalars['String']['input']>;
   nationality?: InputMaybe<NationalityEnum>;
   religion?: InputMaybe<ReligionEnum>;
-  status?: InputMaybe<MemberStatusEnum>;
   surname?: InputMaybe<Scalars['String']['input']>;
   updated_at?: InputMaybe<Scalars['timestamptz']['input']>;
-};
-
-/** columns and relationships of "member_status" */
-export type ApiMemberStatus = {
-  __typename?: 'member_status';
-  value: Scalars['String']['output'];
-};
-
-/** aggregated selection of "member_status" */
-export type ApiMemberStatusAggregate = {
-  __typename?: 'member_status_aggregate';
-  aggregate?: Maybe<ApiMemberStatusAggregateFields>;
-  nodes: Array<ApiMemberStatus>;
-};
-
-/** aggregate fields of "member_status" */
-export type ApiMemberStatusAggregateFields = {
-  __typename?: 'member_status_aggregate_fields';
-  count: Scalars['Int']['output'];
-  max?: Maybe<ApiMemberStatusMaxFields>;
-  min?: Maybe<ApiMemberStatusMinFields>;
-};
-
-
-/** aggregate fields of "member_status" */
-export type ApiMemberStatusAggregateFieldsApiCountArgs = {
-  columns?: InputMaybe<Array<ApiMemberStatusSelectColumn>>;
-  distinct?: InputMaybe<Scalars['Boolean']['input']>;
-};
-
-/** Boolean expression to filter rows from the table "member_status". All fields are combined with a logical 'AND'. */
-export type ApiMemberStatusBoolExp = {
-  _and?: InputMaybe<Array<ApiMemberStatusBoolExp>>;
-  _not?: InputMaybe<ApiMemberStatusBoolExp>;
-  _or?: InputMaybe<Array<ApiMemberStatusBoolExp>>;
-  value?: InputMaybe<ApiStringComparisonExp>;
-};
-
-/** unique or primary key constraints on table "member_status" */
-export enum ApiMemberStatusConstraint {
-  /** unique or primary key constraint on columns "value" */
-  MemberStatusPkey = 'member_status_pkey'
-}
-
-export enum MemberStatusEnum {
-  Completed = 'Completed',
-  Draft = 'Draft'
-}
-
-/** Boolean expression to compare columns of type "member_status_enum". All fields are combined with logical 'AND'. */
-export type MemberStatusEnumComparisonExp = {
-  _eq?: InputMaybe<MemberStatusEnum>;
-  _in?: InputMaybe<Array<MemberStatusEnum>>;
-  _is_null?: InputMaybe<Scalars['Boolean']['input']>;
-  _neq?: InputMaybe<MemberStatusEnum>;
-  _nin?: InputMaybe<Array<MemberStatusEnum>>;
-};
-
-/** input type for inserting data into table "member_status" */
-export type ApiMemberStatusInsertInput = {
-  value?: InputMaybe<Scalars['String']['input']>;
-};
-
-/** aggregate max on columns */
-export type ApiMemberStatusMaxFields = {
-  __typename?: 'member_status_max_fields';
-  value?: Maybe<Scalars['String']['output']>;
-};
-
-/** aggregate min on columns */
-export type ApiMemberStatusMinFields = {
-  __typename?: 'member_status_min_fields';
-  value?: Maybe<Scalars['String']['output']>;
-};
-
-/** response of any mutation on the table "member_status" */
-export type ApiMemberStatusMutationResponse = {
-  __typename?: 'member_status_mutation_response';
-  /** number of rows affected by the mutation */
-  affected_rows: Scalars['Int']['output'];
-  /** data from the rows affected by the mutation */
-  returning: Array<ApiMemberStatus>;
-};
-
-/** on_conflict condition type for table "member_status" */
-export type ApiMemberStatusOnConflict = {
-  constraint: ApiMemberStatusConstraint;
-  update_columns?: Array<ApiMemberStatusUpdateColumn>;
-  where?: InputMaybe<ApiMemberStatusBoolExp>;
-};
-
-/** Ordering options when selecting data from "member_status". */
-export type ApiMemberStatusOrderBy = {
-  value?: InputMaybe<ApiOrderBy>;
-};
-
-/** primary key columns input for table: member_status */
-export type ApiMemberStatusPkColumnsInput = {
-  value: Scalars['String']['input'];
-};
-
-/** select columns of table "member_status" */
-export enum ApiMemberStatusSelectColumn {
-  /** column name */
-  Value = 'value'
-}
-
-/** input type for updating data in table "member_status" */
-export type ApiMemberStatusSetInput = {
-  value?: InputMaybe<Scalars['String']['input']>;
-};
-
-/** Streaming cursor of the table "member_status" */
-export type ApiMemberStatusStreamCursorInput = {
-  /** Stream column input with initial value */
-  initial_value: ApiMemberStatusStreamCursorValueInput;
-  /** cursor ordering */
-  ordering?: InputMaybe<ApiCursorOrdering>;
-};
-
-/** Initial value of the column from where the streaming should start */
-export type ApiMemberStatusStreamCursorValueInput = {
-  value?: InputMaybe<Scalars['String']['input']>;
-};
-
-/** update columns of table "member_status" */
-export enum ApiMemberStatusUpdateColumn {
-  /** column name */
-  Value = 'value'
-}
-
-export type ApiMemberStatusUpdates = {
-  /** sets the columns of the filtered rows to the given values */
-  _set?: InputMaybe<ApiMemberStatusSetInput>;
-  /** filter the rows which have to be updated */
-  where: ApiMemberStatusBoolExp;
 };
 
 /** Streaming cursor of the table "member" */
@@ -2014,7 +1741,6 @@ export type ApiMemberStreamCursorValueInput = {
   national_id?: InputMaybe<Scalars['String']['input']>;
   nationality?: InputMaybe<NationalityEnum>;
   religion?: InputMaybe<ReligionEnum>;
-  status?: InputMaybe<MemberStatusEnum>;
   surname?: InputMaybe<Scalars['String']['input']>;
   updated_at?: InputMaybe<Scalars['timestamptz']['input']>;
 };
@@ -2041,8 +1767,6 @@ export enum ApiMemberUpdateColumn {
   Nationality = 'nationality',
   /** column name */
   Religion = 'religion',
-  /** column name */
-  Status = 'status',
   /** column name */
   Surname = 'surname',
   /** column name */
@@ -2087,18 +1811,10 @@ export type ApiMutationRoot = {
   delete_householder?: Maybe<ApiHouseholderMutationResponse>;
   /** delete single row from the table: "householder" */
   delete_householder_by_pk?: Maybe<ApiHouseholder>;
-  /** delete data from the table: "householder_status" */
-  delete_householder_status?: Maybe<ApiHouseholderStatusMutationResponse>;
-  /** delete single row from the table: "householder_status" */
-  delete_householder_status_by_pk?: Maybe<ApiHouseholderStatus>;
   /** delete data from the table: "member" */
   delete_member?: Maybe<ApiMemberMutationResponse>;
   /** delete single row from the table: "member" */
   delete_member_by_pk?: Maybe<ApiMember>;
-  /** delete data from the table: "member_status" */
-  delete_member_status?: Maybe<ApiMemberStatusMutationResponse>;
-  /** delete single row from the table: "member_status" */
-  delete_member_status_by_pk?: Maybe<ApiMemberStatus>;
   /** delete data from the table: "nationality" */
   delete_nationality?: Maybe<ApiNationalityMutationResponse>;
   /** delete single row from the table: "nationality" */
@@ -2143,18 +1859,10 @@ export type ApiMutationRoot = {
   insert_householder?: Maybe<ApiHouseholderMutationResponse>;
   /** insert a single row into the table: "householder" */
   insert_householder_one?: Maybe<ApiHouseholder>;
-  /** insert data into the table: "householder_status" */
-  insert_householder_status?: Maybe<ApiHouseholderStatusMutationResponse>;
-  /** insert a single row into the table: "householder_status" */
-  insert_householder_status_one?: Maybe<ApiHouseholderStatus>;
   /** insert data into the table: "member" */
   insert_member?: Maybe<ApiMemberMutationResponse>;
   /** insert a single row into the table: "member" */
   insert_member_one?: Maybe<ApiMember>;
-  /** insert data into the table: "member_status" */
-  insert_member_status?: Maybe<ApiMemberStatusMutationResponse>;
-  /** insert a single row into the table: "member_status" */
-  insert_member_status_one?: Maybe<ApiMemberStatus>;
   /** insert data into the table: "nationality" */
   insert_nationality?: Maybe<ApiNationalityMutationResponse>;
   /** insert a single row into the table: "nationality" */
@@ -2213,24 +1921,12 @@ export type ApiMutationRoot = {
   update_householder_by_pk?: Maybe<ApiHouseholder>;
   /** update multiples rows of table: "householder" */
   update_householder_many?: Maybe<Array<Maybe<ApiHouseholderMutationResponse>>>;
-  /** update data of the table: "householder_status" */
-  update_householder_status?: Maybe<ApiHouseholderStatusMutationResponse>;
-  /** update single row of the table: "householder_status" */
-  update_householder_status_by_pk?: Maybe<ApiHouseholderStatus>;
-  /** update multiples rows of table: "householder_status" */
-  update_householder_status_many?: Maybe<Array<Maybe<ApiHouseholderStatusMutationResponse>>>;
   /** update data of the table: "member" */
   update_member?: Maybe<ApiMemberMutationResponse>;
   /** update single row of the table: "member" */
   update_member_by_pk?: Maybe<ApiMember>;
   /** update multiples rows of table: "member" */
   update_member_many?: Maybe<Array<Maybe<ApiMemberMutationResponse>>>;
-  /** update data of the table: "member_status" */
-  update_member_status?: Maybe<ApiMemberStatusMutationResponse>;
-  /** update single row of the table: "member_status" */
-  update_member_status_by_pk?: Maybe<ApiMemberStatus>;
-  /** update multiples rows of table: "member_status" */
-  update_member_status_many?: Maybe<Array<Maybe<ApiMemberStatusMutationResponse>>>;
   /** update data of the table: "nationality" */
   update_nationality?: Maybe<ApiNationalityMutationResponse>;
   /** update single row of the table: "nationality" */
@@ -2344,18 +2040,6 @@ export type ApiMutationRootApiDeleteHouseholderByPkArgs = {
 
 
 /** mutation root */
-export type ApiMutationRootApiDeleteHouseholderStatusArgs = {
-  where: ApiHouseholderStatusBoolExp;
-};
-
-
-/** mutation root */
-export type ApiMutationRootApiDeleteHouseholderStatusByPkArgs = {
-  value: Scalars['String']['input'];
-};
-
-
-/** mutation root */
 export type ApiMutationRootApiDeleteMemberArgs = {
   where: ApiMemberBoolExp;
 };
@@ -2364,18 +2048,6 @@ export type ApiMutationRootApiDeleteMemberArgs = {
 /** mutation root */
 export type ApiMutationRootApiDeleteMemberByPkArgs = {
   id: Scalars['uuid']['input'];
-};
-
-
-/** mutation root */
-export type ApiMutationRootApiDeleteMemberStatusArgs = {
-  where: ApiMemberStatusBoolExp;
-};
-
-
-/** mutation root */
-export type ApiMutationRootApiDeleteMemberStatusByPkArgs = {
-  value: Scalars['String']['input'];
 };
 
 
@@ -2526,20 +2198,6 @@ export type ApiMutationRootApiInsertHouseholderOneArgs = {
 
 
 /** mutation root */
-export type ApiMutationRootApiInsertHouseholderStatusArgs = {
-  objects: Array<ApiHouseholderStatusInsertInput>;
-  on_conflict?: InputMaybe<ApiHouseholderStatusOnConflict>;
-};
-
-
-/** mutation root */
-export type ApiMutationRootApiInsertHouseholderStatusOneArgs = {
-  object: ApiHouseholderStatusInsertInput;
-  on_conflict?: InputMaybe<ApiHouseholderStatusOnConflict>;
-};
-
-
-/** mutation root */
 export type ApiMutationRootApiInsertMemberArgs = {
   objects: Array<ApiMemberInsertInput>;
   on_conflict?: InputMaybe<ApiMemberOnConflict>;
@@ -2550,20 +2208,6 @@ export type ApiMutationRootApiInsertMemberArgs = {
 export type ApiMutationRootApiInsertMemberOneArgs = {
   object: ApiMemberInsertInput;
   on_conflict?: InputMaybe<ApiMemberOnConflict>;
-};
-
-
-/** mutation root */
-export type ApiMutationRootApiInsertMemberStatusArgs = {
-  objects: Array<ApiMemberStatusInsertInput>;
-  on_conflict?: InputMaybe<ApiMemberStatusOnConflict>;
-};
-
-
-/** mutation root */
-export type ApiMutationRootApiInsertMemberStatusOneArgs = {
-  object: ApiMemberStatusInsertInput;
-  on_conflict?: InputMaybe<ApiMemberStatusOnConflict>;
 };
 
 
@@ -2768,26 +2412,6 @@ export type ApiMutationRootApiUpdateHouseholderManyArgs = {
 
 
 /** mutation root */
-export type ApiMutationRootApiUpdateHouseholderStatusArgs = {
-  _set?: InputMaybe<ApiHouseholderStatusSetInput>;
-  where: ApiHouseholderStatusBoolExp;
-};
-
-
-/** mutation root */
-export type ApiMutationRootApiUpdateHouseholderStatusByPkArgs = {
-  _set?: InputMaybe<ApiHouseholderStatusSetInput>;
-  pk_columns: ApiHouseholderStatusPkColumnsInput;
-};
-
-
-/** mutation root */
-export type ApiMutationRootApiUpdateHouseholderStatusManyArgs = {
-  updates: Array<ApiHouseholderStatusUpdates>;
-};
-
-
-/** mutation root */
 export type ApiMutationRootApiUpdateMemberArgs = {
   _set?: InputMaybe<ApiMemberSetInput>;
   where: ApiMemberBoolExp;
@@ -2804,26 +2428,6 @@ export type ApiMutationRootApiUpdateMemberByPkArgs = {
 /** mutation root */
 export type ApiMutationRootApiUpdateMemberManyArgs = {
   updates: Array<ApiMemberUpdates>;
-};
-
-
-/** mutation root */
-export type ApiMutationRootApiUpdateMemberStatusArgs = {
-  _set?: InputMaybe<ApiMemberStatusSetInput>;
-  where: ApiMemberStatusBoolExp;
-};
-
-
-/** mutation root */
-export type ApiMutationRootApiUpdateMemberStatusByPkArgs = {
-  _set?: InputMaybe<ApiMemberStatusSetInput>;
-  pk_columns: ApiMemberStatusPkColumnsInput;
-};
-
-
-/** mutation root */
-export type ApiMutationRootApiUpdateMemberStatusManyArgs = {
-  updates: Array<ApiMemberStatusUpdates>;
 };
 
 
@@ -3492,24 +3096,12 @@ export type ApiQueryRoot = {
   householder_aggregate: ApiHouseholderAggregate;
   /** fetch data from the table: "householder" using primary key columns */
   householder_by_pk?: Maybe<ApiHouseholder>;
-  /** fetch data from the table: "householder_status" */
-  householder_status: Array<ApiHouseholderStatus>;
-  /** fetch aggregated fields from the table: "householder_status" */
-  householder_status_aggregate: ApiHouseholderStatusAggregate;
-  /** fetch data from the table: "householder_status" using primary key columns */
-  householder_status_by_pk?: Maybe<ApiHouseholderStatus>;
   /** fetch data from the table: "member" */
   member: Array<ApiMember>;
   /** fetch aggregated fields from the table: "member" */
   member_aggregate: ApiMemberAggregate;
   /** fetch data from the table: "member" using primary key columns */
   member_by_pk?: Maybe<ApiMember>;
-  /** fetch data from the table: "member_status" */
-  member_status: Array<ApiMemberStatus>;
-  /** fetch aggregated fields from the table: "member_status" */
-  member_status_aggregate: ApiMemberStatusAggregate;
-  /** fetch data from the table: "member_status" using primary key columns */
-  member_status_by_pk?: Maybe<ApiMemberStatus>;
   /** fetch data from the table: "nationality" */
   nationality: Array<ApiNationality>;
   /** fetch aggregated fields from the table: "nationality" */
@@ -3699,29 +3291,6 @@ export type ApiQueryRootApiHouseholderByPkArgs = {
 };
 
 
-export type ApiQueryRootApiHouseholderStatusArgs = {
-  distinct_on?: InputMaybe<Array<ApiHouseholderStatusSelectColumn>>;
-  limit?: InputMaybe<Scalars['Int']['input']>;
-  offset?: InputMaybe<Scalars['Int']['input']>;
-  order_by?: InputMaybe<Array<ApiHouseholderStatusOrderBy>>;
-  where?: InputMaybe<ApiHouseholderStatusBoolExp>;
-};
-
-
-export type ApiQueryRootApiHouseholderStatusAggregateArgs = {
-  distinct_on?: InputMaybe<Array<ApiHouseholderStatusSelectColumn>>;
-  limit?: InputMaybe<Scalars['Int']['input']>;
-  offset?: InputMaybe<Scalars['Int']['input']>;
-  order_by?: InputMaybe<Array<ApiHouseholderStatusOrderBy>>;
-  where?: InputMaybe<ApiHouseholderStatusBoolExp>;
-};
-
-
-export type ApiQueryRootApiHouseholderStatusByPkArgs = {
-  value: Scalars['String']['input'];
-};
-
-
 export type ApiQueryRootApiMemberArgs = {
   distinct_on?: InputMaybe<Array<ApiMemberSelectColumn>>;
   limit?: InputMaybe<Scalars['Int']['input']>;
@@ -3742,29 +3311,6 @@ export type ApiQueryRootApiMemberAggregateArgs = {
 
 export type ApiQueryRootApiMemberByPkArgs = {
   id: Scalars['uuid']['input'];
-};
-
-
-export type ApiQueryRootApiMemberStatusArgs = {
-  distinct_on?: InputMaybe<Array<ApiMemberStatusSelectColumn>>;
-  limit?: InputMaybe<Scalars['Int']['input']>;
-  offset?: InputMaybe<Scalars['Int']['input']>;
-  order_by?: InputMaybe<Array<ApiMemberStatusOrderBy>>;
-  where?: InputMaybe<ApiMemberStatusBoolExp>;
-};
-
-
-export type ApiQueryRootApiMemberStatusAggregateArgs = {
-  distinct_on?: InputMaybe<Array<ApiMemberStatusSelectColumn>>;
-  limit?: InputMaybe<Scalars['Int']['input']>;
-  offset?: InputMaybe<Scalars['Int']['input']>;
-  order_by?: InputMaybe<Array<ApiMemberStatusOrderBy>>;
-  where?: InputMaybe<ApiMemberStatusBoolExp>;
-};
-
-
-export type ApiQueryRootApiMemberStatusByPkArgs = {
-  value: Scalars['String']['input'];
 };
 
 
@@ -4051,14 +3597,6 @@ export type ApiSubscriptionRoot = {
   householder_aggregate: ApiHouseholderAggregate;
   /** fetch data from the table: "householder" using primary key columns */
   householder_by_pk?: Maybe<ApiHouseholder>;
-  /** fetch data from the table: "householder_status" */
-  householder_status: Array<ApiHouseholderStatus>;
-  /** fetch aggregated fields from the table: "householder_status" */
-  householder_status_aggregate: ApiHouseholderStatusAggregate;
-  /** fetch data from the table: "householder_status" using primary key columns */
-  householder_status_by_pk?: Maybe<ApiHouseholderStatus>;
-  /** fetch data from the table in a streaming manner: "householder_status" */
-  householder_status_stream: Array<ApiHouseholderStatus>;
   /** fetch data from the table in a streaming manner: "householder" */
   householder_stream: Array<ApiHouseholder>;
   /** fetch data from the table: "member" */
@@ -4067,14 +3605,6 @@ export type ApiSubscriptionRoot = {
   member_aggregate: ApiMemberAggregate;
   /** fetch data from the table: "member" using primary key columns */
   member_by_pk?: Maybe<ApiMember>;
-  /** fetch data from the table: "member_status" */
-  member_status: Array<ApiMemberStatus>;
-  /** fetch aggregated fields from the table: "member_status" */
-  member_status_aggregate: ApiMemberStatusAggregate;
-  /** fetch data from the table: "member_status" using primary key columns */
-  member_status_by_pk?: Maybe<ApiMemberStatus>;
-  /** fetch data from the table in a streaming manner: "member_status" */
-  member_status_stream: Array<ApiMemberStatus>;
   /** fetch data from the table in a streaming manner: "member" */
   member_stream: Array<ApiMember>;
   /** fetch data from the table: "nationality" */
@@ -4316,36 +3846,6 @@ export type ApiSubscriptionRootApiHouseholderByPkArgs = {
 };
 
 
-export type ApiSubscriptionRootApiHouseholderStatusArgs = {
-  distinct_on?: InputMaybe<Array<ApiHouseholderStatusSelectColumn>>;
-  limit?: InputMaybe<Scalars['Int']['input']>;
-  offset?: InputMaybe<Scalars['Int']['input']>;
-  order_by?: InputMaybe<Array<ApiHouseholderStatusOrderBy>>;
-  where?: InputMaybe<ApiHouseholderStatusBoolExp>;
-};
-
-
-export type ApiSubscriptionRootApiHouseholderStatusAggregateArgs = {
-  distinct_on?: InputMaybe<Array<ApiHouseholderStatusSelectColumn>>;
-  limit?: InputMaybe<Scalars['Int']['input']>;
-  offset?: InputMaybe<Scalars['Int']['input']>;
-  order_by?: InputMaybe<Array<ApiHouseholderStatusOrderBy>>;
-  where?: InputMaybe<ApiHouseholderStatusBoolExp>;
-};
-
-
-export type ApiSubscriptionRootApiHouseholderStatusByPkArgs = {
-  value: Scalars['String']['input'];
-};
-
-
-export type ApiSubscriptionRootApiHouseholderStatusStreamArgs = {
-  batch_size: Scalars['Int']['input'];
-  cursor: Array<InputMaybe<ApiHouseholderStatusStreamCursorInput>>;
-  where?: InputMaybe<ApiHouseholderStatusBoolExp>;
-};
-
-
 export type ApiSubscriptionRootApiHouseholderStreamArgs = {
   batch_size: Scalars['Int']['input'];
   cursor: Array<InputMaybe<ApiHouseholderStreamCursorInput>>;
@@ -4373,36 +3873,6 @@ export type ApiSubscriptionRootApiMemberAggregateArgs = {
 
 export type ApiSubscriptionRootApiMemberByPkArgs = {
   id: Scalars['uuid']['input'];
-};
-
-
-export type ApiSubscriptionRootApiMemberStatusArgs = {
-  distinct_on?: InputMaybe<Array<ApiMemberStatusSelectColumn>>;
-  limit?: InputMaybe<Scalars['Int']['input']>;
-  offset?: InputMaybe<Scalars['Int']['input']>;
-  order_by?: InputMaybe<Array<ApiMemberStatusOrderBy>>;
-  where?: InputMaybe<ApiMemberStatusBoolExp>;
-};
-
-
-export type ApiSubscriptionRootApiMemberStatusAggregateArgs = {
-  distinct_on?: InputMaybe<Array<ApiMemberStatusSelectColumn>>;
-  limit?: InputMaybe<Scalars['Int']['input']>;
-  offset?: InputMaybe<Scalars['Int']['input']>;
-  order_by?: InputMaybe<Array<ApiMemberStatusOrderBy>>;
-  where?: InputMaybe<ApiMemberStatusBoolExp>;
-};
-
-
-export type ApiSubscriptionRootApiMemberStatusByPkArgs = {
-  value: Scalars['String']['input'];
-};
-
-
-export type ApiSubscriptionRootApiMemberStatusStreamArgs = {
-  batch_size: Scalars['Int']['input'];
-  cursor: Array<InputMaybe<ApiMemberStatusStreamCursorInput>>;
-  where?: InputMaybe<ApiMemberStatusBoolExp>;
 };
 
 
