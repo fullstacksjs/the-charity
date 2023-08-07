@@ -218,7 +218,7 @@ export const HouseholdDetail = () => {
                   }}
                 />
                 <Button
-                  {...createTestAttr('ids.submitBtn')}
+                  {...createTestAttr(ids.submitBtn)}
                   type="submit"
                   size="sm"
                   leftIcon={<CheckIcon size={16} />}
@@ -230,7 +230,7 @@ export const HouseholdDetail = () => {
             ) : (
               <Button
                 key={1}
-                {...createTestAttr('ids.editBtn')}
+                {...createTestAttr(ids.editBtn)}
                 type="button"
                 size="sm"
                 variant="outline"
