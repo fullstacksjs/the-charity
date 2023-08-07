@@ -2,11 +2,11 @@ import { Badge } from '@camp/design';
 import { messages } from '@camp/messages';
 
 interface Props {
-  information: 'completed' | 'draft';
+  status: 'completed' | 'draft';
 }
 
-export const InformationBadge = ({ information }: Props) => {
-  return information === 'completed' ? (
+export const InformationBadge = ({ status }: Props) => {
+  return status === 'completed' ? (
     <Badge status="success">
       {messages.households.informationStatus.completed}
     </Badge>

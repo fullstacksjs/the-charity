@@ -154,7 +154,9 @@ export const MemberForm = ({
           <Title order={4} color="fgDefault" weight="bold">
             {name ? `${name} ${surname!}` : t.createForm.title}
           </Title>
-          <InformationBadge information="draft" />
+          <InformationBadge
+            status={initialMember?.isCompleted ? 'completed' : 'draft'}
+          />
         </Group>
       }
     >
