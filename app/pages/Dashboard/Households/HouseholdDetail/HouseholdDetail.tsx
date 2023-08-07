@@ -211,7 +211,6 @@ export const HouseholdDetail = () => {
             {isEditing ? (
               <>
                 <UndoButton
-                  disabled={!isDirty}
                   onClick={() => {
                     reset();
                     setIsEditing(false);
