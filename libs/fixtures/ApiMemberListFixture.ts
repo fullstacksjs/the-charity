@@ -8,7 +8,7 @@ import {
   GenderEnum,
   HouseholdSeverityEnum,
   HouseholdStatusEnum,
-  MemberStatusEnum,
+  MemberStatus,
   NationalityEnum,
   ReligionEnum,
 } from '@camp/domain';
@@ -25,7 +25,7 @@ export const ApiMemberListFixture: ApiMemberListQuery = {
       gender: GenderEnum.Female,
       nationality: NationalityEnum.Ir,
       religion: ReligionEnum.Islam,
-      status: MemberStatusEnum.Completed,
+      status: MemberStatus.Completed,
       surname: 'رضا',
       household_id: '52708b87-1c48-4002-8b12-b17a328c0b58',
       household: {
