@@ -191,23 +191,6 @@ export const HouseholdDetail = () => {
         px={0}
         left={
           <Flex gap={20}>
-            <Button
-              variant="outline"
-              color="red"
-              leftIcon={<TrashIcon />}
-              onClick={handleDeleteHousehold}
-            >
-              {t.delete}
-            </Button>
-            {!household.isCompleted && (
-              <Button
-                leftIcon={<ArrowUpIcon />}
-                onClick={handleCompleteHousehold}
-                disabled={!householder?.isCompleted}
-              >
-                {t.complete}
-              </Button>
-            )}
             {isEditing ? (
               <>
                 <UndoButton
@@ -227,17 +210,36 @@ export const HouseholdDetail = () => {
                 </Button>
               </>
             ) : (
-              <Button
-                key={1}
-                {...createTestAttr(ids.editBtn)}
-                type="button"
-                size="sm"
-                variant="outline"
-                onClick={() => setIsEditing(true)}
-                leftIcon={<EditIcon size={16} />}
-              >
-                {messages.actions.editBtn}
-              </Button>
+              <>
+                <Button
+                  variant="outline"
+                  color="red"
+                  leftIcon={<TrashIcon />}
+                  onClick={handleDeleteHousehold}
+                >
+                  {t.delete}
+                </Button>
+                {!household.isCompleted && (
+                  <Button
+                    leftIcon={<ArrowUpIcon />}
+                    onClick={handleCompleteHousehold}
+                    disabled={!householder?.isCompleted}
+                  >
+                    {t.complete}
+                  </Button>
+                )}
+                <Button
+                  key={1}
+                  {...createTestAttr(ids.editBtn)}
+                  type="button"
+                  size="sm"
+                  variant="outline"
+                  onClick={() => setIsEditing(true)}
+                  leftIcon={<EditIcon size={16} />}
+                >
+                  {messages.actions.editBtn}
+                </Button>
+              </>
             )}
           </Flex>
         }
