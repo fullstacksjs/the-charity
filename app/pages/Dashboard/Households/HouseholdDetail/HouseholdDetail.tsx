@@ -1,9 +1,9 @@
 import {
   useCompleteHouseholdMutation,
   useDeleteHouseholdMutation,
+  useEditHouseholdMutation,
   useHouseholderQuery,
   useHouseholdQuery,
-  useUpdateHouseholdMutation,
 } from '@camp/data-layer';
 import { debug } from '@camp/debug';
 import {
@@ -82,7 +82,7 @@ export const HouseholdDetail = () => {
   });
   const [deleteHousehold] = useDeleteHouseholdMutation();
   const [completeHousehold] = useCompleteHouseholdMutation();
-  const [updateHousehold] = useUpdateHouseholdMutation();
+  const [updateHousehold] = useEditHouseholdMutation();
 
   const household = householdData?.household;
   const { data: householderData } = useHouseholderQuery({

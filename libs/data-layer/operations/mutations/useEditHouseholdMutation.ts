@@ -2,9 +2,9 @@ import { gql } from '@apollo/client';
 import type { MutationOptions } from '@camp/api-client';
 import { useMutation } from '@camp/api-client';
 import type {
+  ApiEditHouseholdMutation,
+  ApiEditHouseholdMutationVariables,
   ApiHouseholdQuery,
-  ApiUpdateHouseholdMutation,
-  ApiUpdateHouseholdMutationVariables,
 } from '@camp/data-layer';
 import type {
   HouseholdKeys,
@@ -21,7 +21,7 @@ import {
 import { HouseholdDocument } from '../queries';
 
 const Document = gql`
-  mutation UpdateHousehold($id: uuid!, $update: household_set_input!) {
+  mutation EditHousehold($id: uuid!, $update: household_set_input!) {
     update_household_by_pk(pk_columns: { id: $id }, _set: $update) {
       ...HouseholdKeys
       ...HouseholdListItem
@@ -31,13 +31,11 @@ const Document = gql`
   ${HouseholdListItemFragment}
 `;
 
-export interface UpdateHouseholdDto {
+export interface EditHouseholdDto {
   household: (HouseholdKeys & HouseholdListItem) | undefined;
 }
 
-const toClient = (
-  data: ApiUpdateHouseholdMutation | null,
-): UpdateHouseholdDto => {
+const toClient = (data: ApiEditHouseholdMutation | null): EditHouseholdDto => {
   const household = data?.update_household_by_pk;
   return {
     household: household
@@ -59,7 +57,7 @@ interface Variables {
 
 const toApiVariables = (
   variables: Variables,
-): ApiUpdateHouseholdMutationVariables => ({
+): ApiEditHouseholdMutationVariables => ({
   id: variables.id,
   update: {
     name: variables.update.name,
@@ -67,7 +65,7 @@ const toApiVariables = (
   },
 });
 
-export function useUpdateHouseholdMutation(
+export function useEditHouseholdMutation(
   options?: MutationOptions<typeof toClient, typeof toApiVariables>,
 ) {
   return useMutation<typeof toClient, typeof toApiVariables>(Document, {
