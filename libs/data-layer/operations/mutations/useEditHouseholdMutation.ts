@@ -11,6 +11,7 @@ import type {
   HouseholdListItem,
   HouseholdSeverityEnum,
 } from '@camp/domain';
+import { HouseholdStatusEnum } from '@camp/domain';
 
 import {
   getHouseholdKeys,
@@ -62,6 +63,7 @@ const toApiVariables = (
   update: {
     name: variables.update.name,
     severity: variables.update.severity,
+    status: HouseholdStatusEnum.Draft,
   },
 });
 
