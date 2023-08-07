@@ -184,99 +184,103 @@ export const HouseholdDetail = () => {
   };
 
   return (
-    <form onSubmit={onUpdateHousehold} {...createTestAttr(ids.form)}>
-      <DetailCard
-        title={t.title}
-        id={household.code}
-        px={0}
-        left={
-          <Flex gap={20}>
-            {isEditing ? (
-              <>
-                <UndoButton
-                  onClick={() => {
-                    reset();
-                    setIsEditing(false);
-                  }}
-                />
-                <Button
-                  {...createTestAttr(ids.submitBtn)}
-                  type="submit"
-                  size="sm"
-                  leftIcon={<CheckIcon size={16} />}
-                  disabled={!isValid || !isDirty}
-                >
-                  {messages.actions.submitBtn}
-                </Button>
-              </>
-            ) : (
-              <>
-                <Button
-                  variant="outline"
-                  color="red"
-                  leftIcon={<TrashIcon />}
-                  onClick={handleDeleteHousehold}
-                >
-                  {t.delete}
-                </Button>
-                {!household.isCompleted && (
+    <>
+      <form onSubmit={onUpdateHousehold} {...createTestAttr(ids.form)}>
+        <DetailCard
+          title={t.title}
+          id={household.code}
+          px={0}
+          left={
+            <Flex gap={20}>
+              {isEditing ? (
+                <>
+                  <UndoButton
+                    onClick={() => {
+                      reset();
+                      setIsEditing(false);
+                    }}
+                  />
                   <Button
-                    leftIcon={<ArrowUpIcon />}
-                    onClick={handleCompleteHousehold}
-                    disabled={!householder?.isCompleted}
+                    {...createTestAttr(ids.submitBtn)}
+                    type="submit"
+                    size="sm"
+                    leftIcon={<CheckIcon size={16} />}
+                    disabled={!isValid || !isDirty}
                   >
-                    {t.complete}
+                    {messages.actions.submitBtn}
                   </Button>
-                )}
-                <Button
-                  key={1}
-                  {...createTestAttr(ids.editBtn)}
-                  type="button"
-                  size="sm"
-                  variant="outline"
-                  onClick={() => setIsEditing(true)}
-                  leftIcon={<EditIcon size={16} />}
-                >
-                  {messages.actions.editBtn}
-                </Button>
-              </>
-            )}
-          </Flex>
-        }
-      >
-        <DetailCard.Section>
-          <TextInput
-            readOnly={isReadOnly}
-            className={classes.input}
-            wrapperProps={createTestAttr(ids.nameInput)}
-            {...register('name')}
-            label={`${t.householdFields.name.title}:`}
-            error={errors.name?.message}
-          />
-
-          <ControlledSelect
-            readOnly={isReadOnly}
-            presentation={v => (
-              <DetailCard.Field title={t.householdFields.severityStatus.title}>
-                <SeverityBadge severity={v as HouseholdSeverityEnum} />
-              </DetailCard.Field>
-            )}
-            name="severity"
-            control={control}
-            wrapperProps={createTestAttr(ids.severityInput)}
-            data={severities.map(v => ({
-              value: v,
-              label: messages.households.severityStatus[v],
-            }))}
-            label={`${t.householdFields.severityStatus.title}:`}
-          />
-          <DetailCard.Field title={t.householdFields.informationStatus.title}>
-            <InformationBadge
-              status={household.isCompleted ? 'completed' : 'draft'}
+                </>
+              ) : (
+                <>
+                  <Button
+                    variant="outline"
+                    color="red"
+                    leftIcon={<TrashIcon />}
+                    onClick={handleDeleteHousehold}
+                  >
+                    {t.delete}
+                  </Button>
+                  {!household.isCompleted && (
+                    <Button
+                      leftIcon={<ArrowUpIcon />}
+                      onClick={handleCompleteHousehold}
+                      disabled={!householder?.isCompleted}
+                    >
+                      {t.complete}
+                    </Button>
+                  )}
+                  <Button
+                    key={1}
+                    {...createTestAttr(ids.editBtn)}
+                    type="button"
+                    size="sm"
+                    variant="outline"
+                    onClick={() => setIsEditing(true)}
+                    leftIcon={<EditIcon size={16} />}
+                  >
+                    {messages.actions.editBtn}
+                  </Button>
+                </>
+              )}
+            </Flex>
+          }
+        >
+          <DetailCard.Section>
+            <TextInput
+              readOnly={isReadOnly}
+              className={classes.input}
+              wrapperProps={createTestAttr(ids.nameInput)}
+              {...register('name')}
+              label={`${t.householdFields.name.title}:`}
+              error={errors.name?.message}
             />
-          </DetailCard.Field>
-        </DetailCard.Section>
-      </DetailCard>
+
+            <ControlledSelect
+              readOnly={isReadOnly}
+              presentation={v => (
+                <DetailCard.Field
+                  title={t.householdFields.severityStatus.title}
+                >
+                  <SeverityBadge severity={v as HouseholdSeverityEnum} />
+                </DetailCard.Field>
+              )}
+              name="severity"
+              control={control}
+              wrapperProps={createTestAttr(ids.severityInput)}
+              data={severities.map(v => ({
+                value: v,
+                label: messages.households.severityStatus[v],
+              }))}
+              label={`${t.householdFields.severityStatus.title}:`}
+            />
+            <DetailCard.Field title={t.householdFields.informationStatus.title}>
+              <InformationBadge
+                status={household.isCompleted ? 'completed' : 'draft'}
+              />
+            </DetailCard.Field>
+          </DetailCard.Section>
+        </DetailCard>
+      </form>
       <Tabs
         tabs={[
           {
@@ -293,6 +297,6 @@ export const HouseholdDetail = () => {
           },
         ]}
       />
-    </form>
+    </>
   );
 };
