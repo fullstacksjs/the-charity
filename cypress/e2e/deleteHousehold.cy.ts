@@ -1,4 +1,4 @@
-import { householdRowIds } from '../../app/pages/Dashboard/Households/HouseholdList/HouseholdTableRow.ids';
+import { householdRowIds } from '../../app/Dashboard/Households/HouseholdList/HouseholdTableRow.ids';
 import { AppRoute } from '../../libs/router/AppRoutes';
 import { admin } from '../fixtures/admin';
 import { householdFixture } from '../fixtures/household';

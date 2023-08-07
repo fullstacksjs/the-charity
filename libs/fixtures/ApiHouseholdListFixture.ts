@@ -34,6 +34,6 @@ export const householdListMock: MockedResponse<
   ApiHouseholdListQuery,
   ApiHouseholdListQueryVariables
 > = {
-  request: { query: HouseholdListDocument, variables: {} },
+  request: { query: HouseholdListDocument },
   result: { data: { household: ApiHouseholdListFixture } },
 };

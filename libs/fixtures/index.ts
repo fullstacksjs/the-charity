@@ -1,3 +1,4 @@
+export * from './ApiHouseholderFixture';
 export * from './ApiHouseholdFixture';
 export * from './ApiHouseholdListFixture';
 export * from './ApiMemberListFixture';
