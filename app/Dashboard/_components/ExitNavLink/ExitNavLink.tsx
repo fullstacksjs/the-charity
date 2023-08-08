@@ -1,4 +1,5 @@
 import { useAuth0 } from '@camp/auth';
+import { debug } from '@camp/debug';
 import { navLinkRootStyles } from '@camp/design';
 import { ExitIcon } from '@camp/icons';
 import { messages } from '@camp/messages';
@@ -22,7 +23,9 @@ export const ExitNavLink = () => {
 
   const handleLogout = () => {
     openLogoutModal(returnTo => {
-      logout({ logoutParams: { returnTo } });
+      logout({ logoutParams: { returnTo } }).catch(e => {
+        debug.error(e);
+      });
     });
   };
 
