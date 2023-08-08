@@ -182,7 +182,7 @@ export const messages = {
 
       notification: {
         successfulUpdate: (name: string) =>
-          `خانوار "${name}" با موفقیت بروز رسانی شد `,
+          `خانوار "${name}" با موفقیت بروز رسانی شد.`,
         failedUpdate: (name: string) =>
           `مشکلی در به روزرسانی اطلاعات خانوار "${name}" .به وجود آمده است. لطفا دوباره تلاش کنید`,
       },
