@@ -80,6 +80,11 @@ export const HouseholdDetail = () => {
       reset(d.household ?? {});
     },
   });
+
+  const [isEditing, { set: setIsEditing }] = useBoolean(false);
+
+  const isReadOnly = !isEditing;
+
   const [deleteHousehold] = useDeleteHouseholdMutation();
   const [completeHousehold] = useCompleteHouseholdMutation();
   const [updateHousehold] = useEditHouseholdMutation();
@@ -97,6 +102,7 @@ export const HouseholdDetail = () => {
           update: { name: formData.name, severity: formData.severity },
         },
       });
+      setIsEditing(false);
 
       showNotification({
         title: t.title,
@@ -122,9 +128,6 @@ export const HouseholdDetail = () => {
 
   const householder = householderData?.householder;
   const { classes } = useStyles();
-  const [isEditing, { set: setIsEditing }] = useBoolean(false);
-
-  const isReadOnly = !isEditing;
 
   if (loading) return <FullPageLoader />;
 
