@@ -199,7 +199,9 @@ export const HouseholdDetail = () => {
                       reset();
                       setIsEditing(false);
                     }}
-                  />
+                  >
+                    {messages.actions.undoBtn}
+                  </DestructiveButton>
                   <Button
                     {...createTestAttr(ids.submitBtn)}
                     type="submit"
