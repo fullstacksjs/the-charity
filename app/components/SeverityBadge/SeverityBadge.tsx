@@ -8,8 +8,8 @@ interface Props {
 
 export const SeverityBadge = ({ severity }: Props) => {
   return severity === HouseholdSeverityEnum.Normal ? (
-    <Badge status="warning">{messages.households.severityStatus.normal}</Badge>
+    <Badge status="warning">{messages.households.severityStatus.Normal}</Badge>
   ) : (
-    <Badge status="error">{messages.households.severityStatus.critical}</Badge>
+    <Badge status="error">{messages.households.severityStatus.Critical}</Badge>
   );
 };

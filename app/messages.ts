@@ -91,8 +91,8 @@ export const messages = {
       draft: 'تکمیل نشده',
     },
     severityStatus: {
-      critical: 'اضطراری',
-      normal: 'عادی',
+      Critical: 'اضطراری',
+      Normal: 'عادی',
     },
     list: {
       title: 'لیست خانوارها',
@@ -326,15 +326,12 @@ export const messages = {
     householdFields: {
       name: {
         title: 'نام',
-        value: 'فول استک زاده',
       },
       severityStatus: {
         title: 'وضعیت نیازمندی',
-        value: 'بحرانی',
       },
       informationStatus: {
         title: 'وضعیت اطلاعات',
-        value: 'تکمیل نشده',
       },
     },
   },

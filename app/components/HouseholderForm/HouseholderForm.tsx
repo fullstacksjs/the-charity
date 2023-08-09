@@ -133,7 +133,12 @@ export const HouseholderForm = ({
           <Group spacing={20}>
             {isEditing ? (
               <>
-                <UndoButton disabled={!isDirty} onClick={() => reset()} />
+                <UndoButton
+                  onClick={() => {
+                    reset();
+                    setIsEditing(false);
+                  }}
+                />
                 <Button
                   {...createTestAttr(ids.submitBtn)}
                   type="submit"

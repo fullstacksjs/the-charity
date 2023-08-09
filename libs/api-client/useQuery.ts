@@ -23,6 +23,9 @@ export const useQuery = <
 ): QueryResult<ReturnType<TClientMapper>, ReturnType<TVariableMapper>> => {
   const { data, ...rest } = useApolloQuery(query, {
     ...options,
+    onCompleted: options.onCompleted
+      ? d => options.onCompleted?.(options.mapper(d))
+      : undefined,
     variables: options.mapVariables(options.variables),
   });
 
