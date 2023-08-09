@@ -15,6 +15,7 @@ const useStyles = createStyles(_ => ({
           opacity: 0,
         },
       },
+      'backgroundColor': 'transparent',
     },
   },
 }));
