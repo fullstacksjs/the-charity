@@ -37,7 +37,7 @@ export const ProjectDetail = () => {
 
   return (
     <>
-      <DetailCard title={t.title} px={0}>
+      <DetailCard title={t.title}>
         <DetailCard.Section>
           <DetailCard.Field title={t.projectFields.name.title}>
             {project.name}

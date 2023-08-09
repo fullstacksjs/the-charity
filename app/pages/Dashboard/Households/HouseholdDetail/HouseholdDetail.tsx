@@ -192,7 +192,6 @@ export const HouseholdDetail = () => {
         <DetailCard
           title={t.title}
           id={household.code}
-          px={0}
           left={
             <Flex gap={20}>
               {isEditing ? (

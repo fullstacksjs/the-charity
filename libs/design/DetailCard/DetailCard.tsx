@@ -20,6 +20,7 @@ export const DetailCard = ({ title, id, children, ...cardProps }: Props) => {
       style={{ overflow: 'visible' }}
       withBorder={false}
       pb={25}
+      px={0}
       right={
         <Group spacing={10}>
           <DashboardTitle>{title}</DashboardTitle>
