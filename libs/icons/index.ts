@@ -1,8 +1,10 @@
+export type { Icon } from 'react-feather';
 export {
-  ChevronDown as ArrowDownIcon,
+  ArrowDown as ArrowDownIcon,
   ArrowUp as ArrowUpIcon,
   Calendar as CalendarIcon,
   Check as CheckIcon,
+  ChevronDown as ChevronDownIcon,
   ChevronLeft as ChevronLeftIcon,
   Home as DashboardIcon,
   Edit as EditIcon,

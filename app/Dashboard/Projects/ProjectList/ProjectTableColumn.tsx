@@ -1,8 +1,8 @@
 import type { ProjectKeys, ProjectListItem } from '@camp/domain';
+import { ArrowDownIcon, ArrowUpIcon } from '@camp/icons';
 import { Title } from '@mantine/core';
 import type { Table } from '@tanstack/react-table';
 import { flexRender } from '@tanstack/react-table';
-import { ArrowDown, ArrowUp } from 'react-feather';
 
 interface Props {
   col: Table<ProjectKeys & ProjectListItem>;
@@ -17,8 +17,8 @@ export const ProjectTableColumn = ({ col }: Props) => {
             <Title size="xs" onClick={header.column.getToggleSortingHandler()}>
               {flexRender(header.column.columnDef.header, header.getContext())}
               {{
-                asc: <ArrowUp />,
-                desc: <ArrowDown />,
+                asc: <ArrowUpIcon />,
+                desc: <ArrowDownIcon />,
               }[header.column.getIsSorted() as string] ?? null}
             </Title>
           )}

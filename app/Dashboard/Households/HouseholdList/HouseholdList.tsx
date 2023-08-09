@@ -100,10 +100,6 @@ export const HouseholdList = () => {
   if (isNull(households)) return null;
   if (isEmpty(households)) return <HouseholdEmptyState />;
 
-  const householdRow = <HouseholdTableRow rows={table} />;
-
-  const householdColumn = <HouseholdTableColumn col={table} />;
-
   return (
     <DashboardCard
       left={<CreateHouseholdButton />}
@@ -111,8 +107,8 @@ export const HouseholdList = () => {
     >
       <Table
         id={ids.householdTableId}
-        columns={householdColumn}
-        rows={householdRow}
+        columns={<HouseholdTableColumn col={table} />}
+        rows={<HouseholdTableRow rows={table} />}
       />
     </DashboardCard>
   );
