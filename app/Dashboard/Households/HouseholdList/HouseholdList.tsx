@@ -78,6 +78,9 @@ export const HouseholdList = () => {
   const table = useReactTable({
     data: households!,
     columns,
+    state: {
+      sorting,
+    },
     onSortingChange: setSorting,
     getCoreRowModel: getCoreRowModel(),
     enableSorting: true,

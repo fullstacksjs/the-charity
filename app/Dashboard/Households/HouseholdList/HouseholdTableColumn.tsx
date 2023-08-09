@@ -1,6 +1,8 @@
 import type { HouseholdKeys, HouseholdListItem } from '@camp/domain';
+import { Text } from '@mantine/core';
 import type { Table } from '@tanstack/react-table';
 import { flexRender } from '@tanstack/react-table';
+import { ArrowDown, ArrowUp } from 'react-feather';
 
 interface Props {
   col: Table<HouseholdKeys & HouseholdListItem>;
@@ -12,8 +14,13 @@ export const HouseholdTableColumn = ({ col }: Props) => {
       {headerGroup.headers.map(header => (
         <th key={header.id} colSpan={header.colSpan}>
           {header.isPlaceholder ? null : (
-            // eslint-disable-next-line jsx-a11y/click-events-have-key-events
-            <div
+            <Text
+              sx={{
+                cursor: 'pointer',
+                display: 'flex',
+                alignItems: 'center',
+                gap: 5,
+              }}
               {...{
                 className: header.column.getCanSort()
                   ? 'cursor-pointer select-none'
@@ -23,10 +30,10 @@ export const HouseholdTableColumn = ({ col }: Props) => {
             >
               {flexRender(header.column.columnDef.header, header.getContext())}
               {{
-                asc: ' 🔼',
-                desc: ' 🔽',
+                asc: <ArrowUp size={14} />,
+                desc: <ArrowDown size={14} />,
               }[header.column.getIsSorted() as string] ?? null}
-            </div>
+            </Text>
           )}
         </th>
       ))}
