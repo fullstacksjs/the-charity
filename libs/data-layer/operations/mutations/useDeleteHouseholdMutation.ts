@@ -2,8 +2,8 @@ import { gql } from '@apollo/client';
 import type { MutationOptions } from '@camp/api-client';
 import { useMutation } from '@camp/api-client';
 import type {
-  ApiDeleteHouseholdMutationMutation,
-  ApiDeleteHouseholdMutationMutationVariables,
+  ApiDeleteHouseholdMutation,
+  ApiDeleteHouseholdMutationVariables,
   ApiHouseholdListQuery,
   ApiHouseholdListQueryVariables,
 } from '@camp/data-layer';
@@ -14,7 +14,7 @@ import { HouseholdKeysFragment } from '../fragments';
 import { HouseholdListDocument } from '../queries';
 
 const Document = gql`
-  mutation DeleteHouseholdMutation($id: uuid!) {
+  mutation DeleteHousehold($id: uuid!) {
     delete_household_by_pk(id: $id) {
       ...HouseholdKeys
       name
@@ -27,9 +27,7 @@ export interface DeleteHousehold {
   household: (HouseholdKeys & Pick<Household, 'name'>) | undefined;
 }
 
-const toClient = (
-  data: ApiDeleteHouseholdMutationMutation | null,
-): DeleteHousehold => {
+const toClient = (data: ApiDeleteHouseholdMutation | null): DeleteHousehold => {
   const deleted = data?.delete_household_by_pk;
 
   return {
@@ -45,7 +43,7 @@ interface Variables {
 
 const toApiVariables = (
   variables: Variables,
-): ApiDeleteHouseholdMutationMutationVariables => ({
+): ApiDeleteHouseholdMutationVariables => ({
   id: variables.id,
 });
 

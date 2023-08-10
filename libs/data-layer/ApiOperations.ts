@@ -44,12 +44,12 @@ export type ApiCreateProjectMutationVariables = SchemaTypes.Exact<{
 
 export type ApiCreateProjectMutation = { __typename?: 'mutation_root', insert_project_one?: { __typename?: 'project', id: string, name: string, description?: string | null, start_date?: string | null, due_date?: string | null, status: SchemaTypes.ProjectStatusEnum, created_at: string, updated_at: string } | null };
 
-export type ApiDeleteHouseholdMutationMutationVariables = SchemaTypes.Exact<{
+export type ApiDeleteHouseholdMutationVariables = SchemaTypes.Exact<{
   id: SchemaTypes.Scalars['uuid']['input'];
 }>;
 
 
-export type ApiDeleteHouseholdMutationMutation = { __typename?: 'mutation_root', delete_household_by_pk?: { __typename?: 'household', name: string, id: string } | null };
+export type ApiDeleteHouseholdMutation = { __typename?: 'mutation_root', delete_household_by_pk?: { __typename?: 'household', name: string, id: string } | null };
 
 export type ApiDeleteMemberMutationVariables = SchemaTypes.Exact<{
   id: SchemaTypes.Scalars['uuid']['input'];
