@@ -8,4 +8,8 @@ export default {
 
 type Story = StoryObj<typeof DestructiveButton>;
 
-export const Default: Story = {};
+export const Default: Story = {
+  args: {
+    children: 'پاک کردن',
+  },
+};
