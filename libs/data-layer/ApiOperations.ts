@@ -51,6 +51,13 @@ export type ApiDeleteHouseholdMutationMutationVariables = SchemaTypes.Exact<{
 
 export type ApiDeleteHouseholdMutationMutation = { __typename?: 'mutation_root', delete_household_by_pk?: { __typename?: 'household', name: string, id: string } | null };
 
+export type ApiDeleteMemberMutationMutationVariables = SchemaTypes.Exact<{
+  id: SchemaTypes.Scalars['uuid']['input'];
+}>;
+
+
+export type ApiDeleteMemberMutationMutation = { __typename?: 'mutation_root', delete_member_by_pk?: { __typename?: 'member', name: string, id: string } | null };
+
 export type ApiEditHouseholdMutationVariables = SchemaTypes.Exact<{
   id: SchemaTypes.Scalars['uuid']['input'];
   update: SchemaTypes.ApiHouseholdSetInput;
