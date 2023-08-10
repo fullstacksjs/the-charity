@@ -17,6 +17,7 @@ export const getMemberListItem = (
   data: ApiMemberListItemFragment,
 ): MemberListItem => {
   return {
+    id: data.id,
     status: data.status as unknown as MemberStatus,
     name: data.name,
     isCompleted: data.status === MemberStatus.Completed,

@@ -2,8 +2,8 @@ import { gql } from '@apollo/client';
 import type { MutationOptions } from '@camp/api-client';
 import { useMutation } from '@camp/api-client';
 import type {
-  ApiDeleteMemberMutationMutation,
-  ApiDeleteMemberMutationMutationVariables,
+  ApiDeleteMemberMutation,
+  ApiDeleteMemberMutationVariables,
   ApiMemberListQuery,
   ApiMemberListQueryVariables,
 } from '@camp/data-layer';
@@ -14,10 +14,11 @@ import { MemberKeysFragment } from '../fragments';
 import { MemberListDocument } from '../queries';
 
 const Document = gql`
-  mutation DeleteMemberMutation($id: uuid!) {
+  mutation DeleteMember($id: uuid!) {
     delete_member_by_pk(id: $id) {
       ...MemberKeys
       name
+      household_id
     }
   }
   ${MemberKeysFragment}
@@ -27,9 +28,7 @@ export interface DeleteMember {
   member: (MemberKeys & Pick<Member, 'name'>) | undefined;
 }
 
-const toClient = (
-  data: ApiDeleteMemberMutationMutation | null,
-): DeleteMember => {
+const toClient = (data: ApiDeleteMemberMutation | null): DeleteMember => {
   const deleted = data?.delete_member_by_pk;
 
   return {
@@ -45,7 +44,7 @@ interface Variables {
 
 const toApiVariables = (
   variables: Variables,
-): ApiDeleteMemberMutationMutationVariables => ({
+): ApiDeleteMemberMutationVariables => ({
   id: variables.id,
 });
 
@@ -57,11 +56,14 @@ export const useDeleteMemberMutation = (
     toClient,
     toApiVariables,
     update(cache, { data }) {
-      const id = data?.delete_member_by_pk?.id;
-      if (!id) return;
+      const { id, household_id: householdId } = data?.delete_member_by_pk ?? {};
+      if (!id || !householdId) return;
 
       cache.updateQuery<ApiMemberListQuery, ApiMemberListQueryVariables>(
-        { query: MemberListDocument },
+        {
+          query: MemberListDocument,
+          variables: { household_id: householdId },
+        },
         value => {
           return {
             ...value,

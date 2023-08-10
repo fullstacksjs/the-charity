@@ -19,6 +19,7 @@ export const MemberList = ({ householdId }: Props) => {
   const { data, error, loading } = useMemberListQuery({
     variables: { id: householdId },
   });
+
   const member = data?.members;
   const isMemberEmpty = member?.length === 0 && newMembers.length === 0;
   debug.trace('MemberList', member);

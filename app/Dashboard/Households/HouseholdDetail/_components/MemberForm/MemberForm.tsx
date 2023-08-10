@@ -1,5 +1,9 @@
 /* eslint-disable max-lines-per-function */
-import { useUpsertMemberMutation } from '@camp/data-layer';
+import {
+  useDeleteMemberMutation,
+  useUpsertMemberMutation,
+} from '@camp/data-layer';
+import { debug } from '@camp/debug';
 import {
   ControlledDateInput,
   ControlledSelect,
@@ -24,6 +28,7 @@ import {
 import { ArrowDownIcon, CheckIcon, EditIcon, TrashIcon } from '@camp/icons';
 import { messages } from '@camp/messages';
 import { createTestAttr } from '@camp/test';
+import { isNull } from '@fullstacksjs/toolbox';
 import {
   ActionIcon,
   Button,
@@ -78,6 +83,7 @@ const resolver = createResolver<FormSchema>({
 
 const t = messages.member;
 const tt = t.createForm;
+const tNotification = messages.notification.member;
 
 interface Props {
   initialMember?: MemberListItem;
@@ -100,6 +106,31 @@ export const MemberForm = ({
     !initialMember,
   );
   const { classes } = useStyles();
+  const [deleteMember] = useDeleteMemberMutation();
+
+  const onDeleteMember = async () => {
+    const member = initialMember!;
+
+    try {
+      const { data } = await deleteMember({
+        variables: { id: member.id },
+      });
+
+      if (isNull(data.member)) throw Error('Assert: data is null');
+      showNotification({
+        title: tNotification.delete.title,
+        message: tNotification.delete.success(member.name),
+        type: 'success',
+      });
+    } catch (err) {
+      debug.error(err);
+      showNotification({
+        title: tNotification.delete.title,
+        message: tNotification.delete.failed(member.name),
+        type: 'failure',
+      });
+    }
+  };
 
   const {
     handleSubmit,
@@ -255,6 +286,7 @@ export const MemberForm = ({
                   variant="outline"
                   color="red"
                   leftIcon={<TrashIcon size={16} />}
+                  onClick={() => onDeleteMember()}
                 >
                   {messages.actions.delete}
                 </Button>

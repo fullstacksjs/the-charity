@@ -15,7 +15,7 @@ export type ApiHouseholderIdentityFragment = { __typename?: 'householder', name:
 
 export type ApiMemberKeysFragment = { __typename?: 'member', id: string };
 
-export type ApiMemberListItemFragment = { __typename?: 'member', dob?: string | null, father_name?: string | null, gender?: SchemaTypes.GenderEnum | null, name: string, national_id?: string | null, nationality?: SchemaTypes.NationalityEnum | null, religion?: SchemaTypes.ReligionEnum | null, surname?: string | null, household_id: string, status?: string | null };
+export type ApiMemberListItemFragment = { __typename?: 'member', id: string, dob?: string | null, father_name?: string | null, gender?: SchemaTypes.GenderEnum | null, name: string, national_id?: string | null, nationality?: SchemaTypes.NationalityEnum | null, religion?: SchemaTypes.ReligionEnum | null, surname?: string | null, household_id: string, status?: string | null };
 
 export type ApiProjectKeysFragment = { __typename?: 'project', id: string };
 
@@ -51,12 +51,12 @@ export type ApiDeleteHouseholdMutationMutationVariables = SchemaTypes.Exact<{
 
 export type ApiDeleteHouseholdMutationMutation = { __typename?: 'mutation_root', delete_household_by_pk?: { __typename?: 'household', name: string, id: string } | null };
 
-export type ApiDeleteMemberMutationMutationVariables = SchemaTypes.Exact<{
+export type ApiDeleteMemberMutationVariables = SchemaTypes.Exact<{
   id: SchemaTypes.Scalars['uuid']['input'];
 }>;
 
 
-export type ApiDeleteMemberMutationMutation = { __typename?: 'mutation_root', delete_member_by_pk?: { __typename?: 'member', name: string, id: string } | null };
+export type ApiDeleteMemberMutation = { __typename?: 'mutation_root', delete_member_by_pk?: { __typename?: 'member', name: string, household_id: string, id: string } | null };
 
 export type ApiEditHouseholdMutationVariables = SchemaTypes.Exact<{
   id: SchemaTypes.Scalars['uuid']['input'];

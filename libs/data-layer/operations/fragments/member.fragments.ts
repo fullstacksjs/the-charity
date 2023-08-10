@@ -8,6 +8,7 @@ export const MemberKeysFragment = gql`
 
 export const MemberListItemFragment = gql`
   fragment MemberListItem on member {
+    id
     dob
     father_name
     gender
