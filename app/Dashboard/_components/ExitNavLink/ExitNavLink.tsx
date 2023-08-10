@@ -3,7 +3,6 @@ import { debug } from '@camp/debug';
 import { NavLink } from '@camp/design';
 import { ExitIcon } from '@camp/icons';
 import { messages } from '@camp/messages';
-import { createTestAttr } from '@camp/test';
 
 import { openLogoutModal } from '../LogoutModal';
 import { exitNavLinkId as id } from './ExitNavLink.ids';
@@ -21,12 +20,11 @@ export const ExitNavLink = () => {
 
   return (
     <NavLink
-      id="logout"
+      id={id}
       variant="destructive"
       label={messages.logout.link}
       icon={<ExitIcon />}
       onClick={handleLogout}
-      {...createTestAttr(id)}
     />
   );
 };
