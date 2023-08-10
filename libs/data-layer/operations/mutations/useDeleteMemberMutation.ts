@@ -63,6 +63,7 @@ export const useDeleteMemberMutation = (
         {
           query: MemberListDocument,
           variables: { household_id: householdId },
+          overwrite: true,
         },
         value => {
           return {
