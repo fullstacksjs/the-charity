@@ -109,11 +109,14 @@ export const MemberForm = ({
   const [deleteMember] = useDeleteMemberMutation();
 
   const onDeleteMember = async () => {
-    const member = initialMember!;
+    const member = initialMember;
+    const id = memberId;
+
+    if (!member || !id) return;
 
     try {
       const { data } = await deleteMember({
-        variables: { id: member.id },
+        variables: { id },
       });
 
       if (isNull(data.member)) throw Error('Assert: data is null');

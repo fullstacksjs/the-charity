@@ -51,7 +51,6 @@ export type MemberListItem = Pick<
   | 'dob'
   | 'fatherName'
   | 'gender'
-  | 'id'
   | 'isCompleted'
   | 'name'
   | 'nationalId'

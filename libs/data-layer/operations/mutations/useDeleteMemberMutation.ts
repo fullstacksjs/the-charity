@@ -10,7 +10,7 @@ import type {
 import type { Member, MemberKeys } from '@camp/domain';
 import { isNull } from '@fullstacksjs/toolbox';
 
-import { MemberKeysFragment } from '../fragments';
+import { getMemberKeys, MemberKeysFragment } from '../fragments';
 import { MemberListDocument } from '../queries';
 
 const Document = gql`
@@ -18,7 +18,6 @@ const Document = gql`
     delete_member_by_pk(id: $id) {
       ...MemberKeys
       name
-      household_id
     }
   }
   ${MemberKeysFragment}
@@ -33,7 +32,7 @@ const toClient = (data: ApiDeleteMemberMutation | null): DeleteMember => {
 
   return {
     member: !isNull(deleted)
-      ? { id: deleted.id, name: deleted.name }
+      ? { ...getMemberKeys(deleted), name: deleted.name }
       : undefined,
   };
 };

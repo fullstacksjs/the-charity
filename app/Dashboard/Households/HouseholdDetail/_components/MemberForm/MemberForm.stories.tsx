@@ -19,7 +19,6 @@ export const Default: Story = {};
 export const WithData: Story = {
   args: {
     initialMember: {
-      id: 'id',
       isCompleted: true,
       name: 'محمد',
       surname: 'محمد علیان',

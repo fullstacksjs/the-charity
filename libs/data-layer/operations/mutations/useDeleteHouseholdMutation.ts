@@ -10,7 +10,7 @@ import type {
 import type { Household, HouseholdKeys } from '@camp/domain';
 import { isNull } from '@fullstacksjs/toolbox';
 
-import { HouseholdKeysFragment } from '../fragments';
+import { getHouseholdKeys, HouseholdKeysFragment } from '../fragments';
 import { HouseholdListDocument } from '../queries';
 
 const Document = gql`
@@ -32,7 +32,7 @@ const toClient = (data: ApiDeleteHouseholdMutation | null): DeleteHousehold => {
 
   return {
     household: !isNull(deleted)
-      ? { id: deleted.id, name: deleted.name }
+      ? { ...getHouseholdKeys(deleted), name: deleted.name }
       : undefined,
   };
 };
