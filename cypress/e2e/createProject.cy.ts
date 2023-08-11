@@ -1,7 +1,7 @@
-import { createProjectButtonId } from '../../app/pages/Dashboard/Projects/CreateProject/CreateProjectButton/CreateProjectButton.ids';
-import { createProjectFormIds } from '../../app/pages/Dashboard/Projects/CreateProject/CreateProjectForm/CreateProjectForm.ids';
-import { dashboardHeaderId } from '../../libs/design/Header/DashboardHeader.ids';
-import { navLinkIds } from '../../libs/design/Sidebar/Sidebar.ids';
+import { dashboardSidebarIds } from '../../app/Dashboard/_components/DashboardSidebar/DashboardSidebar.ids';
+import { createProjectButtonId } from '../../app/Dashboard/Projects/CreateProject/CreateProjectButton/CreateProjectButton.ids';
+import { createProjectFormIds } from '../../app/Dashboard/Projects/CreateProject/CreateProjectForm/CreateProjectForm.ids';
+import { dashboardHeaderId } from '../../libs/design/DashboardHeader/DashboardHeader.ids';
 import { AppRoute } from '../../libs/router/AppRoutes';
 import { admin } from '../fixtures/admin';
 import { projectFixture } from '../fixtures/project';
@@ -10,7 +10,7 @@ describe('Create Project', () => {
   beforeEach(() => {
     cy.login(admin);
     cy.visit(AppRoute.projects);
-    cy.findByTestId(navLinkIds.projects).click();
+    cy.findByTestId(dashboardSidebarIds.projects).click();
     cy.findByTestId(dashboardHeaderId)
       .findByTestId(createProjectButtonId)
       .click();

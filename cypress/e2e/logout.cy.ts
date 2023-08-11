@@ -1,5 +1,5 @@
-import { logoutModalIds } from '../../libs/design/Modal/LogoutModal/LogoutModal.ids';
-import { exitNavLinkId } from '../../libs/design/NavLink/ExitNavLink.ids';
+import { exitNavLinkId } from '../../app/Dashboard/_components/ExitNavLink/ExitNavLink.ids';
+import { logoutModalIds } from '../../app/Dashboard/_components/LogoutModal/LogoutModal.ids';
 import { AppRoute } from '../../libs/router/AppRoutes';
 import { admin } from '../fixtures/admin';
 

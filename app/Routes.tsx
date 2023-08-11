@@ -4,24 +4,24 @@ import { messages } from '@camp/messages';
 import type { Route } from '@camp/router';
 import { lazy, Navigate, ReactLocation, Router } from '@camp/router';
 
+import { Login } from './Auth';
 import {
   DashboardLayout,
   HouseholdDetail,
   HouseholdEmptyState,
   HouseholdList,
   HouseholdsLayout,
-  Login,
   ProjectDetail,
   ProjectList,
   ProjectsLayout,
-} from './pages';
+} from './Dashboard';
 
 export const location = new ReactLocation();
 
 const devRoutes: Route[] = [
   {
     path: '/graphiql',
-    import: lazy(() => import('./pages/GraphiQL')),
+    import: lazy(() => import('./GraphiQL')),
   },
 ];
 

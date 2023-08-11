@@ -1,4 +1,4 @@
-import { navLinkIds } from '../../libs/design/Sidebar/Sidebar.ids';
+import { dashboardSidebarIds } from '../../app/Dashboard/_components/DashboardSidebar/DashboardSidebar.ids';
 import { AppRoute } from '../../libs/router/AppRoutes';
 import { admin } from '../fixtures/admin';
 import { householdFixture } from '../fixtures/household';
@@ -8,7 +8,7 @@ describe('Household List', () => {
   beforeEach(() => {
     cy.login(admin);
     cy.visit(AppRoute.households);
-    cy.findByTestId(navLinkIds.households).click();
+    cy.findByTestId(dashboardSidebarIds.households).click();
   });
 
   it('newly added household should be visible in householdTable', () => {
