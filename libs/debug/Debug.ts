@@ -39,8 +39,12 @@ export class Debug {
   }
 
   private isInScope(scope: DebugScope) {
-    // eslint-disable-next-line @typescript-eslint/no-unsafe-enum-comparison
-    return this.scopes.includes(scope) || scope === DebugScopes.All;
+    return (
+      this.scopes.includes(scope) ||
+      this.scopes.includes(DebugScopes.All) ||
+      // eslint-disable-next-line @typescript-eslint/no-unsafe-enum-comparison
+      scope === DebugScopes.All
+    );
   }
 
   private shouldLog(scope: DebugScope, level: LogLevel) {

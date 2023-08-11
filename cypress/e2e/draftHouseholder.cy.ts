@@ -1,9 +1,8 @@
 import { pruneUndefinedOrEmpty } from '@fullstacksjs/toolbox';
 
-import { householderFormIds as ids } from '../../app/components/HouseholderForm/HouseholderForm.ids';
-import { UndoButtonIds } from '../../app/components/UndoButton/UndoButton.ids';
+import { householderFormIds as ids } from '../../app/Dashboard/Households/HouseholdDetail/_components/HouseholderForm/HouseholderForm.ids';
+import { householdDetailIds as tabIds } from '../../app/Dashboard/Households/HouseholdDetail/HouseholdDetail.ids';
 import { messages } from '../../app/messages';
-import { householdDetailIds as tabIds } from '../../app/pages/Dashboard/Households/HouseholdDetail/HouseholdDetail.ids';
 import { AppRoute } from '../../libs/router/AppRoutes';
 import { admin } from '../fixtures/admin';
 import { householdFixture } from '../fixtures/household';
@@ -83,7 +82,7 @@ describe('Householder', () => {
     addHouseholder(mock);
     cy.findByTestId(ids.editBtn, { timeout: 1e4 }).click();
     emptyHouseholderForm(mock);
-    cy.findByTestId(UndoButtonIds).click();
+    cy.findByTestId(ids.cancel).click();
     compareHouseholderForm(mock);
   });
 

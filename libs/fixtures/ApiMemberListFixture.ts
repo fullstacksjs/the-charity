@@ -16,7 +16,7 @@ import {
 export const ApiMemberListFixture: ApiMemberListQuery = {
   member: [
     {
-      id: '7db5bad3-77de-4e95-b334-348560a06710',
+      id: '1',
       __typename: 'member',
       dob: '2023-07-01',
       father_name: 'صفا',
@@ -46,6 +46,6 @@ export const apiMemberListMock: MockedResponse<
   ApiMemberListQuery,
   ApiMemberListQueryVariables
 > = {
-  request: { query: HouseholdListDocument },
+  request: { query: HouseholdListDocument, variables: { household_id: '1' } },
   result: { data: ApiMemberListFixture },
 };

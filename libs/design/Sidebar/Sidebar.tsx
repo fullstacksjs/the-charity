@@ -1,10 +1,8 @@
-import { PackageIcon, PeopleIcon } from '@camp/icons';
 import { messages } from '@camp/messages';
 import { createStyles, Image, Stack, Text } from '@mantine/core';
 
 import type { NavLinkProps } from '../NavLink';
-import { ExitNavLink, NavLinks } from '../NavLink';
-import { navLinkIds as ids } from './Sidebar.ids';
+import { NavLinks } from '../NavLink';
 
 const useStyles = createStyles(theme => ({
   root: {
@@ -21,22 +19,12 @@ const useStyles = createStyles(theme => ({
   },
 }));
 
-export const links: NavLinkProps[] = [
-  {
-    label: messages.households.title,
-    icon: <PeopleIcon width="24" height="24" />,
-    to: '/dashboard/households',
-    id: ids.households,
-  },
-  {
-    label: messages.projects.title,
-    icon: <PackageIcon width="24" height="24" />,
-    to: '/dashboard/projects',
-    id: ids.projects,
-  },
-];
+export interface SidebarProps {
+  links: NavLinkProps[];
+  bottom: React.ReactNode;
+}
 
-export const SideBar = () => {
+export const Sidebar = ({ links, bottom }: SidebarProps) => {
   const { classes } = useStyles();
 
   return (
@@ -55,7 +43,7 @@ export const SideBar = () => {
         </Stack>
         <Stack justify="space-between" sx={{ width: 234, flex: 1 }}>
           <NavLinks links={links} />
-          <ExitNavLink />
+          {bottom}
         </Stack>
       </Stack>
     </Stack>

@@ -54,6 +54,7 @@ export const useHouseholdQuery = (
 ) =>
   useQuery<typeof toClient, typeof toApiVariables>(HouseholdDocument, {
     ...options,
+    skip: !options.variables?.id,
     mapper: toClient,
     mapVariables: toApiVariables,
   });

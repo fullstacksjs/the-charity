@@ -28,6 +28,7 @@ module.exports = init({
         '@typescript-eslint/no-confusing-void-expression': 'off',
         'react/jsx-no-useless-fragment': 'off',
         'react-hooks/rules-of-hooks': 'off',
+        'storybook/no-title-property-in-meta': 'off',
       },
     },
   ],

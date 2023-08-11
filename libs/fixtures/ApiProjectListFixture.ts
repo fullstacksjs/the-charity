@@ -54,6 +54,6 @@ export const projectListMock: MockedResponse<
   ApiProjectListQuery,
   ApiProjectListQueryVariables
 > = {
-  request: { query: ProjectListDocument, variables: {} },
+  request: { query: ProjectListDocument },
   result: { data: { project_aggregate: { nodes: ApiProjectListFixture } } },
 };

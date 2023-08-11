@@ -32,7 +32,7 @@ export const ApiDraftHouseholdFixture: NonNullable<
   code: 'P00001',
 };
 
-export const householdMock: MockedResponse<
+export const completeHouseholdMock: MockedResponse<
   ApiHouseholdQuery,
   ApiHouseholdQueryVariables
 > = {
