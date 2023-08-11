@@ -1,7 +1,7 @@
 import { Text } from '@mantine/core';
 
 interface Props {
-  startDate: Date | null;
+  startDate?: Date;
   endDate?: Date;
 }
 

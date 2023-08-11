@@ -33,7 +33,7 @@ const t = messages.projects.list;
 
 export const ProjectList = () => {
   const { data, loading, error } = useProjectListQuery();
-  const projects = data?.projects;
+  const projects = data?.projects ?? null;
 
   const columns = [
     projectColumnHelper.display({
@@ -52,7 +52,7 @@ export const ProjectList = () => {
       header: t.table.columns.fullDate,
       cell: date => (
         <DateSummery
-          startDate={date.getValue()?.startDate ?? null}
+          startDate={date.getValue()?.startDate}
           endDate={date.getValue()?.endDate}
         />
       ),
@@ -74,7 +74,7 @@ export const ProjectList = () => {
   ];
 
   const table = useReactTable({
-    data: projects!,
+    data: projects ?? [],
     columns,
     getCoreRowModel: getCoreRowModel(),
     getSortedRowModel: getSortedRowModel(),

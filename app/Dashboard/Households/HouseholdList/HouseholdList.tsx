@@ -38,7 +38,7 @@ export const HouseholdList = () => {
   const { data, loading, error } = useHouseholdListQuery({
     variables: { orderBy: sorting },
   });
-  const households = data?.household;
+  const households = data?.household ?? null;
 
   const columns = [
     householdColumnHelper.display({
@@ -76,14 +76,13 @@ export const HouseholdList = () => {
   ];
 
   const table = useReactTable({
-    data: households!,
+    data: households ?? [],
     columns,
     state: {
       sorting,
     },
     onSortingChange: setSorting,
     getCoreRowModel: getCoreRowModel(),
-    enableSorting: true,
     getSortedRowModel: getSortedRowModel(),
   });
 
