@@ -13,12 +13,14 @@ import type {
   ApiUpsertMemberMutation,
   ApiUpsertMemberMutationVariables,
 } from '../../ApiOperations';
-import { HouseholdDetailFragment, HouseholdKeysFragment } from '../fragments';
 import {
+  getMemberKeys,
+  getMemberListItem,
+  HouseholdDetailFragment,
+  HouseholdKeysFragment,
   MemberKeysFragment,
   MemberListItemFragment,
-} from '../fragments/member.fragments';
-import { getMemberKeys, getMemberListItem } from '../fragments/member.mapper';
+} from '../fragments';
 import { MemberListDocument } from '../queries';
 
 const Document = gql`

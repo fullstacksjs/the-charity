@@ -3,6 +3,7 @@ import { gql } from '@apollo/client';
 export const MemberKeysFragment = gql`
   fragment MemberKeys on member {
     id
+    household_id
   }
 `;
 
@@ -16,7 +17,6 @@ export const MemberListItemFragment = gql`
     nationality
     religion
     surname
-    household_id
     status
   }
 `;

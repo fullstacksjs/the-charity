@@ -22,6 +22,14 @@ export const messages = {
           `مشکلی در تکمیل خانوار "${name}" به وجود آمده است. لطفا دوباره تلاش کنید.`,
       },
     },
+    member: {
+      delete: {
+        title: 'حذف عضو',
+        success: (name: string) => `عضو “${name}” با موفقیت حذف شد.`,
+        failed: (name: string) =>
+          `مشکلی در مرحله حذف عضو "${name}" به وجود آمده است. لطفا دوباره تلاش کنید.`,
+      },
+    },
   },
   date: {
     format: (date: Date) => new Intl.DateTimeFormat('fa-IR').format(date),

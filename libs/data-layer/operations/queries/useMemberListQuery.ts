@@ -8,12 +8,14 @@ import type {
   ApiMemberListQuery,
   ApiMemberListQueryVariables,
 } from '../../ApiOperations';
-import { HouseholdDetailFragment, HouseholdKeysFragment } from '../fragments';
 import {
+  getMemberKeys,
+  getMemberListItem,
+  HouseholdDetailFragment,
+  HouseholdKeysFragment,
   MemberKeysFragment,
   MemberListItemFragment,
-} from '../fragments/member.fragments';
-import { getMemberKeys, getMemberListItem } from '../fragments/member.mapper';
+} from '../fragments';
 
 export const MemberListDocument = gql`
   query MemberList($household_id: uuid!) {
