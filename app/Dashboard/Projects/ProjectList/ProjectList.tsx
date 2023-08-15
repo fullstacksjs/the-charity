@@ -31,47 +31,47 @@ import * as ActionIds from './ProjectTableRow.ids';
 
 const t = messages.projects.list;
 
+const columns = [
+  projectColumnHelper.display({
+    header: t.table.columns.order,
+    cell: order => order.row.index + 1,
+  }),
+  projectColumnHelper.accessor('name', {
+    header: t.table.columns.name,
+    cell: name => name.getValue(),
+  }),
+  projectColumnHelper.accessor('description', {
+    header: t.table.columns.description,
+    cell: description => <SmallText>{description.getValue()}</SmallText>,
+  }),
+  projectColumnHelper.accessor('fullDate', {
+    header: t.table.columns.fullDate,
+    cell: date => (
+      <DateSummery
+        startDate={date.getValue()?.startDate}
+        endDate={date.getValue()?.endDate}
+      />
+    ),
+  }),
+  projectColumnHelper.accessor('status', {
+    header: t.table.columns.status,
+    cell: props => (
+      <Group position="apart">
+        <ProjectStatusBadge status={props.getValue()} />
+        <ProjectActionButton
+          menuButtonId={ActionIds.projectTableMenuButtonId}
+          menuId={ActionIds.projectTableMenuId}
+          to={AppRoute.projectDetail}
+          params={{ id: props.row.original.id }}
+        />
+      </Group>
+    ),
+  }),
+];
+
 export const ProjectList = () => {
   const { data, loading, error } = useProjectListQuery();
   const projects = data?.projects ?? null;
-
-  const columns = [
-    projectColumnHelper.display({
-      header: t.table.columns.order,
-      cell: order => order.row.index + 1,
-    }),
-    projectColumnHelper.accessor('name', {
-      header: t.table.columns.name,
-      cell: name => name.getValue(),
-    }),
-    projectColumnHelper.accessor('description', {
-      header: t.table.columns.description,
-      cell: description => <SmallText>{description.getValue()}</SmallText>,
-    }),
-    projectColumnHelper.accessor('fullDate', {
-      header: t.table.columns.fullDate,
-      cell: date => (
-        <DateSummery
-          startDate={date.getValue()?.startDate}
-          endDate={date.getValue()?.endDate}
-        />
-      ),
-    }),
-    projectColumnHelper.accessor('status', {
-      header: t.table.columns.status,
-      cell: props => (
-        <Group position="apart">
-          <ProjectStatusBadge status={props.getValue()} />
-          <ProjectActionButton
-            menuButtonId={ActionIds.projectTableMenuButtonId}
-            menuId={ActionIds.projectTableMenuId}
-            to={AppRoute.projectDetail}
-            params={{ id: props.row.original.id }}
-          />
-        </Group>
-      ),
-    }),
-  ];
 
   const table = useReactTable({
     data: projects ?? [],

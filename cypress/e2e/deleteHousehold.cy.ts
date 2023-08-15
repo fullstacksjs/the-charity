@@ -1,9 +1,8 @@
+import { householdActionIds } from '../../app/Dashboard/Households/_components/HouseholdActionButton/HouseholdActionButton.ids';
 import { AppRoute } from '../../libs/router/AppRoutes';
 import { admin } from '../fixtures/admin';
 import { householdFixture } from '../fixtures/household';
 import * as api from './api';
-
-import { householdActionIds } from '../../app/Dashboard/Households/_components/HouseholdActionButton/HouseholdActionButton.ids';
 
 describe('Delete a Household', () => {
   beforeEach(() => {

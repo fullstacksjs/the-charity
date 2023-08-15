@@ -166,6 +166,9 @@ export const messages = {
           status: 'وضعیت اطلاعات',
           fullDate: 'تاریخ شروع - پایان',
         },
+        rows: {
+          unknown: 'مشخص نشده',
+        },
       },
     },
   },
