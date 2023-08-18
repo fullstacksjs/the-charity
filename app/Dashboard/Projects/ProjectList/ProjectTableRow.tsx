@@ -3,8 +3,8 @@ import type { ProjectKeys, ProjectListItem } from '@camp/domain';
 import { AppRoute, useNavigate } from '@camp/router';
 import { Group } from '@mantine/core';
 
+import { ProjectStatusBadge } from '../_components/ProjectStatusBadge';
 import { ProjectActionButton } from '../ProjectActionButton';
-import { ProjectStatusBadge } from '../ProjectStatusBadge';
 import * as ids from './ProjectTableRow.ids';
 
 interface Props {
