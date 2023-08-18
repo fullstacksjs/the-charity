@@ -5,9 +5,9 @@ interface Props {
   children: React.ReactNode;
 }
 
-export const DetailCardField = ({ title, children }: Props) => {
+export const DetailCardField = ({ title, children, ...props }: Props) => {
   return (
-    <Box sx={{ textAlign: 'left' }}>
+    <Box sx={{ textAlign: 'left' }} {...props}>
       <Title order={6} color="fgSubtle" weight={500}>
         {title}:
       </Title>
