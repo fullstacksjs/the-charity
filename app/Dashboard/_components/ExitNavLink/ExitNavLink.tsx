@@ -12,11 +12,9 @@ export const ExitNavLink = () => {
 
   const handleLogout = () => {
     openLogoutModal(returnTo => {
-      try {
-        logout({ logoutParams: { returnTo } });
-      } catch (e) {
+      logout({ logoutParams: { returnTo } }).catch(e => {
         debug.error(e);
-      }
+      });
     });
   };
 
