@@ -7,6 +7,8 @@ describe('HouseholdActionButton', () => {
   beforeEach(() => {
     cy.mount(
       <HouseholdActionButton
+        householdName="mmd"
+        householdId="mmd alian"
         to="/"
         menuButtonId={menuButtonId}
         menuId={menuId}

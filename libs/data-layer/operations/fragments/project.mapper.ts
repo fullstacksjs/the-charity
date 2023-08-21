@@ -34,8 +34,10 @@ export const getProjectListItem = (
     name: data.name,
     status: data.status,
     description: data.description ?? undefined,
-    endDate: toDate(data.due_date),
-    startDate: toDate(data.start_date),
+    fullDate: {
+      endDate: toDate(data.due_date),
+      startDate: toDate(data.start_date),
+    },
     createdAt: toDate(data.created_at)!,
     updatedAt: toDate(data.updated_at)!,
   };

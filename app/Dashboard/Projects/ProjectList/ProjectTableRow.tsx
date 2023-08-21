@@ -1,46 +1,31 @@
-import { DateSummery, SmallText } from '@camp/design';
 import type { ProjectKeys, ProjectListItem } from '@camp/domain';
-import { AppRoute, useNavigate } from '@camp/router';
-import { Group } from '@mantine/core';
-
-import { ProjectStatusBadge } from '../_components/ProjectStatusBadge';
-import { ProjectActionButton } from '../ProjectActionButton';
-import * as ids from './ProjectTableRow.ids';
+import type { AppRoute } from '@camp/router';
+import { useNavigate } from '@camp/router';
+import type { Table } from '@tanstack/react-table';
+import { flexRender } from '@tanstack/react-table';
 
 interface Props {
-  order: number;
-  project: ProjectKeys & ProjectListItem;
+  rows?: Table<ProjectKeys & ProjectListItem>;
 }
 
-export const ProjectTableRow = ({ project, order }: Props) => {
+export const ProjectTableRow = ({ rows }: Props) => {
   const navigate = useNavigate();
-  const { id, name, status, endDate, startDate, description } = project;
 
-  const gotoDetail = () => {
-    navigate({ to: `/dashboard/projects/${id}` as AppRoute });
+  const gotoDetail = (ProjectId: string) => {
+    navigate({ to: `/dashboard/projects/${ProjectId}` as AppRoute });
   };
 
-  return (
-    <tr style={{ cursor: 'pointer' }} onClick={gotoDetail}>
-      <td>{order}</td>
-      <td>{name}</td>
-      <td>
-        <SmallText>{description}</SmallText>
-      </td>
-      <td>
-        <DateSummery startDate={startDate!} endDate={endDate} />
-      </td>
-      <td>
-        <Group position="apart">
-          <ProjectStatusBadge status={status} />
-          <ProjectActionButton
-            menuButtonId={ids.projectTableMenuButtonId}
-            menuId={ids.projectTableMenuId}
-            to={AppRoute.projectDetail}
-            params={{ id }}
-          />
-        </Group>
-      </td>
+  return rows?.getRowModel().rows.map(row => (
+    <tr
+      style={{ cursor: 'pointer' }}
+      key={row.id}
+      onClick={() => gotoDetail(row.original.id)}
+    >
+      {row.getVisibleCells().map(cell => (
+        <td key={cell.id}>
+          {flexRender(cell.column.columnDef.cell, cell.getContext())}
+        </td>
+      ))}
     </tr>
-  );
+  ));
 };

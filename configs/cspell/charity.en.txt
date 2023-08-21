@@ -50,3 +50,4 @@ tsbuildinfo
 huskyrc
 indexify
 pkey
+alian
