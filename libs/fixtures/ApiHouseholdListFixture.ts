@@ -4,7 +4,11 @@ import type {
   ApiHouseholdListQueryVariables,
 } from '@camp/data-layer';
 import { HouseholdListDocument } from '@camp/data-layer';
-import { HouseholdSeverityEnum, HouseholdStatusEnum } from '@camp/domain';
+import {
+  ApiOrderBy,
+  HouseholdSeverityEnum,
+  HouseholdStatusEnum,
+} from '@camp/domain';
 
 export const ApiHouseholdListFixture: ApiHouseholdListQuery['household'] = [
   {
@@ -34,6 +38,9 @@ export const householdListMock: MockedResponse<
   ApiHouseholdListQuery,
   ApiHouseholdListQueryVariables
 > = {
-  request: { query: HouseholdListDocument },
+  request: {
+    query: HouseholdListDocument,
+    variables: { order_by: { created_at: ApiOrderBy.Desc } },
+  },
   result: { data: { household: ApiHouseholdListFixture } },
 };

@@ -4,14 +4,11 @@ import { useMutation } from '@camp/api-client';
 import type {
   ApiDeleteHouseholdMutation,
   ApiDeleteHouseholdMutationVariables,
-  ApiHouseholdListQuery,
-  ApiHouseholdListQueryVariables,
 } from '@camp/data-layer';
 import type { Household, HouseholdKeys } from '@camp/domain';
 import { isNull } from '@fullstacksjs/toolbox';
 
 import { getHouseholdKeys, HouseholdKeysFragment } from '../fragments';
-import { HouseholdListDocument } from '../queries';
 
 const Document = gql`
   mutation DeleteHousehold($id: uuid!) {
@@ -55,18 +52,11 @@ export const useDeleteHouseholdMutation = (
     toClient,
     toApiVariables,
     update(cache, { data }) {
-      const id = data?.delete_household_by_pk?.id;
-      if (!id) return;
+      const household = data?.delete_household_by_pk;
+      if (!household) return;
 
-      cache.updateQuery<ApiHouseholdListQuery, ApiHouseholdListQueryVariables>(
-        { query: HouseholdListDocument },
-        value => {
-          return {
-            ...value,
-            household: value?.household.filter(h => h.id !== id) ?? [],
-          };
-        },
-      );
+      cache.evict({ id: cache.identify(household) });
+      cache.gc();
     },
   });
 };

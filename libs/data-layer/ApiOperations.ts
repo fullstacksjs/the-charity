@@ -80,7 +80,9 @@ export type ApiUpsertMemberMutationVariables = SchemaTypes.Exact<{
 
 export type ApiUpsertMemberMutation = { __typename?: 'mutation_root', insert_member_one?: { __typename?: 'member', id: string, household_id: string, dob?: string | null, father_name?: string | null, gender?: SchemaTypes.GenderEnum | null, name: string, national_id?: string | null, nationality?: SchemaTypes.NationalityEnum | null, religion?: SchemaTypes.ReligionEnum | null, surname?: string | null, status?: string | null, household: { __typename?: 'household', id: string, name: string, status: SchemaTypes.HouseholdStatusEnum, severity: SchemaTypes.HouseholdSeverityEnum, code?: string | null, created_at: string, updated_at: string } } | null };
 
-export type ApiHouseholdListQueryVariables = SchemaTypes.Exact<{ [key: string]: never; }>;
+export type ApiHouseholdListQueryVariables = SchemaTypes.Exact<{
+  order_by?: SchemaTypes.InputMaybe<Array<SchemaTypes.ApiHouseholdOrderBy> | SchemaTypes.ApiHouseholdOrderBy>;
+}>;
 
 
 export type ApiHouseholdListQuery = { __typename?: 'query_root', household: Array<{ __typename?: 'household', id: string, name: string, severity: SchemaTypes.HouseholdSeverityEnum, status: SchemaTypes.HouseholdStatusEnum }> };

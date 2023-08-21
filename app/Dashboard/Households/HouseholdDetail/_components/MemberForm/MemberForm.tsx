@@ -25,7 +25,7 @@ import {
   nationalities,
   religions,
 } from '@camp/domain';
-import { ArrowDownIcon, CheckIcon, EditIcon, TrashIcon } from '@camp/icons';
+import { CheckIcon, ChevronDownIcon, EditIcon, TrashIcon } from '@camp/icons';
 import { messages } from '@camp/messages';
 import { createTestAttr } from '@camp/test';
 import { isNull } from '@fullstacksjs/toolbox';
@@ -180,7 +180,7 @@ export const MemberForm = ({
     <DashboardCard
       left={
         <ActionIcon onClick={toggle}>
-          <ArrowDownIcon width="16" height="16" color="black" />
+          <ChevronDownIcon width="16" height="16" color="black" />
         </ActionIcon>
       }
       right={

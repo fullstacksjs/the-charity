@@ -1,9 +1,15 @@
 import { gql } from '@apollo/client';
-import type { NeverFn, QueryOptions } from '@camp/api-client';
+import type { QueryHookOptions } from '@camp/api-client';
 import { useQuery } from '@camp/api-client';
-import type { ApiHouseholdListQuery } from '@camp/data-layer';
 import type { Household } from '@camp/domain';
+import { ApiOrderBy } from '@camp/domain';
+import { isEmpty } from '@fullstacksjs/toolbox';
+import type { SortingState } from '@tanstack/react-table';
 
+import type {
+  ApiHouseholdListQuery,
+  ApiHouseholdListQueryVariables,
+} from '../../ApiOperations';
 import {
   getHouseholdKeys,
   getHouseholdListItem,
@@ -12,8 +18,8 @@ import {
 } from '../fragments';
 
 export const HouseholdListDocument = gql`
-  query HouseholdList {
-    household(order_by: { created_at: desc }) {
+  query HouseholdList($order_by: [household_order_by!]) {
+    household(order_by: $order_by) {
       ...HouseholdKeys
       ...HouseholdListItem
     }
@@ -36,11 +42,28 @@ const toClient = (data: ApiHouseholdListQuery | null) => {
   };
 };
 
+interface Variables {
+  orderBy: SortingState;
+}
+
+const toApiVariables = (data: Variables): ApiHouseholdListQueryVariables => {
+  return {
+    order_by: isEmpty(Object.keys(data.orderBy))
+      ? { created_at: ApiOrderBy.Desc }
+      : data.orderBy.reduce((acc, item) => {
+          return {
+            ...acc,
+            [item.id]: item.desc ? ApiOrderBy.Desc : ApiOrderBy.Asc,
+          };
+        }, {}),
+  };
+};
+
 export const useHouseholdListQuery = (
-  options?: QueryOptions<typeof toClient, NeverFn>,
+  options: QueryHookOptions<typeof toClient, typeof toApiVariables>,
 ) =>
-  useQuery<typeof toClient, NeverFn>(HouseholdListDocument, {
+  useQuery<typeof toClient, typeof toApiVariables>(HouseholdListDocument, {
     ...options,
     mapper: toClient,
-    mapVariables: () => ({}),
+    mapVariables: toApiVariables,
   });
