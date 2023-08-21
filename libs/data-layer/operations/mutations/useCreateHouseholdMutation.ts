@@ -64,9 +64,7 @@ export function useCreateHouseholdMutation(
       if (!newHousehold) return;
 
       cache.modify({
-        id: 'ROOT_QUERY',
         fields: {
-          // eslint-disable-next-line @typescript-eslint/default-param-last
           household(existingHouseholdsRefs = []) {
             const newHouseholdRef = cache.writeFragment({
               data: newHousehold,
