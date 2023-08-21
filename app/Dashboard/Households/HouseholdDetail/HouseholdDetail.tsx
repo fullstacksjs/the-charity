@@ -184,6 +184,11 @@ export const HouseholdDetail = () => {
     }
   };
 
+  const undo = () => {
+    reset();
+    setIsEditing(false);
+  };
+
   return (
     <>
       <form onSubmit={onUpdateHousehold} {...createTestAttr(ids.form)}>
@@ -194,12 +199,7 @@ export const HouseholdDetail = () => {
             <Flex gap={20}>
               {isEditing ? (
                 <>
-                  <DestructiveButton
-                    onClick={() => {
-                      reset();
-                      setIsEditing(false);
-                    }}
-                  >
+                  <DestructiveButton onClick={undo}>
                     {messages.actions.undoBtn}
                   </DestructiveButton>
                   <Button
@@ -214,14 +214,12 @@ export const HouseholdDetail = () => {
                 </>
               ) : (
                 <>
-                  <Button
-                    variant="outline"
-                    color="red"
+                  <DestructiveButton
                     leftIcon={<TrashIcon />}
                     onClick={handleDeleteHousehold}
                   >
                     {t.delete}
-                  </Button>
+                  </DestructiveButton>
                   {!household.isCompleted && (
                     <Button
                       leftIcon={<ArrowUpIcon />}
@@ -251,7 +249,7 @@ export const HouseholdDetail = () => {
             <TextInput
               readOnly={isReadOnly}
               className={classes.input}
-              wrapperProps={createTestAttr(ids.nameInput)}
+              wrapperProps={createTestAttr(ids.nameField)}
               {...register('name')}
               label={`${t.householdFields.name.title}:`}
               error={errors.name?.message}
@@ -261,6 +259,7 @@ export const HouseholdDetail = () => {
               readOnly={isReadOnly}
               presentation={v => (
                 <DetailCard.Field
+                  {...createTestAttr(ids.severityField)}
                   title={t.householdFields.severityStatus.title}
                 >
                   <SeverityBadge severity={v as HouseholdSeverityEnum} />
@@ -268,14 +267,17 @@ export const HouseholdDetail = () => {
               )}
               name="severity"
               control={control}
-              wrapperProps={createTestAttr(ids.severityInput)}
+              wrapperProps={createTestAttr(ids.severityField)}
               data={severities.map(v => ({
                 value: v,
                 label: messages.households.severityStatus[v],
               }))}
               label={`${t.householdFields.severityStatus.title}:`}
             />
-            <DetailCard.Field title={t.householdFields.informationStatus.title}>
+            <DetailCard.Field
+              {...createTestAttr(ids.statusField)}
+              title={t.householdFields.informationStatus.title}
+            >
               <InformationBadge
                 status={household.isCompleted ? 'completed' : 'draft'}
               />
