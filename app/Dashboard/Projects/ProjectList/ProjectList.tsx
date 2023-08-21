@@ -20,10 +20,10 @@ import {
   useReactTable,
 } from '@tanstack/react-table';
 
+import { ProjectStatusBadge } from '../_components/ProjectStatusBadge';
 import { CreateProjectButton } from '../CreateProject';
 import { ProjectActionButton } from '../ProjectActionButton';
 import { ProjectEmptyState } from '../ProjectEmptyState';
-import { ProjectStatusBadge } from '../ProjectStatusBadge';
 import * as ids from './ProjectList.ids';
 import { ProjectTableColumn } from './ProjectTableColumn';
 import { ProjectTableRow } from './ProjectTableRow';
