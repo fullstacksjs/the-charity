@@ -93,20 +93,19 @@ export const ProjectList = () => {
   if (isNull(projects)) return null;
   if (isEmpty(projects)) return <ProjectEmptyState />;
 
-  const projectRow = <ProjectTableRow rows={table} />;
-
-  const projectColumn = <ProjectTableColumn col={table} />;
-
   return (
     <DashboardCard
       left={<CreateProjectButton />}
       right={<DashboardTitle>{t.title}</DashboardTitle>}
     >
-      <Table
-        columns={projectColumn}
-        id={ids.projectTableId}
-        rows={projectRow}
-      />
+      <Table id={ids.projectTableId}>
+        <thead>
+          <ProjectTableColumn col={table} />
+        </thead>
+        <tbody>
+          <ProjectTableRow rows={table} />
+        </tbody>
+      </Table>
     </DashboardCard>
   );
 };

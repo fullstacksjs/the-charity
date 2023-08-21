@@ -4,7 +4,6 @@ import { useMutation } from '@camp/api-client';
 import type {
   ApiCreateHouseholdMutation,
   ApiCreateHouseholdMutationVariables,
-  ApiHouseholdListQuery,
 } from '@camp/data-layer';
 import type { HouseholdKeys, HouseholdListItem } from '@camp/domain';
 
@@ -14,7 +13,6 @@ import {
   HouseholdKeysFragment,
   HouseholdListItemFragment,
 } from '../fragments';
-import { HouseholdListDocument } from '../queries';
 
 const Document = gql`
   mutation CreateHousehold($name: String!) {
@@ -62,21 +60,29 @@ export function useCreateHouseholdMutation(
     toClient,
     toApiVariables,
     update(cache, result, opts) {
-      const newHouseholds = result.data?.insert_household_one;
-      if (!newHouseholds) return;
+      const newHousehold = result.data?.insert_household_one;
+      if (!newHousehold) return;
 
-      const prevHouseholdsQuery = cache.readQuery<ApiHouseholdListQuery>({
-        query: HouseholdListDocument,
-      });
-
-      const newHousehold = [
-        ...(prevHouseholdsQuery?.household ?? []),
-        newHouseholds,
-      ];
-
-      cache.writeQuery<ApiHouseholdListQuery>({
-        query: HouseholdListDocument,
-        data: { household: newHousehold },
+      cache.modify({
+        id: 'ROOT_QUERY',
+        fields: {
+          // eslint-disable-next-line @typescript-eslint/default-param-last
+          household(existingHouseholdsRefs = []) {
+            const newHouseholdRef = cache.writeFragment({
+              data: newHousehold,
+              fragment: gql`
+                fragment NewHousehold on household {
+                  ...HouseholdKeys
+                  ...HouseholdListItem
+                }
+                ${HouseholdKeysFragment}
+                ${HouseholdListItemFragment}
+              `,
+              fragmentName: 'NewHousehold',
+            });
+            return [newHouseholdRef!, ...existingHouseholdsRefs];
+          },
+        },
       });
 
       return options?.update?.(cache, result, opts);

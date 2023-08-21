@@ -1,6 +1,7 @@
 import type { QueryResult, TypedDocumentNode } from '@apollo/client';
 import { useQuery as useApolloQuery } from '@apollo/client';
 import type { DocumentNode } from 'graphql';
+import { useMemo } from 'react';
 
 import type { MapperFn, QueryHookOptions } from './types';
 
@@ -19,23 +20,25 @@ export const useQuery = <
   query:
     | DocumentNode
     | TypedDocumentNode<ReturnType<TClientMapper>, ReturnType<TVariableMapper>>,
-  options: InnerQueryHookOptions<TClientMapper, TVariableMapper>,
+  { mapper, ...options }: InnerQueryHookOptions<TClientMapper, TVariableMapper>,
 ): QueryResult<ReturnType<TClientMapper>, ReturnType<TVariableMapper>> => {
-  const { data, ...rest } = useApolloQuery(query, {
+  const result = useApolloQuery(query, {
     ...options,
     onCompleted: options.onCompleted
-      ? d => options.onCompleted?.(options.mapper(d))
+      ? d => options.onCompleted?.(mapper(d))
       : undefined,
     variables: options.mapVariables(options.variables),
   });
 
-  // NOTE we need to implement other functions that rely on Data type ourself
+  const data = useMemo(() => mapper(result.data), [result.data, mapper]);
+
+  // NOTE: we need to implement other functions that rely on Data type ourself
   return {
-    ...rest,
-    data: options.mapper(data),
+    ...result,
+    data,
     refetch: async (variables: ReturnType<TVariableMapper>) => {
-      const res = await rest.refetch(options.mapVariables(variables));
-      return { ...res, data: options.mapper(res.data) };
+      const res = await result.refetch(options.mapVariables(variables));
+      return { ...res, data: mapper(res.data) };
     },
   };
 };

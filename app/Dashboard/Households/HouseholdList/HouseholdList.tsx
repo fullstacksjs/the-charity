@@ -4,7 +4,6 @@ import {
   DashboardTitle,
   FullPageLoader,
   showNotification,
-  Table,
 } from '@camp/design';
 import { householdColumnHelper } from '@camp/domain';
 import { errorMessages, messages } from '@camp/messages';
@@ -13,11 +12,7 @@ import { createTestAttr } from '@camp/test';
 import { isEmpty, isNull } from '@fullstacksjs/toolbox';
 import { Group } from '@mantine/core';
 import type { SortingState } from '@tanstack/react-table';
-import {
-  getCoreRowModel,
-  getSortedRowModel,
-  useReactTable,
-} from '@tanstack/react-table';
+import { getCoreRowModel, useReactTable } from '@tanstack/react-table';
 import { useState } from 'react';
 
 import { InformationBadge } from '../../_components/InformationBadge';
@@ -26,8 +21,7 @@ import { CreateHouseholdButton } from '../_components/CreateHousehold';
 import { HouseholdActionButton } from '../_components/HouseholdActionButton';
 import { HouseholdEmptyState } from '../HouseholdEmptyState';
 import * as ids from './HouseholdList.ids';
-import { HouseholdTableColumn } from './HouseholdTableColumn';
-import { HouseholdTableRow } from './HouseholdTableRow';
+import { HouseholdTable } from './HouseholdTable';
 import { householdActionIds as actionIds } from './HouseholdTableRow.ids';
 
 const t = messages.households.list;
@@ -67,6 +61,8 @@ const columns = [
   }),
 ];
 
+const empty: any[] = [];
+
 export const HouseholdList = () => {
   const [sorting, setSorting] = useState<SortingState>([]);
 
@@ -76,14 +72,11 @@ export const HouseholdList = () => {
   const households = data?.household ?? null;
 
   const table = useReactTable({
-    data: households ?? [],
+    data: households ?? empty,
     columns,
-    state: {
-      sorting,
-    },
+    state: { sorting },
     onSortingChange: setSorting,
     getCoreRowModel: getCoreRowModel(),
-    getSortedRowModel: getSortedRowModel(),
   });
 
   if (error) {
@@ -105,11 +98,7 @@ export const HouseholdList = () => {
       left={<CreateHouseholdButton />}
       right={<DashboardTitle>{t.title}</DashboardTitle>}
     >
-      <Table
-        id={ids.householdTableId}
-        columns={<HouseholdTableColumn col={table} />}
-        rows={<HouseholdTableRow rows={table} />}
-      />
+      <HouseholdTable table={table} />
     </DashboardCard>
   );
 };

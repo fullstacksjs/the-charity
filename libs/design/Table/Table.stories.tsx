@@ -10,54 +10,45 @@ export default {
 
 type Story = StoryObj<typeof Table>;
 
-const householdRow = [
+const rows = [
   {
     id: '1',
     name: 'خانوار اول',
-    code: 'F00001',
     severity: 'ضروری',
     status: 'کامل',
-    createdAt: new Date('2022-12-23'),
-    updatedAt: new Date('2022-12-25'),
-    isCompleted: true,
   },
   {
     id: '2',
     name: 'خانوار دوم',
-    code: 'F00001',
     severity: 'ضروری',
     status: 'کامل',
-    isCompleted: false,
   },
   {
     id: '3',
     name: 'خانوار سوم',
-    code: 'F00001',
     severity: 'معمولی',
     status: 'تکمیل نشده',
-    isCompleted: true,
   },
 ];
 
-const householdCol = ['order', 'name', 'status', 'severity'];
+const columns = ['شماره', 'نام', 'وضعیت', 'نیازمندی'];
 
 export const Default: Story = {
-  render: ({ ...args }) => <Table {...args} id="table" />,
-  args: {
-    columns: (
-      <tr>
-        {householdCol.map(h => (
-          <th key={h}>
-            <Title size="xs">{h}</Title>
-          </th>
-        ))}
-      </tr>
-    ),
-    rows: (
-      <>
-        {householdRow.map((h, i) => (
+  render: ({ ...args }) => (
+    <Table {...args} id="table">
+      <thead>
+        <tr>
+          {columns.map(h => (
+            <th key={h}>
+              <Title size="xs">{h}</Title>
+            </th>
+          ))}
+        </tr>
+      </thead>
+      <tbody>
+        {rows.map(h => (
           <tr key={h.id} style={{ cursor: 'pointer' }}>
-            <td>{i}</td>
+            <td>{h.id}</td>
             <td>{h.name}</td>
             <td>
               <Badge status="success">{h.status}</Badge>
@@ -67,7 +58,7 @@ export const Default: Story = {
             </td>
           </tr>
         ))}
-      </>
-    ),
-  },
+      </tbody>
+    </Table>
+  ),
 };

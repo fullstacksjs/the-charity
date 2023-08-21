@@ -3,6 +3,7 @@ import type { QueryHookOptions } from '@camp/api-client';
 import { useQuery } from '@camp/api-client';
 import type { Household } from '@camp/domain';
 import { ApiOrderBy } from '@camp/domain';
+import { isEmpty } from '@fullstacksjs/toolbox';
 import type { SortingState } from '@tanstack/react-table';
 
 import type {
@@ -47,12 +48,14 @@ interface Variables {
 
 const toApiVariables = (data: Variables): ApiHouseholdListQueryVariables => {
   return {
-    order_by: data.orderBy.reduce((acc, item) => {
-      return {
-        ...acc,
-        [item.id]: item.desc ? ApiOrderBy.Desc : ApiOrderBy.Asc,
-      };
-    }, {}),
+    order_by: isEmpty(Object.keys(data.orderBy))
+      ? { created_at: ApiOrderBy.Desc }
+      : data.orderBy.reduce((acc, item) => {
+          return {
+            ...acc,
+            [item.id]: item.desc ? ApiOrderBy.Desc : ApiOrderBy.Asc,
+          };
+        }, {}),
   };
 };
 

@@ -2,12 +2,11 @@ import { createTestAttr } from '@camp/test';
 import { Table as MantineTable } from '@mantine/core';
 
 interface Props {
-  rows: JSX.Element;
-  columns: JSX.Element;
+  children: React.ReactNode;
   id: string;
 }
 
-export const Table = ({ columns, rows, id }: Props) => {
+export const Table = ({ children, id }: Props) => {
   return (
     <MantineTable
       horizontalSpacing="lg"
@@ -17,8 +16,7 @@ export const Table = ({ columns, rows, id }: Props) => {
       withBorder
       {...createTestAttr(id)}
     >
-      <thead>{columns}</thead>
-      <tbody>{rows}</tbody>
+      {children}
     </MantineTable>
   );
 };
