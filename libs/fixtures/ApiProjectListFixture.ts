@@ -23,6 +23,7 @@ export const ApiProjectListFixture: ApiProjectListQuery['project_aggregate']['no
       name: 'پروژه دوم',
       created_at: '2022-12-23',
       updated_at: '2022-12-23',
+      start_date: '2022-12-23',
       status: ProjectStatusEnum.Done,
     },
     {
@@ -31,6 +32,8 @@ export const ApiProjectListFixture: ApiProjectListQuery['project_aggregate']['no
       name: 'پروژه سوم',
       created_at: '2022-12-23',
       updated_at: '2022-12-23',
+      start_date: '2022-12-23',
+      due_date: '2022-12-29',
       status: ProjectStatusEnum.InProgress,
     },
     {
@@ -39,6 +42,7 @@ export const ApiProjectListFixture: ApiProjectListQuery['project_aggregate']['no
       name: 'پروژه چهارم',
       created_at: '2022-12-23',
       updated_at: '2022-12-23',
+      due_date: '2022-12-29',
       status: ProjectStatusEnum.Planning,
     },
     {
