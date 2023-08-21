@@ -12,6 +12,7 @@ export const ApiProjectListFixture: ApiProjectListQuery['project_aggregate']['no
       __typename: 'project',
       id: '1',
       name: 'پروژه اول',
+      description: 'توضیحات پروژه',
       created_at: '2022-12-23',
       updated_at: '2022-12-23',
       status: ProjectStatusEnum.Closed,
