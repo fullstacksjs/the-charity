@@ -101,7 +101,7 @@ export const MemberForm = ({
   onUndo,
 }: Props) => {
   const [createMemberMutation] = useUpsertMemberMutation();
-  const [opened, { toggle }] = useDisclosure(true);
+  const [opened, { toggle }] = useDisclosure(!initialMember?.isCompleted);
   const [isEditableMode, { toggle: toggleEditableMode }] = useBoolean(
     !initialMember,
   );
