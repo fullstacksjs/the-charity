@@ -1,5 +1,14 @@
 import { Button } from '@mantine/core';
 
+interface Props {
+  currentPage: number;
+  pageCount: number;
+  canNextPage?: boolean;
+  canPreviousPage?: boolean;
+  onPrev: VoidFunction;
+  onNext: VoidFunction;
+}
+
 export const TablePagination = ({
   currentPage,
   pageCount,
@@ -7,7 +16,7 @@ export const TablePagination = ({
   canPreviousPage,
   onPrev,
   onNext,
-}: any) => {
+}: Props) => {
   return (
     <div
       role="navigation"
