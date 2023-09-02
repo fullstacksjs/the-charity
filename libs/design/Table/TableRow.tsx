@@ -1,7 +1,7 @@
-interface Props {
+interface Props extends React.HTMLAttributes<HTMLTableRowElement> {
   children: React.ReactNode;
 }
 
-export const TableRow = ({ children }: Props) => {
-  return <tr>{children}</tr>;
+export const TableRow = ({ children, ...rest }: Props) => {
+  return <tr {...rest}>{children}</tr>;
 };
