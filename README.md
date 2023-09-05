@@ -78,7 +78,7 @@ The project contains multiple modules which have their specific responsibilities
 
 ### Run
 
-To start the app first set the envs as described in the (envs section)[#Envs] then run:
+To start the app first set the envs as described in the [envs section](#envs) then run:
 
 ```bash
 npm install

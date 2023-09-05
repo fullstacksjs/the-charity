@@ -1,6 +1,6 @@
 import { useMemberListQuery } from '@camp/data-layer';
 import { debug } from '@camp/debug';
-import { FullPageLoader, showNotification } from '@camp/design';
+import { DashboardTitle, FullPageLoader, showNotification } from '@camp/design';
 import { errorMessages, messages } from '@camp/messages';
 import { Center, Group, Stack, Title } from '@mantine/core';
 import { useState } from 'react';
@@ -46,9 +46,7 @@ export const MemberList = ({ householdId }: Props) => {
   return (
     <Stack spacing={25} sx={{ position: 'relative' }}>
       <Group position="apart">
-        <Title order={4} color="fgMuted" weight="bold">
-          {t.title}
-        </Title>
+        <DashboardTitle>{t.title}</DashboardTitle>
         <CreateMemberButton onClick={addNewMemberHandler} />
       </Group>
       {isMemberEmpty ? (
