@@ -1,5 +1,8 @@
 import type { HouseholdListDto } from '@camp/data-layer';
-import { useHouseholdListQuery } from '@camp/data-layer';
+import {
+  useHouseholdListQuery,
+  useHouseholdsCountQuery,
+} from '@camp/data-layer';
 import {
   DashboardCard,
   DashboardTitle,
@@ -71,6 +74,8 @@ export const HouseholdList = () => {
     pageSize: 10,
   });
 
+  // FIXME fix empty object arg
+  const { data: maybeHouseholdCount } = useHouseholdsCountQuery({});
   const { data, loading, error } = useHouseholdListQuery({
     variables: {
       orderBy: sorting,
@@ -78,15 +83,16 @@ export const HouseholdList = () => {
     },
   });
 
-  const households = data?.household ?? null;
+  const householdsCount = maybeHouseholdCount?.count ?? 0;
+  const households = data?.household ?? empty;
 
   const table = useReactTable({
-    data: households ?? empty,
+    data: households,
     columns,
     state: { sorting, pagination },
     onPaginationChange: setPagination,
     manualPagination: true,
-    pageCount: Math.ceil(83 / pagination.pageSize),
+    pageCount: Math.ceil(householdsCount / pagination.pageSize),
     onSortingChange: setSorting,
     getCoreRowModel: getCoreRowModel(),
   });
