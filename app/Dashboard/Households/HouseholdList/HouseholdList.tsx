@@ -3,17 +3,12 @@ import {
   useHouseholdListQuery,
   useHouseholdsCountQuery,
 } from '@camp/data-layer';
-import {
-  DashboardCard,
-  DashboardTitle,
-  FullPageLoader,
-  showNotification,
-} from '@camp/design';
+import { DashboardCard, DashboardTitle, showNotification } from '@camp/design';
 import { householdColumnHelper } from '@camp/domain';
 import { errorMessages, messages } from '@camp/messages';
 import { AppRoute } from '@camp/router';
 import { tid } from '@camp/test';
-import { isEmpty, isNull } from '@fullstacksjs/toolbox';
+import { isEmpty } from '@fullstacksjs/toolbox';
 import { Group } from '@mantine/core';
 import type { PaginationState, SortingState } from '@tanstack/react-table';
 import { getCoreRowModel, useReactTable } from '@tanstack/react-table';
@@ -107,16 +102,14 @@ export const HouseholdList = () => {
     return null;
   }
 
-  if (loading) return <FullPageLoader />;
-  if (isNull(households)) return null;
-  if (isEmpty(households)) return <HouseholdEmptyState />;
+  if (isEmpty(households) && !loading) return <HouseholdEmptyState />;
 
   return (
     <DashboardCard
       left={<CreateHouseholdButton />}
       right={<DashboardTitle>{t.title}</DashboardTitle>}
     >
-      <HouseholdTable table={table} />
+      <HouseholdTable loading={loading} table={table} />
     </DashboardCard>
   );
 };

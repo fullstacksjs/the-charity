@@ -1,4 +1,4 @@
-import { callAll, isEmpty } from '@fullstacksjs/toolbox';
+import { callAll } from '@fullstacksjs/toolbox';
 import type { Table as TableType } from '@tanstack/react-table';
 import { flexRender } from '@tanstack/react-table';
 
@@ -6,8 +6,8 @@ import { Table } from '../Table';
 
 interface DataTableProps<T> {
   table: TableType<T>;
+  id: string;
   fallback: JSX.Element;
-  emptyState: JSX.Element;
   loading?: boolean;
   onNext?: VoidFunction;
   onPrev?: VoidFunction;
@@ -15,15 +15,15 @@ interface DataTableProps<T> {
 
 export const DataTable = <T,>({
   table,
+  id,
   loading,
-  emptyState,
   fallback,
   onNext,
   onPrev,
 }: DataTableProps<T>) => {
   return (
     <>
-      <Table id="">
+      <Table id={id}>
         <Table.Header>
           {table.getHeaderGroups().map(headerGroup => (
             <Table.Row key={headerGroup.id}>
@@ -48,8 +48,6 @@ export const DataTable = <T,>({
         <Table.Body>
           {loading
             ? fallback
-            : isEmpty(table.getRowModel().rows)
-            ? emptyState
             : table.getRowModel().rows.map(row => (
                 <Table.Row key={row.id}>
                   {row.getVisibleCells().map(cell => (
