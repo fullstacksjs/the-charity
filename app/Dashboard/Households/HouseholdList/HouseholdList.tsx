@@ -69,7 +69,7 @@ export const HouseholdList = () => {
     pageSize: 10,
   });
 
-  // FIXME fix empty object arg
+  // FIXME: fix empty object arg
   const { data: maybeHouseholdCount } = useHouseholdsCountQuery({});
   const { data, loading, error } = useHouseholdListQuery({
     variables: {
