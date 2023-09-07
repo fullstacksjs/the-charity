@@ -7,6 +7,12 @@ export const errorMessages: Record<ServerError, string> = {
 };
 
 export const messages = {
+  tablePagination: {
+    page: (currentPage: number, total: number) =>
+      `صفحه ${currentPage} از ${Math.max(total, 1)}`,
+    prevPage: 'صفحه قبل',
+    nextPage: 'صفحه بعد',
+  },
   notification: {
     household: {
       delete: {
