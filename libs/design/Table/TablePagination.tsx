@@ -1,4 +1,5 @@
-import { Button } from '@mantine/core';
+import { ChevronLeftIcon, ChevronRightIcon } from '@camp/icons';
+import { Button, Group, Text } from '@mantine/core';
 
 interface Props {
   currentPage: number;
@@ -18,37 +19,34 @@ export const TablePagination = ({
   onNext,
 }: Props) => {
   return (
-    <div
-      role="navigation"
-      aria-label="pagination navigation"
-      className="flex items-center justify-end space-x-2 p-4"
-    >
-      <span>
-        Page{' '}
-        <strong aria-label="page">
-          {currentPage} of {Math.max(pageCount, 1)}
-        </strong>
-      </span>
-      <div className="space-x-2">
+    <Group position="apart">
+      <Text weight="bold">
+        صفحه {currentPage} از {Math.max(pageCount, 1)}
+      </Text>
+      <Group spacing={10}>
         <Button
           aria-label="go to previous page"
           variant="outline"
           size="sm"
+          color="dark"
+          leftIcon={<ChevronRightIcon />}
           onClick={onPrev}
           disabled={!canPreviousPage}
         >
-          Previous
+          صفحه قبل
         </Button>
         <Button
           aria-label="go to next page"
           variant="outline"
           size="sm"
+          color="dark"
+          rightIcon={<ChevronLeftIcon />}
           onClick={onNext}
           disabled={!canNextPage}
         >
-          Next
+          صفحه بعد
         </Button>
-      </div>
-    </div>
+      </Group>
+    </Group>
   );
 };
