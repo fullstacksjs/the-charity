@@ -1,10 +1,10 @@
 import { gql } from '@apollo/client';
 import type { QueryHookOptions } from '@camp/api-client';
 import { useQuery } from '@camp/api-client';
-import type { Household } from '@camp/domain';
+import type { Household, HouseholdKeys, HouseholdListItem } from '@camp/domain';
 import { ApiOrderBy } from '@camp/domain';
 import { isEmpty } from '@fullstacksjs/toolbox';
-import type { SortingState } from '@tanstack/react-table';
+import type { PaginationState, SortingState } from '@tanstack/react-table';
 
 import type {
   ApiHouseholdListQuery,
@@ -18,8 +18,12 @@ import {
 } from '../fragments';
 
 export const HouseholdListDocument = gql`
-  query HouseholdList($order_by: [household_order_by!]) {
-    household(order_by: $order_by) {
+  query HouseholdList(
+    $order_by: [household_order_by!]
+    $limit: Int
+    $offset: Int
+  ) {
+    household(order_by: $order_by, limit: $limit, offset: $offset) {
       ...HouseholdKeys
       ...HouseholdListItem
     }
@@ -29,10 +33,10 @@ export const HouseholdListDocument = gql`
 `;
 
 export interface HouseholdListDto {
-  household: Household[];
+  household: (HouseholdKeys & HouseholdListItem)[];
 }
 
-const toClient = (data: ApiHouseholdListQuery | null) => {
+const toClient = (data: ApiHouseholdListQuery | null): HouseholdListDto => {
   return {
     household:
       data?.household.filter(Boolean).map(d => ({
@@ -44,6 +48,7 @@ const toClient = (data: ApiHouseholdListQuery | null) => {
 
 interface Variables {
   orderBy: SortingState;
+  range: PaginationState;
 }
 
 const toApiVariables = (data: Variables): ApiHouseholdListQueryVariables => {
@@ -56,6 +61,8 @@ const toApiVariables = (data: Variables): ApiHouseholdListQueryVariables => {
             [item.id]: item.desc ? ApiOrderBy.Desc : ApiOrderBy.Asc,
           };
         }, {}),
+    limit: data.range.pageSize,
+    offset: data.range.pageSize * data.range.pageIndex,
   };
 };
 

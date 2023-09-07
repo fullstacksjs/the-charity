@@ -4,6 +4,7 @@ export * from './Breadcrumbs';
 export * from './DashboardCard';
 export * from './DashboardHeader';
 export * from './DashboardTitle';
+export * from './DataTable';
 export * from './DateInput';
 export * from './DateSummery';
 export * from './DestructiveButton';

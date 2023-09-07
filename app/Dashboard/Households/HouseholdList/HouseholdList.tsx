@@ -1,3 +1,4 @@
+import type { HouseholdListDto } from '@camp/data-layer';
 import { useHouseholdListQuery } from '@camp/data-layer';
 import {
   DashboardCard,
@@ -11,7 +12,7 @@ import { AppRoute } from '@camp/router';
 import { tid } from '@camp/test';
 import { isEmpty, isNull } from '@fullstacksjs/toolbox';
 import { Group } from '@mantine/core';
-import type { SortingState } from '@tanstack/react-table';
+import type { PaginationState, SortingState } from '@tanstack/react-table';
 import { getCoreRowModel, useReactTable } from '@tanstack/react-table';
 import { useState } from 'react';
 
@@ -61,20 +62,31 @@ const columns = [
   }),
 ];
 
-const empty: any[] = [];
+const empty: HouseholdListDto['household'] = [];
 
 export const HouseholdList = () => {
   const [sorting, setSorting] = useState<SortingState>([]);
+  const [pagination, setPagination] = useState<PaginationState>({
+    pageIndex: 0,
+    pageSize: 10,
+  });
 
   const { data, loading, error } = useHouseholdListQuery({
-    variables: { orderBy: sorting },
+    variables: {
+      orderBy: sorting,
+      range: pagination,
+    },
   });
+
   const households = data?.household ?? null;
 
   const table = useReactTable({
     data: households ?? empty,
     columns,
-    state: { sorting },
+    state: { sorting, pagination },
+    onPaginationChange: setPagination,
+    manualPagination: true,
+    pageCount: Math.ceil(83 / pagination.pageSize),
     onSortingChange: setSorting,
     getCoreRowModel: getCoreRowModel(),
   });

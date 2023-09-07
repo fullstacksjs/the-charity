@@ -84,6 +84,8 @@ export type ApiUpsertMemberMutation = { __typename?: 'mutation_root', insert_mem
 
 export type ApiHouseholdListQueryVariables = SchemaTypes.Exact<{
   order_by?: SchemaTypes.InputMaybe<Array<SchemaTypes.ApiHouseholdOrderBy> | SchemaTypes.ApiHouseholdOrderBy>;
+  limit?: SchemaTypes.InputMaybe<SchemaTypes.Scalars['Int']['input']>;
+  offset?: SchemaTypes.InputMaybe<SchemaTypes.Scalars['Int']['input']>;
 }>;
 
 
