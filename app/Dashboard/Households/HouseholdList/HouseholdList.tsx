@@ -1,8 +1,5 @@
 import type { HouseholdListDto } from '@camp/data-layer';
-import {
-  useHouseholdListQuery,
-  useHouseholdsCountQuery,
-} from '@camp/data-layer';
+import { useHouseholdListQuery } from '@camp/data-layer';
 import { DashboardCard, DashboardTitle, showNotification } from '@camp/design';
 import { householdColumnHelper } from '@camp/domain';
 import { errorMessages, messages } from '@camp/messages';
@@ -69,8 +66,6 @@ export const HouseholdList = () => {
     pageSize: 10,
   });
 
-  // FIXME: fix empty object arg
-  const { data: maybeHouseholdCount } = useHouseholdsCountQuery({});
   const { data, loading, error } = useHouseholdListQuery({
     variables: {
       orderBy: sorting,
@@ -78,7 +73,7 @@ export const HouseholdList = () => {
     },
   });
 
-  const householdsCount = maybeHouseholdCount?.count ?? 0;
+  const householdsCount = data?.totalCount ?? 0;
   const households = data?.household ?? empty;
 
   const table = useReactTable({

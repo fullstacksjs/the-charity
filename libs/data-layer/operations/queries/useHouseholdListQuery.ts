@@ -1,8 +1,9 @@
 import { gql } from '@apollo/client';
 import type { QueryHookOptions } from '@camp/api-client';
 import { useQuery } from '@camp/api-client';
-import type { Household, HouseholdKeys, HouseholdListItem } from '@camp/domain';
+import type { HouseholdKeys, HouseholdListItem } from '@camp/domain';
 import { ApiOrderBy } from '@camp/domain';
+import type { Nullish } from '@fullstacksjs/toolbox';
 import { isEmpty } from '@fullstacksjs/toolbox';
 import type { PaginationState, SortingState } from '@tanstack/react-table';
 
@@ -23,9 +24,14 @@ export const HouseholdListDocument = gql`
     $limit: Int
     $offset: Int
   ) {
-    household(order_by: $order_by, limit: $limit, offset: $offset) {
-      ...HouseholdKeys
-      ...HouseholdListItem
+    household_aggregate(order_by: $order_by, limit: $limit, offset: $offset) {
+      nodes {
+        ...HouseholdKeys
+        ...HouseholdListItem
+      }
+      aggregate {
+        count
+      }
     }
   }
   ${HouseholdKeysFragment}
@@ -34,15 +40,17 @@ export const HouseholdListDocument = gql`
 
 export interface HouseholdListDto {
   household: (HouseholdKeys & HouseholdListItem)[];
+  totalCount: Nullish | number;
 }
 
 const toClient = (data: ApiHouseholdListQuery | null): HouseholdListDto => {
   return {
     household:
-      data?.household.filter(Boolean).map(d => ({
+      data?.household_aggregate.nodes.filter(Boolean).map(d => ({
         ...getHouseholdKeys(d),
         ...getHouseholdListItem(d),
       })) ?? [],
+    totalCount: data?.household_aggregate.aggregate?.count,
   };
 };
 

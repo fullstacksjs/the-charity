@@ -89,7 +89,7 @@ export type ApiHouseholdListQueryVariables = SchemaTypes.Exact<{
 }>;
 
 
-export type ApiHouseholdListQuery = { __typename?: 'query_root', household: Array<{ __typename?: 'household', id: string, name: string, severity: SchemaTypes.HouseholdSeverityEnum, status: SchemaTypes.HouseholdStatusEnum }> };
+export type ApiHouseholdListQuery = { __typename?: 'query_root', household_aggregate: { __typename?: 'household_aggregate', nodes: Array<{ __typename?: 'household', id: string, name: string, severity: SchemaTypes.HouseholdSeverityEnum, status: SchemaTypes.HouseholdStatusEnum }>, aggregate?: { __typename?: 'household_aggregate_fields', count: number } | null } };
 
 export type ApiHouseholdQueryVariables = SchemaTypes.Exact<{
   id: SchemaTypes.Scalars['uuid']['input'];

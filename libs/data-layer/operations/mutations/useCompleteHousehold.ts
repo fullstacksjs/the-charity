@@ -69,18 +69,27 @@ export function useCompleteHouseholdMutation(
       const newHouseholds = result.data?.update_household_by_pk;
       if (!newHouseholds) return;
 
-      const prevHouseholdsQuery = cache.readQuery<ApiHouseholdListQuery>({
+      const prevHouseholdListQuery = cache.readQuery<ApiHouseholdListQuery>({
         query: HouseholdListDocument,
       });
 
-      const newHousehold = [
-        ...(prevHouseholdsQuery?.household ?? []),
-        newHouseholds,
-      ];
+      const prevHouseholds =
+        prevHouseholdListQuery?.household_aggregate.nodes ?? [];
 
       cache.writeQuery<ApiHouseholdListQuery>({
         query: HouseholdListDocument,
-        data: { household: newHousehold },
+        data: {
+          household_aggregate: {
+            nodes: prevHouseholds.map(h =>
+              h.id === newHouseholds.id ? newHouseholds : h,
+            ),
+            aggregate: {
+              count:
+                prevHouseholdListQuery?.household_aggregate.aggregate?.count ??
+                0,
+            },
+          },
+        },
       });
 
       return options?.update?.(cache, result, opts);
