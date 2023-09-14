@@ -5,9 +5,9 @@ import {
 } from '@camp/data-layer';
 import { debug } from '@camp/debug';
 import {
+  CollapsibleDashboardCard,
   ControlledDateInput,
   ControlledSelect,
-  DashboardCard,
   DestructiveButton,
   showNotification,
   TextInput,
@@ -25,14 +25,12 @@ import {
   nationalities,
   religions,
 } from '@camp/domain';
-import { CheckIcon, ChevronDownIcon, EditIcon, TrashIcon } from '@camp/icons';
+import { CheckIcon, EditIcon, TrashIcon } from '@camp/icons';
 import { messages } from '@camp/messages';
 import { createTestAttr } from '@camp/test';
 import { isNull } from '@fullstacksjs/toolbox';
 import {
-  ActionIcon,
   Button,
-  Collapse,
   createStyles,
   Group,
   SimpleGrid,
@@ -177,16 +175,13 @@ export const MemberForm = ({
   });
 
   return (
-    <DashboardCard
-      left={
-        <ActionIcon onClick={toggle}>
-          <ChevronDownIcon width="16" height="16" color="black" />
-        </ActionIcon>
-      }
-      right={
+    <CollapsibleDashboardCard
+      onToggle={toggle}
+      open={opened}
+      header={
         <Group spacing={10}>
           <Title order={4} color="fgDefault" weight="bold">
-            {name ? `${name} ${surname!}` : t.createForm.title}
+            {name ? `${name} ${surname ?? ''}` : t.createForm.title}
           </Title>
           <InformationBadge
             status={initialMember?.isCompleted ? 'completed' : 'draft'}
@@ -194,144 +189,142 @@ export const MemberForm = ({
         </Group>
       }
     >
-      <Collapse in={opened}>
-        <form {...createTestAttr(ids.form)} onSubmit={onSubmit}>
-          <Stack spacing={25} align="end">
-            <SimpleGrid w="100%" cols={3} spacing="lg" verticalSpacing={20}>
-              <TextInput
-                withAsterisk
-                readOnly={!isEditableMode}
-                className={classes.textInput}
-                wrapperProps={createTestAttr(ids.firstNameInput)}
-                {...register('name')}
-                label={`${tt.nameInput.label}:`}
-                placeholder={tt.nameInput.placeholder}
-                error={errors.name?.message}
-              />
-              <TextInput
-                readOnly={!isEditableMode}
-                className={classes.textInput}
-                wrapperProps={createTestAttr(ids.lastNameInput)}
-                {...register('surname')}
-                label={`${tt.lastNameInput.label}:`}
-                placeholder={tt.lastNameInput.placeholder}
-                error={errors.surname?.message}
-              />
-              <TextInput
-                readOnly={!isEditableMode}
-                className={classes.textInput}
-                wrapperProps={createTestAttr(ids.fatherNameInput)}
-                {...register('fatherName')}
-                label={`${tt.fatherNameInput.label}:`}
-                placeholder={tt.fatherNameInput.placeholder}
-                error={errors.fatherName?.message}
-              />
-              <ControlledSelect
-                readOnly={!isEditableMode}
-                name="nationality"
-                control={control}
-                wrapperProps={createTestAttr(ids.nationalityInput)}
-                data={nationalities.map(v => ({
-                  value: v,
-                  label: messages.nationalities[v],
-                }))}
-                placeholder={tt.selectInputs.placeholder}
-                label={`${tt.nationalityInput.label}:`}
-              />
-              <TextInput
-                readOnly={!isEditableMode}
-                className={classes.textInput}
-                wrapperProps={createTestAttr(ids.nationalIdInput)}
-                {...register('nationalId')}
-                label={`${tt.nationalIdInput.label}:`}
-                placeholder={tt.nationalIdInput.placeholder}
-                error={errors.nationalId?.message}
-              />
-              <ControlledSelect
-                readOnly={!isEditableMode}
-                name="gender"
-                control={control}
-                wrapperProps={createTestAttr(ids.genderInput)}
-                data={genders.map(v => ({
-                  value: v,
-                  label: messages.genders[v],
-                }))}
-                label={`${tt.genderInput.label}:`}
-                placeholder={tt.selectInputs.placeholder}
-              />
-              <ControlledDateInput
-                name="dob"
-                control={control}
-                readOnly={!isEditableMode}
-                wrapperProps={createTestAttr(ids.dobInput)}
-                className={classes.textInput}
-                label={`${tt.dobInput.label}:`}
-                placeholder={tt.selectInputs.placeholder}
-              />
-              <ControlledSelect
-                readOnly={!isEditableMode}
-                name="religion"
-                control={control}
-                wrapperProps={createTestAttr(ids.religionInput)}
-                data={religions.map(v => ({
-                  value: v,
-                  label: messages.religions[v],
-                }))}
-                placeholder={tt.selectInputs.placeholder}
-                label={`${tt.religionInput.label}:`}
-              />
-            </SimpleGrid>
-            {!isEditableMode ? (
-              <Group>
-                <Button
-                  {...createTestAttr(ids.deleteBtn)}
-                  type="button"
-                  variant="outline"
-                  color="red"
-                  leftIcon={<TrashIcon size={16} />}
-                  onClick={() => onDeleteMember()}
-                >
-                  {messages.actions.delete}
-                </Button>
-                <Button
-                  key={1}
-                  {...createTestAttr(ids.editBtn)}
-                  type="button"
-                  size="sm"
-                  variant="outline"
-                  onClick={() => toggleEditableMode()}
-                  leftIcon={<EditIcon size={16} />}
-                >
-                  {messages.actions.editBtn}
-                </Button>
-              </Group>
-            ) : (
-              <Group>
-                <DestructiveButton
-                  {...createTestAttr(ids.cancelBtn)}
-                  onClick={() => {
-                    reset();
-                    onUndo?.();
-                  }}
-                >
-                  {messages.actions.undoBtn}
-                </DestructiveButton>
-                <Button
-                  key={2}
-                  {...createTestAttr(ids.submitBtn)}
-                  type="submit"
-                  size="sm"
-                  variant="filled"
-                  leftIcon={<CheckIcon size={16} />}
-                  disabled={!isValid || (!isDirty && isEditableMode)}
-                >
-                  {messages.actions.submitBtn}
-                </Button>
-              </Group>
-            )}
-          </Stack>
-        </form>
-      </Collapse>
-    </DashboardCard>
+      <form {...createTestAttr(ids.form)} onSubmit={onSubmit}>
+        <Stack spacing={25} align="end">
+          <SimpleGrid w="100%" cols={3} spacing="lg" verticalSpacing={20}>
+            <TextInput
+              withAsterisk
+              readOnly={!isEditableMode}
+              className={classes.textInput}
+              wrapperProps={createTestAttr(ids.firstNameInput)}
+              {...register('name')}
+              label={`${tt.nameInput.label}:`}
+              placeholder={tt.nameInput.placeholder}
+              error={errors.name?.message}
+            />
+            <TextInput
+              readOnly={!isEditableMode}
+              className={classes.textInput}
+              wrapperProps={createTestAttr(ids.lastNameInput)}
+              {...register('surname')}
+              label={`${tt.lastNameInput.label}:`}
+              placeholder={tt.lastNameInput.placeholder}
+              error={errors.surname?.message}
+            />
+            <TextInput
+              readOnly={!isEditableMode}
+              className={classes.textInput}
+              wrapperProps={createTestAttr(ids.fatherNameInput)}
+              {...register('fatherName')}
+              label={`${tt.fatherNameInput.label}:`}
+              placeholder={tt.fatherNameInput.placeholder}
+              error={errors.fatherName?.message}
+            />
+            <ControlledSelect
+              readOnly={!isEditableMode}
+              name="nationality"
+              control={control}
+              wrapperProps={createTestAttr(ids.nationalityInput)}
+              data={nationalities.map(v => ({
+                value: v,
+                label: messages.nationalities[v],
+              }))}
+              placeholder={tt.selectInputs.placeholder}
+              label={`${tt.nationalityInput.label}:`}
+            />
+            <TextInput
+              readOnly={!isEditableMode}
+              className={classes.textInput}
+              wrapperProps={createTestAttr(ids.nationalIdInput)}
+              {...register('nationalId')}
+              label={`${tt.nationalIdInput.label}:`}
+              placeholder={tt.nationalIdInput.placeholder}
+              error={errors.nationalId?.message}
+            />
+            <ControlledSelect
+              readOnly={!isEditableMode}
+              name="gender"
+              control={control}
+              wrapperProps={createTestAttr(ids.genderInput)}
+              data={genders.map(v => ({
+                value: v,
+                label: messages.genders[v],
+              }))}
+              label={`${tt.genderInput.label}:`}
+              placeholder={tt.selectInputs.placeholder}
+            />
+            <ControlledDateInput
+              name="dob"
+              control={control}
+              readOnly={!isEditableMode}
+              wrapperProps={createTestAttr(ids.dobInput)}
+              className={classes.textInput}
+              label={`${tt.dobInput.label}:`}
+              placeholder={tt.selectInputs.placeholder}
+            />
+            <ControlledSelect
+              readOnly={!isEditableMode}
+              name="religion"
+              control={control}
+              wrapperProps={createTestAttr(ids.religionInput)}
+              data={religions.map(v => ({
+                value: v,
+                label: messages.religions[v],
+              }))}
+              placeholder={tt.selectInputs.placeholder}
+              label={`${tt.religionInput.label}:`}
+            />
+          </SimpleGrid>
+          {!isEditableMode ? (
+            <Group>
+              <Button
+                {...createTestAttr(ids.deleteBtn)}
+                type="button"
+                variant="outline"
+                color="red"
+                leftIcon={<TrashIcon size={16} />}
+                onClick={() => onDeleteMember()}
+              >
+                {messages.actions.delete}
+              </Button>
+              <Button
+                key={1}
+                {...createTestAttr(ids.editBtn)}
+                type="button"
+                size="sm"
+                variant="outline"
+                onClick={() => toggleEditableMode()}
+                leftIcon={<EditIcon size={16} />}
+              >
+                {messages.actions.editBtn}
+              </Button>
+            </Group>
+          ) : (
+            <Group>
+              <DestructiveButton
+                {...createTestAttr(ids.cancelBtn)}
+                onClick={() => {
+                  reset();
+                  onUndo?.();
+                }}
+              >
+                {messages.actions.undoBtn}
+              </DestructiveButton>
+              <Button
+                key={2}
+                {...createTestAttr(ids.submitBtn)}
+                type="submit"
+                size="sm"
+                variant="filled"
+                leftIcon={<CheckIcon size={16} />}
+                disabled={!isValid || (!isDirty && isEditableMode)}
+              >
+                {messages.actions.submitBtn}
+              </Button>
+            </Group>
+          )}
+        </Stack>
+      </form>
+    </CollapsibleDashboardCard>
   );
 };
