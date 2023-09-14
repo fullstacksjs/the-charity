@@ -380,6 +380,12 @@ export const messages = {
         title: 'توضیحات',
       },
     },
+    addDocument: {
+      title: 'ایجاد سند جدید',
+      description: 'توضیحات',
+      addDocBtn: 'بارگذاری سند',
+      note: 'سند را اینجا قرار دهید',
+    },
   },
   logout: {
     link: 'خروج',

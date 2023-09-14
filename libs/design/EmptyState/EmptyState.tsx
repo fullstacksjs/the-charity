@@ -29,7 +29,7 @@ export const EmptyState = ({
         <Space h="md" />
         <Text weight={700}>{title}</Text>
         <Space h="xs" />
-        <Text color="fgMuted">{message}</Text>
+        <Text color="fgDefault">{message}</Text>
         <Box p="xl">{children}</Box>
       </Box>
     </Center>

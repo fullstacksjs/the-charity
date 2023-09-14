@@ -40,7 +40,7 @@ export const NavLink = ({
         borderRadius: 4,
         fontWeight: 500,
         padding: 10,
-        color: theme.colors.fgMuted[6],
+        color: theme.colors.fgDefault[6],
         ...(variant === 'destructive' ? destructiveMixin(theme) : undefined),
       })}
       to={to}
