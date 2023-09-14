@@ -1,16 +1,17 @@
+import type { Icon } from '@camp/icons';
 import { Box, Center, Space, Text } from '@mantine/core';
 
 import { VisualizedIcon } from '../VisualizedIcon';
 
 export interface EmptyStateProps {
-  icon: React.ReactNode;
+  Icon: Icon;
   title: string;
   message: string;
   children?: React.ReactNode;
 }
 
 export const EmptyState = ({
-  icon,
+  Icon,
   title,
   message,
   children,
@@ -25,11 +26,11 @@ export const EmptyState = ({
           transform: 'translateY(-50%)',
         }}
       >
-        <VisualizedIcon icon={icon} />
+        <VisualizedIcon Icon={Icon} />
         <Space h="md" />
         <Text weight={700}>{title}</Text>
         <Space h="xs" />
-        <Text color="fgDefault">{message}</Text>
+        <Text color="fg">{message}</Text>
         <Box p="xl">{children}</Box>
       </Box>
     </Center>

@@ -91,18 +91,24 @@ export const CreateProjectForm = ({ dismiss }: Props) => {
             wrapperProps={createTestAttr(ids.descriptionInput)}
           />
         </Stack>
-        <Group spacing={20}>
+        <Group spacing={10} position="right">
           <Button
-            type="submit"
+            variant="default"
+            color="secondary"
             size="sm"
+            disabled={loading}
+            onClick={dismiss}
+          >
+            {messages.actions.dismiss}
+          </Button>
+          <Button
+            size="sm"
+            type="submit"
             loading={loading}
             disabled={!isValid}
             {...createTestAttr(ids.submitBtn)}
           >
             {messages.projects.createForm.submitBtn.text}
-          </Button>
-          <Button size="sm" color="gray" disabled={loading} onClick={dismiss}>
-            {messages.actions.dismiss}
           </Button>
         </Group>
       </Stack>

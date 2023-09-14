@@ -14,11 +14,11 @@ export interface NavLinkProps {
 }
 const destructiveMixin = (theme: MantineTheme) => ({
   '&:hover, &:active, &[data-active]': {
-    backgroundColor: theme.colors.red[0],
-    color: theme.colors.red[6],
+    backgroundColor: theme.colors.error[4],
+    color: theme.colors.error[6],
   },
   '&[data-active]:hover': {
-    backgroundColor: theme.colors.red[1],
+    backgroundColor: theme.colors.error[5],
   },
 });
 
@@ -40,8 +40,10 @@ export const NavLink = ({
         borderRadius: 4,
         fontWeight: 500,
         padding: 10,
-        color: theme.colors.fgDefault[6],
+        color: theme.colors.fg[6],
         ...(variant === 'destructive' ? destructiveMixin(theme) : undefined),
+        // NOTE: Seems to be a Mantine bug
+        span: { fontSize: theme.fontSizes.md },
       })}
       to={to}
       // @ts-expect-error polymorphic behavior
@@ -49,7 +51,7 @@ export const NavLink = ({
       key={label}
       label={label}
       rightSection={icon}
-      active={pathname === to}
+      active={to ? pathname.startsWith(to) : false}
       onClick={onClick}
       {...createTestAttr(id)}
     />

@@ -53,7 +53,7 @@ const resolver = createResolver<FormSchema>({
 const useStyles = createStyles(theme => ({
   input: {
     label: {
-      color: theme.colors.fgSubtle[6],
+      color: theme.colors.fg[4],
     },
   },
 }));

@@ -16,7 +16,7 @@ interface Props {
 }
 
 const BusyIcon = () => (
-  <Badge w="8px" h="8px" p="0" variant="filled" color="yellow" />
+  <Badge w="8px" h="8px" p="0" variant="filled" color="warning.5" />
 );
 
 export const Tabs = ({ tabs }: Props) => {
@@ -45,12 +45,12 @@ export const Tabs = ({ tabs }: Props) => {
         setActiveTab(value);
       }}
     >
-      <MantineTabs.List px="40px" bg="bgCanvas">
+      <MantineTabs.List px="40px" bg="bg">
         {tabs.map(({ tab, id, isBusy = false }) => (
           <MantineTabs.Tab
             key={id}
             value={id}
-            bg={id === activeTab ? 'bgSurface' : 'bgCanvas'}
+            bg={id === activeTab ? 'bg.7' : 'bg.6'}
             rightSection={isBusy ? <BusyIcon /> : undefined}
             {...createTestAttr(id)}
           >
@@ -64,7 +64,7 @@ export const Tabs = ({ tabs }: Props) => {
           sx={{
             flexGrow: 1,
           }}
-          bg="bgSurface"
+          bg="bg.7"
           pt="34px"
           pb="30px"
           px="40px"

@@ -15,7 +15,7 @@ export const File = ({ file, onRemove }: Props) => (
     spacing="15px"
     position="apart"
     sx={theme => ({
-      'borderColor': theme.colors.bgMuted[6],
+      'borderColor': theme.colors.bg[5],
       'borderWidth': 1,
       '&:not(:last-child)': {
         borderBottomStyle: 'solid',
@@ -37,8 +37,8 @@ export const File = ({ file, onRemove }: Props) => (
           height: '8px',
           borderRadius: '100%',
           backgroundColor: isSuccess(file)
-            ? theme.colors.successDefault[6]
-            : theme.colors.primaryDefault[6],
+            ? theme.colors.success[6]
+            : theme.colors.primary[6],
         })}
       />
     </Group>

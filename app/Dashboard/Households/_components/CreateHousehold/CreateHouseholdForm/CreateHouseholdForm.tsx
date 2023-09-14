@@ -75,14 +75,19 @@ export const CreateHouseholdForm = ({ dismiss }: Props) => {
           wrapperProps={createTestAttr(ids.nameInput)}
           {...register('name')}
         />
-        <Group spacing={20} position="right">
-          <Button size="sm" color="gray" onClick={dismiss}>
+        <Group spacing={10} position="right">
+          <Button
+            size="sm"
+            variant="default"
+            color="secondary"
+            onClick={dismiss}
+          >
             {messages.actions.dismiss}
           </Button>
           <Button
             type="submit"
             size="sm"
-            disabled={Boolean(formState.errors.name)}
+            disabled={formState.isValid}
             loading={mutationResult.loading}
             {...createTestAttr(ids.submitBtn)}
           >

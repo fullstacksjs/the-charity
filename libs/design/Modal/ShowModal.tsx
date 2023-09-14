@@ -13,6 +13,7 @@ interface Props extends ConfirmModalProps {
   confirmLabel: string;
   size: ModalSize;
   confirmId?: string;
+  destructive?: boolean;
 }
 
 export const showModal = ({
@@ -23,6 +24,7 @@ export const showModal = ({
   cancelLable,
   confirmLabel,
   confirmId,
+  destructive,
   ...rest
 }: Props) =>
   openConfirmModal({
@@ -31,14 +33,16 @@ export const showModal = ({
     title,
     size,
     centered: true,
+    groupProps: {
+      spacing: 10,
+    },
     confirmProps: {
       variant: 'filled',
-      color: 'red',
+      color: destructive ? 'error' : 'primary',
       ...createTestAttr(confirmId),
     },
     cancelProps: {
-      variant: 'filled',
-      color: 'gray',
+      color: 'secondary',
     },
     ...createTestAttr(id),
     labels: { cancel: cancelLable, confirm: confirmLabel },

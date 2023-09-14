@@ -9,8 +9,8 @@ interface Props extends NotificationProps {
 }
 
 const colorMap: Record<NotificationType, keyof MantineThemeColors> = {
-  failure: 'red',
-  success: 'green',
+  failure: 'error',
+  success: 'success',
 };
 
 export const showNotification = ({ type, ...rest }: Props) => {

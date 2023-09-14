@@ -47,7 +47,7 @@ export const ProjectDetail = () => {
           </DetailCard.Field>
           <DetailCard.Field title={t.projectFields.membersCount.title}>
             {isEmpty(households) ? (
-              <Text color="fgSubtle">{t.projectFields.membersCount.empty}</Text>
+              <Text color="fg.4">{t.projectFields.membersCount.empty}</Text>
             ) : (
               households.length
             )}

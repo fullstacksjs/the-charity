@@ -12,7 +12,7 @@ const formatToPersian = (d: Date) =>
 export const DateSummery = ({ startDate, endDate }: Props) => {
   const t = messages.projects.list.table.rows;
   return (
-    <Text color="secondaryDefault">
+    <Text color="secondary">
       {startDate ? formatToPersian(startDate) : t.unknown}
       {endDate ? `- ${formatToPersian(endDate)}` : null}
     </Text>

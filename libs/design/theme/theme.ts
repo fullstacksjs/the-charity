@@ -1,45 +1,6 @@
 import type { MantineThemeOverride } from '@mantine/core';
 
-import { toMantineColors } from './themeUtils';
-
-export const colors = {
-  fgDefault: '#212529',
-  fgMuted: '#8E959E',
-  fgSubtle: '#ADB5BD',
-  bgSurface: '#FFFFFF',
-  bgMuted: '#DEE2E6',
-  bgCanvas: '#FCFCFC',
-  bgDisabled: '#C4C8CC',
-  primaryDefault: '#4C6EF5',
-  primaryEmphasized: '#364FC7',
-  primaryMuted: '#748FFC',
-  primarySubtle: '#EDF2FF',
-  secondaryDefault: '#495057',
-  secondaryEmphasized: '#495057',
-  secondaryMuted: '#ADB5BD',
-  secondarySubtle: '#F8F9FA',
-  helpDefault: '#9775FA',
-  helpEmphasized: '#845EF7',
-  helpMuted: '#B197FC',
-  helpSubtle: '#E5DBFF',
-  successDefault: '#37B24D',
-  successEmphasized: '#2B8A3E',
-  successMuted: '#40C057',
-  successSubtle: '#EBFBEE',
-  infoDefault: '#4DABF7',
-  infoEmphasized: '#339AF0',
-  infoMuted: '#74C0FC',
-  infoSubtle: '#D0EBFF',
-  infoOnInfo: '#FFFFFF',
-  errorDefault: '#F03E3E',
-  errorEmphasized: '#C92A2A',
-  errorMuted: '#FA5252',
-  errorSubtle: '#FFE3E3',
-  warningDefault: '#F59F00',
-  warningEmphasized: '#E67700',
-  warningMuted: '#FAB005',
-  warningSubtle: '#FFF9DB',
-};
+import { palette, toMantineColors } from './palette';
 
 export const theme: MantineThemeOverride = {
   globalStyles: _theme => ({
@@ -50,7 +11,7 @@ export const theme: MantineThemeOverride = {
     /* 2.Remove default margin */
     '*': {
       margin: 0,
-      scrollbarColor: `${colors.secondaryDefault} transparent`,
+      scrollbarColor: `${palette.secondary.default} transparent`,
     },
     /* 3.Allow percentage-based heights in the application */
     'html, body': {
@@ -72,7 +33,7 @@ export const theme: MantineThemeOverride = {
     },
 
     '::-webkit-scrollbar-thumb': {
-      backgroundColor: colors.secondaryDefault,
+      backgroundColor: palette.secondary.default,
       borderRadius: '4px',
     },
 
@@ -80,10 +41,20 @@ export const theme: MantineThemeOverride = {
   }),
   dir: 'rtl',
   fontFamily: 'IRANSansFaNum, IRANSans',
-  colors: toMantineColors(colors),
-  primaryColor: 'indigo',
+  fontSizes: {
+    xs: '10px',
+    sm: '12px',
+    md: '14px',
+  },
+  colors: toMantineColors(palette),
+  primaryColor: 'primary',
   defaultRadius: 'sm',
   components: {
+    Anchor: {
+      defaultProps: {
+        underline: false,
+      },
+    },
     TextInput: {
       defaultProps: {
         errorProps: {
@@ -101,21 +72,21 @@ export const theme: MantineThemeOverride = {
     Select: {
       styles: {
         label: {
-          color: colors.fgSubtle,
+          color: palette.fg.subtle,
         },
       },
     },
     NumberInput: {
       styles: {
         label: {
-          color: colors.fgSubtle,
+          color: palette.fg.subtle,
         },
       },
     },
     Button: {
       styles: {
         root: {
-          fontWeight: 500,
+          fontWeight: 600,
           padding: '6px 12px',
           svg: {
             width: '18px',
@@ -149,5 +120,13 @@ export const theme: MantineThemeOverride = {
 
   headings: {
     fontFamily: 'IRANSansFaNum, IRANSans',
+    sizes: {
+      h1: { fontSize: '34px', lineHeight: 1.4 },
+      h2: { fontSize: '26px', lineHeight: 1.45 },
+      h3: { fontSize: '22px', lineHeight: 1.45 },
+      h4: { fontSize: '18px', lineHeight: 1.5 },
+      h5: { fontSize: '16px', lineHeight: 1.5 },
+      h6: { fontSize: '14px', lineHeight: 1.5 },
+    },
   },
 };

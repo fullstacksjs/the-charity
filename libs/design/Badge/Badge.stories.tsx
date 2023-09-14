@@ -10,7 +10,7 @@ type Story = StoryObj<typeof Badge>;
 
 export const Default: Story = {
   args: {
-    children: 'این نباید باشه',
+    children: 'پیش‌فرض',
   },
 };
 
@@ -24,7 +24,7 @@ export const Success: Story = {
 export const Warning: Story = {
   args: {
     status: 'warning',
-    children: 'عادی',
+    children: 'خطا',
   },
 };
 
@@ -32,5 +32,12 @@ export const Error: Story = {
   args: {
     status: 'error',
     children: 'اضطراری',
+  },
+};
+
+export const Info: Story = {
+  args: {
+    status: 'info',
+    children: 'عادی',
   },
 };

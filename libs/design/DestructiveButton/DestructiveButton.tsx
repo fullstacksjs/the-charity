@@ -11,7 +11,7 @@ export const DestructiveButton = ({ onClick, ...rest }: Props) => {
     <Button
       size="sm"
       variant="outline"
-      color="red"
+      color="error"
       onClick={onClick}
       {...rest}
     />

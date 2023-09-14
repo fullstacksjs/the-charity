@@ -18,7 +18,7 @@ const useStyles = createStyles(theme => ({
     paddingTop: 30,
     paddingBottom: 0,
     paddingInline: 40,
-    backgroundColor: theme.colors.bgCanvas[6],
+    backgroundColor: theme.colors.bg[6],
     overflow: 'auto',
   },
 }));

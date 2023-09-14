@@ -29,7 +29,7 @@ export const ProjectActionButton = ({
         <Menu.Item to={to} params={params} component={Link}>
           {messages.actions.open}
         </Menu.Item>
-        <Menu.Item color="red">{messages.actions.delete}</Menu.Item>
+        <Menu.Item color="error">{messages.actions.delete}</Menu.Item>
       </Menu.Dropdown>
     </Menu>
   );

@@ -1,6 +1,6 @@
 import type { Tuple } from '@mantine/core';
 
-import type { colors } from '../libs/design/theme/theme';
+import type { Palette } from '../libs/design/theme/palette';
 
 type DefaultMantineColors =
   | 'blue'
@@ -19,11 +19,9 @@ type DefaultMantineColors =
   | 'violet'
   | 'yellow';
 
-type IndexifyColor<T> = T extends DefaultMantineColors
-  ? T | `${T}.${0 | 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9}`
-  : T;
+type IndexifyColor<T> = T | `${T}.${0 | 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9}`;
 
-type Colors = IndexifyColor<DefaultMantineColors | keyof typeof colors>;
+type Colors = IndexifyColor<Palette | 'transparent'>;
 
 declare module '@mantine/core' {
   export interface MantineThemeColorsOverride {

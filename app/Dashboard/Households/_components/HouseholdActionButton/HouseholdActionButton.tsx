@@ -72,7 +72,7 @@ export const HouseholdActionButton = ({
           {messages.actions.open}
         </Menu.Item>
         <Menu.Item
-          color="red"
+          color="error"
           onClick={e => {
             e.stopPropagation();
             handleDeleteHousehold();
