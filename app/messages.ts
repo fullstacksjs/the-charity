@@ -349,6 +349,10 @@ export const messages = {
       informationStatus: {
         title: 'وضعیت اطلاعات',
       },
+      membersCount: {
+        title: 'تعداد اعضا',
+        present: (count: number) => `${count} نفر`,
+      },
     },
   },
   projectDetail: {

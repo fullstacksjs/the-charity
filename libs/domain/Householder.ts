@@ -16,6 +16,7 @@ export const householderSchema = {
   religion: () => Schema.religion().optionalString(),
   cityOfBirth: () => Schema.cityOfBirth().optionalString(),
   dob: () => Schema.dob().optionalString(),
+  membersCount: () => Schema.membersCount(),
 };
 
 export enum HouseholderStatus {
