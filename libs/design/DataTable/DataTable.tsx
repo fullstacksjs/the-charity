@@ -11,6 +11,7 @@ interface DataTableProps<T> {
   loading?: boolean;
   onNext?: VoidFunction;
   onPrev?: VoidFunction;
+  onRowClick?: (row: T) => void;
 }
 
 export const DataTable = <T,>({
@@ -20,13 +21,14 @@ export const DataTable = <T,>({
   fallback,
   onNext,
   onPrev,
+  onRowClick,
 }: DataTableProps<T>) => {
   return (
     <>
       <Table id={id}>
         <Table.Header>
           {table.getHeaderGroups().map(headerGroup => (
-            <Table.Row key={headerGroup.id}>
+            <Table.Row style={{ cursor: 'pointer' }} key={headerGroup.id}>
               {headerGroup.headers.map(header => {
                 return (
                   <Table.Head
@@ -49,7 +51,13 @@ export const DataTable = <T,>({
           {loading
             ? fallback
             : table.getRowModel().rows.map(row => (
-                <Table.Row key={row.id}>
+                <Table.Row
+                  style={{ cursor: onRowClick ? 'pointer' : 'auto' }}
+                  onClick={() => {
+                    onRowClick?.(row.original);
+                  }}
+                  key={row.id}
+                >
                   {row.getVisibleCells().map(cell => (
                     <Table.Cell key={cell.id}>
                       {flexRender(

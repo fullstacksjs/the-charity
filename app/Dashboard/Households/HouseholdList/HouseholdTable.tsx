@@ -1,6 +1,9 @@
 import { DataTable } from '@camp/design';
 import type { HouseholdKeys, HouseholdListItem } from '@camp/domain';
+import type { AppRoute } from '@camp/router';
+import { useNavigate } from '@camp/router';
 import type { Table as TableType } from '@tanstack/react-table';
+import { useCallback } from 'react';
 
 import * as ids from './HouseholdList.ids';
 
@@ -10,13 +13,23 @@ interface Props {
 }
 
 export const HouseholdTable = ({ loading, table }: Props) => {
+  const navigate = useNavigate();
+  const gotoDetail = useCallback(
+    (householdId: string) => {
+      navigate({ to: `/dashboard/households/${householdId}` as AppRoute });
+    },
+    [navigate],
+  );
+
   return (
     <DataTable<HouseholdKeys & HouseholdListItem>
       id={ids.householdTableId}
       table={table}
       loading={loading}
       // TODO add skeleton here
+      // eslint-disable-next-line react/jsx-no-useless-fragment
       fallback={<></>}
+      onRowClick={({ id }: HouseholdKeys & HouseholdListItem) => gotoDetail(id)}
     />
   );
 };
