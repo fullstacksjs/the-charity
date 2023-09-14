@@ -1,3 +1,4 @@
+import { messages } from '@camp/messages';
 import { Button, Group, Text } from '@mantine/core';
 import { forwardRef } from 'react';
 import { Upload } from 'react-feather';
@@ -6,13 +7,15 @@ interface Props extends Omit<React.HTMLProps<HTMLInputElement>, 'onClick'> {
   onClick?: React.MouseEventHandler<HTMLButtonElement>;
 }
 
+const t = messages.projectDetail.addDocument;
+
 export const FileSelect = forwardRef<HTMLInputElement, Props>(
   ({ onClick, ...props }, ref) => {
     return (
       <Group position="apart">
         <input {...props} ref={ref} />
         <Button disabled={props.disabled} onClick={onClick} variant="outline">
-          بارگذاری سند
+          {t.addDocBtn}
         </Button>
         <Group
           spacing="8px"
@@ -23,7 +26,7 @@ export const FileSelect = forwardRef<HTMLInputElement, Props>(
           })}
         >
           <Upload />
-          <Text size="sm">سند را اینجا قرار دهید</Text>
+          <Text size="sm">{t.note}</Text>
         </Group>
       </Group>
     );
