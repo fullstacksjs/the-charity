@@ -1,26 +1,29 @@
 import type { CardProps } from '@mantine/core';
 import { Box, Card, Group, Stack } from '@mantine/core';
 
-interface DashboardCardInternalProps {
+export interface DashboardCardProps
+  extends Omit<CardProps, 'children' | 'left' | 'right'> {
+  onHeaderClick?: React.MouseEventHandler;
   right?: React.ReactNode;
   left?: React.ReactNode;
   children?: React.ReactNode;
 }
 
-export interface DashboardCardProps
-  extends DashboardCardInternalProps,
-    Omit<CardProps, 'children' | 'left' | 'right'> {}
-
 export const DashboardCard = ({
   right,
   left,
   children,
+  onHeaderClick,
   ...cardProps
 }: DashboardCardProps) => {
   return (
     <Card withBorder p={30} {...cardProps}>
       <Stack spacing={30}>
-        <Group position="apart">
+        <Group
+          onClick={onHeaderClick}
+          position="apart"
+          sx={{ cursor: onHeaderClick ? 'pointer' : undefined }}
+        >
           <Box>{right}</Box>
           <Box>{left}</Box>
         </Group>

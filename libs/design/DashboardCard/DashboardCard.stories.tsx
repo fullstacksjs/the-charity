@@ -5,6 +5,7 @@ import { DashboardTitle } from '../DashboardTitle';
 import { DashboardCard } from './DashboardCard';
 
 export default {
+  title: 'DashboardCard',
   component: DashboardCard,
 } as Meta<typeof DashboardCard>;
 
