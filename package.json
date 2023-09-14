@@ -1,5 +1,5 @@
 {
-  "name": "the-charity-frontend",
+  "name": "the-charity",
   "private": true,
   "version": "0.0.0",
   "scripts": {
@@ -9,7 +9,7 @@
     "preview": "vite preview",
     "prepare": "./scripts/prepare",
     "lint:ci": "eslint . --ext .ts,.tsx",
-    "lint": "npm run lint:ci -- --fix",
+    "lint": "pnpm run lint:ci --fix",
     "spell": "./scripts/spell",
     "test:unit": "dotenv -e .env.dev -- vitest",
     "test:unit:ci": "dotenv -e .env.dev -- vitest run",
@@ -23,7 +23,7 @@
     "build-storybook:ci": "storybook build --quiet --disable-telemetry",
     "pr": "./scripts/pr",
     "codegen": "dotenv -e .env.dev -- graphql-codegen",
-    "codegen:watch": "npm run codegen -- --watch",
+    "codegen:watch": "pnpm run codegen --watch",
     "verify": "run-p compile lint:ci test:unit:ci spell"
   },
   "dependencies": {
@@ -73,6 +73,7 @@
     "@testing-library/jest-dom": "6.1.3",
     "@testing-library/react": "14.0.0",
     "@testing-library/user-event": "14.4.3",
+    "@types/node": "20.6.0",
     "@types/react": "18.2.21",
     "@types/react-dom": "18.2.7",
     "@vitejs/plugin-basic-ssl": "1.0.1",
@@ -107,7 +108,7 @@
     "vitest-dom": "0.1.0"
   },
   "volta": {
-    "node": "18.15.0",
-    "npm": "9.6.2"
+    "node": "18.17.1",
+    "pnpm": "8.7.5"
   }
 }

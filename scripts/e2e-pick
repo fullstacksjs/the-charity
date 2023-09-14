@@ -9,4 +9,4 @@ if [[ $1 == '' ]]; then
 fi
 
 FILES=$(find ./cypress/e2e/ -iname "*$1*.cy.*" | paste -sd "," -)
-npm run test:e2e -- --spec $FILES
+pnpm run test:e2e -- --spec $FILES

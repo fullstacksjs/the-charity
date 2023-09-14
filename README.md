@@ -40,9 +40,9 @@ The FullstacksJS team is monitoring for pull requests. We will review your pull 
 Before submitting a pull request, please make sure the following is done:
 
 - Fork/Clone the repository and create your feature branch from dev.
-- Run `npm install` to have all dependencies and husky hooks needed for development.
-- Run `npm run codegen` to have latest API types.
-- To start development run `npm start`.
+- Run `pnpm install` to have all dependencies and husky hooks needed for development.
+- Run `pnpm run codegen` to have latest API types.
+- To start development run `pnpm start`.
 - If you've fixed a bug or added code that should be tested, add tests, please.
 - Create a PR (You can use `./scripts/pr` to create one).
 
@@ -81,9 +81,9 @@ The project contains multiple modules which have their specific responsibilities
 To start the app first set the envs as described in the [envs section](#envs) then run:
 
 ```bash
-npm install
-npm run codegen
-npm run dev
+pnpm install
+pnpm run codegen
+pnpm run dev
 ```
 
 > If you're using [VSCode][vscode] you can install the [Apollo Graphql][apollo-graphql-extension] extension to get features like autocomplete in your graphql queries
@@ -95,7 +95,7 @@ This project uses [GraphQL Code Generator][codegen] to generate types and interf
 to generate the latest type from the API you need to have (a proper environment)[#Envs] in place and run:
 
 ```bash
-npm run codegen
+pnpm run codegen
 ```
 
 ### Verify
@@ -107,7 +107,7 @@ The verify command runs all tests to make sure that your changes are working.
 To build the app just run:
 
 ```bash
-npm run build
+pnpm run build
 ```
 
 ### Lint
@@ -115,7 +115,7 @@ npm run build
 To run the linter to auto-fix all the problems run:
 
 ```bash
-npm run lint
+pnpm run lint
 ```
 
 ### Test
@@ -123,31 +123,31 @@ npm run lint
 To run the unit tests run:
 
 ```bash
-npm run test:unit
+pnpm run test:unit
 ```
 
 To run e2e tests you need to have the dev server running at configured port and run:
 
 ```bash
-npm run test:e2e
+pnpm run test:e2e
 ```
 
 If you want only to run a specific e2e test based on a pattern you can run the `test:e2ep` command:
 
 ```bash
-npm run test:e2ep [PATTERN]
+pnpm run test:e2ep [PATTERN]
 ```
 
 if the pattern matches more than one file it will still run all of them, for example, the following command will run the `createHousehold.cy.ts` and `householdList.cy.ts` test
 
 ```bash
-npm run test:e2ep household
+pnpm run test:e2ep household
 ```
 
 To run component tests run:
 
 ```bash
-npm run test:component
+pnpm run test:component
 ```
 
 ### Storybook
@@ -157,7 +157,7 @@ npm run test:component
 To run the storybook dev server run:
 
 ```bash
-npm run storybook
+pnpm run storybook
 ```
 
 ### Spell Check
@@ -165,7 +165,7 @@ npm run storybook
 To find spelling errors just run
 
 ```bash
-npm run spell
+pnpm run spell
 ```
 
 And if you want to add a new word so that it won't count as a spelling error, just add it to the `.cspell/charity.txt` and separate it with a new line
