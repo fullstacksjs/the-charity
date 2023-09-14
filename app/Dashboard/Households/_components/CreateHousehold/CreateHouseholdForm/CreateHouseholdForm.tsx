@@ -87,7 +87,7 @@ export const CreateHouseholdForm = ({ dismiss }: Props) => {
           <Button
             type="submit"
             size="sm"
-            disabled={formState.isValid}
+            disabled={!formState.isValid}
             loading={mutationResult.loading}
             {...createTestAttr(ids.submitBtn)}
           >
