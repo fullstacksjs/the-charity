@@ -38,6 +38,6 @@ export const Error: Story = {
 export const Info: Story = {
   args: {
     status: 'info',
-    children: 'عادی',
+    children: 'اطلاعات',
   },
 };
