@@ -19,7 +19,7 @@ const styles: Styles<
   Record<string, any>
 > = theme => ({
   breadcrumb: {
-    'color': theme.colors.fgMuted[6],
+    'color': theme.colors.fgDefault[6],
     '&:hover': {
       color: theme.colors.indigo,
     },
