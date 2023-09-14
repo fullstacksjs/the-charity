@@ -6,7 +6,7 @@ interface Props {
 
 export const DashboardTitle = ({ children }: Props) => {
   return (
-    <Title order={4} color="fgMuted" weight="bold">
+    <Title order={4} color="fgDefault" weight="bold">
       {children}
     </Title>
   );

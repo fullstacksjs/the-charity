@@ -9,6 +9,7 @@ export * from './DateSummery';
 export * from './DestructiveButton';
 export * from './DetailCard';
 export * from './EmptyState';
+export * from './FileUpload';
 export * from './FullPageLoader';
 export * from './Modal';
 export * from './NavLink';
