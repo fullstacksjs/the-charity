@@ -16,7 +16,7 @@ const getStyles = (
 ): Styles<AlertStylesNames, AlertStylesParams> => {
   return theme => ({
     message: {
-      color: params.type === 'error' ? theme.colors.errorDefault[6] : undefined,
+      color: params.type === 'error' ? theme.colors.error[6] : undefined,
       fontSize: 13,
     },
   });
@@ -26,7 +26,7 @@ export const Alert = ({ type, message }: AlertProps) => {
   return (
     <MantineAlert
       icon={type === 'error' ? <ErrorAlertIcon /> : undefined}
-      color={type === 'error' ? 'red' : undefined}
+      color={type === 'error' ? 'error' : undefined}
       styles={getStyles({ type })}
     >
       {message}

@@ -12,6 +12,6 @@ export const ProjectStatusBadge = ({ status }: Props) => {
   return status === ProjectStatusEnum.Done ? (
     <Badge status="success">{t.completed}</Badge>
   ) : (
-    <Badge status="disabled">{t.disabled}</Badge>
+    <Badge status="neutral">{t.disabled}</Badge>
   );
 };

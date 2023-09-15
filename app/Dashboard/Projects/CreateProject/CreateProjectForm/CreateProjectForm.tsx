@@ -5,7 +5,7 @@ import { createResolver, projectSchema } from '@camp/domain';
 import { messages } from '@camp/messages';
 import type { AppRoute } from '@camp/router';
 import { useNavigate } from '@camp/router';
-import { createTestAttr } from '@camp/test';
+import { tid } from '@camp/test';
 import { isNull } from '@fullstacksjs/toolbox';
 import { Button, Group, Stack, Textarea, TextInput } from '@mantine/core';
 import { useForm } from 'react-hook-form';
@@ -51,7 +51,7 @@ export const CreateProjectForm = ({ dismiss }: Props) => {
         title: messages.projects.create,
         message: messages.projects.notification.successfulCreate(name),
         type: 'success',
-        ...createTestAttr(ids.notification.success),
+        ...tid(ids.notification.success),
       });
       dismiss();
       navigate({ to: `/dashboard/projects/${project.id}` as AppRoute });
@@ -62,7 +62,7 @@ export const CreateProjectForm = ({ dismiss }: Props) => {
         title: messages.projects.create,
         message: messages.projects.notification.failedCreate(name),
         type: 'failure',
-        ...createTestAttr(ids.notification.failure),
+        ...tid(ids.notification.failure),
       });
     }
   });
@@ -79,7 +79,7 @@ export const CreateProjectForm = ({ dismiss }: Props) => {
             size="sm"
             error={errors.name?.message}
             {...register('name')}
-            wrapperProps={createTestAttr(ids.nameInput)}
+            wrapperProps={tid(ids.nameInput)}
           />
           <Textarea
             placeholder={
@@ -88,21 +88,27 @@ export const CreateProjectForm = ({ dismiss }: Props) => {
             label={messages.projects.createForm.descriptionInput.label}
             error={errors.description?.message}
             {...register('description')}
-            wrapperProps={createTestAttr(ids.descriptionInput)}
+            wrapperProps={tid(ids.descriptionInput)}
           />
         </Stack>
-        <Group spacing={20}>
+        <Group spacing={10} position="right">
           <Button
-            type="submit"
+            variant="default"
+            color="secondary"
             size="sm"
+            disabled={loading}
+            onClick={dismiss}
+          >
+            {messages.actions.dismiss}
+          </Button>
+          <Button
+            size="sm"
+            type="submit"
             loading={loading}
             disabled={!isValid}
-            {...createTestAttr(ids.submitBtn)}
+            {...tid(ids.submitBtn)}
           >
             {messages.projects.createForm.submitBtn.text}
-          </Button>
-          <Button size="sm" color="gray" disabled={loading} onClick={dismiss}>
-            {messages.actions.dismiss}
           </Button>
         </Group>
       </Stack>

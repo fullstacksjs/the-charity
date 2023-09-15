@@ -103,9 +103,7 @@ export const FileUpload = ({
             borderWidth: 1,
             borderStyle: 'dashed',
             borderColor:
-              variant === 'error'
-                ? theme.colors.errorDefault[6]
-                : theme.colors.bgDisabled[6],
+              variant === 'error' ? theme.colors.error[6] : theme.colors.bg[4],
             borderRadius: '8px',
           })}
         >
@@ -116,7 +114,7 @@ export const FileUpload = ({
           <Text
             size="sm"
             display={variant === 'error' ? 'none' : 'block'}
-            color="fgMuted"
+            color="fg.5"
           >
             {helper}
           </Text>

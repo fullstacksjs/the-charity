@@ -34,7 +34,7 @@ export const CollapsibleDashboardCard = ({
           <Box
             component={ChevronDownIcon}
             sx={theme => ({
-              color: theme.colors.fgDefault[6],
+              color: theme.colors.fg[6],
               rotate: open ? '-180deg' : undefined,
               transition: '300ms rotate',
               width: 16,

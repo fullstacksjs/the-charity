@@ -8,7 +8,7 @@ interface Props {
 export const DetailCardField = ({ title, children, ...props }: Props) => {
   return (
     <Box sx={{ textAlign: 'left' }} {...props}>
-      <Title order={6} color="fgSubtle" weight={500}>
+      <Title order={6} color="fg.4" weight={500}>
         {title}:
       </Title>
       <Space h={11} />

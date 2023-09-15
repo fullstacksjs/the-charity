@@ -11,6 +11,6 @@ type Story = StoryObj<typeof VisualizedIcon>;
 
 export const Default: Story = {
   args: {
-    icon: <PeopleIcon width="33" height="33" />,
+    Icon: PeopleIcon,
   },
 };

@@ -8,12 +8,12 @@ const useStyles = createStyles(theme => ({
   root: {
     width: 275,
     borderRight: '1px solid',
-    borderColor: theme.colors.gray[2],
+    borderColor: theme.colors.bg[4],
     paddingInline: 20,
     paddingBlock: 30,
   },
   logoArea: {
-    backgroundColor: theme.colors.gray[0],
+    backgroundColor: theme.colors.secondary[4],
     paddingBlock: 20,
     borderRadius: 8,
   },
@@ -37,7 +37,7 @@ export const Sidebar = ({ links, bottom }: SidebarProps) => {
           className={classes.logoArea}
         >
           <Image src="/logo.png" width={48} height={48} alt="charity logo" />
-          <Text size="sm" color="fgSubtle">
+          <Text size="sm" color="fg.5">
             {messages.companyName}
           </Text>
         </Stack>

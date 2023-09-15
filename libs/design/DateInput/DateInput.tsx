@@ -12,14 +12,10 @@ export const DateInput = forwardRef<HTMLInputElement, DateInputProps>(
 
     return (
       <MantineJalaliDateInput
-        allowDeselect
-        popoverProps={{
-          position: 'left',
-        }}
         ref={ref}
         sx={theme => ({
           direction: 'ltr',
-          color: theme.colors.secondaryDefault[6],
+          color: theme.colors.secondary[6],
         })}
         locale="fa"
         readOnly={readOnly}

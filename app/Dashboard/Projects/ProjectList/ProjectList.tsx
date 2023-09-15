@@ -11,7 +11,7 @@ import {
 import { projectColumnHelper } from '@camp/domain';
 import { errorMessages, messages } from '@camp/messages';
 import { AppRoute } from '@camp/router';
-import { createTestAttr } from '@camp/test';
+import { tid } from '@camp/test';
 import { isEmpty, isNull } from '@fullstacksjs/toolbox';
 import { Group } from '@mantine/core';
 import {
@@ -85,7 +85,7 @@ export const ProjectList = () => {
       type: 'failure',
       title: t.title,
       message: errorMessages.UNKNOWN_ERROR,
-      ...createTestAttr(ids.ProjectListFailureNotification),
+      ...tid(ids.ProjectListFailureNotification),
     });
     return null;
   }

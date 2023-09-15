@@ -4,7 +4,7 @@ import { createResolver, householdSchema } from '@camp/domain';
 import { messages } from '@camp/messages';
 import type { AppRoute } from '@camp/router';
 import { useNavigate } from '@camp/router';
-import { createTestAttr } from '@camp/test';
+import { tid } from '@camp/test';
 import { isNull } from '@fullstacksjs/toolbox';
 import { Button, Group, Stack, TextInput } from '@mantine/core';
 import { useForm } from 'react-hook-form';
@@ -45,7 +45,7 @@ export const CreateHouseholdForm = ({ dismiss }: Props) => {
           title: messages.households.create,
           message: notification.success(household.name),
           type: 'success',
-          ...createTestAttr(ids.notification.success),
+          ...tid(ids.notification.success),
         });
 
         dismiss();
@@ -56,13 +56,13 @@ export const CreateHouseholdForm = ({ dismiss }: Props) => {
           title: messages.households.create,
           message: notification.failure(),
           type: 'failure',
-          ...createTestAttr(ids.notification.failure),
+          ...tid(ids.notification.failure),
         }),
       );
   });
 
   return (
-    <form onSubmit={onSubmit} {...createTestAttr(ids.form)}>
+    <form onSubmit={onSubmit} {...tid(ids.form)}>
       <Stack spacing={40}>
         <TextInput
           data-autoFocus
@@ -72,19 +72,24 @@ export const CreateHouseholdForm = ({ dismiss }: Props) => {
           description={nameInput.description}
           size="sm"
           error={formState.errors.name?.message}
-          wrapperProps={createTestAttr(ids.nameInput)}
+          wrapperProps={tid(ids.nameInput)}
           {...register('name')}
         />
-        <Group spacing={20} position="right">
-          <Button size="sm" color="gray" onClick={dismiss}>
+        <Group spacing={10} position="right">
+          <Button
+            size="sm"
+            variant="default"
+            color="secondary"
+            onClick={dismiss}
+          >
             {messages.actions.dismiss}
           </Button>
           <Button
             type="submit"
             size="sm"
-            disabled={Boolean(formState.errors.name)}
+            disabled={!formState.isValid}
             loading={mutationResult.loading}
-            {...createTestAttr(ids.submitBtn)}
+            {...tid(ids.submitBtn)}
           >
             {submitBtn.text}
           </Button>

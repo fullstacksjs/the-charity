@@ -13,6 +13,7 @@ export enum DebugScopes {
   Householder = 'Householder',
   Auth = 'Auth',
   Breadcrumbs = 'Breadcrumbs',
+  Member = 'Member',
   All = 'All',
 }
 

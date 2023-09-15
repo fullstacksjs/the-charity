@@ -24,6 +24,6 @@ export const Default: Story = {
   args: {
     title: messages.projects.title,
     message: messages.projects.empty.description,
-    icon: <PackageIcon width="33" height="33" />,
+    Icon: PackageIcon,
   },
 };

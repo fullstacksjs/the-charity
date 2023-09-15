@@ -19,4 +19,5 @@ export const openDeleteHouseholdModal = ({ name, onDeleteHousehold }: Props) =>
     confirmLabel: t.confirm,
     size: 'sm',
     onConfirm: () => void onDeleteHousehold(),
+    destructive: true,
   });

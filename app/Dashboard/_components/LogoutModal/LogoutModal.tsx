@@ -8,6 +8,7 @@ const texts = messages.logout.modal;
 
 export const openLogoutModal = (logout: (returnTo: string) => void) =>
   showModal({
+    destructive: true,
     id: ids.modal,
     children: <LogoutConfirm />,
     title: texts.title,
@@ -15,10 +16,7 @@ export const openLogoutModal = (logout: (returnTo: string) => void) =>
     confirmLabel: texts.accept,
     size: 'md',
     groupProps: {
-      spacing: 20,
-      sx: {
-        flexDirection: 'row-reverse',
-      },
+      spacing: 10,
     },
     confirmId: ids.acceptBtn,
     onConfirm: () => logout(window.location.origin),

@@ -5,7 +5,7 @@ import { MenuIcon } from '@camp/icons';
 import { messages } from '@camp/messages';
 import type { AppRoute, PathParams } from '@camp/router';
 import { Link } from '@camp/router';
-import { createTestAttr } from '@camp/test';
+import { tid } from '@camp/test';
 import { isNull } from '@fullstacksjs/toolbox';
 import { ActionIcon, Menu } from '@mantine/core';
 
@@ -43,7 +43,7 @@ export const HouseholdActionButton = ({
         title: t.title,
         message: t.success(data.household!.name),
         type: 'success',
-        ...createTestAttr(ids.notifications.delete.success),
+        ...tid(ids.notifications.delete.success),
       });
     } catch (err) {
       debug.error(err);
@@ -51,7 +51,7 @@ export const HouseholdActionButton = ({
         title: t.title,
         message: t.failed(name),
         type: 'failure',
-        ...createTestAttr(ids.notifications.delete.failure),
+        ...tid(ids.notifications.delete.failure),
       });
     }
   };
@@ -62,17 +62,17 @@ export const HouseholdActionButton = ({
 
   return (
     <Menu width={100} shadow="md" withArrow>
-      <Menu.Target {...createTestAttr(menuButtonId)}>
+      <Menu.Target {...tid(menuButtonId)}>
         <ActionIcon size="sm" onClick={e => e.stopPropagation()}>
           <MenuIcon />
         </ActionIcon>
       </Menu.Target>
-      <Menu.Dropdown {...createTestAttr(menuId)}>
+      <Menu.Dropdown {...tid(menuId)}>
         <Menu.Item to={to} params={params} component={Link}>
           {messages.actions.open}
         </Menu.Item>
         <Menu.Item
-          color="red"
+          color="error"
           onClick={e => {
             e.stopPropagation();
             handleDeleteHousehold();

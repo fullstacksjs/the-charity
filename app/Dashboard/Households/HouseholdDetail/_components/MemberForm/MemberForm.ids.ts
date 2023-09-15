@@ -15,7 +15,17 @@ export const memberFormIds = {
   editBtn: 'edit-button',
   deleteBtn: 'delete-button',
   notification: {
-    success: 'member-successful',
-    failure: 'member-failed',
+    delete: {
+      success: 'delete-member-successful',
+      failure: 'delete-member-failed',
+    },
+    edit: {
+      success: 'edit-member-successful',
+      failure: 'edit-member-failed',
+    },
+    create: {
+      success: 'create-member-successful',
+      failure: 'create-member-failed',
+    },
   },
 } as const;

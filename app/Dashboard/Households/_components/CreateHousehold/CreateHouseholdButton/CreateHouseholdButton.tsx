@@ -1,6 +1,6 @@
 import { PlusIcon } from '@camp/icons';
 import { messages } from '@camp/messages';
-import { createTestAttr } from '@camp/test';
+import { tid } from '@camp/test';
 import { Button } from '@mantine/core';
 
 import { openCreateHouseholdModal } from '../CreateHouseholdModal';
@@ -17,7 +17,7 @@ export const CreateHouseholdButton = ({ variant = 'outline' }: Props) => {
       size="sm"
       leftIcon={<PlusIcon width="16" height="16" />}
       onClick={() => openCreateHouseholdModal()}
-      {...createTestAttr(id)}
+      {...tid(id)}
     >
       {messages.households.create}
     </Button>

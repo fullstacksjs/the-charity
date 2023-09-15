@@ -1,5 +1,5 @@
 import { messages } from '@camp/messages';
-import { createTestAttr } from '@camp/test';
+import { tid } from '@camp/test';
 import { closeModal, openModal } from '@mantine/modals';
 
 import { CreateHouseholdForm } from '../CreateHouseholdForm';
@@ -16,5 +16,5 @@ export const openCreateHouseholdModal = () =>
     title: messages.households.create,
     size: 'md',
     centered: true,
-    ...createTestAttr(id),
+    ...tid(id),
   });

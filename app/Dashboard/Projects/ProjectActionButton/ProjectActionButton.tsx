@@ -2,7 +2,7 @@ import { MenuIcon } from '@camp/icons';
 import { messages } from '@camp/messages';
 import type { AppRoute, PathParams } from '@camp/router';
 import { Link } from '@camp/router';
-import { createTestAttr } from '@camp/test';
+import { tid } from '@camp/test';
 import { ActionIcon, Menu } from '@mantine/core';
 
 interface Props {
@@ -20,16 +20,16 @@ export const ProjectActionButton = ({
 }: Props) => {
   return (
     <Menu width={100} shadow="md" withArrow>
-      <Menu.Target {...createTestAttr(menuButtonId)}>
+      <Menu.Target {...tid(menuButtonId)}>
         <ActionIcon size="sm" onClick={e => e.stopPropagation()}>
           <MenuIcon />
         </ActionIcon>
       </Menu.Target>
-      <Menu.Dropdown {...createTestAttr(menuId)}>
+      <Menu.Dropdown {...tid(menuId)}>
         <Menu.Item to={to} params={params} component={Link}>
           {messages.actions.open}
         </Menu.Item>
-        <Menu.Item color="red">{messages.actions.delete}</Menu.Item>
+        <Menu.Item color="error">{messages.actions.delete}</Menu.Item>
       </Menu.Dropdown>
     </Menu>
   );
