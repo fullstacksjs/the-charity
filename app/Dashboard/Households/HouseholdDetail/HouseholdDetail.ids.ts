@@ -9,7 +9,9 @@ export const householdDetailIds = {
   submitBtn: 'household-submit-btn',
   editBtn: 'household-edit-btn',
   notification: {
-    success: 'household-successful-update',
-    failure: 'household-failed-update',
+    edit: {
+      success: 'edit-household-successful',
+      failure: 'edit-household-failed',
+    },
   },
 };

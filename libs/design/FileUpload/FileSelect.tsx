@@ -20,9 +20,7 @@ export const FileSelect = forwardRef<HTMLInputElement, Props>(
         <Group
           spacing="8px"
           sx={theme => ({
-            color: props.disabled
-              ? theme.colors.fgSubtle[6]
-              : theme.colors.fgMuted[6],
+            color: props.disabled ? theme.colors.fg[4] : theme.colors.fg[5],
           })}
         >
           <Upload />

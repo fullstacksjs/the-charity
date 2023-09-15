@@ -9,7 +9,7 @@ import { religions } from './Religions';
 
 export const digitsRegex = /^[0-9]*[\u0660-\u0669\u06F0-\u06F90-9]*$/;
 export const nameRegex =
-  /^[ \u0621-\u063A\u0641-\u064A\u067E\u0686\u0698\u06AF\u06A9\u06CC]+$/;
+  /^[ \u0621-\u063A\u0641-\u064A\u067E\u0686\u0698\u06AF\u06A9\u06CC\u200B\u200C]+$/;
 
 export const Schema = {
   dob: () => z.date().max(new Date(), { message: messages.validation.dob.max }),

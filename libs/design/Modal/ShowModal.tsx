@@ -1,4 +1,4 @@
-import { createTestAttr } from '@camp/test';
+import { tid } from '@camp/test';
 import { openConfirmModal } from '@mantine/modals';
 import type { ConfirmModalProps } from '@mantine/modals/lib/ConfirmModal';
 import type { ReactNode } from 'react';
@@ -13,6 +13,7 @@ interface Props extends ConfirmModalProps {
   confirmLabel: string;
   size: ModalSize;
   confirmId?: string;
+  destructive?: boolean;
 }
 
 export const showModal = ({
@@ -23,6 +24,7 @@ export const showModal = ({
   cancelLable,
   confirmLabel,
   confirmId,
+  destructive,
   ...rest
 }: Props) =>
   openConfirmModal({
@@ -31,16 +33,16 @@ export const showModal = ({
     title,
     size,
     centered: true,
+    groupProps: { spacing: 10 },
     confirmProps: {
       variant: 'filled',
-      color: 'red',
-      ...createTestAttr(confirmId),
+      color: destructive ? 'error' : 'primary',
+      ...tid(confirmId),
     },
     cancelProps: {
-      variant: 'filled',
-      color: 'gray',
+      color: 'secondary',
     },
-    ...createTestAttr(id),
+    ...tid(id),
     labels: { cancel: cancelLable, confirm: confirmLabel },
     ...rest,
   });

@@ -21,6 +21,12 @@ export const messages = {
         failed: (name: string) =>
           `مشکلی در تکمیل خانوار "${name}" به وجود آمده است. لطفا دوباره تلاش کنید.`,
       },
+      edit: {
+        title: 'خانوار',
+        success: (name: string) => `خانوار "${name}" با موفقیت بروز رسانی شد.`,
+        failed: (name: string) =>
+          `مشکلی در به روزرسانی اطلاعات خانوار "${name}" .به وجود آمده است. لطفا دوباره تلاش کنید`,
+      },
     },
     member: {
       delete: {
@@ -28,6 +34,18 @@ export const messages = {
         success: (name: string) => `عضو “${name}” با موفقیت حذف شد.`,
         failed: (name: string) =>
           `مشکلی در مرحله حذف عضو "${name}" به وجود آمده است. لطفا دوباره تلاش کنید.`,
+      },
+      edit: {
+        title: 'آپدیت عضو',
+        success: (name: string) => `عضوی با نام "${name}" .با موفقیت آپدیت شد`,
+        failed: (name: string) =>
+          `مشکلی در تغییر عضوی با نام "${name}" .بوجود آمده است. لطفا دوباره تلاش کنید`,
+      },
+      create: {
+        title: 'عضو جدید',
+        success: (name: string) => `عضوی با نام "${name}" .با موفقیت ایجاد شد`,
+        failed: (name: string) =>
+          `مشکلی در ایجاد عضوی با نام "${name}" .بوجود آمده است. لطفا دوباره تلاش کنید`,
       },
     },
   },
@@ -195,13 +213,6 @@ export const messages = {
     },
     form: {
       title: 'اطلاعات هویت',
-
-      notification: {
-        successfulUpdate: (name: string) =>
-          `خانوار "${name}" با موفقیت بروز رسانی شد.`,
-        failedUpdate: (name: string) =>
-          `مشکلی در به روزرسانی اطلاعات خانوار "${name}" .به وجود آمده است. لطفا دوباره تلاش کنید`,
-      },
       selectInputs: {
         placeholder: 'انتخاب کنید',
       },
@@ -250,11 +261,6 @@ export const messages = {
   member: {
     title: 'اعضا',
     addNewMember: 'افزودن عضو',
-    notification: {
-      successful: (name: string) => `عضوی با نام "${name}" .با موفقیت ایجاد شد`,
-      failed: (name: string) =>
-        `مشکلی در مرحله ایجاد عضوی با نام "${name}" .بوجود آمده است. لطفا دوباره تلاش کنید`,
-    },
     empty: {
       title: 'عضوی وجود ندارد!',
       description: 'عضوی برای این خانواده ثبت نشده است',
@@ -310,21 +316,9 @@ export const messages = {
     },
   },
   login: {
-    loginFrom: {
-      title: 'به حساب کاربری خود وارد شوید',
-      description: 'خوش آمدید، لطفا اطلاعات خود را وارد کنید.',
-      emailInput: {
-        label: 'ایمیل',
-        placeholder: 'you@example.com',
-      },
-      passwordInput: {
-        label: 'رمز عبور',
-        placeholder: 'رمز عبور',
-      },
-      submitButton: {
-        text: 'ورود',
-      },
-    },
+    title: 'خوش آمدید',
+    desc: 'به حساب کاربری خود وارد شوید',
+    button: 'ورود',
   },
   householdDetail: {
     title: 'اطلاعات کلی خانوار',
@@ -396,7 +390,7 @@ export const messages = {
     modal: {
       title: 'خروج از حساب کاربری',
       confirmMessage: 'آیا می خواهید از حساب کاربری خود خارج شوید؟',
-      accept: 'بله، خارج می شوم',
+      accept: 'خارج می شوم',
       cancel: 'انصراف',
     },
   },

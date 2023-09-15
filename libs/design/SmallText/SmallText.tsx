@@ -6,7 +6,7 @@ interface Props {
 
 export const SmallText = ({ children }: Props) => {
   return (
-    <Text size={14} color="fgDefault" weight={400}>
+    <Text size={14} color="fg" weight={400}>
       {children}
     </Text>
   );

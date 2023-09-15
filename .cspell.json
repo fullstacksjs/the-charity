@@ -17,6 +17,7 @@
   "dictionaries": ["charity-en", "charity-fa"],
   "ignorePaths": [
     "node_modules/",
+    "pnpm-lock.yaml",
     "dist/",
     "*.svg",
     "*.tsbuildinfo",

@@ -13,10 +13,7 @@ describe('HouseHolder Form', () => {
 
   it('contains a first name input with correct label', () => {
     cy.findByTestId(householderFormIds.form).within(() => {
-      cy.findByRole('textbox', {
-        name: /نام:/i,
-        exact: false,
-      });
+      cy.findByRole('textbox', { name: /نام:/i });
     });
   });
 

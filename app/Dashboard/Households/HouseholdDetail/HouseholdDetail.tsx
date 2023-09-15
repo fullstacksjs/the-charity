@@ -25,9 +25,9 @@ import {
 import { ArrowUpIcon, CheckIcon, EditIcon, TrashIcon } from '@camp/icons';
 import { errorMessages, messages } from '@camp/messages';
 import { AppRoute, useNavigate, useParams } from '@camp/router';
-import { createTestAttr } from '@camp/test';
+import { tid } from '@camp/test';
 import { isNull } from '@fullstacksjs/toolbox';
-import { Button, createStyles, Flex, Title } from '@mantine/core';
+import { Button, Flex, Title } from '@mantine/core';
 import { useBoolean } from 'ahooks';
 import { useForm } from 'react-hook-form';
 
@@ -37,6 +37,7 @@ import { openDeleteHouseholdModal } from '../_components/DeleteHouseholdModal';
 import { HouseholderDetail } from './_components/HouseholderDetail';
 import { MemberList } from './_components/MemberList';
 import { householdDetailIds as ids } from './HouseholdDetail.ids';
+import { householdNotifications } from './householdNotifications';
 
 interface FormSchema {
   name: string;
@@ -49,14 +50,6 @@ const resolver = createResolver<FormSchema>({
   severity: householdSchema.severity(),
   membersCount: householderSchema.membersCount(),
 });
-
-const useStyles = createStyles(theme => ({
-  input: {
-    label: {
-      color: theme.colors.fgSubtle[6],
-    },
-  },
-}));
 
 // eslint-disable-next-line max-lines-per-function
 export const HouseholdDetail = () => {
@@ -90,7 +83,8 @@ export const HouseholdDetail = () => {
 
   const isReadOnly = !isEditing;
 
-  const [deleteHousehold] = useDeleteHouseholdMutation();
+  const [deleteHousehold, { loading: isDeleting }] =
+    useDeleteHouseholdMutation();
   const [completeHousehold] = useCompleteHouseholdMutation();
   const [updateHousehold] = useEditHouseholdMutation();
 
@@ -99,40 +93,23 @@ export const HouseholdDetail = () => {
     variables: { id },
   });
 
-  const onUpdateHousehold = handleSubmit(async formData => {
+  const onUpdateHousehold = handleSubmit(async values => {
     try {
       await updateHousehold({
         variables: {
           id,
-          update: { name: formData.name, severity: formData.severity },
+          update: { name: values.name, severity: values.severity },
         },
       });
       setIsEditing(false);
-
-      showNotification({
-        title: t.title,
-        message: messages.householder.form.notification.successfulUpdate(
-          household!.name,
-        ),
-        type: 'success',
-        ...createTestAttr(ids.notification.success),
-      });
+      householdNotifications.edit.success(values.name);
     } catch (err) {
       debug.error(err);
-
-      showNotification({
-        title: t.title,
-        message: messages.householder.form.notification.failedUpdate(
-          household!.name,
-        ),
-        type: 'failure',
-        ...createTestAttr(ids.notification.failure),
-      });
+      householdNotifications.edit.failure(values.name);
     }
   });
 
   const householder = householderData?.householder;
-  const { classes } = useStyles();
 
   if (loading) return <FullPageLoader />;
 
@@ -198,7 +175,7 @@ export const HouseholdDetail = () => {
 
   return (
     <>
-      <form onSubmit={onUpdateHousehold} {...createTestAttr(ids.form)}>
+      <form onSubmit={onUpdateHousehold} {...tid(ids.form)}>
         <DetailCard
           title={t.title}
           id={household.code}
@@ -210,7 +187,7 @@ export const HouseholdDetail = () => {
                     {messages.actions.undoBtn}
                   </DestructiveButton>
                   <Button
-                    {...createTestAttr(ids.submitBtn)}
+                    {...tid(ids.submitBtn)}
                     type="submit"
                     size="sm"
                     leftIcon={<CheckIcon size={16} />}
@@ -222,6 +199,7 @@ export const HouseholdDetail = () => {
               ) : (
                 <>
                   <DestructiveButton
+                    loading={isDeleting}
                     leftIcon={<TrashIcon />}
                     onClick={handleDeleteHousehold}
                   >
@@ -238,7 +216,7 @@ export const HouseholdDetail = () => {
                   )}
                   <Button
                     key={1}
-                    {...createTestAttr(ids.editBtn)}
+                    {...tid(ids.editBtn)}
                     type="button"
                     size="sm"
                     variant="outline"
@@ -255,8 +233,7 @@ export const HouseholdDetail = () => {
           <DetailCard.Section>
             <TextInput
               readOnly={isReadOnly}
-              className={classes.input}
-              wrapperProps={createTestAttr(ids.nameField)}
+              wrapperProps={tid(ids.nameField)}
               {...register('name')}
               label={`${t.householdFields.name.title}:`}
               error={errors.name?.message}
@@ -266,7 +243,7 @@ export const HouseholdDetail = () => {
               readOnly={isReadOnly}
               presentation={v => (
                 <DetailCard.Field
-                  {...createTestAttr(ids.severityField)}
+                  {...tid(ids.severityField)}
                   title={t.householdFields.severityStatus.title}
                 >
                   <SeverityBadge severity={v as HouseholdSeverityEnum} />
@@ -274,7 +251,7 @@ export const HouseholdDetail = () => {
               )}
               name="severity"
               control={control}
-              wrapperProps={createTestAttr(ids.severityField)}
+              wrapperProps={tid(ids.severityField)}
               data={severities.map(v => ({
                 value: v,
                 label: messages.households.severityStatus[v],
@@ -283,14 +260,14 @@ export const HouseholdDetail = () => {
             />
 
             <DetailCard.Field
-              {...createTestAttr(ids.memberCountField)}
+              {...tid(ids.memberCountField)}
               title={t.householdFields.membersCount.title}
             >
               {t.householdFields.membersCount.present(household.membersCount)}
             </DetailCard.Field>
 
             <DetailCard.Field
-              {...createTestAttr(ids.statusField)}
+              {...tid(ids.statusField)}
               title={t.householdFields.informationStatus.title}
             >
               <InformationBadge

@@ -1,6 +1,6 @@
 import { PlusIcon } from '@camp/icons';
 import { messages } from '@camp/messages';
-import { createTestAttr } from '@camp/test';
+import { tid } from '@camp/test';
 import { Button } from '@mantine/core';
 
 import { createMemberButtonId as ids } from './CreateMemberButton.ids';
@@ -17,7 +17,7 @@ export const CreateMemberButton = ({ variant = 'outline', onClick }: Props) => {
       variant={variant}
       size="sm"
       onClick={onClick}
-      {...createTestAttr(ids)}
+      {...tid(ids)}
       leftIcon={<PlusIcon size={16} />}
     >
       {t.addNewMember}

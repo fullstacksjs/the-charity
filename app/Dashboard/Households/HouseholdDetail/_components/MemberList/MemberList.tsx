@@ -2,7 +2,7 @@ import { useMemberListQuery } from '@camp/data-layer';
 import { debug } from '@camp/debug';
 import { DashboardTitle, FullPageLoader, showNotification } from '@camp/design';
 import { errorMessages, messages } from '@camp/messages';
-import { Center, Group, Stack, Title } from '@mantine/core';
+import { Center, Group, Stack } from '@mantine/core';
 import { useState } from 'react';
 
 import { CreateMemberButton, MemberForm } from '../MemberForm';

@@ -13,7 +13,7 @@ const formatToPersian = (d: Date) =>
 export const DetailCardDateField = ({ date, title }: Props) => {
   return (
     <DetailCardField title={title}>
-      {date ? formatToPersian(date) : <Text color="fgSubtle">تعیین نشده</Text>}
+      {date ? formatToPersian(date) : <Text color="fg.4">تعیین نشده</Text>}
     </DetailCardField>
   );
 };

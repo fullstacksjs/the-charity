@@ -1,7 +1,7 @@
 import type { MantineColor } from '@mantine/core';
 import { Badge as MantineBadge } from '@mantine/core';
 
-export type BadgeStatus = 'disabled' | 'error' | 'success' | 'warning';
+export type BadgeStatus = 'error' | 'info' | 'neutral' | 'success' | 'warning';
 
 export interface BadgeProps {
   children: string;
@@ -12,13 +12,14 @@ const statusMap: Record<
   BadgeStatus,
   { color: MantineColor; bg?: MantineColor }
 > = {
-  error: { color: 'red' },
-  warning: { color: 'orange' },
-  success: { color: 'teal' },
-  disabled: { color: 'gray', bg: 'gray.1' },
+  error: { color: 'error', bg: 'error.4' },
+  warning: { color: 'warning', bg: 'warning.4' },
+  success: { color: 'success', bg: 'success.4' },
+  neutral: { color: 'secondary', bg: 'bg.4' },
+  info: { color: 'info', bg: 'info.4' },
 };
 
-export const Badge = ({ children, status }: BadgeProps) => {
+export const Badge = ({ children, status = 'neutral' }: BadgeProps) => {
   return (
     <MantineBadge
       size="lg"

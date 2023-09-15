@@ -1,5 +1,5 @@
 import { messages } from '@camp/messages';
-import { createTestAttr } from '@camp/test';
+import { tid } from '@camp/test';
 import { closeModal, openModal } from '@mantine/modals';
 
 import { CreateProjectForm } from '../CreateProjectForm';
@@ -16,5 +16,5 @@ export const openCreateProjectModal = () =>
     title: messages.projects.create,
     size: 'md',
     centered: true,
-    ...createTestAttr(createProjectModalId),
+    ...tid(createProjectModalId),
   });
