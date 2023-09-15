@@ -1,6 +1,6 @@
 import { debug, DebugScopes } from '@camp/debug';
 import { useMatches } from '@camp/router';
-import { createTestAttr } from '@camp/test';
+import { tid } from '@camp/test';
 import { Group } from '@mantine/core';
 
 import type { BreadcrumbItem } from '../Breadcrumbs';
@@ -32,7 +32,7 @@ export const DashboardHeader = ({ button }: HeaderProps) => {
   const items = useBreadcrumbsItems();
 
   return (
-    <Group position="apart" {...createTestAttr(ids)}>
+    <Group position="apart" {...tid(ids)}>
       <Breadcrumbs items={items} />
       {button}
     </Group>

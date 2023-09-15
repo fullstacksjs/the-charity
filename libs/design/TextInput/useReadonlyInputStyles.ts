@@ -2,6 +2,9 @@ import { createStyles } from '@mantine/core';
 
 export const useReadonlyInputStyles = createStyles(theme => ({
   readonlyInput: {
+    label: {
+      color: theme.colors.fg[4],
+    },
     input: {
       ':read-only': {
         'border': 'none',

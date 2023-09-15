@@ -1,6 +1,6 @@
 import type { AppRoute } from '@camp/router';
 import { Link, useLocation } from '@camp/router';
-import { createTestAttr } from '@camp/test';
+import { tid } from '@camp/test';
 import type { MantineTheme } from '@mantine/core';
 import { NavLink as MantineNavLink } from '@mantine/core';
 
@@ -53,7 +53,7 @@ export const NavLink = ({
       rightSection={icon}
       active={to ? pathname.startsWith(to) : false}
       onClick={onClick}
-      {...createTestAttr(id)}
+      {...tid(id)}
     />
   );
 };

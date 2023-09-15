@@ -24,9 +24,9 @@ import {
 } from '@camp/domain';
 import { CheckIcon, EditIcon } from '@camp/icons';
 import { messages } from '@camp/messages';
-import { createTestAttr } from '@camp/test';
+import { tid } from '@camp/test';
 import { isNull } from '@fullstacksjs/toolbox';
-import { Button, createStyles, Group, SimpleGrid, Stack } from '@mantine/core';
+import { Button, Group, SimpleGrid, Stack } from '@mantine/core';
 import { useBoolean } from 'ahooks';
 import { useForm } from 'react-hook-form';
 
@@ -62,14 +62,6 @@ const resolver = createResolver<FormSchema>({
   dob: householderSchema.dob(),
 });
 
-const useStyles = createStyles(theme => ({
-  input: {
-    label: {
-      color: theme.colors.fg[4],
-    },
-  },
-}));
-
 // eslint-disable-next-line max-lines-per-function
 export const HouseholderForm = ({
   initialHouseholder,
@@ -77,7 +69,6 @@ export const HouseholderForm = ({
   householdName,
 }: Props) => {
   const t = messages.householder.form;
-  const { classes } = useStyles();
 
   const {
     handleSubmit,
@@ -113,38 +104,36 @@ export const HouseholderForm = ({
         title: t.title,
         message: t.notification.successfulUpdate(householdName),
         type: 'success',
-        ...createTestAttr(ids.notification.success),
+        ...tid(ids.notification.success),
       });
     } catch {
       showNotification({
         title: t.title,
         message: t.notification.failedUpdate(householdName),
         type: 'failure',
-        ...createTestAttr(ids.notification.failure),
+        ...tid(ids.notification.failure),
       });
     }
   });
 
+  const handleReset = () => {
+    reset();
+    setIsEditing(false);
+  };
+
   return (
-    <form onSubmit={onSubmit} {...createTestAttr(ids.form)}>
+    <form onSubmit={onSubmit} {...tid(ids.form)}>
       <Stack spacing={25}>
         <Group position="apart" mih="100%">
           <DashboardTitle>{t.title}</DashboardTitle>
           <Group spacing={20}>
             {isEditing ? (
               <>
-                <DestructiveButton
-                  disabled={!isDirty}
-                  onClick={() => {
-                    reset();
-                    setIsEditing(false);
-                  }}
-                  {...createTestAttr(ids.cancel)}
-                >
+                <DestructiveButton onClick={handleReset} {...tid(ids.cancel)}>
                   {messages.actions.undoBtn}
                 </DestructiveButton>
                 <Button
-                  {...createTestAttr(ids.submitBtn)}
+                  {...tid(ids.submitBtn)}
                   type="submit"
                   size="sm"
                   leftIcon={<CheckIcon size={16} />}
@@ -156,7 +145,7 @@ export const HouseholderForm = ({
             ) : (
               <Button
                 key={1}
-                {...createTestAttr(ids.editBtn)}
+                {...tid(ids.editBtn)}
                 type="button"
                 size="sm"
                 variant="outline"
@@ -172,8 +161,7 @@ export const HouseholderForm = ({
         <SimpleGrid cols={3} spacing="lg" verticalSpacing={20}>
           <TextInput
             readOnly={isReadOnly}
-            className={classes.input}
-            wrapperProps={createTestAttr(ids.firstNameInput)}
+            wrapperProps={tid(ids.firstNameInput)}
             required
             {...register('name')}
             label={`${t.nameInput.label}:`}
@@ -182,8 +170,7 @@ export const HouseholderForm = ({
           />
           <TextInput
             readOnly={isReadOnly}
-            className={classes.input}
-            wrapperProps={createTestAttr(ids.lastNameInput)}
+            wrapperProps={tid(ids.lastNameInput)}
             {...register('surname')}
             label={`${t.lastNameInput.label}:`}
             error={errors.surname?.message}
@@ -191,8 +178,7 @@ export const HouseholderForm = ({
           />
           <TextInput
             readOnly={isReadOnly}
-            className={classes.input}
-            wrapperProps={createTestAttr(ids.fatherNameInput)}
+            wrapperProps={tid(ids.fatherNameInput)}
             {...register('fatherName')}
             label={`${t.fatherNameInput.label}:`}
             placeholder={t.fatherNameInput.placeholder}
@@ -202,7 +188,7 @@ export const HouseholderForm = ({
             readOnly={isReadOnly}
             name="nationality"
             control={control}
-            wrapperProps={createTestAttr(ids.nationalityInput)}
+            wrapperProps={tid(ids.nationalityInput)}
             data={nationalities.map(v => ({
               value: v,
               label: messages.nationalities[v],
@@ -212,8 +198,7 @@ export const HouseholderForm = ({
           />
           <TextInput
             readOnly={isReadOnly}
-            className={classes.input}
-            wrapperProps={createTestAttr(ids.nationalIdInput)}
+            wrapperProps={tid(ids.nationalIdInput)}
             error={errors.nationalId?.message}
             {...register('nationalId')}
             placeholder={t.nationalIdInput.placeholder}
@@ -224,7 +209,7 @@ export const HouseholderForm = ({
             readOnly={isReadOnly}
             name="gender"
             control={control}
-            wrapperProps={createTestAttr(ids.genderInput)}
+            wrapperProps={tid(ids.genderInput)}
             data={genders.map(v => ({
               value: v,
               label: messages.genders[v],
@@ -237,7 +222,7 @@ export const HouseholderForm = ({
             readOnly={isReadOnly}
             name="religion"
             control={control}
-            wrapperProps={createTestAttr(ids.religionInput)}
+            wrapperProps={tid(ids.religionInput)}
             data={religions.map(v => ({
               value: v,
               label: messages.religions[v],
@@ -250,7 +235,7 @@ export const HouseholderForm = ({
             readOnly={isReadOnly}
             name="cityOfBirth"
             control={control}
-            wrapperProps={createTestAttr(ids.cityOfBirthInput)}
+            wrapperProps={tid(ids.cityOfBirthInput)}
             data={cities.map(v => ({
               value: v,
               label: messages.cities[v],
@@ -263,8 +248,7 @@ export const HouseholderForm = ({
             name="dob"
             control={control}
             readOnly={isReadOnly}
-            wrapperProps={createTestAttr(ids.dobInput)}
-            className={classes.input}
+            wrapperProps={tid(ids.dobInput)}
             label={`${t.dobInput.label}:`}
             placeholder={t.selectInputs.placeholder}
           />

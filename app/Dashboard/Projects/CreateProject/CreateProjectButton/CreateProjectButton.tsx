@@ -1,6 +1,6 @@
 import { PlusIcon } from '@camp/icons';
 import { messages } from '@camp/messages';
-import { createTestAttr } from '@camp/test';
+import { tid } from '@camp/test';
 import { Button } from '@mantine/core';
 
 import { openCreateProjectModal } from '../CreateProjectModal';
@@ -16,7 +16,7 @@ export const CreateProjectButton = ({ variant = 'outline' }: Props) => {
       variant={variant}
       size="sm"
       leftIcon={<PlusIcon width="16" height="16" />}
-      {...createTestAttr(ids)}
+      {...tid(ids)}
       onClick={() => openCreateProjectModal()}
     >
       {messages.projects.create}

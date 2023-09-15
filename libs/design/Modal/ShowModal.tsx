@@ -1,4 +1,4 @@
-import { createTestAttr } from '@camp/test';
+import { tid } from '@camp/test';
 import { openConfirmModal } from '@mantine/modals';
 import type { ConfirmModalProps } from '@mantine/modals/lib/ConfirmModal';
 import type { ReactNode } from 'react';
@@ -39,12 +39,12 @@ export const showModal = ({
     confirmProps: {
       variant: 'filled',
       color: destructive ? 'error' : 'primary',
-      ...createTestAttr(confirmId),
+      ...tid(confirmId),
     },
     cancelProps: {
       color: 'secondary',
     },
-    ...createTestAttr(id),
+    ...tid(id),
     labels: { cancel: cancelLable, confirm: confirmLabel },
     ...rest,
   });

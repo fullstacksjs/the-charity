@@ -8,7 +8,7 @@ import {
 import { householdColumnHelper } from '@camp/domain';
 import { errorMessages, messages } from '@camp/messages';
 import { AppRoute } from '@camp/router';
-import { createTestAttr } from '@camp/test';
+import { tid } from '@camp/test';
 import { isEmpty, isNull } from '@fullstacksjs/toolbox';
 import { Group } from '@mantine/core';
 import type { SortingState } from '@tanstack/react-table';
@@ -84,7 +84,7 @@ export const HouseholdList = () => {
       type: 'failure',
       title: t.title,
       message: errorMessages.UNKNOWN_ERROR,
-      ...createTestAttr(ids.householdListFailureNotification),
+      ...tid(ids.householdListFailureNotification),
     });
     return null;
   }

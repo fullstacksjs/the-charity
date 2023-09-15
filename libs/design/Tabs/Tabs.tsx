@@ -1,5 +1,5 @@
 import { useHash } from '@camp/router';
-import { createTestAttr } from '@camp/test';
+import { tid } from '@camp/test';
 import { Badge, Tabs as MantineTabs } from '@mantine/core';
 import { useState } from 'react';
 
@@ -52,7 +52,7 @@ export const Tabs = ({ tabs }: Props) => {
             value={id}
             bg={id === activeTab ? 'bg.7' : 'bg.6'}
             rightSection={isBusy ? <BusyIcon /> : undefined}
-            {...createTestAttr(id)}
+            {...tid(id)}
           >
             {tab}
           </MantineTabs.Tab>

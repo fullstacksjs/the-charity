@@ -25,7 +25,7 @@ import {
 import { ArrowUpIcon, CheckIcon, EditIcon, TrashIcon } from '@camp/icons';
 import { errorMessages, messages } from '@camp/messages';
 import { AppRoute, useNavigate, useParams } from '@camp/router';
-import { createTestAttr } from '@camp/test';
+import { tid } from '@camp/test';
 import { isNull } from '@fullstacksjs/toolbox';
 import { Button, createStyles, Flex, Title } from '@mantine/core';
 import { useBoolean } from 'ahooks';
@@ -115,7 +115,7 @@ export const HouseholdDetail = () => {
           household!.name,
         ),
         type: 'success',
-        ...createTestAttr(ids.notification.success),
+        ...tid(ids.notification.success),
       });
     } catch (err) {
       debug.error(err);
@@ -126,7 +126,7 @@ export const HouseholdDetail = () => {
           household!.name,
         ),
         type: 'failure',
-        ...createTestAttr(ids.notification.failure),
+        ...tid(ids.notification.failure),
       });
     }
   });
@@ -198,7 +198,7 @@ export const HouseholdDetail = () => {
 
   return (
     <>
-      <form onSubmit={onUpdateHousehold} {...createTestAttr(ids.form)}>
+      <form onSubmit={onUpdateHousehold} {...tid(ids.form)}>
         <DetailCard
           title={t.title}
           id={household.code}
@@ -210,7 +210,7 @@ export const HouseholdDetail = () => {
                     {messages.actions.undoBtn}
                   </DestructiveButton>
                   <Button
-                    {...createTestAttr(ids.submitBtn)}
+                    {...tid(ids.submitBtn)}
                     type="submit"
                     size="sm"
                     leftIcon={<CheckIcon size={16} />}
@@ -238,7 +238,7 @@ export const HouseholdDetail = () => {
                   )}
                   <Button
                     key={1}
-                    {...createTestAttr(ids.editBtn)}
+                    {...tid(ids.editBtn)}
                     type="button"
                     size="sm"
                     variant="outline"
@@ -256,7 +256,7 @@ export const HouseholdDetail = () => {
             <TextInput
               readOnly={isReadOnly}
               className={classes.input}
-              wrapperProps={createTestAttr(ids.nameField)}
+              wrapperProps={tid(ids.nameField)}
               {...register('name')}
               label={`${t.householdFields.name.title}:`}
               error={errors.name?.message}
@@ -266,7 +266,7 @@ export const HouseholdDetail = () => {
               readOnly={isReadOnly}
               presentation={v => (
                 <DetailCard.Field
-                  {...createTestAttr(ids.severityField)}
+                  {...tid(ids.severityField)}
                   title={t.householdFields.severityStatus.title}
                 >
                   <SeverityBadge severity={v as HouseholdSeverityEnum} />
@@ -274,7 +274,7 @@ export const HouseholdDetail = () => {
               )}
               name="severity"
               control={control}
-              wrapperProps={createTestAttr(ids.severityField)}
+              wrapperProps={tid(ids.severityField)}
               data={severities.map(v => ({
                 value: v,
                 label: messages.households.severityStatus[v],
@@ -290,7 +290,7 @@ export const HouseholdDetail = () => {
             </DetailCard.Field>
 
             <DetailCard.Field
-              {...createTestAttr(ids.statusField)}
+              {...tid(ids.statusField)}
               title={t.householdFields.informationStatus.title}
             >
               <InformationBadge

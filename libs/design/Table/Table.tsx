@@ -1,4 +1,4 @@
-import { createTestAttr } from '@camp/test';
+import { tid } from '@camp/test';
 import { Table as MantineTable } from '@mantine/core';
 
 interface Props {
@@ -14,7 +14,7 @@ export const Table = ({ children, id }: Props) => {
       striped
       highlightOnHover
       withBorder
-      {...createTestAttr(id)}
+      {...tid(id)}
     >
       {children}
     </MantineTable>

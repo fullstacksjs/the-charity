@@ -27,7 +27,7 @@ import {
 } from '@camp/domain';
 import { CheckIcon, ChevronDownIcon, EditIcon, TrashIcon } from '@camp/icons';
 import { messages } from '@camp/messages';
-import { createTestAttr } from '@camp/test';
+import { tid } from '@camp/test';
 import { isNull } from '@fullstacksjs/toolbox';
 import {
   ActionIcon,
@@ -163,7 +163,7 @@ export const MemberForm = ({
         title: t.title,
         message: t.notification.successful(data.member?.name ?? ''),
         type: 'success',
-        ...createTestAttr(ids.notification.success),
+        ...tid(ids.notification.success),
       });
       onSuccess?.();
     } catch {
@@ -171,7 +171,7 @@ export const MemberForm = ({
         title: t.title,
         message: t.notification.failed(values.name),
         type: 'failure',
-        ...createTestAttr(ids.notification.failure),
+        ...tid(ids.notification.failure),
       });
     }
   });
@@ -195,14 +195,14 @@ export const MemberForm = ({
       }
     >
       <Collapse in={opened}>
-        <form {...createTestAttr(ids.form)} onSubmit={onSubmit}>
+        <form {...tid(ids.form)} onSubmit={onSubmit}>
           <Stack spacing={25} align="end">
             <SimpleGrid w="100%" cols={3} spacing="lg" verticalSpacing={20}>
               <TextInput
                 withAsterisk
                 readOnly={!isEditableMode}
                 className={classes.textInput}
-                wrapperProps={createTestAttr(ids.firstNameInput)}
+                wrapperProps={tid(ids.firstNameInput)}
                 {...register('name')}
                 label={`${tt.nameInput.label}:`}
                 placeholder={tt.nameInput.placeholder}
@@ -211,7 +211,7 @@ export const MemberForm = ({
               <TextInput
                 readOnly={!isEditableMode}
                 className={classes.textInput}
-                wrapperProps={createTestAttr(ids.lastNameInput)}
+                wrapperProps={tid(ids.lastNameInput)}
                 {...register('surname')}
                 label={`${tt.lastNameInput.label}:`}
                 placeholder={tt.lastNameInput.placeholder}
@@ -220,7 +220,7 @@ export const MemberForm = ({
               <TextInput
                 readOnly={!isEditableMode}
                 className={classes.textInput}
-                wrapperProps={createTestAttr(ids.fatherNameInput)}
+                wrapperProps={tid(ids.fatherNameInput)}
                 {...register('fatherName')}
                 label={`${tt.fatherNameInput.label}:`}
                 placeholder={tt.fatherNameInput.placeholder}
@@ -230,7 +230,7 @@ export const MemberForm = ({
                 readOnly={!isEditableMode}
                 name="nationality"
                 control={control}
-                wrapperProps={createTestAttr(ids.nationalityInput)}
+                wrapperProps={tid(ids.nationalityInput)}
                 data={nationalities.map(v => ({
                   value: v,
                   label: messages.nationalities[v],
@@ -241,7 +241,7 @@ export const MemberForm = ({
               <TextInput
                 readOnly={!isEditableMode}
                 className={classes.textInput}
-                wrapperProps={createTestAttr(ids.nationalIdInput)}
+                wrapperProps={tid(ids.nationalIdInput)}
                 {...register('nationalId')}
                 label={`${tt.nationalIdInput.label}:`}
                 placeholder={tt.nationalIdInput.placeholder}
@@ -251,7 +251,7 @@ export const MemberForm = ({
                 readOnly={!isEditableMode}
                 name="gender"
                 control={control}
-                wrapperProps={createTestAttr(ids.genderInput)}
+                wrapperProps={tid(ids.genderInput)}
                 data={genders.map(v => ({
                   value: v,
                   label: messages.genders[v],
@@ -263,7 +263,7 @@ export const MemberForm = ({
                 name="dob"
                 control={control}
                 readOnly={!isEditableMode}
-                wrapperProps={createTestAttr(ids.dobInput)}
+                wrapperProps={tid(ids.dobInput)}
                 className={classes.textInput}
                 label={`${tt.dobInput.label}:`}
                 placeholder={tt.selectInputs.placeholder}
@@ -272,7 +272,7 @@ export const MemberForm = ({
                 readOnly={!isEditableMode}
                 name="religion"
                 control={control}
-                wrapperProps={createTestAttr(ids.religionInput)}
+                wrapperProps={tid(ids.religionInput)}
                 data={religions.map(v => ({
                   value: v,
                   label: messages.religions[v],
@@ -284,7 +284,7 @@ export const MemberForm = ({
             {!isEditableMode ? (
               <Group>
                 <Button
-                  {...createTestAttr(ids.deleteBtn)}
+                  {...tid(ids.deleteBtn)}
                   type="button"
                   variant="outline"
                   color="error"
@@ -295,7 +295,7 @@ export const MemberForm = ({
                 </Button>
                 <Button
                   key={1}
-                  {...createTestAttr(ids.editBtn)}
+                  {...tid(ids.editBtn)}
                   type="button"
                   size="sm"
                   variant="outline"
@@ -308,7 +308,7 @@ export const MemberForm = ({
             ) : (
               <Group>
                 <DestructiveButton
-                  {...createTestAttr(ids.cancelBtn)}
+                  {...tid(ids.cancelBtn)}
                   onClick={() => {
                     reset();
                     onUndo?.();
@@ -318,7 +318,7 @@ export const MemberForm = ({
                 </DestructiveButton>
                 <Button
                   key={2}
-                  {...createTestAttr(ids.submitBtn)}
+                  {...tid(ids.submitBtn)}
                   type="submit"
                   size="sm"
                   variant="filled"

@@ -65,11 +65,11 @@ export const palette: Record<Palette, SemanticColor> = {
     subtle: '#EBFBEE',
   },
   error: {
-    first: ['#FFE3E3', '#FFE3E3', '#FFE3E3', '#FFE3E3'],
+    first: ['#FFEEEE', '#FFEEEE', '#FFEEEE', '#FFEEEE'],
     default: '#F03E3E',
     emphasized: '#C92A2A',
     muted: '#FA5252',
-    subtle: '#FFE3E3',
+    subtle: '#FFEEEE',
   },
   warning: {
     default: '#FD7E14',
