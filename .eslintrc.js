@@ -1,6 +1,7 @@
 const { init } = require('@fullstacksjs/eslint-config/init');
 
 module.exports = init({
+  root: true,
   modules: {
     auto: true,
     esm: true,
@@ -9,7 +10,7 @@ module.exports = init({
       resolverProject: ['./tsconfig.json'],
     },
   },
-  root: true,
+  extends: ['plugin:@cspell/recommended'],
   rules: {
     // NOTE: https://github.com/jsx-eslint/eslint-plugin-react/blob/master/docs/rules/no-unused-prop-types.md#known-issueslimitations
     'react/no-unused-prop-types': 'off',

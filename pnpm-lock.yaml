@@ -88,6 +88,9 @@ dependencies:
     version: 3.22.2
 
 devDependencies:
+  '@cspell/eslint-plugin':
+    specifier: 7.3.6
+    version: 7.3.6
   '@faker-js/faker':
     specifier: 8.0.2
     version: 8.0.2
@@ -2019,6 +2022,18 @@ packages:
     engines: {node: '>=16'}
     dependencies:
       import-meta-resolve: 3.0.0
+    dev: true
+
+  /@cspell/eslint-plugin@7.3.6:
+    resolution: {integrity: sha512-AMsFzo57zFaf+vuR50WGPX3Pu5flWf0nYzGenKGZRGGEVg3QOTECCRBxzB8QKxBr6d01PQlSRYQnxpmXRuD8Bw==}
+    engines: {node: '>=16'}
+    dependencies:
+      '@cspell/cspell-types': 7.3.6
+      cspell-lib: 7.3.6
+      estree-walker: 3.0.3
+      synckit: 0.8.5
+    transitivePeerDependencies:
+      - encoding
     dev: true
 
   /@cspell/strong-weak-map@7.3.6:
@@ -9272,6 +9287,12 @@ packages:
 
   /estree-walker@2.0.2:
     resolution: {integrity: sha512-Rfkk/Mp/DL7JVje3u18FxFujQlTNR2q6QfMSMB7AvCBx91NGj/ba3kCfza0f6dVDbw7YlRf/nDrn7pQrCCyQ/w==}
+    dev: true
+
+  /estree-walker@3.0.3:
+    resolution: {integrity: sha512-7RUKfXgSMMkzt6ZuXmqapOurLGPPfgj6l9uRZ7lRGolvk0y2yocc35LdcxKC5PQZdn2DMqioAQ2NoWcrTKmm6g==}
+    dependencies:
+      '@types/estree': 1.0.1
     dev: true
 
   /esutils@2.0.3:

@@ -33,9 +33,6 @@ jobs:
       - name: Lint and Format
         run: pnpm run lint:ci
 
-      - name: Spell Check
-        run: pnpm run spell
-
       - name: Build
         run: pnpm run build
 

@@ -168,7 +168,7 @@ To find spelling errors just run
 pnpm run spell
 ```
 
-And if you want to add a new word so that it won't count as a spelling error, just add it to the `.cspell/charity.txt` and separate it with a new line
+And if you want to add a new word so that it won't count as a spelling error, just add it to the `configs/cspell/charity.en.txt` or `configs/cspell/charity.en.txt` and separate it with a new line
 
 > Note: These two (linting and finding spelling errors) are run automatically on each commit and the commit won't be done if there's anything wrong, even for the commit messages, so be careful what you write as a commit message :)
 

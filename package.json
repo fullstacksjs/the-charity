@@ -24,7 +24,7 @@
     "pr": "./scripts/pr",
     "codegen": "dotenv -e .env.dev -- graphql-codegen",
     "codegen:watch": "pnpm run codegen --watch",
-    "verify": "run-p compile lint:ci test:unit:ci spell"
+    "verify": "run-p compile lint:ci test:unit:ci"
   },
   "dependencies": {
     "@apollo/client": "3.8.1",
@@ -56,6 +56,7 @@
     "zod": "3.22.2"
   },
   "devDependencies": {
+    "@cspell/eslint-plugin": "7.3.6",
     "@faker-js/faker": "8.0.2",
     "@fullstacksjs/eslint-config": "10.2.0",
     "@fullstacksjs/tsconfig": "1.1.0",
