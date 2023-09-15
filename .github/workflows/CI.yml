@@ -103,7 +103,7 @@ jobs:
       - name: Run E2E tests
         uses: cypress-io/github-action@v4
         with:
-          start: pnpm dlx vite --port ${{ env.PORT }} --host 127.0.0.1
+          start: pnpm exec vite --port ${{ env.PORT }} --host 127.0.0.1
           build: pnpm run build
           wait-on: https://127.0.0.1:${{ env.PORT }}
           wait-on-timeout: 20
