@@ -44,16 +44,16 @@ export const memberFormNotifications = {
     success: (name: string) =>
       showNotification({
         type: 'success',
-        title: t.edit.title,
-        message: t.edit.success(name),
+        title: t.create.title,
+        message: t.create.success(name),
         ...tid(ids.notification.create.success),
       }),
 
     failure: (name: string) =>
       showNotification({
         type: 'failure',
-        title: t.edit.title,
-        message: t.edit.failed(name),
+        title: t.create.title,
+        message: t.create.failed(name),
         ...tid(ids.notification.create.failure),
       }),
   },

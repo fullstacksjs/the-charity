@@ -42,6 +42,14 @@ export const messages = {
           `مشکلی در ایجاد عضوی با نام "${name}" .بوجود آمده است. لطفا دوباره تلاش کنید`,
       },
     },
+    householder: {
+      edit: {
+        title: 'سرپرست',
+        success: (name: string) => `خانوار "${name}" با موفقیت بروز رسانی شد.`,
+        failed: (name: string) =>
+          `مشکلی در به روزرسانی اطلاعات خانوار "${name}" .به وجود آمده است. لطفا دوباره تلاش کنید`,
+      },
+    },
   },
   date: {
     format: (date: Date) => new Intl.DateTimeFormat('fa-IR').format(date),
@@ -207,13 +215,6 @@ export const messages = {
     },
     form: {
       title: 'اطلاعات هویت',
-
-      notification: {
-        successfulUpdate: (name: string) =>
-          `خانوار "${name}" با موفقیت بروز رسانی شد.`,
-        failedUpdate: (name: string) =>
-          `مشکلی در به روزرسانی اطلاعات خانوار "${name}" .به وجود آمده است. لطفا دوباره تلاش کنید`,
-      },
       selectInputs: {
         placeholder: 'انتخاب کنید',
       },

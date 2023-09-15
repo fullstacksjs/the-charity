@@ -1,12 +1,5 @@
 import { useUpsertHouseholderMutation } from '@camp/data-layer';
-import {
-  ControlledDateInput,
-  ControlledSelect,
-  DashboardTitle,
-  DestructiveButton,
-  showNotification,
-  TextInput,
-} from '@camp/design';
+import { ControlledDateInput, ControlledSelect, TextInput } from '@camp/design';
 import type {
   CityEnum,
   GenderEnum,
@@ -22,15 +15,16 @@ import {
   nationalities,
   religions,
 } from '@camp/domain';
-import { CheckIcon, EditIcon } from '@camp/icons';
 import { messages } from '@camp/messages';
 import { tid } from '@camp/test';
 import { isNull } from '@fullstacksjs/toolbox';
-import { Button, Group, SimpleGrid, Stack } from '@mantine/core';
+import { SimpleGrid, Stack } from '@mantine/core';
 import { useBoolean } from 'ahooks';
 import { useForm } from 'react-hook-form';
 
 import { householderFormIds as ids } from './HouseholderForm.ids';
+import { HouseholderFormActions } from './HouseholderFormActions';
+import { householderFormNotifications } from './householderFormNotifications';
 
 interface Props {
   initialHouseholder?: HouseholderIdentity;
@@ -62,13 +56,18 @@ const resolver = createResolver<FormSchema>({
   dob: householderSchema.dob(),
 });
 
+const t = messages.householder.form;
+
 // eslint-disable-next-line max-lines-per-function
 export const HouseholderForm = ({
   initialHouseholder,
   householdId,
   householdName,
 }: Props) => {
-  const t = messages.householder.form;
+  const isCompleted = initialHouseholder?.isCompleted;
+  const [isEditing, { set: setIsEditing }] = useBoolean(!isCompleted);
+  const [upsertHouseholder] = useUpsertHouseholderMutation();
+  const isReadOnly = !isEditing;
 
   const {
     handleSubmit,
@@ -82,37 +81,19 @@ export const HouseholderForm = ({
     mode: 'onChange',
   });
 
-  const isCompleted = initialHouseholder?.isCompleted;
-
-  const [isEditing, { set: setIsEditing }] = useBoolean(!isCompleted);
-
-  const isReadOnly = !isEditing;
-
-  const [upsertHouseholder] = useUpsertHouseholderMutation();
-
-  const onSubmit = handleSubmit(async formData => {
+  const onSubmit = handleSubmit(async values => {
     try {
       const { data } = await upsertHouseholder({
-        variables: { ...formData, householdId },
+        variables: { ...values, householdId },
       });
 
       if (!isNull(data)) {
         reset({ ...data.householder, dob: data.householder?.dob ?? null });
         setIsEditing(!data.householder?.isCompleted);
       }
-      showNotification({
-        title: t.title,
-        message: t.notification.successfulUpdate(householdName),
-        type: 'success',
-        ...tid(ids.notification.success),
-      });
+      householderFormNotifications.edit.success(householdName);
     } catch {
-      showNotification({
-        title: t.title,
-        message: t.notification.failedUpdate(householdName),
-        type: 'failure',
-        ...tid(ids.notification.failure),
-      });
+      householderFormNotifications.edit.failure(householdName);
     }
   });
 
@@ -124,39 +105,12 @@ export const HouseholderForm = ({
   return (
     <form onSubmit={onSubmit} {...tid(ids.form)}>
       <Stack spacing={25}>
-        <Group position="apart" mih="100%">
-          <DashboardTitle>{t.title}</DashboardTitle>
-          <Group spacing={20}>
-            {isEditing ? (
-              <>
-                <DestructiveButton onClick={handleReset} {...tid(ids.cancel)}>
-                  {messages.actions.undoBtn}
-                </DestructiveButton>
-                <Button
-                  {...tid(ids.submitBtn)}
-                  type="submit"
-                  size="sm"
-                  leftIcon={<CheckIcon size={16} />}
-                  disabled={!isValid || !isDirty}
-                >
-                  {messages.actions.submitBtn}
-                </Button>
-              </>
-            ) : (
-              <Button
-                key={1}
-                {...tid(ids.editBtn)}
-                type="button"
-                size="sm"
-                variant="outline"
-                onClick={() => setIsEditing(true)}
-                leftIcon={<EditIcon size={16} />}
-              >
-                {messages.actions.editBtn}
-              </Button>
-            )}
-          </Group>
-        </Group>
+        <HouseholderFormActions
+          canUndo={isDirty || isCompleted}
+          canSubmit={isValid && isDirty}
+          onUndo={handleReset}
+          onEdit={() => setIsEditing(true)}
+        />
 
         <SimpleGrid cols={3} spacing="lg" verticalSpacing={20}>
           <TextInput
