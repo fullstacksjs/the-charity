@@ -42,9 +42,9 @@ export const theme: MantineThemeOverride = {
   dir: 'rtl',
   fontFamily: 'IRANSansFaNum, IRANSans',
   fontSizes: {
-    xs: '10px',
-    sm: '12px',
-    md: '14px',
+    xs: '12px',
+    sm: '14px',
+    md: '16px',
   },
   colors: toMantineColors(palette),
   primaryColor: 'primary',
