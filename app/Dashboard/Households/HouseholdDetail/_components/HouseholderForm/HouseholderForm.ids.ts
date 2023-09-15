@@ -13,10 +13,4 @@ export const householderFormIds = {
   submitBtn: 'householder-submit-button',
   editBtn: 'householder-edit-button',
   cancel: 'householder-cancel-button',
-  notification: {
-    edit: {
-      success: 'edit-householder-successful-update',
-      failure: 'edit-householder-failed-update',
-    },
-  },
 } as const;

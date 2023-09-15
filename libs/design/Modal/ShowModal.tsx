@@ -33,9 +33,7 @@ export const showModal = ({
     title,
     size,
     centered: true,
-    groupProps: {
-      spacing: 10,
-    },
+    groupProps: { spacing: 10 },
     confirmProps: {
       variant: 'filled',
       color: destructive ? 'error' : 'primary',

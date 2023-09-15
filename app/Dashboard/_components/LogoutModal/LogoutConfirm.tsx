@@ -5,7 +5,7 @@ const texts = messages.logout.modal;
 
 export const LogoutConfirm = () => {
   return (
-    <Stack spacing={40} mt={40}>
+    <Stack spacing={40}>
       <Text color="fg">{texts.confirmMessage}</Text>
       <Space h={0} />
     </Stack>

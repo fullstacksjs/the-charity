@@ -22,9 +22,9 @@ import { SimpleGrid, Stack } from '@mantine/core';
 import { useBoolean } from 'ahooks';
 import { useForm } from 'react-hook-form';
 
+import { householdNotifications } from '../../householdNotifications';
 import { householderFormIds as ids } from './HouseholderForm.ids';
 import { HouseholderFormActions } from './HouseholderFormActions';
-import { householderFormNotifications } from './householderFormNotifications';
 
 interface Props {
   initialHouseholder?: HouseholderIdentity;
@@ -65,9 +65,9 @@ export const HouseholderForm = ({
   householdName,
 }: Props) => {
   const isCompleted = initialHouseholder?.isCompleted;
-  const [isEditing, { set: setIsEditing }] = useBoolean(!isCompleted);
+  const [isEditMode, { set: setIsEditing }] = useBoolean(!isCompleted);
   const [upsertHouseholder] = useUpsertHouseholderMutation();
-  const isReadOnly = !isEditing;
+  const isReadOnly = !isEditMode;
 
   const {
     handleSubmit,
@@ -91,9 +91,9 @@ export const HouseholderForm = ({
         reset({ ...data.householder, dob: data.householder?.dob ?? null });
         setIsEditing(!data.householder?.isCompleted);
       }
-      householderFormNotifications.edit.success(householdName);
+      householdNotifications.edit.success(householdName);
     } catch {
-      householderFormNotifications.edit.failure(householdName);
+      householdNotifications.edit.failure(householdName);
     }
   });
 
@@ -106,6 +106,7 @@ export const HouseholderForm = ({
     <form onSubmit={onSubmit} {...tid(ids.form)}>
       <Stack spacing={25}>
         <HouseholderFormActions
+          isEditMode={isEditMode}
           canUndo={isDirty || isCompleted}
           canSubmit={isValid && isDirty}
           onUndo={handleReset}

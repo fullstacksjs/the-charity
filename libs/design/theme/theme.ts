@@ -67,6 +67,9 @@ export const theme: MantineThemeOverride = {
         modal: {
           padding: '30px !important',
         },
+        title: {
+          fontWeight: 'bold',
+        },
       },
     },
     Select: {

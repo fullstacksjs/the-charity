@@ -21,6 +21,12 @@ export const messages = {
         failed: (name: string) =>
           `مشکلی در تکمیل خانوار "${name}" به وجود آمده است. لطفا دوباره تلاش کنید.`,
       },
+      edit: {
+        title: 'خانوار',
+        success: (name: string) => `خانوار "${name}" با موفقیت بروز رسانی شد.`,
+        failed: (name: string) =>
+          `مشکلی در به روزرسانی اطلاعات خانوار "${name}" .به وجود آمده است. لطفا دوباره تلاش کنید`,
+      },
     },
     member: {
       delete: {
@@ -40,14 +46,6 @@ export const messages = {
         success: (name: string) => `عضوی با نام "${name}" .با موفقیت ایجاد شد`,
         failed: (name: string) =>
           `مشکلی در ایجاد عضوی با نام "${name}" .بوجود آمده است. لطفا دوباره تلاش کنید`,
-      },
-    },
-    householder: {
-      edit: {
-        title: 'سرپرست',
-        success: (name: string) => `خانوار "${name}" با موفقیت بروز رسانی شد.`,
-        failed: (name: string) =>
-          `مشکلی در به روزرسانی اطلاعات خانوار "${name}" .به وجود آمده است. لطفا دوباره تلاش کنید`,
       },
     },
   },
@@ -320,7 +318,7 @@ export const messages = {
   login: {
     title: 'خوش آمدید',
     desc: 'به حساب کاربری خود وارد شوید',
-    button: 'ورودی',
+    button: 'ورود',
   },
   householdDetail: {
     title: 'اطلاعات کلی خانوار',
@@ -392,7 +390,7 @@ export const messages = {
     modal: {
       title: 'خروج از حساب کاربری',
       confirmMessage: 'آیا می خواهید از حساب کاربری خود خارج شوید؟',
-      accept: 'بله، خارج می شوم',
+      accept: 'خارج می شوم',
       cancel: 'انصراف',
     },
   },

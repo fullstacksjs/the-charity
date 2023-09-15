@@ -37,6 +37,7 @@ import { openDeleteHouseholdModal } from '../_components/DeleteHouseholdModal';
 import { HouseholderDetail } from './_components/HouseholderDetail';
 import { MemberList } from './_components/MemberList';
 import { householdDetailIds as ids } from './HouseholdDetail.ids';
+import { householdNotifications } from './householdNotifications';
 
 interface FormSchema {
   name: string;
@@ -92,35 +93,19 @@ export const HouseholdDetail = () => {
     variables: { id },
   });
 
-  const onUpdateHousehold = handleSubmit(async formData => {
+  const onUpdateHousehold = handleSubmit(async values => {
     try {
       await updateHousehold({
         variables: {
           id,
-          update: { name: formData.name, severity: formData.severity },
+          update: { name: values.name, severity: values.severity },
         },
       });
       setIsEditing(false);
-
-      showNotification({
-        title: t.title,
-        message: messages.householder.form.notification.successfulUpdate(
-          household!.name,
-        ),
-        type: 'success',
-        ...tid(ids.notification.success),
-      });
+      householdNotifications.edit.success(values.name);
     } catch (err) {
       debug.error(err);
-
-      showNotification({
-        title: t.title,
-        message: messages.householder.form.notification.failedUpdate(
-          household!.name,
-        ),
-        type: 'failure',
-        ...tid(ids.notification.failure),
-      });
+      householdNotifications.edit.failure(values.name);
     }
   });
 

@@ -2,11 +2,11 @@ import { showNotification } from '@camp/design';
 import { messages } from '@camp/messages';
 import { tid } from '@camp/test';
 
-import { householderFormIds as ids } from './HouseholderForm.ids';
+import { householdDetailIds as ids } from './HouseholdDetail.ids';
 
-const t = messages.notification.householder;
+const t = messages.notification.household;
 
-export const householderFormNotifications = {
+export const householdNotifications = {
   edit: {
     success: (name: string) =>
       showNotification({

@@ -40,7 +40,7 @@ export const HouseholderFormActions = ({
               {...tid(ids.submitBtn)}
               type="submit"
               leftIcon={<CheckIcon size={16} />}
-              disabled={canSubmit}
+              disabled={!canSubmit}
             >
               {messages.actions.submitBtn}
             </Button>
