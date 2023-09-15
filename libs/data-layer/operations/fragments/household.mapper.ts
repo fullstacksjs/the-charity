@@ -31,6 +31,7 @@ export const getHouseholdDetail = (
     createdAt: toDate(data.created_at)!,
     updatedAt: toDate(data.updated_at)!,
     isCompleted: data.status === HouseholdStatusEnum.Completed,
+    membersCount: data.members_count!,
   };
 };
 

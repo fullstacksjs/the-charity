@@ -5,7 +5,7 @@ import type * as SchemaTypes from '@camp/domain';
 
 export type ApiHouseholdKeysFragment = { __typename?: 'household', id: string };
 
-export type ApiHouseholdDetailFragment = { __typename?: 'household', name: string, status: SchemaTypes.HouseholdStatusEnum, severity: SchemaTypes.HouseholdSeverityEnum, code?: string | null, created_at: string, updated_at: string };
+export type ApiHouseholdDetailFragment = { __typename?: 'household', name: string, status: SchemaTypes.HouseholdStatusEnum, severity: SchemaTypes.HouseholdSeverityEnum, code?: string | null, created_at: string, updated_at: string, members_count?: number | null };
 
 export type ApiHouseholdListItemFragment = { __typename?: 'household', name: string, severity: SchemaTypes.HouseholdSeverityEnum, status: SchemaTypes.HouseholdStatusEnum };
 
@@ -36,6 +36,8 @@ export type ApiCreateHouseholdMutationVariables = SchemaTypes.Exact<{
 
 
 export type ApiCreateHouseholdMutation = { __typename?: 'mutation_root', insert_household_one?: { __typename?: 'household', id: string, name: string, severity: SchemaTypes.HouseholdSeverityEnum, status: SchemaTypes.HouseholdStatusEnum } | null };
+
+export type ApiNewHouseholdFragment = { __typename?: 'household', id: string, name: string, severity: SchemaTypes.HouseholdSeverityEnum, status: SchemaTypes.HouseholdStatusEnum };
 
 export type ApiCreateProjectMutationVariables = SchemaTypes.Exact<{
   input: SchemaTypes.ApiProjectInsertInput;
@@ -78,7 +80,7 @@ export type ApiUpsertMemberMutationVariables = SchemaTypes.Exact<{
 }>;
 
 
-export type ApiUpsertMemberMutation = { __typename?: 'mutation_root', insert_member_one?: { __typename?: 'member', id: string, household_id: string, dob?: string | null, father_name?: string | null, gender?: SchemaTypes.GenderEnum | null, name: string, national_id?: string | null, nationality?: SchemaTypes.NationalityEnum | null, religion?: SchemaTypes.ReligionEnum | null, surname?: string | null, status?: string | null, household: { __typename?: 'household', id: string, name: string, status: SchemaTypes.HouseholdStatusEnum, severity: SchemaTypes.HouseholdSeverityEnum, code?: string | null, created_at: string, updated_at: string } } | null };
+export type ApiUpsertMemberMutation = { __typename?: 'mutation_root', insert_member_one?: { __typename?: 'member', id: string, household_id: string, dob?: string | null, father_name?: string | null, gender?: SchemaTypes.GenderEnum | null, name: string, national_id?: string | null, nationality?: SchemaTypes.NationalityEnum | null, religion?: SchemaTypes.ReligionEnum | null, surname?: string | null, status?: string | null, household: { __typename?: 'household', id: string, name: string, status: SchemaTypes.HouseholdStatusEnum, severity: SchemaTypes.HouseholdSeverityEnum, code?: string | null, created_at: string, updated_at: string, members_count?: number | null } } | null };
 
 export type ApiHouseholdListQueryVariables = SchemaTypes.Exact<{
   order_by?: SchemaTypes.InputMaybe<Array<SchemaTypes.ApiHouseholdOrderBy> | SchemaTypes.ApiHouseholdOrderBy>;
@@ -92,7 +94,7 @@ export type ApiHouseholdQueryVariables = SchemaTypes.Exact<{
 }>;
 
 
-export type ApiHouseholdQuery = { __typename?: 'query_root', household_by_pk?: { __typename?: 'household', id: string, name: string, status: SchemaTypes.HouseholdStatusEnum, severity: SchemaTypes.HouseholdSeverityEnum, code?: string | null, created_at: string, updated_at: string } | null };
+export type ApiHouseholdQuery = { __typename?: 'query_root', household_by_pk?: { __typename?: 'household', id: string, name: string, status: SchemaTypes.HouseholdStatusEnum, severity: SchemaTypes.HouseholdSeverityEnum, code?: string | null, created_at: string, updated_at: string, members_count?: number | null } | null };
 
 export type ApiHouseholderQueryVariables = SchemaTypes.Exact<{
   household_id: SchemaTypes.Scalars['uuid']['input'];
@@ -106,7 +108,7 @@ export type ApiMemberListQueryVariables = SchemaTypes.Exact<{
 }>;
 
 
-export type ApiMemberListQuery = { __typename?: 'query_root', member: Array<{ __typename?: 'member', id: string, household_id: string, dob?: string | null, father_name?: string | null, gender?: SchemaTypes.GenderEnum | null, name: string, national_id?: string | null, nationality?: SchemaTypes.NationalityEnum | null, religion?: SchemaTypes.ReligionEnum | null, surname?: string | null, status?: string | null, household: { __typename?: 'household', id: string, name: string, status: SchemaTypes.HouseholdStatusEnum, severity: SchemaTypes.HouseholdSeverityEnum, code?: string | null, created_at: string, updated_at: string } }> };
+export type ApiMemberListQuery = { __typename?: 'query_root', member: Array<{ __typename?: 'member', id: string, household_id: string, dob?: string | null, father_name?: string | null, gender?: SchemaTypes.GenderEnum | null, name: string, national_id?: string | null, nationality?: SchemaTypes.NationalityEnum | null, religion?: SchemaTypes.ReligionEnum | null, surname?: string | null, status?: string | null, household: { __typename?: 'household', id: string, name: string, status: SchemaTypes.HouseholdStatusEnum, severity: SchemaTypes.HouseholdSeverityEnum, code?: string | null, created_at: string, updated_at: string, members_count?: number | null } }> };
 
 export type ApiProjectListQueryVariables = SchemaTypes.Exact<{
   offset?: SchemaTypes.InputMaybe<SchemaTypes.Scalars['Int']['input']>;
@@ -121,4 +123,4 @@ export type ApiProjectQueryVariables = SchemaTypes.Exact<{
 }>;
 
 
-export type ApiProjectQuery = { __typename?: 'query_root', project_by_pk?: { __typename?: 'project', id: string, name: string, description?: string | null, status: SchemaTypes.ProjectStatusEnum, start_date?: string | null, due_date?: string | null, created_at: string, updated_at: string, households: Array<{ __typename?: 'household_project', household: { __typename?: 'household', id: string, name: string, status: SchemaTypes.HouseholdStatusEnum, severity: SchemaTypes.HouseholdSeverityEnum, code?: string | null, created_at: string, updated_at: string } }> } | null };
+export type ApiProjectQuery = { __typename?: 'query_root', project_by_pk?: { __typename?: 'project', id: string, name: string, description?: string | null, status: SchemaTypes.ProjectStatusEnum, start_date?: string | null, due_date?: string | null, created_at: string, updated_at: string, households: Array<{ __typename?: 'household_project', household: { __typename?: 'household', id: string, name: string, status: SchemaTypes.HouseholdStatusEnum, severity: SchemaTypes.HouseholdSeverityEnum, code?: string | null, created_at: string, updated_at: string, members_count?: number | null } }> } | null };

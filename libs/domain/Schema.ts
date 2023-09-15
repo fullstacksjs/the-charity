@@ -35,4 +35,5 @@ export const Schema = {
   nationality: () => z.union(toZodLiteralList(nationalities)),
   religion: () => z.union(toZodLiteralList(religions)),
   cityOfBirth: () => z.union(toZodLiteralList(cities)),
+  membersCount: () => z.number(),
 };

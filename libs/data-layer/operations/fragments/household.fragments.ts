@@ -14,6 +14,7 @@ export const HouseholdDetailFragment = gql`
     code
     created_at
     updated_at
+    members_count
   }
 `;
 
