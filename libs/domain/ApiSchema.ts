@@ -368,6 +368,8 @@ export type ApiHousehold = {
   created_at: Scalars['timestamptz']['output'];
   db_code: Scalars['Int']['output'];
   id: Scalars['uuid']['output'];
+  /** A computed field, executes function "count_members" */
+  members_count?: Maybe<Scalars['Int']['output']>;
   name: Scalars['String']['output'];
   severity: HouseholdSeverityEnum;
   status: HouseholdStatusEnum;
@@ -419,6 +421,7 @@ export type ApiHouseholdBoolExp = {
   created_at?: InputMaybe<ApiTimestamptzComparisonExp>;
   db_code?: InputMaybe<ApiIntComparisonExp>;
   id?: InputMaybe<ApiUuidComparisonExp>;
+  members_count?: InputMaybe<ApiIntComparisonExp>;
   name?: InputMaybe<ApiStringComparisonExp>;
   severity?: InputMaybe<HouseholdSeverityEnumComparisonExp>;
   status?: InputMaybe<HouseholdStatusEnumComparisonExp>;
@@ -498,6 +501,7 @@ export type ApiHouseholdOrderBy = {
   created_at?: InputMaybe<ApiOrderBy>;
   db_code?: InputMaybe<ApiOrderBy>;
   id?: InputMaybe<ApiOrderBy>;
+  members_count?: InputMaybe<ApiOrderBy>;
   name?: InputMaybe<ApiOrderBy>;
   severity?: InputMaybe<ApiOrderBy>;
   status?: InputMaybe<ApiOrderBy>;

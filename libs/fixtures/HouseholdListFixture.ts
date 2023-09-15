@@ -11,6 +11,7 @@ export const HouseholdListFixture: Household[] = [
     severity: HouseholdSeverityEnum.Critical,
     status: HouseholdStatusEnum.Completed,
     isCompleted: true,
+    membersCount: 3,
   },
   {
     id: '2',
@@ -21,6 +22,7 @@ export const HouseholdListFixture: Household[] = [
     severity: HouseholdSeverityEnum.Critical,
     status: HouseholdStatusEnum.Draft,
     isCompleted: false,
+    membersCount: 1,
   },
   {
     id: '3',
@@ -31,5 +33,6 @@ export const HouseholdListFixture: Household[] = [
     severity: HouseholdSeverityEnum.Normal,
     status: HouseholdStatusEnum.Completed,
     isCompleted: true,
+    membersCount: 0,
   },
 ];

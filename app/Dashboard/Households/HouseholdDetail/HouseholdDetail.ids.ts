@@ -4,6 +4,7 @@ export const householdDetailIds = {
   nameField: 'household-name-input',
   severityField: 'household-severity-input',
   statusField: 'household-status-field',
+  memberCountField: 'member-count-field',
   form: 'household-form',
   submitBtn: 'household-submit-btn',
   editBtn: 'household-edit-btn',

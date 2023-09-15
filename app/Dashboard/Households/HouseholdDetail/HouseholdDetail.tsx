@@ -16,7 +16,12 @@ import {
   TextInput,
 } from '@camp/design';
 import type { HouseholdSeverityEnum } from '@camp/domain';
-import { createResolver, householdSchema, severities } from '@camp/domain';
+import {
+  createResolver,
+  householderSchema,
+  householdSchema,
+  severities,
+} from '@camp/domain';
 import { ArrowUpIcon, CheckIcon, EditIcon, TrashIcon } from '@camp/icons';
 import { errorMessages, messages } from '@camp/messages';
 import { AppRoute, useNavigate, useParams } from '@camp/router';
@@ -36,11 +41,13 @@ import { householdDetailIds as ids } from './HouseholdDetail.ids';
 interface FormSchema {
   name: string;
   severity: HouseholdSeverityEnum;
+  membersCount: number;
 }
 
 const resolver = createResolver<FormSchema>({
   name: householdSchema.name(),
   severity: householdSchema.severity(),
+  membersCount: householderSchema.membersCount(),
 });
 
 const useStyles = createStyles(theme => ({
@@ -274,6 +281,14 @@ export const HouseholdDetail = () => {
               }))}
               label={`${t.householdFields.severityStatus.title}:`}
             />
+
+            <DetailCard.Field
+              {...createTestAttr(ids.memberCountField)}
+              title={t.householdFields.membersCount.title}
+            >
+              {t.householdFields.membersCount.present(household.membersCount)}
+            </DetailCard.Field>
+
             <DetailCard.Field
               {...createTestAttr(ids.statusField)}
               title={t.householdFields.informationStatus.title}

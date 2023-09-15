@@ -27,6 +27,7 @@ export interface Household {
   createdAt: Date;
   updatedAt: Date;
   isCompleted: boolean;
+  membersCount: number;
 }
 
 export type HouseholdKeys = Pick<Household, 'id'>;
@@ -36,6 +37,7 @@ export type HouseholdDetail = Pick<
   | 'code'
   | 'createdAt'
   | 'isCompleted'
+  | 'membersCount'
   | 'name'
   | 'severity'
   | 'status'
