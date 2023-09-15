@@ -1,4 +1,3 @@
-/* eslint-disable max-lines-per-function */
 import {
   useDeleteMemberMutation,
   useUpsertMemberMutation,
@@ -8,8 +7,6 @@ import {
   CollapsibleDashboardCard,
   ControlledDateInput,
   ControlledSelect,
-  DestructiveButton,
-  showNotification,
   TextInput,
 } from '@camp/design';
 import type {
@@ -25,24 +22,18 @@ import {
   nationalities,
   religions,
 } from '@camp/domain';
-import { CheckIcon, EditIcon, TrashIcon } from '@camp/icons';
 import { messages } from '@camp/messages';
 import { tid } from '@camp/test';
 import { isNull } from '@fullstacksjs/toolbox';
-import {
-  Button,
-  createStyles,
-  Group,
-  SimpleGrid,
-  Stack,
-  Title,
-} from '@mantine/core';
+import { SimpleGrid, Stack } from '@mantine/core';
 import { useDisclosure } from '@mantine/hooks';
 import { useBoolean } from 'ahooks';
 import { useForm } from 'react-hook-form';
 
-import { InformationBadge } from '../../../../_components/InformationBadge';
 import { memberFormIds as ids } from './MemberForm.ids';
+import { MemberFormActions } from './MemberFormActions';
+import { MemberFormHeader } from './MemberFormHeader';
+import { memberFormNotifications as notifications } from './memberFormNotifications';
 
 interface FormSchema {
   name: string;
@@ -66,9 +57,7 @@ const resolver = createResolver<FormSchema>({
   dob: memberSchema.dob(),
 });
 
-const t = messages.member;
-const tt = t.createForm;
-const tNotification = messages.notification.member;
+const t = messages.member.createForm;
 
 interface Props {
   initialMember?: MemberListItem;
@@ -78,6 +67,8 @@ interface Props {
   onUndo?: VoidFunction;
 }
 
+// NOTE: Cannot extract anymore concerns without loosing cohesion.
+// eslint-disable-next-line max-lines-per-function
 export const MemberForm = ({
   initialMember,
   onSuccess,
@@ -85,39 +76,10 @@ export const MemberForm = ({
   memberId,
   onUndo,
 }: Props) => {
-  const [createMemberMutation] = useUpsertMemberMutation();
-  const [opened, { toggle }] = useDisclosure(true);
-  const [isEditableMode, { toggle: toggleEditableMode }] = useBoolean(
-    !initialMember,
-  );
-  const [deleteMember] = useDeleteMemberMutation();
-
-  const onDeleteMember = async () => {
-    const member = initialMember;
-    const id = memberId;
-
-    if (!member || !id) return;
-
-    try {
-      const { data } = await deleteMember({
-        variables: { id },
-      });
-
-      if (isNull(data.member)) throw Error('Assert: data is null');
-      showNotification({
-        title: tNotification.delete.title,
-        message: tNotification.delete.success(member.name),
-        type: 'success',
-      });
-    } catch (err) {
-      debug.error(err);
-      showNotification({
-        title: tNotification.delete.title,
-        message: tNotification.delete.failed(member.name),
-        type: 'failure',
-      });
-    }
-  };
+  const [createMember, { loading: isCreating }] = useUpsertMemberMutation();
+  const [opened, { toggle }] = useDisclosure(!initialMember?.isCompleted);
+  const [isEditMode, { toggle: toggleEditMode }] = useBoolean(!initialMember);
+  const [deleteMember, { loading: isDeleting }] = useDeleteMemberMutation();
 
   const {
     handleSubmit,
@@ -133,34 +95,37 @@ export const MemberForm = ({
   });
   const [name, surname] = watch(['name', 'surname']);
 
+  const onDeleteMember = async () => {
+    const member = initialMember;
+    const id = memberId;
+
+    if (!member || !id) return;
+
+    try {
+      const { data } = await deleteMember({ variables: { id } });
+      if (isNull(data.member)) throw Error('Assert: data is null');
+      notifications.delete.success(member.name);
+    } catch (err) {
+      debug.error(err);
+      notifications.delete.failure(member.name);
+    }
+  };
+
   const onSubmit = handleSubmit(async values => {
     try {
-      const { data } = await createMemberMutation({
-        variables: {
-          id: memberId,
-          ...values,
-          householdId,
-        },
+      await createMember({
+        variables: { id: memberId, ...values, householdId },
       });
-      toggleEditableMode();
-      showNotification({
-        title: t.title,
-        message: t.notification.successful(data.member?.name ?? ''),
-        type: 'success',
-        ...tid(ids.notification.success),
-      });
+      toggleEditMode();
+      notifications.create.success(values.name);
       onSuccess?.();
     } catch {
-      return showNotification({
-        title: t.title,
-        message: t.notification.failed(values.name),
-        type: 'failure',
-        ...tid(ids.notification.failure),
-      });
+      notifications.create.failure(values.name);
     }
   });
 
   const handleUndo = () => {
+    if (initialMember) toggleEditMode();
     reset();
     onUndo?.();
   };
@@ -170,46 +135,43 @@ export const MemberForm = ({
       onToggle={toggle}
       open={opened}
       header={
-        <Group spacing={10}>
-          <Title order={4} color="fg" weight="bold">
-            {name ? `${name} ${surname ?? ''}` : t.createForm.title}
-          </Title>
-          <InformationBadge
-            status={initialMember?.isCompleted ? 'completed' : 'draft'}
-          />
-        </Group>
+        <MemberFormHeader
+          name={name}
+          surname={surname}
+          isCompleted={initialMember?.isCompleted}
+        />
       }
     >
       <form {...tid(ids.form)} onSubmit={onSubmit}>
         <Stack spacing={25} align="end">
           <SimpleGrid w="100%" cols={3} spacing="lg" verticalSpacing={20}>
             <TextInput
-              withAsterisk
-              readOnly={!isEditableMode}
+              required
+              readOnly={!isEditMode}
               wrapperProps={tid(ids.firstNameInput)}
               {...register('name')}
-              label={`${tt.nameInput.label}:`}
-              placeholder={tt.nameInput.placeholder}
+              label={`${t.nameInput.label}:`}
+              placeholder={t.nameInput.placeholder}
               error={errors.name?.message}
             />
             <TextInput
-              readOnly={!isEditableMode}
+              readOnly={!isEditMode}
               wrapperProps={tid(ids.lastNameInput)}
               {...register('surname')}
-              label={`${tt.lastNameInput.label}:`}
-              placeholder={tt.lastNameInput.placeholder}
+              label={`${t.lastNameInput.label}:`}
+              placeholder={t.lastNameInput.placeholder}
               error={errors.surname?.message}
             />
             <TextInput
-              readOnly={!isEditableMode}
+              readOnly={!isEditMode}
               wrapperProps={tid(ids.fatherNameInput)}
               {...register('fatherName')}
-              label={`${tt.fatherNameInput.label}:`}
-              placeholder={tt.fatherNameInput.placeholder}
+              label={`${t.fatherNameInput.label}:`}
+              placeholder={t.fatherNameInput.placeholder}
               error={errors.fatherName?.message}
             />
             <ControlledSelect
-              readOnly={!isEditableMode}
+              readOnly={!isEditMode}
               name="nationality"
               control={control}
               wrapperProps={tid(ids.nationalityInput)}
@@ -217,19 +179,19 @@ export const MemberForm = ({
                 value: v,
                 label: messages.nationalities[v],
               }))}
-              placeholder={tt.selectInputs.placeholder}
-              label={`${tt.nationalityInput.label}:`}
+              placeholder={t.selectInputs.placeholder}
+              label={`${t.nationalityInput.label}:`}
             />
             <TextInput
-              readOnly={!isEditableMode}
+              readOnly={!isEditMode}
               wrapperProps={tid(ids.nationalIdInput)}
               {...register('nationalId')}
-              label={`${tt.nationalIdInput.label}:`}
-              placeholder={tt.nationalIdInput.placeholder}
+              label={`${t.nationalIdInput.label}:`}
+              placeholder={t.nationalIdInput.placeholder}
               error={errors.nationalId?.message}
             />
             <ControlledSelect
-              readOnly={!isEditableMode}
+              readOnly={!isEditMode}
               name="gender"
               control={control}
               wrapperProps={tid(ids.genderInput)}
@@ -237,19 +199,19 @@ export const MemberForm = ({
                 value: v,
                 label: messages.genders[v],
               }))}
-              label={`${tt.genderInput.label}:`}
-              placeholder={tt.selectInputs.placeholder}
+              label={`${t.genderInput.label}:`}
+              placeholder={t.selectInputs.placeholder}
             />
             <ControlledDateInput
               name="dob"
               control={control}
-              readOnly={!isEditableMode}
+              readOnly={!isEditMode}
               wrapperProps={tid(ids.dobInput)}
-              label={`${tt.dobInput.label}:`}
-              placeholder={tt.selectInputs.placeholder}
+              label={`${t.dobInput.label}:`}
+              placeholder={t.selectInputs.placeholder}
             />
             <ControlledSelect
-              readOnly={!isEditableMode}
+              readOnly={!isEditMode}
               name="religion"
               control={control}
               wrapperProps={tid(ids.religionInput)}
@@ -257,49 +219,19 @@ export const MemberForm = ({
                 value: v,
                 label: messages.religions[v],
               }))}
-              placeholder={tt.selectInputs.placeholder}
-              label={`${tt.religionInput.label}:`}
+              placeholder={t.selectInputs.placeholder}
+              label={`${t.religionInput.label}:`}
             />
           </SimpleGrid>
-          {!isEditableMode ? (
-            <Group>
-              <DestructiveButton
-                {...tid(ids.deleteBtn)}
-                variant="outline"
-                leftIcon={<TrashIcon size={16} />}
-                onClick={() => onDeleteMember()}
-              >
-                {messages.actions.delete}
-              </DestructiveButton>
-              <Button
-                key={1}
-                {...tid(ids.editBtn)}
-                size="sm"
-                variant="outline"
-                onClick={() => toggleEditableMode()}
-                leftIcon={<EditIcon size={16} />}
-              >
-                {messages.actions.editBtn}
-              </Button>
-            </Group>
-          ) : (
-            <Group>
-              <DestructiveButton {...tid(ids.cancelBtn)} onClick={handleUndo}>
-                {messages.actions.undoBtn}
-              </DestructiveButton>
-              <Button
-                key={2}
-                {...tid(ids.submitBtn)}
-                type="submit"
-                size="sm"
-                variant="filled"
-                leftIcon={<CheckIcon size={16} />}
-                disabled={!isValid || (!isDirty && isEditableMode)}
-              >
-                {messages.actions.submitBtn}
-              </Button>
-            </Group>
-          )}
+          <MemberFormActions
+            isDeleting={isDeleting}
+            onDelete={() => onDeleteMember()}
+            isEditMode={isEditMode}
+            toggleEditMode={toggleEditMode}
+            isCreating={isCreating}
+            onUndo={handleUndo}
+            canSubmit={isValid && isDirty}
+          />
         </Stack>
       </form>
     </CollapsibleDashboardCard>

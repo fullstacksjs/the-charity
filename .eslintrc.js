@@ -14,6 +14,8 @@ module.exports = init({
   rules: {
     // NOTE: https://github.com/jsx-eslint/eslint-plugin-react/blob/master/docs/rules/no-unused-prop-types.md#known-issueslimitations
     'react/no-unused-prop-types': 'off',
+    // NOTE: Lot of false positive in props
+    'react/jsx-no-leaked-render': 'off',
     'no-console': 'error',
   },
   overrides: [

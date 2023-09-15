@@ -27,7 +27,7 @@ import { errorMessages, messages } from '@camp/messages';
 import { AppRoute, useNavigate, useParams } from '@camp/router';
 import { tid } from '@camp/test';
 import { isNull } from '@fullstacksjs/toolbox';
-import { Button, createStyles, Flex, Title } from '@mantine/core';
+import { Button, Flex, Title } from '@mantine/core';
 import { useBoolean } from 'ahooks';
 import { useForm } from 'react-hook-form';
 
@@ -49,14 +49,6 @@ const resolver = createResolver<FormSchema>({
   severity: householdSchema.severity(),
   membersCount: householderSchema.membersCount(),
 });
-
-const useStyles = createStyles(theme => ({
-  input: {
-    label: {
-      color: theme.colors.fg[4],
-    },
-  },
-}));
 
 // eslint-disable-next-line max-lines-per-function
 export const HouseholdDetail = () => {
@@ -90,7 +82,8 @@ export const HouseholdDetail = () => {
 
   const isReadOnly = !isEditing;
 
-  const [deleteHousehold] = useDeleteHouseholdMutation();
+  const [deleteHousehold, { loading: isDeleting }] =
+    useDeleteHouseholdMutation();
   const [completeHousehold] = useCompleteHouseholdMutation();
   const [updateHousehold] = useEditHouseholdMutation();
 
@@ -132,7 +125,6 @@ export const HouseholdDetail = () => {
   });
 
   const householder = householderData?.householder;
-  const { classes } = useStyles();
 
   if (loading) return <FullPageLoader />;
 
@@ -222,6 +214,7 @@ export const HouseholdDetail = () => {
               ) : (
                 <>
                   <DestructiveButton
+                    loading={isDeleting}
                     leftIcon={<TrashIcon />}
                     onClick={handleDeleteHousehold}
                   >
@@ -255,7 +248,6 @@ export const HouseholdDetail = () => {
           <DetailCard.Section>
             <TextInput
               readOnly={isReadOnly}
-              className={classes.input}
               wrapperProps={tid(ids.nameField)}
               {...register('name')}
               label={`${t.householdFields.name.title}:`}
@@ -283,7 +275,7 @@ export const HouseholdDetail = () => {
             />
 
             <DetailCard.Field
-              {...createTestAttr(ids.memberCountField)}
+              {...tid(ids.memberCountField)}
               title={t.householdFields.membersCount.title}
             >
               {t.householdFields.membersCount.present(household.membersCount)}
