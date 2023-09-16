@@ -31,11 +31,15 @@ export const useQuery = <
   });
 
   const data = useMemo(() => mapper(result.data), [result.data, mapper]);
-
+  const previousData = useMemo(
+    () => mapper(result.previousData),
+    [result.previousData, mapper],
+  );
   // NOTE: we need to implement other functions that rely on Data type ourself
   return {
     ...result,
     data,
+    previousData,
     refetch: async (variables: ReturnType<TVariableMapper>) => {
       const res = await result.refetch(options.mapVariables(variables));
       return { ...res, data: mapper(res.data) };

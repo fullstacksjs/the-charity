@@ -66,14 +66,14 @@ export const HouseholdList = () => {
     pageSize: 10,
   });
 
-  const { data, loading, error } = useHouseholdListQuery({
+  const { data, loading, error, previousData } = useHouseholdListQuery({
     variables: {
       orderBy: sorting,
       range: pagination,
     },
   });
 
-  const householdsCount = data?.totalCount ?? 0;
+  const householdsCount = data?.totalCount ?? previousData?.totalCount ?? 0;
   const households = data?.household ?? empty;
 
   const table = useReactTable({
