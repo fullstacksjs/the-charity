@@ -73,22 +73,21 @@ export function useCompleteHouseholdMutation(
         query: HouseholdListDocument,
       });
 
-      const prevHouseholds =
-        prevHouseholdListQuery?.household_aggregate.nodes ?? [];
+      const prevHouseholds = prevHouseholdListQuery?.household ?? [];
 
       cache.writeQuery<ApiHouseholdListQuery>({
         query: HouseholdListDocument,
         data: {
           household_aggregate: {
-            nodes: prevHouseholds.map(h =>
-              h.id === newHouseholds.id ? newHouseholds : h,
-            ),
             aggregate: {
               count:
                 prevHouseholdListQuery?.household_aggregate.aggregate?.count ??
                 0,
             },
           },
+          household: prevHouseholds.map(h =>
+            h.id === newHouseholds.id ? newHouseholds : h,
+          ),
         },
       });
 

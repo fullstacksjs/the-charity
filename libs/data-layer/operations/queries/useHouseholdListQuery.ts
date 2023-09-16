@@ -4,7 +4,7 @@ import { useQuery } from '@camp/api-client';
 import type { HouseholdKeys, HouseholdListItem } from '@camp/domain';
 import { ApiOrderBy } from '@camp/domain';
 import type { Nullish } from '@fullstacksjs/toolbox';
-import { isEmpty } from '@fullstacksjs/toolbox';
+import { isEmpty, isNotNull } from '@fullstacksjs/toolbox';
 import type { PaginationState, SortingState } from '@tanstack/react-table';
 
 import type {
@@ -24,11 +24,11 @@ export const HouseholdListDocument = gql`
     $limit: Int
     $offset: Int
   ) {
-    household_aggregate(order_by: $order_by, limit: $limit, offset: $offset) {
-      nodes {
-        ...HouseholdKeys
-        ...HouseholdListItem
-      }
+    household(order_by: $order_by, limit: $limit, offset: $offset) {
+      ...HouseholdKeys
+      ...HouseholdListItem
+    }
+    household_aggregate {
       aggregate {
         count
       }
@@ -46,7 +46,7 @@ export interface HouseholdListDto {
 const toClient = (data: ApiHouseholdListQuery | null): HouseholdListDto => {
   return {
     household:
-      data?.household_aggregate.nodes.filter(Boolean).map(d => ({
+      data?.household.filter(isNotNull).map(d => ({
         ...getHouseholdKeys(d),
         ...getHouseholdListItem(d),
       })) ?? [],

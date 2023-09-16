@@ -10,30 +10,29 @@ import {
   HouseholdStatusEnum,
 } from '@camp/domain';
 
-export const ApiHouseholdListFixture: ApiHouseholdListQuery['household_aggregate']['nodes'] =
-  [
-    {
-      __typename: 'household',
-      id: '1',
-      name: 'خانوار اول',
-      severity: HouseholdSeverityEnum.Critical,
-      status: HouseholdStatusEnum.Completed,
-    },
-    {
-      __typename: 'household',
-      id: '2',
-      name: 'خانوار دوم',
-      severity: HouseholdSeverityEnum.Critical,
-      status: HouseholdStatusEnum.Draft,
-    },
-    {
-      __typename: 'household',
-      id: '3',
-      name: 'خانوار سوم',
-      severity: HouseholdSeverityEnum.Normal,
-      status: HouseholdStatusEnum.Completed,
-    },
-  ];
+export const ApiHouseholdListFixture: ApiHouseholdListQuery['household'] = [
+  {
+    __typename: 'household',
+    id: '1',
+    name: 'خانوار اول',
+    severity: HouseholdSeverityEnum.Critical,
+    status: HouseholdStatusEnum.Completed,
+  },
+  {
+    __typename: 'household',
+    id: '2',
+    name: 'خانوار دوم',
+    severity: HouseholdSeverityEnum.Critical,
+    status: HouseholdStatusEnum.Draft,
+  },
+  {
+    __typename: 'household',
+    id: '3',
+    name: 'خانوار سوم',
+    severity: HouseholdSeverityEnum.Normal,
+    status: HouseholdStatusEnum.Completed,
+  },
+];
 
 export const householdListMock: MockedResponse<
   ApiHouseholdListQuery,
@@ -46,9 +45,9 @@ export const householdListMock: MockedResponse<
   result: {
     data: {
       household_aggregate: {
-        nodes: ApiHouseholdListFixture,
         aggregate: { count: ApiHouseholdListFixture.length },
       },
+      household: ApiHouseholdListFixture,
     },
   },
 };

@@ -89,7 +89,7 @@ export type ApiHouseholdListQueryVariables = SchemaTypes.Exact<{
 }>;
 
 
-export type ApiHouseholdListQuery = { __typename?: 'query_root', household_aggregate: { __typename?: 'household_aggregate', nodes: Array<{ __typename?: 'household', id: string, name: string, severity: SchemaTypes.HouseholdSeverityEnum, status: SchemaTypes.HouseholdStatusEnum }>, aggregate?: { __typename?: 'household_aggregate_fields', count: number } | null } };
+export type ApiHouseholdListQuery = { __typename?: 'query_root', household: Array<{ __typename?: 'household', id: string, name: string, severity: SchemaTypes.HouseholdSeverityEnum, status: SchemaTypes.HouseholdStatusEnum }>, household_aggregate: { __typename?: 'household_aggregate', aggregate?: { __typename?: 'household_aggregate_fields', count: number } | null } };
 
 export type ApiHouseholdQueryVariables = SchemaTypes.Exact<{
   id: SchemaTypes.Scalars['uuid']['input'];
@@ -104,11 +104,6 @@ export type ApiHouseholderQueryVariables = SchemaTypes.Exact<{
 
 
 export type ApiHouseholderQuery = { __typename?: 'query_root', householder_by_pk?: { __typename?: 'householder', id: string, name: string, father_name?: string | null, surname?: string | null, nationality?: SchemaTypes.NationalityEnum | null, religion?: SchemaTypes.ReligionEnum | null, city?: SchemaTypes.CityEnum | null, gender?: SchemaTypes.GenderEnum | null, status?: string | null, national_id?: string | null, dob?: string | null } | null };
-
-export type ApiHouseholdsCountQueryVariables = SchemaTypes.Exact<{ [key: string]: never; }>;
-
-
-export type ApiHouseholdsCountQuery = { __typename?: 'query_root', household_aggregate: { __typename?: 'household_aggregate', aggregate?: { __typename?: 'household_aggregate_fields', count: number } | null } };
 
 export type ApiMemberListQueryVariables = SchemaTypes.Exact<{
   household_id: SchemaTypes.Scalars['uuid']['input'];
