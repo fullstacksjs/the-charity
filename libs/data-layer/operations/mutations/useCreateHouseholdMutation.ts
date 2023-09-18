@@ -1,4 +1,5 @@
 import { gql } from '@apollo/client';
+import { mergeDeep } from '@apollo/client/utilities';
 import type { MutationOptions } from '@camp/api-client';
 import { useMutation } from '@camp/api-client';
 import type {
@@ -79,6 +80,15 @@ export function useCreateHouseholdMutation(
               fragmentName: 'NewHousehold',
             });
             return [newHouseholdRef!, ...existingHouseholdsRefs];
+          },
+          household_aggregate(existingAggregate) {
+            return mergeDeep(existingAggregate, {
+              aggregate: {
+                count: existingAggregate.aggregate?.count
+                  ? existingAggregate.aggregate.count + 1
+                  : undefined,
+              },
+            });
           },
         },
       });
