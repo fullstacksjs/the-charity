@@ -59,6 +59,8 @@ export const useDeleteHouseholdMutation = (
       cache.evict({ id: cache.identify(household) });
       cache.gc();
 
+      cache.evict({ fieldName: 'household' });
+
       cache.modify({
         fields: {
           household_aggregate(existingAggregate) {
