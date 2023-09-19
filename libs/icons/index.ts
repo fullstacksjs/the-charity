@@ -6,6 +6,7 @@ export {
   Check as CheckIcon,
   ChevronDown as ChevronDownIcon,
   ChevronLeft as ChevronLeftIcon,
+  ChevronRight as ChevronRightIcon,
   Home as DashboardIcon,
   Edit as EditIcon,
   XCircle as ErrorAlertIcon,

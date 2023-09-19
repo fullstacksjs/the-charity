@@ -40,7 +40,18 @@ export const householdListMock: MockedResponse<
 > = {
   request: {
     query: HouseholdListDocument,
-    variables: { order_by: { created_at: ApiOrderBy.Desc } },
+    variables: {
+      order_by: { created_at: ApiOrderBy.Desc },
+      limit: 10,
+      offset: 0,
+    },
   },
-  result: { data: { household: ApiHouseholdListFixture } },
+  result: {
+    data: {
+      household_aggregate: {
+        aggregate: { count: ApiHouseholdListFixture.length },
+      },
+      household: ApiHouseholdListFixture,
+    },
+  },
 };

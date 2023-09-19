@@ -84,10 +84,12 @@ export type ApiUpsertMemberMutation = { __typename?: 'mutation_root', insert_mem
 
 export type ApiHouseholdListQueryVariables = SchemaTypes.Exact<{
   order_by?: SchemaTypes.InputMaybe<Array<SchemaTypes.ApiHouseholdOrderBy> | SchemaTypes.ApiHouseholdOrderBy>;
+  limit?: SchemaTypes.InputMaybe<SchemaTypes.Scalars['Int']['input']>;
+  offset?: SchemaTypes.InputMaybe<SchemaTypes.Scalars['Int']['input']>;
 }>;
 
 
-export type ApiHouseholdListQuery = { __typename?: 'query_root', household: Array<{ __typename?: 'household', id: string, name: string, severity: SchemaTypes.HouseholdSeverityEnum, status: SchemaTypes.HouseholdStatusEnum }> };
+export type ApiHouseholdListQuery = { __typename?: 'query_root', household: Array<{ __typename?: 'household', id: string, name: string, severity: SchemaTypes.HouseholdSeverityEnum, status: SchemaTypes.HouseholdStatusEnum }>, household_aggregate: { __typename?: 'household_aggregate', aggregate?: { __typename?: 'household_aggregate_fields', count: number } | null } };
 
 export type ApiHouseholdQueryVariables = SchemaTypes.Exact<{
   id: SchemaTypes.Scalars['uuid']['input'];

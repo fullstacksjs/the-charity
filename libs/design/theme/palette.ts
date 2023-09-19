@@ -38,6 +38,7 @@ export const palette: Record<Palette, SemanticColor> = {
     emphasized: '#495057',
     muted: '#ADB5BD',
     subtle: '#F8F9FA',
+    first: ['#adb5bd', '#a1a9b1', '#949ca4', '#495057'],
   },
   primary: {
     first: ['#EDF2FF', '#DBE4FF', '#BAC8FF', '#91A7FF'],

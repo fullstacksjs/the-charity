@@ -1,6 +1,13 @@
 import { tid } from '@camp/test';
 import { Table as MantineTable } from '@mantine/core';
 
+import { TableBody } from './TableBody';
+import { TableCell } from './TableCell';
+import { TableHead } from './TableHead';
+import { TableHeader } from './TableHeader';
+import { TablePagination } from './TablePagination';
+import { TableRow } from './TableRow';
+
 interface Props {
   children: React.ReactNode;
   id: string;
@@ -20,3 +27,10 @@ export const Table = ({ children, id }: Props) => {
     </MantineTable>
   );
 };
+
+Table.Header = TableHeader;
+Table.Head = TableHead;
+Table.Row = TableRow;
+Table.Body = TableBody;
+Table.Pagination = TablePagination;
+Table.Cell = TableCell;

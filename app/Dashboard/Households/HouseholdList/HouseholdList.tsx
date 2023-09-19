@@ -1,17 +1,13 @@
+import type { HouseholdListDto } from '@camp/data-layer';
 import { useHouseholdListQuery } from '@camp/data-layer';
-import {
-  DashboardCard,
-  DashboardTitle,
-  FullPageLoader,
-  showNotification,
-} from '@camp/design';
+import { DashboardCard, DashboardTitle, showNotification } from '@camp/design';
 import { householdColumnHelper } from '@camp/domain';
 import { errorMessages, messages } from '@camp/messages';
 import { AppRoute } from '@camp/router';
 import { tid } from '@camp/test';
-import { isEmpty, isNull } from '@fullstacksjs/toolbox';
+import { isEmpty } from '@fullstacksjs/toolbox';
 import { Group } from '@mantine/core';
-import type { SortingState } from '@tanstack/react-table';
+import type { PaginationState, SortingState } from '@tanstack/react-table';
 import { getCoreRowModel, useReactTable } from '@tanstack/react-table';
 import { useState } from 'react';
 
@@ -61,20 +57,32 @@ const columns = [
   }),
 ];
 
-const empty: any[] = [];
+const empty: HouseholdListDto['household'] = [];
 
 export const HouseholdList = () => {
   const [sorting, setSorting] = useState<SortingState>([]);
-
-  const { data, loading, error } = useHouseholdListQuery({
-    variables: { orderBy: sorting },
+  const [pagination, setPagination] = useState<PaginationState>({
+    pageIndex: 0,
+    pageSize: 10,
   });
-  const households = data?.household ?? null;
+
+  const { data, loading, error, previousData } = useHouseholdListQuery({
+    variables: {
+      orderBy: sorting,
+      range: pagination,
+    },
+  });
+
+  const householdsCount = data?.totalCount ?? previousData?.totalCount ?? 0;
+  const households = data?.household ?? empty;
 
   const table = useReactTable({
-    data: households ?? empty,
+    data: households,
     columns,
-    state: { sorting },
+    state: { sorting, pagination },
+    onPaginationChange: setPagination,
+    manualPagination: true,
+    pageCount: Math.ceil(householdsCount / pagination.pageSize),
     onSortingChange: setSorting,
     getCoreRowModel: getCoreRowModel(),
   });
@@ -89,16 +97,14 @@ export const HouseholdList = () => {
     return null;
   }
 
-  if (loading) return <FullPageLoader />;
-  if (isNull(households)) return null;
-  if (isEmpty(households)) return <HouseholdEmptyState />;
+  if (isEmpty(households) && !loading) return <HouseholdEmptyState />;
 
   return (
     <DashboardCard
       left={<CreateHouseholdButton />}
       right={<DashboardTitle>{t.title}</DashboardTitle>}
     >
-      <HouseholdTable table={table} />
+      <HouseholdTable loading={loading} table={table} />
     </DashboardCard>
   );
 };
