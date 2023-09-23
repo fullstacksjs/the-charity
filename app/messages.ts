@@ -197,21 +197,21 @@ export const messages = {
     },
   },
   nationalities: {
-    ir: 'ایران',
-    unknown: 'نامشخص',
+    Ir: 'ایران',
+    Unknown: 'نامشخص',
   },
   genders: {
     Male: 'مرد',
     Female: 'زن',
-    unknown: 'نامشخص',
+    Unknown: 'نامشخص',
   },
   religions: {
-    islam: 'اسلام',
-    unknown: 'نامشخص',
+    Islam: 'اسلام',
+    Unknown: 'نامشخص',
   },
   cities: {
-    tehran: 'تهران',
-    unknown: 'نامشخص',
+    Tehran: 'تهران',
+    Unknown: 'نامشخص',
   },
   householder: {
     detail: {
