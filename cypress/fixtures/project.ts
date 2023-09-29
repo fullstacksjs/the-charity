@@ -1,6 +1,6 @@
-import { faker } from '@faker-js/faker';
+import { fakerFA } from '@faker-js/faker';
 
 export const projectFixture = {
-  name: () => faker.lorem.word(100),
-  description: () => faker.lorem.lines(1),
+  name: () => fakerFA.lorem.word(100),
+  description: () => fakerFA.lorem.lines(1),
 };

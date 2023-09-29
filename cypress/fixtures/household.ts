@@ -1,5 +1,5 @@
-import { faker } from '@faker-js/faker';
+import { fakerFA } from '@faker-js/faker';
 
 export const householdFixture = {
-  name: () => faker.name.fullName(),
+  name: () => fakerFA.person.fullName(),
 };
