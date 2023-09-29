@@ -4,6 +4,7 @@ import type {
   NationalityEnum,
   ReligionEnum,
 } from './ApiSchema';
+import type { HouseholdKeys } from './Household';
 import { Schema } from './Schema';
 
 export const householderSchema = {
@@ -24,9 +25,23 @@ export enum HouseholderStatus {
   Draft = 'Draft',
 }
 
-export interface DraftHouseholder {
+export interface DraftHouseholder extends HouseholdKeys, HouseholderIdentity {
   status: HouseholderStatus.Draft;
+}
+
+export interface CompletedHouseholder
+  extends HouseholdKeys,
+    Required<HouseholderIdentity> {
+  status: HouseholderStatus.Completed;
+}
+
+export type Householder = CompletedHouseholder | DraftHouseholder;
+
+export interface HouseholderKeys {
   id: string;
+}
+
+export interface HouseholderIdentity {
   name: string;
   surname?: string;
   fatherName?: string;
@@ -37,28 +52,5 @@ export interface DraftHouseholder {
   cityOfBirth?: CityEnum;
   gender?: GenderEnum;
   isCompleted: boolean;
+  isIdentityCompleted: boolean;
 }
-
-export interface CompletedHouseholder
-  extends Omit<Required<DraftHouseholder>, 'status'> {
-  status: HouseholderStatus.Completed;
-}
-
-export type Householder = CompletedHouseholder | DraftHouseholder;
-
-export type HouseholderKeys = Pick<Householder, 'id'>;
-
-export type HouseholderIdentity = Pick<
-  Householder,
-  | 'cityOfBirth'
-  | 'dob'
-  | 'fatherName'
-  | 'gender'
-  | 'isCompleted'
-  | 'name'
-  | 'nationalId'
-  | 'nationality'
-  | 'religion'
-  | 'status'
-  | 'surname'
->;

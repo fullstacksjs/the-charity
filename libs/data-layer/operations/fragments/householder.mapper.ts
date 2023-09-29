@@ -5,6 +5,7 @@ import type {
 import type { HouseholderIdentity, HouseholderKeys } from '@camp/domain';
 import { HouseholderStatus } from '@camp/domain';
 
+import { hasNullish } from './mapper.utils';
 import { toDate } from './scalar.mapper';
 
 export const getHouseholderKeys = (
@@ -18,7 +19,7 @@ export const getHouseholderKeys = (
 export const getHouseholderIdentity = (
   data: ApiHouseholderIdentityFragment,
 ): HouseholderIdentity => {
-  return {
+  const config = {
     status: data.status as HouseholderStatus,
     name: data.name,
     surname: data.surname ?? undefined,
@@ -30,5 +31,10 @@ export const getHouseholderIdentity = (
     nationalId: data.national_id ?? undefined,
     dob: toDate(data.dob),
     isCompleted: data.status === HouseholderStatus.Completed,
+    isIdentityCompleted: false,
   };
+
+  if (!hasNullish(config)) config.isIdentityCompleted = true;
+
+  return config;
 };

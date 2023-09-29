@@ -3,8 +3,8 @@ require('dotenv').config({ path: '.env.dev' });
 module.exports = {
   client: {
     service: {
-      name: 'the-charity-frontend',
-      url: 'https://api.fullstacksjs.com/v1/graphql',
+      name: 'the-charity',
+      url: process.env.APP_GRAPHQL_SCHEMA_URL,
       headers: {
         'x-hasura-admin-secret': process.env.APP_HASURA_ADMIN_SECRET,
       },

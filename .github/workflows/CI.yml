@@ -47,9 +47,9 @@ jobs:
     env:
       APP_API_ENDPOINT: /graphql
       NODE_ENV: development
-      APP_GRAPHQL_SCHEMA_URL: https://api.fullstacksjs.com/v1/graphql/
-      APP_AUTH0_AUDIENCE: https://api.fullstacksjs.com/v1/graphql/
-      APP_AUTH0_DOMAIN: dev-jxuskaag.us.auth0.com
+      APP_GRAPHQL_SCHEMA_URL: ${{ vars.APP_GRAPHQL_SCHEMA_URL }}
+      APP_AUTH0_AUDIENCE: ${{ vars.APP_AUTH0_AUDIENCE }}
+      APP_AUTH0_DOMAIN: ${{ vars.APP_AUTH0_DOMAIN }}
       APP_AUTH0_CLIENT_ID: ${{ secrets.APP_AUTH0_CLIENT_ID }}
       APP_HASURA_ADMIN_SECRET: ${{ secrets.APP_HASURA_ADMIN_SECRET }}
 
@@ -84,10 +84,10 @@ jobs:
 
     environment: Preview
     env:
-      APP_GRAPHQL_SCHEMA_URL: https://api.fullstacksjs.com/v1/graphql/
-      APP_AUTH0_AUDIENCE: https://api.fullstacksjs.com/v1/graphql/
-      APP_API_ENDPOINT: https://api.fullstacksjs.com/v1/graphql/
-      APP_AUTH0_DOMAIN: dev-jxuskaag.us.auth0.com
+      APP_GRAPHQL_SCHEMA_URL: ${{ vars.APP_GRAPHQL_SCHEMA_URL }}
+      APP_AUTH0_AUDIENCE: ${{ vars.APP_AUTH0_AUDIENCE }}
+      APP_API_ENDPOINT: ${{ vars.APP_API_ENDPOINT }}
+      APP_AUTH0_DOMAIN: ${{ vars.APP_AUTH0_DOMAIN }}
       APP_AUTH0_CLIENT_ID: ${{ secrets.APP_AUTH0_CLIENT_ID }}
       APP_HASURA_ADMIN_SECRET: ${{ secrets.APP_HASURA_ADMIN_SECRET }}
       NODE_TLS_REJECT_UNAUTHORIZED: 0

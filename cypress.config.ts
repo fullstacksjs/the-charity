@@ -13,7 +13,6 @@ export default defineConfig({
     baseUrl: `https://${host}:${port}`,
     projectId: '8jt3ix',
     video: getBooleanEnv('CYPRESS_RECORD_VIDEO', true),
-    videoUploadOnPasses: false,
     defaultCommandTimeout: 10000,
     experimentalMemoryManagement: true,
     env: {

@@ -64,7 +64,7 @@ export const HouseholderForm = ({
   householdId,
   householdName,
 }: Props) => {
-  const isCompleted = initialHouseholder?.isCompleted;
+  const isCompleted = initialHouseholder?.isIdentityCompleted;
   const [isEditMode, { set: setIsEditing }] = useBoolean(!isCompleted);
   const [upsertHouseholder] = useUpsertHouseholderMutation();
   const isReadOnly = !isEditMode;
@@ -89,7 +89,7 @@ export const HouseholderForm = ({
 
       if (!isNull(data)) {
         reset({ ...data.householder, dob: data.householder?.dob ?? null });
-        setIsEditing(!data.householder?.isCompleted);
+        setIsEditing(!data.householder?.isIdentityCompleted);
       }
       householdNotifications.edit.success(householdName);
     } catch {
