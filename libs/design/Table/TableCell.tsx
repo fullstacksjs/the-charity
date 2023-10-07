@@ -1,4 +1,4 @@
-interface Props extends React.TdHTMLAttributes<HTMLTableDataCellElement> {
+interface Props extends React.TdHTMLAttributes<HTMLTableCellElement> {
   children: React.ReactNode;
 }
 

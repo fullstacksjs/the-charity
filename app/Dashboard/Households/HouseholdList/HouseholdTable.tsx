@@ -1,4 +1,4 @@
-import { DataTable } from '@camp/design';
+import { DataTable, Table } from '@camp/design';
 import type { HouseholdKeys, HouseholdListItem } from '@camp/domain';
 import type { AppRoute } from '@camp/router';
 import { useNavigate } from '@camp/router';
@@ -26,9 +26,7 @@ export const HouseholdTable = ({ loading, table }: Props) => {
       id={ids.householdTableId}
       table={table}
       loading={loading}
-      // TODO add skeleton here
-      // eslint-disable-next-line react/jsx-no-useless-fragment
-      fallback={<></>}
+      fallback={<Table.Skeleton />}
       onRowClick={({ id }: HouseholdKeys & HouseholdListItem) => gotoDetail(id)}
     />
   );
