@@ -3,15 +3,17 @@
 import { TableCell } from '../Table/TableCell';
 import { TableRow } from '../Table/TableRow';
 
-export const TableSkeleton = () => {
-  const numberOfSkeletonRows = 10;
-  const numberOfSkeletonCells = 4;
+interface Props {
+  row: number
+  cell:‌ number;
+}
 
+export const TableSkeleton = ({ row, cell}:‌ Props) => {
   const skeletonRows = Array.from(
-    { length: numberOfSkeletonRows },
+    { length: row },
     (_, rowIndex) => (
       <TableRow key={`skeleton-row-${rowIndex}`}>
-        {Array.from({ length: numberOfSkeletonCells }, (_, cellIndex) => (
+        {Array.from({ length: cell }, (_, cellIndex) => (
           <TableCell key={`skeleton-cell-${cellIndex}`}>
             {cellIndex === 0 ? (
               <svg

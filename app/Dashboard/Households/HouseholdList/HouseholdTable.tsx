@@ -26,7 +26,7 @@ export const HouseholdTable = ({ loading, table }: Props) => {
       id={ids.householdTableId}
       table={table}
       loading={loading}
-      fallback={<Table.Skeleton />}
+      fallback={<Table.Skeleton row={10} cell={4} />}
       onRowClick={({ id }: HouseholdKeys & HouseholdListItem) => gotoDetail(id)}
     />
   );
