@@ -11,16 +11,18 @@ The project glossary is a collection of terms captured from models and shapes th
 
 ## Terms
 
-| Term             | Definition                                                                                                 |
-| ---------------- | ---------------------------------------------------------------------------------------------------------- |
+| Term                | Definition                                                                                                    |
+| ------------------- | ------------------------------------------------------------------------------------------------------------- |
 | Household           | a term used for a group of Members under support. a Household must have a Householder.                        |
-| Dependent        | a Member who falls under the support of a Householder.                                                     |
-| Householder      | a Member who provides emotional and financial support to a Household.                                         |
-| Need             | Cash or non-cash support that a Household or Group of Families needs.                                         |
-| Caseworker       | a person involved in directly considering the individual case's problems, needs, and adjustments.          |
-| Project          | the predefined program of aiding a Household or group of Families with money, properties, or material goods.  |
-| Loan             | a loan is money given to a Household in exchange for future repayment of the loan value amount with interest. |
-| Member           | a Householder or a Dependent                                                                               |
-| Project Gallery  | a gallery of the pictures of a Project                                                                     |
+| Dependent           | a Member who falls under the support of a Householder.                                                        |
+| Householder         | a Member who provides emotional and financial support to a Household.                                         |
+| Need                | Cash or non-cash support that a Household or Group of Families needs.                                         |
+| Caseworker          | a person involved in directly considering the individual case's problems, needs, and adjustments.             |
+| Project             | the predefined program of aiding a Household or group of Families with money, properties, or material goods.  |
+| Loan                | a loan is money given to a Household in exchange for future repayment of the loan value amount with interest. |
+| Member              | a Householder or a Dependent which belongs to a Household                                                     |
+| Project Gallery     | a gallery of the pictures and documents of a Project                                                          |
 | Draft Household     | A saved Household which is not completed yet.                                                                 |
 | Completed Household | A Household in which all information is provided and submitted.                                               |
+| Visit               | An assessment by a caseworker at a beneficiary's household to evaluate their living conditions and needs.     |
+| Accommodation Type  | A classification indicating whether a household owns or rents their dwelling                                  |

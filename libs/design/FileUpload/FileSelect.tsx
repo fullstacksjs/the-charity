@@ -1,7 +1,7 @@
+import { UploadIcon } from '@camp/icons';
 import { messages } from '@camp/messages';
 import { Button, Group, Text } from '@mantine/core';
 import { forwardRef } from 'react';
-import { Upload } from 'react-feather';
 
 interface Props extends Omit<React.HTMLProps<HTMLInputElement>, 'onClick'> {
   onClick?: React.MouseEventHandler<HTMLButtonElement>;
@@ -23,7 +23,7 @@ export const FileSelect = forwardRef<HTMLInputElement, Props>(
             color: props.disabled ? theme.colors.fg[4] : theme.colors.fg[5],
           })}
         >
-          <Upload />
+          <UploadIcon />
           <Text size="sm">{t.note}</Text>
         </Group>
       </Group>
