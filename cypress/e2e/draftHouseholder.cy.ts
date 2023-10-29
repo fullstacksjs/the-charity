@@ -1,4 +1,4 @@
-import { pruneUndefinedOrEmpty } from '@fullstacksjs/toolbox';
+import { isNull, pruneValueWhen } from '@fullstacksjs/toolbox';
 
 import { householderFormIds as ids } from '../../app/Dashboard/Households/HouseholdDetail/_components/HouseholderForm/HouseholderForm.ids';
 import { householdDetailIds as tabIds } from '../../app/Dashboard/Households/HouseholdDetail/HouseholdDetail.ids';
@@ -66,7 +66,7 @@ describe('Householder', () => {
   });
 
   it('[OK]: Admin wants to add householder information', () => {
-    const mock = pruneUndefinedOrEmpty(householderFixture());
+    const mock = pruneValueWhen(householderFixture(), isNull);
     addHouseholder(mock);
   });
 
@@ -77,7 +77,7 @@ describe('Householder', () => {
   });
 
   it('[OK]: Admin wants to undo changes after editing form', () => {
-    const mock = pruneUndefinedOrEmpty(householderFixture());
+    const mock = pruneValueWhen(householderFixture(), isNull);
 
     addHouseholder(mock);
     cy.findByTestId(ids.editBtn, { timeout: 1e4 }).click();
@@ -87,7 +87,7 @@ describe('Householder', () => {
   });
 
   it('[OK]: Admin wants to revisit householder information', () => {
-    const mock = pruneUndefinedOrEmpty(householderFixture());
+    const mock = pruneValueWhen(householderFixture(), isNull);
     addHouseholder(mock);
     cy.reload();
     compareHouseholderForm(mock);
