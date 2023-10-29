@@ -1,4 +1,4 @@
-import type { Nullish } from '@fullstacksjs/toolbox';
+import type { Nullable } from '@fullstacksjs/toolbox';
 import type { Control, FieldValues, Path, PathValue } from 'react-hook-form';
 import { Controller } from 'react-hook-form';
 
@@ -8,7 +8,7 @@ import { Select } from './Select';
 interface Props<T extends FieldValues> extends SelectProps {
   name: Path<T>;
   control: Control<T>;
-  presentation?: (value: Nullish | PathValue<T, Path<T>>) => JSX.Element;
+  presentation?: (value: Nullable<PathValue<T, Path<T>>>) => JSX.Element;
 }
 
 export const ControlledSelect = <T extends FieldValues>({

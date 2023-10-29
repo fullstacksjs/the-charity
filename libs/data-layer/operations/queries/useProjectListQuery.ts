@@ -6,7 +6,7 @@ import type {
   ApiProjectListQueryVariables,
 } from '@camp/data-layer';
 import type { ProjectKeys, ProjectListItem } from '@camp/domain';
-import type { Nullish } from '@fullstacksjs/toolbox';
+import type { Nullable } from '@fullstacksjs/toolbox';
 
 import {
   getProjectKeys,
@@ -37,7 +37,7 @@ export interface ProjectList {
   projects: (ProjectKeys & ProjectListItem)[];
 }
 
-const toClient = (data: ApiProjectListQuery | Nullish): ProjectList => {
+const toClient = (data: Nullable<ApiProjectListQuery>): ProjectList => {
   const projects = data?.project_aggregate.nodes;
 
   return {

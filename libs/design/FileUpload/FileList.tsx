@@ -1,4 +1,4 @@
-import { isNullOrEmpty } from '@fullstacksjs/toolbox';
+import { isNullOrEmptyArray } from '@fullstacksjs/toolbox';
 import { Box } from '@mantine/core';
 
 import { File } from './File';
@@ -10,7 +10,7 @@ interface Props {
 }
 
 export const FileList = ({ files, onRemove }: Props) => {
-  if (isNullOrEmpty(files)) return null;
+  if (isNullOrEmptyArray(files)) return null;
 
   return (
     <Box>

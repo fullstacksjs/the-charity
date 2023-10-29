@@ -2,7 +2,7 @@ import { gql } from '@apollo/client';
 import type { QueryHookOptions } from '@camp/api-client';
 import { useQuery } from '@camp/api-client';
 import type { Member } from '@camp/domain';
-import type { Nullish } from '@fullstacksjs/toolbox';
+import type { Nullable } from '@fullstacksjs/toolbox';
 
 import type {
   ApiMemberListQuery,
@@ -41,7 +41,7 @@ export interface MemberList {
   members: Member[];
 }
 
-const toClient = (data: ApiMemberListQuery | Nullish) => {
+const toClient = (data: Nullable<ApiMemberListQuery>) => {
   const members = data?.member;
   if (members == null) return null;
   return {

@@ -1,10 +1,6 @@
 /// <reference types="vitest" />
-import {
-  compact,
-  getBooleanEnv,
-  getEnv,
-  toInteger,
-} from '@fullstacksjs/toolbox';
+import { Config } from '@fullstacksjs/config';
+import { compact } from '@fullstacksjs/toolbox';
 import basicSsl from '@vitejs/plugin-basic-ssl';
 import react from '@vitejs/plugin-react';
 import type { UserConfig } from 'vite';
@@ -14,6 +10,18 @@ import svgr from 'vite-plugin-svgr';
 import tsconfigPaths from 'vite-tsconfig-paths';
 
 import { cypressAliases } from './configs/vite/cypressAliases';
+
+const envs = new Config({
+  port: Config.number({ default: 3000 }),
+  host: Config.string(),
+  target: Config.string(),
+  open: Config.boolean(),
+}).parse({
+  port: process.env.PORT,
+  host: process.env.HOST,
+  target: process.env.TARGET,
+  open: process.env.OPEN,
+});
 
 interface Options {
   https?: boolean;
@@ -28,14 +36,14 @@ export const config = ({ https = true }: Options = {}): UserConfig => ({
     svgr(),
   ]),
   server: {
-    port: toInteger(getEnv('PORT', ''), 3000),
-    host: getEnv('HOST'),
-    open: getBooleanEnv('OPEN'),
+    port: envs.get('port'),
+    host: envs.get('host'),
+    open: envs.get('open'),
     https,
     strictPort: true,
     proxy: {
       '/graphql': {
-        target: getEnv('API_PROXY_TARGET'),
+        target: envs.get('target'),
         changeOrigin: true,
       },
     },

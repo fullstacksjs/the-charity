@@ -11,7 +11,7 @@ import type {
   ProjectDetail,
   ProjectKeys,
 } from '@camp/domain';
-import type { Nullish } from '@fullstacksjs/toolbox';
+import type { Nullable } from '@fullstacksjs/toolbox';
 
 import {
   getHouseholdDetail,
@@ -52,7 +52,7 @@ export interface Variables {
   id: string;
 }
 
-const toClient = (data: ApiProjectQuery | Nullish): ProjectDto => {
+const toClient = (data: Nullable<ApiProjectQuery>): ProjectDto => {
   const project = data?.project_by_pk;
 
   return {
