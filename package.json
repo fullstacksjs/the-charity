@@ -31,7 +31,7 @@
     "@auth0/auth0-react": "2.2.1",
     "@cspell/dict-fa-ir": "3.0.0",
     "@emotion/react": "11.11.1",
-    "@fullstacksjs/toolbox": "4.6.0",
+    "@fullstacksjs/toolbox": "4.6.1",
     "@graphiql/toolkit": "0.9.1",
     "@hookform/resolvers": "3.3.2",
     "@mantine/core": "6.0.20",
