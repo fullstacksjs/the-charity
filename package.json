@@ -56,10 +56,9 @@
     "zod": "3.22.4"
   },
   "devDependencies": {
-    "@cspell/eslint-plugin": "7.3.8",
     "@faker-js/faker": "8.2.0",
     "@fullstacksjs/config": "1.1.0-next.4",
-    "@fullstacksjs/eslint-config": "10.4.0",
+    "@fullstacksjs/eslint-config": "10.6.3",
     "@fullstacksjs/tsconfig": "1.1.0",
     "@graphql-codegen/add": "5.0.0",
     "@graphql-codegen/cli": "5.0.0",
@@ -94,7 +93,6 @@
     "dotenv": "16.3.1",
     "dotenv-cli": "7.3.0",
     "eslint": "8.52.0",
-    "eslint-plugin-storybook": "0.6.15",
     "graphql-config": "5.0.3",
     "graphql-request": "6.1.0",
     "husky": "8.0.3",
