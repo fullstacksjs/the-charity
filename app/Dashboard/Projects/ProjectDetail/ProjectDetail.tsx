@@ -10,7 +10,7 @@ import { useParams } from '@camp/router';
 import { isEmpty, isNull } from '@fullstacksjs/toolbox';
 import { Text, Title } from '@mantine/core';
 
-import { ProjectAlbum } from '../_components/ProjectAlbum';
+import { ProjectDocuments } from '../_components/ProjectDocuments';
 import { ProjectStatusBadge } from '../_components/ProjectStatusBadge';
 import { ProjectDetailIds as ids } from './ProjectDetail.ids';
 
@@ -79,7 +79,7 @@ export const ProjectDetail = () => {
           },
           {
             tab: <Title order={5}>{t.tabs.albumTitle}</Title>,
-            panel: <ProjectAlbum />,
+            panel: <ProjectDocuments />,
             id: ids.albumTab,
           },
         ]}

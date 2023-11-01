@@ -400,4 +400,8 @@ export const messages = {
       cancel: 'انصراف',
     },
   },
+  projectDocuments: {
+    title: 'اسناد',
+    addNewDocument: 'افزودن',
+  },
 } as const;
