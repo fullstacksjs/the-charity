@@ -359,7 +359,7 @@ export const messages = {
     title: 'اطلاعات پروژه',
     notFound: 'اطلاعات پروژه یافت نشد',
     tabs: {
-      albumTitle: 'آلبوم',
+      documentsTitle: 'اسناد',
       membersTitle: 'اعضا',
     },
     panels: {
