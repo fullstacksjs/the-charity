@@ -385,9 +385,12 @@ export const messages = {
       },
     },
     addDocument: {
+      form: {
+        submitBtn: 'ایجاد سند',
+      },
       title: 'ایجاد سند جدید',
       description: 'توضیحات',
-      addDocBtn: 'بارگذاری سند',
+      addDocBtn: 'افزودن',
       note: 'سند را اینجا قرار دهید',
     },
   },
@@ -399,9 +402,5 @@ export const messages = {
       accept: 'خارج می شوم',
       cancel: 'انصراف',
     },
-  },
-  projectDocuments: {
-    title: 'اسناد',
-    addNewDocument: 'افزودن',
   },
 } as const;

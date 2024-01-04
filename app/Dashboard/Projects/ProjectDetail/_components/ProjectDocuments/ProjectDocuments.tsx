@@ -5,7 +5,7 @@ import { Group, Stack } from '@mantine/core';
 import { CreateProjectDocumentButton } from '../CreateProjectDocument';
 
 export const ProjectDocuments = () => {
-  const t = messages.projectDocuments;
+  const t = messages.projectDetail.addDocument;
 
   return (
     <Stack spacing={25} sx={{ position: 'relative' }}>
