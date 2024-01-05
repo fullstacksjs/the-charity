@@ -1,10 +1,11 @@
 import { PlusIcon } from '@camp/icons';
 import { messages } from '@camp/messages';
+import { tid } from '@camp/test';
 import { Button } from '@mantine/core';
 
 import { openCreateProjectDocumentModal } from '../CreateProjectDocumentModal';
+import { createProjectDocumentButtonId as id } from './CreateProjectDocumentButton.ids';
 
-// FIXME add tests and story
 export const CreateProjectDocumentButton = () => {
   const t = messages.projectDetail.addDocument;
 
@@ -12,6 +13,7 @@ export const CreateProjectDocumentButton = () => {
     <Button
       variant="outline"
       size="sm"
+      {...tid(id)}
       onClick={openCreateProjectDocumentModal}
       leftIcon={<PlusIcon size={16} />}
     >
