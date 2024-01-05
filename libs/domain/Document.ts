@@ -1,5 +1,6 @@
 import { z } from 'zod';
 
+import { messages } from '../../app/messages';
 import { Schema } from './Schema';
 
 export const documentSchema = {
@@ -7,6 +8,18 @@ export const documentSchema = {
   description: () => z.string(),
   documents: () => z.array(Schema.document()),
 };
+
+export const documentFileValidator = z.object({
+  name: z.string(),
+  type: z.enum(['image/png', 'application/pdf', 'image/jpg'], {
+    errorMap: () => ({
+      message: messages.notification.addDocument.unsupportedType,
+    }),
+  }),
+  size: z
+    .number()
+    .lt(20000000, messages.notification.addDocument.maxSizeExceeded),
+}) as any as z.ZodSchema<File>;
 
 export interface Document {
   date: Date;

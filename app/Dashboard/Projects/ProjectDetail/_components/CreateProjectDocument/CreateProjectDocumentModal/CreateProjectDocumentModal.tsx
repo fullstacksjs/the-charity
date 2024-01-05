@@ -14,7 +14,8 @@ export const openCreateProjectDocumentModal = () =>
     modalId: id,
     children: <CreateProjectDocumentModal />,
     title: messages.projectDetail.addDocument.title,
-    size: 'md',
+    size: '490',
+    padding: '30px',
     centered: true,
     ...tid(id),
   });

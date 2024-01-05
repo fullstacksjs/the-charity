@@ -7,12 +7,16 @@ interface SuccessFile extends BaseFile {
   status: 'Success';
 }
 
+interface UploadingFile extends BaseFile {
+  status: 'Uploading';
+}
+
 interface FailedFile extends BaseFile {
   status: 'Failed';
   error?: string;
 }
 
-export type FileState = FailedFile | SuccessFile;
+export type FileState = FailedFile | SuccessFile | UploadingFile;
 
 export const isFailed = (fileState: FileState): fileState is FailedFile =>
   fileState.status === 'Failed';

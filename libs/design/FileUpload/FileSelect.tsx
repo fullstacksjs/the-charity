@@ -15,7 +15,7 @@ export const FileSelect = forwardRef<HTMLInputElement, Props>(
       <Group position="apart">
         <input {...props} ref={ref} />
         <Button disabled={props.disabled} onClick={onClick} variant="outline">
-          {t.addDocBtn}
+          {t.addDocFileBtn}
         </Button>
         <Group
           spacing="8px"

@@ -14,6 +14,10 @@ export const messages = {
     nextPage: 'صفحه بعد',
   },
   notification: {
+    addDocument: {
+      unsupportedType: 'فایل انتخاب شده پشتیبانی نمیشود',
+      maxSizeExceeded: 'حداکثر سایز فایل انتخابی ۲۰ مگابایت میباشد',
+    },
     household: {
       delete: {
         title: 'حذف خانوار',
@@ -403,6 +407,7 @@ export const messages = {
       title: 'ایجاد سند جدید',
       description: 'توضیحات',
       addDocBtn: 'افزودن',
+      addDocFileBtn: 'بارگذاری سند',
       note: 'سند را اینجا قرار دهید',
     },
   },
