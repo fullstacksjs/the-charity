@@ -1,6 +1,7 @@
 export const createProjectDocumentFormIds = {
   form: 'create-project-document-form',
-  nameInput: 'project-document-name',
+  dateInput: 'project-document-date',
+  descriptionInput: 'project-description-input',
   submitBtn: 'submit-button',
   notification: {
     success: 'create-project-document-success-notification',

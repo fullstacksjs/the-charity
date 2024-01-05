@@ -10,6 +10,7 @@ import { religions } from './Religions';
 export const digitsRegex = /^[0-9]*[\u0660-\u0669\u06F0-\u06F90-9]*$/;
 export const nameRegex =
   /^[ \u0621-\u063A\u0641-\u064A\u067E\u0686\u0698\u06AF\u06A9\u06CC\u200B\u200C]+$/;
+const acceptedFiles = ['.pdf', '.jpg', '.png'];
 
 export const Schema = {
   dob: () => z.date().max(new Date(), { message: messages.validation.dob.max }),
@@ -36,4 +37,13 @@ export const Schema = {
   religion: () => z.union(toZodLiteralList(religions)),
   cityOfBirth: () => z.union(toZodLiteralList(cities)),
   membersCount: () => z.number(),
+  document: () =>
+    z.custom(input => {
+      const files = input as FileList | null;
+      if (input == null || files?.length === 0)
+        return messages.validation.document.required;
+      if (!acceptedFiles.includes(files![0]!.type))
+        return messages.validation.document.unsupportedExtension;
+      return true;
+    }),
 };

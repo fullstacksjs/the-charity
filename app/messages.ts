@@ -59,6 +59,10 @@ export const messages = {
     format: (date: Date) => new Intl.DateTimeFormat('fa-IR').format(date),
   },
   validation: {
+    document: {
+      required: 'فایل الزامی',
+      unsupportedExtension: 'فایل مجاز نیست',
+    },
     dob: {
       max: 'تاریخ تولد نمی‌تواند آینده باشد',
     },
@@ -386,6 +390,14 @@ export const messages = {
     },
     addDocument: {
       form: {
+        dateInput: {
+          label: 'تاریخ',
+          placeholder: '۱۴۰۰/۰۱/۰۱',
+        },
+        descriptionInput: {
+          label: 'توضیحات',
+          placeholder: 'توضیحات',
+        },
         submitBtn: 'ایجاد سند',
       },
       title: 'ایجاد سند جدید',
