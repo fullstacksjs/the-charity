@@ -5,7 +5,7 @@ import { Schema } from './Schema';
 
 export const documentSchema = {
   date: () => z.date().optional(),
-  description: () => z.string(),
+  description: () => z.string({ required_error: messages.validation.required }),
   documents: () => z.array(Schema.document()),
 };
 

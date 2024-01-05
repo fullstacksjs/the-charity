@@ -402,6 +402,10 @@ export const messages = {
           label: 'توضیحات',
           placeholder: 'توضیحات',
         },
+        documentsInput: {
+          label: 'اسناد',
+          maxSize: 'فایل باید کمتر از ۲۰ مگابایت باشد',
+        },
         submitBtn: 'ایجاد سند',
       },
       title: 'ایجاد سند جدید',

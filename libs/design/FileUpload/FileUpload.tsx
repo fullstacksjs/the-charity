@@ -150,7 +150,7 @@ export const FileUpload = ({
         </Stack>
         {helper ? (
           <Text
-            size="sm"
+            size="xs"
             display={variant === 'error' ? 'none' : 'block'}
             color="fg.5"
           >

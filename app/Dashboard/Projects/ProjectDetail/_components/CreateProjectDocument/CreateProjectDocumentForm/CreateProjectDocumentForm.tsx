@@ -12,7 +12,14 @@ import {
 } from '@camp/domain';
 import { messages } from '@camp/messages';
 import { tid } from '@camp/test';
-import { Button, createStyles, Group, Stack, TextInput } from '@mantine/core';
+import {
+  Button,
+  createStyles,
+  Group,
+  Input,
+  Stack,
+  TextInput,
+} from '@mantine/core';
 import { Controller, useForm } from 'react-hook-form';
 import type { SafeParseError, SafeParseSuccess } from 'zod';
 
@@ -57,11 +64,10 @@ const unUploadDocument = () => {
 
 export const CreateProjectDocumentForm = ({ dismiss }: Props) => {
   const t = messages.projectDetail.addDocument.form;
-  const { handleSubmit, register, formState, control, getValues } =
-    useForm<FormSchema>({
-      resolver,
-      mode: 'onChange',
-    });
+  const { handleSubmit, register, formState, control } = useForm<FormSchema>({
+    resolver,
+    mode: 'onChange',
+  });
 
   const onSubmit = handleSubmit(data => {
     debug.log(DebugScopes.All, data);
@@ -76,7 +82,7 @@ export const CreateProjectDocumentForm = ({ dismiss }: Props) => {
           control={control}
           className={classes.label}
           wrapperProps={tid(ids.dateInput)}
-          label={`${t.dateInput.label}:`}
+          label={t.dateInput.label}
           placeholder={t.dateInput.placeholder}
           error={formState.errors.date?.message}
         />
@@ -84,7 +90,7 @@ export const CreateProjectDocumentForm = ({ dismiss }: Props) => {
           wrapperProps={tid(ids.descriptionInput)}
           required
           {...register('description')}
-          label={`${t.descriptionInput.label}:`}
+          label={t.descriptionInput.label}
           placeholder={t.descriptionInput.placeholder}
           error={formState.errors.description?.message}
         />
@@ -95,6 +101,9 @@ export const CreateProjectDocumentForm = ({ dismiss }: Props) => {
           render={({ field }) => {
             return (
               <FileUpload
+                required
+                label={t.documentsInput.label}
+                helper={t.documentsInput.maxSize}
                 onDelete={i => {
                   // FIXME we should get the uploaded file here and set it
                   field.onChange({
@@ -133,6 +142,7 @@ export const CreateProjectDocumentForm = ({ dismiss }: Props) => {
                     .map(r => r.data);
                 }}
               />
+              // </Input.Wrapper>
             );
           }}
         />
