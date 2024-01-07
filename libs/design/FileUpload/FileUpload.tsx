@@ -55,9 +55,6 @@ type FileUploadVariant = 'default' | 'error';
 export interface FileUploadProps
   extends Omit<InputWrapperProps, 'children' | 'onDrop'> {
   disabled?: boolean;
-  // acceptableTypes?: string[];
-  // NOTE: in Byte
-  // maxSize: number;
   defaultFiles?: File[];
   helper?: string;
   upload?: (file: File) => Promise<void>;
