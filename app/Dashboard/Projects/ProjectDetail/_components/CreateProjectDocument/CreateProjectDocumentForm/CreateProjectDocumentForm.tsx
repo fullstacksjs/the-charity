@@ -140,7 +140,6 @@ export const CreateProjectDocumentForm = ({ dismiss }: Props) => {
                     .map(r => r.data);
                 }}
               />
-              // </Input.Wrapper>
             );
           }}
         />
