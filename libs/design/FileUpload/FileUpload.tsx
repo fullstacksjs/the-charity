@@ -77,7 +77,6 @@ export const FileUpload = ({
   onDelete,
   unUpload,
   helper,
-  // get validate from props
   validate,
   upload,
   onAdd,
