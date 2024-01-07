@@ -15,7 +15,6 @@ import {
   Button,
   createStyles,
   Group,
-  Input,
   Stack,
   TextInput,
 } from '@mantine/core';
