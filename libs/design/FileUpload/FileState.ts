@@ -3,7 +3,7 @@ interface BaseFile {
   file: File;
 }
 
-interface SuccessFile extends BaseFile {
+export interface SuccessFile extends BaseFile {
   status: 'Success';
 }
 
@@ -11,7 +11,7 @@ interface UploadingFile extends BaseFile {
   status: 'Uploading';
 }
 
-interface FailedFile extends BaseFile {
+export interface FailedFile extends BaseFile {
   status: 'Failed';
   error?: string;
 }

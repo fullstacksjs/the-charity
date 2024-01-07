@@ -9,12 +9,16 @@ import { useDropzone } from 'react-dropzone';
 
 import { FileList } from './FileList';
 import { FileSelect } from './FileSelect';
-import type { FileState } from './FileState';
+import type { FailedFile, FileState, SuccessFile } from './FileState';
 
 type Action =
+  | {
+      type: 'Upload';
+      id: number;
+      status: FailedFile['status'] | SuccessFile['status'];
+    }
   | { type: 'Add'; files: FileState[] }
-  | { type: 'Remove'; id: number }
-  | { type: 'Upload'; id: number };
+  | { type: 'Remove'; id: number };
 
 const toSuccessFile = (file: File): FileState => ({
   id: randomInt(),
@@ -38,7 +42,7 @@ const fileReducer = (state: FileState[], action: Action): FileState[] => {
 
     case 'Upload':
       return state.map(f =>
-        action.id === f.id ? { ...f, status: 'Success' } : f,
+        action.id === f.id ? { ...f, status: action.status } : f,
       );
     default:
       return state;
@@ -77,7 +81,7 @@ export const FileUpload = ({
   unUpload,
   helper,
   concurrency = 3,
-  filter: validate,
+  filter,
   upload,
   onAdd,
   defaultFiles = empty,
@@ -90,7 +94,7 @@ export const FileUpload = ({
   );
 
   const handleDrop: FileHandler = rawFiles => {
-    const acceptedFiles = validate ? validate(rawFiles) : rawFiles;
+    const acceptedFiles = filter ? filter(rawFiles) : rawFiles;
     if (acceptedFiles.length === 0) return;
     const fileStates = acceptedFiles.map(toFileState);
 
@@ -101,10 +105,10 @@ export const FileUpload = ({
         upload?.(f.file)
           .then(() => {
             onAdd?.(f.file);
-            dispatch({ type: 'Upload', id: f.id });
+            dispatch({ type: 'Upload', id: f.id, status: 'Success' });
           })
           .catch(() => {
-            dispatch({ type: 'Remove', id: f.id });
+            dispatch({ type: 'Upload', id: f.id, status: 'Failed' });
           }),
       { concurrency },
     );

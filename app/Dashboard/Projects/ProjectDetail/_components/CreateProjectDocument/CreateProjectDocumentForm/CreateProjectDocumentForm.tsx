@@ -1,6 +1,7 @@
 import { debug, DebugScopes } from '@camp/debug';
 import {
   ControlledDateInput,
+  ControlledFileUpload,
   FileUpload,
   showNotification,
 } from '@camp/design';
@@ -42,10 +43,16 @@ const useStyle = createStyles(theme => ({
 }));
 
 // FIXME replace with actual upload
+
+// eslint-disable-next-line fp/no-let
+let x = 0;
+
 const uploadDocument = () => {
-  return new Promise<void>(res => {
+  return new Promise<void>((res, rej) => {
     setTimeout(() => {
-      res();
+      x++;
+      if (x === 3) rej();
+      else res();
     }, 1000);
   });
 };
@@ -86,55 +93,29 @@ export const CreateProjectDocumentForm = ({ dismiss }: Props) => {
           placeholder={t.descriptionInput.placeholder}
           error={formState.errors.description?.message}
         />
-        <Controller
+        <ControlledFileUpload
           control={control}
           name="documents"
           defaultValue={[]}
-          render={({ field }) => {
-            return (
-              <FileUpload
-                required
-                label={t.documentsInput.label}
-                helper={t.documentsInput.maxSize}
-                onDelete={i => {
-                  // FIXME we should get the uploaded file here and set it
-                  field.onChange({
-                    target: {
-                      value: field.value.filter((_, index) => i !== index),
-                      name: field.name,
-                    },
-                  });
-                }}
-                upload={uploadDocument}
-                unUpload={unUploadDocument}
-                onAdd={file => {
-                  // FIXME we should get the uploaded file here and set it
-                  field.onChange({
-                    target: {
-                      value: [...field.value, file],
-                      name: field.name,
-                    },
-                  });
-                }}
-                filter={(files): File[] => {
-                  const res = files.map(f =>
-                    documentFileValidator.safeParse(f),
-                  );
-                  const firstError = res.find(
-                    r => !r.success,
-                  ) as SafeParseError<File> | null;
+          required
+          label={t.documentsInput.label}
+          helper={t.documentsInput.maxSize}
+          upload={uploadDocument}
+          unUpload={unUploadDocument}
+          filter={(files): File[] => {
+            const res = files.map(f => documentFileValidator.safeParse(f));
+            const firstError = res.find(
+              r => !r.success,
+            ) as SafeParseError<File> | null;
 
-                  if (firstError != null)
-                    showNotification({
-                      message: firstError.error.issues[0]!.message,
-                      type: 'failure',
-                    });
-                  return res
-                    .filter((r): r is SafeParseSuccess<File> => r.success)
-                    .map(r => r.data);
-                }}
-              />
-            );
+            if (firstError != null)
+              showNotification({
+                message: firstError.error.issues[0]!.message,
+                type: 'failure',
+              });
+            return res
+              .filter((r): r is SafeParseSuccess<File> => r.success)
+              .map(r => r.data);
           }}
         />
 
