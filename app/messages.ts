@@ -15,7 +15,7 @@ export const messages = {
   },
   notification: {
     addDocument: {
-      unsupportedType: 'فایل انتخاب شده پشتیبانی نمیشود',
+      unsupportedType: 'فایل انتخاب شده پشتیبانی نمی‌شود',
       maxSizeExceeded: 'حداکثر سایز فایل انتخابی ۲۰ مگابایت هست.',
     },
     household: {
