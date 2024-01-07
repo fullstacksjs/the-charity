@@ -11,13 +11,7 @@ import {
 } from '@camp/domain';
 import { messages } from '@camp/messages';
 import { tid } from '@camp/test';
-import {
-  Button,
-  createStyles,
-  Group,
-  Stack,
-  TextInput,
-} from '@mantine/core';
+import { Button, createStyles, Group, Stack, TextInput } from '@mantine/core';
 import { Controller, useForm } from 'react-hook-form';
 import type { SafeParseError, SafeParseSuccess } from 'zod';
 
@@ -122,7 +116,7 @@ export const CreateProjectDocumentForm = ({ dismiss }: Props) => {
                     },
                   });
                 }}
-                validate={(files): File[] => {
+                filter={(files): File[] => {
                   const res = files.map(f =>
                     documentFileValidator.safeParse(f),
                   );

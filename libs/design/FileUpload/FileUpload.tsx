@@ -2,6 +2,7 @@ import { debug } from '@camp/debug';
 import { randomInt } from '@fullstacksjs/toolbox';
 import type { InputWrapperProps } from '@mantine/core';
 import { Input, Stack, Text } from '@mantine/core';
+import Prray from 'prray';
 import { useReducer } from 'react';
 import type { DropEvent, FileRejection } from 'react-dropzone';
 import { useDropzone } from 'react-dropzone';
@@ -57,9 +58,10 @@ export interface FileUploadProps
   disabled?: boolean;
   defaultFiles?: File[];
   helper?: string;
+  concurrency?: number;
   upload?: (file: File) => Promise<void>;
   unUpload?: (id: FileState['id']) => Promise<void>;
-  validate?: (files: File[]) => File[];
+  filter?: (files: File[]) => File[];
   onAdd?: (file: File) => void;
   onDelete?: (index: number) => void;
   className?: string;
@@ -74,7 +76,8 @@ export const FileUpload = ({
   onDelete,
   unUpload,
   helper,
-  validate,
+  concurrency = 3,
+  filter: validate,
   upload,
   onAdd,
   defaultFiles = empty,
@@ -93,17 +96,18 @@ export const FileUpload = ({
 
     dispatch({ type: 'Add', files: fileStates });
 
-    // FIXME use some kind of tool to have control over the requests
-    fileStates.forEach(f => {
-      upload?.(f.file)
-        .then(() => {
-          onAdd?.(f.file);
-          dispatch({ type: 'Upload', id: f.id });
-        })
-        .catch(() => {
-          dispatch({ type: 'Remove', id: f.id });
-        });
-    });
+    void Prray.from(fileStates).forEachAsync(
+      f =>
+        upload?.(f.file)
+          .then(() => {
+            onAdd?.(f.file);
+            dispatch({ type: 'Upload', id: f.id });
+          })
+          .catch(() => {
+            dispatch({ type: 'Remove', id: f.id });
+          }),
+      { concurrency },
+    );
   };
 
   const { getRootProps, getInputProps } = useDropzone({
