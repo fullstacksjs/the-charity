@@ -77,8 +77,6 @@ export const FileUpload = ({
   validate,
   upload,
   onAdd,
-  // maxSize,
-  // acceptableTypes,
   defaultFiles = empty,
   variant = 'default',
   ...props
