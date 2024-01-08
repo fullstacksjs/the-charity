@@ -2,7 +2,7 @@ import type { BoxProps } from '@mantine/core';
 import { Box } from '@mantine/core';
 
 interface Props extends BoxProps {
-  children: React.ReactNode;
+  onClick?: (e: React.MouseEvent<HTMLTableRowElement>) => any;
 }
 
 export const TableRow = (props: Props) => {
