@@ -5,41 +5,54 @@ import viteProcessor from 'cypress-vite';
 import { config } from './vite.config';
 
 const envs = new Config({
-  port: Config.number({ default: 3000 }),
-  host: Config.string({ default: 'localhost' }),
   retries: Config.number({ default: 1 }),
-  video: Config.boolean({ default: true }),
-  auth0Audience: Config.string().require(),
-  auth0Domain: Config.string().require(),
-  auth0ClientId: Config.string().require(),
-  apiEndpoint: Config.string().require(),
-  hasuraAdminSecret: Config.string().require(),
+  cypress: Config.object({
+    port: Config.number({ default: 3000 }),
+    host: Config.string({ default: 'localhost' }),
+    retries: Config.number({ default: 1 }),
+    video: Config.boolean({ default: true }),
+  }),
+  auth0: Config.object({
+    audience: Config.string().required(),
+    domain: Config.string().required(),
+    clientId: Config.string().required(),
+  }),
+  api: Config.object({
+    endpoint: Config.string().required(),
+    secret: Config.string().required(),
+  }),
 }).parse({
-  port: process.env.PORT,
-  host: process.env.HOST,
-  retries: process.env.CYPRESS_RETRIES,
-  video: process.env.CYPRESS_RECORD_VIDEO,
-  auth0Audience: process.env.APP_AUTH0_AUDIENCE,
-  auth0Domain: process.env.APP_AUTH0_DOMAIN,
-  auth0ClientId: process.env.APP_AUTH0_CLIENT_ID,
-  apiEndpoint: process.env.APP_API_ENDPOINT,
-  hasuraAdminSecret: process.env.APP_HASURA_ADMIN_SECRET,
+  cypress: {
+    port: process.env.PORT,
+    host: process.env.HOST,
+    retries: process.env.CYPRESS_RETRIES,
+    video: process.env.CYPRESS_RECORD_VIDEO,
+  },
+  auth0: {
+    audience: process.env.APP_AUTH0_AUDIENCE,
+    domain: process.env.APP_AUTH0_DOMAIN,
+    clientId: process.env.APP_AUTH0_CLIENT_ID,
+  },
+  api: {
+    endpoint: process.env.APP_API_ENDPOINT,
+    secret: process.env.APP_HASURA_ADMIN_SECRET,
+  },
 });
 
 export default defineConfig({
   e2e: {
-    retries: envs.get('retries'),
-    baseUrl: `https://${envs.get('host')}:${envs.get('port')}`,
+    retries: envs.get('cypress.retries'),
+    baseUrl: `https://${envs.get('cypress.host')}:${envs.get('cypress.port')}`,
     projectId: '8jt3ix',
-    video: envs.get('video'),
+    video: envs.get('cypress.video'),
     defaultCommandTimeout: 10000,
     experimentalMemoryManagement: true,
     env: {
-      APP_AUTH0_AUDIENCE: envs.get('auth0Audience'),
-      APP_AUTH0_DOMAIN: envs.get('auth0Domain'),
-      APP_AUTH0_CLIENT_ID: envs.get('auth0ClientId'),
-      APP_API_ENDPOINT: envs.get('apiEndpoint'),
-      APP_HASURA_ADMIN_SECRET: envs.get('hasuraAdminSecret'),
+      APP_AUTH0_AUDIENCE: envs.get('auth0.audience'),
+      APP_AUTH0_DOMAIN: envs.get('auth0.domain'),
+      APP_AUTH0_CLIENT_ID: envs.get('auth0.clientId'),
+      APP_API_ENDPOINT: envs.get(`api.endpoint`),
+      APP_HASURA_ADMIN_SECRET: envs.get('api.secret'),
     },
     setupNodeEvents(on) {
       on('file:preprocessor', viteProcessor());

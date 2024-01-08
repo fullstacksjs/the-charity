@@ -39,7 +39,6 @@ export const config = ({ https = true }: Options = {}): UserConfig => ({
     port: envs.get('port'),
     host: envs.get('host'),
     open: envs.get('open'),
-    https,
     strictPort: true,
     proxy: {
       '/graphql': {
