@@ -54,8 +54,8 @@ export const File = ({ file, onRemove }: Props) => {
             backgroundColor: isSuccess(file)
               ? theme.colors.success[6]
               : isFailed(file)
-              ? theme.colors.error[6]
-              : theme.colors.warning[6],
+                ? theme.colors.error[6]
+                : theme.colors.warning[6],
           })}
         />
       </Group>
