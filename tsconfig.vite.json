@@ -8,5 +8,5 @@
     "lib": ["ES2022", "DOM"],
     "types": ["cypress", "@testing-library/cypress"]
   },
-  "include": ["vite.config.ts", "configs/vite", "configs", "config"]
+  "include": ["vite.config.ts", "configs/vite", "configs"]
 }
