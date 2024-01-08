@@ -1,7 +1,7 @@
 import { messages } from '@camp/messages';
+import { toZodLiteralList } from '@camp/zod-addons';
 import { z } from 'zod';
 
-import { toZodLiteralList } from '../zod-addons';
 import { cities } from './City';
 import { genders } from './Gender';
 import { nationalities } from './Nationality';

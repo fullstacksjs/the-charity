@@ -6,7 +6,7 @@ import type {
   ApiHouseholdQueryVariables,
 } from '@camp/data-layer';
 import type { HouseholdDetail, HouseholdKeys } from '@camp/domain';
-import type { Nullish } from '@fullstacksjs/toolbox';
+import type { Nullable } from '@fullstacksjs/toolbox';
 
 import {
   getHouseholdDetail,
@@ -27,14 +27,14 @@ export const HouseholdDocument = gql`
 `;
 
 export interface HouseholdDto {
-  household: Nullish | (HouseholdDetail & HouseholdKeys);
+  household: Nullable<HouseholdDetail & HouseholdKeys>;
 }
 
 interface Variables {
   id: string;
 }
 
-const toClient = (data: ApiHouseholdQuery | Nullish): HouseholdDto => {
+const toClient = (data: Nullable<ApiHouseholdQuery>): HouseholdDto => {
   return {
     household: data?.household_by_pk
       ? {

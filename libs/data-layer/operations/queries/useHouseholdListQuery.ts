@@ -3,7 +3,7 @@ import type { QueryHookOptions } from '@camp/api-client';
 import { useQuery } from '@camp/api-client';
 import type { HouseholdKeys, HouseholdListItem } from '@camp/domain';
 import { ApiOrderBy } from '@camp/domain';
-import type { Nullish } from '@fullstacksjs/toolbox';
+import type { Nullable } from '@fullstacksjs/toolbox';
 import { isEmpty, isNotNull } from '@fullstacksjs/toolbox';
 import type { PaginationState, SortingState } from '@tanstack/react-table';
 
@@ -40,7 +40,7 @@ export const HouseholdListDocument = gql`
 
 export interface HouseholdListDto {
   household: (HouseholdKeys & HouseholdListItem)[];
-  totalCount: Nullish | number;
+  totalCount: Nullable<number>;
 }
 
 const toClient = (data: ApiHouseholdListQuery | null): HouseholdListDto => {

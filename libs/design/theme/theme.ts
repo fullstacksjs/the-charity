@@ -36,8 +36,6 @@ export const theme: MantineThemeOverride = {
       backgroundColor: palette.secondary.default,
       borderRadius: '4px',
     },
-
-    /* eslint-enable @typescript-eslint/naming-convention */
   }),
   dir: 'rtl',
   fontFamily: 'IRANSansFaNum, IRANSans',

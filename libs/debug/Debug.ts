@@ -1,6 +1,5 @@
 import type { Tuple } from '@fullstacksjs/toolbox';
 
-/* eslint-disable @typescript-eslint/no-empty-function */
 export type LogLevel = 'error' | 'info' | 'silent' | 'trace' | 'warn';
 
 export interface Logger {

@@ -1,5 +1,5 @@
 import 'dayjs/locale/fa';
-import '@camp/zod-addons';
+import '@camp/zod-addons/monkey-patch';
 
 import { ApolloProvider } from '@camp/api-client';
 import { AuthProvider } from '@camp/auth';
