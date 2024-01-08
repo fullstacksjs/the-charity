@@ -1,15 +1,22 @@
+import { debug } from '@camp/debug';
 import { randomInt } from '@fullstacksjs/toolbox';
 import type { InputWrapperProps } from '@mantine/core';
 import { Input, Stack, Text } from '@mantine/core';
+import Prray from 'prray';
 import { useReducer } from 'react';
 import type { DropEvent, FileRejection } from 'react-dropzone';
 import { useDropzone } from 'react-dropzone';
 
 import { FileList } from './FileList';
 import { FileSelect } from './FileSelect';
-import type { FileState } from './FileState';
+import type { FailedFile, FileState, SuccessFile } from './FileState';
 
 type Action =
+  | {
+      type: 'Upload';
+      id: number;
+      status: FailedFile['status'] | SuccessFile['status'];
+    }
   | { type: 'Add'; files: FileState[] }
   | { type: 'Remove'; id: number };
 
@@ -22,7 +29,7 @@ const toSuccessFile = (file: File): FileState => ({
 const toFileState = (file: File): FileState => ({
   id: randomInt(),
   file,
-  status: 'Success',
+  status: 'Uploading',
 });
 
 const fileReducer = (state: FileState[], action: Action): FileState[] => {
@@ -33,6 +40,10 @@ const fileReducer = (state: FileState[], action: Action): FileState[] => {
     case 'Remove':
       return state.filter(({ id }) => id !== action.id);
 
+    case 'Upload':
+      return state.map(f =>
+        action.id === f.id ? { ...f, status: action.status } : f,
+      );
     default:
       return state;
   }
@@ -46,12 +57,17 @@ type FileHandler = (
 
 type FileUploadVariant = 'default' | 'error';
 
-export interface FileUploadProps extends Omit<InputWrapperProps, 'onDrop'> {
+export interface FileUploadProps
+  extends Omit<InputWrapperProps, 'children' | 'onDrop'> {
   disabled?: boolean;
-  onDrop?: FileHandler;
   defaultFiles?: File[];
   helper?: string;
-  onDelete?: (index: number) => Promise<any>;
+  concurrency?: number;
+  upload?: (file: File) => Promise<void>;
+  unUpload?: (id: FileState['id']) => Promise<void>;
+  filter?: (files: File[]) => File[];
+  onAdd?: (file: File) => void;
+  onDelete?: (index: number) => void;
   className?: string;
   dropText?: string;
   variant?: FileUploadVariant;
@@ -61,9 +77,13 @@ const empty: File[] = [];
 
 export const FileUpload = ({
   disabled,
-  onDrop,
   onDelete,
+  unUpload,
   helper,
+  concurrency = 3,
+  filter,
+  upload,
+  onAdd,
   defaultFiles = empty,
   variant = 'default',
   ...props
@@ -73,10 +93,25 @@ export const FileUpload = ({
     defaultFiles.map(toSuccessFile),
   );
 
-  const handleDrop: FileHandler = (acceptedFiles, ...args) => {
+  const handleDrop: FileHandler = rawFiles => {
+    const acceptedFiles = filter ? filter(rawFiles) : rawFiles;
+    if (acceptedFiles.length === 0) return;
     const fileStates = acceptedFiles.map(toFileState);
+
     dispatch({ type: 'Add', files: fileStates });
-    onDrop?.(acceptedFiles, ...args);
+
+    void Prray.from(fileStates).forEachAsync(
+      f =>
+        upload?.(f.file)
+          .then(() => {
+            onAdd?.(f.file);
+            dispatch({ type: 'Upload', id: f.id, status: 'Success' });
+          })
+          .catch(() => {
+            dispatch({ type: 'Upload', id: f.id, status: 'Failed' });
+          }),
+      { concurrency },
+    );
   };
 
   const { getRootProps, getInputProps } = useDropzone({
@@ -87,8 +122,13 @@ export const FileUpload = ({
   const { onClick, ...rootProps } = getRootProps();
 
   const handleRemove = async (file: FileState, index: number) => {
-    await onDelete?.(index);
-    dispatch({ type: 'Remove', id: file.id });
+    try {
+      await unUpload?.(index);
+      onDelete?.(index);
+      dispatch({ type: 'Remove', id: file.id });
+    } catch (err) {
+      debug.error(err);
+    }
   };
 
   return (
@@ -112,7 +152,7 @@ export const FileUpload = ({
         </Stack>
         {helper ? (
           <Text
-            size="sm"
+            size="xs"
             display={variant === 'error' ? 'none' : 'block'}
             color="fg.5"
           >

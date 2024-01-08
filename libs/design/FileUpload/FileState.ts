@@ -3,16 +3,20 @@ interface BaseFile {
   file: File;
 }
 
-interface SuccessFile extends BaseFile {
+export interface SuccessFile extends BaseFile {
   status: 'Success';
 }
 
-interface FailedFile extends BaseFile {
+interface UploadingFile extends BaseFile {
+  status: 'Uploading';
+}
+
+export interface FailedFile extends BaseFile {
   status: 'Failed';
   error?: string;
 }
 
-export type FileState = FailedFile | SuccessFile;
+export type FileState = FailedFile | SuccessFile | UploadingFile;
 
 export const isFailed = (fileState: FileState): fileState is FailedFile =>
   fileState.status === 'Failed';

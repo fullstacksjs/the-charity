@@ -6,7 +6,7 @@ import type { FileState } from './FileState';
 
 interface Props {
   files?: FileState[];
-  onRemove: (file: FileState, index: number) => void;
+  onRemove: (file: FileState, index: number) => Promise<void>;
 }
 
 export const FileList = ({ files, onRemove }: Props) => {
@@ -19,7 +19,7 @@ export const FileList = ({ files, onRemove }: Props) => {
           key={file.id}
           file={file}
           onRemove={() => {
-            onRemove(file, index);
+            return onRemove(file, index);
           }}
         />
       ))}

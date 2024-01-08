@@ -14,6 +14,10 @@ export const messages = {
     nextPage: 'صفحه بعد',
   },
   notification: {
+    addDocument: {
+      unsupportedType: 'فایل انتخاب شده پشتیبانی نمی‌شود',
+      maxSizeExceeded: 'حداکثر سایز فایل انتخابی ۲۰ مگابایت هست.',
+    },
     household: {
       delete: {
         title: 'حذف خانوار',
@@ -59,6 +63,10 @@ export const messages = {
     format: (date: Date) => new Intl.DateTimeFormat('fa-IR').format(date),
   },
   validation: {
+    document: {
+      required: 'فایل الزامی',
+      unsupportedExtension: 'فایل مجاز نیست',
+    },
     dob: {
       max: 'تاریخ تولد نمی‌تواند آینده باشد',
     },
@@ -359,7 +367,7 @@ export const messages = {
     title: 'اطلاعات پروژه',
     notFound: 'اطلاعات پروژه یافت نشد',
     tabs: {
-      albumTitle: 'آلبوم',
+      documentsTitle: 'اسناد',
       membersTitle: 'اعضا',
     },
     panels: {
@@ -385,9 +393,25 @@ export const messages = {
       },
     },
     addDocument: {
+      form: {
+        dateInput: {
+          label: 'تاریخ',
+          placeholder: '۱۴۰۰/۰۱/۰۱',
+        },
+        descriptionInput: {
+          label: 'توضیحات',
+          placeholder: 'توضیحات',
+        },
+        documentsInput: {
+          label: 'اسناد',
+          maxSize: 'فایل باید کمتر از ۲۰ مگابایت باشد',
+        },
+        submitBtn: 'ایجاد سند',
+      },
       title: 'ایجاد سند جدید',
       description: 'توضیحات',
-      addDocBtn: 'بارگذاری سند',
+      addDocBtn: 'افزودن',
+      addDocFileBtn: 'بارگذاری سند',
       note: 'سند را اینجا قرار دهید',
     },
   },

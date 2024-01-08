@@ -36,4 +36,8 @@ export const Schema = {
   religion: () => z.union(toZodLiteralList(religions)),
   cityOfBirth: () => z.union(toZodLiteralList(cities)),
   membersCount: () => z.number(),
+  document: () =>
+    z.custom(file => {
+      return (file as File | null)?.name != null;
+    }),
 };
