@@ -39,9 +39,9 @@ export const Default: Story = {
       <Table.Head>
         <Table.Row>
           {columns.map(h => (
-            <Table.Head key={h}>
+            <Table.HCell key={h}>
               <Title size="xs">{h}</Title>
-            </Table.Head>
+            </Table.HCell>
           ))}
         </Table.Row>
       </Table.Head>
@@ -66,15 +66,15 @@ export const Default: Story = {
 export const Skeleton: Story = {
   render: ({ ...args }) => (
     <Table {...args} id="table">
-      <Table.Header>
+      <Table.Head>
         <Table.Row>
           {columns.map(h => (
-            <Table.Head key={h}>
+            <Table.HCell key={h}>
               <Title size="xs">{h}</Title>
-            </Table.Head>
+            </Table.HCell>
           ))}
         </Table.Row>
-      </Table.Header>
+      </Table.Head>
       <Table.Body>
         <Table.Skeleton cells={4} rows={4} />
       </Table.Body>

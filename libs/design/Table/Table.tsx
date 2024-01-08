@@ -29,8 +29,8 @@ export const Table = ({ children, id }: Props) => {
   );
 };
 
-Table.Header = TableHeader;
-Table.Head = TableHead;
+Table.Head = TableHeader;
+Table.HCell = TableHead;
 Table.Row = TableRow;
 Table.Body = TableBody;
 Table.Pagination = TablePagination;
