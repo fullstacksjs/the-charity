@@ -26,12 +26,12 @@ export const DataTable = <T,>({
   return (
     <>
       <Table id={id}>
-        <Table.Header>
+        <Table.Head>
           {table.getHeaderGroups().map(headerGroup => (
             <Table.Row style={{ cursor: 'pointer' }} key={headerGroup.id}>
               {headerGroup.headers.map(header => {
                 return (
-                  <Table.Head
+                  <Table.HCell
                     onClick={header.column.getToggleSortingHandler()}
                     key={header.id}
                   >
@@ -41,12 +41,12 @@ export const DataTable = <T,>({
                           header.column.columnDef.header,
                           header.getContext(),
                         )}
-                  </Table.Head>
+                  </Table.HCell>
                 );
               })}
             </Table.Row>
           ))}
-        </Table.Header>
+        </Table.Head>
         <Table.Body>
           {loading
             ? fallback

@@ -7,6 +7,7 @@ import { TableHead } from './TableHead';
 import { TableHeader } from './TableHeader';
 import { TablePagination } from './TablePagination';
 import { TableRow } from './TableRow';
+import { TableSkeleton } from './TableSkeleton';
 
 interface Props {
   children: React.ReactNode;
@@ -28,9 +29,10 @@ export const Table = ({ children, id }: Props) => {
   );
 };
 
-Table.Header = TableHeader;
-Table.Head = TableHead;
+Table.Head = TableHeader;
+Table.HCell = TableHead;
 Table.Row = TableRow;
 Table.Body = TableBody;
 Table.Pagination = TablePagination;
 Table.Cell = TableCell;
+Table.Skeleton = TableSkeleton;
