@@ -1,13 +1,13 @@
 import { tid } from '@camp/test';
 import { Table as MantineTable } from '@mantine/core';
 
-import { TableSkeleton } from '../TableSkeleton';
 import { TableBody } from './TableBody';
 import { TableCell } from './TableCell';
 import { TableHead } from './TableHead';
 import { TableHeader } from './TableHeader';
 import { TablePagination } from './TablePagination';
 import { TableRow } from './TableRow';
+import { TableSkeleton } from './TableSkeleton';
 
 interface Props {
   children: React.ReactNode;

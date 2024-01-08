@@ -36,29 +36,48 @@ const columns = ['شماره', 'نام', 'وضعیت', 'نیازمندی'];
 export const Default: Story = {
   render: ({ ...args }) => (
     <Table {...args} id="table">
-      <thead>
-        <tr>
+      <Table.Head>
+        <Table.Row>
           {columns.map(h => (
-            <th key={h}>
+            <Table.Head key={h}>
               <Title size="xs">{h}</Title>
-            </th>
+            </Table.Head>
           ))}
-        </tr>
-      </thead>
-      <tbody>
-        {rows.map(h => (
-          <tr key={h.id} style={{ cursor: 'pointer' }}>
-            <td>{h.id}</td>
-            <td>{h.name}</td>
-            <td>
-              <Badge status="success">{h.status}</Badge>
-            </td>
-            <td>
-              <Badge status="error">{h.severity}</Badge>
-            </td>
-          </tr>
+        </Table.Row>
+      </Table.Head>
+      <Table.Body>
+        {rows.map(r => (
+          <Table.Row key={r.id} style={{ cursor: 'pointer' }}>
+            <Table.Cell>{r.id}</Table.Cell>
+            <Table.Cell>{r.name}</Table.Cell>
+            <Table.Cell>
+              <Badge status="success">{r.status}</Badge>
+            </Table.Cell>
+            <Table.Cell>
+              <Badge status="error">{r.severity}</Badge>
+            </Table.Cell>
+          </Table.Row>
         ))}
-      </tbody>
+      </Table.Body>
+    </Table>
+  ),
+};
+
+export const Skeleton: Story = {
+  render: ({ ...args }) => (
+    <Table {...args} id="table">
+      <Table.Header>
+        <Table.Row>
+          {columns.map(h => (
+            <Table.Head key={h}>
+              <Title size="xs">{h}</Title>
+            </Table.Head>
+          ))}
+        </Table.Row>
+      </Table.Header>
+      <Table.Body>
+        <Table.Skeleton cells={4} rows={4} />
+      </Table.Body>
     </Table>
   ),
 };
