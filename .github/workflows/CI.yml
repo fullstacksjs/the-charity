@@ -47,6 +47,7 @@ jobs:
     env:
       APP_API_ENDPOINT: /graphql
       NODE_ENV: development
+      APP_FILE_STORAGE_API_ENDPOINT: ${{vars.APP_FILE_STORAGE_API_ENDPOINT }}
       APP_GRAPHQL_SCHEMA_URL: ${{ vars.APP_GRAPHQL_SCHEMA_URL }}
       APP_AUTH0_AUDIENCE: ${{ vars.APP_AUTH0_AUDIENCE }}
       APP_AUTH0_DOMAIN: ${{ vars.APP_AUTH0_DOMAIN }}
@@ -84,6 +85,7 @@ jobs:
 
     environment: Preview
     env:
+      APP_FILE_STORAGE_API_ENDPOINT: ${{vars.APP_FILE_STORAGE_API_ENDPOINT }}
       APP_GRAPHQL_SCHEMA_URL: ${{ vars.APP_GRAPHQL_SCHEMA_URL }}
       APP_AUTH0_AUDIENCE: ${{ vars.APP_AUTH0_AUDIENCE }}
       APP_API_ENDPOINT: ${{ vars.APP_API_ENDPOINT }}
