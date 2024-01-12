@@ -1,3 +1,5 @@
+import type { RemoteDocument } from '../../domain';
+
 interface BaseFile {
   id: number;
   file: File;
@@ -5,6 +7,7 @@ interface BaseFile {
 
 export interface SuccessFile extends BaseFile {
   status: 'Success';
+  remote: RemoteDocument;
 }
 
 interface UploadingFile extends BaseFile {

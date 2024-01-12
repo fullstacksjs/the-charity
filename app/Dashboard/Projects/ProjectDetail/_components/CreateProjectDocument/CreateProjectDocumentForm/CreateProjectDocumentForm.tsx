@@ -2,7 +2,6 @@ import { debug, DebugScopes } from '@camp/debug';
 import {
   ControlledDateInput,
   ControlledFileUpload,
-  FileUpload,
   showNotification,
 } from '@camp/design';
 import {
@@ -10,11 +9,11 @@ import {
   documentFileValidator,
   documentSchema,
 } from '@camp/domain';
+import { fileStorageApi } from '@camp/file-storage-api';
 import { messages } from '@camp/messages';
 import { tid } from '@camp/test';
 import { Button, createStyles, Group, Stack, TextInput } from '@mantine/core';
-import { Controller, useForm } from 'react-hook-form';
-import type { SafeParseError, SafeParseSuccess } from 'zod';
+import { useForm } from 'react-hook-form';
 
 import { createProjectDocumentFormIds as ids } from './CreateProjectDocumentForm.ids';
 
@@ -41,25 +40,6 @@ const useStyle = createStyles(theme => ({
     },
   },
 }));
-
-// FIXME replace with actual upload
-
-// eslint-disable-next-line fp/no-let
-let x = 0;
-
-const uploadDocument = () => {
-  return new Promise<void>((res, rej) => {
-    setTimeout(() => {
-      x++;
-      if (x === 3) rej();
-      else res();
-    }, 1000);
-  });
-};
-
-const unUploadDocument = () => {
-  return uploadDocument();
-};
 
 export const CreateProjectDocumentForm = ({ dismiss }: Props) => {
   const t = messages.projectDetail.addDocument.form;
@@ -100,22 +80,25 @@ export const CreateProjectDocumentForm = ({ dismiss }: Props) => {
           required
           label={t.documentsInput.label}
           helper={t.documentsInput.maxSize}
-          upload={uploadDocument}
-          unUpload={unUploadDocument}
+          upload={fileStorageApi.upload}
+          unUpload={fileStorageApi.unUpload}
           filter={(files): File[] => {
-            const res = files.map(f => documentFileValidator.safeParse(f));
-            const firstError = res.find(
-              r => !r.success,
-            ) as SafeParseError<File> | null;
+            const res = files.map(f => {
+              const parsed = documentFileValidator.safeParse(f);
+              return {
+                file: f,
+                error: !parsed.success ? parsed.error : undefined,
+              };
+            });
+
+            const firstError = res.find(r => r.error);
 
             if (firstError != null)
               showNotification({
-                message: firstError.error.issues[0]!.message,
+                message: firstError.error!.issues[0]!.message,
                 type: 'failure',
               });
-            return res
-              .filter((r): r is SafeParseSuccess<File> => r.success)
-              .map(r => r.data);
+            return res.filter(r => !r.error).map(r => r.file);
           }}
         />
 

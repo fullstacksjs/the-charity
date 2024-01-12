@@ -1,6 +1,10 @@
 import { z } from 'zod';
 
 const Config = z.object({
+  fileStorageApiEndpoint: z.union([
+    z.string().url(),
+    z.string().regex(/^\/.*$/),
+  ]),
   apiEndpoint: z.union([z.string().url(), z.string().regex(/^\/.*$/)]),
   schemaUrl: z.string().url().optional(),
   hasuraSecret: z.string().optional(),
@@ -22,6 +26,7 @@ const Config = z.object({
 export type Config = z.infer<typeof Config>;
 
 export const config = Config.parse({
+  fileStorageApiEndpoint: import.meta.env.APP_FILE_STORAGE_API_ENDPOINT,
   apiEndpoint: import.meta.env.APP_API_ENDPOINT,
   schemaUrl: import.meta.env.APP_GRAPHQL_SCHEMA_URL,
   hasuraSecret: import.meta.env.APP_HASURA_ADMIN_SECRET,

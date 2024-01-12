@@ -19,6 +19,7 @@ const envs = new Config({
   }),
   api: Config.object({
     endpoint: Config.string().required(),
+    fileEndpoint: Config.string().required(),
     secret: Config.string().required(),
   }),
 }).parse({
@@ -36,6 +37,7 @@ const envs = new Config({
   api: {
     endpoint: process.env.APP_API_ENDPOINT,
     secret: process.env.APP_HASURA_ADMIN_SECRET,
+    fileEndpoint: process.env.APP_FILE_STORAGE_API_ENDPOINT,
   },
 });
 
@@ -48,6 +50,7 @@ export default defineConfig({
     defaultCommandTimeout: 10000,
     experimentalMemoryManagement: true,
     env: {
+      APP_FILE_STORAGE_API_ENDPOINT: envs.get('api.fileEndpoint'),
       APP_AUTH0_AUDIENCE: envs.get('auth0.audience'),
       APP_AUTH0_DOMAIN: envs.get('auth0.domain'),
       APP_AUTH0_CLIENT_ID: envs.get('auth0.clientId'),

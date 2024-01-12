@@ -9,20 +9,27 @@ export const documentSchema = {
   documents: () => z.array(Schema.document()),
 };
 
-export const documentFileValidator = z.object({
-  name: z.string(),
-  type: z.enum(['image/png', 'application/pdf', 'image/jpg'], {
-    errorMap: () => ({
-      message: messages.notification.addDocument.unsupportedType,
+export const documentFileValidator = z
+  .object({
+    name: z.string(),
+    type: z.enum(['image/png', 'application/pdf', 'image/jpg', 'image/jpeg'], {
+      errorMap: () => ({
+        message: messages.notification.addDocument.unsupportedType,
+      }),
     }),
-  }),
-  size: z
-    .number()
-    .lt(20000000, messages.notification.addDocument.maxSizeExceeded),
-}) as any as z.ZodSchema<File>;
+    size: z
+      .number()
+      .lt(20000000, messages.notification.addDocument.maxSizeExceeded),
+  })
+  .passthrough() as any as z.ZodSchema<File>;
 
 export interface Document {
   date: Date;
   description: string;
   documents: File[];
+}
+
+export interface RemoteDocument {
+  url: string;
+  id: string;
 }

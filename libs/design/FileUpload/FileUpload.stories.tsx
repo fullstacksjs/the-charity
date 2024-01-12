@@ -1,5 +1,6 @@
 import type { Meta, StoryObj } from '@storybook/react';
 
+import type { FailedFile, SuccessFile } from './FileState';
 import type { FileUploadProps } from './FileUpload';
 import { FileUpload } from './FileUpload';
 
@@ -28,12 +29,34 @@ export const Disabled: Story = {
 export const WithFiles: Story = {
   args: {
     defaultFiles: [
-      { name: 'Some Random Name' } as File,
-      { name: 'Some Random Name Which is long' } as File,
-      { name: 'Some Random Name Which is very very long' } as File,
+      {
+        name: 'Some Random Name',
+        remote: { id: 'x', url: 'https://nowhere.com' },
+        status: 'Success',
+        id: 123,
+        file: new File([], 'random'),
+      } as SuccessFile,
+      {
+        name: 'Some Random Name Which is long',
+        remote: { id: 'x', url: 'https://nowhere.com' },
+        status: 'Success',
+        id: 123,
+        file: new File([], 'random'),
+      } as SuccessFile,
+      {
+        name: 'Some Random Name Which is very very long',
+        remote: { id: 'x', url: 'https://nowhere.com' },
+        status: 'Success',
+        id: 123,
+        file: new File([], 'random'),
+      } as SuccessFile,
       {
         name: 'Some Random Name Which is even longer than what we had before',
-      } as File,
+        remote: { id: 'x', url: 'https://nowhere.com' },
+        status: 'Success',
+        id: 123,
+        file: new File([], 'random'),
+      } as SuccessFile,
     ],
   },
 };
@@ -43,10 +66,30 @@ export const Error: Story = {
     variant: 'error',
     required: true,
     defaultFiles: [
-      { name: 'Some Random Name' } as File,
-      { name: 'Some Random Name Which is long' } as File,
-      { name: 'Some Random Name Which is long' } as File,
-      { name: 'Some Random Name Which is long' } as File,
+      {
+        name: 'Some Random Name',
+        status: 'Failed',
+        id: 123,
+        file: new File([], 'random'),
+      } as FailedFile,
+      {
+        name: 'Some Random Name Which is long',
+        status: 'Failed',
+        id: 123,
+        file: new File([], 'random'),
+      } as FailedFile,
+      {
+        name: 'Some Random Name Which is long',
+        status: 'Failed',
+        id: 123,
+        file: new File([], 'random'),
+      } as FailedFile,
+      {
+        name: 'Some Random Name Which is long',
+        status: 'Failed',
+        id: 123,
+        file: new File([], 'random'),
+      } as FailedFile,
     ],
   },
 };

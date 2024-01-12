@@ -12,6 +12,7 @@ interface Props {
 
 export const File = ({ file, onRemove }: Props) => {
   const [isDeleting, setIsDeleting] = useState(false);
+  const loading = isDeleting || file.status === 'Uploading';
 
   return (
     <Group
@@ -35,8 +36,8 @@ export const File = ({ file, onRemove }: Props) => {
             setIsDeleting(false);
           }
         }}
-        loading={isDeleting}
-        disabled={isDeleting}
+        loading={loading}
+        disabled={loading}
       >
         <TrashIcon size="18px" />
       </ActionIcon>

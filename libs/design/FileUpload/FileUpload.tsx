@@ -1,4 +1,5 @@
 import { debug } from '@camp/debug';
+import type { RemoteDocument } from '@camp/domain';
 import { randomInt } from '@fullstacksjs/toolbox';
 import type { InputWrapperProps } from '@mantine/core';
 import { Input, Stack, Text } from '@mantine/core';
@@ -10,21 +11,22 @@ import { useDropzone } from 'react-dropzone';
 import { FileList } from './FileList';
 import { FileSelect } from './FileSelect';
 import type { FailedFile, FileState, SuccessFile } from './FileState';
+import { isSuccess } from './FileState';
 
 type Action =
   | {
       type: 'Upload';
       id: number;
-      status: FailedFile['status'] | SuccessFile['status'];
+      remote: RemoteDocument;
+      status: SuccessFile['status'];
+    }
+  | {
+      type: 'Upload';
+      id: number;
+      status: FailedFile['status'];
     }
   | { type: 'Add'; files: FileState[] }
   | { type: 'Remove'; id: number };
-
-const toSuccessFile = (file: File): FileState => ({
-  id: randomInt(),
-  status: 'Success',
-  file,
-});
 
 const toFileState = (file: File): FileState => ({
   id: randomInt(),
@@ -42,7 +44,18 @@ const fileReducer = (state: FileState[], action: Action): FileState[] => {
 
     case 'Upload':
       return state.map(f =>
-        action.id === f.id ? { ...f, status: action.status } : f,
+        action.id === f.id
+          ? action.status === 'Success'
+            ? {
+                ...f,
+                status: action.status,
+                remote: action.remote,
+              }
+            : {
+                ...f,
+                status: action.status,
+              }
+          : f,
       );
     default:
       return state;
@@ -60,20 +73,20 @@ type FileUploadVariant = 'default' | 'error';
 export interface FileUploadProps
   extends Omit<InputWrapperProps, 'children' | 'onDrop'> {
   disabled?: boolean;
-  defaultFiles?: File[];
+  defaultFiles?: (FailedFile | SuccessFile)[];
   helper?: string;
   concurrency?: number;
-  upload?: (file: File) => Promise<void>;
-  unUpload?: (id: FileState['id']) => Promise<void>;
+  upload?: (file: File) => Promise<RemoteDocument>;
+  unUpload?: (id: RemoteDocument['id']) => Promise<void>;
   filter?: (files: File[]) => File[];
-  onAdd?: (file: File) => void;
-  onDelete?: (index: number) => void;
+  onAdd?: (doc: RemoteDocument) => void;
+  onDelete?: (doc: RemoteDocument) => void;
   className?: string;
   dropText?: string;
   variant?: FileUploadVariant;
 }
 
-const empty: File[] = [];
+const empty: (FailedFile | SuccessFile)[] = [];
 
 export const FileUpload = ({
   disabled,
@@ -88,10 +101,7 @@ export const FileUpload = ({
   variant = 'default',
   ...props
 }: FileUploadProps) => {
-  const [files, dispatch] = useReducer(
-    fileReducer,
-    defaultFiles.map(toSuccessFile),
-  );
+  const [files, dispatch] = useReducer(fileReducer, defaultFiles);
 
   const handleDrop: FileHandler = rawFiles => {
     const acceptedFiles = filter ? filter(rawFiles) : rawFiles;
@@ -103,9 +113,14 @@ export const FileUpload = ({
     void Prray.from(fileStates).forEachAsync(
       f =>
         upload?.(f.file)
-          .then(() => {
-            onAdd?.(f.file);
-            dispatch({ type: 'Upload', id: f.id, status: 'Success' });
+          .then(doc => {
+            onAdd?.(doc);
+            dispatch({
+              type: 'Upload',
+              id: f.id,
+              status: 'Success',
+              remote: doc,
+            });
           })
           .catch(() => {
             dispatch({ type: 'Upload', id: f.id, status: 'Failed' });
@@ -121,10 +136,12 @@ export const FileUpload = ({
 
   const { onClick, ...rootProps } = getRootProps();
 
-  const handleRemove = async (file: FileState, index: number) => {
+  const handleRemove = async (file: FileState) => {
     try {
-      await unUpload?.(index);
-      onDelete?.(index);
+      if (isSuccess(file)) {
+        await unUpload?.(file.remote.id);
+        onDelete?.(file.remote);
+      }
       dispatch({ type: 'Remove', id: file.id });
     } catch (err) {
       debug.error(err);
