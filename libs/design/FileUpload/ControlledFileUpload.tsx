@@ -1,6 +1,7 @@
 import type { Control, FieldValues, Path, PathValue } from 'react-hook-form';
 import { Controller } from 'react-hook-form';
 
+import type { RemoteDocument } from '../../domain';
 import type { FileUploadProps } from './FileUpload';
 import { FileUpload } from './FileUpload';
 
@@ -23,24 +24,24 @@ export const ControlledFileUpload = <T extends FieldValues>({
       defaultValue={defaultValue}
       render={({ field }) => (
         <FileUpload
-          onDelete={i => {
+          onDelete={deletedDoc => {
             // FIXME we should get the uploaded file here and set it
             if (Array.isArray(field.value))
               field.onChange({
                 target: {
-                  value: (field.value as any[]).filter(
-                    (_, index) => i !== index,
+                  value: (field.value as RemoteDocument[]).filter(
+                    doc => doc.id !== deletedDoc.id,
                   ),
                   name: field.name,
                 },
               });
           }}
-          onAdd={file => {
+          onAdd={remote => {
             // FIXME we should get the uploaded file here and set it
             if (Array.isArray(field.value))
               field.onChange({
                 target: {
-                  value: [...field.value, file],
+                  value: [...field.value, remote],
                   name: field.name,
                 },
               });

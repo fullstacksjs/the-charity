@@ -1,4 +1,5 @@
 interface ImportMetaEnv {
+  readonly APP_FILE_STORAGE_API_ENDPOINT: string;
   readonly APP_API_ENDPOINT: string;
   readonly APP_GRAPHQL_SCHEMA_URL?: string;
   readonly APP_AUTH0_DOMAIN: string;
