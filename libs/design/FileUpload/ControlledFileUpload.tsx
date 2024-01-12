@@ -36,7 +36,6 @@ export const ControlledFileUpload = <T extends FieldValues>({
               });
           }}
           onAdd={remote => {
-            // FIXME we should get the uploaded file here and set it
             if (Array.isArray(field.value))
               field.onChange({
                 target: {
