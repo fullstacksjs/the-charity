@@ -14,7 +14,6 @@ import { messages } from '@camp/messages';
 import { tid } from '@camp/test';
 import { Button, createStyles, Group, Stack, TextInput } from '@mantine/core';
 import { useForm } from 'react-hook-form';
-import type { SafeParseError, SafeParseSuccess } from 'zod';
 
 import { createProjectDocumentFormIds as ids } from './CreateProjectDocumentForm.ids';
 
@@ -41,25 +40,6 @@ const useStyle = createStyles(theme => ({
     },
   },
 }));
-
-// FIXME replace with actual upload
-
-// eslint-disable-next-line fp/no-let
-let x = 0;
-
-const uploadDocument = () => {
-  return new Promise<void>((res, rej) => {
-    setTimeout(() => {
-      x++;
-      if (x === 3) rej();
-      else res();
-    }, 1000);
-  });
-};
-
-const unUploadDocument = () => {
-  return uploadDocument();
-};
 
 export const CreateProjectDocumentForm = ({ dismiss }: Props) => {
   const t = messages.projectDetail.addDocument.form;
