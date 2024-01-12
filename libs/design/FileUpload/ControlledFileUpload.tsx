@@ -25,7 +25,6 @@ export const ControlledFileUpload = <T extends FieldValues>({
       render={({ field }) => (
         <FileUpload
           onDelete={deletedDoc => {
-            // FIXME we should get the uploaded file here and set it
             if (Array.isArray(field.value))
               field.onChange({
                 target: {
