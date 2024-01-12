@@ -10,7 +10,7 @@ export const upload = async (file: File): Promise<RemoteDocument> => {
   const data = new FormData();
 
   const blob = new Blob([file], { type: file.type });
-  data.append('file', blob);
+  data.append('file', blob, file.name);
   const response = await client.post('/', data);
   const id = response.data.Key as string;
 
