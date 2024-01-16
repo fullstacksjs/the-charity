@@ -4,6 +4,7 @@ import {
   ControlledFileUpload,
   showNotification,
 } from '@camp/design';
+import type { Document } from '@camp/domain';
 import {
   createResolver,
   documentFileValidator,
@@ -18,9 +19,9 @@ import { useForm } from 'react-hook-form';
 import { createProjectDocumentFormIds as ids } from './CreateProjectDocumentForm.ids';
 
 interface FormSchema {
-  date: Date;
+  date?: Date;
   description: string;
-  documents: File[];
+  documents: Document[];
 }
 
 interface Props {
@@ -43,10 +44,11 @@ const useStyle = createStyles(theme => ({
 
 export const CreateProjectDocumentForm = ({ dismiss }: Props) => {
   const t = messages.projectDetail.addDocument.form;
-  const { handleSubmit, register, formState, control } = useForm<FormSchema>({
-    resolver,
-    mode: 'onChange',
-  });
+  const { handleSubmit, register, formState, control, getValues } =
+    useForm<FormSchema>({
+      resolver,
+      mode: 'onChange',
+    });
 
   const onSubmit = handleSubmit(data => {
     debug.log(DebugScopes.All, data);

@@ -1,5 +1,5 @@
 import { debug } from '@camp/debug';
-import type { RemoteDocument } from '@camp/domain';
+import type { Document } from '@camp/domain';
 import { randomInt } from '@fullstacksjs/toolbox';
 import type { InputWrapperProps } from '@mantine/core';
 import { Input, Stack, Text } from '@mantine/core';
@@ -17,7 +17,7 @@ type Action =
   | {
       type: 'Upload';
       id: number;
-      remote: RemoteDocument;
+      remote: Document;
       status: SuccessFile['status'];
     }
   | {
@@ -76,11 +76,11 @@ export interface FileUploadProps
   defaultFiles?: (FailedFile | SuccessFile)[];
   helper?: string;
   concurrency?: number;
-  upload?: (file: File) => Promise<RemoteDocument>;
-  unUpload?: (id: RemoteDocument['id']) => Promise<void>;
+  upload?: (file: File) => Promise<Document>;
+  unUpload?: (id: Document['id']) => Promise<void>;
   filter?: (files: File[]) => File[];
-  onAdd?: (doc: RemoteDocument) => void;
-  onDelete?: (doc: RemoteDocument) => void;
+  onAdd?: (doc: Document) => void;
+  onDelete?: (doc: Document) => void;
   className?: string;
   dropText?: string;
   variant?: FileUploadVariant;
@@ -122,7 +122,8 @@ export const FileUpload = ({
               remote: doc,
             });
           })
-          .catch(() => {
+          .catch(e => {
+            debug.error(e);
             dispatch({ type: 'Upload', id: f.id, status: 'Failed' });
           }),
       { concurrency },

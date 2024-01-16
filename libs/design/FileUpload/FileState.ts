@@ -1,4 +1,4 @@
-import type { RemoteDocument } from '../../domain';
+import type { Document } from '@camp/domain';
 
 interface BaseFile {
   id: number;
@@ -7,7 +7,7 @@ interface BaseFile {
 
 export interface SuccessFile extends BaseFile {
   status: 'Success';
-  remote: RemoteDocument;
+  remote: Document;
 }
 
 interface UploadingFile extends BaseFile {

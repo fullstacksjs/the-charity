@@ -1,7 +1,7 @@
+import type { Document } from '@camp/domain';
 import type { Control, FieldValues, Path, PathValue } from 'react-hook-form';
 import { Controller } from 'react-hook-form';
 
-import type { RemoteDocument } from '../../domain';
 import type { FileUploadProps } from './FileUpload';
 import { FileUpload } from './FileUpload';
 
@@ -28,7 +28,7 @@ export const ControlledFileUpload = <T extends FieldValues>({
             if (Array.isArray(field.value))
               field.onChange({
                 target: {
-                  value: (field.value as RemoteDocument[]).filter(
+                  value: (field.value as Document[]).filter(
                     doc => doc.id !== deletedDoc.id,
                   ),
                   name: field.name,

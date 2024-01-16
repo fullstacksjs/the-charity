@@ -6,7 +6,7 @@ import { Schema } from './Schema';
 export const documentSchema = {
   date: () => z.date().optional(),
   description: () => z.string({ required_error: messages.validation.required }),
-  documents: () => z.array(Schema.document()),
+  documents: () => z.array(Schema.document()).nonempty(),
 };
 
 export const documentFileValidator = z
@@ -24,12 +24,6 @@ export const documentFileValidator = z
   .passthrough() as any as z.ZodSchema<File>;
 
 export interface Document {
-  date: Date;
-  description: string;
-  documents: File[];
-}
-
-export interface RemoteDocument {
   url: string;
   id: string;
 }
