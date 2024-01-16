@@ -222,6 +222,25 @@ export const messages = {
     Unknown: 'نامشخص',
   },
   householder: {
+    visits: {
+      form: {
+        dateInput: {
+          label: 'تاریخ',
+          placeholder: '۱۴۰۰/۰۱/۰۱',
+        },
+        descriptionInput: {
+          label: 'توضیحات',
+          placeholder: 'توضیحات',
+        },
+        documentsInput: {
+          label: 'اسناد',
+          maxSize: 'فایل باید کمتر از ۲۰ مگابایت باشد',
+        },
+        submitBtn: 'ایجاد سند',
+      },
+      title: 'بازدیدها',
+      addVisit: 'افزودن بازدید',
+    },
     detail: {
       title: 'اطلاعات هویت',
     },
