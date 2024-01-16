@@ -341,6 +341,7 @@ export const messages = {
     edit: 'ویرایش',
     complete: 'تکمیل',
     tabs: {
+      visitsTitle: 'بازدیدها',
       householderTitle: 'سرپرست',
       membersTitle: 'اعضا',
     },
