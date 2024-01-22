@@ -20,8 +20,8 @@ import { addHouseholderVisitFormIds as ids } from './AddHouseholderVisitForm.ids
 
 interface FormSchema {
   name: string;
-  date?: Date;
-  description: string;
+  date: Date;
+  description?: string;
   documents: Document[];
 }
 
@@ -46,11 +46,10 @@ const useStyle = createStyles(theme => ({
 
 export const AddHouseholderVisitForm = ({ dismiss }: Props) => {
   const t = messages.householder.visits.form;
-  const { handleSubmit, register, formState, control, getValues } =
-    useForm<FormSchema>({
-      resolver,
-      mode: 'onChange',
-    });
+  const { handleSubmit, register, formState, control } = useForm<FormSchema>({
+    resolver,
+    mode: 'onChange',
+  });
 
   const onSubmit = handleSubmit(data => {
     debug.log(DebugScopes.All, data);
@@ -62,7 +61,7 @@ export const AddHouseholderVisitForm = ({ dismiss }: Props) => {
       <Stack spacing={40}>
         <TextInput
           data-autoFocus
-          withAsterisk
+          required
           placeholder={t.nameInput.placeholder}
           label={t.nameInput.label}
           size="sm"
@@ -72,6 +71,7 @@ export const AddHouseholderVisitForm = ({ dismiss }: Props) => {
         />
         <ControlledDateInput
           name="date"
+          required
           control={control}
           className={classes.label}
           wrapperProps={tid(ids.dateInput)}
@@ -81,7 +81,6 @@ export const AddHouseholderVisitForm = ({ dismiss }: Props) => {
         />
         <TextInput
           wrapperProps={tid(ids.descriptionInput)}
-          required
           {...register('description')}
           label={t.descriptionInput.label}
           placeholder={t.descriptionInput.placeholder}
