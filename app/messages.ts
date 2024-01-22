@@ -224,6 +224,10 @@ export const messages = {
   householder: {
     visits: {
       form: {
+        nameInput: {
+          placeholder: 'برای مثال: مرادی',
+          label: 'نام',
+        },
         dateInput: {
           label: 'تاریخ',
           placeholder: '۱۴۰۰/۰۱/۰۱',

@@ -1,4 +1,5 @@
 export const addHouseholderVisitFormIds = {
+  nameInput: 'visit-name',
   form: 'add-householder-visit-form',
   dateInput: 'project-document-date',
   descriptionInput: 'project-description-input',

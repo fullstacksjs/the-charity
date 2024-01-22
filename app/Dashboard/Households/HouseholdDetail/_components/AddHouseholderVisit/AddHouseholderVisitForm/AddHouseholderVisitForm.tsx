@@ -19,6 +19,7 @@ import { useForm } from 'react-hook-form';
 import { addHouseholderVisitFormIds as ids } from './AddHouseholderVisitForm.ids';
 
 interface FormSchema {
+  name: string;
   date?: Date;
   description: string;
   documents: Document[];
@@ -29,6 +30,7 @@ interface Props {
 }
 
 const resolver = createResolver<FormSchema>({
+  name: documentSchema.name(),
   date: documentSchema.date(),
   description: documentSchema.description(),
   documents: documentSchema.documents(),
@@ -58,6 +60,16 @@ export const AddHouseholderVisitForm = ({ dismiss }: Props) => {
   return (
     <form onSubmit={onSubmit} {...tid(ids.form)}>
       <Stack spacing={40}>
+        <TextInput
+          data-autoFocus
+          withAsterisk
+          placeholder={t.nameInput.placeholder}
+          label={t.nameInput.label}
+          size="sm"
+          error={formState.errors.name?.message}
+          wrapperProps={tid(ids.nameInput)}
+          {...register('name')}
+        />
         <ControlledDateInput
           name="date"
           control={control}
