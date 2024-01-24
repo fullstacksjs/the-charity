@@ -11,3 +11,4 @@ export * from './Project';
 export * from './Religions';
 export * from './ServerErrors';
 export * from './User';
+export * from './Visit';

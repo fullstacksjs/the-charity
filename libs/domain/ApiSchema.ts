@@ -853,9 +853,10 @@ export type ApiDisabilityStatusUpdates = {
 /** columns and relationships of "document" */
 export type ApiDocument = {
   __typename?: 'document';
-  householder_id: Scalars['uuid']['output'];
+  householder_id?: Maybe<Scalars['uuid']['output']>;
   id: Scalars['uuid']['output'];
   url: Scalars['String']['output'];
+  visit_id?: Maybe<Scalars['uuid']['output']>;
 };
 
 /** aggregated selection of "document" */
@@ -913,6 +914,7 @@ export type ApiDocumentBoolExp = {
   householder_id?: InputMaybe<ApiUuidComparisonExp>;
   id?: InputMaybe<ApiUuidComparisonExp>;
   url?: InputMaybe<ApiStringComparisonExp>;
+  visit_id?: InputMaybe<ApiUuidComparisonExp>;
 };
 
 /** unique or primary key constraints on table "document" */
@@ -926,6 +928,7 @@ export type ApiDocumentInsertInput = {
   householder_id?: InputMaybe<Scalars['uuid']['input']>;
   id?: InputMaybe<Scalars['uuid']['input']>;
   url?: InputMaybe<Scalars['String']['input']>;
+  visit_id?: InputMaybe<Scalars['uuid']['input']>;
 };
 
 /** aggregate max on columns */
@@ -934,6 +937,7 @@ export type ApiDocumentMaxFields = {
   householder_id?: Maybe<Scalars['uuid']['output']>;
   id?: Maybe<Scalars['uuid']['output']>;
   url?: Maybe<Scalars['String']['output']>;
+  visit_id?: Maybe<Scalars['uuid']['output']>;
 };
 
 /** order by max() on columns of table "document" */
@@ -941,6 +945,7 @@ export type ApiDocumentMaxOrderBy = {
   householder_id?: InputMaybe<ApiOrderBy>;
   id?: InputMaybe<ApiOrderBy>;
   url?: InputMaybe<ApiOrderBy>;
+  visit_id?: InputMaybe<ApiOrderBy>;
 };
 
 /** aggregate min on columns */
@@ -949,6 +954,7 @@ export type ApiDocumentMinFields = {
   householder_id?: Maybe<Scalars['uuid']['output']>;
   id?: Maybe<Scalars['uuid']['output']>;
   url?: Maybe<Scalars['String']['output']>;
+  visit_id?: Maybe<Scalars['uuid']['output']>;
 };
 
 /** order by min() on columns of table "document" */
@@ -956,6 +962,7 @@ export type ApiDocumentMinOrderBy = {
   householder_id?: InputMaybe<ApiOrderBy>;
   id?: InputMaybe<ApiOrderBy>;
   url?: InputMaybe<ApiOrderBy>;
+  visit_id?: InputMaybe<ApiOrderBy>;
 };
 
 /** response of any mutation on the table "document" */
@@ -979,6 +986,7 @@ export type ApiDocumentOrderBy = {
   householder_id?: InputMaybe<ApiOrderBy>;
   id?: InputMaybe<ApiOrderBy>;
   url?: InputMaybe<ApiOrderBy>;
+  visit_id?: InputMaybe<ApiOrderBy>;
 };
 
 /** primary key columns input for table: document */
@@ -993,7 +1001,9 @@ export enum ApiDocumentSelectColumn {
   /** column name */
   Id = 'id',
   /** column name */
-  Url = 'url'
+  Url = 'url',
+  /** column name */
+  VisitId = 'visit_id'
 }
 
 /** input type for updating data in table "document" */
@@ -1001,6 +1011,7 @@ export type ApiDocumentSetInput = {
   householder_id?: InputMaybe<Scalars['uuid']['input']>;
   id?: InputMaybe<Scalars['uuid']['input']>;
   url?: InputMaybe<Scalars['String']['input']>;
+  visit_id?: InputMaybe<Scalars['uuid']['input']>;
 };
 
 /** Streaming cursor of the table "document" */
@@ -1016,6 +1027,7 @@ export type ApiDocumentStreamCursorValueInput = {
   householder_id?: InputMaybe<Scalars['uuid']['input']>;
   id?: InputMaybe<Scalars['uuid']['input']>;
   url?: InputMaybe<Scalars['String']['input']>;
+  visit_id?: InputMaybe<Scalars['uuid']['input']>;
 };
 
 /** update columns of table "document" */
@@ -1025,7 +1037,9 @@ export enum ApiDocumentUpdateColumn {
   /** column name */
   Id = 'id',
   /** column name */
-  Url = 'url'
+  Url = 'url',
+  /** column name */
+  VisitId = 'visit_id'
 }
 
 export type ApiDocumentUpdates = {
@@ -3674,6 +3688,10 @@ export type ApiMutationRoot = {
   delete_nationality?: Maybe<ApiNationalityMutationResponse>;
   /** delete single row from the table: "nationality" */
   delete_nationality_by_pk?: Maybe<ApiNationality>;
+  /** delete data from the table: "neighborhood" */
+  delete_neighborhood?: Maybe<ApiNeighborhoodMutationResponse>;
+  /** delete single row from the table: "neighborhood" */
+  delete_neighborhood_by_pk?: Maybe<ApiNeighborhood>;
   /** delete data from the table: "project" */
   delete_project?: Maybe<ApiProjectMutationResponse>;
   /** delete single row from the table: "project" */
@@ -3694,6 +3712,14 @@ export type ApiMutationRoot = {
   delete_subsidy?: Maybe<ApiSubsidyMutationResponse>;
   /** delete single row from the table: "subsidy" */
   delete_subsidy_by_pk?: Maybe<ApiSubsidy>;
+  /** delete data from the table: "visit" */
+  delete_visit?: Maybe<ApiVisitMutationResponse>;
+  /** delete single row from the table: "visit" */
+  delete_visit_by_pk?: Maybe<ApiVisit>;
+  /** delete data from the table: "visit_status" */
+  delete_visit_status?: Maybe<ApiVisitStatusMutationResponse>;
+  /** delete single row from the table: "visit_status" */
+  delete_visit_status_by_pk?: Maybe<ApiVisitStatus>;
   /** insert data into the table: "accommodation_type" */
   insert_accommodation_type?: Maybe<ApiAccommodationTypeMutationResponse>;
   /** insert a single row into the table: "accommodation_type" */
@@ -3762,6 +3788,10 @@ export type ApiMutationRoot = {
   insert_nationality?: Maybe<ApiNationalityMutationResponse>;
   /** insert a single row into the table: "nationality" */
   insert_nationality_one?: Maybe<ApiNationality>;
+  /** insert data into the table: "neighborhood" */
+  insert_neighborhood?: Maybe<ApiNeighborhoodMutationResponse>;
+  /** insert a single row into the table: "neighborhood" */
+  insert_neighborhood_one?: Maybe<ApiNeighborhood>;
   /** insert data into the table: "project" */
   insert_project?: Maybe<ApiProjectMutationResponse>;
   /** insert a single row into the table: "project" */
@@ -3782,6 +3812,14 @@ export type ApiMutationRoot = {
   insert_subsidy?: Maybe<ApiSubsidyMutationResponse>;
   /** insert a single row into the table: "subsidy" */
   insert_subsidy_one?: Maybe<ApiSubsidy>;
+  /** insert data into the table: "visit" */
+  insert_visit?: Maybe<ApiVisitMutationResponse>;
+  /** insert a single row into the table: "visit" */
+  insert_visit_one?: Maybe<ApiVisit>;
+  /** insert data into the table: "visit_status" */
+  insert_visit_status?: Maybe<ApiVisitStatusMutationResponse>;
+  /** insert a single row into the table: "visit_status" */
+  insert_visit_status_one?: Maybe<ApiVisitStatus>;
   /** update data of the table: "accommodation_type" */
   update_accommodation_type?: Maybe<ApiAccommodationTypeMutationResponse>;
   /** update single row of the table: "accommodation_type" */
@@ -3884,6 +3922,12 @@ export type ApiMutationRoot = {
   update_nationality_by_pk?: Maybe<ApiNationality>;
   /** update multiples rows of table: "nationality" */
   update_nationality_many?: Maybe<Array<Maybe<ApiNationalityMutationResponse>>>;
+  /** update data of the table: "neighborhood" */
+  update_neighborhood?: Maybe<ApiNeighborhoodMutationResponse>;
+  /** update single row of the table: "neighborhood" */
+  update_neighborhood_by_pk?: Maybe<ApiNeighborhood>;
+  /** update multiples rows of table: "neighborhood" */
+  update_neighborhood_many?: Maybe<Array<Maybe<ApiNeighborhoodMutationResponse>>>;
   /** update data of the table: "project" */
   update_project?: Maybe<ApiProjectMutationResponse>;
   /** update single row of the table: "project" */
@@ -3914,6 +3958,18 @@ export type ApiMutationRoot = {
   update_subsidy_by_pk?: Maybe<ApiSubsidy>;
   /** update multiples rows of table: "subsidy" */
   update_subsidy_many?: Maybe<Array<Maybe<ApiSubsidyMutationResponse>>>;
+  /** update data of the table: "visit" */
+  update_visit?: Maybe<ApiVisitMutationResponse>;
+  /** update single row of the table: "visit" */
+  update_visit_by_pk?: Maybe<ApiVisit>;
+  /** update multiples rows of table: "visit" */
+  update_visit_many?: Maybe<Array<Maybe<ApiVisitMutationResponse>>>;
+  /** update data of the table: "visit_status" */
+  update_visit_status?: Maybe<ApiVisitStatusMutationResponse>;
+  /** update single row of the table: "visit_status" */
+  update_visit_status_by_pk?: Maybe<ApiVisitStatus>;
+  /** update multiples rows of table: "visit_status" */
+  update_visit_status_many?: Maybe<Array<Maybe<ApiVisitStatusMutationResponse>>>;
 };
 
 
@@ -4123,6 +4179,18 @@ export type ApiMutationRootApiDeleteNationalityByPkArgs = {
 
 
 /** mutation root */
+export type ApiMutationRootApiDeleteNeighborhoodArgs = {
+  where: ApiNeighborhoodBoolExp;
+};
+
+
+/** mutation root */
+export type ApiMutationRootApiDeleteNeighborhoodByPkArgs = {
+  name: Scalars['String']['input'];
+};
+
+
+/** mutation root */
 export type ApiMutationRootApiDeleteProjectArgs = {
   where: ApiProjectBoolExp;
 };
@@ -4179,6 +4247,30 @@ export type ApiMutationRootApiDeleteSubsidyArgs = {
 /** mutation root */
 export type ApiMutationRootApiDeleteSubsidyByPkArgs = {
   id: Scalars['uuid']['input'];
+};
+
+
+/** mutation root */
+export type ApiMutationRootApiDeleteVisitArgs = {
+  where: ApiVisitBoolExp;
+};
+
+
+/** mutation root */
+export type ApiMutationRootApiDeleteVisitByPkArgs = {
+  id: Scalars['uuid']['input'];
+};
+
+
+/** mutation root */
+export type ApiMutationRootApiDeleteVisitStatusArgs = {
+  where: ApiVisitStatusBoolExp;
+};
+
+
+/** mutation root */
+export type ApiMutationRootApiDeleteVisitStatusByPkArgs = {
+  value: Scalars['String']['input'];
 };
 
 
@@ -4421,6 +4513,20 @@ export type ApiMutationRootApiInsertNationalityOneArgs = {
 
 
 /** mutation root */
+export type ApiMutationRootApiInsertNeighborhoodArgs = {
+  objects: Array<ApiNeighborhoodInsertInput>;
+  on_conflict?: InputMaybe<ApiNeighborhoodOnConflict>;
+};
+
+
+/** mutation root */
+export type ApiMutationRootApiInsertNeighborhoodOneArgs = {
+  object: ApiNeighborhoodInsertInput;
+  on_conflict?: InputMaybe<ApiNeighborhoodOnConflict>;
+};
+
+
+/** mutation root */
 export type ApiMutationRootApiInsertProjectArgs = {
   objects: Array<ApiProjectInsertInput>;
   on_conflict?: InputMaybe<ApiProjectOnConflict>;
@@ -4487,6 +4593,34 @@ export type ApiMutationRootApiInsertSubsidyArgs = {
 export type ApiMutationRootApiInsertSubsidyOneArgs = {
   object: ApiSubsidyInsertInput;
   on_conflict?: InputMaybe<ApiSubsidyOnConflict>;
+};
+
+
+/** mutation root */
+export type ApiMutationRootApiInsertVisitArgs = {
+  objects: Array<ApiVisitInsertInput>;
+  on_conflict?: InputMaybe<ApiVisitOnConflict>;
+};
+
+
+/** mutation root */
+export type ApiMutationRootApiInsertVisitOneArgs = {
+  object: ApiVisitInsertInput;
+  on_conflict?: InputMaybe<ApiVisitOnConflict>;
+};
+
+
+/** mutation root */
+export type ApiMutationRootApiInsertVisitStatusArgs = {
+  objects: Array<ApiVisitStatusInsertInput>;
+  on_conflict?: InputMaybe<ApiVisitStatusOnConflict>;
+};
+
+
+/** mutation root */
+export type ApiMutationRootApiInsertVisitStatusOneArgs = {
+  object: ApiVisitStatusInsertInput;
+  on_conflict?: InputMaybe<ApiVisitStatusOnConflict>;
 };
 
 
@@ -4837,6 +4971,26 @@ export type ApiMutationRootApiUpdateNationalityManyArgs = {
 
 
 /** mutation root */
+export type ApiMutationRootApiUpdateNeighborhoodArgs = {
+  _set?: InputMaybe<ApiNeighborhoodSetInput>;
+  where: ApiNeighborhoodBoolExp;
+};
+
+
+/** mutation root */
+export type ApiMutationRootApiUpdateNeighborhoodByPkArgs = {
+  _set?: InputMaybe<ApiNeighborhoodSetInput>;
+  pk_columns: ApiNeighborhoodPkColumnsInput;
+};
+
+
+/** mutation root */
+export type ApiMutationRootApiUpdateNeighborhoodManyArgs = {
+  updates: Array<ApiNeighborhoodUpdates>;
+};
+
+
+/** mutation root */
 export type ApiMutationRootApiUpdateProjectArgs = {
   _set?: InputMaybe<ApiProjectSetInput>;
   where: ApiProjectBoolExp;
@@ -4933,6 +5087,46 @@ export type ApiMutationRootApiUpdateSubsidyByPkArgs = {
 /** mutation root */
 export type ApiMutationRootApiUpdateSubsidyManyArgs = {
   updates: Array<ApiSubsidyUpdates>;
+};
+
+
+/** mutation root */
+export type ApiMutationRootApiUpdateVisitArgs = {
+  _set?: InputMaybe<ApiVisitSetInput>;
+  where: ApiVisitBoolExp;
+};
+
+
+/** mutation root */
+export type ApiMutationRootApiUpdateVisitByPkArgs = {
+  _set?: InputMaybe<ApiVisitSetInput>;
+  pk_columns: ApiVisitPkColumnsInput;
+};
+
+
+/** mutation root */
+export type ApiMutationRootApiUpdateVisitManyArgs = {
+  updates: Array<ApiVisitUpdates>;
+};
+
+
+/** mutation root */
+export type ApiMutationRootApiUpdateVisitStatusArgs = {
+  _set?: InputMaybe<ApiVisitStatusSetInput>;
+  where: ApiVisitStatusBoolExp;
+};
+
+
+/** mutation root */
+export type ApiMutationRootApiUpdateVisitStatusByPkArgs = {
+  _set?: InputMaybe<ApiVisitStatusSetInput>;
+  pk_columns: ApiVisitStatusPkColumnsInput;
+};
+
+
+/** mutation root */
+export type ApiMutationRootApiUpdateVisitStatusManyArgs = {
+  updates: Array<ApiVisitStatusUpdates>;
 };
 
 /** columns and relationships of "nationality" */
@@ -5069,6 +5263,140 @@ export type ApiNationalityUpdates = {
   _set?: InputMaybe<ApiNationalitySetInput>;
   /** filter the rows which have to be updated */
   where: ApiNationalityBoolExp;
+};
+
+/** columns and relationships of "neighborhood" */
+export type ApiNeighborhood = {
+  __typename?: 'neighborhood';
+  city: Scalars['String']['output'];
+  name: Scalars['String']['output'];
+};
+
+/** aggregated selection of "neighborhood" */
+export type ApiNeighborhoodAggregate = {
+  __typename?: 'neighborhood_aggregate';
+  aggregate?: Maybe<ApiNeighborhoodAggregateFields>;
+  nodes: Array<ApiNeighborhood>;
+};
+
+/** aggregate fields of "neighborhood" */
+export type ApiNeighborhoodAggregateFields = {
+  __typename?: 'neighborhood_aggregate_fields';
+  count: Scalars['Int']['output'];
+  max?: Maybe<ApiNeighborhoodMaxFields>;
+  min?: Maybe<ApiNeighborhoodMinFields>;
+};
+
+
+/** aggregate fields of "neighborhood" */
+export type ApiNeighborhoodAggregateFieldsApiCountArgs = {
+  columns?: InputMaybe<Array<ApiNeighborhoodSelectColumn>>;
+  distinct?: InputMaybe<Scalars['Boolean']['input']>;
+};
+
+/** Boolean expression to filter rows from the table "neighborhood". All fields are combined with a logical 'AND'. */
+export type ApiNeighborhoodBoolExp = {
+  _and?: InputMaybe<Array<ApiNeighborhoodBoolExp>>;
+  _not?: InputMaybe<ApiNeighborhoodBoolExp>;
+  _or?: InputMaybe<Array<ApiNeighborhoodBoolExp>>;
+  city?: InputMaybe<ApiStringComparisonExp>;
+  name?: InputMaybe<ApiStringComparisonExp>;
+};
+
+/** unique or primary key constraints on table "neighborhood" */
+export enum ApiNeighborhoodConstraint {
+  /** unique or primary key constraint on columns "name" */
+  NeighborhoodPkey = 'neighborhood_pkey'
+}
+
+/** input type for inserting data into table "neighborhood" */
+export type ApiNeighborhoodInsertInput = {
+  city?: InputMaybe<Scalars['String']['input']>;
+  name?: InputMaybe<Scalars['String']['input']>;
+};
+
+/** aggregate max on columns */
+export type ApiNeighborhoodMaxFields = {
+  __typename?: 'neighborhood_max_fields';
+  city?: Maybe<Scalars['String']['output']>;
+  name?: Maybe<Scalars['String']['output']>;
+};
+
+/** aggregate min on columns */
+export type ApiNeighborhoodMinFields = {
+  __typename?: 'neighborhood_min_fields';
+  city?: Maybe<Scalars['String']['output']>;
+  name?: Maybe<Scalars['String']['output']>;
+};
+
+/** response of any mutation on the table "neighborhood" */
+export type ApiNeighborhoodMutationResponse = {
+  __typename?: 'neighborhood_mutation_response';
+  /** number of rows affected by the mutation */
+  affected_rows: Scalars['Int']['output'];
+  /** data from the rows affected by the mutation */
+  returning: Array<ApiNeighborhood>;
+};
+
+/** on_conflict condition type for table "neighborhood" */
+export type ApiNeighborhoodOnConflict = {
+  constraint: ApiNeighborhoodConstraint;
+  update_columns?: Array<ApiNeighborhoodUpdateColumn>;
+  where?: InputMaybe<ApiNeighborhoodBoolExp>;
+};
+
+/** Ordering options when selecting data from "neighborhood". */
+export type ApiNeighborhoodOrderBy = {
+  city?: InputMaybe<ApiOrderBy>;
+  name?: InputMaybe<ApiOrderBy>;
+};
+
+/** primary key columns input for table: neighborhood */
+export type ApiNeighborhoodPkColumnsInput = {
+  name: Scalars['String']['input'];
+};
+
+/** select columns of table "neighborhood" */
+export enum ApiNeighborhoodSelectColumn {
+  /** column name */
+  City = 'city',
+  /** column name */
+  Name = 'name'
+}
+
+/** input type for updating data in table "neighborhood" */
+export type ApiNeighborhoodSetInput = {
+  city?: InputMaybe<Scalars['String']['input']>;
+  name?: InputMaybe<Scalars['String']['input']>;
+};
+
+/** Streaming cursor of the table "neighborhood" */
+export type ApiNeighborhoodStreamCursorInput = {
+  /** Stream column input with initial value */
+  initial_value: ApiNeighborhoodStreamCursorValueInput;
+  /** cursor ordering */
+  ordering?: InputMaybe<ApiCursorOrdering>;
+};
+
+/** Initial value of the column from where the streaming should start */
+export type ApiNeighborhoodStreamCursorValueInput = {
+  city?: InputMaybe<Scalars['String']['input']>;
+  name?: InputMaybe<Scalars['String']['input']>;
+};
+
+/** update columns of table "neighborhood" */
+export enum ApiNeighborhoodUpdateColumn {
+  /** column name */
+  City = 'city',
+  /** column name */
+  Name = 'name'
+}
+
+export type ApiNeighborhoodUpdates = {
+  /** sets the columns of the filtered rows to the given values */
+  _set?: InputMaybe<ApiNeighborhoodSetInput>;
+  /** filter the rows which have to be updated */
+  where: ApiNeighborhoodBoolExp;
 };
 
 /** column ordering options */
@@ -5581,6 +5909,12 @@ export type ApiQueryRoot = {
   nationality_aggregate: ApiNationalityAggregate;
   /** fetch data from the table: "nationality" using primary key columns */
   nationality_by_pk?: Maybe<ApiNationality>;
+  /** fetch data from the table: "neighborhood" */
+  neighborhood: Array<ApiNeighborhood>;
+  /** fetch aggregated fields from the table: "neighborhood" */
+  neighborhood_aggregate: ApiNeighborhoodAggregate;
+  /** fetch data from the table: "neighborhood" using primary key columns */
+  neighborhood_by_pk?: Maybe<ApiNeighborhood>;
   /** fetch data from the table: "project" */
   project: Array<ApiProject>;
   /** fetch aggregated fields from the table: "project" */
@@ -5611,6 +5945,18 @@ export type ApiQueryRoot = {
   subsidy_aggregate: ApiSubsidyAggregate;
   /** fetch data from the table: "subsidy" using primary key columns */
   subsidy_by_pk?: Maybe<ApiSubsidy>;
+  /** fetch data from the table: "visit" */
+  visit: Array<ApiVisit>;
+  /** fetch aggregated fields from the table: "visit" */
+  visit_aggregate: ApiVisitAggregate;
+  /** fetch data from the table: "visit" using primary key columns */
+  visit_by_pk?: Maybe<ApiVisit>;
+  /** fetch data from the table: "visit_status" */
+  visit_status: Array<ApiVisitStatus>;
+  /** fetch aggregated fields from the table: "visit_status" */
+  visit_status_aggregate: ApiVisitStatusAggregate;
+  /** fetch data from the table: "visit_status" using primary key columns */
+  visit_status_by_pk?: Maybe<ApiVisitStatus>;
 };
 
 
@@ -6006,6 +6352,29 @@ export type ApiQueryRootApiNationalityByPkArgs = {
 };
 
 
+export type ApiQueryRootApiNeighborhoodArgs = {
+  distinct_on?: InputMaybe<Array<ApiNeighborhoodSelectColumn>>;
+  limit?: InputMaybe<Scalars['Int']['input']>;
+  offset?: InputMaybe<Scalars['Int']['input']>;
+  order_by?: InputMaybe<Array<ApiNeighborhoodOrderBy>>;
+  where?: InputMaybe<ApiNeighborhoodBoolExp>;
+};
+
+
+export type ApiQueryRootApiNeighborhoodAggregateArgs = {
+  distinct_on?: InputMaybe<Array<ApiNeighborhoodSelectColumn>>;
+  limit?: InputMaybe<Scalars['Int']['input']>;
+  offset?: InputMaybe<Scalars['Int']['input']>;
+  order_by?: InputMaybe<Array<ApiNeighborhoodOrderBy>>;
+  where?: InputMaybe<ApiNeighborhoodBoolExp>;
+};
+
+
+export type ApiQueryRootApiNeighborhoodByPkArgs = {
+  name: Scalars['String']['input'];
+};
+
+
 export type ApiQueryRootApiProjectArgs = {
   distinct_on?: InputMaybe<Array<ApiProjectSelectColumn>>;
   limit?: InputMaybe<Scalars['Int']['input']>;
@@ -6118,6 +6487,52 @@ export type ApiQueryRootApiSubsidyAggregateArgs = {
 
 export type ApiQueryRootApiSubsidyByPkArgs = {
   id: Scalars['uuid']['input'];
+};
+
+
+export type ApiQueryRootApiVisitArgs = {
+  distinct_on?: InputMaybe<Array<ApiVisitSelectColumn>>;
+  limit?: InputMaybe<Scalars['Int']['input']>;
+  offset?: InputMaybe<Scalars['Int']['input']>;
+  order_by?: InputMaybe<Array<ApiVisitOrderBy>>;
+  where?: InputMaybe<ApiVisitBoolExp>;
+};
+
+
+export type ApiQueryRootApiVisitAggregateArgs = {
+  distinct_on?: InputMaybe<Array<ApiVisitSelectColumn>>;
+  limit?: InputMaybe<Scalars['Int']['input']>;
+  offset?: InputMaybe<Scalars['Int']['input']>;
+  order_by?: InputMaybe<Array<ApiVisitOrderBy>>;
+  where?: InputMaybe<ApiVisitBoolExp>;
+};
+
+
+export type ApiQueryRootApiVisitByPkArgs = {
+  id: Scalars['uuid']['input'];
+};
+
+
+export type ApiQueryRootApiVisitStatusArgs = {
+  distinct_on?: InputMaybe<Array<ApiVisitStatusSelectColumn>>;
+  limit?: InputMaybe<Scalars['Int']['input']>;
+  offset?: InputMaybe<Scalars['Int']['input']>;
+  order_by?: InputMaybe<Array<ApiVisitStatusOrderBy>>;
+  where?: InputMaybe<ApiVisitStatusBoolExp>;
+};
+
+
+export type ApiQueryRootApiVisitStatusAggregateArgs = {
+  distinct_on?: InputMaybe<Array<ApiVisitStatusSelectColumn>>;
+  limit?: InputMaybe<Scalars['Int']['input']>;
+  offset?: InputMaybe<Scalars['Int']['input']>;
+  order_by?: InputMaybe<Array<ApiVisitStatusOrderBy>>;
+  where?: InputMaybe<ApiVisitStatusBoolExp>;
+};
+
+
+export type ApiQueryRootApiVisitStatusByPkArgs = {
+  value: Scalars['String']['input'];
 };
 
 /** columns and relationships of "religion" */
@@ -6581,6 +6996,14 @@ export type ApiSubscriptionRoot = {
   nationality_by_pk?: Maybe<ApiNationality>;
   /** fetch data from the table in a streaming manner: "nationality" */
   nationality_stream: Array<ApiNationality>;
+  /** fetch data from the table: "neighborhood" */
+  neighborhood: Array<ApiNeighborhood>;
+  /** fetch aggregated fields from the table: "neighborhood" */
+  neighborhood_aggregate: ApiNeighborhoodAggregate;
+  /** fetch data from the table: "neighborhood" using primary key columns */
+  neighborhood_by_pk?: Maybe<ApiNeighborhood>;
+  /** fetch data from the table in a streaming manner: "neighborhood" */
+  neighborhood_stream: Array<ApiNeighborhood>;
   /** fetch data from the table: "project" */
   project: Array<ApiProject>;
   /** fetch aggregated fields from the table: "project" */
@@ -6621,6 +7044,22 @@ export type ApiSubscriptionRoot = {
   subsidy_by_pk?: Maybe<ApiSubsidy>;
   /** fetch data from the table in a streaming manner: "subsidy" */
   subsidy_stream: Array<ApiSubsidy>;
+  /** fetch data from the table: "visit" */
+  visit: Array<ApiVisit>;
+  /** fetch aggregated fields from the table: "visit" */
+  visit_aggregate: ApiVisitAggregate;
+  /** fetch data from the table: "visit" using primary key columns */
+  visit_by_pk?: Maybe<ApiVisit>;
+  /** fetch data from the table: "visit_status" */
+  visit_status: Array<ApiVisitStatus>;
+  /** fetch aggregated fields from the table: "visit_status" */
+  visit_status_aggregate: ApiVisitStatusAggregate;
+  /** fetch data from the table: "visit_status" using primary key columns */
+  visit_status_by_pk?: Maybe<ApiVisitStatus>;
+  /** fetch data from the table in a streaming manner: "visit_status" */
+  visit_status_stream: Array<ApiVisitStatus>;
+  /** fetch data from the table in a streaming manner: "visit" */
+  visit_stream: Array<ApiVisit>;
 };
 
 
@@ -7135,6 +7574,36 @@ export type ApiSubscriptionRootApiNationalityStreamArgs = {
 };
 
 
+export type ApiSubscriptionRootApiNeighborhoodArgs = {
+  distinct_on?: InputMaybe<Array<ApiNeighborhoodSelectColumn>>;
+  limit?: InputMaybe<Scalars['Int']['input']>;
+  offset?: InputMaybe<Scalars['Int']['input']>;
+  order_by?: InputMaybe<Array<ApiNeighborhoodOrderBy>>;
+  where?: InputMaybe<ApiNeighborhoodBoolExp>;
+};
+
+
+export type ApiSubscriptionRootApiNeighborhoodAggregateArgs = {
+  distinct_on?: InputMaybe<Array<ApiNeighborhoodSelectColumn>>;
+  limit?: InputMaybe<Scalars['Int']['input']>;
+  offset?: InputMaybe<Scalars['Int']['input']>;
+  order_by?: InputMaybe<Array<ApiNeighborhoodOrderBy>>;
+  where?: InputMaybe<ApiNeighborhoodBoolExp>;
+};
+
+
+export type ApiSubscriptionRootApiNeighborhoodByPkArgs = {
+  name: Scalars['String']['input'];
+};
+
+
+export type ApiSubscriptionRootApiNeighborhoodStreamArgs = {
+  batch_size: Scalars['Int']['input'];
+  cursor: Array<InputMaybe<ApiNeighborhoodStreamCursorInput>>;
+  where?: InputMaybe<ApiNeighborhoodBoolExp>;
+};
+
+
 export type ApiSubscriptionRootApiProjectArgs = {
   distinct_on?: InputMaybe<Array<ApiProjectSelectColumn>>;
   limit?: InputMaybe<Scalars['Int']['input']>;
@@ -7282,6 +7751,66 @@ export type ApiSubscriptionRootApiSubsidyStreamArgs = {
   batch_size: Scalars['Int']['input'];
   cursor: Array<InputMaybe<ApiSubsidyStreamCursorInput>>;
   where?: InputMaybe<ApiSubsidyBoolExp>;
+};
+
+
+export type ApiSubscriptionRootApiVisitArgs = {
+  distinct_on?: InputMaybe<Array<ApiVisitSelectColumn>>;
+  limit?: InputMaybe<Scalars['Int']['input']>;
+  offset?: InputMaybe<Scalars['Int']['input']>;
+  order_by?: InputMaybe<Array<ApiVisitOrderBy>>;
+  where?: InputMaybe<ApiVisitBoolExp>;
+};
+
+
+export type ApiSubscriptionRootApiVisitAggregateArgs = {
+  distinct_on?: InputMaybe<Array<ApiVisitSelectColumn>>;
+  limit?: InputMaybe<Scalars['Int']['input']>;
+  offset?: InputMaybe<Scalars['Int']['input']>;
+  order_by?: InputMaybe<Array<ApiVisitOrderBy>>;
+  where?: InputMaybe<ApiVisitBoolExp>;
+};
+
+
+export type ApiSubscriptionRootApiVisitByPkArgs = {
+  id: Scalars['uuid']['input'];
+};
+
+
+export type ApiSubscriptionRootApiVisitStatusArgs = {
+  distinct_on?: InputMaybe<Array<ApiVisitStatusSelectColumn>>;
+  limit?: InputMaybe<Scalars['Int']['input']>;
+  offset?: InputMaybe<Scalars['Int']['input']>;
+  order_by?: InputMaybe<Array<ApiVisitStatusOrderBy>>;
+  where?: InputMaybe<ApiVisitStatusBoolExp>;
+};
+
+
+export type ApiSubscriptionRootApiVisitStatusAggregateArgs = {
+  distinct_on?: InputMaybe<Array<ApiVisitStatusSelectColumn>>;
+  limit?: InputMaybe<Scalars['Int']['input']>;
+  offset?: InputMaybe<Scalars['Int']['input']>;
+  order_by?: InputMaybe<Array<ApiVisitStatusOrderBy>>;
+  where?: InputMaybe<ApiVisitStatusBoolExp>;
+};
+
+
+export type ApiSubscriptionRootApiVisitStatusByPkArgs = {
+  value: Scalars['String']['input'];
+};
+
+
+export type ApiSubscriptionRootApiVisitStatusStreamArgs = {
+  batch_size: Scalars['Int']['input'];
+  cursor: Array<InputMaybe<ApiVisitStatusStreamCursorInput>>;
+  where?: InputMaybe<ApiVisitStatusBoolExp>;
+};
+
+
+export type ApiSubscriptionRootApiVisitStreamArgs = {
+  batch_size: Scalars['Int']['input'];
+  cursor: Array<InputMaybe<ApiVisitStreamCursorInput>>;
+  where?: InputMaybe<ApiVisitBoolExp>;
 };
 
 /** columns and relationships of "subsidy" */
@@ -7495,4 +8024,360 @@ export type ApiUuidComparisonExp = {
   _lte?: InputMaybe<Scalars['uuid']['input']>;
   _neq?: InputMaybe<Scalars['uuid']['input']>;
   _nin?: InputMaybe<Array<Scalars['uuid']['input']>>;
+};
+
+/** columns and relationships of "visit" */
+export type ApiVisit = {
+  __typename?: 'visit';
+  date: Scalars['date']['output'];
+  description?: Maybe<Scalars['String']['output']>;
+  /** An array relationship */
+  documents: Array<ApiDocument>;
+  /** An aggregate relationship */
+  documents_aggregate: ApiDocumentAggregate;
+  household_id: Scalars['uuid']['output'];
+  id: Scalars['uuid']['output'];
+  name: Scalars['String']['output'];
+  status: VisitStatusEnum;
+  vistor: Scalars['String']['output'];
+};
+
+
+/** columns and relationships of "visit" */
+export type ApiVisitApiDocumentsArgs = {
+  distinct_on?: InputMaybe<Array<ApiDocumentSelectColumn>>;
+  limit?: InputMaybe<Scalars['Int']['input']>;
+  offset?: InputMaybe<Scalars['Int']['input']>;
+  order_by?: InputMaybe<Array<ApiDocumentOrderBy>>;
+  where?: InputMaybe<ApiDocumentBoolExp>;
+};
+
+
+/** columns and relationships of "visit" */
+export type ApiVisitApiDocumentsAggregateArgs = {
+  distinct_on?: InputMaybe<Array<ApiDocumentSelectColumn>>;
+  limit?: InputMaybe<Scalars['Int']['input']>;
+  offset?: InputMaybe<Scalars['Int']['input']>;
+  order_by?: InputMaybe<Array<ApiDocumentOrderBy>>;
+  where?: InputMaybe<ApiDocumentBoolExp>;
+};
+
+/** aggregated selection of "visit" */
+export type ApiVisitAggregate = {
+  __typename?: 'visit_aggregate';
+  aggregate?: Maybe<ApiVisitAggregateFields>;
+  nodes: Array<ApiVisit>;
+};
+
+/** aggregate fields of "visit" */
+export type ApiVisitAggregateFields = {
+  __typename?: 'visit_aggregate_fields';
+  count: Scalars['Int']['output'];
+  max?: Maybe<ApiVisitMaxFields>;
+  min?: Maybe<ApiVisitMinFields>;
+};
+
+
+/** aggregate fields of "visit" */
+export type ApiVisitAggregateFieldsApiCountArgs = {
+  columns?: InputMaybe<Array<ApiVisitSelectColumn>>;
+  distinct?: InputMaybe<Scalars['Boolean']['input']>;
+};
+
+/** Boolean expression to filter rows from the table "visit". All fields are combined with a logical 'AND'. */
+export type ApiVisitBoolExp = {
+  _and?: InputMaybe<Array<ApiVisitBoolExp>>;
+  _not?: InputMaybe<ApiVisitBoolExp>;
+  _or?: InputMaybe<Array<ApiVisitBoolExp>>;
+  date?: InputMaybe<ApiDateComparisonExp>;
+  description?: InputMaybe<ApiStringComparisonExp>;
+  documents?: InputMaybe<ApiDocumentBoolExp>;
+  documents_aggregate?: InputMaybe<ApiDocumentAggregateBoolExp>;
+  household_id?: InputMaybe<ApiUuidComparisonExp>;
+  id?: InputMaybe<ApiUuidComparisonExp>;
+  name?: InputMaybe<ApiStringComparisonExp>;
+  status?: InputMaybe<VisitStatusEnumComparisonExp>;
+  vistor?: InputMaybe<ApiStringComparisonExp>;
+};
+
+/** unique or primary key constraints on table "visit" */
+export enum ApiVisitConstraint {
+  /** unique or primary key constraint on columns "id" */
+  VisitPkey = 'visit_pkey'
+}
+
+/** input type for inserting data into table "visit" */
+export type ApiVisitInsertInput = {
+  date?: InputMaybe<Scalars['date']['input']>;
+  description?: InputMaybe<Scalars['String']['input']>;
+  documents?: InputMaybe<ApiDocumentArrRelInsertInput>;
+  household_id?: InputMaybe<Scalars['uuid']['input']>;
+  id?: InputMaybe<Scalars['uuid']['input']>;
+  name?: InputMaybe<Scalars['String']['input']>;
+  status?: InputMaybe<VisitStatusEnum>;
+  vistor?: InputMaybe<Scalars['String']['input']>;
+};
+
+/** aggregate max on columns */
+export type ApiVisitMaxFields = {
+  __typename?: 'visit_max_fields';
+  date?: Maybe<Scalars['date']['output']>;
+  description?: Maybe<Scalars['String']['output']>;
+  household_id?: Maybe<Scalars['uuid']['output']>;
+  id?: Maybe<Scalars['uuid']['output']>;
+  name?: Maybe<Scalars['String']['output']>;
+  vistor?: Maybe<Scalars['String']['output']>;
+};
+
+/** aggregate min on columns */
+export type ApiVisitMinFields = {
+  __typename?: 'visit_min_fields';
+  date?: Maybe<Scalars['date']['output']>;
+  description?: Maybe<Scalars['String']['output']>;
+  household_id?: Maybe<Scalars['uuid']['output']>;
+  id?: Maybe<Scalars['uuid']['output']>;
+  name?: Maybe<Scalars['String']['output']>;
+  vistor?: Maybe<Scalars['String']['output']>;
+};
+
+/** response of any mutation on the table "visit" */
+export type ApiVisitMutationResponse = {
+  __typename?: 'visit_mutation_response';
+  /** number of rows affected by the mutation */
+  affected_rows: Scalars['Int']['output'];
+  /** data from the rows affected by the mutation */
+  returning: Array<ApiVisit>;
+};
+
+/** on_conflict condition type for table "visit" */
+export type ApiVisitOnConflict = {
+  constraint: ApiVisitConstraint;
+  update_columns?: Array<ApiVisitUpdateColumn>;
+  where?: InputMaybe<ApiVisitBoolExp>;
+};
+
+/** Ordering options when selecting data from "visit". */
+export type ApiVisitOrderBy = {
+  date?: InputMaybe<ApiOrderBy>;
+  description?: InputMaybe<ApiOrderBy>;
+  documents_aggregate?: InputMaybe<ApiDocumentAggregateOrderBy>;
+  household_id?: InputMaybe<ApiOrderBy>;
+  id?: InputMaybe<ApiOrderBy>;
+  name?: InputMaybe<ApiOrderBy>;
+  status?: InputMaybe<ApiOrderBy>;
+  vistor?: InputMaybe<ApiOrderBy>;
+};
+
+/** primary key columns input for table: visit */
+export type ApiVisitPkColumnsInput = {
+  id: Scalars['uuid']['input'];
+};
+
+/** select columns of table "visit" */
+export enum ApiVisitSelectColumn {
+  /** column name */
+  Date = 'date',
+  /** column name */
+  Description = 'description',
+  /** column name */
+  HouseholdId = 'household_id',
+  /** column name */
+  Id = 'id',
+  /** column name */
+  Name = 'name',
+  /** column name */
+  Status = 'status',
+  /** column name */
+  Vistor = 'vistor'
+}
+
+/** input type for updating data in table "visit" */
+export type ApiVisitSetInput = {
+  date?: InputMaybe<Scalars['date']['input']>;
+  description?: InputMaybe<Scalars['String']['input']>;
+  household_id?: InputMaybe<Scalars['uuid']['input']>;
+  id?: InputMaybe<Scalars['uuid']['input']>;
+  name?: InputMaybe<Scalars['String']['input']>;
+  status?: InputMaybe<VisitStatusEnum>;
+  vistor?: InputMaybe<Scalars['String']['input']>;
+};
+
+/** columns and relationships of "visit_status" */
+export type ApiVisitStatus = {
+  __typename?: 'visit_status';
+  value: Scalars['String']['output'];
+};
+
+/** aggregated selection of "visit_status" */
+export type ApiVisitStatusAggregate = {
+  __typename?: 'visit_status_aggregate';
+  aggregate?: Maybe<ApiVisitStatusAggregateFields>;
+  nodes: Array<ApiVisitStatus>;
+};
+
+/** aggregate fields of "visit_status" */
+export type ApiVisitStatusAggregateFields = {
+  __typename?: 'visit_status_aggregate_fields';
+  count: Scalars['Int']['output'];
+  max?: Maybe<ApiVisitStatusMaxFields>;
+  min?: Maybe<ApiVisitStatusMinFields>;
+};
+
+
+/** aggregate fields of "visit_status" */
+export type ApiVisitStatusAggregateFieldsApiCountArgs = {
+  columns?: InputMaybe<Array<ApiVisitStatusSelectColumn>>;
+  distinct?: InputMaybe<Scalars['Boolean']['input']>;
+};
+
+/** Boolean expression to filter rows from the table "visit_status". All fields are combined with a logical 'AND'. */
+export type ApiVisitStatusBoolExp = {
+  _and?: InputMaybe<Array<ApiVisitStatusBoolExp>>;
+  _not?: InputMaybe<ApiVisitStatusBoolExp>;
+  _or?: InputMaybe<Array<ApiVisitStatusBoolExp>>;
+  value?: InputMaybe<ApiStringComparisonExp>;
+};
+
+/** unique or primary key constraints on table "visit_status" */
+export enum ApiVisitStatusConstraint {
+  /** unique or primary key constraint on columns "value" */
+  VisitStatusPkey = 'visit_status_pkey'
+}
+
+export enum VisitStatusEnum {
+  Done = 'done',
+  Scheduled = 'scheduled'
+}
+
+/** Boolean expression to compare columns of type "visit_status_enum". All fields are combined with logical 'AND'. */
+export type VisitStatusEnumComparisonExp = {
+  _eq?: InputMaybe<VisitStatusEnum>;
+  _in?: InputMaybe<Array<VisitStatusEnum>>;
+  _is_null?: InputMaybe<Scalars['Boolean']['input']>;
+  _neq?: InputMaybe<VisitStatusEnum>;
+  _nin?: InputMaybe<Array<VisitStatusEnum>>;
+};
+
+/** input type for inserting data into table "visit_status" */
+export type ApiVisitStatusInsertInput = {
+  value?: InputMaybe<Scalars['String']['input']>;
+};
+
+/** aggregate max on columns */
+export type ApiVisitStatusMaxFields = {
+  __typename?: 'visit_status_max_fields';
+  value?: Maybe<Scalars['String']['output']>;
+};
+
+/** aggregate min on columns */
+export type ApiVisitStatusMinFields = {
+  __typename?: 'visit_status_min_fields';
+  value?: Maybe<Scalars['String']['output']>;
+};
+
+/** response of any mutation on the table "visit_status" */
+export type ApiVisitStatusMutationResponse = {
+  __typename?: 'visit_status_mutation_response';
+  /** number of rows affected by the mutation */
+  affected_rows: Scalars['Int']['output'];
+  /** data from the rows affected by the mutation */
+  returning: Array<ApiVisitStatus>;
+};
+
+/** on_conflict condition type for table "visit_status" */
+export type ApiVisitStatusOnConflict = {
+  constraint: ApiVisitStatusConstraint;
+  update_columns?: Array<ApiVisitStatusUpdateColumn>;
+  where?: InputMaybe<ApiVisitStatusBoolExp>;
+};
+
+/** Ordering options when selecting data from "visit_status". */
+export type ApiVisitStatusOrderBy = {
+  value?: InputMaybe<ApiOrderBy>;
+};
+
+/** primary key columns input for table: visit_status */
+export type ApiVisitStatusPkColumnsInput = {
+  value: Scalars['String']['input'];
+};
+
+/** select columns of table "visit_status" */
+export enum ApiVisitStatusSelectColumn {
+  /** column name */
+  Value = 'value'
+}
+
+/** input type for updating data in table "visit_status" */
+export type ApiVisitStatusSetInput = {
+  value?: InputMaybe<Scalars['String']['input']>;
+};
+
+/** Streaming cursor of the table "visit_status" */
+export type ApiVisitStatusStreamCursorInput = {
+  /** Stream column input with initial value */
+  initial_value: ApiVisitStatusStreamCursorValueInput;
+  /** cursor ordering */
+  ordering?: InputMaybe<ApiCursorOrdering>;
+};
+
+/** Initial value of the column from where the streaming should start */
+export type ApiVisitStatusStreamCursorValueInput = {
+  value?: InputMaybe<Scalars['String']['input']>;
+};
+
+/** update columns of table "visit_status" */
+export enum ApiVisitStatusUpdateColumn {
+  /** column name */
+  Value = 'value'
+}
+
+export type ApiVisitStatusUpdates = {
+  /** sets the columns of the filtered rows to the given values */
+  _set?: InputMaybe<ApiVisitStatusSetInput>;
+  /** filter the rows which have to be updated */
+  where: ApiVisitStatusBoolExp;
+};
+
+/** Streaming cursor of the table "visit" */
+export type ApiVisitStreamCursorInput = {
+  /** Stream column input with initial value */
+  initial_value: ApiVisitStreamCursorValueInput;
+  /** cursor ordering */
+  ordering?: InputMaybe<ApiCursorOrdering>;
+};
+
+/** Initial value of the column from where the streaming should start */
+export type ApiVisitStreamCursorValueInput = {
+  date?: InputMaybe<Scalars['date']['input']>;
+  description?: InputMaybe<Scalars['String']['input']>;
+  household_id?: InputMaybe<Scalars['uuid']['input']>;
+  id?: InputMaybe<Scalars['uuid']['input']>;
+  name?: InputMaybe<Scalars['String']['input']>;
+  status?: InputMaybe<VisitStatusEnum>;
+  vistor?: InputMaybe<Scalars['String']['input']>;
+};
+
+/** update columns of table "visit" */
+export enum ApiVisitUpdateColumn {
+  /** column name */
+  Date = 'date',
+  /** column name */
+  Description = 'description',
+  /** column name */
+  HouseholdId = 'household_id',
+  /** column name */
+  Id = 'id',
+  /** column name */
+  Name = 'name',
+  /** column name */
+  Status = 'status',
+  /** column name */
+  Vistor = 'vistor'
+}
+
+export type ApiVisitUpdates = {
+  /** sets the columns of the filtered rows to the given values */
+  _set?: InputMaybe<ApiVisitSetInput>;
+  /** filter the rows which have to be updated */
+  where: ApiVisitBoolExp;
 };
