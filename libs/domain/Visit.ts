@@ -12,6 +12,7 @@ export const visitSchema = {
 
 export interface Visit {
   description?: string;
+  householdId: string;
   name: string;
   id: string;
   status: VisitStatusEnum;
@@ -19,6 +20,6 @@ export interface Visit {
   documents: Document[];
 }
 
-export type VisitKeys = Pick<Visit, 'id'>;
+export type VisitKeys = Pick<Visit, 'householdId' | 'id'>;
 
 export type VisitListItem = Pick<Visit, 'date' | 'description' | 'documents'>;

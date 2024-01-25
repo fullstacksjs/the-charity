@@ -8039,7 +8039,7 @@ export type ApiVisit = {
   id: Scalars['uuid']['output'];
   name: Scalars['String']['output'];
   status: VisitStatusEnum;
-  vistor: Scalars['String']['output'];
+  vistor?: Maybe<Scalars['String']['output']>;
 };
 
 
@@ -8245,8 +8245,8 @@ export enum ApiVisitStatusConstraint {
 }
 
 export enum VisitStatusEnum {
-  Done = 'done',
-  Scheduled = 'scheduled'
+  Done = 'Done',
+  Scheduled = 'Scheduled'
 }
 
 /** Boolean expression to compare columns of type "visit_status_enum". All fields are combined with logical 'AND'. */

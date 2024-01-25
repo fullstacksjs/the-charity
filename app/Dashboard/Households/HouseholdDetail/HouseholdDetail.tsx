@@ -299,7 +299,7 @@ export const HouseholdDetail = () => {
           },
           {
             tab: <Title order={5}>{t.tabs.visitsTitle}</Title>,
-            panel: <HouseholderVisits />,
+            panel: <HouseholderVisits householdId={household.id} />,
             id: ids.visitsTab,
           },
         ]}

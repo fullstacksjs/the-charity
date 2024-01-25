@@ -5,8 +5,11 @@ import type {
   ApiCreateVisitMutation,
   ApiCreateVisitMutationVariables,
 } from '@camp/data-layer';
-import type { VisitKeys, VisitListItem } from '@camp/domain';
-import { Document } from '@camp/domain';
+import type {
+  Document as FileDocument,
+  VisitKeys,
+  VisitListItem,
+} from '@camp/domain';
 
 import {
   getVisitKeys,
@@ -15,7 +18,7 @@ import {
   VisitListItemFragment,
 } from '../fragments';
 
-const Document = gql`
+export const Document = gql`
   mutation CreateVisit($input: visit_insert_input!) {
     insert_visit_one(object: $input) {
       ...VisitKeys
@@ -46,9 +49,10 @@ const toClient = (data: ApiCreateVisitMutation | null): CreateVisit => {
 interface Variables {
   name: string;
   vistor?: string;
+  householdId: string;
   date: Date;
   description?: string;
-  documents: Document[];
+  documents: FileDocument[];
 }
 
 const toApiVariables = (
@@ -58,6 +62,7 @@ const toApiVariables = (
     name: variables.name,
     description: variables.description,
     vistor: variables.vistor,
+    household_id: variables.householdId,
     // FIXME add doc mapper
     documents: { data: variables.documents.map(d => ({ url: d.url })) },
     date: variables.date.toISOString(),

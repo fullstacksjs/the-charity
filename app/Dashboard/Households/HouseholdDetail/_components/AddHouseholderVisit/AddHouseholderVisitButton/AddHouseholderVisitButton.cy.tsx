@@ -3,7 +3,7 @@ import { addHouseholderVisitButtonId } from './AddHouseholderVisitButton.ids';
 
 describe('Create Project Button', () => {
   beforeEach(() => {
-    cy.mount(<AddHouseholderVisitButton />);
+    cy.mount(<AddHouseholderVisitButton householdId="null" />);
   });
 
   it('should be visible to users', () => {

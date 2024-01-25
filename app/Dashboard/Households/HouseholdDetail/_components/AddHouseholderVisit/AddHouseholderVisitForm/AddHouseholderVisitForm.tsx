@@ -1,3 +1,4 @@
+import { useCreateVisitMutation } from '@camp/data-layer';
 import { debug, DebugScopes } from '@camp/debug';
 import {
   ControlledDateInput,
@@ -13,6 +14,7 @@ import {
 import { fileStorageApi } from '@camp/file-storage-api';
 import { messages } from '@camp/messages';
 import { tid } from '@camp/test';
+import { isNull } from '@fullstacksjs/toolbox';
 import { Button, createStyles, Group, Stack, TextInput } from '@mantine/core';
 import { useForm } from 'react-hook-form';
 
@@ -25,8 +27,9 @@ interface FormSchema {
   documents: Document[];
 }
 
-interface Props {
+export interface AddHouseholderVisitFormProps {
   dismiss: () => void;
+  householdId: string;
 }
 
 const resolver = createResolver<FormSchema>({
@@ -44,15 +47,42 @@ const useStyle = createStyles(theme => ({
   },
 }));
 
-export const AddHouseholderVisitForm = ({ dismiss }: Props) => {
-  const t = messages.householder.visits.form;
+export const AddHouseholderVisitForm = ({
+  dismiss,
+  householdId,
+}: AddHouseholderVisitFormProps) => {
+  const t = messages.householder.visits;
+  const tt = t.form;
   const { handleSubmit, register, formState, control } = useForm<FormSchema>({
     resolver,
     mode: 'onChange',
   });
+  const [createVisit, { loading }] = useCreateVisitMutation();
 
-  const onSubmit = handleSubmit(data => {
-    debug.log(DebugScopes.All, data);
+  const onSubmit = handleSubmit(async inputs => {
+    try {
+      const { data } = await createVisit({
+        variables: { ...inputs, householdId },
+      });
+      const visit = data.visit!;
+      if (isNull(visit)) throw Error('Assert: Visit is null');
+
+      showNotification({
+        title: t.addVisit,
+        message: messages.projects.notification.successfulCreate(inputs.name),
+        type: 'success',
+        ...tid(ids.notification.success),
+      });
+      dismiss();
+    } catch (err) {
+      debug.error(err);
+      showNotification({
+        title: t.addVisit,
+        message: messages.projects.notification.failedCreate(inputs.name),
+        type: 'failure',
+        ...tid(ids.notification.failure),
+      });
+    }
   });
 
   const { classes } = useStyle();
@@ -62,8 +92,8 @@ export const AddHouseholderVisitForm = ({ dismiss }: Props) => {
         <TextInput
           data-autoFocus
           required
-          placeholder={t.nameInput.placeholder}
-          label={t.nameInput.label}
+          placeholder={tt.nameInput.placeholder}
+          label={tt.nameInput.label}
           size="sm"
           error={formState.errors.name?.message}
           wrapperProps={tid(ids.nameInput)}
@@ -75,15 +105,15 @@ export const AddHouseholderVisitForm = ({ dismiss }: Props) => {
           control={control}
           className={classes.label}
           wrapperProps={tid(ids.dateInput)}
-          label={t.dateInput.label}
-          placeholder={t.dateInput.placeholder}
+          label={tt.dateInput.label}
+          placeholder={tt.dateInput.placeholder}
           error={formState.errors.date?.message}
         />
         <TextInput
           wrapperProps={tid(ids.descriptionInput)}
           {...register('description')}
-          label={t.descriptionInput.label}
-          placeholder={t.descriptionInput.placeholder}
+          label={tt.descriptionInput.label}
+          placeholder={tt.descriptionInput.placeholder}
           error={formState.errors.description?.message}
         />
         <ControlledFileUpload
@@ -91,8 +121,8 @@ export const AddHouseholderVisitForm = ({ dismiss }: Props) => {
           name="documents"
           defaultValue={[]}
           required
-          label={t.documentsInput.label}
-          helper={t.documentsInput.maxSize}
+          label={tt.documentsInput.label}
+          helper={tt.documentsInput.maxSize}
           upload={fileStorageApi.upload}
           unUpload={fileStorageApi.unUpload}
           filter={(files): File[] => {
@@ -120,6 +150,7 @@ export const AddHouseholderVisitForm = ({ dismiss }: Props) => {
             size="sm"
             variant="filled"
             color="secondary"
+            loading={loading}
             onClick={dismiss}
           >
             {messages.actions.dismiss}
@@ -128,9 +159,10 @@ export const AddHouseholderVisitForm = ({ dismiss }: Props) => {
             type="submit"
             size="sm"
             disabled={!formState.isValid}
+            loading={loading}
             {...tid(ids.submitBtn)}
           >
-            {t.submitBtn}
+            {tt.submitBtn}
           </Button>
         </Group>
       </Stack>

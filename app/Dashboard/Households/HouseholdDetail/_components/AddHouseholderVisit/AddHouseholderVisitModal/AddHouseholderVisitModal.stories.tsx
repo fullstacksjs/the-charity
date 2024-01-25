@@ -31,7 +31,7 @@ type Story = StoryObj<typeof AddHouseholderVisitModal>;
 export const Default: Story = {
   render: () => {
     useEffect(() => {
-      openAddHouseholderVisitModal();
+      openAddHouseholderVisitModal({ householdId: 'null' });
     }, []);
 
     return <></>;

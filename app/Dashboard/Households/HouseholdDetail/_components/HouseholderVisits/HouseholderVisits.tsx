@@ -6,12 +6,16 @@ import { AddHouseholderVisitButton } from '../AddHouseholderVisit';
 
 const t = messages.householder.visits;
 
-export const HouseholderVisits = () => {
+interface Props {
+  householdId: string;
+}
+
+export const HouseholderVisits = ({ householdId }: Props) => {
   return (
     <Stack spacing={25} sx={{ position: 'relative' }}>
       <Group position="apart" mih="100%">
         <DashboardTitle>{t.title}</DashboardTitle>
-        <AddHouseholderVisitButton />
+        <AddHouseholderVisitButton householdId={householdId} />
       </Group>
     </Stack>
   );
