@@ -18,6 +18,14 @@ export const messages = {
       unsupportedType: 'فایل انتخاب شده پشتیبانی نمی‌شود',
       maxSizeExceeded: 'حداکثر سایز فایل انتخابی ۲۰ مگابایت هست.',
     },
+    visits: {
+      delete: {
+        title: 'حذف بازدید',
+        success: (name: string) => `بازدید “${name}” با موفقیت حذف شد.`,
+        failed: (name: string) =>
+          `مشکلی در مرحله حذف بازدید "${name}" به وجود آمده است. لطفا دوباره تلاش کنید.`,
+      },
+    },
     household: {
       delete: {
         title: 'حذف خانوار',
@@ -223,6 +231,23 @@ export const messages = {
   },
   householder: {
     visits: {
+      delete: {
+        modal: {
+          title: 'حذف',
+          children: (name: string) =>
+            `آیا از حذف بازدید "${name}" مطمئن هستید؟`,
+          cancel: 'انصراف',
+          confirm: 'حذف',
+        },
+      },
+      table: {
+        columns: {
+          order: 'ردیف',
+          documents: 'اسناد',
+          date: 'تاریخ',
+          description: 'توضیحات',
+        },
+      },
       form: {
         nameInput: {
           placeholder: 'برای مثال: مرادی',

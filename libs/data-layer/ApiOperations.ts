@@ -118,6 +118,15 @@ export type ApiHouseholderQueryVariables = SchemaTypes.Exact<{
 
 export type ApiHouseholderQuery = { __typename?: 'query_root', householder_by_pk?: { __typename?: 'householder', id: string, name: string, father_name?: string | null, surname?: string | null, nationality?: SchemaTypes.NationalityEnum | null, religion?: SchemaTypes.ReligionEnum | null, city?: SchemaTypes.CityEnum | null, gender?: SchemaTypes.GenderEnum | null, status?: string | null, national_id?: string | null, dob?: string | null } | null };
 
+export type ApiVisitsQueryVariables = SchemaTypes.Exact<{
+  order_by?: SchemaTypes.InputMaybe<Array<SchemaTypes.ApiVisitOrderBy> | SchemaTypes.ApiVisitOrderBy>;
+  limit?: SchemaTypes.InputMaybe<SchemaTypes.Scalars['Int']['input']>;
+  offset?: SchemaTypes.InputMaybe<SchemaTypes.Scalars['Int']['input']>;
+}>;
+
+
+export type ApiVisitsQuery = { __typename?: 'query_root', visit: Array<{ __typename?: 'visit', id: string, household_id: string, date: string, description?: string | null, documents: Array<{ __typename?: 'document', url: string, id: string }> }>, visit_aggregate: { __typename?: 'visit_aggregate', aggregate?: { __typename?: 'visit_aggregate_fields', count: number } | null } };
+
 export type ApiMemberListQueryVariables = SchemaTypes.Exact<{
   household_id: SchemaTypes.Scalars['uuid']['input'];
 }>;

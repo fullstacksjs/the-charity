@@ -8029,6 +8029,7 @@ export type ApiUuidComparisonExp = {
 /** columns and relationships of "visit" */
 export type ApiVisit = {
   __typename?: 'visit';
+  created_at: Scalars['timestamptz']['output'];
   date: Scalars['date']['output'];
   description?: Maybe<Scalars['String']['output']>;
   /** An array relationship */
@@ -8089,6 +8090,7 @@ export type ApiVisitBoolExp = {
   _and?: InputMaybe<Array<ApiVisitBoolExp>>;
   _not?: InputMaybe<ApiVisitBoolExp>;
   _or?: InputMaybe<Array<ApiVisitBoolExp>>;
+  created_at?: InputMaybe<ApiTimestamptzComparisonExp>;
   date?: InputMaybe<ApiDateComparisonExp>;
   description?: InputMaybe<ApiStringComparisonExp>;
   documents?: InputMaybe<ApiDocumentBoolExp>;
@@ -8108,6 +8110,7 @@ export enum ApiVisitConstraint {
 
 /** input type for inserting data into table "visit" */
 export type ApiVisitInsertInput = {
+  created_at?: InputMaybe<Scalars['timestamptz']['input']>;
   date?: InputMaybe<Scalars['date']['input']>;
   description?: InputMaybe<Scalars['String']['input']>;
   documents?: InputMaybe<ApiDocumentArrRelInsertInput>;
@@ -8121,6 +8124,7 @@ export type ApiVisitInsertInput = {
 /** aggregate max on columns */
 export type ApiVisitMaxFields = {
   __typename?: 'visit_max_fields';
+  created_at?: Maybe<Scalars['timestamptz']['output']>;
   date?: Maybe<Scalars['date']['output']>;
   description?: Maybe<Scalars['String']['output']>;
   household_id?: Maybe<Scalars['uuid']['output']>;
@@ -8132,6 +8136,7 @@ export type ApiVisitMaxFields = {
 /** aggregate min on columns */
 export type ApiVisitMinFields = {
   __typename?: 'visit_min_fields';
+  created_at?: Maybe<Scalars['timestamptz']['output']>;
   date?: Maybe<Scalars['date']['output']>;
   description?: Maybe<Scalars['String']['output']>;
   household_id?: Maybe<Scalars['uuid']['output']>;
@@ -8158,6 +8163,7 @@ export type ApiVisitOnConflict = {
 
 /** Ordering options when selecting data from "visit". */
 export type ApiVisitOrderBy = {
+  created_at?: InputMaybe<ApiOrderBy>;
   date?: InputMaybe<ApiOrderBy>;
   description?: InputMaybe<ApiOrderBy>;
   documents_aggregate?: InputMaybe<ApiDocumentAggregateOrderBy>;
@@ -8176,6 +8182,8 @@ export type ApiVisitPkColumnsInput = {
 /** select columns of table "visit" */
 export enum ApiVisitSelectColumn {
   /** column name */
+  CreatedAt = 'created_at',
+  /** column name */
   Date = 'date',
   /** column name */
   Description = 'description',
@@ -8193,6 +8201,7 @@ export enum ApiVisitSelectColumn {
 
 /** input type for updating data in table "visit" */
 export type ApiVisitSetInput = {
+  created_at?: InputMaybe<Scalars['timestamptz']['input']>;
   date?: InputMaybe<Scalars['date']['input']>;
   description?: InputMaybe<Scalars['String']['input']>;
   household_id?: InputMaybe<Scalars['uuid']['input']>;
@@ -8348,6 +8357,7 @@ export type ApiVisitStreamCursorInput = {
 
 /** Initial value of the column from where the streaming should start */
 export type ApiVisitStreamCursorValueInput = {
+  created_at?: InputMaybe<Scalars['timestamptz']['input']>;
   date?: InputMaybe<Scalars['date']['input']>;
   description?: InputMaybe<Scalars['String']['input']>;
   household_id?: InputMaybe<Scalars['uuid']['input']>;
@@ -8359,6 +8369,8 @@ export type ApiVisitStreamCursorValueInput = {
 
 /** update columns of table "visit" */
 export enum ApiVisitUpdateColumn {
+  /** column name */
+  CreatedAt = 'created_at',
   /** column name */
   Date = 'date',
   /** column name */

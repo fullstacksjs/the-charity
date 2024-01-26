@@ -1,3 +1,4 @@
+import { createColumnHelper } from '@tanstack/react-table';
 import { z } from 'zod';
 
 import type { VisitStatusEnum } from './ApiSchema';
@@ -23,3 +24,7 @@ export interface Visit {
 export type VisitKeys = Pick<Visit, 'householdId' | 'id'>;
 
 export type VisitListItem = Pick<Visit, 'date' | 'description' | 'documents'>;
+
+export const visitColumnHelper = createColumnHelper<
+  VisitKeys & VisitListItem
+>();

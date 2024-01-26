@@ -6,7 +6,7 @@ interface Props {
   endDate?: Date;
 }
 
-const formatToPersian = (d: Date) =>
+export const formatToPersian = (d: Date) =>
   new Intl.DateTimeFormat('fa-IR', { dateStyle: 'short' }).format(d);
 
 export const DateSummery = ({ startDate, endDate }: Props) => {
