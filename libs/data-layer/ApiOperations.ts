@@ -25,7 +25,7 @@ export type ApiProjectListItemFragment = { __typename?: 'project', name: string,
 
 export type ApiVisitKeysFragment = { __typename?: 'visit', id: string, household_id: string };
 
-export type ApiVisitFragment = { __typename?: 'visit', name: string, vistor?: string | null, date: string, description?: string | null, status: SchemaTypes.VisitStatusEnum, documents: Array<{ __typename?: 'document', url: string, id: string, storage_id: string }> };
+export type ApiVisitFragment = { __typename?: 'visit', name: string, visitor?: string | null, date: string, description?: string | null, status: SchemaTypes.VisitStatusEnum, documents: Array<{ __typename?: 'document', url: string, id: string, storage_id: string }> };
 
 export type ApiVisitListItemFragment = { __typename?: 'visit', date: string, description?: string | null, documents: Array<{ __typename?: 'document', url: string, id: string, storage_id: string }> };
 

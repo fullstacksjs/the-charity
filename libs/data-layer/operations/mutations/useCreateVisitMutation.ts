@@ -48,7 +48,7 @@ const toClient = (data: ApiCreateVisitMutation | null): CreateVisit => {
 
 interface Variables {
   name: string;
-  vistor?: string;
+  visitor?: string;
   householdId: string;
   date: Date;
   description?: string;
@@ -61,7 +61,7 @@ const toApiVariables = (
   input: {
     name: variables.name,
     description: variables.description,
-    vistor: variables.vistor,
+    visitor: variables.visitor,
     household_id: variables.householdId,
     documents: {
       data: variables.documents.map(d => ({ url: d.url, storage_id: d.id })),

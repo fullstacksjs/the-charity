@@ -8056,7 +8056,7 @@ export type ApiVisit = {
   id: Scalars['uuid']['output'];
   name: Scalars['String']['output'];
   status: VisitStatusEnum;
-  vistor?: Maybe<Scalars['String']['output']>;
+  visitor?: Maybe<Scalars['String']['output']>;
 };
 
 
@@ -8115,7 +8115,7 @@ export type ApiVisitBoolExp = {
   id?: InputMaybe<ApiUuidComparisonExp>;
   name?: InputMaybe<ApiStringComparisonExp>;
   status?: InputMaybe<VisitStatusEnumComparisonExp>;
-  vistor?: InputMaybe<ApiStringComparisonExp>;
+  visitor?: InputMaybe<ApiStringComparisonExp>;
 };
 
 /** unique or primary key constraints on table "visit" */
@@ -8134,7 +8134,7 @@ export type ApiVisitInsertInput = {
   id?: InputMaybe<Scalars['uuid']['input']>;
   name?: InputMaybe<Scalars['String']['input']>;
   status?: InputMaybe<VisitStatusEnum>;
-  vistor?: InputMaybe<Scalars['String']['input']>;
+  visitor?: InputMaybe<Scalars['String']['input']>;
 };
 
 /** aggregate max on columns */
@@ -8146,7 +8146,7 @@ export type ApiVisitMaxFields = {
   household_id?: Maybe<Scalars['uuid']['output']>;
   id?: Maybe<Scalars['uuid']['output']>;
   name?: Maybe<Scalars['String']['output']>;
-  vistor?: Maybe<Scalars['String']['output']>;
+  visitor?: Maybe<Scalars['String']['output']>;
 };
 
 /** aggregate min on columns */
@@ -8158,7 +8158,7 @@ export type ApiVisitMinFields = {
   household_id?: Maybe<Scalars['uuid']['output']>;
   id?: Maybe<Scalars['uuid']['output']>;
   name?: Maybe<Scalars['String']['output']>;
-  vistor?: Maybe<Scalars['String']['output']>;
+  visitor?: Maybe<Scalars['String']['output']>;
 };
 
 /** response of any mutation on the table "visit" */
@@ -8187,7 +8187,7 @@ export type ApiVisitOrderBy = {
   id?: InputMaybe<ApiOrderBy>;
   name?: InputMaybe<ApiOrderBy>;
   status?: InputMaybe<ApiOrderBy>;
-  vistor?: InputMaybe<ApiOrderBy>;
+  visitor?: InputMaybe<ApiOrderBy>;
 };
 
 /** primary key columns input for table: visit */
@@ -8212,7 +8212,7 @@ export enum ApiVisitSelectColumn {
   /** column name */
   Status = 'status',
   /** column name */
-  Vistor = 'vistor'
+  Visitor = 'visitor'
 }
 
 /** input type for updating data in table "visit" */
@@ -8224,7 +8224,7 @@ export type ApiVisitSetInput = {
   id?: InputMaybe<Scalars['uuid']['input']>;
   name?: InputMaybe<Scalars['String']['input']>;
   status?: InputMaybe<VisitStatusEnum>;
-  vistor?: InputMaybe<Scalars['String']['input']>;
+  visitor?: InputMaybe<Scalars['String']['input']>;
 };
 
 /** columns and relationships of "visit_status" */
@@ -8380,7 +8380,7 @@ export type ApiVisitStreamCursorValueInput = {
   id?: InputMaybe<Scalars['uuid']['input']>;
   name?: InputMaybe<Scalars['String']['input']>;
   status?: InputMaybe<VisitStatusEnum>;
-  vistor?: InputMaybe<Scalars['String']['input']>;
+  visitor?: InputMaybe<Scalars['String']['input']>;
 };
 
 /** update columns of table "visit" */
@@ -8400,7 +8400,7 @@ export enum ApiVisitUpdateColumn {
   /** column name */
   Status = 'status',
   /** column name */
-  Vistor = 'vistor'
+  Visitor = 'visitor'
 }
 
 export type ApiVisitUpdates = {

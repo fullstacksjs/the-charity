@@ -4,6 +4,7 @@ import { noop } from '@fullstacksjs/toolbox';
 import type { Table as TableType } from '@tanstack/react-table';
 
 import * as ids from './HouseholderVisits.ids';
+import { openVisitDetailModal } from './VisitDetail';
 
 interface Props {
   loading: boolean;
@@ -12,7 +13,6 @@ interface Props {
 
 export const VisitsTable = ({ loading, table }: Props) => {
   // FIXME: should open full page modal with the specific id
-  const gotoDetail = noop;
 
   return (
     <DataTable<VisitKeys & VisitListItem>
@@ -20,7 +20,9 @@ export const VisitsTable = ({ loading, table }: Props) => {
       table={table}
       loading={loading}
       fallback={<Table.Skeleton rows={3} cells={4} />}
-      onRowClick={({ id }: VisitKeys & VisitListItem) => gotoDetail()}
+      onRowClick={({ id }: VisitKeys & VisitListItem) => {
+        openVisitDetailModal({ id });
+      }}
     />
   );
 };

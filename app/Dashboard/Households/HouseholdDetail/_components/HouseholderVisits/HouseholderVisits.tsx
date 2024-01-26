@@ -18,6 +18,7 @@ import { useState } from 'react';
 import { AddHouseholderVisitButton } from '../AddHouseholderVisit';
 import * as ids from './HouseholderVisits.ids';
 import { VisitActionButton } from './VisitActionButton';
+import { openVisitDetailModal } from './VisitDetail';
 import { VisitsTable } from './VisitsTable';
 import { visitsActionIds as actionIds } from './VisitsTableRow.ids';
 
@@ -48,7 +49,9 @@ const columns = [
         <Text lineClamp={1}>{props.getValue()}</Text>
         <VisitActionButton
           visitId={props.row.original.id}
-          open={noop}
+          open={() => {
+            openVisitDetailModal({ id: props.row.original.id });
+          }}
           visitDate={props.row.original.date}
           menuButtonId={actionIds.actionButton}
           menuId={actionIds.actionMenu}

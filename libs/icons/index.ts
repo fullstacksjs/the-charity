@@ -11,6 +11,7 @@ export {
   Edit as EditIcon,
   XCircle as ErrorAlertIcon,
   LogOut as ExitIcon,
+  FilePlus as FilePlusIcon,
   Home as HomeIcon,
   MoreHorizontal as MenuIcon,
   Package as PackageIcon,

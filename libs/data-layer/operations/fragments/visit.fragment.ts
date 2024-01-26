@@ -7,10 +7,10 @@ export const VisitKeysFragment = gql`
   }
 `;
 
-export const VisitFragment = gql`
+export const VisitDetailFragment = gql`
   fragment Visit on visit {
     name
-    vistor
+    visitor
     date
     description
     status
