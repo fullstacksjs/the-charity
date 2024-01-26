@@ -19,7 +19,10 @@ export const getVisitListItem = (
   return {
     date: toDate(data.date)!,
     description: data.description ?? undefined,
-    // FIXME: nap doc here
-    documents: data.documents,
+    documents: data.documents.map(d => ({
+      storageId: d.id,
+      url: d.url,
+      id: d.id,
+    })),
   };
 };

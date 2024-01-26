@@ -1,5 +1,4 @@
 import { debug } from '@camp/debug';
-import type { Document } from '@camp/domain';
 import { randomInt } from '@fullstacksjs/toolbox';
 import type { InputWrapperProps } from '@mantine/core';
 import { Input, Stack, Text } from '@mantine/core';
@@ -10,14 +9,19 @@ import { useDropzone } from 'react-dropzone';
 
 import { FileList } from './FileList';
 import { FileSelect } from './FileSelect';
-import type { FailedFile, FileState, SuccessFile } from './FileState';
+import type {
+  FailedFile,
+  FileState,
+  StorageFile,
+  SuccessFile,
+} from './FileState';
 import { isSuccess } from './FileState';
 
 type Action =
   | {
       type: 'Upload';
       id: number;
-      remote: Document;
+      remote: StorageFile;
       status: SuccessFile['status'];
     }
   | {
@@ -76,11 +80,11 @@ export interface FileUploadProps
   defaultFiles?: (FailedFile | SuccessFile)[];
   helper?: string;
   concurrency?: number;
-  upload?: (file: File) => Promise<Document>;
-  unUpload?: (id: Document['id']) => Promise<void>;
+  upload?: (file: File) => Promise<StorageFile>;
+  unUpload?: (id: StorageFile['id']) => Promise<void>;
   filter?: (files: File[]) => File[];
-  onAdd?: (doc: Document) => void;
-  onDelete?: (doc: Document) => void;
+  onAdd?: (doc: StorageFile) => void;
+  onDelete?: (doc: StorageFile) => void;
   className?: string;
   dropText?: string;
   variant?: FileUploadVariant;

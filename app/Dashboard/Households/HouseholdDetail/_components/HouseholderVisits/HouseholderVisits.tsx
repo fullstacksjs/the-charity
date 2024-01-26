@@ -47,7 +47,9 @@ const columns = [
       <Group position="apart">
         <Text lineClamp={1}>{props.getValue()}</Text>
         <VisitActionButton
+          visitId={props.row.original.id}
           open={noop}
+          visitDate={props.row.original.date}
           menuButtonId={actionIds.actionButton}
           menuId={actionIds.actionMenu}
         />
@@ -100,11 +102,12 @@ export const HouseholderVisits = ({ householdId }: Props) => {
     <Stack spacing={25} sx={{ position: 'relative' }}>
       <Group position="apart" mih="100%">
         <DashboardTitle>{t.title}</DashboardTitle>
-        {isEmpty(visits) && !loading ? null : (
-          <AddHouseholderVisitButton householdId={householdId} />
-        )}
+        <AddHouseholderVisitButton householdId={householdId} />
       </Group>
-      <VisitsTable loading={loading} table={table} />
+      {/* FIXME: we need empty state here to */}
+      {isEmpty(visits) && !loading ? null : (
+        <VisitsTable loading={loading} table={table} />
+      )}
     </Stack>
   );
 };

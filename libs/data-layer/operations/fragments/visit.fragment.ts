@@ -17,6 +17,7 @@ export const VisitFragment = gql`
     documents {
       url
       id
+      storage_id
     }
   }
 `;
@@ -28,6 +29,7 @@ export const VisitListItemFragment = gql`
     documents {
       url
       id
+      storage_id
     }
   }
 `;

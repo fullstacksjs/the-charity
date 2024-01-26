@@ -4,6 +4,7 @@ export * from './useCreateProjectMutation';
 export * from './useCreateVisitMutation';
 export * from './useDeleteHouseholdMutation';
 export * from './useDeleteMemberMutation';
+export * from './useDeleteVisitMutation';
 export * from './useEditHouseholdMutation';
 export * from './useUpsertHouseholderMutation';
 export * from './useUpsertMemberMutation';

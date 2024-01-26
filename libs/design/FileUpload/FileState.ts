@@ -1,4 +1,7 @@
-import type { Document } from '@camp/domain';
+export interface StorageFile {
+  url: string;
+  id: string;
+}
 
 interface BaseFile {
   id: number;
@@ -7,7 +10,7 @@ interface BaseFile {
 
 export interface SuccessFile extends BaseFile {
   status: 'Success';
-  remote: Document;
+  remote: StorageFile;
 }
 
 interface UploadingFile extends BaseFile {

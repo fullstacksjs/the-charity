@@ -26,5 +26,8 @@ export const documentFileValidator = z
 
 export interface Document {
   url: string;
+  storageId: string;
   id: string;
 }
+
+export type DocumentKeys = Pick<Document, 'id'>;

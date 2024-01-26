@@ -1,12 +1,12 @@
 import { config } from '@camp/config';
-import type { Document } from '@camp/domain';
+import type { StorageFile } from '@camp/design';
 import axios from 'axios';
 
 const client = axios.create({
   baseURL: config.fileStorageApiEndpoint,
 });
 
-export const upload = async (file: File): Promise<Document> => {
+export const upload = async (file: File): Promise<StorageFile> => {
   const data = new FormData();
 
   const blob = new Blob([file], { type: file.type });
@@ -17,6 +17,6 @@ export const upload = async (file: File): Promise<Document> => {
   return { url: `${config.fileStorageApiEndpoint}${id}`, id };
 };
 
-export const unUpload = async (id: Document['id']) => {
+export const unUpload = async (id: StorageFile['id']) => {
   await client.delete(`/${id}`);
 };

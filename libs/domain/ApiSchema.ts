@@ -855,6 +855,7 @@ export type ApiDocument = {
   __typename?: 'document';
   householder_id?: Maybe<Scalars['uuid']['output']>;
   id: Scalars['uuid']['output'];
+  storage_id: Scalars['String']['output'];
   url: Scalars['String']['output'];
   visit_id?: Maybe<Scalars['uuid']['output']>;
 };
@@ -913,6 +914,7 @@ export type ApiDocumentBoolExp = {
   _or?: InputMaybe<Array<ApiDocumentBoolExp>>;
   householder_id?: InputMaybe<ApiUuidComparisonExp>;
   id?: InputMaybe<ApiUuidComparisonExp>;
+  storage_id?: InputMaybe<ApiStringComparisonExp>;
   url?: InputMaybe<ApiStringComparisonExp>;
   visit_id?: InputMaybe<ApiUuidComparisonExp>;
 };
@@ -920,13 +922,16 @@ export type ApiDocumentBoolExp = {
 /** unique or primary key constraints on table "document" */
 export enum ApiDocumentConstraint {
   /** unique or primary key constraint on columns "id" */
-  DocumentPkey = 'document_pkey'
+  DocumentPkey = 'document_pkey',
+  /** unique or primary key constraint on columns "storage_id" */
+  DocumentStorageIdKey = 'document_storage_id_key'
 }
 
 /** input type for inserting data into table "document" */
 export type ApiDocumentInsertInput = {
   householder_id?: InputMaybe<Scalars['uuid']['input']>;
   id?: InputMaybe<Scalars['uuid']['input']>;
+  storage_id?: InputMaybe<Scalars['String']['input']>;
   url?: InputMaybe<Scalars['String']['input']>;
   visit_id?: InputMaybe<Scalars['uuid']['input']>;
 };
@@ -936,6 +941,7 @@ export type ApiDocumentMaxFields = {
   __typename?: 'document_max_fields';
   householder_id?: Maybe<Scalars['uuid']['output']>;
   id?: Maybe<Scalars['uuid']['output']>;
+  storage_id?: Maybe<Scalars['String']['output']>;
   url?: Maybe<Scalars['String']['output']>;
   visit_id?: Maybe<Scalars['uuid']['output']>;
 };
@@ -944,6 +950,7 @@ export type ApiDocumentMaxFields = {
 export type ApiDocumentMaxOrderBy = {
   householder_id?: InputMaybe<ApiOrderBy>;
   id?: InputMaybe<ApiOrderBy>;
+  storage_id?: InputMaybe<ApiOrderBy>;
   url?: InputMaybe<ApiOrderBy>;
   visit_id?: InputMaybe<ApiOrderBy>;
 };
@@ -953,6 +960,7 @@ export type ApiDocumentMinFields = {
   __typename?: 'document_min_fields';
   householder_id?: Maybe<Scalars['uuid']['output']>;
   id?: Maybe<Scalars['uuid']['output']>;
+  storage_id?: Maybe<Scalars['String']['output']>;
   url?: Maybe<Scalars['String']['output']>;
   visit_id?: Maybe<Scalars['uuid']['output']>;
 };
@@ -961,6 +969,7 @@ export type ApiDocumentMinFields = {
 export type ApiDocumentMinOrderBy = {
   householder_id?: InputMaybe<ApiOrderBy>;
   id?: InputMaybe<ApiOrderBy>;
+  storage_id?: InputMaybe<ApiOrderBy>;
   url?: InputMaybe<ApiOrderBy>;
   visit_id?: InputMaybe<ApiOrderBy>;
 };
@@ -985,6 +994,7 @@ export type ApiDocumentOnConflict = {
 export type ApiDocumentOrderBy = {
   householder_id?: InputMaybe<ApiOrderBy>;
   id?: InputMaybe<ApiOrderBy>;
+  storage_id?: InputMaybe<ApiOrderBy>;
   url?: InputMaybe<ApiOrderBy>;
   visit_id?: InputMaybe<ApiOrderBy>;
 };
@@ -1001,6 +1011,8 @@ export enum ApiDocumentSelectColumn {
   /** column name */
   Id = 'id',
   /** column name */
+  StorageId = 'storage_id',
+  /** column name */
   Url = 'url',
   /** column name */
   VisitId = 'visit_id'
@@ -1010,6 +1022,7 @@ export enum ApiDocumentSelectColumn {
 export type ApiDocumentSetInput = {
   householder_id?: InputMaybe<Scalars['uuid']['input']>;
   id?: InputMaybe<Scalars['uuid']['input']>;
+  storage_id?: InputMaybe<Scalars['String']['input']>;
   url?: InputMaybe<Scalars['String']['input']>;
   visit_id?: InputMaybe<Scalars['uuid']['input']>;
 };
@@ -1026,6 +1039,7 @@ export type ApiDocumentStreamCursorInput = {
 export type ApiDocumentStreamCursorValueInput = {
   householder_id?: InputMaybe<Scalars['uuid']['input']>;
   id?: InputMaybe<Scalars['uuid']['input']>;
+  storage_id?: InputMaybe<Scalars['String']['input']>;
   url?: InputMaybe<Scalars['String']['input']>;
   visit_id?: InputMaybe<Scalars['uuid']['input']>;
 };
@@ -1036,6 +1050,8 @@ export enum ApiDocumentUpdateColumn {
   HouseholderId = 'householder_id',
   /** column name */
   Id = 'id',
+  /** column name */
+  StorageId = 'storage_id',
   /** column name */
   Url = 'url',
   /** column name */

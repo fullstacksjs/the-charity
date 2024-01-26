@@ -1,15 +1,15 @@
 import { gql } from '@apollo/client';
+import { mergeDeep } from '@apollo/client/utilities';
 import type { MutationOptions } from '@camp/api-client';
 import { useMutation } from '@camp/api-client';
 import type {
   ApiCreateVisitMutation,
   ApiCreateVisitMutationVariables,
 } from '@camp/data-layer';
-import type {
-  Document as FileDocument,
-  VisitKeys,
-  VisitListItem,
-} from '@camp/domain';
+import type { StorageFile } from '@camp/design';
+import type { VisitKeys, VisitListItem } from '@camp/domain';
+import { fileStorageApi } from '@camp/file-storage-api';
+import Prray from 'prray';
 
 import {
   getVisitKeys,
@@ -52,7 +52,7 @@ interface Variables {
   householdId: string;
   date: Date;
   description?: string;
-  documents: FileDocument[];
+  documents: StorageFile[];
 }
 
 const toApiVariables = (
@@ -63,8 +63,9 @@ const toApiVariables = (
     description: variables.description,
     vistor: variables.vistor,
     household_id: variables.householdId,
-    // FIXME add doc mapper
-    documents: { data: variables.documents.map(d => ({ url: d.url })) },
+    documents: {
+      data: variables.documents.map(d => ({ url: d.url, storage_id: d.id })),
+    },
     date: variables.date.toISOString(),
   },
 });
@@ -76,5 +77,49 @@ export function useCreateVisitMutation(
     ...options,
     toClient,
     toApiVariables,
+    onCompleted: async (data, ctx) => {
+      try {
+        await Prray.from(data?.insert_visit_one?.documents ?? []).forEachAsync(
+          d => fileStorageApi.unUpload(d.storage_id),
+        );
+      } finally {
+        options?.onCompleted?.(data, ctx);
+      }
+    },
+    update(cache, result, opts) {
+      const newVisit = result.data?.insert_visit_one;
+      if (!newVisit) return;
+
+      cache.modify({
+        fields: {
+          visit(existingVisitsRefs = []) {
+            const newVisitRef = cache.writeFragment({
+              data: newVisit,
+              fragment: gql`
+                fragment NewVisit on visit {
+                  ...VisitKeys
+                  ...VisitListItem
+                }
+                ${VisitKeysFragment}
+                ${VisitListItemFragment}
+              `,
+              fragmentName: 'NewVisit',
+            });
+            return [newVisitRef!, ...existingVisitsRefs];
+          },
+          visit_aggregate(existingAggregate) {
+            return mergeDeep(existingAggregate, {
+              aggregate: {
+                count: existingAggregate.aggregate?.count
+                  ? existingAggregate.aggregate.count + 1
+                  : undefined,
+              },
+            });
+          },
+        },
+      });
+
+      return options?.update?.(cache, result, opts);
+    },
   });
 }

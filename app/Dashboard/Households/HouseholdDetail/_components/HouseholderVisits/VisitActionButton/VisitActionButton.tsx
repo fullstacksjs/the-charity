@@ -1,12 +1,10 @@
-// import { useDeleteVisitMutation } from '@camp/data-layer';
+import { useDeleteVisitMutation } from '@camp/data-layer';
 import { debug } from '@camp/debug';
-import { showNotification } from '@camp/design';
+import { formatToPersian, showNotification } from '@camp/design';
 import { MenuIcon } from '@camp/icons';
 import { messages } from '@camp/messages';
-import type { AppRoute, PathParams } from '@camp/router';
-import { Link } from '@camp/router';
 import { tid } from '@camp/test';
-import { isNull, noop } from '@fullstacksjs/toolbox';
+import { isNull } from '@fullstacksjs/toolbox';
 import { ActionIcon, Menu } from '@mantine/core';
 
 import { openDeleteVisitModal } from '../../DeleteVisitModal';
@@ -16,38 +14,47 @@ interface Props {
   open: VoidFunction;
   menuId?: string;
   menuButtonId?: string;
+  visitDate: Date;
+  visitId: string;
 }
 
-export const VisitActionButton = ({ menuId, open, menuButtonId }: Props) => {
-  // const [deleteVisit] = useDeleteVisitMutation();
+export const VisitActionButton = ({
+  menuId,
+  open,
+  menuButtonId,
+  visitDate,
+  visitId: id,
+}: Props) => {
+  const [deleteVisit] = useDeleteVisitMutation();
   const t = messages.notification.visits.delete;
+  const date = formatToPersian(visitDate);
 
-  // const onDeleteVisit = async () => {
-  //   try {
-  //     // const { data } = await deleteVisit({
-  //     //   variables: { id },
-  //     // });
+  const onDeleteVisit = async () => {
+    try {
+      const { data } = await deleteVisit({
+        variables: { id },
+      });
 
-  //     if (isNull(data)) throw Error('Assert: data is null');
-  //     showNotification({
-  //       title: t.title,
-  //       message: t.success(data.visits!.name),
-  //       type: 'success',
-  //       ...tid(ids.notifications.delete.success),
-  //     });
-  //   } catch (err) {
-  //     debug.error(err);
-  //     showNotification({
-  //       title: t.title,
-  //       message: t.failed(name),
-  //       type: 'failure',
-  //       ...tid(ids.notifications.delete.failure),
-  //     });
-  //   }
-  // };
+      if (isNull(data)) throw Error('Assert: data is null');
+      showNotification({
+        title: t.title,
+        message: t.success(data.visit!.name),
+        type: 'success',
+        ...tid(ids.notifications.delete.success),
+      });
+    } catch (err) {
+      debug.error(err);
+      showNotification({
+        title: t.title,
+        message: t.failed(date),
+        type: 'failure',
+        ...tid(ids.notifications.delete.failure),
+      });
+    }
+  };
 
   const handleDeleteVisit = () => {
-    // openDeleteVisitModal({ name, onDeleteVisit: (() => { }) as any });
+    openDeleteVisitModal({ name: date, onDeleteVisit });
   };
 
   return (

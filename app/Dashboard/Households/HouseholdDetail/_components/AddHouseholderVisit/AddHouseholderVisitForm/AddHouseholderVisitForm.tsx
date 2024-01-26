@@ -1,11 +1,11 @@
 import { useCreateVisitMutation } from '@camp/data-layer';
-import { debug, DebugScopes } from '@camp/debug';
+import { debug } from '@camp/debug';
+import type { StorageFile } from '@camp/design';
 import {
   ControlledDateInput,
   ControlledFileUpload,
   showNotification,
 } from '@camp/design';
-import type { Document } from '@camp/domain';
 import {
   createResolver,
   documentFileValidator,
@@ -24,7 +24,7 @@ interface FormSchema {
   name: string;
   date: Date;
   description?: string;
-  documents: Document[];
+  documents: StorageFile[];
 }
 
 export interface AddHouseholderVisitFormProps {
