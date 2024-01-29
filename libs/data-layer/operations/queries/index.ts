@@ -5,3 +5,4 @@ export * from './useHouseholdQuery';
 export * from './useMemberListQuery';
 export * from './useProjectListQuery';
 export * from './useProjectQuery';
+export * from './useVisitDetailQuery';

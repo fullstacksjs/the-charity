@@ -24,6 +24,7 @@ export const messages = {
         success: (name: string) => `بازدید “${name}” با موفقیت حذف شد.`,
         failed: (name: string) =>
           `مشکلی در مرحله حذف بازدید "${name}" به وجود آمده است. لطفا دوباره تلاش کنید.`,
+        cantDeleteLst: 'اسناد نمی‌تواند خالی باشند',
       },
     },
     household: {
@@ -100,6 +101,7 @@ export const messages = {
   },
   companyName: 'نامی مناسب برای خیریه',
   actions: {
+    download: 'دانلود',
     dismiss: 'انصراف',
     open: 'باز کردن',
     delete: 'حذف',
@@ -266,6 +268,9 @@ export const messages = {
           maxSize: 'فایل باید کمتر از ۲۰ مگابایت باشد',
         },
         submitBtn: 'ایجاد سند',
+      },
+      detail: {
+        title: 'اطلاعات بازدید',
       },
       title: 'بازدیدها',
       addVisit: 'افزودن بازدید',

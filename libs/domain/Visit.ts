@@ -21,6 +21,10 @@ export interface Visit {
   documents: Document[];
 }
 
+export type VisitDetail = Pick<
+  Visit,
+  'date' | 'description' | 'documents' | 'name' | 'status'
+>;
 export type VisitKeys = Pick<Visit, 'householdId' | 'id'>;
 
 export type VisitListItem = Pick<Visit, 'date' | 'description' | 'documents'>;

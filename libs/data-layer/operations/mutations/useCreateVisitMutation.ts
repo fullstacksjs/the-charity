@@ -8,8 +8,6 @@ import type {
 } from '@camp/data-layer';
 import type { StorageFile } from '@camp/design';
 import type { VisitKeys, VisitListItem } from '@camp/domain';
-import { fileStorageApi } from '@camp/file-storage-api';
-import Prray from 'prray';
 
 import {
   getVisitKeys,
@@ -18,7 +16,7 @@ import {
   VisitListItemFragment,
 } from '../fragments';
 
-export const Document = gql`
+const Document = gql`
   mutation CreateVisit($input: visit_insert_input!) {
     insert_visit_one(object: $input) {
       ...VisitKeys
@@ -77,15 +75,7 @@ export function useCreateVisitMutation(
     ...options,
     toClient,
     toApiVariables,
-    onCompleted: async (data, ctx) => {
-      try {
-        await Prray.from(data?.insert_visit_one?.documents ?? []).forEachAsync(
-          d => fileStorageApi.unUpload(d.storage_id),
-        );
-      } finally {
-        options?.onCompleted?.(data, ctx);
-      }
-    },
+
     update(cache, result, opts) {
       const newVisit = result.data?.insert_visit_one;
       if (!newVisit) return;

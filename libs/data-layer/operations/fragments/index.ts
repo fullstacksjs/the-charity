@@ -1,3 +1,5 @@
+export * from './document.fragment';
+export * from './document.mapper';
 export * from './household.fragments';
 export * from './household.mapper';
 export * from './householder.fragments';

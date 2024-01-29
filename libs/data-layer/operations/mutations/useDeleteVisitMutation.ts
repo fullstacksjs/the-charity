@@ -7,7 +7,9 @@ import type {
   ApiDeleteVisitMutationVariables,
 } from '@camp/data-layer';
 import type { Visit, VisitKeys } from '@camp/domain';
+import { fileStorageApi } from '@camp/file-storage-api';
 import { isNull } from '@fullstacksjs/toolbox';
+import Prray from 'prray';
 
 import { getVisitKeys, VisitKeysFragment } from '../fragments';
 
@@ -16,6 +18,11 @@ const Document = gql`
     delete_visit_by_pk(id: $id) {
       ...VisitKeys
       name
+      documents {
+        url
+        id
+        storage_id
+      }
     }
   }
   ${VisitKeysFragment}
@@ -30,7 +37,10 @@ const toClient = (data: ApiDeleteVisitMutation | null): DeleteVisit => {
 
   return {
     visit: !isNull(deleted)
-      ? { ...getVisitKeys(deleted), name: deleted.name }
+      ? {
+          ...getVisitKeys(deleted),
+          name: deleted.name,
+        }
       : undefined,
   };
 };
@@ -52,6 +62,15 @@ export const useDeleteVisitMutation = (
     ...options,
     toClient,
     toApiVariables,
+    onCompleted: async (data, ctx) => {
+      try {
+        await Prray.from(
+          data?.delete_visit_by_pk?.documents ?? [],
+        ).forEachAsync(d => fileStorageApi.unUpload(d.storage_id));
+      } finally {
+        options?.onCompleted?.(data, ctx);
+      }
+    },
     update(cache, { data }) {
       const visit = data?.delete_visit_by_pk;
       if (!visit) return;

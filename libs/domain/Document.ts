@@ -30,4 +30,6 @@ export interface Document {
   id: string;
 }
 
-export type DocumentKeys = Pick<Document, 'id'>;
+export type DocumentDetail = Pick<Document, 'url'>;
+
+export type DocumentKeys = Pick<Document, 'id' | 'storageId'>;

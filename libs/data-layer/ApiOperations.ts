@@ -3,6 +3,10 @@
 /* cspell:disable */
 import type * as SchemaTypes from '@camp/domain';
 
+export type ApiDocumentKeysFragment = { __typename?: 'document', id: string, storage_id: string };
+
+export type ApiDocumentDetailFragment = { __typename?: 'document', url: string };
+
 export type ApiHouseholdKeysFragment = { __typename?: 'household', id: string };
 
 export type ApiHouseholdDetailFragment = { __typename?: 'household', name: string, status: SchemaTypes.HouseholdStatusEnum, severity: SchemaTypes.HouseholdSeverityEnum, code?: string | null, created_at: string, updated_at: string, members_count?: number | null };
@@ -25,7 +29,7 @@ export type ApiProjectListItemFragment = { __typename?: 'project', name: string,
 
 export type ApiVisitKeysFragment = { __typename?: 'visit', id: string, household_id: string };
 
-export type ApiVisitFragment = { __typename?: 'visit', name: string, visitor?: string | null, date: string, description?: string | null, status: SchemaTypes.VisitStatusEnum, documents: Array<{ __typename?: 'document', url: string, id: string, storage_id: string }> };
+export type ApiVisitDetailFragment = { __typename?: 'visit', name: string, visitor?: string | null, date: string, id: string, description?: string | null, status: SchemaTypes.VisitStatusEnum, documents: Array<{ __typename?: 'document', url: string, id: string, storage_id: string }> };
 
 export type ApiVisitListItemFragment = { __typename?: 'visit', date: string, description?: string | null, documents: Array<{ __typename?: 'document', url: string, id: string, storage_id: string }> };
 
@@ -61,6 +65,13 @@ export type ApiCreateVisitMutation = { __typename?: 'mutation_root', insert_visi
 
 export type ApiNewVisitFragment = { __typename?: 'visit', id: string, household_id: string, date: string, description?: string | null, documents: Array<{ __typename?: 'document', url: string, id: string, storage_id: string }> };
 
+export type ApiDeleteDocumentMutationVariables = SchemaTypes.Exact<{
+  id: SchemaTypes.Scalars['uuid']['input'];
+}>;
+
+
+export type ApiDeleteDocumentMutation = { __typename?: 'mutation_root', delete_document_by_pk?: { __typename?: 'document', id: string, storage_id: string, url: string } | null };
+
 export type ApiDeleteHouseholdMutationVariables = SchemaTypes.Exact<{
   id: SchemaTypes.Scalars['uuid']['input'];
 }>;
@@ -80,7 +91,7 @@ export type ApiDeleteVisitMutationVariables = SchemaTypes.Exact<{
 }>;
 
 
-export type ApiDeleteVisitMutation = { __typename?: 'mutation_root', delete_visit_by_pk?: { __typename?: 'visit', name: string, id: string, household_id: string } | null };
+export type ApiDeleteVisitMutation = { __typename?: 'mutation_root', delete_visit_by_pk?: { __typename?: 'visit', name: string, id: string, household_id: string, documents: Array<{ __typename?: 'document', url: string, id: string, storage_id: string }> } | null };
 
 export type ApiEditHouseholdMutationVariables = SchemaTypes.Exact<{
   id: SchemaTypes.Scalars['uuid']['input'];
@@ -157,3 +168,10 @@ export type ApiProjectQueryVariables = SchemaTypes.Exact<{
 
 
 export type ApiProjectQuery = { __typename?: 'query_root', project_by_pk?: { __typename?: 'project', id: string, name: string, description?: string | null, status: SchemaTypes.ProjectStatusEnum, start_date?: string | null, due_date?: string | null, created_at: string, updated_at: string, households: Array<{ __typename?: 'household_project', household: { __typename?: 'household', id: string, name: string, status: SchemaTypes.HouseholdStatusEnum, severity: SchemaTypes.HouseholdSeverityEnum, code?: string | null, created_at: string, updated_at: string, members_count?: number | null } }> } | null };
+
+export type ApiVisitDetailQueryVariables = SchemaTypes.Exact<{
+  id: SchemaTypes.Scalars['uuid']['input'];
+}>;
+
+
+export type ApiVisitDetailQuery = { __typename?: 'query_root', visit_by_pk?: { __typename?: 'visit', id: string, household_id: string, name: string, visitor?: string | null, date: string, description?: string | null, status: SchemaTypes.VisitStatusEnum, documents: Array<{ __typename?: 'document', url: string, id: string, storage_id: string }> } | null };

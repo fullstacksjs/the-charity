@@ -8,10 +8,11 @@ export const VisitKeysFragment = gql`
 `;
 
 export const VisitDetailFragment = gql`
-  fragment Visit on visit {
+  fragment VisitDetail on visit {
     name
     visitor
     date
+    id
     description
     status
     documents {

@@ -1,4 +1,5 @@
 export * from './AppRoutes';
+export * from './getFileName';
 export * from './Link';
 export * from './Navigate';
 export * from './PathParams';

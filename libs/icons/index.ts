@@ -8,6 +8,7 @@ export {
   ChevronLeft as ChevronLeftIcon,
   ChevronRight as ChevronRightIcon,
   Home as DashboardIcon,
+  Download as DownloadIcon,
   Edit as EditIcon,
   XCircle as ErrorAlertIcon,
   LogOut as ExitIcon,
@@ -20,4 +21,5 @@ export {
   Trash2 as TrashIcon,
   Upload as UploadIcon,
   User as UserIcon,
+  MoreVertical as VerticalMenuIcon,
 } from 'react-feather';
