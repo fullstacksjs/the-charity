@@ -5,7 +5,6 @@ module.exports = init({
   modules: {
     auto: true,
     esm: true,
-    disableExpensiveRules: !process.env.CI && !process.env.HUSKY,
     typescript: {
       parserProject: ['./tsconfig.eslint.json'],
       resolverProject: ['./tsconfig.json'],

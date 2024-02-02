@@ -1,3 +1,4 @@
+import { debug, DebugScopes } from '@camp/debug';
 import type { Document } from '@camp/domain';
 import { VerticalMenuIcon } from '@camp/icons';
 import { messages } from '@camp/messages';
@@ -78,9 +79,9 @@ export const VisitDetailDocumentItem = ({
                   onClick={e => {
                     e.stopPropagation();
                     setLoading(true);
-                    onDelete(document).finally(() => {
-                      setLoading(false);
-                    });
+                    onDelete(document)
+                      .catch(err => debug.error(DebugScopes.All, err))
+                      .finally(() => setLoading(false));
                   }}
                 >
                   {messages.actions.delete}

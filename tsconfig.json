@@ -6,7 +6,7 @@
     "esModuleInterop": true,
     "types": ["cypress", "@testing-library/cypress"],
     "paths": {
-      "@camp/file-storage-api": ["./libs/file-storage-api/index.ts"],
+      "@camp/file-storage-client": ["./libs/file-storage-client/index.ts"],
       "@camp/api-client": ["./libs/api-client/index.ts"],
       "@camp/auth": ["./libs/auth/index.ts"],
       "@camp/fixtures": ["./libs/fixtures/index.ts"],

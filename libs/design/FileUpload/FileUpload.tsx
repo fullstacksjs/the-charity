@@ -114,24 +114,26 @@ export const FileUpload = ({
 
     dispatch({ type: 'Add', files: fileStates });
 
-    Prray.from(fileStates).forEachAsync(
-      f =>
-        upload?.(f.file)
-          .then(doc => {
-            onAdd?.(doc);
-            dispatch({
-              type: 'Upload',
-              id: f.id,
-              status: 'Success',
-              remote: doc,
-            });
-          })
-          .catch(e => {
-            debug.error(e);
-            dispatch({ type: 'Upload', id: f.id, status: 'Failed' });
-          }),
-      { concurrency },
-    );
+    Prray.from(fileStates)
+      .forEachAsync(
+        f =>
+          upload?.(f.file)
+            .then(doc => {
+              onAdd?.(doc);
+              dispatch({
+                type: 'Upload',
+                id: f.id,
+                status: 'Success',
+                remote: doc,
+              });
+            })
+            .catch(e => {
+              debug.error(e);
+              dispatch({ type: 'Upload', id: f.id, status: 'Failed' });
+            }),
+        { concurrency },
+      )
+      .catch(e => debug.error('FileUpload', e));
   };
 
   const { getRootProps, getInputProps } = useDropzone({

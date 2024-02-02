@@ -11,7 +11,7 @@ import {
   documentFileValidator,
   documentSchema,
 } from '@camp/domain';
-import { fileStorageClient } from '@camp/file-storage-api';
+import { fileStorageClient } from '@camp/file-storage-client';
 import { messages } from '@camp/messages';
 import { tid } from '@camp/test';
 import { isNull } from '@fullstacksjs/toolbox';
