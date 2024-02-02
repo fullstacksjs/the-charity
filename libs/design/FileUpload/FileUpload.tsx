@@ -114,7 +114,7 @@ export const FileUpload = ({
 
     dispatch({ type: 'Add', files: fileStates });
 
-    void Prray.from(fileStates).forEachAsync(
+    Prray.from(fileStates).forEachAsync(
       f =>
         upload?.(f.file)
           .then(doc => {
