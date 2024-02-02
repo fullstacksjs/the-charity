@@ -42,7 +42,11 @@ export const File = ({ file, onRemove }: Props) => {
       </ActionIcon>
       <Group spacing="8px" align="center" noWrap>
         <Box sx={{ maxWidth: '320px' }}>
-          <Text dir="ltr" lh="1">
+          <Text
+            dir="ltr"
+            lh="1"
+            sx={{ textOverflow: 'ellipsis', overflow: 'hidden' }}
+          >
             {file.file.name}
           </Text>
         </Box>

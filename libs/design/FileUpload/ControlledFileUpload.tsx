@@ -28,7 +28,8 @@ export const ControlledFileUpload = <T extends FieldValues>({
         name: field.name,
       },
     });
-  }, [field, files]);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [files]);
 
   return (
     <FileUpload
