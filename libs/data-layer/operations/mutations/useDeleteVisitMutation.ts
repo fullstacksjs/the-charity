@@ -7,7 +7,7 @@ import type {
   ApiDeleteVisitMutationVariables,
 } from '@camp/data-layer';
 import type { Visit, VisitKeys } from '@camp/domain';
-import { fileStorageApi } from '@camp/file-storage-api';
+import { fileStorageClient } from '@camp/file-storage-api';
 import { isNull } from '@fullstacksjs/toolbox';
 import Prray from 'prray';
 
@@ -66,7 +66,7 @@ export const useDeleteVisitMutation = (
       try {
         await Prray.from(
           data?.delete_visit_by_pk?.documents ?? [],
-        ).forEachAsync(d => fileStorageApi.unUpload(d.storage_id));
+        ).forEachAsync(d => fileStorageClient.unUpload(d.storage_id));
       } finally {
         options?.onCompleted?.(data, ctx);
       }

@@ -1,1 +1,1 @@
-export * as fileStorageApi from './fileStorageApi';
+export * as fileStorageClient from './fileStorageClient';

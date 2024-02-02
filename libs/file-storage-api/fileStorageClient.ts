@@ -1,5 +1,5 @@
 import { config } from '@camp/config';
-import type { StorageFile } from '@camp/design';
+import type { StorageFile } from '@camp/domain';
 import axios from 'axios';
 
 const client = axios.create({

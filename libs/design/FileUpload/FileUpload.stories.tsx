@@ -1,6 +1,6 @@
+import type { FailedFile, SuccessFile } from '@camp/domain';
 import type { Meta, StoryObj } from '@storybook/react';
 
-import type { FailedFile, SuccessFile } from './FileState';
 import type { FileUploadProps } from './FileUpload';
 import { FileUpload } from './FileUpload';
 

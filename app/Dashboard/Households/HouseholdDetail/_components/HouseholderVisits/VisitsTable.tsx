@@ -1,6 +1,5 @@
 import { DataTable, Table } from '@camp/design';
 import type { VisitKeys, VisitListItem } from '@camp/domain';
-import { noop } from '@fullstacksjs/toolbox';
 import type { Table as TableType } from '@tanstack/react-table';
 
 import * as ids from './HouseholderVisits.ids';

@@ -1,8 +1,8 @@
+import type { StorageFile } from '@camp/domain';
 import { useEffect, useState } from 'react';
 import type { Control, FieldValues, Path, PathValue } from 'react-hook-form';
 import { useController } from 'react-hook-form';
 
-import type { StorageFile } from './FileState';
 import type { FileUploadProps } from './FileUpload';
 import { FileUpload } from './FileUpload';
 
@@ -28,7 +28,7 @@ export const ControlledFileUpload = <T extends FieldValues>({
         name: field.name,
       },
     });
-  }, [files]);
+  }, [field, files]);
 
   return (
     <FileUpload

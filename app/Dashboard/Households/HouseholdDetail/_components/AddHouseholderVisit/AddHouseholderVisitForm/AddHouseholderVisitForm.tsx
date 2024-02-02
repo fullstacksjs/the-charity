@@ -1,17 +1,17 @@
 import { useCreateVisitMutation } from '@camp/data-layer';
 import { debug } from '@camp/debug';
-import type { StorageFile } from '@camp/design';
 import {
   ControlledDateInput,
   ControlledFileUpload,
   showNotification,
 } from '@camp/design';
+import type { StorageFile } from '@camp/domain';
 import {
   createResolver,
   documentFileValidator,
   documentSchema,
 } from '@camp/domain';
-import { fileStorageApi } from '@camp/file-storage-api';
+import { fileStorageClient } from '@camp/file-storage-api';
 import { messages } from '@camp/messages';
 import { tid } from '@camp/test';
 import { isNull } from '@fullstacksjs/toolbox';
@@ -123,8 +123,8 @@ export const AddHouseholderVisitForm = ({
           required
           label={tt.documentsInput.label}
           helper={tt.documentsInput.maxSize}
-          upload={fileStorageApi.upload}
-          unUpload={fileStorageApi.unUpload}
+          upload={fileStorageClient.upload}
+          unUpload={fileStorageClient.unUpload}
           filter={(files): File[] => {
             const res = files.map(f => {
               const parsed = documentFileValidator.safeParse(f);

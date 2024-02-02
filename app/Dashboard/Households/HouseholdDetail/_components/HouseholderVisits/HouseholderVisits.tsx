@@ -9,7 +9,7 @@ import {
 import { visitColumnHelper } from '@camp/domain';
 import { errorMessages, messages } from '@camp/messages';
 import { tid } from '@camp/test';
-import { isEmpty, noop } from '@fullstacksjs/toolbox';
+import { isEmpty } from '@fullstacksjs/toolbox';
 import { Group, Stack, Text } from '@mantine/core';
 import type { PaginationState, SortingState } from '@tanstack/react-table';
 import { getCoreRowModel, useReactTable } from '@tanstack/react-table';

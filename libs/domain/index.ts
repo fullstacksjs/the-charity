@@ -2,6 +2,7 @@ export * from './ApiSchema';
 export * from './City';
 export * from './createResolver';
 export * from './Document';
+export * from './FileState';
 export * from './Gender';
 export * from './Household';
 export * from './Householder';

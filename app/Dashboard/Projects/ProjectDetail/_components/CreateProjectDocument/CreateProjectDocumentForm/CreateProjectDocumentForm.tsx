@@ -10,7 +10,7 @@ import {
   documentFileValidator,
   documentSchema,
 } from '@camp/domain';
-import { fileStorageApi } from '@camp/file-storage-api';
+import { fileStorageClient } from '@camp/file-storage-api';
 import { messages } from '@camp/messages';
 import { tid } from '@camp/test';
 import { Button, createStyles, Group, Stack, TextInput } from '@mantine/core';
@@ -44,11 +44,10 @@ const useStyle = createStyles(theme => ({
 
 export const CreateProjectDocumentForm = ({ dismiss }: Props) => {
   const t = messages.projectDetail.addDocument.form;
-  const { handleSubmit, register, formState, control, getValues } =
-    useForm<FormSchema>({
-      resolver,
-      mode: 'onChange',
-    });
+  const { handleSubmit, register, formState, control } = useForm<FormSchema>({
+    resolver,
+    mode: 'onChange',
+  });
 
   const onSubmit = handleSubmit(data => {
     debug.log(DebugScopes.All, data);
@@ -82,8 +81,8 @@ export const CreateProjectDocumentForm = ({ dismiss }: Props) => {
           required
           label={t.documentsInput.label}
           helper={t.documentsInput.maxSize}
-          upload={fileStorageApi.upload}
-          unUpload={fileStorageApi.unUpload}
+          upload={fileStorageClient.upload}
+          unUpload={fileStorageClient.unUpload}
           filter={(files): File[] => {
             const res = files.map(f => {
               const parsed = documentFileValidator.safeParse(f);

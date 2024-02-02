@@ -1,9 +1,8 @@
+import type { FileState } from '@camp/domain';
+import { isFailed, isSuccess } from '@camp/domain';
 import { TrashIcon } from '@camp/icons';
 import { ActionIcon, Box, Group, Text } from '@mantine/core';
 import { useState } from 'react';
-
-import type { FileState } from './FileState';
-import { isFailed, isSuccess } from './FileState';
 
 interface Props {
   file: FileState;

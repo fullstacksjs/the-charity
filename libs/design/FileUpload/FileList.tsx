@@ -1,8 +1,8 @@
+import type { FileState } from '@camp/domain';
 import { isNullOrEmptyArray } from '@fullstacksjs/toolbox';
 import { Box } from '@mantine/core';
 
 import { File } from './File';
-import type { FileState } from './FileState';
 
 interface Props {
   files?: FileState[];

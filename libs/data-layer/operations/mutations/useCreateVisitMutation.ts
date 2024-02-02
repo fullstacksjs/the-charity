@@ -6,8 +6,7 @@ import type {
   ApiCreateVisitMutation,
   ApiCreateVisitMutationVariables,
 } from '@camp/data-layer';
-import type { StorageFile } from '@camp/design';
-import type { VisitKeys, VisitListItem } from '@camp/domain';
+import type { StorageFile, VisitKeys, VisitListItem } from '@camp/domain';
 
 import {
   getVisitKeys,

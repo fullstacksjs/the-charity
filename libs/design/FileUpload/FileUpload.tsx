@@ -1,4 +1,11 @@
 import { debug } from '@camp/debug';
+import type {
+  FailedFile,
+  FileState,
+  StorageFile,
+  SuccessFile,
+} from '@camp/domain';
+import { isSuccess } from '@camp/domain';
 import { randomInt } from '@fullstacksjs/toolbox';
 import type { InputWrapperProps } from '@mantine/core';
 import { Input, Stack, Text } from '@mantine/core';
@@ -9,13 +16,6 @@ import { useDropzone } from 'react-dropzone';
 
 import { FileList } from './FileList';
 import { FileSelect } from './FileSelect';
-import type {
-  FailedFile,
-  FileState,
-  StorageFile,
-  SuccessFile,
-} from './FileState';
-import { isSuccess } from './FileState';
 
 type Action =
   | {
