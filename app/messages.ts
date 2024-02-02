@@ -253,7 +253,7 @@ export const messages = {
       form: {
         nameInput: {
           placeholder: 'برای مثال: مرادی',
-          label: 'نام',
+          label: 'نام بازدید کننده',
         },
         dateInput: {
           label: 'تاریخ',
