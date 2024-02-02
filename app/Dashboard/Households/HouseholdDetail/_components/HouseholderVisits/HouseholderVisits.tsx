@@ -29,26 +29,18 @@ interface Props {
 }
 
 const columns = [
-  visitColumnHelper.display({
-    header: t.table.columns.order,
-    cell: order => order.row.index + 1,
-  }),
   visitColumnHelper.accessor('date', {
     id: 'date',
     header: t.table.columns.date,
     cell: date => <Text>{formatToPersian(date.getValue())}</Text>,
   }),
+  visitColumnHelper.accessor('description', {
+    header: t.table.columns.description,
+    cell: props => <Text lineClamp={1}>{props.getValue()}</Text>,
+  }),
   visitColumnHelper.accessor('documents', {
     header: t.table.columns.documents,
     cell: doc => <ImagePreview size={80} src={doc.getValue()[0]!.url} />,
-  }),
-  visitColumnHelper.accessor('description', {
-    header: t.table.columns.description,
-    cell: props => (
-      <Group position="apart">
-        <Text lineClamp={1}>{props.getValue()}</Text>
-      </Group>
-    ),
   }),
   visitColumnHelper.display({
     id: 'action',
