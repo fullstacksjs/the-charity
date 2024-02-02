@@ -89,26 +89,28 @@ export const VisitDetail = ({ id }: VisitDetailProps) => {
       </SimpleGrid>
       <Stack
         spacing="30px"
+        align="center"
+        h="100%"
+        p="40px"
+        bg="bg"
         sx={theme => ({
-          padding: '40px',
           flexGrow: 1,
-          alignItems: 'center',
-          height: '100%',
           borderLeft: `1px solid ${theme.colors.bg[5]}`,
         })}
-        bg="bg"
       >
         <Image
           radius="10px"
-          width={352}
-          h="100%"
-          height="100%"
           styles={{
-            figure: {
-              height: '100%',
-            },
+            figure: { height: '100%' },
             imageWrapper: {
               height: '100%',
+              display: 'flex',
+              justifyContent: 'center',
+            },
+            image: {
+              objectFit: 'contain',
+              height: 'calc(100vh - 400px) !important',
+              width: 'auto !important',
             },
           }}
           src={selectedDocument?.url}
