@@ -1,3 +1,4 @@
+export * from './PdfFileIcon';
 export type { Icon } from 'react-feather';
 export {
   ArrowDown as ArrowDownIcon,

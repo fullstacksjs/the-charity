@@ -1,8 +1,9 @@
 import { debug, DebugScopes } from '@camp/debug';
 import type { Document } from '@camp/domain';
-import { VerticalMenuIcon } from '@camp/icons';
+import { PdfFileIcon, VerticalMenuIcon } from '@camp/icons';
 import { messages } from '@camp/messages';
-import { getFileName } from '@camp/router';
+import type { FileType } from '@camp/router';
+import { getFileName, getFileType } from '@camp/router';
 import {
   ActionIcon,
   Card,
@@ -28,6 +29,9 @@ const useStyles = createStyles(theme => ({
     userSelect: 'none',
     transition: 'all 300ms ease-in-out',
   },
+  pdf: {
+    backgroundColor: theme.colors.fg[2],
+  },
 }));
 
 interface Props {
@@ -43,6 +47,8 @@ export const VisitDetailDocumentItem = ({
   onDelete,
   onSelect,
 }: Props) => {
+  const fileType = getFileType(document.url);
+
   const { classes } = useStyles();
   const [loading, setLoading] = useState(false);
   return (
@@ -52,7 +58,11 @@ export const VisitDetailDocumentItem = ({
       className={
         loading
           ? undefined
-          : clsx([classes.default, isSelected ? classes.selected : undefined])
+          : clsx([
+              classes.default,
+              isSelected ? classes.selected : undefined,
+              fileType === 'pdf' ? classes.pdf : undefined,
+            ])
       }
       onClick={() => {
         onSelect(document);
@@ -107,13 +117,17 @@ export const VisitDetailDocumentItem = ({
           <Center h={108}>
             <Loader variant="oval" />
           </Center>
-        ) : (
+        ) : fileType === 'image' ? (
           <Image
             src={document.url}
             height={108}
             sx={{ objectPosition: 'top' }}
             alt={document.id}
           />
+        ) : (
+          <Center h={108}>
+            <PdfFileIcon width={30} height={33} />
+          </Center>
         )}
       </Card.Section>
     </Card>

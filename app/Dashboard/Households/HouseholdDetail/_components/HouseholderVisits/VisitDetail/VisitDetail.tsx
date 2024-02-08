@@ -5,10 +5,19 @@ import {
 import { FullPageLoader, showNotification } from '@camp/design';
 import type { Document } from '@camp/domain';
 import { fileStorageClient } from '@camp/file-storage-client';
-import { DownloadIcon, TrashIcon } from '@camp/icons';
+import { DownloadIcon, PdfFileIcon, TrashIcon } from '@camp/icons';
 import { errorMessages, messages } from '@camp/messages';
-import { getFileName } from '@camp/router';
-import { Box, Button, Group, Image, SimpleGrid, Stack } from '@mantine/core';
+import { getFileName, getFileType } from '@camp/router';
+import {
+  Box,
+  Button,
+  Center,
+  Group,
+  Image,
+  SimpleGrid,
+  Skeleton,
+  Stack,
+} from '@mantine/core';
 import download from 'downloadjs';
 import { useState } from 'react';
 
@@ -50,6 +59,7 @@ export const VisitDetail = ({ id }: VisitDetailProps) => {
       </Box>
     );
   const visit = data!.visit;
+  // const fileType = getFileType(selectedDocument!.url);
 
   const deleteDocument = async (d: Document): Promise<void> => {
     if (visit?.documents.length === 1) {
@@ -77,9 +87,11 @@ export const VisitDetail = ({ id }: VisitDetailProps) => {
     download(file, getFileName(url));
   };
 
+  const fileType = getFileType(selectedDocument!.url);
+
   return (
     <Group w="100%" noWrap sx={{ alignItems: 'flex-start', gap: 0 }}>
-      <SimpleGrid sx={{ padding: '40px' }} cols={2}>
+      <SimpleGrid sx={{ padding: '40px', flexShrink: 0 }} cols={2}>
         {visit?.documents.map(doc => {
           const isSelected = selectedDocument?.url === doc.url;
 
@@ -105,23 +117,29 @@ export const VisitDetail = ({ id }: VisitDetailProps) => {
           borderLeft: `1px solid ${theme.colors.bg[5]}`,
         })}
       >
-        <Image
-          radius="10px"
-          styles={{
-            figure: { height: '100%' },
-            imageWrapper: {
-              height: '100%',
-              display: 'flex',
-              justifyContent: 'center',
-            },
-            image: {
-              objectFit: 'contain',
-              height: 'calc(100vh - 400px) !important',
-              width: 'auto !important',
-            },
-          }}
-          src={selectedDocument?.url}
-        />
+        {fileType === 'pdf' ? (
+          <Center w="100%" h="100%" bg="fg.2" sx={{ borderRadius: '10px' }}>
+            <PdfFileIcon size={100} />
+          </Center>
+        ) : (
+          <Image
+            radius="10px"
+            styles={{
+              figure: { height: '100%' },
+              imageWrapper: {
+                height: '100%',
+                display: 'flex',
+                justifyContent: 'center',
+              },
+              image: {
+                objectFit: 'contain',
+                height: 'calc(100vh - 400px) !important',
+                width: 'auto !important',
+              },
+            }}
+            src={selectedDocument?.url}
+          />
+        )}
         <Group>
           <Button
             loading={isDeleting}
