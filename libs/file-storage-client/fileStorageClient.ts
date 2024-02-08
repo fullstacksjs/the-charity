@@ -20,3 +20,8 @@ export const upload = async (file: File): Promise<StorageFile> => {
 export const unUpload = async (id: StorageFile['id']) => {
   await client.delete(`/${id}`);
 };
+
+export const get = async (url: string): Promise<Blob> => {
+  const res = await axios.get(url, { responseType: 'blob' });
+  return res.data;
+};

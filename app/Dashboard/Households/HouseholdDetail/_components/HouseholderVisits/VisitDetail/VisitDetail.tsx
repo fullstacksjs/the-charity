@@ -4,6 +4,7 @@ import {
 } from '@camp/data-layer';
 import { FullPageLoader, showNotification } from '@camp/design';
 import type { Document } from '@camp/domain';
+import { fileStorageClient } from '@camp/file-storage-client';
 import { DownloadIcon, TrashIcon } from '@camp/icons';
 import { errorMessages, messages } from '@camp/messages';
 import { getFileName } from '@camp/router';
@@ -70,6 +71,12 @@ export const VisitDetail = ({ id }: VisitDetailProps) => {
     );
   };
 
+  const downloadSelectedFile = async () => {
+    const url = selectedDocument!.url;
+    const file = await fileStorageClient.get(url);
+    download(file, getFileName(url));
+  };
+
   return (
     <Group w="100%" noWrap sx={{ alignItems: 'flex-start', gap: 0 }}>
       <SimpleGrid sx={{ padding: '40px' }} cols={2}>
@@ -119,12 +126,7 @@ export const VisitDetail = ({ id }: VisitDetailProps) => {
           <Button
             loading={isDeleting}
             disabled={isDeleting}
-            onClick={() => {
-              download(
-                selectedDocument!.url,
-                getFileName(selectedDocument!.url),
-              );
-            }}
+            onClick={downloadSelectedFile}
             color="fg.5"
             variant="subtle"
             leftIcon={<DownloadIcon />}
