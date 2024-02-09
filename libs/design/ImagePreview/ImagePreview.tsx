@@ -1,12 +1,14 @@
 import type { ImageProps } from '@mantine/core';
-import { Box, Image } from '@mantine/core';
+import { Box, Center, Image } from '@mantine/core';
+
+import { CameraOffIcon } from '../../icons';
 
 interface Props extends ImageProps {
   size: number;
   pad?: number;
 }
 
-export const ImagePreview = ({ size, pad = 10, ...rest }: Props) => {
+export const ImagePreview = ({ size, pad = 10, src, ...rest }: Props) => {
   return (
     <Box
       sx={theme => ({
@@ -16,7 +18,13 @@ export const ImagePreview = ({ size, pad = 10, ...rest }: Props) => {
         padding: pad,
       })}
     >
-      <Image width={size} radius={5} height={size} {...rest} />
+      <Center sx={{ height: size }}>
+        {src == null ? (
+          <CameraOffIcon />
+        ) : (
+          <Image radius={5} height={size} src={src} {...rest} />
+        )}
+      </Center>
     </Box>
   );
 };

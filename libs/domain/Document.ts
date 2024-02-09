@@ -13,11 +13,21 @@ export const documentSchema = {
 export const documentFileValidator = z
   .object({
     name: z.string(),
-    type: z.enum(['image/png', 'application/pdf', 'image/jpg', 'image/jpeg'], {
-      errorMap: () => ({
-        message: messages.notification.addDocument.unsupportedType,
-      }),
-    }),
+    type: z.enum(
+      [
+        'image/png',
+        'application/pdf',
+        'image/jpg',
+        'image/jpeg',
+        'video/mp4',
+        'video/x-matroska',
+      ],
+      {
+        errorMap: () => ({
+          message: messages.notification.addDocument.unsupportedType,
+        }),
+      },
+    ),
     size: z
       .number()
       .lt(20000000, messages.notification.addDocument.maxSizeExceeded),

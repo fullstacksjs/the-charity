@@ -4,6 +4,7 @@ export {
   ArrowDown as ArrowDownIcon,
   ArrowUp as ArrowUpIcon,
   Calendar as CalendarIcon,
+  CameraOff as CameraOffIcon,
   Check as CheckIcon,
   ChevronDown as ChevronDownIcon,
   ChevronLeft as ChevronLeftIcon,
@@ -23,4 +24,5 @@ export {
   Upload as UploadIcon,
   User as UserIcon,
   MoreVertical as VerticalMenuIcon,
+  Video as VideoIcon,
 } from 'react-feather';

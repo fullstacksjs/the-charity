@@ -31,7 +31,7 @@ interface Props {
 const columns = [
   visitColumnHelper.accessor('documents', {
     header: t.table.columns.documents,
-    cell: doc => <ImagePreview size={80} src={doc.getValue()[0]!.url} />,
+    cell: doc => <ImagePreview size={80} src={doc.getValue()[0]?.url} />,
   }),
   visitColumnHelper.accessor('date', {
     id: 'date',

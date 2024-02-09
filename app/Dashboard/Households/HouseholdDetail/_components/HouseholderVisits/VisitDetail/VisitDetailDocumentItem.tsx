@@ -1,8 +1,7 @@
 import { debug, DebugScopes } from '@camp/debug';
 import type { Document } from '@camp/domain';
-import { PdfFileIcon, VerticalMenuIcon } from '@camp/icons';
+import { PdfFileIcon, VerticalMenuIcon, VideoIcon } from '@camp/icons';
 import { messages } from '@camp/messages';
-import type { FileType } from '@camp/router';
 import { getFileName, getFileType } from '@camp/router';
 import {
   ActionIcon,
@@ -124,9 +123,13 @@ export const VisitDetailDocumentItem = ({
             sx={{ objectPosition: 'top' }}
             alt={document.id}
           />
-        ) : (
+        ) : fileType === 'pdf' ? (
           <Center h={108}>
             <PdfFileIcon width={30} height={33} />
+          </Center>
+        ) : (
+          <Center h={108}>
+            <VideoIcon width={30} height={33} />
           </Center>
         )}
       </Card.Section>
