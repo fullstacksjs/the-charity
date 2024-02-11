@@ -9,19 +9,12 @@ import { DownloadIcon, PdfFileIcon, TrashIcon, VideoIcon } from '@camp/icons';
 import { errorMessages, messages } from '@camp/messages';
 import { getFileName, getFileType } from '@camp/router';
 import { isEmpty } from '@fullstacksjs/toolbox';
-import {
-  Box,
-  Button,
-  Center,
-  Group,
-  Image,
-  SimpleGrid,
-  Stack,
-} from '@mantine/core';
+import { Box, Button, Center, Group, Stack } from '@mantine/core';
 import download from 'downloadjs';
-import { useState } from 'react';
+import { useMemo, useState } from 'react';
 
-import { VisitDetailDocumentItem } from './VisitDetailDocumentItem';
+import { DocumentGrid } from './DocumentGrid';
+import { ImagePreview } from './ImagePreview';
 
 export interface VisitDetailProps {
   id: string;
@@ -30,18 +23,21 @@ export interface VisitDetailProps {
 export const VisitDetail = ({ id }: VisitDetailProps) => {
   const t = messages.householder.visits.detail;
 
-  const [selectedDocument, setSelectedDocument] = useState<Document | null>(
-    null,
-  );
+  const [selectedDocument, setSelectedDocument] = useState<Document>();
   const [deleteOneDocument, { loading: isDeleting }] =
     useDeleteDocumentMutation();
 
   const { data, loading, error } = useVisitDetailQuery({
     variables: { id },
     onCompleted: () => {
-      setSelectedDocument(data!.visit!.documents[0]!);
+      setSelectedDocument(data!.visit!.documents[0]);
     },
   });
+
+  const documents = useMemo(
+    () => data?.visit?.documents ?? [],
+    [data?.visit?.documents],
+  );
 
   if (error) {
     showNotification({
@@ -58,7 +54,6 @@ export const VisitDetail = ({ id }: VisitDetailProps) => {
         <FullPageLoader />;
       </Box>
     );
-  const visit = data!.visit;
 
   const deleteDocument = async (d: Document): Promise<void> => {
     const deleted = await deleteOneDocument({
@@ -66,9 +61,9 @@ export const VisitDetail = ({ id }: VisitDetailProps) => {
     });
 
     setSelectedDocument(
-      visit?.documents.filter(
+      documents.filter(
         document => document.id !== deleted.data.document?.id,
-      )[0] ?? null,
+      )[0],
     );
   };
 
@@ -84,23 +79,14 @@ export const VisitDetail = ({ id }: VisitDetailProps) => {
 
   return (
     <Group w="100%" noWrap sx={{ alignItems: 'flex-start', gap: 0 }}>
-      {isEmpty(visit?.documents ?? []) ? null : (
+      {isEmpty(documents) ? null : (
         <>
-          <SimpleGrid sx={{ padding: '40px', flexShrink: 0 }} cols={2}>
-            {visit?.documents.map(doc => {
-              const isSelected = selectedDocument?.url === doc.url;
-
-              return (
-                <VisitDetailDocumentItem
-                  key={doc.id}
-                  document={doc}
-                  isSelected={isSelected}
-                  onSelect={d => setSelectedDocument(d)}
-                  onDelete={deleteDocument}
-                />
-              );
-            })}
-          </SimpleGrid>
+          <DocumentGrid
+            documents={documents}
+            selectedDocument={selectedDocument}
+            onSelect={setSelectedDocument}
+            onDelete={deleteDocument}
+          />
           <Stack
             spacing="30px"
             align="center"
@@ -121,23 +107,7 @@ export const VisitDetail = ({ id }: VisitDetailProps) => {
                 <VideoIcon size={100} />
               </Center>
             ) : selectedDocument != null ? (
-              <Image
-                radius="10px"
-                styles={{
-                  figure: { height: '100%' },
-                  imageWrapper: {
-                    height: '100%',
-                    display: 'flex',
-                    justifyContent: 'center',
-                  },
-                  image: {
-                    objectFit: 'contain',
-                    height: 'calc(100vh - 400px) !important',
-                    width: 'auto !important',
-                  },
-                }}
-                src={selectedDocument.url}
-              />
+              <ImagePreview document={selectedDocument} />
             ) : null}
             <Group>
               <Button
