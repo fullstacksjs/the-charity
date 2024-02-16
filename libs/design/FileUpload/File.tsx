@@ -1,9 +1,8 @@
+import type { FileState } from '@camp/domain';
+import { isFailed, isSuccess } from '@camp/domain';
 import { TrashIcon } from '@camp/icons';
 import { ActionIcon, Box, Group, Text } from '@mantine/core';
 import { useState } from 'react';
-
-import type { FileState } from './FileState';
-import { isFailed, isSuccess } from './FileState';
 
 interface Props {
   file: FileState;
@@ -43,7 +42,11 @@ export const File = ({ file, onRemove }: Props) => {
       </ActionIcon>
       <Group spacing="8px" align="center" noWrap>
         <Box sx={{ maxWidth: '320px' }}>
-          <Text dir="ltr" lh="1">
+          <Text
+            dir="ltr"
+            lh="1"
+            sx={{ textOverflow: 'ellipsis', overflow: 'hidden' }}
+          >
             {file.file.name}
           </Text>
         </Box>

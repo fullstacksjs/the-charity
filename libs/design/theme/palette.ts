@@ -23,6 +23,7 @@ interface SemanticColor {
 
 export const palette: Record<Palette, SemanticColor> = {
   fg: {
+    first: ['#E8EAED', '#E8EAED', '#E8EAED', '#E8EAED'],
     default: '#212529',
     muted: '#8E959E',
     subtle: '#ADB5BD',
@@ -30,7 +31,7 @@ export const palette: Record<Palette, SemanticColor> = {
   bg: {
     default: '#FCFCFC',
     emphasized: '#FFFFFF',
-    muted: '#C4C8CC',
+    muted: '#CED4DA',
     subtle: '#DEE2E6',
   },
   secondary: {

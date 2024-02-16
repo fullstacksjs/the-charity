@@ -1,6 +1,7 @@
 export const householdDetailIds = {
   memberFormTab: 'member-form-tab',
   householderTab: 'householder-tab',
+  visitsTab: 'visits-tab',
   nameField: 'household-name-input',
   severityField: 'household-severity-input',
   statusField: 'household-status-field',

@@ -34,6 +34,7 @@ export const DataTable = <T,>({
                   <Table.HCell
                     onClick={header.column.getToggleSortingHandler()}
                     key={header.id}
+                    style={{ width: header.column.columnDef.size }}
                   >
                     {header.isPlaceholder
                       ? null

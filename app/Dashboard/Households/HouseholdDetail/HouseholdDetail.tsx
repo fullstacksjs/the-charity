@@ -35,6 +35,7 @@ import { InformationBadge } from '../../_components/InformationBadge';
 import { SeverityBadge } from '../../_components/SeverityBadge';
 import { openDeleteHouseholdModal } from '../_components/DeleteHouseholdModal';
 import { HouseholderDetail } from './_components/HouseholderDetail';
+import { HouseholderVisits } from './_components/HouseholderVisits';
 import { MemberList } from './_components/MemberList';
 import { householdDetailIds as ids } from './HouseholdDetail.ids';
 import { householdNotifications } from './householdNotifications';
@@ -295,6 +296,11 @@ export const HouseholdDetail = () => {
             tab: <Title order={5}>{t.tabs.membersTitle}</Title>,
             panel: <MemberList householdId={household.id} />,
             id: ids.memberFormTab,
+          },
+          {
+            tab: <Title order={5}>{t.tabs.visitsTitle}</Title>,
+            panel: <HouseholderVisits householdId={household.id} />,
+            id: ids.visitsTab,
           },
         ]}
       />

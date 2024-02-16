@@ -18,6 +18,15 @@ export const messages = {
       unsupportedType: 'فایل انتخاب شده پشتیبانی نمی‌شود',
       maxSizeExceeded: 'حداکثر سایز فایل انتخابی ۲۰ مگابایت هست.',
     },
+    visits: {
+      delete: {
+        title: 'حذف بازدید',
+        success: (name: string) => `بازدید “${name}” با موفقیت حذف شد.`,
+        failed: (name: string) =>
+          `مشکلی در مرحله حذف بازدید "${name}" به وجود آمده است. لطفا دوباره تلاش کنید.`,
+        cantDeleteLst: 'اسناد نمی‌تواند خالی باشند',
+      },
+    },
     household: {
       delete: {
         title: 'حذف خانوار',
@@ -92,6 +101,7 @@ export const messages = {
   },
   companyName: 'نامی مناسب برای خیریه',
   actions: {
+    download: 'دانلود',
     dismiss: 'انصراف',
     open: 'باز کردن',
     delete: 'حذف',
@@ -222,6 +232,49 @@ export const messages = {
     Unknown: 'نامشخص',
   },
   householder: {
+    visits: {
+      delete: {
+        modal: {
+          title: 'حذف',
+          children: (name: string) =>
+            `آیا از حذف بازدید "${name}" مطمئن هستید؟`,
+          cancel: 'انصراف',
+          confirm: 'حذف',
+        },
+      },
+      table: {
+        columns: {
+          order: 'ردیف',
+          documents: 'اسناد',
+          date: 'تاریخ',
+          description: 'توضیحات',
+        },
+      },
+      form: {
+        nameInput: {
+          placeholder: 'برای مثال: مرادی',
+          label: 'نام بازدید کننده',
+        },
+        dateInput: {
+          label: 'تاریخ',
+          placeholder: '۱۴۰۰/۰۱/۰۱',
+        },
+        descriptionInput: {
+          label: 'توضیحات',
+          placeholder: 'توضیحات',
+        },
+        documentsInput: {
+          label: 'اسناد',
+          maxSize: 'فایل باید کمتر از ۲۰ مگابایت باشد',
+        },
+        submitBtn: 'ایجاد سند',
+      },
+      detail: {
+        title: 'اطلاعات بازدید',
+      },
+      title: 'بازدیدها',
+      addVisit: 'افزودن بازدید',
+    },
     detail: {
       title: 'اطلاعات هویت',
     },
@@ -341,6 +394,7 @@ export const messages = {
     edit: 'ویرایش',
     complete: 'تکمیل',
     tabs: {
+      visitsTitle: 'بازدیدها',
       householderTitle: 'سرپرست',
       membersTitle: 'اعضا',
     },

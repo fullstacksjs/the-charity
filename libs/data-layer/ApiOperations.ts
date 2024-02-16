@@ -3,6 +3,10 @@
 /* cspell:disable */
 import type * as SchemaTypes from '@camp/domain';
 
+export type ApiDocumentKeysFragment = { __typename?: 'document', id: string, storage_id: string };
+
+export type ApiDocumentDetailFragment = { __typename?: 'document', url: string };
+
 export type ApiHouseholdKeysFragment = { __typename?: 'household', id: string };
 
 export type ApiHouseholdDetailFragment = { __typename?: 'household', name: string, status: SchemaTypes.HouseholdStatusEnum, severity: SchemaTypes.HouseholdSeverityEnum, code?: string | null, created_at: string, updated_at: string, members_count?: number | null };
@@ -22,6 +26,12 @@ export type ApiProjectKeysFragment = { __typename?: 'project', id: string };
 export type ApiProjectDetailFragment = { __typename?: 'project', name: string, description?: string | null, status: SchemaTypes.ProjectStatusEnum, start_date?: string | null, due_date?: string | null, created_at: string, updated_at: string };
 
 export type ApiProjectListItemFragment = { __typename?: 'project', name: string, description?: string | null, start_date?: string | null, due_date?: string | null, status: SchemaTypes.ProjectStatusEnum, created_at: string, updated_at: string };
+
+export type ApiVisitKeysFragment = { __typename?: 'visit', id: string, household_id: string };
+
+export type ApiVisitDetailFragment = { __typename?: 'visit', name: string, visitor?: string | null, date: string, id: string, description?: string | null, status: SchemaTypes.VisitStatusEnum, documents: Array<{ __typename?: 'document', url: string, id: string, storage_id: string }> };
+
+export type ApiVisitListItemFragment = { __typename?: 'visit', date: string, description?: string | null, documents: Array<{ __typename?: 'document', url: string, id: string, storage_id: string }> };
 
 export type ApiCompleteHouseholdMutationVariables = SchemaTypes.Exact<{
   id: SchemaTypes.Scalars['uuid']['input'];
@@ -46,6 +56,22 @@ export type ApiCreateProjectMutationVariables = SchemaTypes.Exact<{
 
 export type ApiCreateProjectMutation = { __typename?: 'mutation_root', insert_project_one?: { __typename?: 'project', id: string, name: string, description?: string | null, start_date?: string | null, due_date?: string | null, status: SchemaTypes.ProjectStatusEnum, created_at: string, updated_at: string } | null };
 
+export type ApiCreateVisitMutationVariables = SchemaTypes.Exact<{
+  input: SchemaTypes.ApiVisitInsertInput;
+}>;
+
+
+export type ApiCreateVisitMutation = { __typename?: 'mutation_root', insert_visit_one?: { __typename?: 'visit', id: string, household_id: string, date: string, description?: string | null, documents: Array<{ __typename?: 'document', url: string, id: string, storage_id: string }> } | null };
+
+export type ApiNewVisitFragment = { __typename?: 'visit', id: string, household_id: string, date: string, description?: string | null, documents: Array<{ __typename?: 'document', url: string, id: string, storage_id: string }> };
+
+export type ApiDeleteDocumentMutationVariables = SchemaTypes.Exact<{
+  id: SchemaTypes.Scalars['uuid']['input'];
+}>;
+
+
+export type ApiDeleteDocumentMutation = { __typename?: 'mutation_root', delete_document_by_pk?: { __typename?: 'document', id: string, storage_id: string, url: string } | null };
+
 export type ApiDeleteHouseholdMutationVariables = SchemaTypes.Exact<{
   id: SchemaTypes.Scalars['uuid']['input'];
 }>;
@@ -59,6 +85,13 @@ export type ApiDeleteMemberMutationVariables = SchemaTypes.Exact<{
 
 
 export type ApiDeleteMemberMutation = { __typename?: 'mutation_root', delete_member_by_pk?: { __typename?: 'member', name: string, id: string, household_id: string } | null };
+
+export type ApiDeleteVisitMutationVariables = SchemaTypes.Exact<{
+  id: SchemaTypes.Scalars['uuid']['input'];
+}>;
+
+
+export type ApiDeleteVisitMutation = { __typename?: 'mutation_root', delete_visit_by_pk?: { __typename?: 'visit', name: string, id: string, household_id: string, documents: Array<{ __typename?: 'document', url: string, id: string, storage_id: string }> } | null };
 
 export type ApiEditHouseholdMutationVariables = SchemaTypes.Exact<{
   id: SchemaTypes.Scalars['uuid']['input'];
@@ -105,6 +138,15 @@ export type ApiHouseholderQueryVariables = SchemaTypes.Exact<{
 
 export type ApiHouseholderQuery = { __typename?: 'query_root', householder_by_pk?: { __typename?: 'householder', id: string, name: string, father_name?: string | null, surname?: string | null, nationality?: SchemaTypes.NationalityEnum | null, religion?: SchemaTypes.ReligionEnum | null, city?: SchemaTypes.CityEnum | null, gender?: SchemaTypes.GenderEnum | null, status?: string | null, national_id?: string | null, dob?: string | null } | null };
 
+export type ApiVisitsQueryVariables = SchemaTypes.Exact<{
+  order_by?: SchemaTypes.InputMaybe<Array<SchemaTypes.ApiVisitOrderBy> | SchemaTypes.ApiVisitOrderBy>;
+  limit?: SchemaTypes.InputMaybe<SchemaTypes.Scalars['Int']['input']>;
+  offset?: SchemaTypes.InputMaybe<SchemaTypes.Scalars['Int']['input']>;
+}>;
+
+
+export type ApiVisitsQuery = { __typename?: 'query_root', visit: Array<{ __typename?: 'visit', id: string, household_id: string, date: string, description?: string | null, documents: Array<{ __typename?: 'document', url: string, id: string, storage_id: string }> }>, visit_aggregate: { __typename?: 'visit_aggregate', aggregate?: { __typename?: 'visit_aggregate_fields', count: number } | null } };
+
 export type ApiMemberListQueryVariables = SchemaTypes.Exact<{
   household_id: SchemaTypes.Scalars['uuid']['input'];
 }>;
@@ -126,3 +168,10 @@ export type ApiProjectQueryVariables = SchemaTypes.Exact<{
 
 
 export type ApiProjectQuery = { __typename?: 'query_root', project_by_pk?: { __typename?: 'project', id: string, name: string, description?: string | null, status: SchemaTypes.ProjectStatusEnum, start_date?: string | null, due_date?: string | null, created_at: string, updated_at: string, households: Array<{ __typename?: 'household_project', household: { __typename?: 'household', id: string, name: string, status: SchemaTypes.HouseholdStatusEnum, severity: SchemaTypes.HouseholdSeverityEnum, code?: string | null, created_at: string, updated_at: string, members_count?: number | null } }> } | null };
+
+export type ApiVisitDetailQueryVariables = SchemaTypes.Exact<{
+  id: SchemaTypes.Scalars['uuid']['input'];
+}>;
+
+
+export type ApiVisitDetailQuery = { __typename?: 'query_root', visit_by_pk?: { __typename?: 'visit', id: string, household_id: string, name: string, visitor?: string | null, date: string, description?: string | null, status: SchemaTypes.VisitStatusEnum, documents: Array<{ __typename?: 'document', url: string, id: string, storage_id: string }> } | null };

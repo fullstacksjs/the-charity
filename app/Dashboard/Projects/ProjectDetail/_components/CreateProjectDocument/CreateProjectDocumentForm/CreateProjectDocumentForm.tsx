@@ -4,12 +4,13 @@ import {
   ControlledFileUpload,
   showNotification,
 } from '@camp/design';
+import type { Document } from '@camp/domain';
 import {
   createResolver,
   documentFileValidator,
   documentSchema,
 } from '@camp/domain';
-import { fileStorageApi } from '@camp/file-storage-api';
+import { fileStorageClient } from '@camp/file-storage-client';
 import { messages } from '@camp/messages';
 import { tid } from '@camp/test';
 import { Button, createStyles, Group, Stack, TextInput } from '@mantine/core';
@@ -18,9 +19,9 @@ import { useForm } from 'react-hook-form';
 import { createProjectDocumentFormIds as ids } from './CreateProjectDocumentForm.ids';
 
 interface FormSchema {
-  date: Date;
+  date?: Date;
   description: string;
-  documents: File[];
+  documents: Document[];
 }
 
 interface Props {
@@ -80,8 +81,8 @@ export const CreateProjectDocumentForm = ({ dismiss }: Props) => {
           required
           label={t.documentsInput.label}
           helper={t.documentsInput.maxSize}
-          upload={fileStorageApi.upload}
-          unUpload={fileStorageApi.unUpload}
+          upload={fileStorageClient.upload}
+          unUpload={fileStorageClient.unUpload}
           filter={(files): File[] => {
             const res = files.map(f => {
               const parsed = documentFileValidator.safeParse(f);

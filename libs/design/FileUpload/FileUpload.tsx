@@ -1,5 +1,11 @@
 import { debug } from '@camp/debug';
-import type { RemoteDocument } from '@camp/domain';
+import type {
+  FailedFile,
+  FileState,
+  StorageFile,
+  SuccessFile,
+} from '@camp/domain';
+import { isSuccess } from '@camp/domain';
 import { randomInt } from '@fullstacksjs/toolbox';
 import type { InputWrapperProps } from '@mantine/core';
 import { Input, Stack, Text } from '@mantine/core';
@@ -10,14 +16,12 @@ import { useDropzone } from 'react-dropzone';
 
 import { FileList } from './FileList';
 import { FileSelect } from './FileSelect';
-import type { FailedFile, FileState, SuccessFile } from './FileState';
-import { isSuccess } from './FileState';
 
 type Action =
   | {
       type: 'Upload';
       id: number;
-      remote: RemoteDocument;
+      remote: StorageFile;
       status: SuccessFile['status'];
     }
   | {
@@ -76,11 +80,11 @@ export interface FileUploadProps
   defaultFiles?: (FailedFile | SuccessFile)[];
   helper?: string;
   concurrency?: number;
-  upload?: (file: File) => Promise<RemoteDocument>;
-  unUpload?: (id: RemoteDocument['id']) => Promise<void>;
+  upload?: (file: File) => Promise<StorageFile>;
+  unUpload?: (id: StorageFile['id']) => Promise<void>;
   filter?: (files: File[]) => File[];
-  onAdd?: (doc: RemoteDocument) => void;
-  onDelete?: (doc: RemoteDocument) => void;
+  onAdd?: (doc: StorageFile) => void;
+  onDelete?: (doc: StorageFile) => void;
   className?: string;
   dropText?: string;
   variant?: FileUploadVariant;
@@ -110,23 +114,26 @@ export const FileUpload = ({
 
     dispatch({ type: 'Add', files: fileStates });
 
-    void Prray.from(fileStates).forEachAsync(
-      f =>
-        upload?.(f.file)
-          .then(doc => {
-            onAdd?.(doc);
-            dispatch({
-              type: 'Upload',
-              id: f.id,
-              status: 'Success',
-              remote: doc,
-            });
-          })
-          .catch(() => {
-            dispatch({ type: 'Upload', id: f.id, status: 'Failed' });
-          }),
-      { concurrency },
-    );
+    Prray.from(fileStates)
+      .forEachAsync(
+        f =>
+          upload?.(f.file)
+            .then(doc => {
+              onAdd?.(doc);
+              dispatch({
+                type: 'Upload',
+                id: f.id,
+                status: 'Success',
+                remote: doc,
+              });
+            })
+            .catch(e => {
+              debug.error(e);
+              dispatch({ type: 'Upload', id: f.id, status: 'Failed' });
+            }),
+        { concurrency },
+      )
+      .catch(e => debug.error('FileUpload', e));
   };
 
   const { getRootProps, getInputProps } = useDropzone({
