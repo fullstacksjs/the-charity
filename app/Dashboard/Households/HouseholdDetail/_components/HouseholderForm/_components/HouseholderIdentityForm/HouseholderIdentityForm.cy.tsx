@@ -1,14 +1,16 @@
 import { messages } from '@camp/messages';
 
-import { HouseholderForm } from './HouseholderForm';
-import { householderFormIds } from './HouseholderForm.ids';
+import { HouseholderIdentityForm } from './HouseholderIdentityForm';
+import { householderFormIds } from './HouseholderIdentityForm.ids';
 
 const householderForm = messages.householder.form;
 const validation = messages.validation;
 
 describe('HouseHolder Form', () => {
   beforeEach(() => {
-    cy.mount(<HouseholderForm householdName="Household" householdId="null" />);
+    cy.mount(
+      <HouseholderIdentityForm householdName="Household" householdId="null" />,
+    );
   });
 
   it('contains a first name input with correct label', () => {

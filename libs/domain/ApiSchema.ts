@@ -2309,7 +2309,7 @@ export type ApiHouseholder = {
   nationality?: Maybe<NationalityEnum>;
   neighborhood?: Maybe<Scalars['String']['output']>;
   prior_accommodation_address?: Maybe<Scalars['String']['output']>;
-  province?: Maybe<Scalars['String']['output']>;
+  province?: Maybe<ProvinceEnum>;
   religion?: Maybe<ReligionEnum>;
   rent?: Maybe<Scalars['money']['output']>;
   /** An array relationship */
@@ -2542,7 +2542,7 @@ export type ApiHouseholderBoolExp = {
   nationality?: InputMaybe<NationalityEnumComparisonExp>;
   neighborhood?: InputMaybe<ApiStringComparisonExp>;
   prior_accommodation_address?: InputMaybe<ApiStringComparisonExp>;
-  province?: InputMaybe<ApiStringComparisonExp>;
+  province?: InputMaybe<ProvinceEnumComparisonExp>;
   religion?: InputMaybe<ReligionEnumComparisonExp>;
   rent?: InputMaybe<ApiMoneyComparisonExp>;
   skills?: InputMaybe<ApiSkillBoolExp>;
@@ -2601,7 +2601,7 @@ export type ApiHouseholderInsertInput = {
   nationality?: InputMaybe<NationalityEnum>;
   neighborhood?: InputMaybe<Scalars['String']['input']>;
   prior_accommodation_address?: InputMaybe<Scalars['String']['input']>;
-  province?: InputMaybe<Scalars['String']['input']>;
+  province?: InputMaybe<ProvinceEnum>;
   religion?: InputMaybe<ReligionEnum>;
   rent?: InputMaybe<Scalars['money']['input']>;
   skills?: InputMaybe<ApiSkillArrRelInsertInput>;
@@ -2630,7 +2630,6 @@ export type ApiHouseholderMaxFields = {
   national_id?: Maybe<Scalars['String']['output']>;
   neighborhood?: Maybe<Scalars['String']['output']>;
   prior_accommodation_address?: Maybe<Scalars['String']['output']>;
-  province?: Maybe<Scalars['String']['output']>;
   rent?: Maybe<Scalars['money']['output']>;
   /** A computed field, executes function "get_householder_status" */
   status?: Maybe<Scalars['String']['output']>;
@@ -2658,7 +2657,6 @@ export type ApiHouseholderMinFields = {
   national_id?: Maybe<Scalars['String']['output']>;
   neighborhood?: Maybe<Scalars['String']['output']>;
   prior_accommodation_address?: Maybe<Scalars['String']['output']>;
-  province?: Maybe<Scalars['String']['output']>;
   rent?: Maybe<Scalars['money']['output']>;
   /** A computed field, executes function "get_householder_status" */
   status?: Maybe<Scalars['String']['output']>;
@@ -2816,7 +2814,7 @@ export type ApiHouseholderSetInput = {
   nationality?: InputMaybe<NationalityEnum>;
   neighborhood?: InputMaybe<Scalars['String']['input']>;
   prior_accommodation_address?: InputMaybe<Scalars['String']['input']>;
-  province?: InputMaybe<Scalars['String']['input']>;
+  province?: InputMaybe<ProvinceEnum>;
   religion?: InputMaybe<ReligionEnum>;
   rent?: InputMaybe<Scalars['money']['input']>;
   surname?: InputMaybe<Scalars['String']['input']>;
@@ -2878,7 +2876,7 @@ export type ApiHouseholderStreamCursorValueInput = {
   nationality?: InputMaybe<NationalityEnum>;
   neighborhood?: InputMaybe<Scalars['String']['input']>;
   prior_accommodation_address?: InputMaybe<Scalars['String']['input']>;
-  province?: InputMaybe<Scalars['String']['input']>;
+  province?: InputMaybe<ProvinceEnum>;
   religion?: InputMaybe<ReligionEnum>;
   rent?: InputMaybe<Scalars['money']['input']>;
   surname?: InputMaybe<Scalars['String']['input']>;
@@ -3716,6 +3714,10 @@ export type ApiMutationRoot = {
   delete_project_status?: Maybe<ApiProjectStatusMutationResponse>;
   /** delete single row from the table: "project_status" */
   delete_project_status_by_pk?: Maybe<ApiProjectStatus>;
+  /** delete data from the table: "province" */
+  delete_province?: Maybe<ApiProvinceMutationResponse>;
+  /** delete single row from the table: "province" */
+  delete_province_by_pk?: Maybe<ApiProvince>;
   /** delete data from the table: "religion" */
   delete_religion?: Maybe<ApiReligionMutationResponse>;
   /** delete single row from the table: "religion" */
@@ -3816,6 +3818,10 @@ export type ApiMutationRoot = {
   insert_project_status?: Maybe<ApiProjectStatusMutationResponse>;
   /** insert a single row into the table: "project_status" */
   insert_project_status_one?: Maybe<ApiProjectStatus>;
+  /** insert data into the table: "province" */
+  insert_province?: Maybe<ApiProvinceMutationResponse>;
+  /** insert a single row into the table: "province" */
+  insert_province_one?: Maybe<ApiProvince>;
   /** insert data into the table: "religion" */
   insert_religion?: Maybe<ApiReligionMutationResponse>;
   /** insert a single row into the table: "religion" */
@@ -3956,6 +3962,12 @@ export type ApiMutationRoot = {
   update_project_status_by_pk?: Maybe<ApiProjectStatus>;
   /** update multiples rows of table: "project_status" */
   update_project_status_many?: Maybe<Array<Maybe<ApiProjectStatusMutationResponse>>>;
+  /** update data of the table: "province" */
+  update_province?: Maybe<ApiProvinceMutationResponse>;
+  /** update single row of the table: "province" */
+  update_province_by_pk?: Maybe<ApiProvince>;
+  /** update multiples rows of table: "province" */
+  update_province_many?: Maybe<Array<Maybe<ApiProvinceMutationResponse>>>;
   /** update data of the table: "religion" */
   update_religion?: Maybe<ApiReligionMutationResponse>;
   /** update single row of the table: "religion" */
@@ -4226,6 +4238,18 @@ export type ApiMutationRootApiDeleteProjectStatusArgs = {
 
 /** mutation root */
 export type ApiMutationRootApiDeleteProjectStatusByPkArgs = {
+  value: Scalars['String']['input'];
+};
+
+
+/** mutation root */
+export type ApiMutationRootApiDeleteProvinceArgs = {
+  where: ApiProvinceBoolExp;
+};
+
+
+/** mutation root */
+export type ApiMutationRootApiDeleteProvinceByPkArgs = {
   value: Scalars['String']['input'];
 };
 
@@ -4567,6 +4591,20 @@ export type ApiMutationRootApiInsertProjectStatusArgs = {
 export type ApiMutationRootApiInsertProjectStatusOneArgs = {
   object: ApiProjectStatusInsertInput;
   on_conflict?: InputMaybe<ApiProjectStatusOnConflict>;
+};
+
+
+/** mutation root */
+export type ApiMutationRootApiInsertProvinceArgs = {
+  objects: Array<ApiProvinceInsertInput>;
+  on_conflict?: InputMaybe<ApiProvinceOnConflict>;
+};
+
+
+/** mutation root */
+export type ApiMutationRootApiInsertProvinceOneArgs = {
+  object: ApiProvinceInsertInput;
+  on_conflict?: InputMaybe<ApiProvinceOnConflict>;
 };
 
 
@@ -5043,6 +5081,26 @@ export type ApiMutationRootApiUpdateProjectStatusByPkArgs = {
 /** mutation root */
 export type ApiMutationRootApiUpdateProjectStatusManyArgs = {
   updates: Array<ApiProjectStatusUpdates>;
+};
+
+
+/** mutation root */
+export type ApiMutationRootApiUpdateProvinceArgs = {
+  _set?: InputMaybe<ApiProvinceSetInput>;
+  where: ApiProvinceBoolExp;
+};
+
+
+/** mutation root */
+export type ApiMutationRootApiUpdateProvinceByPkArgs = {
+  _set?: InputMaybe<ApiProvinceSetInput>;
+  pk_columns: ApiProvincePkColumnsInput;
+};
+
+
+/** mutation root */
+export type ApiMutationRootApiUpdateProvinceManyArgs = {
+  updates: Array<ApiProvinceUpdates>;
 };
 
 
@@ -5821,6 +5879,142 @@ export type ApiProjectUpdates = {
   where: ApiProjectBoolExp;
 };
 
+/** columns and relationships of "province" */
+export type ApiProvince = {
+  __typename?: 'province';
+  value: Scalars['String']['output'];
+};
+
+/** aggregated selection of "province" */
+export type ApiProvinceAggregate = {
+  __typename?: 'province_aggregate';
+  aggregate?: Maybe<ApiProvinceAggregateFields>;
+  nodes: Array<ApiProvince>;
+};
+
+/** aggregate fields of "province" */
+export type ApiProvinceAggregateFields = {
+  __typename?: 'province_aggregate_fields';
+  count: Scalars['Int']['output'];
+  max?: Maybe<ApiProvinceMaxFields>;
+  min?: Maybe<ApiProvinceMinFields>;
+};
+
+
+/** aggregate fields of "province" */
+export type ApiProvinceAggregateFieldsApiCountArgs = {
+  columns?: InputMaybe<Array<ApiProvinceSelectColumn>>;
+  distinct?: InputMaybe<Scalars['Boolean']['input']>;
+};
+
+/** Boolean expression to filter rows from the table "province". All fields are combined with a logical 'AND'. */
+export type ApiProvinceBoolExp = {
+  _and?: InputMaybe<Array<ApiProvinceBoolExp>>;
+  _not?: InputMaybe<ApiProvinceBoolExp>;
+  _or?: InputMaybe<Array<ApiProvinceBoolExp>>;
+  value?: InputMaybe<ApiStringComparisonExp>;
+};
+
+/** unique or primary key constraints on table "province" */
+export enum ApiProvinceConstraint {
+  /** unique or primary key constraint on columns "value" */
+  ProvincePkey = 'province_pkey'
+}
+
+export enum ProvinceEnum {
+  Fars = 'Fars',
+  Tehran = 'Tehran'
+}
+
+/** Boolean expression to compare columns of type "province_enum". All fields are combined with logical 'AND'. */
+export type ProvinceEnumComparisonExp = {
+  _eq?: InputMaybe<ProvinceEnum>;
+  _in?: InputMaybe<Array<ProvinceEnum>>;
+  _is_null?: InputMaybe<Scalars['Boolean']['input']>;
+  _neq?: InputMaybe<ProvinceEnum>;
+  _nin?: InputMaybe<Array<ProvinceEnum>>;
+};
+
+/** input type for inserting data into table "province" */
+export type ApiProvinceInsertInput = {
+  value?: InputMaybe<Scalars['String']['input']>;
+};
+
+/** aggregate max on columns */
+export type ApiProvinceMaxFields = {
+  __typename?: 'province_max_fields';
+  value?: Maybe<Scalars['String']['output']>;
+};
+
+/** aggregate min on columns */
+export type ApiProvinceMinFields = {
+  __typename?: 'province_min_fields';
+  value?: Maybe<Scalars['String']['output']>;
+};
+
+/** response of any mutation on the table "province" */
+export type ApiProvinceMutationResponse = {
+  __typename?: 'province_mutation_response';
+  /** number of rows affected by the mutation */
+  affected_rows: Scalars['Int']['output'];
+  /** data from the rows affected by the mutation */
+  returning: Array<ApiProvince>;
+};
+
+/** on_conflict condition type for table "province" */
+export type ApiProvinceOnConflict = {
+  constraint: ApiProvinceConstraint;
+  update_columns?: Array<ApiProvinceUpdateColumn>;
+  where?: InputMaybe<ApiProvinceBoolExp>;
+};
+
+/** Ordering options when selecting data from "province". */
+export type ApiProvinceOrderBy = {
+  value?: InputMaybe<ApiOrderBy>;
+};
+
+/** primary key columns input for table: province */
+export type ApiProvincePkColumnsInput = {
+  value: Scalars['String']['input'];
+};
+
+/** select columns of table "province" */
+export enum ApiProvinceSelectColumn {
+  /** column name */
+  Value = 'value'
+}
+
+/** input type for updating data in table "province" */
+export type ApiProvinceSetInput = {
+  value?: InputMaybe<Scalars['String']['input']>;
+};
+
+/** Streaming cursor of the table "province" */
+export type ApiProvinceStreamCursorInput = {
+  /** Stream column input with initial value */
+  initial_value: ApiProvinceStreamCursorValueInput;
+  /** cursor ordering */
+  ordering?: InputMaybe<ApiCursorOrdering>;
+};
+
+/** Initial value of the column from where the streaming should start */
+export type ApiProvinceStreamCursorValueInput = {
+  value?: InputMaybe<Scalars['String']['input']>;
+};
+
+/** update columns of table "province" */
+export enum ApiProvinceUpdateColumn {
+  /** column name */
+  Value = 'value'
+}
+
+export type ApiProvinceUpdates = {
+  /** sets the columns of the filtered rows to the given values */
+  _set?: InputMaybe<ApiProvinceSetInput>;
+  /** filter the rows which have to be updated */
+  where: ApiProvinceBoolExp;
+};
+
 export type ApiQueryRoot = {
   __typename?: 'query_root';
   /** fetch data from the table: "accommodation_type" */
@@ -5943,6 +6137,12 @@ export type ApiQueryRoot = {
   project_status_aggregate: ApiProjectStatusAggregate;
   /** fetch data from the table: "project_status" using primary key columns */
   project_status_by_pk?: Maybe<ApiProjectStatus>;
+  /** fetch data from the table: "province" */
+  province: Array<ApiProvince>;
+  /** fetch aggregated fields from the table: "province" */
+  province_aggregate: ApiProvinceAggregate;
+  /** fetch data from the table: "province" using primary key columns */
+  province_by_pk?: Maybe<ApiProvince>;
   /** fetch data from the table: "religion" */
   religion: Array<ApiReligion>;
   /** fetch aggregated fields from the table: "religion" */
@@ -6433,6 +6633,29 @@ export type ApiQueryRootApiProjectStatusAggregateArgs = {
 
 
 export type ApiQueryRootApiProjectStatusByPkArgs = {
+  value: Scalars['String']['input'];
+};
+
+
+export type ApiQueryRootApiProvinceArgs = {
+  distinct_on?: InputMaybe<Array<ApiProvinceSelectColumn>>;
+  limit?: InputMaybe<Scalars['Int']['input']>;
+  offset?: InputMaybe<Scalars['Int']['input']>;
+  order_by?: InputMaybe<Array<ApiProvinceOrderBy>>;
+  where?: InputMaybe<ApiProvinceBoolExp>;
+};
+
+
+export type ApiQueryRootApiProvinceAggregateArgs = {
+  distinct_on?: InputMaybe<Array<ApiProvinceSelectColumn>>;
+  limit?: InputMaybe<Scalars['Int']['input']>;
+  offset?: InputMaybe<Scalars['Int']['input']>;
+  order_by?: InputMaybe<Array<ApiProvinceOrderBy>>;
+  where?: InputMaybe<ApiProvinceBoolExp>;
+};
+
+
+export type ApiQueryRootApiProvinceByPkArgs = {
   value: Scalars['String']['input'];
 };
 
@@ -7036,6 +7259,14 @@ export type ApiSubscriptionRoot = {
   project_status_stream: Array<ApiProjectStatus>;
   /** fetch data from the table in a streaming manner: "project" */
   project_stream: Array<ApiProject>;
+  /** fetch data from the table: "province" */
+  province: Array<ApiProvince>;
+  /** fetch aggregated fields from the table: "province" */
+  province_aggregate: ApiProvinceAggregate;
+  /** fetch data from the table: "province" using primary key columns */
+  province_by_pk?: Maybe<ApiProvince>;
+  /** fetch data from the table in a streaming manner: "province" */
+  province_stream: Array<ApiProvince>;
   /** fetch data from the table: "religion" */
   religion: Array<ApiReligion>;
   /** fetch aggregated fields from the table: "religion" */
@@ -7677,6 +7908,36 @@ export type ApiSubscriptionRootApiProjectStreamArgs = {
   batch_size: Scalars['Int']['input'];
   cursor: Array<InputMaybe<ApiProjectStreamCursorInput>>;
   where?: InputMaybe<ApiProjectBoolExp>;
+};
+
+
+export type ApiSubscriptionRootApiProvinceArgs = {
+  distinct_on?: InputMaybe<Array<ApiProvinceSelectColumn>>;
+  limit?: InputMaybe<Scalars['Int']['input']>;
+  offset?: InputMaybe<Scalars['Int']['input']>;
+  order_by?: InputMaybe<Array<ApiProvinceOrderBy>>;
+  where?: InputMaybe<ApiProvinceBoolExp>;
+};
+
+
+export type ApiSubscriptionRootApiProvinceAggregateArgs = {
+  distinct_on?: InputMaybe<Array<ApiProvinceSelectColumn>>;
+  limit?: InputMaybe<Scalars['Int']['input']>;
+  offset?: InputMaybe<Scalars['Int']['input']>;
+  order_by?: InputMaybe<Array<ApiProvinceOrderBy>>;
+  where?: InputMaybe<ApiProvinceBoolExp>;
+};
+
+
+export type ApiSubscriptionRootApiProvinceByPkArgs = {
+  value: Scalars['String']['input'];
+};
+
+
+export type ApiSubscriptionRootApiProvinceStreamArgs = {
+  batch_size: Scalars['Int']['input'];
+  cursor: Array<InputMaybe<ApiProvinceStreamCursorInput>>;
+  where?: InputMaybe<ApiProvinceBoolExp>;
 };
 
 

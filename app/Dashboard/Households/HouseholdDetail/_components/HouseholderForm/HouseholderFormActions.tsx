@@ -4,14 +4,13 @@ import { messages } from '@camp/messages';
 import { tid } from '@camp/test';
 import { Button, Group } from '@mantine/core';
 
-import { householderFormIds as ids } from './HouseholderForm.ids';
-
-const t = messages.householder.form;
+import { householderFormIds as ids } from './_components/HouseholderIdentityForm/HouseholderIdentityForm.ids';
 
 interface Props {
   isEditMode?: boolean;
   canUndo?: boolean;
   canSubmit?: boolean;
+  title: string;
   onUndo: VoidFunction;
   onEdit: VoidFunction;
 }
@@ -19,13 +18,14 @@ interface Props {
 export const HouseholderFormActions = ({
   canSubmit,
   canUndo,
+  title,
   isEditMode,
   onUndo,
   onEdit,
 }: Props) => {
   return (
     <Group position="apart" mih="100%">
-      <DashboardTitle>{t.title}</DashboardTitle>
+      <DashboardTitle>{title}</DashboardTitle>
       <Group spacing={20}>
         {isEditMode ? (
           <>

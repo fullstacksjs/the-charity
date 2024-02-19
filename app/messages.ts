@@ -275,6 +275,43 @@ export const messages = {
       title: 'بازدیدها',
       addVisit: 'افزودن بازدید',
     },
+    contactForm: {
+      title: 'اطلاعات محل سکونت',
+      selectInputs: {
+        placeholder: 'انتخاب کنید',
+      },
+      provinceInput: {
+        label: 'استان',
+        placeholder: 'برای مثال: تهران',
+      },
+      cityInput: {
+        label: 'شهر',
+        placeholder: 'برای مثال: ساوه',
+      },
+      addressInput: {
+        label: 'نام پدر',
+        placeholder: 'برای مثال: محمد',
+      },
+      neighborhoodInput: {
+        label: 'محله',
+        placeholder: 'برای مثال: خیابان ولی عصر ، مجتمع فول استکس ، واحد ۸',
+      },
+      accommodationTypeInput: {
+        label: 'نوع تملک',
+        placeholder: 'برای مثال: مستاجر',
+      },
+      priorAccommodationAddressInput: {
+        label: 'محل سکونت سابق',
+        placeholder: 'برای مثال: خیابان مطهری',
+      },
+      zipCodeInput: {
+        label: 'کد پستی',
+        placeholder: 'برای مثال: ۱۲۳۴۵۶۷۸۹۰',
+      },
+      descriptionInput: {
+        label: 'توضیحات',
+      },
+    },
     detail: {
       title: 'اطلاعات هویت',
     },

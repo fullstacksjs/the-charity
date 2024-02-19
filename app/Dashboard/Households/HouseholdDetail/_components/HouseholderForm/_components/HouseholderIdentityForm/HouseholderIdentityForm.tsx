@@ -11,7 +11,7 @@ import {
   cities,
   createResolver,
   genders,
-  householderSchema,
+  householderIdentitySchema,
   nationalities,
   religions,
 } from '@camp/domain';
@@ -22,9 +22,9 @@ import { SimpleGrid, Stack } from '@mantine/core';
 import { useBoolean } from 'ahooks';
 import { useForm } from 'react-hook-form';
 
-import { householdNotifications } from '../../householdNotifications';
-import { householderFormIds as ids } from './HouseholderForm.ids';
-import { HouseholderFormActions } from './HouseholderFormActions';
+import { householdNotifications } from '../../../../householdNotifications';
+import { HouseholderFormActions } from '../../HouseholderFormActions';
+import { householderFormIds as ids } from './HouseholderIdentityForm.ids';
 
 interface Props {
   initialHouseholder?: HouseholderIdentity;
@@ -45,21 +45,21 @@ interface FormSchema {
 }
 
 const resolver = createResolver<FormSchema>({
-  name: householderSchema.name(),
-  surname: householderSchema.surname(),
-  fatherName: householderSchema.fatherName(),
-  nationalId: householderSchema.nationalId(),
-  gender: householderSchema.gender(),
-  nationality: householderSchema.nationality(),
-  religion: householderSchema.religion(),
-  cityOfBirth: householderSchema.cityOfBirth(),
-  dob: householderSchema.dob(),
+  name: householderIdentitySchema.name(),
+  surname: householderIdentitySchema.surname(),
+  fatherName: householderIdentitySchema.fatherName(),
+  nationalId: householderIdentitySchema.nationalId(),
+  gender: householderIdentitySchema.gender(),
+  nationality: householderIdentitySchema.nationality(),
+  religion: householderIdentitySchema.religion(),
+  cityOfBirth: householderIdentitySchema.cityOfBirth(),
+  dob: householderIdentitySchema.dob(),
 });
 
 const t = messages.householder.form;
 
 // eslint-disable-next-line max-lines-per-function
-export const HouseholderForm = ({
+export const HouseholderIdentityForm = ({
   initialHouseholder,
   householdId,
   householdName,
@@ -106,6 +106,7 @@ export const HouseholderForm = ({
     <form onSubmit={onSubmit} {...tid(ids.form)}>
       <Stack spacing={25}>
         <HouseholderFormActions
+          title={t.title}
           isEditMode={isEditMode}
           canUndo={isDirty || isCompleted}
           canSubmit={isValid && isDirty}

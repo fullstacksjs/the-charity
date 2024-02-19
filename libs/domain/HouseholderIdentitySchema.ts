@@ -7,7 +7,7 @@ import type {
 import type { HouseholdKeys } from './Household';
 import { Schema } from './Schema';
 
-export const householderSchema = {
+export const householderIdentitySchema = {
   name: () => Schema.name(),
   surname: () => Schema.surname().optionalString(),
   fatherName: () => Schema.name().optionalString(),

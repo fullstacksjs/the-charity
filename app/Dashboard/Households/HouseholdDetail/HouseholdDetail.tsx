@@ -18,7 +18,7 @@ import {
 import type { HouseholdSeverityEnum } from '@camp/domain';
 import {
   createResolver,
-  householderSchema,
+  householderIdentitySchema,
   householdSchema,
   severities,
 } from '@camp/domain';
@@ -49,7 +49,7 @@ interface FormSchema {
 const resolver = createResolver<FormSchema>({
   name: householdSchema.name(),
   severity: householdSchema.severity(),
-  membersCount: householderSchema.membersCount(),
+  membersCount: householderIdentitySchema.membersCount(),
 });
 
 // eslint-disable-next-line max-lines-per-function
