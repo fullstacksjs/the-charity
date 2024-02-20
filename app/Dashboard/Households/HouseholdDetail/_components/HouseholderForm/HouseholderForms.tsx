@@ -1,15 +1,11 @@
-import type {
-  Householder,
-  HouseholderContact,
-  HouseholderIdentity,
-} from '@camp/domain';
+import type { Householder } from '@camp/domain';
 import { Stack } from '@mantine/core';
 
 import { HouseholderContactForm } from './_components/HouseholderContactForm';
 import { HouseholderIdentityForm } from './_components/HouseholderIdentityForm';
 
 interface Props {
-  initialHouseholder?: HouseholderContact & HouseholderIdentity;
+  initialHouseholder?: Householder;
   householdId: string;
   householdName: string;
 }

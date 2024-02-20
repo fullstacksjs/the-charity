@@ -1,5 +1,6 @@
 import type {
   ApiHouseholderContactFragment,
+  ApiHouseholderFragment,
   ApiHouseholderIdentityFragment,
   ApiHouseholderKeysFragment,
 } from '@camp/data-layer';
@@ -25,7 +26,6 @@ export const getHouseholderIdentity = (
   data: ApiHouseholderIdentityFragment,
 ): HouseholderIdentity => {
   const config = {
-    status: data.status as HouseholderStatus,
     name: data.name,
     surname: data.surname ?? undefined,
     fatherName: data.father_name ?? undefined,
@@ -38,7 +38,6 @@ export const getHouseholderIdentity = (
   };
 
   if (!hasNullish(config)) config.isIdentityCompleted = true;
-
   return config;
 };
 
@@ -61,3 +60,12 @@ export const getHouseholderContact = (
   if (!hasNullish(config)) config.isContactCompleted = true;
   return config;
 };
+
+export const getHouseholder = (data: ApiHouseholderFragment) => ({
+  ...getHouseholderContact(data),
+  ...getHouseholderIdentity(data),
+  status:
+    data.status === 'Draft'
+      ? HouseholderStatus.Draft
+      : HouseholderStatus.Completed,
+});

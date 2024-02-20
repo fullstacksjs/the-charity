@@ -6,7 +6,7 @@ export * from './Document';
 export * from './FileState';
 export * from './Gender';
 export * from './Household';
-export * from './HouseholderIdentitySchema';
+export * from './Householder';
 export * from './Member';
 export * from './Nationality';
 export * from './Project';

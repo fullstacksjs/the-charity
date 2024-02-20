@@ -10,17 +10,16 @@ import type {
   CityEnum,
   GenderEnum,
   Householder,
+  HouseholderKeys,
   NationalityEnum,
   ProvinceEnum,
   ReligionEnum,
 } from '@camp/domain';
 
 import {
-  getHouseholderContact,
-  getHouseholderIdentity,
+  getHouseholder,
   getHouseholderKeys,
-  HouseholderContactFragment,
-  HouseholderIdentityFragment,
+  HouseholderFragment,
   HouseholderKeysFragment,
 } from '../fragments';
 import { HouseholderDocument } from '../queries';
@@ -52,17 +51,15 @@ const Document = gql`
       }
     ) {
       ...HouseholderKeys
-      ...HouseholderIdentity
-      ...HouseholderContact
+      ...Householder
     }
   }
-  ${HouseholderContactFragment}
+  ${HouseholderFragment}
   ${HouseholderKeysFragment}
-  ${HouseholderIdentityFragment}
 `;
 
 export interface UpsertHouseholder {
-  householder: Householder | undefined;
+  householder: (Householder & HouseholderKeys) | undefined;
 }
 
 const toClient = (
@@ -72,11 +69,10 @@ const toClient = (
 
   return {
     householder: householder
-      ? {
+      ? ({
           ...getHouseholderKeys(householder),
-          ...(getHouseholderIdentity(householder) as Householder),
-          ...getHouseholderContact(householder),
-        }
+          ...getHouseholder(householder),
+        } as Householder)
       : undefined,
   };
 };

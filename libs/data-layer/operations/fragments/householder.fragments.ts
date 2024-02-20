@@ -6,8 +6,8 @@ export const HouseholderKeysFragment = gql`
   }
 `;
 
-export const HouseholderIdentityFragment = gql`
-  fragment HouseholderIdentity on householder {
+export const HouseholderFragment = gql`
+  fragment Householder on householder {
     name
     father_name
     surname
@@ -16,10 +16,6 @@ export const HouseholderIdentityFragment = gql`
     status
     national_id
     dob
-  }
-`;
-export const HouseholderContactFragment = gql`
-  fragment HouseholderContact on householder {
     province
     city
     nationality
