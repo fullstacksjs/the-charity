@@ -5,12 +5,18 @@ import type {
   ApiHouseholderQuery,
   ApiHouseholderQueryVariables,
 } from '@camp/data-layer';
-import type { HouseholderIdentity, HouseholderKeys } from '@camp/domain';
+import type {
+  HouseholderContact,
+  HouseholderIdentity,
+  HouseholderKeys,
+} from '@camp/domain';
 import type { Nullable } from '@fullstacksjs/toolbox';
 
 import {
+  getHouseholderContact,
   getHouseholderIdentity,
   getHouseholderKeys,
+  HouseholderContactFragment,
   HouseholderIdentityFragment,
   HouseholderKeysFragment,
 } from '../fragments';
@@ -20,14 +26,18 @@ export const HouseholderDocument = gql`
     householder_by_pk(household_id: $household_id) {
       ...HouseholderKeys
       ...HouseholderIdentity
+      ...HouseholderContact
     }
   }
+  ${HouseholderContactFragment}
   ${HouseholderKeysFragment}
   ${HouseholderIdentityFragment}
 `;
 
 export interface HouseholderDto {
-  householder: (HouseholderIdentity & HouseholderKeys) | undefined;
+  householder:
+    | (HouseholderContact & HouseholderIdentity & HouseholderKeys)
+    | undefined;
 }
 
 interface Variables {
@@ -40,6 +50,7 @@ const toClient = (data: Nullable<ApiHouseholderQuery>): HouseholderDto => {
       ? {
           ...getHouseholderKeys(data.householder_by_pk),
           ...getHouseholderIdentity(data.householder_by_pk),
+          ...getHouseholderContact(data.householder_by_pk),
         }
       : undefined,
   };

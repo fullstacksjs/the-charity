@@ -8,4 +8,6 @@ export const householderContactFormIds = {
   priorAccommodationAddressInput: 'householder-priorAccommodation-address',
   accommodationTypeInput: 'householder-accommodationType',
   descriptionInput: 'householder-description',
+  nationalityInput: 'householder-nationality',
+  cityOfBirthInput: 'householder-city-of-birth',
 } as const;

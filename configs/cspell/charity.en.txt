@@ -55,3 +55,4 @@ Prray
 clsx
 downloadjs
 matroska
+Fars

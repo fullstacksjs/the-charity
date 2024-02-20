@@ -8,11 +8,9 @@ import type {
   ReligionEnum,
 } from '@camp/domain';
 import {
-  cities,
   createResolver,
   genders,
   householderIdentitySchema,
-  nationalities,
   religions,
 } from '@camp/domain';
 import { messages } from '@camp/messages';
@@ -39,9 +37,7 @@ interface FormSchema {
   nationalId: string | undefined;
   dob: Date | null;
   gender: GenderEnum | undefined;
-  nationality: NationalityEnum | undefined;
   religion: ReligionEnum | undefined;
-  cityOfBirth: CityEnum | undefined;
 }
 
 const resolver = createResolver<FormSchema>({
@@ -50,15 +46,12 @@ const resolver = createResolver<FormSchema>({
   fatherName: householderIdentitySchema.fatherName(),
   nationalId: householderIdentitySchema.nationalId(),
   gender: householderIdentitySchema.gender(),
-  nationality: householderIdentitySchema.nationality(),
   religion: householderIdentitySchema.religion(),
-  cityOfBirth: householderIdentitySchema.cityOfBirth(),
   dob: householderIdentitySchema.dob(),
 });
 
 const t = messages.householder.form;
 
-// eslint-disable-next-line max-lines-per-function
 export const HouseholderIdentityForm = ({
   initialHouseholder,
   householdId,
@@ -84,7 +77,7 @@ export const HouseholderIdentityForm = ({
   const onSubmit = handleSubmit(async values => {
     try {
       const { data } = await upsertHouseholder({
-        variables: { ...values, householdId },
+        variables: { ...initialHouseholder, ...values, householdId },
       });
 
       if (!isNull(data)) {
@@ -140,18 +133,7 @@ export const HouseholderIdentityForm = ({
             placeholder={t.fatherNameInput.placeholder}
             error={errors.fatherName?.message}
           />
-          <ControlledSelect
-            readOnly={isReadOnly}
-            name="nationality"
-            control={control}
-            wrapperProps={tid(ids.nationalityInput)}
-            data={nationalities.map(v => ({
-              value: v,
-              label: messages.nationalities[v],
-            }))}
-            placeholder={t.selectInputs.placeholder}
-            label={`${t.nationalityInput.label}:`}
-          />
+
           <TextInput
             readOnly={isReadOnly}
             wrapperProps={tid(ids.nationalIdInput)}
@@ -185,19 +167,6 @@ export const HouseholderIdentityForm = ({
             }))}
             placeholder={t.selectInputs.placeholder}
             label={`${t.religionInput.label}:`}
-          />
-
-          <ControlledSelect
-            readOnly={isReadOnly}
-            name="cityOfBirth"
-            control={control}
-            wrapperProps={tid(ids.cityOfBirthInput)}
-            data={cities.map(v => ({
-              value: v,
-              label: messages.cities[v],
-            }))}
-            placeholder={t.selectInputs.placeholder}
-            label={`${t.cityOfBirthInput.label}:`}
           />
 
           <ControlledDateInput

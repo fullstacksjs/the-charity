@@ -214,6 +214,11 @@ export const messages = {
       },
     },
   },
+  province: {
+    Tehran: 'تهران',
+    Fars: 'فارس',
+    Unknown: 'نامشخص',
+  },
   nationalities: {
     Ir: 'ایران',
     Unknown: 'نامشخص',
@@ -230,6 +235,10 @@ export const messages = {
   cities: {
     Tehran: 'تهران',
     Unknown: 'نامشخص',
+  },
+  accommodationTypes: {
+    Owner: 'صاحب',
+    Rent: 'مستاجر',
   },
   householder: {
     visits: {
@@ -277,6 +286,14 @@ export const messages = {
     },
     contactForm: {
       title: 'اطلاعات محل سکونت',
+      nationalityInput: {
+        label: 'ملیت',
+        placeholder: 'برای مثال: ایرانی',
+      },
+      cityOfBirthInput: {
+        label: 'شهر',
+        placeholder: 'برای مثال: تهران',
+      },
       selectInputs: {
         placeholder: 'انتخاب کنید',
       },
@@ -289,8 +306,8 @@ export const messages = {
         placeholder: 'برای مثال: ساوه',
       },
       addressInput: {
-        label: 'نام پدر',
-        placeholder: 'برای مثال: محمد',
+        label: 'آدرس',
+        placeholder: 'برای مثال: خیابان مطهری',
       },
       neighborhoodInput: {
         label: 'محله',
@@ -309,6 +326,7 @@ export const messages = {
         placeholder: 'برای مثال: ۱۲۳۴۵۶۷۸۹۰',
       },
       descriptionInput: {
+        placeholder: 'خیابان فلان، مجتمع بیسار، واحد ۸',
         label: 'توضیحات',
       },
     },
@@ -332,10 +350,7 @@ export const messages = {
         label: 'نام پدر',
         placeholder: 'برای مثال: محمد',
       },
-      nationalityInput: {
-        label: 'ملیت',
-        placeholder: 'برای مثال: ایرانی',
-      },
+
       nationalIdInput: {
         label: 'شماره ملی',
         placeholder: 'برای مثال: ۰۱۲۳۴۵۶۷۸۹',
@@ -355,10 +370,6 @@ export const messages = {
       dobInput: {
         label: 'تاریخ تولد',
         placeholder: 'برای مثال: ۱۳۹۹/۱۰/۱۰',
-      },
-      cityOfBirthInput: {
-        label: 'شهر',
-        placeholder: 'برای مثال: تهران',
       },
     },
   },

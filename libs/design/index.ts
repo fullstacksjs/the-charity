@@ -21,6 +21,7 @@ export * from './Sidebar';
 export * from './SmallText';
 export * from './Table';
 export * from './Tabs';
+export * from './Textarea';
 export * from './TextInput';
 export * from './theme';
 export * from './VisualizedIcon';

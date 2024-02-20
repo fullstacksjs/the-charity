@@ -1,8 +1,13 @@
 import type {
+  ApiHouseholderContactFragment,
   ApiHouseholderIdentityFragment,
   ApiHouseholderKeysFragment,
 } from '@camp/data-layer';
-import type { HouseholderIdentity, HouseholderKeys } from '@camp/domain';
+import type {
+  HouseholderContact,
+  HouseholderIdentity,
+  HouseholderKeys,
+} from '@camp/domain';
 import { HouseholderStatus } from '@camp/domain';
 
 import { hasNullish } from './mapper.utils';
@@ -24,9 +29,7 @@ export const getHouseholderIdentity = (
     name: data.name,
     surname: data.surname ?? undefined,
     fatherName: data.father_name ?? undefined,
-    nationality: data.nationality ?? undefined,
     religion: data.religion ?? undefined,
-    cityOfBirth: data.city ?? undefined,
     gender: data.gender ?? undefined,
     nationalId: data.national_id ?? undefined,
     dob: toDate(data.dob),
@@ -36,5 +39,25 @@ export const getHouseholderIdentity = (
 
   if (!hasNullish(config)) config.isIdentityCompleted = true;
 
+  return config;
+};
+
+export const getHouseholderContact = (
+  data: ApiHouseholderContactFragment,
+): HouseholderContact => {
+  const config: HouseholderContact = {
+    province: data.province ?? undefined,
+    nationality: data.nationality ?? undefined,
+    cityOfBirth: data.city ?? undefined,
+    accommodationType: data.accommodation_type ?? undefined,
+    neighborhood: data.neighborhood ?? undefined,
+    address: data.address ?? undefined,
+    zipCode: data.zip_code ?? undefined,
+    priorAccommodationAddress: data.prior_accommodation_address ?? undefined,
+    healthDescription: data.health_description ?? undefined,
+    isContactCompleted: false,
+  };
+
+  if (!hasNullish(config)) config.isContactCompleted = true;
   return config;
 };

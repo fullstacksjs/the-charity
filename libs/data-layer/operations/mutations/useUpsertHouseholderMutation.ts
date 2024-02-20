@@ -6,16 +6,20 @@ import type {
   ApiUpsertHouseholderMutationVariables,
 } from '@camp/data-layer';
 import type {
+  AccommodationTypeEnum,
   CityEnum,
   GenderEnum,
   Householder,
   NationalityEnum,
+  ProvinceEnum,
   ReligionEnum,
 } from '@camp/domain';
 
 import {
+  getHouseholderContact,
   getHouseholderIdentity,
   getHouseholderKeys,
+  HouseholderContactFragment,
   HouseholderIdentityFragment,
   HouseholderKeysFragment,
 } from '../fragments';
@@ -28,22 +32,31 @@ const Document = gql`
       on_conflict: {
         constraint: householder_household_id_key
         update_columns: [
-          city
           gender
           dob
           father_name
           name
-          nationality
           religion
           surname
           national_id
+          city
+          province
+          nationality
+          accommodation_type
+          neighborhood
+          address
+          zip_code
+          prior_accommodation_address
+          health_description
         ]
       }
     ) {
       ...HouseholderKeys
       ...HouseholderIdentity
+      ...HouseholderContact
     }
   }
+  ${HouseholderContactFragment}
   ${HouseholderKeysFragment}
   ${HouseholderIdentityFragment}
 `;
@@ -62,23 +75,31 @@ const toClient = (
       ? {
           ...getHouseholderKeys(householder),
           ...(getHouseholderIdentity(householder) as Householder),
+          ...getHouseholderContact(householder),
         }
       : undefined,
   };
 };
 
 interface Variables {
-  name: string;
   householdId: string;
+  name?: string;
   surname?: string;
   fatherName?: string;
   nationalId?: string;
   dob?: Date | null;
-  nationality?: NationalityEnum;
   religion?: ReligionEnum;
   gender?: GenderEnum;
-  cityOfBirth?: CityEnum;
   issuedAt?: CityEnum;
+  province?: ProvinceEnum;
+  nationality?: NationalityEnum;
+  cityOfBirth?: CityEnum;
+  accommodationType?: AccommodationTypeEnum;
+  neighborhood?: string;
+  address?: string;
+  zipCode?: string;
+  priorAccommodationAddress?: string;
+  healthDescription?: string;
 }
 
 const toApiVariables = (
@@ -92,9 +113,16 @@ const toApiVariables = (
     surname: variables.surname,
     nationality: variables.nationality,
     religion: variables.religion,
-    city: variables.cityOfBirth,
     gender: variables.gender,
     dob: variables.dob?.toISOString(),
+    province: variables.province,
+    city: variables.cityOfBirth,
+    accommodation_type: variables.accommodationType,
+    neighborhood: variables.neighborhood,
+    address: variables.address,
+    zip_code: variables.zipCode,
+    prior_accommodation_address: variables.priorAccommodationAddress,
+    health_description: variables.healthDescription,
   },
 });
 

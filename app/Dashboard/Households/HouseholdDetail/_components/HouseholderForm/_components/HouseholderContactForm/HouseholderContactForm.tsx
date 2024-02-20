@@ -1,48 +1,80 @@
-import { ControlledSelect } from '@camp/design';
-import type { AccommodationTypeEnum } from '@camp/domain';
-import { createResolver, householderContactSchema } from '@camp/domain';
+import { useUpsertHouseholderMutation } from '@camp/data-layer';
+import { ControlledSelect, Textarea, TextInput } from '@camp/design';
+import type {
+  AccommodationTypeEnum,
+  CityEnum,
+  HouseholderContact,
+  HouseholderIdentity,
+  NationalityEnum,
+  ProvinceEnum,
+} from '@camp/domain';
+import {
+  accommodationTypes,
+  cities,
+  createResolver,
+  householderContactSchema,
+  nationalities,
+  provinces,
+} from '@camp/domain';
 import { messages } from '@camp/messages';
 import { tid } from '@camp/test';
+import { isNull } from '@fullstacksjs/toolbox';
 import { SimpleGrid, Stack } from '@mantine/core';
 import { useBoolean } from 'ahooks';
 import { useForm } from 'react-hook-form';
 
+import { householdNotifications } from '../../../../householdNotifications';
 import { HouseholderFormActions } from '../../HouseholderFormActions';
 import { householderContactFormIds as ids } from './HouseholderContactForm.ids';
 
+interface Props {
+  initialHouseholder?: HouseholderContact & HouseholderIdentity;
+  householdId: string;
+  householdName: string;
+}
+
 interface FormSchema {
-  province: string;
-  city: string;
+  province: ProvinceEnum | undefined;
   neighborhood: string;
   address: string;
   zipCode: string;
+  nationality: NationalityEnum | undefined;
   priorAccommodationAddress: string;
   accommodationType: AccommodationTypeEnum;
-  description: string;
+  healthDescription: string;
+  cityOfBirth: CityEnum | undefined;
 }
 
 const resolver = createResolver<FormSchema>({
   province: householderContactSchema.province(),
-  city: householderContactSchema.city(),
+  nationality: householderContactSchema.nationality(),
   neighborhood: householderContactSchema.neighborhood(),
   address: householderContactSchema.address(),
   zipCode: householderContactSchema.zipCode(),
   priorAccommodationAddress:
     householderContactSchema.priorAccommodationAddress(),
   accommodationType: householderContactSchema.accommodationType(),
-  description: householderContactSchema.description(),
+  cityOfBirth: householderContactSchema.cityOfBirth(),
+  healthDescription: householderContactSchema.healthDescription(),
 });
 
 const t = messages.householder.contactForm;
 
-export const HouseholderContactForm = ({ initialHouseholder }: any) => {
-  const isCompleted = initialHouseholder?.isCompleted;
+export const HouseholderContactForm = ({
+  initialHouseholder,
+  householdId,
+  householdName,
+}: Props) => {
+  const isCompleted = initialHouseholder?.isContactCompleted;
   const [isEditMode, { set: setIsEditing }] = useBoolean(!isCompleted);
   const isReadOnly = !isEditMode;
+  const [upsertHouseholder] = useUpsertHouseholderMutation();
 
   const {
     reset,
-    formState: { isDirty },
+    register,
+    handleSubmit,
+    formState: { isDirty, errors },
     control,
   } = useForm<FormSchema>({
     resolver,
@@ -55,8 +87,24 @@ export const HouseholderContactForm = ({ initialHouseholder }: any) => {
     setIsEditing(false);
   };
 
+  const onSubmit = handleSubmit(async values => {
+    try {
+      const { data } = await upsertHouseholder({
+        variables: { ...initialHouseholder, ...values, householdId },
+      });
+
+      if (!isNull(data)) {
+        reset({ ...data.householder });
+        setIsEditing(!data.householder?.isContactCompleted);
+      }
+      householdNotifications.edit.success(householdName);
+    } catch {
+      householdNotifications.edit.failure(householdName);
+    }
+  });
+
   return (
-    <form>
+    <form onSubmit={onSubmit}>
       <Stack spacing={25}>
         <HouseholderFormActions
           title={t.title}
@@ -72,9 +120,88 @@ export const HouseholderContactForm = ({ initialHouseholder }: any) => {
             name="province"
             control={control}
             wrapperProps={tid(ids.provinceInput)}
-            data={['tehran']}
-            label={`${t.provinceInput.label}:`}
+            data={provinces.map(v => ({
+              value: v,
+              label: messages.province[v],
+            }))}
             placeholder={t.selectInputs.placeholder}
+            label={`${t.provinceInput.label}:`}
+          />
+          <ControlledSelect
+            readOnly={isReadOnly}
+            name="nationality"
+            control={control}
+            wrapperProps={tid(ids.nationalityInput)}
+            data={nationalities.map(v => ({
+              value: v,
+              label: messages.nationalities[v],
+            }))}
+            placeholder={t.selectInputs.placeholder}
+            label={`${t.nationalityInput.label}:`}
+          />
+          <ControlledSelect
+            readOnly={isReadOnly}
+            name="cityOfBirth"
+            control={control}
+            wrapperProps={tid(ids.cityOfBirthInput)}
+            data={cities.map(v => ({
+              value: v,
+              label: messages.cities[v],
+            }))}
+            placeholder={t.selectInputs.placeholder}
+            label={`${t.cityOfBirthInput.label}:`}
+          />
+          <Textarea
+            readOnly={isReadOnly}
+            wrapperProps={tid(ids.addressInput)}
+            {...register('address')}
+            label={t.addressInput.label}
+            placeholder={t.addressInput.placeholder}
+            error={errors.priorAccommodationAddress?.message}
+          />
+          <Textarea
+            readOnly={isReadOnly}
+            wrapperProps={tid(ids.neighborhoodInput)}
+            {...register('neighborhood')}
+            label={t.neighborhoodInput.label}
+            placeholder={t.neighborhoodInput.placeholder}
+            error={errors.neighborhood?.message}
+          />
+          <ControlledSelect
+            readOnly={isReadOnly}
+            name="accommodationType"
+            control={control}
+            wrapperProps={tid(ids.accommodationTypeInput)}
+            data={accommodationTypes.map(v => ({
+              value: v,
+              label: messages.accommodationTypes[v],
+            }))}
+            placeholder={t.selectInputs.placeholder}
+            label={`${t.accommodationTypeInput.label}:`}
+          />
+          <TextInput
+            readOnly={isReadOnly}
+            wrapperProps={tid(ids.zipCodeInput)}
+            error={errors.zipCode?.message}
+            {...register('zipCode')}
+            placeholder={t.zipCodeInput.placeholder}
+            label={`${t.zipCodeInput.label}:`}
+          />
+          <Textarea
+            readOnly={isReadOnly}
+            wrapperProps={tid(ids.priorAccommodationAddressInput)}
+            {...register('priorAccommodationAddress')}
+            label={t.priorAccommodationAddressInput.label}
+            placeholder={t.priorAccommodationAddressInput.placeholder}
+            error={errors.priorAccommodationAddress?.message}
+          />
+          <Textarea
+            readOnly={isReadOnly}
+            wrapperProps={tid(ids.descriptionInput)}
+            {...register('healthDescription')}
+            label={t.descriptionInput.label}
+            placeholder={t.descriptionInput.placeholder}
+            error={errors.healthDescription?.message}
           />
         </SimpleGrid>
       </Stack>

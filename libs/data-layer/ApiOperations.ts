@@ -15,7 +15,9 @@ export type ApiHouseholdListItemFragment = { __typename?: 'household', name: str
 
 export type ApiHouseholderKeysFragment = { __typename?: 'householder', id: string };
 
-export type ApiHouseholderIdentityFragment = { __typename?: 'householder', name: string, father_name?: string | null, surname?: string | null, nationality?: SchemaTypes.NationalityEnum | null, religion?: SchemaTypes.ReligionEnum | null, city?: SchemaTypes.CityEnum | null, gender?: SchemaTypes.GenderEnum | null, status?: string | null, national_id?: string | null, dob?: string | null };
+export type ApiHouseholderIdentityFragment = { __typename?: 'householder', name: string, father_name?: string | null, surname?: string | null, religion?: SchemaTypes.ReligionEnum | null, gender?: SchemaTypes.GenderEnum | null, status?: string | null, national_id?: string | null, dob?: string | null };
+
+export type ApiHouseholderContactFragment = { __typename?: 'householder', province?: SchemaTypes.ProvinceEnum | null, city?: SchemaTypes.CityEnum | null, nationality?: SchemaTypes.NationalityEnum | null, accommodation_type?: SchemaTypes.AccommodationTypeEnum | null, neighborhood?: string | null, address?: string | null, zip_code?: string | null, prior_accommodation_address?: string | null, health_description?: string | null };
 
 export type ApiMemberKeysFragment = { __typename?: 'member', id: string, household_id: string };
 
@@ -106,7 +108,7 @@ export type ApiUpsertHouseholderMutationVariables = SchemaTypes.Exact<{
 }>;
 
 
-export type ApiUpsertHouseholderMutation = { __typename?: 'mutation_root', insert_householder_one?: { __typename?: 'householder', id: string, name: string, father_name?: string | null, surname?: string | null, nationality?: SchemaTypes.NationalityEnum | null, religion?: SchemaTypes.ReligionEnum | null, city?: SchemaTypes.CityEnum | null, gender?: SchemaTypes.GenderEnum | null, status?: string | null, national_id?: string | null, dob?: string | null } | null };
+export type ApiUpsertHouseholderMutation = { __typename?: 'mutation_root', insert_householder_one?: { __typename?: 'householder', id: string, name: string, father_name?: string | null, surname?: string | null, religion?: SchemaTypes.ReligionEnum | null, gender?: SchemaTypes.GenderEnum | null, status?: string | null, national_id?: string | null, dob?: string | null } | null };
 
 export type ApiUpsertMemberMutationVariables = SchemaTypes.Exact<{
   input: SchemaTypes.ApiMemberInsertInput;
@@ -136,7 +138,7 @@ export type ApiHouseholderQueryVariables = SchemaTypes.Exact<{
 }>;
 
 
-export type ApiHouseholderQuery = { __typename?: 'query_root', householder_by_pk?: { __typename?: 'householder', id: string, name: string, father_name?: string | null, surname?: string | null, nationality?: SchemaTypes.NationalityEnum | null, religion?: SchemaTypes.ReligionEnum | null, city?: SchemaTypes.CityEnum | null, gender?: SchemaTypes.GenderEnum | null, status?: string | null, national_id?: string | null, dob?: string | null } | null };
+export type ApiHouseholderQuery = { __typename?: 'query_root', householder_by_pk?: { __typename?: 'householder', id: string, name: string, father_name?: string | null, surname?: string | null, religion?: SchemaTypes.ReligionEnum | null, gender?: SchemaTypes.GenderEnum | null, status?: string | null, national_id?: string | null, dob?: string | null } | null };
 
 export type ApiVisitsQueryVariables = SchemaTypes.Exact<{
   order_by?: SchemaTypes.InputMaybe<Array<SchemaTypes.ApiVisitOrderBy> | SchemaTypes.ApiVisitOrderBy>;

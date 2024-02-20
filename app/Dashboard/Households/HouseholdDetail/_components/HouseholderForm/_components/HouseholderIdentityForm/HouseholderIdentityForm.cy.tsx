@@ -37,15 +37,6 @@ describe('HouseHolder Form', () => {
     });
   });
 
-  it('contains a nationality input with correct label', () => {
-    cy.findByTestId(householderFormIds.form).within(() => {
-      cy.findByLabelText(`${householderForm.nationalityInput.label}:`).should(
-        'match',
-        'input',
-      );
-    });
-  });
-
   it('contains a nationality id input with correct label', () => {
     cy.findByTestId(householderFormIds.form).within(() => {
       cy.findByLabelText(`${householderForm.nationalIdInput.label}:`).should(
@@ -75,15 +66,6 @@ describe('HouseHolder Form', () => {
 
   it('contains a dob input with correct label', () => {
     cy.contains(householderForm.dobInput.label);
-  });
-
-  it('contains a cityOfBirth input with correct label', () => {
-    cy.findByTestId(householderFormIds.form).within(() => {
-      cy.findByLabelText(`${householderForm.cityOfBirthInput.label}:`).should(
-        'match',
-        'input',
-      );
-    });
   });
 
   it('contains a button to submit the form', () => {

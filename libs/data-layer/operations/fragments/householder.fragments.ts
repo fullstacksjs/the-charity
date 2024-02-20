@@ -11,12 +11,23 @@ export const HouseholderIdentityFragment = gql`
     name
     father_name
     surname
-    nationality
     religion
-    city
     gender
     status
     national_id
     dob
+  }
+`;
+export const HouseholderContactFragment = gql`
+  fragment HouseholderContact on householder {
+    province
+    city
+    nationality
+    accommodation_type
+    neighborhood
+    address
+    zip_code
+    prior_accommodation_address
+    health_description
   }
 `;

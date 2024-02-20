@@ -1,3 +1,3 @@
 import { ProvinceEnum } from './ApiSchema';
 
-export const Province = Object.values(ProvinceEnum);
+export const provinces = Object.values(ProvinceEnum);

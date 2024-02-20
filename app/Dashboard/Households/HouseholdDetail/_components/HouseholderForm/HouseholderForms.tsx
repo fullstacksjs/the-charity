@@ -1,11 +1,15 @@
-import type { HouseholderIdentity } from '@camp/domain';
+import type {
+  Householder,
+  HouseholderContact,
+  HouseholderIdentity,
+} from '@camp/domain';
 import { Stack } from '@mantine/core';
 
 import { HouseholderContactForm } from './_components/HouseholderContactForm';
 import { HouseholderIdentityForm } from './_components/HouseholderIdentityForm';
 
 interface Props {
-  initialHouseholder?: HouseholderIdentity;
+  initialHouseholder?: HouseholderContact & HouseholderIdentity;
   householdId: string;
   householdName: string;
 }
@@ -22,7 +26,11 @@ export const HouseholderForms = ({
         householdId={householdId}
         householdName={householdName}
       />
-      <HouseholderContactForm initialHouseholder={initialHouseholder} />
+      <HouseholderContactForm
+        householdId={householdId}
+        householdName={householdName}
+        initialHouseholder={initialHouseholder}
+      />
     </Stack>
   );
 };
