@@ -41,7 +41,6 @@ interface FormSchema {
   nationality: NationalityEnum | undefined;
   priorAccommodationAddress: string;
   accommodationType: AccommodationTypeEnum;
-  healthDescription: string;
   cityOfBirth: CityEnum | undefined;
 }
 
@@ -55,7 +54,6 @@ const resolver = createResolver<FormSchema>({
     householderContactSchema.priorAccommodationAddress(),
   accommodationType: householderContactSchema.accommodationType(),
   cityOfBirth: householderContactSchema.cityOfBirth(),
-  healthDescription: householderContactSchema.healthDescription(),
 });
 
 const t = messages.householder.contactForm;
@@ -195,14 +193,14 @@ export const HouseholderContactForm = ({
             placeholder={t.priorAccommodationAddressInput.placeholder}
             error={errors.priorAccommodationAddress?.message}
           />
-          <Textarea
+          {/* <Textarea
             readOnly={isReadOnly}
             wrapperProps={tid(ids.descriptionInput)}
             {...register('healthDescription')}
             label={t.descriptionInput.label}
             placeholder={t.descriptionInput.placeholder}
             error={errors.healthDescription?.message}
-          />
+          /> */}
         </SimpleGrid>
       </Stack>
     </form>

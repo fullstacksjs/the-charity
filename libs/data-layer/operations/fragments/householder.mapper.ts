@@ -53,7 +53,6 @@ export const getHouseholderContact = (
     address: data.address ?? undefined,
     zipCode: data.zip_code ?? undefined,
     priorAccommodationAddress: data.prior_accommodation_address ?? undefined,
-    healthDescription: data.health_description ?? undefined,
     isContactCompleted: false,
   };
 

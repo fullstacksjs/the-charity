@@ -118,7 +118,6 @@ const toApiVariables = (
     address: variables.address,
     zip_code: variables.zipCode,
     prior_accommodation_address: variables.priorAccommodationAddress,
-    health_description: variables.healthDescription,
   },
 });
 
