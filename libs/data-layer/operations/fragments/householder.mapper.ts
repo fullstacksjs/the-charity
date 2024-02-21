@@ -1,11 +1,12 @@
 import type {
   ApiHouseholderContactFragment,
-  ApiHouseholderFragment,
+  ApiHouseholderHealthFragment,
   ApiHouseholderIdentityFragment,
   ApiHouseholderKeysFragment,
 } from '@camp/data-layer';
 import type {
   HouseholderContact,
+  HouseholderHealth,
   HouseholderIdentity,
   HouseholderKeys,
 } from '@camp/domain';
@@ -60,8 +61,30 @@ export const getHouseholderContact = (
   return config;
 };
 
-export const getHouseholder = (data: ApiHouseholderFragment) => ({
+export const getHouseholderHealth = (
+  data: ApiHouseholderHealthFragment,
+): HouseholderHealth => {
+  const config: HouseholderHealth = {
+    addictionStatus: data.addiction_status ?? undefined,
+    disabilityStatus: data.disability_status ?? undefined,
+    disabilityDescription: data.disability_description ?? undefined,
+    healthStatus: data.health_status ?? undefined,
+    healthDescription: data.health_description ?? undefined,
+    healthComment: data.health_comment ?? undefined,
+    isHealthCompleted: false,
+  };
+
+  if (!hasNullish(config)) config.isHealthCompleted = true;
+  return config;
+};
+
+export const getHouseholder = (
+  data: ApiHouseholderContactFragment &
+    ApiHouseholderHealthFragment &
+    ApiHouseholderIdentityFragment,
+) => ({
   ...getHouseholderContact(data),
+  ...getHouseholderHealth(data),
   ...getHouseholderIdentity(data),
   status:
     data.status === 'Draft'

@@ -7,8 +7,11 @@ import type {
 } from '@camp/data-layer';
 import type {
   AccommodationTypeEnum,
+  AddictionStatusEnum,
   CityEnum,
+  DisabilityStatusEnum,
   GenderEnum,
+  HealthStatusEnum,
   Householder,
   HouseholderKeys,
   NationalityEnum,
@@ -19,7 +22,9 @@ import type {
 import {
   getHouseholder,
   getHouseholderKeys,
-  HouseholderFragment,
+  HouseholderContactFragment,
+  HouseholderHealthFragment,
+  HouseholderIdentityFragment,
   HouseholderKeysFragment,
 } from '../fragments';
 import { HouseholderDocument } from '../queries';
@@ -46,16 +51,25 @@ const Document = gql`
           address
           zip_code
           prior_accommodation_address
+          addiction_status
+          disability_status
+          disability_description
+          health_status
           health_description
+          health_comment
         ]
       }
     ) {
       ...HouseholderKeys
-      ...Householder
+      ...HouseholderContact
+      ...HouseholderIdentity
+      ...HouseholderHealth
     }
   }
-  ${HouseholderFragment}
+  ${HouseholderIdentityFragment}
+  ${HouseholderContactFragment}
   ${HouseholderKeysFragment}
+  ${HouseholderHealthFragment}
 `;
 
 export interface UpsertHouseholder {
@@ -95,6 +109,11 @@ interface Variables {
   address?: string;
   zipCode?: string;
   priorAccommodationAddress?: string;
+  addictionStatus?: AddictionStatusEnum;
+  disabilityStatus?: DisabilityStatusEnum;
+  disabilityDescription?: string;
+  healthStatus?: HealthStatusEnum;
+  healthComment?: string;
   healthDescription?: string;
 }
 

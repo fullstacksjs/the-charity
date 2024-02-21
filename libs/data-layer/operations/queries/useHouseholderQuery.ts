@@ -11,7 +11,9 @@ import type { Nullable } from '@fullstacksjs/toolbox';
 import {
   getHouseholder,
   getHouseholderKeys,
-  HouseholderFragment,
+  HouseholderContactFragment,
+  HouseholderHealthFragment,
+  HouseholderIdentityFragment,
   HouseholderKeysFragment,
 } from '../fragments';
 
@@ -19,10 +21,15 @@ export const HouseholderDocument = gql`
   query Householder($household_id: uuid!) {
     householder_by_pk(household_id: $household_id) {
       ...HouseholderKeys
-      ...Householder
+      ...HouseholderContact
+      ...HouseholderIdentity
+      ...HouseholderHealth
     }
   }
-  ${HouseholderFragment}
+
+  ${HouseholderIdentityFragment}
+  ${HouseholderContactFragment}
+  ${HouseholderHealthFragment}
   ${HouseholderKeysFragment}
 `;
 

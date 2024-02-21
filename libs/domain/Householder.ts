@@ -98,14 +98,16 @@ export interface HouseholderHealth {
 export interface DraftHouseholder
   extends HouseholdKeys,
     HouseholderIdentity,
-    HouseholderContact {
+    HouseholderContact,
+    HouseholderHealth {
   status: HouseholderStatus.Draft;
 }
 
 export interface CompletedHouseholder
   extends HouseholdKeys,
     Required<HouseholderIdentity>,
-    Required<HouseholderContact> {
+    Required<HouseholderContact>,
+    Required<HouseholderHealth> {
   status: HouseholderStatus.Completed;
 }
 
