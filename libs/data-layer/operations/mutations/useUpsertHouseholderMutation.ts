@@ -14,10 +14,12 @@ import type {
   HealthStatusEnum,
   Householder,
   HouseholderKeys,
+  InsuranceEnum,
   NationalityEnum,
   ProvinceEnum,
   ReligionEnum,
 } from '@camp/domain';
+import { ApiInsuranceConstraint, ApiInsuranceUpdateColumn } from '@camp/domain';
 
 import {
   getHouseholder,
@@ -57,6 +59,7 @@ const Document = gql`
           health_status
           health_description
           health_comment
+          insurances
         ]
       }
     ) {
@@ -114,6 +117,7 @@ interface Variables {
   disabilityDescription?: string;
   healthStatus?: HealthStatusEnum;
   healthComment?: string;
+  insurances?: InsuranceEnum[];
   healthDescription?: string;
 }
 
@@ -137,6 +141,7 @@ const toApiVariables = (
     address: variables.address,
     zip_code: variables.zipCode,
     prior_accommodation_address: variables.priorAccommodationAddress,
+    insurances: variables.insurances,
   },
 });
 

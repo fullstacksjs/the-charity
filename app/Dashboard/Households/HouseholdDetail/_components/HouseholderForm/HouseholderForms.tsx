@@ -2,6 +2,7 @@ import type { Householder } from '@camp/domain';
 import { Stack } from '@mantine/core';
 
 import { HouseholderContactForm } from './_components/HouseholderContactForm';
+import { HouseholderHealthForm } from './_components/HouseholderHealthForm';
 import { HouseholderIdentityForm } from './_components/HouseholderIdentityForm';
 
 interface Props {
@@ -23,6 +24,11 @@ export const HouseholderForms = ({
         householdName={householdName}
       />
       <HouseholderContactForm
+        householdId={householdId}
+        householdName={householdName}
+        initialHouseholder={initialHouseholder}
+      />
+      <HouseholderHealthForm
         householdId={householdId}
         householdName={householdName}
         initialHouseholder={initialHouseholder}

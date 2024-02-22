@@ -20,6 +20,7 @@ export const ApiHouseholderFixture: ApiHouseholderQuery['householder_by_pk'] = {
   father_name: 'علی',
   gender: GenderEnum.Male,
   national_id: '1234567890',
+  insurances: [],
   religion: ReligionEnum.Islam,
   status: HouseholdStatusEnum.Completed,
 };

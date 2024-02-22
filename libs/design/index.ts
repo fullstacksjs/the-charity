@@ -14,6 +14,7 @@ export * from './FileUpload';
 export * from './FullPageLoader';
 export * from './ImagePreview';
 export * from './Modal';
+export * from './MultiSelect';
 export * from './NavLink';
 export * from './Notification';
 export * from './Select';

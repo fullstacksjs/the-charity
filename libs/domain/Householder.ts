@@ -16,6 +16,8 @@ import type {
 import { DisabilityStatus } from './DisabilityStatus';
 import { HealthStatus } from './HealthStatus';
 import type { HouseholdKeys } from './Household';
+import type { InsuranceEnum } from './Insurance';
+import { insurances } from './Insurance';
 import { Schema } from './Schema';
 
 export const householderIdentitySchema = {
@@ -81,6 +83,7 @@ export const householderHealthSchema = {
   disabilityStatus: () =>
     z.union(toZodLiteralList(DisabilityStatus)).optionalString(),
   disabilityDescription: () => z.string().optionalString(),
+  insurances: () => z.array(z.union(toZodLiteralList(insurances))).default([]),
   healthStatus: () => z.union(toZodLiteralList(HealthStatus)).optionalString(),
   healthComment: () => z.string().optionalString(),
 };
@@ -92,6 +95,7 @@ export interface HouseholderHealth {
   healthStatus?: HealthStatusEnum;
   healthComment?: string;
   healthDescription?: string;
+  insurances?: InsuranceEnum[];
   isHealthCompleted: boolean;
 }
 

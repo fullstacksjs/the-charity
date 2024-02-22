@@ -9,6 +9,7 @@ import type {
   HouseholderHealth,
   HouseholderIdentity,
   HouseholderKeys,
+  InsuranceEnum,
 } from '@camp/domain';
 import { HouseholderStatus } from '@camp/domain';
 
@@ -71,6 +72,7 @@ export const getHouseholderHealth = (
     healthStatus: data.health_status ?? undefined,
     healthDescription: data.health_description ?? undefined,
     healthComment: data.health_comment ?? undefined,
+    insurances: (data.insurances ?? []) as InsuranceEnum[],
     isHealthCompleted: false,
   };
 

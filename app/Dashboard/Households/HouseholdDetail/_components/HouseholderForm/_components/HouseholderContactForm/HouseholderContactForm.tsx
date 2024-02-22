@@ -193,14 +193,6 @@ export const HouseholderContactForm = ({
             placeholder={t.priorAccommodationAddressInput.placeholder}
             error={errors.priorAccommodationAddress?.message}
           />
-          {/* <Textarea
-            readOnly={isReadOnly}
-            wrapperProps={tid(ids.descriptionInput)}
-            {...register('healthDescription')}
-            label={t.descriptionInput.label}
-            placeholder={t.descriptionInput.placeholder}
-            error={errors.healthDescription?.message}
-          /> */}
         </SimpleGrid>
       </Stack>
     </form>

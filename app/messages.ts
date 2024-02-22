@@ -223,6 +223,12 @@ export const messages = {
     Ir: 'ایران',
     Unknown: 'نامشخص',
   },
+  disabilityStatus: {
+    NoDisability: 'بدون روحی',
+    PhysicalDisability: 'معلولیت جسمی',
+    MentalDisability: 'معلولیت روحی',
+    BothPhysicalAndMental: 'معلولیت روحی و جسمی',
+  },
   genders: {
     Male: 'مرد',
     Female: 'زن',
@@ -239,6 +245,10 @@ export const messages = {
   accommodationTypes: {
     Owner: 'صاحب',
     Rent: 'مستاجر',
+  },
+  insurance: {
+    Welfare: 'تامین اجتماعی',
+    Health: 'سلامت',
   },
   householder: {
     visits: {
@@ -283,6 +293,38 @@ export const messages = {
       },
       title: 'بازدیدها',
       addVisit: 'افزودن بازدید',
+    },
+    healthForm: {
+      title: 'اطلاعات وضعیت سلامت',
+      addictionStatusInput: {
+        label: '',
+      },
+      insuranceInput: {
+        label: 'بیمه',
+      },
+      disabilityStatusInput: {
+        label: 'معلولیت',
+      },
+      disabilityDescriptionInput: {
+        label: '',
+        placeholder: '',
+      },
+      healthStatusInput: {
+        label: '',
+        placeholder: '',
+      },
+      healthCommentInput: {
+        label: '',
+        placeholder: '',
+      },
+      healthDescriptionInput: {
+        label: '',
+        placeholder: '',
+      },
+
+      selectInputs: {
+        placeholder: 'انتخاب کنید',
+      },
     },
     contactForm: {
       title: 'اطلاعات محل سکونت',

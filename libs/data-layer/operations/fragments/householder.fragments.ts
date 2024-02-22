@@ -29,7 +29,6 @@ export const HouseholderContactFragment = gql`
     address
     zip_code
     prior_accommodation_address
-    health_description
   }
 `;
 
@@ -41,5 +40,6 @@ export const HouseholderHealthFragment = gql`
     health_status
     health_description
     health_comment
+    insurances
   }
 `;
