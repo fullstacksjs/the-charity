@@ -1,15 +1,19 @@
 import type {
   ApiHouseholderContactFragment,
+  ApiHouseholderFinancialFragment,
   ApiHouseholderHealthFragment,
   ApiHouseholderIdentityFragment,
   ApiHouseholderKeysFragment,
 } from '@camp/data-layer';
 import type {
   HouseholderContact,
+  HouseholderFinancial,
   HouseholderHealth,
   HouseholderIdentity,
   HouseholderKeys,
   InsuranceEnum,
+  SkillEnum,
+  SubsideTypeEnum,
 } from '@camp/domain';
 import { HouseholderStatus } from '@camp/domain';
 
@@ -80,14 +84,35 @@ export const getHouseholderHealth = (
   return config;
 };
 
+export const getHouseholderFinancial = (
+  data: ApiHouseholderFinancialFragment,
+): HouseholderFinancial => {
+  const config: HouseholderFinancial = {
+    job: data.job ?? undefined,
+    income: data.income ?? undefined,
+    skills: (data.skills ?? []) as SkillEnum[],
+    subsideTypes: (data.subside_types ?? []) as SubsideTypeEnum[],
+    subside: data.subside ?? undefined,
+    rent: data.rent ?? undefined,
+    bankCardNumber: data.bank_card_number ?? undefined,
+    bankAccountNumber: data.bank_account_number ?? undefined,
+    isFinancialCompleted: false,
+  };
+
+  if (!hasNullish(config)) config.isFinancialCompleted = true;
+  return config;
+};
+
 export const getHouseholder = (
   data: ApiHouseholderContactFragment &
+    ApiHouseholderFinancialFragment &
     ApiHouseholderHealthFragment &
     ApiHouseholderIdentityFragment,
 ) => ({
   ...getHouseholderContact(data),
   ...getHouseholderHealth(data),
   ...getHouseholderIdentity(data),
+  ...getHouseholderFinancial(data),
   status:
     data.status === 'Draft'
       ? HouseholderStatus.Draft

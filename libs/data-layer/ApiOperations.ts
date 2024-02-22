@@ -21,6 +21,8 @@ export type ApiHouseholderContactFragment = { __typename?: 'householder', provin
 
 export type ApiHouseholderHealthFragment = { __typename?: 'householder', addiction_status?: SchemaTypes.AddictionStatusEnum | null, disability_status?: SchemaTypes.DisabilityStatusEnum | null, disability_description?: string | null, health_status?: SchemaTypes.HealthStatusEnum | null, health_description?: string | null, health_comment?: string | null, insurances?: Array<string> | null };
 
+export type ApiHouseholderFinancialFragment = { __typename?: 'householder', job?: SchemaTypes.JobEnum | null, income?: any | null, skills?: Array<string> | null, subside_types?: Array<string> | null, subside?: any | null, rent?: any | null, bank_card_number?: string | null, bank_account_number?: string | null };
+
 export type ApiMemberKeysFragment = { __typename?: 'member', id: string, household_id: string };
 
 export type ApiMemberListItemFragment = { __typename?: 'member', dob?: string | null, father_name?: string | null, gender?: SchemaTypes.GenderEnum | null, name: string, national_id?: string | null, nationality?: SchemaTypes.NationalityEnum | null, religion?: SchemaTypes.ReligionEnum | null, surname?: string | null, status?: string | null };

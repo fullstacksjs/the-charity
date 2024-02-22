@@ -43,3 +43,16 @@ export const HouseholderHealthFragment = gql`
     insurances
   }
 `;
+
+export const HouseholderFinancialFragment = gql`
+  fragment HouseholderFinancial on householder {
+    job
+    income
+    skills
+    subside_types
+    subside
+    rent
+    bank_card_number
+    bank_account_number
+  }
+`;

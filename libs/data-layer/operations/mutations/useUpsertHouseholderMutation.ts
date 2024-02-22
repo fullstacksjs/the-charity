@@ -15,9 +15,12 @@ import type {
   Householder,
   HouseholderKeys,
   InsuranceEnum,
+  JobEnum,
   NationalityEnum,
   ProvinceEnum,
   ReligionEnum,
+  SkillEnum,
+  SubsideTypeEnum,
 } from '@camp/domain';
 import { ApiInsuranceConstraint, ApiInsuranceUpdateColumn } from '@camp/domain';
 
@@ -25,6 +28,7 @@ import {
   getHouseholder,
   getHouseholderKeys,
   HouseholderContactFragment,
+  HouseholderFinancialFragment,
   HouseholderHealthFragment,
   HouseholderIdentityFragment,
   HouseholderKeysFragment,
@@ -67,11 +71,13 @@ const Document = gql`
       ...HouseholderContact
       ...HouseholderIdentity
       ...HouseholderHealth
+      ...HouseholderFinancial
     }
   }
   ${HouseholderIdentityFragment}
   ${HouseholderContactFragment}
   ${HouseholderKeysFragment}
+  ${HouseholderFinancialFragment}
   ${HouseholderHealthFragment}
 `;
 
@@ -119,6 +125,14 @@ interface Variables {
   healthComment?: string;
   insurances?: InsuranceEnum[];
   healthDescription?: string;
+  job?: JobEnum;
+  income?: number;
+  skills?: SkillEnum[];
+  subsideTypes?: SubsideTypeEnum[];
+  subside?: number;
+  rent?: string;
+  bankCardNumber?: string;
+  bankAccountNumber?: string;
 }
 
 const toApiVariables = (
@@ -142,6 +156,14 @@ const toApiVariables = (
     zip_code: variables.zipCode,
     prior_accommodation_address: variables.priorAccommodationAddress,
     insurances: variables.insurances,
+    job: variables.job,
+    income: variables.income,
+    skills: variables.skills,
+    subside_types: variables.subsideTypes,
+    subside: variables.subside,
+    rent: variables.rent,
+    bank_card_number: variables.bankCardNumber,
+    bank_account_number: variables.bankAccountNumber,
   },
 });
 

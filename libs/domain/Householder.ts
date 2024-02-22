@@ -9,6 +9,7 @@ import type {
   DisabilityStatusEnum,
   GenderEnum,
   HealthStatusEnum,
+  JobEnum,
   NationalityEnum,
   ProvinceEnum,
   ReligionEnum,
@@ -18,7 +19,12 @@ import { HealthStatus } from './HealthStatus';
 import type { HouseholdKeys } from './Household';
 import type { InsuranceEnum } from './Insurance';
 import { insurances } from './Insurance';
+import { jobs } from './Job';
 import { Schema } from './Schema';
+import type { SkillEnum } from './Skill';
+import { skills } from './Skill';
+import type { SubsideTypeEnum } from './SubsideType';
+import { subsideTypes } from './SubsideType';
 
 export const householderIdentitySchema = {
   name: () => Schema.name(),
@@ -97,6 +103,30 @@ export interface HouseholderHealth {
   healthDescription?: string;
   insurances?: InsuranceEnum[];
   isHealthCompleted: boolean;
+}
+
+export const householderFinancialSchema = {
+  job: () => z.union(toZodLiteralList(jobs)).optionalString(),
+  income: () => z.string().optionalString(),
+  skills: () => z.array(z.union(toZodLiteralList(skills))).default([]),
+  subsideTypes: () =>
+    z.array(z.union(toZodLiteralList(subsideTypes))).default([]),
+  subside: () => z.string().optionalString(),
+  rent: () => z.string().optionalString(),
+  bankCardNumber: () => z.number().optional(),
+  bankAccountNumber: () => z.number().optional(),
+};
+
+export interface HouseholderFinancial {
+  job?: JobEnum;
+  income?: number;
+  skills?: SkillEnum[];
+  subsideTypes?: SubsideTypeEnum[];
+  subside?: number;
+  rent?: string;
+  bankCardNumber?: string;
+  bankAccountNumber?: string;
+  isFinancialCompleted: boolean;
 }
 
 export interface DraftHouseholder

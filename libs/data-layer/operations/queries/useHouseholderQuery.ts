@@ -12,6 +12,7 @@ import {
   getHouseholder,
   getHouseholderKeys,
   HouseholderContactFragment,
+  HouseholderFinancialFragment,
   HouseholderHealthFragment,
   HouseholderIdentityFragment,
   HouseholderKeysFragment,
@@ -24,12 +25,14 @@ export const HouseholderDocument = gql`
       ...HouseholderContact
       ...HouseholderIdentity
       ...HouseholderHealth
+      ...HouseholderFinancial
     }
   }
 
   ${HouseholderIdentityFragment}
   ${HouseholderContactFragment}
   ${HouseholderHealthFragment}
+  ${HouseholderFinancialFragment}
   ${HouseholderKeysFragment}
 `;
 
