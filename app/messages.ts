@@ -250,6 +250,15 @@ export const messages = {
     Welfare: 'تامین اجتماعی',
     Health: 'سلامت',
   },
+  healthStatus: {
+    Healthy: 'سالم',
+    Sick: 'بیمار',
+  },
+  addictionStatus: {
+    CurrentlyAddicted: 'معتاد',
+    FormerlyAddicted: 'سابقه اعتیاد',
+    NeverAddicted: 'سالم',
+  },
   householder: {
     visits: {
       delete: {
@@ -297,7 +306,7 @@ export const messages = {
     healthForm: {
       title: 'اطلاعات وضعیت سلامت',
       addictionStatusInput: {
-        label: '',
+        label: 'اعتیاد',
       },
       insuranceInput: {
         label: 'بیمه',
@@ -306,20 +315,16 @@ export const messages = {
         label: 'معلولیت',
       },
       disabilityDescriptionInput: {
-        label: '',
-        placeholder: '',
+        label: 'توضیحات معلولیت',
+        placeholder: 'قطع عضو',
       },
       healthStatusInput: {
-        label: '',
-        placeholder: '',
+        label: 'سلامت',
       },
-      healthCommentInput: {
-        label: '',
-        placeholder: '',
-      },
+
       healthDescriptionInput: {
-        label: '',
-        placeholder: '',
+        label: 'توضیحات سلامت',
+        placeholder: 'بیماری پوستی',
       },
 
       selectInputs: {

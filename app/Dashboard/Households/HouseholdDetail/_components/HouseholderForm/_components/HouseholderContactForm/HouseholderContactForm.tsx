@@ -153,7 +153,7 @@ export const HouseholderContactForm = ({
             readOnly={isReadOnly}
             wrapperProps={tid(ids.addressInput)}
             {...register('address')}
-            label={t.addressInput.label}
+            label={`${t.addressInput.label}:`}
             placeholder={t.addressInput.placeholder}
             error={errors.priorAccommodationAddress?.message}
           />
@@ -161,7 +161,7 @@ export const HouseholderContactForm = ({
             readOnly={isReadOnly}
             wrapperProps={tid(ids.neighborhoodInput)}
             {...register('neighborhood')}
-            label={t.neighborhoodInput.label}
+            label={`${t.neighborhoodInput.label}:`}
             placeholder={t.neighborhoodInput.placeholder}
             error={errors.neighborhood?.message}
           />
@@ -189,7 +189,7 @@ export const HouseholderContactForm = ({
             readOnly={isReadOnly}
             wrapperProps={tid(ids.priorAccommodationAddressInput)}
             {...register('priorAccommodationAddress')}
-            label={t.priorAccommodationAddressInput.label}
+            label={`${t.priorAccommodationAddressInput.label}:`}
             placeholder={t.priorAccommodationAddressInput.placeholder}
             error={errors.priorAccommodationAddress?.message}
           />

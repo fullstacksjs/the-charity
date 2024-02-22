@@ -14,8 +14,10 @@ import type {
   InsuranceEnum,
 } from '@camp/domain';
 import {
+  AddictionStatus,
   createResolver,
   DisabilityStatus,
+  HealthStatus,
   householderHealthSchema,
   insurances,
 } from '@camp/domain';
@@ -137,19 +139,44 @@ export const HouseholderHealthForm = ({
             placeholder={t.selectInputs.placeholder}
             label={`${t.insuranceInput.label}:`}
           />
-          {/* <TextInput
+
+          <Textarea
             readOnly={isReadOnly}
-            wrapperProps={tid(ids.zipCodeInput)}
-            error={errors.zipCode?.message}
-            {...register('zipCode')}
-            placeholder={t.zipCodeInput.placeholder}
-            label={`${t.zipCodeInput.label}:`}
-          /> */}
+            wrapperProps={tid(ids.disabilityDescriptionInput)}
+            {...register('disabilityDescription')}
+            label={`${t.disabilityDescriptionInput.label}:`}
+            placeholder={t.disabilityDescriptionInput.placeholder}
+            error={errors.disabilityDescription?.message}
+          />
+          <ControlledSelect
+            readOnly={isReadOnly}
+            name="healthStatus"
+            control={control}
+            wrapperProps={tid(ids.healthStatusInput)}
+            data={HealthStatus.map(v => ({
+              value: v,
+              label: messages.healthStatus[v],
+            }))}
+            placeholder={t.selectInputs.placeholder}
+            label={`${t.healthStatusInput.label}:`}
+          />
+          <ControlledSelect
+            readOnly={isReadOnly}
+            name="addictionStatus"
+            control={control}
+            wrapperProps={tid(ids.addictionStatusInput)}
+            data={AddictionStatus.map(v => ({
+              value: v,
+              label: messages.addictionStatus[v],
+            }))}
+            placeholder={t.selectInputs.placeholder}
+            label={`${t.addictionStatusInput.label}:`}
+          />
           <Textarea
             readOnly={isReadOnly}
             wrapperProps={tid(ids.healthDescriptionInput)}
             {...register('healthDescription')}
-            label={t.healthDescriptionInput.label}
+            label={`${t.healthDescriptionInput.label}:`}
             placeholder={t.healthDescriptionInput.placeholder}
             error={errors.healthDescription?.message}
           />
