@@ -1,6 +1,6 @@
 import { isNull, pruneValueWhen } from '@fullstacksjs/toolbox';
 
-import { householderFormIds as ids } from '../../app/Dashboard/Households/HouseholdDetail/_components/HouseholderForm/HouseholderForm.ids';
+import { householderFormIds as ids } from '../../app/Dashboard/Households/HouseholdDetail/_components/HouseholderForm/_components/HouseholderIdentityForm/HouseholderIdentityForm.ids';
 import { householdDetailIds as tabIds } from '../../app/Dashboard/Households/HouseholdDetail/HouseholdDetail.ids';
 import { messages } from '../../app/messages';
 import { AppRoute } from '../../libs/router/AppRoutes';
@@ -34,11 +34,7 @@ const idMapping = {
   fatherName: { id: ids.fatherNameInput, type: 'text' },
   nationalId: { id: ids.nationalIdInput, type: 'text' },
   gender: { id: ids.genderInput, type: 'select', options: messages.genders },
-  nationality: {
-    id: ids.nationalityInput,
-    type: 'select',
-    options: messages.nationalities,
-  },
+
   religion: {
     id: ids.religionInput,
     type: 'select',
@@ -52,7 +48,6 @@ const idMapping = {
         date,
       ),
   },
-  city: { id: ids.cityOfBirthInput, type: 'select', options: messages.cities },
 } as Record<string, Input>;
 
 describe('Householder', () => {
