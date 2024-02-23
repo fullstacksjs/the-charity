@@ -1,6 +1,6 @@
 export enum SubsideTypeEnum {
-  Driving = 'Driving',
-  Carpentry = 'Carpentry',
+  Welfare = 'Welfare',
+  RescueCommittee = 'RescueCommittee',
 }
 
 export const subsideTypes = Object.values(SubsideTypeEnum);

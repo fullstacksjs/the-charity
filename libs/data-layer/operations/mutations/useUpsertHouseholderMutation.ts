@@ -22,7 +22,6 @@ import type {
   SkillEnum,
   SubsideTypeEnum,
 } from '@camp/domain';
-import { ApiInsuranceConstraint, ApiInsuranceUpdateColumn } from '@camp/domain';
 
 import {
   getHouseholder,
@@ -64,6 +63,15 @@ const Document = gql`
           health_description
           health_comment
           insurances
+          job
+          income
+          skills
+          subside_types
+          subside
+          rent
+          bank_card_number
+          bank_account_number
+          financial_comment
         ]
       }
     ) {
@@ -133,6 +141,7 @@ interface Variables {
   rent?: string;
   bankCardNumber?: string;
   bankAccountNumber?: string;
+  financialComment?: string;
 }
 
 const toApiVariables = (
@@ -164,6 +173,7 @@ const toApiVariables = (
     rent: variables.rent,
     bank_card_number: variables.bankCardNumber,
     bank_account_number: variables.bankAccountNumber,
+    financial_comment: variables.financialComment,
   },
 });
 

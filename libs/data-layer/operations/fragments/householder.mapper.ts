@@ -96,6 +96,7 @@ export const getHouseholderFinancial = (
     rent: data.rent ?? undefined,
     bankCardNumber: data.bank_card_number ?? undefined,
     bankAccountNumber: data.bank_account_number ?? undefined,
+    financialComment: data.financial_comment ?? undefined,
     isFinancialCompleted: false,
   };
 

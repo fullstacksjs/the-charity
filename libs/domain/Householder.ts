@@ -115,6 +115,7 @@ export const householderFinancialSchema = {
   rent: () => z.string().optionalString(),
   bankCardNumber: () => z.number().optional(),
   bankAccountNumber: () => z.number().optional(),
+  financialComment: () => z.string().optionalString(),
 };
 
 export interface HouseholderFinancial {
@@ -126,6 +127,7 @@ export interface HouseholderFinancial {
   rent?: string;
   bankCardNumber?: string;
   bankAccountNumber?: string;
+  financialComment?: string;
   isFinancialCompleted: boolean;
 }
 
@@ -133,7 +135,8 @@ export interface DraftHouseholder
   extends HouseholdKeys,
     HouseholderIdentity,
     HouseholderContact,
-    HouseholderHealth {
+    HouseholderHealth,
+    HouseholderFinancial {
   status: HouseholderStatus.Draft;
 }
 
@@ -141,7 +144,8 @@ export interface CompletedHouseholder
   extends HouseholdKeys,
     Required<HouseholderIdentity>,
     Required<HouseholderContact>,
-    Required<HouseholderHealth> {
+    Required<HouseholderHealth>,
+    Required<HouseholderFinancial> {
   status: HouseholderStatus.Completed;
 }
 

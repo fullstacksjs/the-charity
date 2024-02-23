@@ -250,6 +250,18 @@ export const messages = {
     Welfare: 'تامین اجتماعی',
     Health: 'سلامت',
   },
+  skills: {
+    Driving: 'رانندگی',
+    Carpentry: 'نجاری',
+  },
+  subsideTypes: {
+    Welfare: 'بهزیستی',
+    RescueCommittee: 'کمیته امداد',
+  },
+  jobs: {
+    Psychologist: 'روان‌شناس',
+    Worker: 'کارگر',
+  },
   healthStatus: {
     Healthy: 'سالم',
     Sick: 'بیمار',
@@ -327,6 +339,45 @@ export const messages = {
         placeholder: 'بیماری پوستی',
       },
 
+      selectInputs: {
+        placeholder: 'انتخاب کنید',
+      },
+    },
+    financialForm: {
+      title: 'وضعیت مالی',
+      jobInput: {
+        label: 'شغل فعلی',
+      },
+      incomeInput: {
+        label: 'درآمد ماهانه (ریال)',
+        placeholder: '۲۰,۰۰۰,۰۰۰',
+      },
+      skillsInput: {
+        label: 'مهارت‌ها',
+      },
+      subsideTypesInput: {
+        label: 'کمک‌ها مالی',
+      },
+      subsideInput: {
+        label: 'میزان کمک مالی (ریال)',
+        placeholder: '۲۰,۰۰۰,۰۰۰',
+      },
+      rentInput: {
+        label: 'مبلغ اجاره',
+        placeholder: '۲۰,۰۰۰,۰۰۰',
+      },
+      bankCardNumberInput: {
+        label: 'شماره کارت',
+        placeholder: '۱۹۰۵۹۴۳۹۳۰۱۳۹۲۹۳',
+      },
+      bankAccountNumberInput: {
+        label: 'شماره حساب',
+        placeholder: '۱۹۰۵۹۴۳۹۳۰۱۳۹۲۹۳',
+      },
+      financialCommentInput: {
+        label: 'توضیحات',
+      },
+      // FIXME make this general
       selectInputs: {
         placeholder: 'انتخاب کنید',
       },

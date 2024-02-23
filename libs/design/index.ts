@@ -17,6 +17,7 @@ export * from './Modal';
 export * from './MultiSelect';
 export * from './NavLink';
 export * from './Notification';
+export * from './NumberInput';
 export * from './Select';
 export * from './Sidebar';
 export * from './SmallText';

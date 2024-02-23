@@ -54,5 +54,6 @@ export const HouseholderFinancialFragment = gql`
     rent
     bank_card_number
     bank_account_number
+    financial_comment
   }
 `;

@@ -3144,7 +3144,8 @@ export enum ApiJobConstraint {
 }
 
 export enum JobEnum {
-  Worker = 'worker'
+  Psychologist = 'Psychologist',
+  Worker = 'Worker'
 }
 
 /** Boolean expression to compare columns of type "job_enum". All fields are combined with logical 'AND'. */
