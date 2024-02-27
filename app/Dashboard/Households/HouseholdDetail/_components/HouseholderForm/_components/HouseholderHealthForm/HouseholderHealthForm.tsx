@@ -123,7 +123,7 @@ export const HouseholderHealthForm = ({
               value: v,
               label: messages.disabilityStatus[v],
             }))}
-            placeholder={t.selectInputs.placeholder}
+            placeholder={messages.form.selectInputs.placeholder}
             label={`${t.disabilityStatusInput.label}:`}
           />
           <ControlledMultiSelect
@@ -135,7 +135,7 @@ export const HouseholderHealthForm = ({
               value: v,
               label: messages.insurance[v],
             }))}
-            placeholder={t.selectInputs.placeholder}
+            placeholder={messages.form.selectInputs.placeholder}
             label={`${t.insuranceInput.label}:`}
           />
 
@@ -156,7 +156,7 @@ export const HouseholderHealthForm = ({
               value: v,
               label: messages.healthStatus[v],
             }))}
-            placeholder={t.selectInputs.placeholder}
+            placeholder={messages.form.selectInputs.placeholder}
             label={`${t.healthStatusInput.label}:`}
           />
           <ControlledSelect
@@ -168,7 +168,7 @@ export const HouseholderHealthForm = ({
               value: v,
               label: messages.addictionStatus[v],
             }))}
-            placeholder={t.selectInputs.placeholder}
+            placeholder={messages.form.selectInputs.placeholder}
             label={`${t.addictionStatusInput.label}:`}
           />
           <Textarea

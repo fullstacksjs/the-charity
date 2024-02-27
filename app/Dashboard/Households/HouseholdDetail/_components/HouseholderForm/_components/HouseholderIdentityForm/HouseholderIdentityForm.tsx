@@ -153,7 +153,7 @@ export const HouseholderIdentityForm = ({
               label: messages.genders[v],
             }))}
             label={`${t.genderInput.label}:`}
-            placeholder={t.selectInputs.placeholder}
+            placeholder={messages.form.selectInputs.placeholder}
           />
 
           <ControlledSelect
@@ -165,7 +165,7 @@ export const HouseholderIdentityForm = ({
               value: v,
               label: messages.religions[v],
             }))}
-            placeholder={t.selectInputs.placeholder}
+            placeholder={messages.form.selectInputs.placeholder}
             label={`${t.religionInput.label}:`}
           />
 
@@ -175,7 +175,7 @@ export const HouseholderIdentityForm = ({
             readOnly={isReadOnly}
             wrapperProps={tid(ids.dobInput)}
             label={`${t.dobInput.label}:`}
-            placeholder={t.selectInputs.placeholder}
+            placeholder={messages.form.selectInputs.placeholder}
           />
         </SimpleGrid>
       </Stack>

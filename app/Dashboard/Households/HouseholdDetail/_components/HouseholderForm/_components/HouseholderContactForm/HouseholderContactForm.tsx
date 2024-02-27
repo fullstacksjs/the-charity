@@ -122,7 +122,7 @@ export const HouseholderContactForm = ({
               value: v,
               label: messages.province[v],
             }))}
-            placeholder={t.selectInputs.placeholder}
+            placeholder={messages.form.selectInputs.placeholder}
             label={`${t.provinceInput.label}:`}
           />
           <ControlledSelect
@@ -134,7 +134,7 @@ export const HouseholderContactForm = ({
               value: v,
               label: messages.nationalities[v],
             }))}
-            placeholder={t.selectInputs.placeholder}
+            placeholder={messages.form.selectInputs.placeholder}
             label={`${t.nationalityInput.label}:`}
           />
           <ControlledSelect
@@ -146,7 +146,7 @@ export const HouseholderContactForm = ({
               value: v,
               label: messages.cities[v],
             }))}
-            placeholder={t.selectInputs.placeholder}
+            placeholder={messages.form.selectInputs.placeholder}
             label={`${t.cityOfBirthInput.label}:`}
           />
           <Textarea
@@ -174,7 +174,7 @@ export const HouseholderContactForm = ({
               value: v,
               label: messages.accommodationTypes[v],
             }))}
-            placeholder={t.selectInputs.placeholder}
+            placeholder={messages.form.selectInputs.placeholder}
             label={`${t.accommodationTypeInput.label}:`}
           />
           <TextInput

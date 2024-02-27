@@ -128,7 +128,7 @@ export const HouseholderFinancialForm = ({
               value: v,
               label: messages.jobs[v],
             }))}
-            placeholder={t.selectInputs.placeholder}
+            placeholder={messages.form.selectInputs.placeholder}
             label={`${t.jobInput.label}:`}
           />
 
@@ -152,7 +152,7 @@ export const HouseholderFinancialForm = ({
               value: v,
               label: messages.skills[v],
             }))}
-            placeholder={t.selectInputs.placeholder}
+            placeholder={messages.form.selectInputs.placeholder}
             label={`${t.skillsInput.label}:`}
           />
           <ControlledMultiSelect
@@ -164,7 +164,7 @@ export const HouseholderFinancialForm = ({
               value: v,
               label: messages.subsideTypes[v],
             }))}
-            placeholder={t.selectInputs.placeholder}
+            placeholder={messages.form.selectInputs.placeholder}
             label={`${t.subsideTypesInput.label}:`}
           />
 

@@ -179,7 +179,7 @@ export const MemberForm = ({
                 value: v,
                 label: messages.nationalities[v],
               }))}
-              placeholder={t.selectInputs.placeholder}
+              placeholder={messages.form.selectInputs.placeholder}
               label={`${t.nationalityInput.label}:`}
             />
             <TextInput
@@ -200,7 +200,7 @@ export const MemberForm = ({
                 label: messages.genders[v],
               }))}
               label={`${t.genderInput.label}:`}
-              placeholder={t.selectInputs.placeholder}
+              placeholder={messages.form.selectInputs.placeholder}
             />
             <ControlledDateInput
               name="dob"
@@ -208,7 +208,7 @@ export const MemberForm = ({
               readOnly={!isEditMode}
               wrapperProps={tid(ids.dobInput)}
               label={`${t.dobInput.label}:`}
-              placeholder={t.selectInputs.placeholder}
+              placeholder={messages.form.selectInputs.placeholder}
             />
             <ControlledSelect
               readOnly={!isEditMode}
@@ -219,7 +219,7 @@ export const MemberForm = ({
                 value: v,
                 label: messages.religions[v],
               }))}
-              placeholder={t.selectInputs.placeholder}
+              placeholder={messages.form.selectInputs.placeholder}
               label={`${t.religionInput.label}:`}
             />
           </SimpleGrid>

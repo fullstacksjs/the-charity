@@ -7,6 +7,11 @@ export const errorMessages: Record<ServerError, string> = {
 };
 
 export const messages = {
+  form: {
+    selectInputs: {
+      placeholder: 'انتخاب کنید',
+    },
+  },
   tablePagination: {
     page: (currentPage: number, total: number) =>
       `صفحه ${currentPage} از ${Math.max(total, 1)}`,
@@ -338,10 +343,6 @@ export const messages = {
         label: 'توضیحات سلامت',
         placeholder: 'بیماری پوستی',
       },
-
-      selectInputs: {
-        placeholder: 'انتخاب کنید',
-      },
     },
     financialForm: {
       title: 'وضعیت مالی',
@@ -376,10 +377,6 @@ export const messages = {
       },
       financialCommentInput: {
         label: 'توضیحات',
-      },
-      // FIXME make this general
-      selectInputs: {
-        placeholder: 'انتخاب کنید',
       },
     },
     contactForm: {
