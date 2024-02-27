@@ -2,7 +2,7 @@ import type { TextareaProps } from '@mantine/core';
 import { createStyles, Textarea as MantineTextareaInput } from '@mantine/core';
 import { forwardRef } from 'react';
 
-const useStyles = createStyles(_ => ({
+const useStyles = createStyles(theme => ({
   readonly: {
     textarea: {
       ':read-only': {
@@ -18,6 +18,11 @@ const useStyles = createStyles(_ => ({
       'backgroundColor': 'transparent',
     },
   },
+  textarea: {
+    label: {
+      color: theme.colors.fg[5],
+    },
+  },
 }));
 
 export const Textarea = forwardRef<HTMLTextAreaElement, TextareaProps>(
@@ -31,7 +36,7 @@ export const Textarea = forwardRef<HTMLTextAreaElement, TextareaProps>(
         {...rest}
         className={cx(
           { [classes.readonly]: readOnly },
-
+          classes.textarea,
           className,
         )}
       />
