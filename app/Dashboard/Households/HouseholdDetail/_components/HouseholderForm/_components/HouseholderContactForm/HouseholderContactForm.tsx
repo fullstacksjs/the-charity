@@ -1,5 +1,9 @@
 import { useUpsertHouseholderMutation } from '@camp/data-layer';
-import { ControlledSelect, Textarea, TextInput } from '@camp/design';
+import {
+  ControlledNumberInput,
+  ControlledSelect,
+  Textarea,
+} from '@camp/design';
 import type {
   AccommodationTypeEnum,
   CityEnum,
@@ -177,14 +181,18 @@ export const HouseholderContactForm = ({
             placeholder={messages.form.selectInputs.placeholder}
             label={`${t.accommodationTypeInput.label}:`}
           />
-          <TextInput
+          <ControlledNumberInput
+            name="zipCode"
             readOnly={isReadOnly}
             wrapperProps={tid(ids.zipCodeInput)}
             error={errors.zipCode?.message}
-            {...register('zipCode')}
+            control={control}
+            hideControls
+            thousandsSeparator=","
             placeholder={t.zipCodeInput.placeholder}
             label={`${t.zipCodeInput.label}:`}
           />
+
           <Textarea
             readOnly={isReadOnly}
             wrapperProps={tid(ids.priorAccommodationAddressInput)}
