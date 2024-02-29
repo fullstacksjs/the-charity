@@ -7,7 +7,7 @@ export const documentSchema = {
   name: () => Schema.name(),
   date: () => z.date(),
   description: () => z.string().optional(),
-  documents: () => z.array(Schema.document()).nonempty(),
+  documents: () => z.array(Schema.document()),
 };
 
 export const documentFileValidator = z

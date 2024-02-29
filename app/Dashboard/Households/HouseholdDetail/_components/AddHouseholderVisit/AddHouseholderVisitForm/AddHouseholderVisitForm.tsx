@@ -120,7 +120,6 @@ export const AddHouseholderVisitForm = ({
           control={control}
           name="documents"
           defaultValue={[]}
-          required
           label={tt.documentsInput.label}
           helper={tt.documentsInput.maxSize}
           upload={fileStorageClient.upload}
