@@ -19,8 +19,18 @@ import {
 } from '../fragments';
 
 export const VisitsDocument = gql`
-  query Visits($order_by: [visit_order_by!], $limit: Int, $offset: Int) {
-    visit(order_by: $order_by, limit: $limit, offset: $offset) {
+  query Visits(
+    $household_id: uuid!
+    $order_by: [visit_order_by!]
+    $limit: Int
+    $offset: Int
+  ) {
+    visit(
+      order_by: $order_by
+      limit: $limit
+      offset: $offset
+      where: { household_id: { _eq: $household_id } }
+    ) {
       ...VisitKeys
       ...VisitListItem
     }
@@ -51,6 +61,7 @@ const toClient = (data: ApiVisitsQuery | null): VisitsDto => {
 };
 
 interface Variables {
+  householdId: string;
   orderBy: SortingState;
   range: PaginationState;
 }
@@ -67,6 +78,7 @@ const toApiVariables = (data: Variables): ApiVisitsQueryVariables => {
         }, {}),
     limit: data.range.pageSize,
     offset: data.range.pageSize * data.range.pageIndex,
+    household_id: data.householdId,
   };
 };
 

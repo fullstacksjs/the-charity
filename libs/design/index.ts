@@ -1,6 +1,7 @@
 export * from './Alert';
 export * from './Badge';
 export * from './Breadcrumbs';
+export * from './ControlledAutocomplete';
 export * from './DashboardCard';
 export * from './DashboardHeader';
 export * from './DashboardTitle';

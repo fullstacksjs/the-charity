@@ -1,6 +1,7 @@
-import { useCreateVisitMutation } from '@camp/data-layer';
+import { useCreateVisitMutation, useVisitNameQuery } from '@camp/data-layer';
 import { debug } from '@camp/debug';
 import {
+  ControlledAutocomplete,
   ControlledDateInput,
   ControlledFileUpload,
   showNotification,
@@ -58,6 +59,14 @@ export const AddHouseholderVisitForm = ({
     mode: 'onChange',
   });
   const [createVisit, { loading }] = useCreateVisitMutation();
+  const { data: visitNameData, loading: isLoadingVisitNames } =
+    useVisitNameQuery({
+      variables: {
+        householdId,
+      },
+    });
+
+  const visitNames = visitNameData?.visitNames?.map(v => v.name) ?? [];
 
   const onSubmit = handleSubmit(async inputs => {
     try {
@@ -89,7 +98,11 @@ export const AddHouseholderVisitForm = ({
   return (
     <form onSubmit={onSubmit} {...tid(ids.form)}>
       <Stack spacing={40}>
-        <TextInput
+        <ControlledAutocomplete
+          data={visitNames}
+          name="name"
+          loading={isLoadingVisitNames}
+          control={control}
           data-autoFocus
           required
           placeholder={tt.nameInput.placeholder}
@@ -97,7 +110,6 @@ export const AddHouseholderVisitForm = ({
           size="sm"
           error={formState.errors.name?.message}
           wrapperProps={tid(ids.nameInput)}
-          {...register('name')}
         />
         <ControlledDateInput
           name="date"

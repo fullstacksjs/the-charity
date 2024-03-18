@@ -70,6 +70,7 @@ export const HouseholderVisits = ({ householdId }: Props) => {
 
   const { data, loading, error, previousData } = useHouseholderVisitsQuery({
     variables: {
+      householdId,
       orderBy: sorting,
       range: pagination,
     },

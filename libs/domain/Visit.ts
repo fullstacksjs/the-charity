@@ -29,6 +29,8 @@ export type VisitKeys = Pick<Visit, 'householdId' | 'id'>;
 
 export type VisitListItem = Pick<Visit, 'date' | 'description' | 'documents'>;
 
+export type VisitName = Pick<Visit, 'name'>;
+
 export const visitColumnHelper = createColumnHelper<
   VisitKeys & VisitListItem
 >();

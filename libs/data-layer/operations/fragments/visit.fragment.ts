@@ -34,3 +34,9 @@ export const VisitListItemFragment = gql`
     }
   }
 `;
+
+export const VisitNameFragment = gql`
+  fragment VisitName on visit {
+    name
+  }
+`;
