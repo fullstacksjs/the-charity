@@ -108,7 +108,7 @@ export const HouseholderFinancialForm = ({
   });
 
   return (
-    <form onSubmit={onSubmit}>
+    <form onSubmit={onSubmit} {...tid(ids.form)}>
       <Stack spacing={25}>
         <HouseholderFormActions
           title={t.title}
