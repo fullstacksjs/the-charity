@@ -7,4 +7,5 @@ export const HouseholderHealthFormIds = {
   healthCommentInput: 'health-comment-input',
   insuranceInput: 'insurance-type-input',
   healthDescriptionInput: 'health-description-input',
+  idPrefix: 'householder-health',
 } as const;

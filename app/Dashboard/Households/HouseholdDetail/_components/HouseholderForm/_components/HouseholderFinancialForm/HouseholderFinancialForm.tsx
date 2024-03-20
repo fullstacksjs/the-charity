@@ -111,6 +111,7 @@ export const HouseholderFinancialForm = ({
     <form onSubmit={onSubmit} {...tid(ids.form)}>
       <Stack spacing={25}>
         <HouseholderFormActions
+          idPrefix={ids.idPrefix}
           title={t.title}
           isEditMode={isEditMode}
           canUndo={isDirty || isCompleted}

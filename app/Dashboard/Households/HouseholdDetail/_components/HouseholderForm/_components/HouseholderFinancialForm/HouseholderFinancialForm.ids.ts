@@ -8,5 +8,6 @@ export const HouseholderFinancialFormIds = {
   rentInput: 'householder-rent-input',
   bankCardNumberInput: 'householder-bank-card-number-input',
   bankAccountNumberInput: 'householder-bank-account-number-input',
-  financialCommentInput: 'householder_financial_comment',
+  financialCommentInput: 'householder-financial-comment',
+  idPrefix: 'householder-financial',
 } as const;

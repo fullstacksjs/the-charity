@@ -10,4 +10,5 @@ export const householderContactFormIds = {
   descriptionInput: 'householder-description',
   nationalityInput: 'householder-nationality',
   cityOfBirthInput: 'householder-city-of-birth',
+  idPrefix: 'householder-contact',
 } as const;

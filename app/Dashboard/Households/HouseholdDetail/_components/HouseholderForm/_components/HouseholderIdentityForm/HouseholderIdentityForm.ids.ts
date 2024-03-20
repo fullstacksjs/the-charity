@@ -1,5 +1,5 @@
 export const householderFormIds = {
-  form: 'householder-form',
+  form: 'householder-identity-form',
   firstNameInput: 'householder-first-name',
   lastNameInput: 'householder-last-name',
   fatherNameInput: 'householder-father-name',
@@ -8,7 +8,8 @@ export const householderFormIds = {
   religionInput: 'householder-religion',
   genderInput: 'householder-gender',
   dobInput: 'householder-date-of-birth',
-  submitBtn: 'householder-submit-button',
-  editBtn: 'householder-edit-button',
-  cancel: 'householder-cancel-button',
+  submitBtn: 'householder-identity-submit-button',
+  editBtn: 'householder-identity-edit-button',
+  cancel: 'householder-identity-cancel-button',
+  idPrefix: 'householder-identity',
 } as const;

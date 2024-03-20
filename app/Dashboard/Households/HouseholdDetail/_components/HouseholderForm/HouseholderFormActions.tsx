@@ -4,7 +4,7 @@ import { messages } from '@camp/messages';
 import { tid } from '@camp/test';
 import { Button, Group } from '@mantine/core';
 
-import { householderFormIds as ids } from './_components/HouseholderIdentityForm/HouseholderIdentityForm.ids';
+import { householderFormActionsIds as ids } from './HouseholderFormActions.ids';
 
 interface Props {
   isEditMode?: boolean;
@@ -13,6 +13,7 @@ interface Props {
   title: string;
   onUndo: VoidFunction;
   onEdit: VoidFunction;
+  idPrefix: string;
 }
 
 export const HouseholderFormActions = ({
@@ -22,6 +23,7 @@ export const HouseholderFormActions = ({
   isEditMode,
   onUndo,
   onEdit,
+  idPrefix,
 }: Props) => {
   return (
     <Group position="apart" mih="100%">
@@ -32,12 +34,12 @@ export const HouseholderFormActions = ({
             <DestructiveButton
               disabled={!canUndo}
               onClick={onUndo}
-              {...tid(ids.cancel)}
+              {...tid(`${idPrefix}-${ids.cancel}`)}
             >
               {messages.actions.undoBtn}
             </DestructiveButton>
             <Button
-              {...tid(ids.submitBtn)}
+              {...tid(`${idPrefix}-${ids.submitBtn}`)}
               type="submit"
               leftIcon={<CheckIcon size={16} />}
               disabled={!canSubmit}
@@ -48,7 +50,7 @@ export const HouseholderFormActions = ({
         ) : (
           <Button
             key={1}
-            {...tid(ids.editBtn)}
+            {...tid(`${idPrefix}-${ids.editBtn}`)}
             variant="outline"
             onClick={onEdit}
             leftIcon={<EditIcon size={16} />}
