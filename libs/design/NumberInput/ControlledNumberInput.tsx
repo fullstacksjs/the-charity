@@ -1,7 +1,6 @@
 import type { Nullable } from '@fullstacksjs/toolbox';
 import type { NumberInputProps } from '@mantine/core';
 import { createStyles, NumberInput as MantineNumberInput } from '@mantine/core';
-import { forwardRef } from 'react';
 import type { Control, FieldValues, Path, PathValue } from 'react-hook-form';
 import { Controller } from 'react-hook-form';
 

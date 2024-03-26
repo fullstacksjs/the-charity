@@ -1,7 +1,7 @@
 import { z } from 'zod';
 
 import { toZodLiteralList } from '../zod-addons';
-import { AddictionStatus } from './AddictionStatus';
+import { addictionStatus } from './AddictionStatus';
 import type {
   AccommodationTypeEnum,
   AddictionStatusEnum,
@@ -14,8 +14,8 @@ import type {
   ProvinceEnum,
   ReligionEnum,
 } from './ApiSchema';
-import { DisabilityStatus } from './DisabilityStatus';
-import { HealthStatus } from './HealthStatus';
+import { disabilityStatus } from './DisabilityStatus';
+import { healthStatus } from './HealthStatus';
 import type { HouseholdKeys } from './Household';
 import type { InsuranceEnum } from './Insurance';
 import { insurances } from './Insurance';
@@ -85,12 +85,12 @@ export interface HouseholderContact {
 export const householderHealthSchema = {
   healthDescription: () => z.string().optionalString(),
   addictionStatus: () =>
-    z.union(toZodLiteralList(AddictionStatus)).optionalString(),
+    z.union(toZodLiteralList(addictionStatus)).optionalString(),
   disabilityStatus: () =>
-    z.union(toZodLiteralList(DisabilityStatus)).optionalString(),
+    z.union(toZodLiteralList(disabilityStatus)).optionalString(),
   disabilityDescription: () => z.string().optionalString(),
   insurances: () => z.array(z.union(toZodLiteralList(insurances))).default([]),
-  healthStatus: () => z.union(toZodLiteralList(HealthStatus)).optionalString(),
+  healthStatus: () => z.union(toZodLiteralList(healthStatus)).optionalString(),
   healthComment: () => z.string().optionalString(),
 };
 

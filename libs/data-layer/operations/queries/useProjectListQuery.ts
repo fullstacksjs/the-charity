@@ -17,7 +17,11 @@ import {
 
 export const ProjectListDocument = gql`
   query ProjectList($offset: Int, $limit: Int) {
-    project_aggregate(offset: $offset, limit: $limit) {
+    project_aggregate(
+      offset: $offset
+      limit: $limit
+      order_by: { created_at: desc }
+    ) {
       nodes {
         ...ProjectKeys
         ...ProjectListItem

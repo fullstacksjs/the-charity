@@ -1,3 +1,3 @@
 import { AddictionStatusEnum } from './ApiSchema';
 
-export const AddictionStatus = Object.values(AddictionStatusEnum);
+export const addictionStatus = Object.values(AddictionStatusEnum);

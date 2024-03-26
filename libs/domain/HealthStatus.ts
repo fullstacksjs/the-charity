@@ -1,3 +1,3 @@
 import { HealthStatusEnum } from './ApiSchema';
 
-export const HealthStatus = Object.values(HealthStatusEnum);
+export const healthStatus = Object.values(HealthStatusEnum);

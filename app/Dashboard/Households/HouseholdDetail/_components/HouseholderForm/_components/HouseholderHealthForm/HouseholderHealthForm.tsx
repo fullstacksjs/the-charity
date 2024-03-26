@@ -13,10 +13,10 @@ import type {
   InsuranceEnum,
 } from '@camp/domain';
 import {
-  AddictionStatus,
+  addictionStatus,
   createResolver,
-  DisabilityStatus,
-  HealthStatus,
+  disabilityStatus,
+  healthStatus,
   householderHealthSchema,
   insurances,
 } from '@camp/domain';
@@ -120,7 +120,7 @@ export const HouseholderHealthForm = ({
             name="disabilityStatus"
             control={control}
             wrapperProps={tid(ids.disabilityStatusInput)}
-            data={DisabilityStatus.map(v => ({
+            data={disabilityStatus.map(v => ({
               value: v,
               label: messages.disabilityStatus[v],
             }))}
@@ -153,7 +153,7 @@ export const HouseholderHealthForm = ({
             name="healthStatus"
             control={control}
             wrapperProps={tid(ids.healthStatusInput)}
-            data={HealthStatus.map(v => ({
+            data={healthStatus.map(v => ({
               value: v,
               label: messages.healthStatus[v],
             }))}
@@ -165,7 +165,7 @@ export const HouseholderHealthForm = ({
             name="addictionStatus"
             control={control}
             wrapperProps={tid(ids.addictionStatusInput)}
-            data={AddictionStatus.map(v => ({
+            data={addictionStatus.map(v => ({
               value: v,
               label: messages.addictionStatus[v],
             }))}
