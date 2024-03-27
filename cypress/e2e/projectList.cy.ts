@@ -18,6 +18,6 @@ describe('Project List', () => {
     cy.wrap(api.createProject(name));
     cy.wait('@createProject');
     cy.visit(AppRoute.projects);
-    cy.findByText(name).should('exist');
+    cy.get('tbody > :nth-child(1)').findByText(name).should('exist');
   });
 });
