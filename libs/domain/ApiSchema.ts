@@ -35,6 +35,23 @@ export type ApiIntComparisonExp = {
 };
 
 /** Boolean expression to compare columns of type "String". All fields are combined with logical 'AND'. */
+export type ApiStringArrayComparisonExp = {
+  /** is the array contained in the given array value */
+  _contained_in?: InputMaybe<Array<Scalars['String']['input']>>;
+  /** does the array contain the given value */
+  _contains?: InputMaybe<Array<Scalars['String']['input']>>;
+  _eq?: InputMaybe<Array<Scalars['String']['input']>>;
+  _gt?: InputMaybe<Array<Scalars['String']['input']>>;
+  _gte?: InputMaybe<Array<Scalars['String']['input']>>;
+  _in?: InputMaybe<Array<Array<Scalars['String']['input']>>>;
+  _is_null?: InputMaybe<Scalars['Boolean']['input']>;
+  _lt?: InputMaybe<Array<Scalars['String']['input']>>;
+  _lte?: InputMaybe<Array<Scalars['String']['input']>>;
+  _neq?: InputMaybe<Array<Scalars['String']['input']>>;
+  _nin?: InputMaybe<Array<Array<Scalars['String']['input']>>>;
+};
+
+/** Boolean expression to compare columns of type "String". All fields are combined with logical 'AND'. */
 export type ApiStringComparisonExp = {
   _eq?: InputMaybe<Scalars['String']['input']>;
   _gt?: InputMaybe<Scalars['String']['input']>;
@@ -345,7 +362,7 @@ export type ApiBankAccount = {
   __typename?: 'bank_account';
   account_number: Scalars['String']['output'];
   bank_name: Scalars['String']['output'];
-  card_name: Scalars['String']['output'];
+  card_number: Scalars['String']['output'];
   householder_id: Scalars['uuid']['output'];
   id: Scalars['uuid']['output'];
 };
@@ -404,7 +421,7 @@ export type ApiBankAccountBoolExp = {
   _or?: InputMaybe<Array<ApiBankAccountBoolExp>>;
   account_number?: InputMaybe<ApiStringComparisonExp>;
   bank_name?: InputMaybe<ApiStringComparisonExp>;
-  card_name?: InputMaybe<ApiStringComparisonExp>;
+  card_number?: InputMaybe<ApiStringComparisonExp>;
   householder_id?: InputMaybe<ApiUuidComparisonExp>;
   id?: InputMaybe<ApiUuidComparisonExp>;
 };
@@ -421,7 +438,7 @@ export enum ApiBankAccountConstraint {
 export type ApiBankAccountInsertInput = {
   account_number?: InputMaybe<Scalars['String']['input']>;
   bank_name?: InputMaybe<Scalars['String']['input']>;
-  card_name?: InputMaybe<Scalars['String']['input']>;
+  card_number?: InputMaybe<Scalars['String']['input']>;
   householder_id?: InputMaybe<Scalars['uuid']['input']>;
   id?: InputMaybe<Scalars['uuid']['input']>;
 };
@@ -431,7 +448,7 @@ export type ApiBankAccountMaxFields = {
   __typename?: 'bank_account_max_fields';
   account_number?: Maybe<Scalars['String']['output']>;
   bank_name?: Maybe<Scalars['String']['output']>;
-  card_name?: Maybe<Scalars['String']['output']>;
+  card_number?: Maybe<Scalars['String']['output']>;
   householder_id?: Maybe<Scalars['uuid']['output']>;
   id?: Maybe<Scalars['uuid']['output']>;
 };
@@ -440,7 +457,7 @@ export type ApiBankAccountMaxFields = {
 export type ApiBankAccountMaxOrderBy = {
   account_number?: InputMaybe<ApiOrderBy>;
   bank_name?: InputMaybe<ApiOrderBy>;
-  card_name?: InputMaybe<ApiOrderBy>;
+  card_number?: InputMaybe<ApiOrderBy>;
   householder_id?: InputMaybe<ApiOrderBy>;
   id?: InputMaybe<ApiOrderBy>;
 };
@@ -450,7 +467,7 @@ export type ApiBankAccountMinFields = {
   __typename?: 'bank_account_min_fields';
   account_number?: Maybe<Scalars['String']['output']>;
   bank_name?: Maybe<Scalars['String']['output']>;
-  card_name?: Maybe<Scalars['String']['output']>;
+  card_number?: Maybe<Scalars['String']['output']>;
   householder_id?: Maybe<Scalars['uuid']['output']>;
   id?: Maybe<Scalars['uuid']['output']>;
 };
@@ -459,7 +476,7 @@ export type ApiBankAccountMinFields = {
 export type ApiBankAccountMinOrderBy = {
   account_number?: InputMaybe<ApiOrderBy>;
   bank_name?: InputMaybe<ApiOrderBy>;
-  card_name?: InputMaybe<ApiOrderBy>;
+  card_number?: InputMaybe<ApiOrderBy>;
   householder_id?: InputMaybe<ApiOrderBy>;
   id?: InputMaybe<ApiOrderBy>;
 };
@@ -484,7 +501,7 @@ export type ApiBankAccountOnConflict = {
 export type ApiBankAccountOrderBy = {
   account_number?: InputMaybe<ApiOrderBy>;
   bank_name?: InputMaybe<ApiOrderBy>;
-  card_name?: InputMaybe<ApiOrderBy>;
+  card_number?: InputMaybe<ApiOrderBy>;
   householder_id?: InputMaybe<ApiOrderBy>;
   id?: InputMaybe<ApiOrderBy>;
 };
@@ -501,7 +518,7 @@ export enum ApiBankAccountSelectColumn {
   /** column name */
   BankName = 'bank_name',
   /** column name */
-  CardName = 'card_name',
+  CardNumber = 'card_number',
   /** column name */
   HouseholderId = 'householder_id',
   /** column name */
@@ -512,7 +529,7 @@ export enum ApiBankAccountSelectColumn {
 export type ApiBankAccountSetInput = {
   account_number?: InputMaybe<Scalars['String']['input']>;
   bank_name?: InputMaybe<Scalars['String']['input']>;
-  card_name?: InputMaybe<Scalars['String']['input']>;
+  card_number?: InputMaybe<Scalars['String']['input']>;
   householder_id?: InputMaybe<Scalars['uuid']['input']>;
   id?: InputMaybe<Scalars['uuid']['input']>;
 };
@@ -529,7 +546,7 @@ export type ApiBankAccountStreamCursorInput = {
 export type ApiBankAccountStreamCursorValueInput = {
   account_number?: InputMaybe<Scalars['String']['input']>;
   bank_name?: InputMaybe<Scalars['String']['input']>;
-  card_name?: InputMaybe<Scalars['String']['input']>;
+  card_number?: InputMaybe<Scalars['String']['input']>;
   householder_id?: InputMaybe<Scalars['uuid']['input']>;
   id?: InputMaybe<Scalars['uuid']['input']>;
 };
@@ -541,7 +558,7 @@ export enum ApiBankAccountUpdateColumn {
   /** column name */
   BankName = 'bank_name',
   /** column name */
-  CardName = 'card_name',
+  CardNumber = 'card_number',
   /** column name */
   HouseholderId = 'householder_id',
   /** column name */
@@ -2269,10 +2286,12 @@ export type ApiHouseholder = {
   accommodation_type?: Maybe<AccommodationTypeEnum>;
   addiction_status?: Maybe<AddictionStatusEnum>;
   address?: Maybe<Scalars['String']['output']>;
+  bank_account_number?: Maybe<Scalars['String']['output']>;
   /** An array relationship */
   bank_accounts: Array<ApiBankAccount>;
   /** An aggregate relationship */
   bank_accounts_aggregate: ApiBankAccountAggregate;
+  bank_card_number?: Maybe<Scalars['String']['output']>;
   city?: Maybe<CityEnum>;
   created_at: Scalars['timestamptz']['output'];
   description?: Maybe<Scalars['String']['output']>;
@@ -2296,32 +2315,21 @@ export type ApiHouseholder = {
   household_id: Scalars['uuid']['output'];
   id: Scalars['uuid']['output'];
   income?: Maybe<Scalars['money']['output']>;
-  /** An array relationship */
-  insurances: Array<ApiInsurance>;
-  /** An aggregate relationship */
-  insurances_aggregate: ApiInsuranceAggregate;
-  /** An array relationship */
-  jobs: Array<ApiJob>;
-  /** An aggregate relationship */
-  jobs_aggregate: ApiJobAggregate;
+  insurances?: Maybe<Array<Scalars['String']['output']>>;
+  job?: Maybe<JobEnum>;
   name: Scalars['String']['output'];
   national_id?: Maybe<Scalars['String']['output']>;
   nationality?: Maybe<NationalityEnum>;
   neighborhood?: Maybe<Scalars['String']['output']>;
   prior_accommodation_address?: Maybe<Scalars['String']['output']>;
-  province?: Maybe<Scalars['String']['output']>;
+  province?: Maybe<ProvinceEnum>;
   religion?: Maybe<ReligionEnum>;
   rent?: Maybe<Scalars['money']['output']>;
-  /** An array relationship */
-  skills: Array<ApiSkill>;
-  /** An aggregate relationship */
-  skills_aggregate: ApiSkillAggregate;
+  skills?: Maybe<Array<Scalars['String']['output']>>;
   /** A computed field, executes function "get_householder_status" */
   status?: Maybe<Scalars['String']['output']>;
-  /** An array relationship */
-  subsidies: Array<ApiSubsidy>;
-  /** An aggregate relationship */
-  subsidies_aggregate: ApiSubsidyAggregate;
+  subside?: Maybe<Scalars['money']['output']>;
+  subside_types?: Maybe<Array<Scalars['String']['output']>>;
   surname?: Maybe<Scalars['String']['output']>;
   updated_at: Scalars['timestamptz']['output'];
   zip_code?: Maybe<Scalars['String']['output']>;
@@ -2387,86 +2395,6 @@ export type ApiHouseholderApiHealthDocumentsAggregateArgs = {
   where?: InputMaybe<ApiDocumentBoolExp>;
 };
 
-
-/** columns and relationships of "householder" */
-export type ApiHouseholderApiInsurancesArgs = {
-  distinct_on?: InputMaybe<Array<ApiInsuranceSelectColumn>>;
-  limit?: InputMaybe<Scalars['Int']['input']>;
-  offset?: InputMaybe<Scalars['Int']['input']>;
-  order_by?: InputMaybe<Array<ApiInsuranceOrderBy>>;
-  where?: InputMaybe<ApiInsuranceBoolExp>;
-};
-
-
-/** columns and relationships of "householder" */
-export type ApiHouseholderApiInsurancesAggregateArgs = {
-  distinct_on?: InputMaybe<Array<ApiInsuranceSelectColumn>>;
-  limit?: InputMaybe<Scalars['Int']['input']>;
-  offset?: InputMaybe<Scalars['Int']['input']>;
-  order_by?: InputMaybe<Array<ApiInsuranceOrderBy>>;
-  where?: InputMaybe<ApiInsuranceBoolExp>;
-};
-
-
-/** columns and relationships of "householder" */
-export type ApiHouseholderApiJobsArgs = {
-  distinct_on?: InputMaybe<Array<ApiJobSelectColumn>>;
-  limit?: InputMaybe<Scalars['Int']['input']>;
-  offset?: InputMaybe<Scalars['Int']['input']>;
-  order_by?: InputMaybe<Array<ApiJobOrderBy>>;
-  where?: InputMaybe<ApiJobBoolExp>;
-};
-
-
-/** columns and relationships of "householder" */
-export type ApiHouseholderApiJobsAggregateArgs = {
-  distinct_on?: InputMaybe<Array<ApiJobSelectColumn>>;
-  limit?: InputMaybe<Scalars['Int']['input']>;
-  offset?: InputMaybe<Scalars['Int']['input']>;
-  order_by?: InputMaybe<Array<ApiJobOrderBy>>;
-  where?: InputMaybe<ApiJobBoolExp>;
-};
-
-
-/** columns and relationships of "householder" */
-export type ApiHouseholderApiSkillsArgs = {
-  distinct_on?: InputMaybe<Array<ApiSkillSelectColumn>>;
-  limit?: InputMaybe<Scalars['Int']['input']>;
-  offset?: InputMaybe<Scalars['Int']['input']>;
-  order_by?: InputMaybe<Array<ApiSkillOrderBy>>;
-  where?: InputMaybe<ApiSkillBoolExp>;
-};
-
-
-/** columns and relationships of "householder" */
-export type ApiHouseholderApiSkillsAggregateArgs = {
-  distinct_on?: InputMaybe<Array<ApiSkillSelectColumn>>;
-  limit?: InputMaybe<Scalars['Int']['input']>;
-  offset?: InputMaybe<Scalars['Int']['input']>;
-  order_by?: InputMaybe<Array<ApiSkillOrderBy>>;
-  where?: InputMaybe<ApiSkillBoolExp>;
-};
-
-
-/** columns and relationships of "householder" */
-export type ApiHouseholderApiSubsidiesArgs = {
-  distinct_on?: InputMaybe<Array<ApiSubsidySelectColumn>>;
-  limit?: InputMaybe<Scalars['Int']['input']>;
-  offset?: InputMaybe<Scalars['Int']['input']>;
-  order_by?: InputMaybe<Array<ApiSubsidyOrderBy>>;
-  where?: InputMaybe<ApiSubsidyBoolExp>;
-};
-
-
-/** columns and relationships of "householder" */
-export type ApiHouseholderApiSubsidiesAggregateArgs = {
-  distinct_on?: InputMaybe<Array<ApiSubsidySelectColumn>>;
-  limit?: InputMaybe<Scalars['Int']['input']>;
-  offset?: InputMaybe<Scalars['Int']['input']>;
-  order_by?: InputMaybe<Array<ApiSubsidyOrderBy>>;
-  where?: InputMaybe<ApiSubsidyBoolExp>;
-};
-
 /** aggregated selection of "householder" */
 export type ApiHouseholderAggregate = {
   __typename?: 'householder_aggregate';
@@ -2502,6 +2430,7 @@ export type ApiHouseholderAvgFields = {
   __typename?: 'householder_avg_fields';
   income?: Maybe<Scalars['Float']['output']>;
   rent?: Maybe<Scalars['Float']['output']>;
+  subside?: Maybe<Scalars['Float']['output']>;
 };
 
 /** Boolean expression to filter rows from the table "householder". All fields are combined with a logical 'AND'. */
@@ -2512,8 +2441,10 @@ export type ApiHouseholderBoolExp = {
   accommodation_type?: InputMaybe<AccommodationTypeEnumComparisonExp>;
   addiction_status?: InputMaybe<AddictionStatusEnumComparisonExp>;
   address?: InputMaybe<ApiStringComparisonExp>;
+  bank_account_number?: InputMaybe<ApiStringComparisonExp>;
   bank_accounts?: InputMaybe<ApiBankAccountBoolExp>;
   bank_accounts_aggregate?: InputMaybe<ApiBankAccountAggregateBoolExp>;
+  bank_card_number?: InputMaybe<ApiStringComparisonExp>;
   city?: InputMaybe<CityEnumComparisonExp>;
   created_at?: InputMaybe<ApiTimestamptzComparisonExp>;
   description?: InputMaybe<ApiStringComparisonExp>;
@@ -2533,23 +2464,20 @@ export type ApiHouseholderBoolExp = {
   household_id?: InputMaybe<ApiUuidComparisonExp>;
   id?: InputMaybe<ApiUuidComparisonExp>;
   income?: InputMaybe<ApiMoneyComparisonExp>;
-  insurances?: InputMaybe<ApiInsuranceBoolExp>;
-  insurances_aggregate?: InputMaybe<ApiInsuranceAggregateBoolExp>;
-  jobs?: InputMaybe<ApiJobBoolExp>;
-  jobs_aggregate?: InputMaybe<ApiJobAggregateBoolExp>;
+  insurances?: InputMaybe<ApiStringArrayComparisonExp>;
+  job?: InputMaybe<JobEnumComparisonExp>;
   name?: InputMaybe<ApiStringComparisonExp>;
   national_id?: InputMaybe<ApiStringComparisonExp>;
   nationality?: InputMaybe<NationalityEnumComparisonExp>;
   neighborhood?: InputMaybe<ApiStringComparisonExp>;
   prior_accommodation_address?: InputMaybe<ApiStringComparisonExp>;
-  province?: InputMaybe<ApiStringComparisonExp>;
+  province?: InputMaybe<ProvinceEnumComparisonExp>;
   religion?: InputMaybe<ReligionEnumComparisonExp>;
   rent?: InputMaybe<ApiMoneyComparisonExp>;
-  skills?: InputMaybe<ApiSkillBoolExp>;
-  skills_aggregate?: InputMaybe<ApiSkillAggregateBoolExp>;
+  skills?: InputMaybe<ApiStringArrayComparisonExp>;
   status?: InputMaybe<ApiStringComparisonExp>;
-  subsidies?: InputMaybe<ApiSubsidyBoolExp>;
-  subsidies_aggregate?: InputMaybe<ApiSubsidyAggregateBoolExp>;
+  subside?: InputMaybe<ApiMoneyComparisonExp>;
+  subside_types?: InputMaybe<ApiStringArrayComparisonExp>;
   surname?: InputMaybe<ApiStringComparisonExp>;
   updated_at?: InputMaybe<ApiTimestamptzComparisonExp>;
   zip_code?: InputMaybe<ApiStringComparisonExp>;
@@ -2569,6 +2497,7 @@ export enum ApiHouseholderConstraint {
 export type ApiHouseholderIncInput = {
   income?: InputMaybe<Scalars['money']['input']>;
   rent?: InputMaybe<Scalars['money']['input']>;
+  subside?: InputMaybe<Scalars['money']['input']>;
 };
 
 /** input type for inserting data into table "householder" */
@@ -2576,7 +2505,9 @@ export type ApiHouseholderInsertInput = {
   accommodation_type?: InputMaybe<AccommodationTypeEnum>;
   addiction_status?: InputMaybe<AddictionStatusEnum>;
   address?: InputMaybe<Scalars['String']['input']>;
+  bank_account_number?: InputMaybe<Scalars['String']['input']>;
   bank_accounts?: InputMaybe<ApiBankAccountArrRelInsertInput>;
+  bank_card_number?: InputMaybe<Scalars['String']['input']>;
   city?: InputMaybe<CityEnum>;
   created_at?: InputMaybe<Scalars['timestamptz']['input']>;
   description?: InputMaybe<Scalars['String']['input']>;
@@ -2594,18 +2525,19 @@ export type ApiHouseholderInsertInput = {
   household_id?: InputMaybe<Scalars['uuid']['input']>;
   id?: InputMaybe<Scalars['uuid']['input']>;
   income?: InputMaybe<Scalars['money']['input']>;
-  insurances?: InputMaybe<ApiInsuranceArrRelInsertInput>;
-  jobs?: InputMaybe<ApiJobArrRelInsertInput>;
+  insurances?: InputMaybe<Array<Scalars['String']['input']>>;
+  job?: InputMaybe<JobEnum>;
   name?: InputMaybe<Scalars['String']['input']>;
   national_id?: InputMaybe<Scalars['String']['input']>;
   nationality?: InputMaybe<NationalityEnum>;
   neighborhood?: InputMaybe<Scalars['String']['input']>;
   prior_accommodation_address?: InputMaybe<Scalars['String']['input']>;
-  province?: InputMaybe<Scalars['String']['input']>;
+  province?: InputMaybe<ProvinceEnum>;
   religion?: InputMaybe<ReligionEnum>;
   rent?: InputMaybe<Scalars['money']['input']>;
-  skills?: InputMaybe<ApiSkillArrRelInsertInput>;
-  subsidies?: InputMaybe<ApiSubsidyArrRelInsertInput>;
+  skills?: InputMaybe<Array<Scalars['String']['input']>>;
+  subside?: InputMaybe<Scalars['money']['input']>;
+  subside_types?: InputMaybe<Array<Scalars['String']['input']>>;
   surname?: InputMaybe<Scalars['String']['input']>;
   updated_at?: InputMaybe<Scalars['timestamptz']['input']>;
   zip_code?: InputMaybe<Scalars['String']['input']>;
@@ -2615,6 +2547,8 @@ export type ApiHouseholderInsertInput = {
 export type ApiHouseholderMaxFields = {
   __typename?: 'householder_max_fields';
   address?: Maybe<Scalars['String']['output']>;
+  bank_account_number?: Maybe<Scalars['String']['output']>;
+  bank_card_number?: Maybe<Scalars['String']['output']>;
   created_at?: Maybe<Scalars['timestamptz']['output']>;
   description?: Maybe<Scalars['String']['output']>;
   disability_description?: Maybe<Scalars['String']['output']>;
@@ -2626,14 +2560,17 @@ export type ApiHouseholderMaxFields = {
   household_id?: Maybe<Scalars['uuid']['output']>;
   id?: Maybe<Scalars['uuid']['output']>;
   income?: Maybe<Scalars['money']['output']>;
+  insurances?: Maybe<Array<Scalars['String']['output']>>;
   name?: Maybe<Scalars['String']['output']>;
   national_id?: Maybe<Scalars['String']['output']>;
   neighborhood?: Maybe<Scalars['String']['output']>;
   prior_accommodation_address?: Maybe<Scalars['String']['output']>;
-  province?: Maybe<Scalars['String']['output']>;
   rent?: Maybe<Scalars['money']['output']>;
+  skills?: Maybe<Array<Scalars['String']['output']>>;
   /** A computed field, executes function "get_householder_status" */
   status?: Maybe<Scalars['String']['output']>;
+  subside?: Maybe<Scalars['money']['output']>;
+  subside_types?: Maybe<Array<Scalars['String']['output']>>;
   surname?: Maybe<Scalars['String']['output']>;
   updated_at?: Maybe<Scalars['timestamptz']['output']>;
   zip_code?: Maybe<Scalars['String']['output']>;
@@ -2643,6 +2580,8 @@ export type ApiHouseholderMaxFields = {
 export type ApiHouseholderMinFields = {
   __typename?: 'householder_min_fields';
   address?: Maybe<Scalars['String']['output']>;
+  bank_account_number?: Maybe<Scalars['String']['output']>;
+  bank_card_number?: Maybe<Scalars['String']['output']>;
   created_at?: Maybe<Scalars['timestamptz']['output']>;
   description?: Maybe<Scalars['String']['output']>;
   disability_description?: Maybe<Scalars['String']['output']>;
@@ -2654,14 +2593,17 @@ export type ApiHouseholderMinFields = {
   household_id?: Maybe<Scalars['uuid']['output']>;
   id?: Maybe<Scalars['uuid']['output']>;
   income?: Maybe<Scalars['money']['output']>;
+  insurances?: Maybe<Array<Scalars['String']['output']>>;
   name?: Maybe<Scalars['String']['output']>;
   national_id?: Maybe<Scalars['String']['output']>;
   neighborhood?: Maybe<Scalars['String']['output']>;
   prior_accommodation_address?: Maybe<Scalars['String']['output']>;
-  province?: Maybe<Scalars['String']['output']>;
   rent?: Maybe<Scalars['money']['output']>;
+  skills?: Maybe<Array<Scalars['String']['output']>>;
   /** A computed field, executes function "get_householder_status" */
   status?: Maybe<Scalars['String']['output']>;
+  subside?: Maybe<Scalars['money']['output']>;
+  subside_types?: Maybe<Array<Scalars['String']['output']>>;
   surname?: Maybe<Scalars['String']['output']>;
   updated_at?: Maybe<Scalars['timestamptz']['output']>;
   zip_code?: Maybe<Scalars['String']['output']>;
@@ -2688,7 +2630,9 @@ export type ApiHouseholderOrderBy = {
   accommodation_type?: InputMaybe<ApiOrderBy>;
   addiction_status?: InputMaybe<ApiOrderBy>;
   address?: InputMaybe<ApiOrderBy>;
+  bank_account_number?: InputMaybe<ApiOrderBy>;
   bank_accounts_aggregate?: InputMaybe<ApiBankAccountAggregateOrderBy>;
+  bank_card_number?: InputMaybe<ApiOrderBy>;
   city?: InputMaybe<ApiOrderBy>;
   created_at?: InputMaybe<ApiOrderBy>;
   description?: InputMaybe<ApiOrderBy>;
@@ -2706,8 +2650,8 @@ export type ApiHouseholderOrderBy = {
   household_id?: InputMaybe<ApiOrderBy>;
   id?: InputMaybe<ApiOrderBy>;
   income?: InputMaybe<ApiOrderBy>;
-  insurances_aggregate?: InputMaybe<ApiInsuranceAggregateOrderBy>;
-  jobs_aggregate?: InputMaybe<ApiJobAggregateOrderBy>;
+  insurances?: InputMaybe<ApiOrderBy>;
+  job?: InputMaybe<ApiOrderBy>;
   name?: InputMaybe<ApiOrderBy>;
   national_id?: InputMaybe<ApiOrderBy>;
   nationality?: InputMaybe<ApiOrderBy>;
@@ -2716,9 +2660,10 @@ export type ApiHouseholderOrderBy = {
   province?: InputMaybe<ApiOrderBy>;
   religion?: InputMaybe<ApiOrderBy>;
   rent?: InputMaybe<ApiOrderBy>;
-  skills_aggregate?: InputMaybe<ApiSkillAggregateOrderBy>;
+  skills?: InputMaybe<ApiOrderBy>;
   status?: InputMaybe<ApiOrderBy>;
-  subsidies_aggregate?: InputMaybe<ApiSubsidyAggregateOrderBy>;
+  subside?: InputMaybe<ApiOrderBy>;
+  subside_types?: InputMaybe<ApiOrderBy>;
   surname?: InputMaybe<ApiOrderBy>;
   updated_at?: InputMaybe<ApiOrderBy>;
   zip_code?: InputMaybe<ApiOrderBy>;
@@ -2738,6 +2683,10 @@ export enum ApiHouseholderSelectColumn {
   /** column name */
   Address = 'address',
   /** column name */
+  BankAccountNumber = 'bank_account_number',
+  /** column name */
+  BankCardNumber = 'bank_card_number',
+  /** column name */
   City = 'city',
   /** column name */
   CreatedAt = 'created_at',
@@ -2768,6 +2717,10 @@ export enum ApiHouseholderSelectColumn {
   /** column name */
   Income = 'income',
   /** column name */
+  Insurances = 'insurances',
+  /** column name */
+  Job = 'job',
+  /** column name */
   Name = 'name',
   /** column name */
   NationalId = 'national_id',
@@ -2784,6 +2737,12 @@ export enum ApiHouseholderSelectColumn {
   /** column name */
   Rent = 'rent',
   /** column name */
+  Skills = 'skills',
+  /** column name */
+  Subside = 'subside',
+  /** column name */
+  SubsideTypes = 'subside_types',
+  /** column name */
   Surname = 'surname',
   /** column name */
   UpdatedAt = 'updated_at',
@@ -2796,6 +2755,8 @@ export type ApiHouseholderSetInput = {
   accommodation_type?: InputMaybe<AccommodationTypeEnum>;
   addiction_status?: InputMaybe<AddictionStatusEnum>;
   address?: InputMaybe<Scalars['String']['input']>;
+  bank_account_number?: InputMaybe<Scalars['String']['input']>;
+  bank_card_number?: InputMaybe<Scalars['String']['input']>;
   city?: InputMaybe<CityEnum>;
   created_at?: InputMaybe<Scalars['timestamptz']['input']>;
   description?: InputMaybe<Scalars['String']['input']>;
@@ -2811,14 +2772,19 @@ export type ApiHouseholderSetInput = {
   household_id?: InputMaybe<Scalars['uuid']['input']>;
   id?: InputMaybe<Scalars['uuid']['input']>;
   income?: InputMaybe<Scalars['money']['input']>;
+  insurances?: InputMaybe<Array<Scalars['String']['input']>>;
+  job?: InputMaybe<JobEnum>;
   name?: InputMaybe<Scalars['String']['input']>;
   national_id?: InputMaybe<Scalars['String']['input']>;
   nationality?: InputMaybe<NationalityEnum>;
   neighborhood?: InputMaybe<Scalars['String']['input']>;
   prior_accommodation_address?: InputMaybe<Scalars['String']['input']>;
-  province?: InputMaybe<Scalars['String']['input']>;
+  province?: InputMaybe<ProvinceEnum>;
   religion?: InputMaybe<ReligionEnum>;
   rent?: InputMaybe<Scalars['money']['input']>;
+  skills?: InputMaybe<Array<Scalars['String']['input']>>;
+  subside?: InputMaybe<Scalars['money']['input']>;
+  subside_types?: InputMaybe<Array<Scalars['String']['input']>>;
   surname?: InputMaybe<Scalars['String']['input']>;
   updated_at?: InputMaybe<Scalars['timestamptz']['input']>;
   zip_code?: InputMaybe<Scalars['String']['input']>;
@@ -2829,6 +2795,7 @@ export type ApiHouseholderStddevFields = {
   __typename?: 'householder_stddev_fields';
   income?: Maybe<Scalars['Float']['output']>;
   rent?: Maybe<Scalars['Float']['output']>;
+  subside?: Maybe<Scalars['Float']['output']>;
 };
 
 /** aggregate stddev_pop on columns */
@@ -2836,6 +2803,7 @@ export type ApiHouseholderStddevPopFields = {
   __typename?: 'householder_stddev_pop_fields';
   income?: Maybe<Scalars['Float']['output']>;
   rent?: Maybe<Scalars['Float']['output']>;
+  subside?: Maybe<Scalars['Float']['output']>;
 };
 
 /** aggregate stddev_samp on columns */
@@ -2843,6 +2811,7 @@ export type ApiHouseholderStddevSampFields = {
   __typename?: 'householder_stddev_samp_fields';
   income?: Maybe<Scalars['Float']['output']>;
   rent?: Maybe<Scalars['Float']['output']>;
+  subside?: Maybe<Scalars['Float']['output']>;
 };
 
 /** Streaming cursor of the table "householder" */
@@ -2858,6 +2827,8 @@ export type ApiHouseholderStreamCursorValueInput = {
   accommodation_type?: InputMaybe<AccommodationTypeEnum>;
   addiction_status?: InputMaybe<AddictionStatusEnum>;
   address?: InputMaybe<Scalars['String']['input']>;
+  bank_account_number?: InputMaybe<Scalars['String']['input']>;
+  bank_card_number?: InputMaybe<Scalars['String']['input']>;
   city?: InputMaybe<CityEnum>;
   created_at?: InputMaybe<Scalars['timestamptz']['input']>;
   description?: InputMaybe<Scalars['String']['input']>;
@@ -2873,14 +2844,19 @@ export type ApiHouseholderStreamCursorValueInput = {
   household_id?: InputMaybe<Scalars['uuid']['input']>;
   id?: InputMaybe<Scalars['uuid']['input']>;
   income?: InputMaybe<Scalars['money']['input']>;
+  insurances?: InputMaybe<Array<Scalars['String']['input']>>;
+  job?: InputMaybe<JobEnum>;
   name?: InputMaybe<Scalars['String']['input']>;
   national_id?: InputMaybe<Scalars['String']['input']>;
   nationality?: InputMaybe<NationalityEnum>;
   neighborhood?: InputMaybe<Scalars['String']['input']>;
   prior_accommodation_address?: InputMaybe<Scalars['String']['input']>;
-  province?: InputMaybe<Scalars['String']['input']>;
+  province?: InputMaybe<ProvinceEnum>;
   religion?: InputMaybe<ReligionEnum>;
   rent?: InputMaybe<Scalars['money']['input']>;
+  skills?: InputMaybe<Array<Scalars['String']['input']>>;
+  subside?: InputMaybe<Scalars['money']['input']>;
+  subside_types?: InputMaybe<Array<Scalars['String']['input']>>;
   surname?: InputMaybe<Scalars['String']['input']>;
   updated_at?: InputMaybe<Scalars['timestamptz']['input']>;
   zip_code?: InputMaybe<Scalars['String']['input']>;
@@ -2891,6 +2867,7 @@ export type ApiHouseholderSumFields = {
   __typename?: 'householder_sum_fields';
   income?: Maybe<Scalars['money']['output']>;
   rent?: Maybe<Scalars['money']['output']>;
+  subside?: Maybe<Scalars['money']['output']>;
 };
 
 /** update columns of table "householder" */
@@ -2901,6 +2878,10 @@ export enum ApiHouseholderUpdateColumn {
   AddictionStatus = 'addiction_status',
   /** column name */
   Address = 'address',
+  /** column name */
+  BankAccountNumber = 'bank_account_number',
+  /** column name */
+  BankCardNumber = 'bank_card_number',
   /** column name */
   City = 'city',
   /** column name */
@@ -2932,6 +2913,10 @@ export enum ApiHouseholderUpdateColumn {
   /** column name */
   Income = 'income',
   /** column name */
+  Insurances = 'insurances',
+  /** column name */
+  Job = 'job',
+  /** column name */
   Name = 'name',
   /** column name */
   NationalId = 'national_id',
@@ -2947,6 +2932,12 @@ export enum ApiHouseholderUpdateColumn {
   Religion = 'religion',
   /** column name */
   Rent = 'rent',
+  /** column name */
+  Skills = 'skills',
+  /** column name */
+  Subside = 'subside',
+  /** column name */
+  SubsideTypes = 'subside_types',
   /** column name */
   Surname = 'surname',
   /** column name */
@@ -2969,6 +2960,7 @@ export type ApiHouseholderVarPopFields = {
   __typename?: 'householder_var_pop_fields';
   income?: Maybe<Scalars['Float']['output']>;
   rent?: Maybe<Scalars['Float']['output']>;
+  subside?: Maybe<Scalars['Float']['output']>;
 };
 
 /** aggregate var_samp on columns */
@@ -2976,6 +2968,7 @@ export type ApiHouseholderVarSampFields = {
   __typename?: 'householder_var_samp_fields';
   income?: Maybe<Scalars['Float']['output']>;
   rent?: Maybe<Scalars['Float']['output']>;
+  subside?: Maybe<Scalars['Float']['output']>;
 };
 
 /** aggregate variance on columns */
@@ -2983,14 +2976,13 @@ export type ApiHouseholderVarianceFields = {
   __typename?: 'householder_variance_fields';
   income?: Maybe<Scalars['Float']['output']>;
   rent?: Maybe<Scalars['Float']['output']>;
+  subside?: Maybe<Scalars['Float']['output']>;
 };
 
 /** columns and relationships of "insurance" */
 export type ApiInsurance = {
   __typename?: 'insurance';
-  householder_id: Scalars['uuid']['output'];
-  id: Scalars['uuid']['output'];
-  name: Scalars['String']['output'];
+  value: Scalars['String']['output'];
 };
 
 /** aggregated selection of "insurance" */
@@ -2998,17 +2990,6 @@ export type ApiInsuranceAggregate = {
   __typename?: 'insurance_aggregate';
   aggregate?: Maybe<ApiInsuranceAggregateFields>;
   nodes: Array<ApiInsurance>;
-};
-
-export type ApiInsuranceAggregateBoolExp = {
-  count?: InputMaybe<ApiInsuranceAggregateBoolExpCount>;
-};
-
-export type ApiInsuranceAggregateBoolExpCount = {
-  arguments?: InputMaybe<Array<ApiInsuranceSelectColumn>>;
-  distinct?: InputMaybe<Scalars['Boolean']['input']>;
-  filter?: InputMaybe<ApiInsuranceBoolExp>;
-  predicate: ApiIntComparisonExp;
 };
 
 /** aggregate fields of "insurance" */
@@ -3026,73 +3007,35 @@ export type ApiInsuranceAggregateFieldsApiCountArgs = {
   distinct?: InputMaybe<Scalars['Boolean']['input']>;
 };
 
-/** order by aggregate values of table "insurance" */
-export type ApiInsuranceAggregateOrderBy = {
-  count?: InputMaybe<ApiOrderBy>;
-  max?: InputMaybe<ApiInsuranceMaxOrderBy>;
-  min?: InputMaybe<ApiInsuranceMinOrderBy>;
-};
-
-/** input type for inserting array relation for remote table "insurance" */
-export type ApiInsuranceArrRelInsertInput = {
-  data: Array<ApiInsuranceInsertInput>;
-  /** upsert condition */
-  on_conflict?: InputMaybe<ApiInsuranceOnConflict>;
-};
-
 /** Boolean expression to filter rows from the table "insurance". All fields are combined with a logical 'AND'. */
 export type ApiInsuranceBoolExp = {
   _and?: InputMaybe<Array<ApiInsuranceBoolExp>>;
   _not?: InputMaybe<ApiInsuranceBoolExp>;
   _or?: InputMaybe<Array<ApiInsuranceBoolExp>>;
-  householder_id?: InputMaybe<ApiUuidComparisonExp>;
-  id?: InputMaybe<ApiUuidComparisonExp>;
-  name?: InputMaybe<ApiStringComparisonExp>;
+  value?: InputMaybe<ApiStringComparisonExp>;
 };
 
 /** unique or primary key constraints on table "insurance" */
 export enum ApiInsuranceConstraint {
-  /** unique or primary key constraint on columns "id" */
-  InsuranceIdKey = 'insurance_id_key',
-  /** unique or primary key constraint on columns "id" */
+  /** unique or primary key constraint on columns "value" */
   InsurancePkey = 'insurance_pkey'
 }
 
 /** input type for inserting data into table "insurance" */
 export type ApiInsuranceInsertInput = {
-  householder_id?: InputMaybe<Scalars['uuid']['input']>;
-  id?: InputMaybe<Scalars['uuid']['input']>;
-  name?: InputMaybe<Scalars['String']['input']>;
+  value?: InputMaybe<Scalars['String']['input']>;
 };
 
 /** aggregate max on columns */
 export type ApiInsuranceMaxFields = {
   __typename?: 'insurance_max_fields';
-  householder_id?: Maybe<Scalars['uuid']['output']>;
-  id?: Maybe<Scalars['uuid']['output']>;
-  name?: Maybe<Scalars['String']['output']>;
-};
-
-/** order by max() on columns of table "insurance" */
-export type ApiInsuranceMaxOrderBy = {
-  householder_id?: InputMaybe<ApiOrderBy>;
-  id?: InputMaybe<ApiOrderBy>;
-  name?: InputMaybe<ApiOrderBy>;
+  value?: Maybe<Scalars['String']['output']>;
 };
 
 /** aggregate min on columns */
 export type ApiInsuranceMinFields = {
   __typename?: 'insurance_min_fields';
-  householder_id?: Maybe<Scalars['uuid']['output']>;
-  id?: Maybe<Scalars['uuid']['output']>;
-  name?: Maybe<Scalars['String']['output']>;
-};
-
-/** order by min() on columns of table "insurance" */
-export type ApiInsuranceMinOrderBy = {
-  householder_id?: InputMaybe<ApiOrderBy>;
-  id?: InputMaybe<ApiOrderBy>;
-  name?: InputMaybe<ApiOrderBy>;
+  value?: Maybe<Scalars['String']['output']>;
 };
 
 /** response of any mutation on the table "insurance" */
@@ -3113,31 +3056,23 @@ export type ApiInsuranceOnConflict = {
 
 /** Ordering options when selecting data from "insurance". */
 export type ApiInsuranceOrderBy = {
-  householder_id?: InputMaybe<ApiOrderBy>;
-  id?: InputMaybe<ApiOrderBy>;
-  name?: InputMaybe<ApiOrderBy>;
+  value?: InputMaybe<ApiOrderBy>;
 };
 
 /** primary key columns input for table: insurance */
 export type ApiInsurancePkColumnsInput = {
-  id: Scalars['uuid']['input'];
+  value: Scalars['String']['input'];
 };
 
 /** select columns of table "insurance" */
 export enum ApiInsuranceSelectColumn {
   /** column name */
-  HouseholderId = 'householder_id',
-  /** column name */
-  Id = 'id',
-  /** column name */
-  Name = 'name'
+  Value = 'value'
 }
 
 /** input type for updating data in table "insurance" */
 export type ApiInsuranceSetInput = {
-  householder_id?: InputMaybe<Scalars['uuid']['input']>;
-  id?: InputMaybe<Scalars['uuid']['input']>;
-  name?: InputMaybe<Scalars['String']['input']>;
+  value?: InputMaybe<Scalars['String']['input']>;
 };
 
 /** Streaming cursor of the table "insurance" */
@@ -3150,19 +3085,13 @@ export type ApiInsuranceStreamCursorInput = {
 
 /** Initial value of the column from where the streaming should start */
 export type ApiInsuranceStreamCursorValueInput = {
-  householder_id?: InputMaybe<Scalars['uuid']['input']>;
-  id?: InputMaybe<Scalars['uuid']['input']>;
-  name?: InputMaybe<Scalars['String']['input']>;
+  value?: InputMaybe<Scalars['String']['input']>;
 };
 
 /** update columns of table "insurance" */
 export enum ApiInsuranceUpdateColumn {
   /** column name */
-  HouseholderId = 'householder_id',
-  /** column name */
-  Id = 'id',
-  /** column name */
-  Name = 'name'
+  Value = 'value'
 }
 
 export type ApiInsuranceUpdates = {
@@ -3175,9 +3104,7 @@ export type ApiInsuranceUpdates = {
 /** columns and relationships of "job" */
 export type ApiJob = {
   __typename?: 'job';
-  householder_id: Scalars['uuid']['output'];
-  id: Scalars['uuid']['output'];
-  title: Scalars['String']['output'];
+  value: Scalars['String']['output'];
 };
 
 /** aggregated selection of "job" */
@@ -3185,17 +3112,6 @@ export type ApiJobAggregate = {
   __typename?: 'job_aggregate';
   aggregate?: Maybe<ApiJobAggregateFields>;
   nodes: Array<ApiJob>;
-};
-
-export type ApiJobAggregateBoolExp = {
-  count?: InputMaybe<ApiJobAggregateBoolExpCount>;
-};
-
-export type ApiJobAggregateBoolExpCount = {
-  arguments?: InputMaybe<Array<ApiJobSelectColumn>>;
-  distinct?: InputMaybe<Scalars['Boolean']['input']>;
-  filter?: InputMaybe<ApiJobBoolExp>;
-  predicate: ApiIntComparisonExp;
 };
 
 /** aggregate fields of "job" */
@@ -3213,73 +3129,49 @@ export type ApiJobAggregateFieldsApiCountArgs = {
   distinct?: InputMaybe<Scalars['Boolean']['input']>;
 };
 
-/** order by aggregate values of table "job" */
-export type ApiJobAggregateOrderBy = {
-  count?: InputMaybe<ApiOrderBy>;
-  max?: InputMaybe<ApiJobMaxOrderBy>;
-  min?: InputMaybe<ApiJobMinOrderBy>;
-};
-
-/** input type for inserting array relation for remote table "job" */
-export type ApiJobArrRelInsertInput = {
-  data: Array<ApiJobInsertInput>;
-  /** upsert condition */
-  on_conflict?: InputMaybe<ApiJobOnConflict>;
-};
-
 /** Boolean expression to filter rows from the table "job". All fields are combined with a logical 'AND'. */
 export type ApiJobBoolExp = {
   _and?: InputMaybe<Array<ApiJobBoolExp>>;
   _not?: InputMaybe<ApiJobBoolExp>;
   _or?: InputMaybe<Array<ApiJobBoolExp>>;
-  householder_id?: InputMaybe<ApiUuidComparisonExp>;
-  id?: InputMaybe<ApiUuidComparisonExp>;
-  title?: InputMaybe<ApiStringComparisonExp>;
+  value?: InputMaybe<ApiStringComparisonExp>;
 };
 
 /** unique or primary key constraints on table "job" */
 export enum ApiJobConstraint {
-  /** unique or primary key constraint on columns "id" */
-  JobIdKey = 'job_id_key',
-  /** unique or primary key constraint on columns "id" */
+  /** unique or primary key constraint on columns "value" */
   JobPkey = 'job_pkey'
 }
 
+export enum JobEnum {
+  Psychologist = 'Psychologist',
+  Worker = 'Worker'
+}
+
+/** Boolean expression to compare columns of type "job_enum". All fields are combined with logical 'AND'. */
+export type JobEnumComparisonExp = {
+  _eq?: InputMaybe<JobEnum>;
+  _in?: InputMaybe<Array<JobEnum>>;
+  _is_null?: InputMaybe<Scalars['Boolean']['input']>;
+  _neq?: InputMaybe<JobEnum>;
+  _nin?: InputMaybe<Array<JobEnum>>;
+};
+
 /** input type for inserting data into table "job" */
 export type ApiJobInsertInput = {
-  householder_id?: InputMaybe<Scalars['uuid']['input']>;
-  id?: InputMaybe<Scalars['uuid']['input']>;
-  title?: InputMaybe<Scalars['String']['input']>;
+  value?: InputMaybe<Scalars['String']['input']>;
 };
 
 /** aggregate max on columns */
 export type ApiJobMaxFields = {
   __typename?: 'job_max_fields';
-  householder_id?: Maybe<Scalars['uuid']['output']>;
-  id?: Maybe<Scalars['uuid']['output']>;
-  title?: Maybe<Scalars['String']['output']>;
-};
-
-/** order by max() on columns of table "job" */
-export type ApiJobMaxOrderBy = {
-  householder_id?: InputMaybe<ApiOrderBy>;
-  id?: InputMaybe<ApiOrderBy>;
-  title?: InputMaybe<ApiOrderBy>;
+  value?: Maybe<Scalars['String']['output']>;
 };
 
 /** aggregate min on columns */
 export type ApiJobMinFields = {
   __typename?: 'job_min_fields';
-  householder_id?: Maybe<Scalars['uuid']['output']>;
-  id?: Maybe<Scalars['uuid']['output']>;
-  title?: Maybe<Scalars['String']['output']>;
-};
-
-/** order by min() on columns of table "job" */
-export type ApiJobMinOrderBy = {
-  householder_id?: InputMaybe<ApiOrderBy>;
-  id?: InputMaybe<ApiOrderBy>;
-  title?: InputMaybe<ApiOrderBy>;
+  value?: Maybe<Scalars['String']['output']>;
 };
 
 /** response of any mutation on the table "job" */
@@ -3300,31 +3192,23 @@ export type ApiJobOnConflict = {
 
 /** Ordering options when selecting data from "job". */
 export type ApiJobOrderBy = {
-  householder_id?: InputMaybe<ApiOrderBy>;
-  id?: InputMaybe<ApiOrderBy>;
-  title?: InputMaybe<ApiOrderBy>;
+  value?: InputMaybe<ApiOrderBy>;
 };
 
 /** primary key columns input for table: job */
 export type ApiJobPkColumnsInput = {
-  id: Scalars['uuid']['input'];
+  value: Scalars['String']['input'];
 };
 
 /** select columns of table "job" */
 export enum ApiJobSelectColumn {
   /** column name */
-  HouseholderId = 'householder_id',
-  /** column name */
-  Id = 'id',
-  /** column name */
-  Title = 'title'
+  Value = 'value'
 }
 
 /** input type for updating data in table "job" */
 export type ApiJobSetInput = {
-  householder_id?: InputMaybe<Scalars['uuid']['input']>;
-  id?: InputMaybe<Scalars['uuid']['input']>;
-  title?: InputMaybe<Scalars['String']['input']>;
+  value?: InputMaybe<Scalars['String']['input']>;
 };
 
 /** Streaming cursor of the table "job" */
@@ -3337,19 +3221,13 @@ export type ApiJobStreamCursorInput = {
 
 /** Initial value of the column from where the streaming should start */
 export type ApiJobStreamCursorValueInput = {
-  householder_id?: InputMaybe<Scalars['uuid']['input']>;
-  id?: InputMaybe<Scalars['uuid']['input']>;
-  title?: InputMaybe<Scalars['String']['input']>;
+  value?: InputMaybe<Scalars['String']['input']>;
 };
 
 /** update columns of table "job" */
 export enum ApiJobUpdateColumn {
   /** column name */
-  HouseholderId = 'householder_id',
-  /** column name */
-  Id = 'id',
-  /** column name */
-  Title = 'title'
+  Value = 'value'
 }
 
 export type ApiJobUpdates = {
@@ -3716,6 +3594,10 @@ export type ApiMutationRoot = {
   delete_project_status?: Maybe<ApiProjectStatusMutationResponse>;
   /** delete single row from the table: "project_status" */
   delete_project_status_by_pk?: Maybe<ApiProjectStatus>;
+  /** delete data from the table: "province" */
+  delete_province?: Maybe<ApiProvinceMutationResponse>;
+  /** delete single row from the table: "province" */
+  delete_province_by_pk?: Maybe<ApiProvince>;
   /** delete data from the table: "religion" */
   delete_religion?: Maybe<ApiReligionMutationResponse>;
   /** delete single row from the table: "religion" */
@@ -3816,6 +3698,10 @@ export type ApiMutationRoot = {
   insert_project_status?: Maybe<ApiProjectStatusMutationResponse>;
   /** insert a single row into the table: "project_status" */
   insert_project_status_one?: Maybe<ApiProjectStatus>;
+  /** insert data into the table: "province" */
+  insert_province?: Maybe<ApiProvinceMutationResponse>;
+  /** insert a single row into the table: "province" */
+  insert_province_one?: Maybe<ApiProvince>;
   /** insert data into the table: "religion" */
   insert_religion?: Maybe<ApiReligionMutationResponse>;
   /** insert a single row into the table: "religion" */
@@ -3956,6 +3842,12 @@ export type ApiMutationRoot = {
   update_project_status_by_pk?: Maybe<ApiProjectStatus>;
   /** update multiples rows of table: "project_status" */
   update_project_status_many?: Maybe<Array<Maybe<ApiProjectStatusMutationResponse>>>;
+  /** update data of the table: "province" */
+  update_province?: Maybe<ApiProvinceMutationResponse>;
+  /** update single row of the table: "province" */
+  update_province_by_pk?: Maybe<ApiProvince>;
+  /** update multiples rows of table: "province" */
+  update_province_many?: Maybe<Array<Maybe<ApiProvinceMutationResponse>>>;
   /** update data of the table: "religion" */
   update_religion?: Maybe<ApiReligionMutationResponse>;
   /** update single row of the table: "religion" */
@@ -4154,7 +4046,7 @@ export type ApiMutationRootApiDeleteInsuranceArgs = {
 
 /** mutation root */
 export type ApiMutationRootApiDeleteInsuranceByPkArgs = {
-  id: Scalars['uuid']['input'];
+  value: Scalars['String']['input'];
 };
 
 
@@ -4166,7 +4058,7 @@ export type ApiMutationRootApiDeleteJobArgs = {
 
 /** mutation root */
 export type ApiMutationRootApiDeleteJobByPkArgs = {
-  id: Scalars['uuid']['input'];
+  value: Scalars['String']['input'];
 };
 
 
@@ -4226,6 +4118,18 @@ export type ApiMutationRootApiDeleteProjectStatusArgs = {
 
 /** mutation root */
 export type ApiMutationRootApiDeleteProjectStatusByPkArgs = {
+  value: Scalars['String']['input'];
+};
+
+
+/** mutation root */
+export type ApiMutationRootApiDeleteProvinceArgs = {
+  where: ApiProvinceBoolExp;
+};
+
+
+/** mutation root */
+export type ApiMutationRootApiDeleteProvinceByPkArgs = {
   value: Scalars['String']['input'];
 };
 
@@ -4567,6 +4471,20 @@ export type ApiMutationRootApiInsertProjectStatusArgs = {
 export type ApiMutationRootApiInsertProjectStatusOneArgs = {
   object: ApiProjectStatusInsertInput;
   on_conflict?: InputMaybe<ApiProjectStatusOnConflict>;
+};
+
+
+/** mutation root */
+export type ApiMutationRootApiInsertProvinceArgs = {
+  objects: Array<ApiProvinceInsertInput>;
+  on_conflict?: InputMaybe<ApiProvinceOnConflict>;
+};
+
+
+/** mutation root */
+export type ApiMutationRootApiInsertProvinceOneArgs = {
+  object: ApiProvinceInsertInput;
+  on_conflict?: InputMaybe<ApiProvinceOnConflict>;
 };
 
 
@@ -5043,6 +4961,26 @@ export type ApiMutationRootApiUpdateProjectStatusByPkArgs = {
 /** mutation root */
 export type ApiMutationRootApiUpdateProjectStatusManyArgs = {
   updates: Array<ApiProjectStatusUpdates>;
+};
+
+
+/** mutation root */
+export type ApiMutationRootApiUpdateProvinceArgs = {
+  _set?: InputMaybe<ApiProvinceSetInput>;
+  where: ApiProvinceBoolExp;
+};
+
+
+/** mutation root */
+export type ApiMutationRootApiUpdateProvinceByPkArgs = {
+  _set?: InputMaybe<ApiProvinceSetInput>;
+  pk_columns: ApiProvincePkColumnsInput;
+};
+
+
+/** mutation root */
+export type ApiMutationRootApiUpdateProvinceManyArgs = {
+  updates: Array<ApiProvinceUpdates>;
 };
 
 
@@ -5821,6 +5759,143 @@ export type ApiProjectUpdates = {
   where: ApiProjectBoolExp;
 };
 
+/** columns and relationships of "province" */
+export type ApiProvince = {
+  __typename?: 'province';
+  value: Scalars['String']['output'];
+};
+
+/** aggregated selection of "province" */
+export type ApiProvinceAggregate = {
+  __typename?: 'province_aggregate';
+  aggregate?: Maybe<ApiProvinceAggregateFields>;
+  nodes: Array<ApiProvince>;
+};
+
+/** aggregate fields of "province" */
+export type ApiProvinceAggregateFields = {
+  __typename?: 'province_aggregate_fields';
+  count: Scalars['Int']['output'];
+  max?: Maybe<ApiProvinceMaxFields>;
+  min?: Maybe<ApiProvinceMinFields>;
+};
+
+
+/** aggregate fields of "province" */
+export type ApiProvinceAggregateFieldsApiCountArgs = {
+  columns?: InputMaybe<Array<ApiProvinceSelectColumn>>;
+  distinct?: InputMaybe<Scalars['Boolean']['input']>;
+};
+
+/** Boolean expression to filter rows from the table "province". All fields are combined with a logical 'AND'. */
+export type ApiProvinceBoolExp = {
+  _and?: InputMaybe<Array<ApiProvinceBoolExp>>;
+  _not?: InputMaybe<ApiProvinceBoolExp>;
+  _or?: InputMaybe<Array<ApiProvinceBoolExp>>;
+  value?: InputMaybe<ApiStringComparisonExp>;
+};
+
+/** unique or primary key constraints on table "province" */
+export enum ApiProvinceConstraint {
+  /** unique or primary key constraint on columns "value" */
+  ProvincePkey = 'province_pkey'
+}
+
+export enum ProvinceEnum {
+  Fars = 'Fars',
+  Tehran = 'Tehran',
+  Unknown = 'Unknown'
+}
+
+/** Boolean expression to compare columns of type "province_enum". All fields are combined with logical 'AND'. */
+export type ProvinceEnumComparisonExp = {
+  _eq?: InputMaybe<ProvinceEnum>;
+  _in?: InputMaybe<Array<ProvinceEnum>>;
+  _is_null?: InputMaybe<Scalars['Boolean']['input']>;
+  _neq?: InputMaybe<ProvinceEnum>;
+  _nin?: InputMaybe<Array<ProvinceEnum>>;
+};
+
+/** input type for inserting data into table "province" */
+export type ApiProvinceInsertInput = {
+  value?: InputMaybe<Scalars['String']['input']>;
+};
+
+/** aggregate max on columns */
+export type ApiProvinceMaxFields = {
+  __typename?: 'province_max_fields';
+  value?: Maybe<Scalars['String']['output']>;
+};
+
+/** aggregate min on columns */
+export type ApiProvinceMinFields = {
+  __typename?: 'province_min_fields';
+  value?: Maybe<Scalars['String']['output']>;
+};
+
+/** response of any mutation on the table "province" */
+export type ApiProvinceMutationResponse = {
+  __typename?: 'province_mutation_response';
+  /** number of rows affected by the mutation */
+  affected_rows: Scalars['Int']['output'];
+  /** data from the rows affected by the mutation */
+  returning: Array<ApiProvince>;
+};
+
+/** on_conflict condition type for table "province" */
+export type ApiProvinceOnConflict = {
+  constraint: ApiProvinceConstraint;
+  update_columns?: Array<ApiProvinceUpdateColumn>;
+  where?: InputMaybe<ApiProvinceBoolExp>;
+};
+
+/** Ordering options when selecting data from "province". */
+export type ApiProvinceOrderBy = {
+  value?: InputMaybe<ApiOrderBy>;
+};
+
+/** primary key columns input for table: province */
+export type ApiProvincePkColumnsInput = {
+  value: Scalars['String']['input'];
+};
+
+/** select columns of table "province" */
+export enum ApiProvinceSelectColumn {
+  /** column name */
+  Value = 'value'
+}
+
+/** input type for updating data in table "province" */
+export type ApiProvinceSetInput = {
+  value?: InputMaybe<Scalars['String']['input']>;
+};
+
+/** Streaming cursor of the table "province" */
+export type ApiProvinceStreamCursorInput = {
+  /** Stream column input with initial value */
+  initial_value: ApiProvinceStreamCursorValueInput;
+  /** cursor ordering */
+  ordering?: InputMaybe<ApiCursorOrdering>;
+};
+
+/** Initial value of the column from where the streaming should start */
+export type ApiProvinceStreamCursorValueInput = {
+  value?: InputMaybe<Scalars['String']['input']>;
+};
+
+/** update columns of table "province" */
+export enum ApiProvinceUpdateColumn {
+  /** column name */
+  Value = 'value'
+}
+
+export type ApiProvinceUpdates = {
+  /** sets the columns of the filtered rows to the given values */
+  _set?: InputMaybe<ApiProvinceSetInput>;
+  /** filter the rows which have to be updated */
+  where: ApiProvinceBoolExp;
+};
+
 export type ApiQueryRoot = {
   __typename?: 'query_root';
   /** fetch data from the table: "accommodation_type" */
@@ -5943,6 +6018,12 @@ export type ApiQueryRoot = {
   project_status_aggregate: ApiProjectStatusAggregate;
   /** fetch data from the table: "project_status" using primary key columns */
   project_status_by_pk?: Maybe<ApiProjectStatus>;
+  /** fetch data from the table: "province" */
+  province: Array<ApiProvince>;
+  /** fetch aggregated fields from the table: "province" */
+  province_aggregate: ApiProvinceAggregate;
+  /** fetch data from the table: "province" using primary key columns */
+  province_by_pk?: Maybe<ApiProvince>;
   /** fetch data from the table: "religion" */
   religion: Array<ApiReligion>;
   /** fetch aggregated fields from the table: "religion" */
@@ -6295,7 +6376,7 @@ export type ApiQueryRootApiInsuranceAggregateArgs = {
 
 
 export type ApiQueryRootApiInsuranceByPkArgs = {
-  id: Scalars['uuid']['input'];
+  value: Scalars['String']['input'];
 };
 
 
@@ -6318,7 +6399,7 @@ export type ApiQueryRootApiJobAggregateArgs = {
 
 
 export type ApiQueryRootApiJobByPkArgs = {
-  id: Scalars['uuid']['input'];
+  value: Scalars['String']['input'];
 };
 
 
@@ -6433,6 +6514,29 @@ export type ApiQueryRootApiProjectStatusAggregateArgs = {
 
 
 export type ApiQueryRootApiProjectStatusByPkArgs = {
+  value: Scalars['String']['input'];
+};
+
+
+export type ApiQueryRootApiProvinceArgs = {
+  distinct_on?: InputMaybe<Array<ApiProvinceSelectColumn>>;
+  limit?: InputMaybe<Scalars['Int']['input']>;
+  offset?: InputMaybe<Scalars['Int']['input']>;
+  order_by?: InputMaybe<Array<ApiProvinceOrderBy>>;
+  where?: InputMaybe<ApiProvinceBoolExp>;
+};
+
+
+export type ApiQueryRootApiProvinceAggregateArgs = {
+  distinct_on?: InputMaybe<Array<ApiProvinceSelectColumn>>;
+  limit?: InputMaybe<Scalars['Int']['input']>;
+  offset?: InputMaybe<Scalars['Int']['input']>;
+  order_by?: InputMaybe<Array<ApiProvinceOrderBy>>;
+  where?: InputMaybe<ApiProvinceBoolExp>;
+};
+
+
+export type ApiQueryRootApiProvinceByPkArgs = {
   value: Scalars['String']['input'];
 };
 
@@ -6702,17 +6806,6 @@ export type ApiSkillAggregate = {
   nodes: Array<ApiSkill>;
 };
 
-export type ApiSkillAggregateBoolExp = {
-  count?: InputMaybe<ApiSkillAggregateBoolExpCount>;
-};
-
-export type ApiSkillAggregateBoolExpCount = {
-  arguments?: InputMaybe<Array<ApiSkillSelectColumn>>;
-  distinct?: InputMaybe<Scalars['Boolean']['input']>;
-  filter?: InputMaybe<ApiSkillBoolExp>;
-  predicate: ApiIntComparisonExp;
-};
-
 /** aggregate fields of "skill" */
 export type ApiSkillAggregateFields = {
   __typename?: 'skill_aggregate_fields';
@@ -6726,20 +6819,6 @@ export type ApiSkillAggregateFields = {
 export type ApiSkillAggregateFieldsApiCountArgs = {
   columns?: InputMaybe<Array<ApiSkillSelectColumn>>;
   distinct?: InputMaybe<Scalars['Boolean']['input']>;
-};
-
-/** order by aggregate values of table "skill" */
-export type ApiSkillAggregateOrderBy = {
-  count?: InputMaybe<ApiOrderBy>;
-  max?: InputMaybe<ApiSkillMaxOrderBy>;
-  min?: InputMaybe<ApiSkillMinOrderBy>;
-};
-
-/** input type for inserting array relation for remote table "skill" */
-export type ApiSkillArrRelInsertInput = {
-  data: Array<ApiSkillInsertInput>;
-  /** upsert condition */
-  on_conflict?: InputMaybe<ApiSkillOnConflict>;
 };
 
 /** Boolean expression to filter rows from the table "skill". All fields are combined with a logical 'AND'. */
@@ -6775,26 +6854,12 @@ export type ApiSkillMaxFields = {
   name?: Maybe<Scalars['String']['output']>;
 };
 
-/** order by max() on columns of table "skill" */
-export type ApiSkillMaxOrderBy = {
-  householder_id?: InputMaybe<ApiOrderBy>;
-  id?: InputMaybe<ApiOrderBy>;
-  name?: InputMaybe<ApiOrderBy>;
-};
-
 /** aggregate min on columns */
 export type ApiSkillMinFields = {
   __typename?: 'skill_min_fields';
   householder_id?: Maybe<Scalars['uuid']['output']>;
   id?: Maybe<Scalars['uuid']['output']>;
   name?: Maybe<Scalars['String']['output']>;
-};
-
-/** order by min() on columns of table "skill" */
-export type ApiSkillMinOrderBy = {
-  householder_id?: InputMaybe<ApiOrderBy>;
-  id?: InputMaybe<ApiOrderBy>;
-  name?: InputMaybe<ApiOrderBy>;
 };
 
 /** response of any mutation on the table "skill" */
@@ -7036,6 +7101,14 @@ export type ApiSubscriptionRoot = {
   project_status_stream: Array<ApiProjectStatus>;
   /** fetch data from the table in a streaming manner: "project" */
   project_stream: Array<ApiProject>;
+  /** fetch data from the table: "province" */
+  province: Array<ApiProvince>;
+  /** fetch aggregated fields from the table: "province" */
+  province_aggregate: ApiProvinceAggregate;
+  /** fetch data from the table: "province" using primary key columns */
+  province_by_pk?: Maybe<ApiProvince>;
+  /** fetch data from the table in a streaming manner: "province" */
+  province_stream: Array<ApiProvince>;
   /** fetch data from the table: "religion" */
   religion: Array<ApiReligion>;
   /** fetch aggregated fields from the table: "religion" */
@@ -7489,7 +7562,7 @@ export type ApiSubscriptionRootApiInsuranceAggregateArgs = {
 
 
 export type ApiSubscriptionRootApiInsuranceByPkArgs = {
-  id: Scalars['uuid']['input'];
+  value: Scalars['String']['input'];
 };
 
 
@@ -7519,7 +7592,7 @@ export type ApiSubscriptionRootApiJobAggregateArgs = {
 
 
 export type ApiSubscriptionRootApiJobByPkArgs = {
-  id: Scalars['uuid']['input'];
+  value: Scalars['String']['input'];
 };
 
 
@@ -7677,6 +7750,36 @@ export type ApiSubscriptionRootApiProjectStreamArgs = {
   batch_size: Scalars['Int']['input'];
   cursor: Array<InputMaybe<ApiProjectStreamCursorInput>>;
   where?: InputMaybe<ApiProjectBoolExp>;
+};
+
+
+export type ApiSubscriptionRootApiProvinceArgs = {
+  distinct_on?: InputMaybe<Array<ApiProvinceSelectColumn>>;
+  limit?: InputMaybe<Scalars['Int']['input']>;
+  offset?: InputMaybe<Scalars['Int']['input']>;
+  order_by?: InputMaybe<Array<ApiProvinceOrderBy>>;
+  where?: InputMaybe<ApiProvinceBoolExp>;
+};
+
+
+export type ApiSubscriptionRootApiProvinceAggregateArgs = {
+  distinct_on?: InputMaybe<Array<ApiProvinceSelectColumn>>;
+  limit?: InputMaybe<Scalars['Int']['input']>;
+  offset?: InputMaybe<Scalars['Int']['input']>;
+  order_by?: InputMaybe<Array<ApiProvinceOrderBy>>;
+  where?: InputMaybe<ApiProvinceBoolExp>;
+};
+
+
+export type ApiSubscriptionRootApiProvinceByPkArgs = {
+  value: Scalars['String']['input'];
+};
+
+
+export type ApiSubscriptionRootApiProvinceStreamArgs = {
+  batch_size: Scalars['Int']['input'];
+  cursor: Array<InputMaybe<ApiProvinceStreamCursorInput>>;
+  where?: InputMaybe<ApiProvinceBoolExp>;
 };
 
 
@@ -7844,17 +7947,6 @@ export type ApiSubsidyAggregate = {
   nodes: Array<ApiSubsidy>;
 };
 
-export type ApiSubsidyAggregateBoolExp = {
-  count?: InputMaybe<ApiSubsidyAggregateBoolExpCount>;
-};
-
-export type ApiSubsidyAggregateBoolExpCount = {
-  arguments?: InputMaybe<Array<ApiSubsidySelectColumn>>;
-  distinct?: InputMaybe<Scalars['Boolean']['input']>;
-  filter?: InputMaybe<ApiSubsidyBoolExp>;
-  predicate: ApiIntComparisonExp;
-};
-
 /** aggregate fields of "subsidy" */
 export type ApiSubsidyAggregateFields = {
   __typename?: 'subsidy_aggregate_fields';
@@ -7868,20 +7960,6 @@ export type ApiSubsidyAggregateFields = {
 export type ApiSubsidyAggregateFieldsApiCountArgs = {
   columns?: InputMaybe<Array<ApiSubsidySelectColumn>>;
   distinct?: InputMaybe<Scalars['Boolean']['input']>;
-};
-
-/** order by aggregate values of table "subsidy" */
-export type ApiSubsidyAggregateOrderBy = {
-  count?: InputMaybe<ApiOrderBy>;
-  max?: InputMaybe<ApiSubsidyMaxOrderBy>;
-  min?: InputMaybe<ApiSubsidyMinOrderBy>;
-};
-
-/** input type for inserting array relation for remote table "subsidy" */
-export type ApiSubsidyArrRelInsertInput = {
-  data: Array<ApiSubsidyInsertInput>;
-  /** upsert condition */
-  on_conflict?: InputMaybe<ApiSubsidyOnConflict>;
 };
 
 /** Boolean expression to filter rows from the table "subsidy". All fields are combined with a logical 'AND'. */
@@ -7917,26 +7995,12 @@ export type ApiSubsidyMaxFields = {
   name?: Maybe<Scalars['String']['output']>;
 };
 
-/** order by max() on columns of table "subsidy" */
-export type ApiSubsidyMaxOrderBy = {
-  householder_id?: InputMaybe<ApiOrderBy>;
-  id?: InputMaybe<ApiOrderBy>;
-  name?: InputMaybe<ApiOrderBy>;
-};
-
 /** aggregate min on columns */
 export type ApiSubsidyMinFields = {
   __typename?: 'subsidy_min_fields';
   householder_id?: Maybe<Scalars['uuid']['output']>;
   id?: Maybe<Scalars['uuid']['output']>;
   name?: Maybe<Scalars['String']['output']>;
-};
-
-/** order by min() on columns of table "subsidy" */
-export type ApiSubsidyMinOrderBy = {
-  householder_id?: InputMaybe<ApiOrderBy>;
-  id?: InputMaybe<ApiOrderBy>;
-  name?: InputMaybe<ApiOrderBy>;
 };
 
 /** response of any mutation on the table "subsidy" */

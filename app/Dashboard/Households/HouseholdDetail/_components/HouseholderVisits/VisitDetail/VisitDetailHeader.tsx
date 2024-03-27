@@ -8,6 +8,8 @@ import { CalendarIcon, FilePlusIcon } from '@camp/icons';
 import { errorMessages, messages } from '@camp/messages';
 import { Group, Stack, Text } from '@mantine/core';
 
+import { AddHouseholderVisitButton } from '../../AddHouseholderVisit';
+
 interface HeaderFieldProps {
   label: string;
   children: React.ReactNode;
@@ -53,6 +55,7 @@ export const VisitDetailHeader = ({ id }: Props) => {
         <HeaderField icon={<FilePlusIcon />} label="توضیحات بازدید">
           {visit!.description}
         </HeaderField>
+        <AddHouseholderVisitButton householdId={id} />
       </Stack>
     </Stack>
   );

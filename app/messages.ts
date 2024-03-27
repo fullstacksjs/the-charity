@@ -7,6 +7,11 @@ export const errorMessages: Record<ServerError, string> = {
 };
 
 export const messages = {
+  form: {
+    selectInputs: {
+      placeholder: 'انتخاب کنید',
+    },
+  },
   tablePagination: {
     page: (currentPage: number, total: number) =>
       `صفحه ${currentPage} از ${Math.max(total, 1)}`,
@@ -214,9 +219,20 @@ export const messages = {
       },
     },
   },
+  province: {
+    Tehran: 'تهران',
+    Fars: 'فارس',
+    Unknown: 'نامشخص',
+  },
   nationalities: {
     Ir: 'ایران',
     Unknown: 'نامشخص',
+  },
+  disabilityStatus: {
+    NoDisability: 'بدون روحی',
+    PhysicalDisability: 'معلولیت جسمی',
+    MentalDisability: 'معلولیت روحی',
+    BothPhysicalAndMental: 'معلولیت روحی و جسمی',
   },
   genders: {
     Male: 'مرد',
@@ -230,6 +246,35 @@ export const messages = {
   cities: {
     Tehran: 'تهران',
     Unknown: 'نامشخص',
+  },
+  accommodationTypes: {
+    Owner: 'صاحب',
+    Rent: 'مستاجر',
+  },
+  insurance: {
+    Welfare: 'تامین اجتماعی',
+    Health: 'سلامت',
+  },
+  skills: {
+    Driving: 'رانندگی',
+    Carpentry: 'نجاری',
+  },
+  subsideTypes: {
+    Welfare: 'بهزیستی',
+    RescueCommittee: 'کمیته امداد',
+  },
+  jobs: {
+    Psychologist: 'روان‌شناس',
+    Worker: 'کارگر',
+  },
+  healthStatus: {
+    Healthy: 'سالم',
+    Sick: 'بیمار',
+  },
+  addictionStatus: {
+    CurrentlyAddicted: 'معتاد',
+    FormerlyAddicted: 'سابقه اعتیاد',
+    NeverAddicted: 'سالم',
   },
   householder: {
     visits: {
@@ -275,6 +320,111 @@ export const messages = {
       title: 'بازدیدها',
       addVisit: 'افزودن بازدید',
     },
+    healthForm: {
+      title: 'اطلاعات وضعیت سلامت',
+      addictionStatusInput: {
+        label: 'اعتیاد',
+      },
+      insuranceInput: {
+        label: 'بیمه',
+      },
+      disabilityStatusInput: {
+        label: 'معلولیت',
+      },
+      disabilityDescriptionInput: {
+        label: 'توضیحات معلولیت',
+        placeholder: 'قطع عضو',
+      },
+      healthStatusInput: {
+        label: 'سلامت',
+      },
+
+      healthDescriptionInput: {
+        label: 'توضیحات سلامت',
+        placeholder: 'بیماری پوستی',
+      },
+    },
+    financialForm: {
+      title: 'وضعیت مالی',
+      jobInput: {
+        label: 'شغل فعلی',
+      },
+      incomeInput: {
+        label: 'درآمد ماهانه (ریال)',
+        placeholder: '۲۰,۰۰۰,۰۰۰',
+      },
+      skillsInput: {
+        label: 'مهارت‌ها',
+      },
+      subsideTypesInput: {
+        label: 'کمک‌ها مالی',
+      },
+      subsideInput: {
+        label: 'میزان کمک مالی (ریال)',
+        placeholder: '۲۰,۰۰۰,۰۰۰',
+      },
+      rentInput: {
+        label: 'مبلغ اجاره',
+        placeholder: '۲۰,۰۰۰,۰۰۰',
+      },
+      bankCardNumberInput: {
+        label: 'شماره کارت',
+        placeholder: '۱۹۰۵۹۴۳۹۳۰۱۳۹۲۹۳',
+      },
+      bankAccountNumberInput: {
+        label: 'شماره حساب',
+        placeholder: '۱۹۰۵۹۴۳۹۳۰۱۳۹۲۹۳',
+      },
+      financialCommentInput: {
+        label: 'توضیحات',
+      },
+    },
+    contactForm: {
+      title: 'اطلاعات محل سکونت',
+      nationalityInput: {
+        label: 'ملیت',
+        placeholder: 'برای مثال: ایرانی',
+      },
+      cityOfBirthInput: {
+        label: 'شهر',
+        placeholder: 'برای مثال: تهران',
+      },
+      selectInputs: {
+        placeholder: 'انتخاب کنید',
+      },
+      provinceInput: {
+        label: 'استان',
+        placeholder: 'برای مثال: تهران',
+      },
+      cityInput: {
+        label: 'شهر',
+        placeholder: 'برای مثال: ساوه',
+      },
+      addressInput: {
+        label: 'آدرس',
+        placeholder: 'برای مثال: خیابان مطهری',
+      },
+      neighborhoodInput: {
+        label: 'محله',
+        placeholder: 'برای مثال: خیابان ولی عصر ، مجتمع فول استکس ، واحد ۸',
+      },
+      accommodationTypeInput: {
+        label: 'نوع تملک',
+        placeholder: 'برای مثال: مستاجر',
+      },
+      priorAccommodationAddressInput: {
+        label: 'محل سکونت سابق',
+        placeholder: 'برای مثال: خیابان مطهری',
+      },
+      zipCodeInput: {
+        label: 'کد پستی',
+        placeholder: 'برای مثال: ۱۲۳۴۵۶۷۸۹۰',
+      },
+      descriptionInput: {
+        placeholder: 'خیابان فلان، مجتمع بیسار، واحد ۸',
+        label: 'توضیحات',
+      },
+    },
     detail: {
       title: 'اطلاعات هویت',
     },
@@ -295,10 +445,7 @@ export const messages = {
         label: 'نام پدر',
         placeholder: 'برای مثال: محمد',
       },
-      nationalityInput: {
-        label: 'ملیت',
-        placeholder: 'برای مثال: ایرانی',
-      },
+
       nationalIdInput: {
         label: 'شماره ملی',
         placeholder: 'برای مثال: ۰۱۲۳۴۵۶۷۸۹',
@@ -318,10 +465,6 @@ export const messages = {
       dobInput: {
         label: 'تاریخ تولد',
         placeholder: 'برای مثال: ۱۳۹۹/۱۰/۱۰',
-      },
-      cityOfBirthInput: {
-        label: 'شهر',
-        placeholder: 'برای مثال: تهران',
       },
     },
   },

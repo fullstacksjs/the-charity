@@ -2,8 +2,14 @@ import type {
   ApiVisitDetailFragment,
   ApiVisitKeysFragment,
   ApiVisitListItemFragment,
+  ApiVisitNameFragment,
 } from '@camp/data-layer';
-import type { VisitDetail, VisitKeys, VisitListItem } from '@camp/domain';
+import type {
+  VisitDetail,
+  VisitKeys,
+  VisitListItem,
+  VisitName,
+} from '@camp/domain';
 
 import { toDate } from './scalar.mapper';
 
@@ -41,3 +47,7 @@ export const getVisitListItem = (
     })),
   };
 };
+
+export const getVisitName = (data: ApiVisitNameFragment): VisitName => ({
+  name: data.name,
+});

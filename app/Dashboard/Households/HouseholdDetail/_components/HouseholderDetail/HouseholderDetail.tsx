@@ -2,7 +2,7 @@ import { useHouseholderQuery } from '@camp/data-layer';
 import { debug, DebugScopes } from '@camp/debug';
 import { FullPageLoader } from '@camp/design';
 
-import { HouseholderForm } from '../HouseholderForm';
+import { HouseholderForms } from '../HouseholderForm';
 
 interface Props {
   householdId: string;
@@ -20,7 +20,7 @@ export const HouseholderDetail = ({ householdId, householdName }: Props) => {
   if (loading) return <FullPageLoader />;
 
   return (
-    <HouseholderForm
+    <HouseholderForms
       householdId={householdId}
       initialHouseholder={householder}
       householdName={householdName}

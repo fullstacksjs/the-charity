@@ -1,14 +1,16 @@
 import { messages } from '@camp/messages';
 
-import { HouseholderForm } from './HouseholderForm';
-import { householderFormIds } from './HouseholderForm.ids';
+import { HouseholderIdentityForm } from './HouseholderIdentityForm';
+import { householderFormIds } from './HouseholderIdentityForm.ids';
 
 const householderForm = messages.householder.form;
 const validation = messages.validation;
 
 describe('HouseHolder Form', () => {
   beforeEach(() => {
-    cy.mount(<HouseholderForm householdName="Household" householdId="null" />);
+    cy.mount(
+      <HouseholderIdentityForm householdName="Household" householdId="null" />,
+    );
   });
 
   it('contains a first name input with correct label', () => {
@@ -29,15 +31,6 @@ describe('HouseHolder Form', () => {
   it('contains a father name input with correct label', () => {
     cy.findByTestId(householderFormIds.form).within(() => {
       cy.findByLabelText(`${householderForm.fatherNameInput.label}:`).should(
-        'match',
-        'input',
-      );
-    });
-  });
-
-  it('contains a nationality input with correct label', () => {
-    cy.findByTestId(householderFormIds.form).within(() => {
-      cy.findByLabelText(`${householderForm.nationalityInput.label}:`).should(
         'match',
         'input',
       );
@@ -73,15 +66,6 @@ describe('HouseHolder Form', () => {
 
   it('contains a dob input with correct label', () => {
     cy.contains(householderForm.dobInput.label);
-  });
-
-  it('contains a cityOfBirth input with correct label', () => {
-    cy.findByTestId(householderFormIds.form).within(() => {
-      cy.findByLabelText(`${householderForm.cityOfBirthInput.label}:`).should(
-        'match',
-        'input',
-      );
-    });
   });
 
   it('contains a button to submit the form', () => {

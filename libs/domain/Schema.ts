@@ -2,9 +2,11 @@ import { messages } from '@camp/messages';
 import { toZodLiteralList } from '@camp/zod-addons';
 import { z } from 'zod';
 
+import { accommodationTypes } from './AccommodationType';
 import { cities } from './City';
 import { genders } from './Gender';
 import { nationalities } from './Nationality';
+import { provinces } from './Province';
 import { religions } from './Religions';
 
 export const digitsRegex = /^[0-9]*[\u0660-\u0669\u06F0-\u06F90-9]*$/;
@@ -41,4 +43,11 @@ export const Schema = {
       url: z.string(),
       id: z.string(),
     }),
+  province: () => z.union(toZodLiteralList(provinces)),
+  city: () => z.union(toZodLiteralList(cities)),
+  neighborhood: () => z.string().trim(),
+  address: () => z.string().trim(),
+  zipCode: () => z.string().length(10),
+  priorAccommodationAddress: () => z.string().trim(),
+  accommodationType: () => z.union(toZodLiteralList(accommodationTypes)),
 };

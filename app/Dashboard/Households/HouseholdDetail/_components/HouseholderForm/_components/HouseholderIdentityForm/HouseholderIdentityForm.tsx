@@ -8,11 +8,9 @@ import type {
   ReligionEnum,
 } from '@camp/domain';
 import {
-  cities,
   createResolver,
   genders,
-  householderSchema,
-  nationalities,
+  householderIdentitySchema,
   religions,
 } from '@camp/domain';
 import { messages } from '@camp/messages';
@@ -22,9 +20,9 @@ import { SimpleGrid, Stack } from '@mantine/core';
 import { useBoolean } from 'ahooks';
 import { useForm } from 'react-hook-form';
 
-import { householdNotifications } from '../../householdNotifications';
-import { householderFormIds as ids } from './HouseholderForm.ids';
-import { HouseholderFormActions } from './HouseholderFormActions';
+import { householdNotifications } from '../../../../householdNotifications';
+import { HouseholderFormActions } from '../../HouseholderFormActions';
+import { householderFormIds as ids } from './HouseholderIdentityForm.ids';
 
 interface Props {
   initialHouseholder?: HouseholderIdentity;
@@ -39,27 +37,22 @@ interface FormSchema {
   nationalId: string | undefined;
   dob: Date | null;
   gender: GenderEnum | undefined;
-  nationality: NationalityEnum | undefined;
   religion: ReligionEnum | undefined;
-  cityOfBirth: CityEnum | undefined;
 }
 
 const resolver = createResolver<FormSchema>({
-  name: householderSchema.name(),
-  surname: householderSchema.surname(),
-  fatherName: householderSchema.fatherName(),
-  nationalId: householderSchema.nationalId(),
-  gender: householderSchema.gender(),
-  nationality: householderSchema.nationality(),
-  religion: householderSchema.religion(),
-  cityOfBirth: householderSchema.cityOfBirth(),
-  dob: householderSchema.dob(),
+  name: householderIdentitySchema.name(),
+  surname: householderIdentitySchema.surname(),
+  fatherName: householderIdentitySchema.fatherName(),
+  nationalId: householderIdentitySchema.nationalId(),
+  gender: householderIdentitySchema.gender(),
+  religion: householderIdentitySchema.religion(),
+  dob: householderIdentitySchema.dob(),
 });
 
 const t = messages.householder.form;
 
-// eslint-disable-next-line max-lines-per-function
-export const HouseholderForm = ({
+export const HouseholderIdentityForm = ({
   initialHouseholder,
   householdId,
   householdName,
@@ -84,7 +77,7 @@ export const HouseholderForm = ({
   const onSubmit = handleSubmit(async values => {
     try {
       const { data } = await upsertHouseholder({
-        variables: { ...values, householdId },
+        variables: { ...initialHouseholder, ...values, householdId },
       });
 
       if (!isNull(data)) {
@@ -106,6 +99,8 @@ export const HouseholderForm = ({
     <form onSubmit={onSubmit} {...tid(ids.form)}>
       <Stack spacing={25}>
         <HouseholderFormActions
+          idPrefix={ids.idPrefix}
+          title={t.title}
           isEditMode={isEditMode}
           canUndo={isDirty || isCompleted}
           canSubmit={isValid && isDirty}
@@ -139,18 +134,7 @@ export const HouseholderForm = ({
             placeholder={t.fatherNameInput.placeholder}
             error={errors.fatherName?.message}
           />
-          <ControlledSelect
-            readOnly={isReadOnly}
-            name="nationality"
-            control={control}
-            wrapperProps={tid(ids.nationalityInput)}
-            data={nationalities.map(v => ({
-              value: v,
-              label: messages.nationalities[v],
-            }))}
-            placeholder={t.selectInputs.placeholder}
-            label={`${t.nationalityInput.label}:`}
-          />
+
           <TextInput
             readOnly={isReadOnly}
             wrapperProps={tid(ids.nationalIdInput)}
@@ -170,7 +154,7 @@ export const HouseholderForm = ({
               label: messages.genders[v],
             }))}
             label={`${t.genderInput.label}:`}
-            placeholder={t.selectInputs.placeholder}
+            placeholder={messages.form.selectInputs.placeholder}
           />
 
           <ControlledSelect
@@ -182,21 +166,8 @@ export const HouseholderForm = ({
               value: v,
               label: messages.religions[v],
             }))}
-            placeholder={t.selectInputs.placeholder}
+            placeholder={messages.form.selectInputs.placeholder}
             label={`${t.religionInput.label}:`}
-          />
-
-          <ControlledSelect
-            readOnly={isReadOnly}
-            name="cityOfBirth"
-            control={control}
-            wrapperProps={tid(ids.cityOfBirthInput)}
-            data={cities.map(v => ({
-              value: v,
-              label: messages.cities[v],
-            }))}
-            placeholder={t.selectInputs.placeholder}
-            label={`${t.cityOfBirthInput.label}:`}
           />
 
           <ControlledDateInput
@@ -205,7 +176,7 @@ export const HouseholderForm = ({
             readOnly={isReadOnly}
             wrapperProps={tid(ids.dobInput)}
             label={`${t.dobInput.label}:`}
-            placeholder={t.selectInputs.placeholder}
+            placeholder={messages.form.selectInputs.placeholder}
           />
         </SimpleGrid>
       </Stack>

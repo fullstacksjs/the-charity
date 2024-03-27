@@ -15,7 +15,13 @@ export type ApiHouseholdListItemFragment = { __typename?: 'household', name: str
 
 export type ApiHouseholderKeysFragment = { __typename?: 'householder', id: string };
 
-export type ApiHouseholderIdentityFragment = { __typename?: 'householder', name: string, father_name?: string | null, surname?: string | null, nationality?: SchemaTypes.NationalityEnum | null, religion?: SchemaTypes.ReligionEnum | null, city?: SchemaTypes.CityEnum | null, gender?: SchemaTypes.GenderEnum | null, status?: string | null, national_id?: string | null, dob?: string | null };
+export type ApiHouseholderIdentityFragment = { __typename?: 'householder', name: string, father_name?: string | null, surname?: string | null, religion?: SchemaTypes.ReligionEnum | null, gender?: SchemaTypes.GenderEnum | null, status?: string | null, national_id?: string | null, dob?: string | null };
+
+export type ApiHouseholderContactFragment = { __typename?: 'householder', province?: SchemaTypes.ProvinceEnum | null, city?: SchemaTypes.CityEnum | null, nationality?: SchemaTypes.NationalityEnum | null, accommodation_type?: SchemaTypes.AccommodationTypeEnum | null, neighborhood?: string | null, address?: string | null, zip_code?: string | null, prior_accommodation_address?: string | null };
+
+export type ApiHouseholderHealthFragment = { __typename?: 'householder', addiction_status?: SchemaTypes.AddictionStatusEnum | null, disability_status?: SchemaTypes.DisabilityStatusEnum | null, disability_description?: string | null, health_status?: SchemaTypes.HealthStatusEnum | null, health_description?: string | null, health_comment?: string | null, insurances?: Array<string> | null };
+
+export type ApiHouseholderFinancialFragment = { __typename?: 'householder', job?: SchemaTypes.JobEnum | null, income?: any | null, skills?: Array<string> | null, subside_types?: Array<string> | null, subside?: any | null, rent?: any | null, bank_card_number?: string | null, bank_account_number?: string | null, financial_comment?: string | null };
 
 export type ApiMemberKeysFragment = { __typename?: 'member', id: string, household_id: string };
 
@@ -32,6 +38,8 @@ export type ApiVisitKeysFragment = { __typename?: 'visit', id: string, household
 export type ApiVisitDetailFragment = { __typename?: 'visit', name: string, visitor?: string | null, date: string, id: string, description?: string | null, status: SchemaTypes.VisitStatusEnum, documents: Array<{ __typename?: 'document', url: string, id: string, storage_id: string }> };
 
 export type ApiVisitListItemFragment = { __typename?: 'visit', date: string, description?: string | null, documents: Array<{ __typename?: 'document', url: string, id: string, storage_id: string }> };
+
+export type ApiVisitNameFragment = { __typename?: 'visit', name: string };
 
 export type ApiCompleteHouseholdMutationVariables = SchemaTypes.Exact<{
   id: SchemaTypes.Scalars['uuid']['input'];
@@ -106,7 +114,7 @@ export type ApiUpsertHouseholderMutationVariables = SchemaTypes.Exact<{
 }>;
 
 
-export type ApiUpsertHouseholderMutation = { __typename?: 'mutation_root', insert_householder_one?: { __typename?: 'householder', id: string, name: string, father_name?: string | null, surname?: string | null, nationality?: SchemaTypes.NationalityEnum | null, religion?: SchemaTypes.ReligionEnum | null, city?: SchemaTypes.CityEnum | null, gender?: SchemaTypes.GenderEnum | null, status?: string | null, national_id?: string | null, dob?: string | null } | null };
+export type ApiUpsertHouseholderMutation = { __typename?: 'mutation_root', insert_householder_one?: { __typename?: 'householder', id: string, province?: SchemaTypes.ProvinceEnum | null, city?: SchemaTypes.CityEnum | null, nationality?: SchemaTypes.NationalityEnum | null, accommodation_type?: SchemaTypes.AccommodationTypeEnum | null, neighborhood?: string | null, address?: string | null, zip_code?: string | null, prior_accommodation_address?: string | null, name: string, father_name?: string | null, surname?: string | null, religion?: SchemaTypes.ReligionEnum | null, gender?: SchemaTypes.GenderEnum | null, status?: string | null, national_id?: string | null, dob?: string | null, addiction_status?: SchemaTypes.AddictionStatusEnum | null, disability_status?: SchemaTypes.DisabilityStatusEnum | null, disability_description?: string | null, health_status?: SchemaTypes.HealthStatusEnum | null, health_description?: string | null, health_comment?: string | null, insurances?: Array<string> | null, job?: SchemaTypes.JobEnum | null, income?: any | null, skills?: Array<string> | null, subside_types?: Array<string> | null, subside?: any | null, rent?: any | null, bank_card_number?: string | null, bank_account_number?: string | null, financial_comment?: string | null } | null };
 
 export type ApiUpsertMemberMutationVariables = SchemaTypes.Exact<{
   input: SchemaTypes.ApiMemberInsertInput;
@@ -136,9 +144,10 @@ export type ApiHouseholderQueryVariables = SchemaTypes.Exact<{
 }>;
 
 
-export type ApiHouseholderQuery = { __typename?: 'query_root', householder_by_pk?: { __typename?: 'householder', id: string, name: string, father_name?: string | null, surname?: string | null, nationality?: SchemaTypes.NationalityEnum | null, religion?: SchemaTypes.ReligionEnum | null, city?: SchemaTypes.CityEnum | null, gender?: SchemaTypes.GenderEnum | null, status?: string | null, national_id?: string | null, dob?: string | null } | null };
+export type ApiHouseholderQuery = { __typename?: 'query_root', householder_by_pk?: { __typename?: 'householder', id: string, province?: SchemaTypes.ProvinceEnum | null, city?: SchemaTypes.CityEnum | null, nationality?: SchemaTypes.NationalityEnum | null, accommodation_type?: SchemaTypes.AccommodationTypeEnum | null, neighborhood?: string | null, address?: string | null, zip_code?: string | null, prior_accommodation_address?: string | null, name: string, father_name?: string | null, surname?: string | null, religion?: SchemaTypes.ReligionEnum | null, gender?: SchemaTypes.GenderEnum | null, status?: string | null, national_id?: string | null, dob?: string | null, addiction_status?: SchemaTypes.AddictionStatusEnum | null, disability_status?: SchemaTypes.DisabilityStatusEnum | null, disability_description?: string | null, health_status?: SchemaTypes.HealthStatusEnum | null, health_description?: string | null, health_comment?: string | null, insurances?: Array<string> | null, job?: SchemaTypes.JobEnum | null, income?: any | null, skills?: Array<string> | null, subside_types?: Array<string> | null, subside?: any | null, rent?: any | null, bank_card_number?: string | null, bank_account_number?: string | null, financial_comment?: string | null } | null };
 
 export type ApiVisitsQueryVariables = SchemaTypes.Exact<{
+  household_id: SchemaTypes.Scalars['uuid']['input'];
   order_by?: SchemaTypes.InputMaybe<Array<SchemaTypes.ApiVisitOrderBy> | SchemaTypes.ApiVisitOrderBy>;
   limit?: SchemaTypes.InputMaybe<SchemaTypes.Scalars['Int']['input']>;
   offset?: SchemaTypes.InputMaybe<SchemaTypes.Scalars['Int']['input']>;
@@ -175,3 +184,10 @@ export type ApiVisitDetailQueryVariables = SchemaTypes.Exact<{
 
 
 export type ApiVisitDetailQuery = { __typename?: 'query_root', visit_by_pk?: { __typename?: 'visit', id: string, household_id: string, name: string, visitor?: string | null, date: string, description?: string | null, status: SchemaTypes.VisitStatusEnum, documents: Array<{ __typename?: 'document', url: string, id: string, storage_id: string }> } | null };
+
+export type ApiVisitNameQueryVariables = SchemaTypes.Exact<{
+  household_id: SchemaTypes.Scalars['uuid']['input'];
+}>;
+
+
+export type ApiVisitNameQuery = { __typename?: 'query_root', visit: Array<{ __typename?: 'visit', id: string, household_id: string, name: string }> };

@@ -6,3 +6,4 @@ export * from './useMemberListQuery';
 export * from './useProjectListQuery';
 export * from './useProjectQuery';
 export * from './useVisitDetailQuery';
+export * from './useVisitNameQuery';

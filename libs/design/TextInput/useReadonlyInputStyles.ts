@@ -7,7 +7,7 @@ export const useReadonlyInputStyles = createStyles(theme => ({
     },
     input: {
       ':read-only': {
-        'border': 'none',
+        'border': 'none !important',
         'padding': 0,
         'pointerEvents': 'none',
         'fontSize': theme.fontSizes.md,
