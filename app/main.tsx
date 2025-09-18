@@ -6,7 +6,7 @@ import { debug, DebugScopes } from '@camp/debug';
 import type { AllRouteIds } from '@camp/router';
 import { createRouter, RouterProvider } from '@camp/router';
 import { StrictMode } from 'react';
-import ReactDOM from 'react-dom/client';
+import ReactDOM from 'react-dom/client'
 
 import { routeTree } from './routeTree.gen';
 
