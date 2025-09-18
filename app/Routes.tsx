@@ -2,7 +2,7 @@ import { AuthGuard, GuestGuard } from '@camp/auth';
 import { config } from '@camp/config';
 import { messages } from '@camp/messages';
 import type { Route } from '@camp/router';
-import { lazy, Navigate, ReactLocation, Router } from '@camp/router';
+import { lazy, Navigate, ReactLocation, Router } from '@camp/router'
 
 import { Login } from './Auth';
 import {
